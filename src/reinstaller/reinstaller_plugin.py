@@ -5,7 +5,7 @@ from .reinstaller import Reinstaller
 class ReinstallerPlugin(SharedPlugin):
 
     def __init__(self):
-        super().__init__("Reinstaller", "Reinstaller", mobase.VersionInfo(1,0,4, mobase.ReleaseType.ALPHA))
+        super().__init__("Reinstaller", "Reinstaller", mobase.VersionInfo(1,0,5, mobase.ReleaseType.ALPHA))
 
     def init(self, organiser=mobase.IOrganizer):
         self.reinstaller = Reinstaller(organiser)

@@ -2,3 +2,4 @@
 .vs
 env
 release
+tools/release_log.txt
