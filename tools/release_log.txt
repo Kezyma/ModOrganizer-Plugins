@@ -1,0 +1,320 @@
+Removing existing release folder.
+Creating release folder.
+Looping through mods.
+Creating rootbuilder mod folder.
+Copying rootbuilder mod files to release folder.
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 07 December 2021 18:22:38
+   Source : D:\Github\ModOrganiserPlugins\src\rootbuilder\
+     Dest : D:\Github\ModOrganiserPlugins\release\rootbuilder\rootbuilder\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          2	D:\Github\ModOrganiserPlugins\src\rootbuilder\
+	    New File  		    2975	rootbuilder.py100%  
+	    New File  		    1886	rootbuilder_plugin.py100%  
+	  New Dir          8	D:\Github\ModOrganiserPlugins\src\rootbuilder\modules\
+	    New File  		    8643	rootbuilder_backup.py100%  
+	    New File  		    6433	rootbuilder_copy.py100%  
+	    New File  		    5489	rootbuilder_files.py100%  
+	    New File  		    2567	rootbuilder_linker.py100%  
+	    New File  		    2245	rootbuilder_mapper.py100%  
+	    New File  		    3718	rootbuilder_paths.py100%  
+	    New File  		    1397	rootbuilder_settings.py100%  
+	    New File  		    4964	rootbuilder_update.py100%  
+	  New Dir          5	D:\Github\ModOrganiserPlugins\src\rootbuilder\plugins\
+	    New File  		    4470	rootbuilder_plugin_mapper.py100%  
+	    New File  		     907	rootbuilder_tool_build.py100%  
+	    New File  		     904	rootbuilder_tool_clear.py100%  
+	    New File  		   14907	rootbuilder_tool_manage.py100%  
+	    New File  		     898	rootbuilder_tool_sync.py100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         3         3         0         0         0         0
+   Files :        15        15         0         0         0         0
+   Bytes :    60.9 k    60.9 k         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :             4800230 Bytes/sec.
+   Speed :             274.671 MegaBytes/min.
+   Ended : 07 December 2021 18:22:38
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 07 December 2021 18:22:38
+   Source : D:\Github\ModOrganiserPlugins\src\shared\
+     Dest : D:\Github\ModOrganiserPlugins\release\rootbuilder\shared\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          6	D:\Github\ModOrganiserPlugins\src\shared\
+	    New File  		    1519	shared_files.py100%  
+	    New File  		     594	shared_icons.py100%  
+	    New File  		    3196	shared_paths.py100%  
+	    New File  		    1601	shared_plugin.py100%  
+	    New File  		     653	shared_settings.py100%  
+	    New File  		    1376	shared_utilities.py100%  
+	  New Dir          5	D:\Github\ModOrganiserPlugins\src\shared\icons\
+	    New File  		  112514	ui-check.ico 99%  100%  
+	    New File  		  102253	ui-menu.ico 99%  100%  
+	    New File  		  101020	ui-minus.ico 99%  100%  
+	    New File  		  102494	ui-plus.ico 99%  100%  
+	    New File  		  112335	ui-sync.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         2         2         0         0         0         0
+   Files :        11        11         0         0         0         0
+   Bytes :   526.9 k   526.9 k         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :            41504230 Bytes/sec.
+   Speed :            2374.891 MegaBytes/min.
+   Ended : 07 December 2021 18:22:38
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 07 December 2021 18:22:38
+   Source : D:\Github\ModOrganiserPlugins\src\
+     Dest : D:\Github\ModOrganiserPlugins\release\rootbuilder\
+
+    Files : rootbuilder_init.py
+	    
+  Options : /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   1	D:\Github\ModOrganiserPlugins\src\
+	    New File  		     625	rootbuilder_init.py100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         0         1         0         0         0
+   Files :         1         1         0         0         0         0
+   Bytes :       625       625         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :              625000 Bytes/sec.
+   Speed :              35.762 MegaBytes/min.
+   Ended : 07 December 2021 18:22:38
+
+Renaming rootbuilder init file.
+Moving the readme files.
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 07 December 2021 18:22:38
+   Source : D:\Github\ModOrganiserPlugins\readme\rootbuilder\
+     Dest : D:\Github\ModOrganiserPlugins\release\rootbuilder\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   4	D:\Github\ModOrganiserPlugins\readme\rootbuilder\
+	*EXTRA Dir        -1	D:\Github\ModOrganiserPlugins\release\rootbuilder\rootbuilder\
+	*EXTRA Dir        -1	D:\Github\ModOrganiserPlugins\release\rootbuilder\shared\
+	  *EXTRA File 		     625	__init__.py
+	    New File  		   10071	readme.md100%  
+	    New File  		   44151	rootbuilder_mod_example.png100%  
+	    New File  		   24183	rootbuilder_settings_menu.png100%  
+	    New File  		   12920	rootbuilder_tools_menu.png100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         0         1         0         0         2
+   Files :         4         4         0         0         0         1
+   Bytes :    89.1 k    89.1 k         0         0         0       625
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :            45662500 Bytes/sec.
+   Speed :            2612.829 MegaBytes/min.
+   Ended : 07 December 2021 18:22:38
+
+Creating zip folder.
+Zipping rootbuilder.
+Creating reinstaller mod folder.
+Copying reinstaller mod files to release folder.
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 07 December 2021 18:22:39
+   Source : D:\Github\ModOrganiserPlugins\src\reinstaller\
+     Dest : D:\Github\ModOrganiserPlugins\release\reinstaller\reinstaller\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          2	D:\Github\ModOrganiserPlugins\src\reinstaller\
+	    New File  		    1607	reinstaller.py100%  
+	    New File  		     438	reinstaller_plugin.py100%  
+	  New Dir          3	D:\Github\ModOrganiserPlugins\src\reinstaller\modules\
+	    New File  		    1411	reinstaller_files.py100%  
+	    New File  		     303	reinstaller_paths.py100%  
+	    New File  		     317	reinstaller_settings.py100%  
+	  New Dir          4	D:\Github\ModOrganiserPlugins\src\reinstaller\plugins\
+	    New File  		    1433	reinstaller_tool_create.py100%  
+	    New File  		    2092	reinstaller_tool_delete.py100%  
+	    New File  		    1653	reinstaller_tool_install.py100%  
+	    New File  		    6591	reinstaller_tool_manage.py100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         3         3         0         0         0         0
+   Files :         9         9         0         0         0         0
+   Bytes :    15.4 k    15.4 k         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :             3169000 Bytes/sec.
+   Speed :             181.331 MegaBytes/min.
+   Ended : 07 December 2021 18:22:39
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 07 December 2021 18:22:39
+   Source : D:\Github\ModOrganiserPlugins\src\shared\
+     Dest : D:\Github\ModOrganiserPlugins\release\reinstaller\shared\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          6	D:\Github\ModOrganiserPlugins\src\shared\
+	    New File  		    1519	shared_files.py100%  
+	    New File  		     594	shared_icons.py100%  
+	    New File  		    3196	shared_paths.py100%  
+	    New File  		    1601	shared_plugin.py100%  
+	    New File  		     653	shared_settings.py100%  
+	    New File  		    1376	shared_utilities.py100%  
+	  New Dir          5	D:\Github\ModOrganiserPlugins\src\shared\icons\
+	    New File  		  112514	ui-check.ico 99%  100%  
+	    New File  		  102253	ui-menu.ico 99%  100%  
+	    New File  		  101020	ui-minus.ico 99%  100%  
+	    New File  		  102494	ui-plus.ico 99%  100%  
+	    New File  		  112335	ui-sync.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         2         2         0         0         0         0
+   Files :        11        11         0         0         0         0
+   Bytes :   526.9 k   526.9 k         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :            18605344 Bytes/sec.
+   Speed :            1064.606 MegaBytes/min.
+   Ended : 07 December 2021 18:22:39
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 07 December 2021 18:22:39
+   Source : D:\Github\ModOrganiserPlugins\src\
+     Dest : D:\Github\ModOrganiserPlugins\release\reinstaller\
+
+    Files : reinstaller_init.py
+	    
+  Options : /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   1	D:\Github\ModOrganiserPlugins\src\
+	    New File  		     520	reinstaller_init.py100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         0         1         0         0         0
+   Files :         1         1         0         0         0         0
+   Bytes :       520       520         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :              520000 Bytes/sec.
+   Speed :              29.754 MegaBytes/min.
+   Ended : 07 December 2021 18:22:39
+
+Renaming reinstaller init file.
+Moving the readme files.
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 07 December 2021 18:22:39
+   Source : D:\Github\ModOrganiserPlugins\readme\reinstaller\
+     Dest : D:\Github\ModOrganiserPlugins\release\reinstaller\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   1	D:\Github\ModOrganiserPlugins\readme\reinstaller\
+	*EXTRA Dir        -1	D:\Github\ModOrganiserPlugins\release\reinstaller\reinstaller\
+	*EXTRA Dir        -1	D:\Github\ModOrganiserPlugins\release\reinstaller\shared\
+	  *EXTRA File 		     520	__init__.py
+	    New File  		    1402	readme.md100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         0         1         0         0         2
+   Files :         1         1         0         0         0         1
+   Bytes :     1.3 k     1.3 k         0         0         0       520
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :               93466 Bytes/sec.
+   Speed :               5.348 MegaBytes/min.
+   Ended : 07 December 2021 18:22:39
+
+Creating zip folder.
+Zipping reinstaller.

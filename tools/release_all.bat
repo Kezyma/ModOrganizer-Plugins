@@ -1,0 +1,1 @@
+release.bat rootbuilder reinstaller > release_log.txt
