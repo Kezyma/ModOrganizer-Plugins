@@ -1,0 +1,3 @@
+C:\Games\Mod Organizer 2\Skyrim SE\plugins
+D:\Games\Mod Organizer 2\Morrowind\plugins
+D:\Games\Mod Organizer 2\Oblivion\plugins
