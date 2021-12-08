@@ -28,7 +28,7 @@ class SharedFiles():
         res = []   
         # Grab the full contents of the folder.
         for fp in listdir(path):
-            afp = path / fp
+            afp = Path(path) / fp
             # If the content is a folder, add it and load subfolders.
             if (Path.is_dir(afp)):
                 res.append(afp)
@@ -41,4 +41,12 @@ class SharedFiles():
         for item in list:
             files.append(os.path.basename(str(item)))
         return files
+
+    
+    def modOrganizerExecutables(self):
+        """ Gets the list of executables from Mod Organizer. """
+        titles = []
+        for executable in self.organiser.managedGame().executables():
+            titles.append(executable.title())
+        return titles
 

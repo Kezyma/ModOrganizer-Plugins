@@ -1,4 +1,4 @@
-import mobase, os
+import mobase, os, winreg
 from pathlib import Path, PurePath
 
 class SharedPaths():
@@ -56,6 +56,71 @@ class SharedPaths():
             self._safeGamePathName = self.safePathName(self.gamePath())
         return self._safeGamePathName
 
+    _modOrganizerPath = str()
+    def modOrganizerPath(self):
+        """ Gets the path for Mod Organizer's base folder. """
+        if self._modOrganizerPath == str():
+            self._modOrganizerPath = self.organiser.basePath()
+        return Path(self._modOrganizerPath)
+
+    _modOrganizerExePath = str()
+    def modOrganizerExePath(self):
+        """ Gets the path to the current ModOrganizer.exe """
+        if self._modOrganizerExePath == str():
+            self._modOrganizerExePath = str(self.modOrganizerPath() / "ModOrganizer.exe")
+        return Path(self._modOrganizerExePath)
+
+    _modOrganizerProfilesPath = str()
+    def modOrganizerProfilesPath(self):
+        """ Gets the path to Mod Organizer's profiles folder. """
+        if self._modOrganizerProfilesPath == str():
+            self._modOrganizerProfilesPath = str(Path(self.organiser.profilePath()).parent)
+        return Path(self._modOrganizerProfilesPath)
+
+    _modOrganizerInstancesPath = str()
+    def modOrganizerInstancesPath(self):
+        if self._modOrganizerInstancesPath == str():
+            self._modOrganizerInstancesPath = Path(os.getenv("LOCALAPPDATA")) / "ModOrganizer"
+        return Path(self._modOrganizerInstancesPath)
+
+    def currentInstanceName(self):
+        with winreg.OpenKey(winreg.HKEY_CURRENT_USER, "Software\\Mod Organizer Team\\Mod Organizer") as key:
+            value = winreg.QueryValueEx(key, "CurrentInstance")
+            result = str(value[0].replace("/", "\\"))
+            return result
+
+    def modOrganizerIniPath(self):
+        if self.currentInstanceName() == "":
+            return self.modOrganizerPath() / "ModOrganizer.ini"
+        else:
+            return self.modOrganizerInstancesPath() / self.currentInstanceName() / "ModOrganizer.ini"
+
+    def modOrganizerApps(self):
+        return self.modOrganizerAppPaths().keys()
+
+    def modOrganizerAppPaths(self):
+        paths = {}
+        names = {}
+        with open(self.modOrganizerIniPath()) as ini:
+            for line in ini:
+                txt = line.rstrip()
+                parts = txt.split("\\")
+                if len(parts) > 1:
+                    appId = parts[0]
+                    part = parts[1].split("=")
+                    if part[0] == "title":
+                        names[appId] = part[1]
+                    if part[0] == "binary":
+                        paths[appId] = part[1]
+        res = {}
+        for appId in names.keys():
+            res[names[appId]] = paths[appId]
+        return res
+
+    def modOrganizerProfile(self):
+        """ Gets the name of the current profile. """
+        return self.organiser.profileName()
+    
     def gameRelativePath(self, path):
         """ Gets the part of a path relative to the current game folder. """
         return Path(str(os.path.abspath(Path(path))).replace(str(os.path.abspath(self.gamePath())), "")[1:])

@@ -23,3 +23,6 @@ class SharedIcons():
 
     def syncIcon(self):
         return self.icon("ui-sync.ico")
+
+    def linkIcon(self):
+        return self.icon("ui-link.ico")

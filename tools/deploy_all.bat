@@ -1,1 +1,1 @@
-deploy.bat rootbuilder reinstaller > deploy_log.txt
+deploy.bat rootbuilder reinstaller shortcutter > deploy_log.txt
