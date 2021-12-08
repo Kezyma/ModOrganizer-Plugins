@@ -16,8 +16,8 @@ class Shortcutter():
     def create(self, label=str, profile=str, app=str, instance=str, icon=str):
         moPath = str(self.paths.modOrganizerExePath())
         args = ""
-        #if instance is not "":
-        args = '-i ""' + str(instance) + '""'
+        if instance != "":
+            args = '-i ""' + str(instance) + '""'
         args += ' -p ""' + str(profile) + '"" ""' + str(app) + '""'
         self.createShortcut(label, moPath, icon, args)
 

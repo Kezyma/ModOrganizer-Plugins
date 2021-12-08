@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QFileIconProvider, QInputDialog, QLineEdit
+from PyQt5.QtWidgets import QFileDialog, QFileIconProvider, QInputDialog, QLineEdit, QWidget
 from PyQt5.QtCore import QCoreApplication, qInfo, QSize
 from PyQt5 import QtGui, QtWidgets, QtCore
 from PyQt5.QtWidgets import QFileIconProvider
@@ -37,11 +37,11 @@ class ShortcutterCreateTool(ShortcutterPlugin, mobase.IPluginTool):
         self.shortcutter.create(label, profile, app, self.shortcutter.paths.currentInstanceName(), icon)
 
     def rebindUi(self):
-        self.profileSelect.clear()
-        self.profileSelect.addItems(self.shortcutter.files.getFileNamesFromList(self.shortcutter.files.getSubFolderList(self.shortcutter.paths.modOrganizerProfilesPath(), False)))
         self.appSelect.clear()
         self.appSelect.addItems(self.shortcutter.paths.modOrganizerApps())
-
+        self.profileSelect.clear()
+        self.profileSelect.addItems(self.shortcutter.files.getFileNamesFromList(self.shortcutter.files.getSubFolderList(self.shortcutter.paths.modOrganizerProfilesPath(), False)))
+        
     def setInitialSettings(self):
         self.profileSelect.setCurrentText(self.shortcutter.paths.modOrganizerProfile())
         self.selectChange()
@@ -53,10 +53,25 @@ class ShortcutterCreateTool(ShortcutterPlugin, mobase.IPluginTool):
 
     def selectChange(self):
         self.nameText.setText(self.profileSelect.currentText() + " - " + self.appSelect.currentText())
-        iconPath = str(self.shortcutter.paths.modOrganizerAppPaths()[self.appSelect.currentText()])
-        qInfo(iconPath)
-        self.selectedIcon.setText(iconPath)
-        iconFile = QtCore.QFileInfo(iconPath)
+        appPaths = self.shortcutter.paths.modOrganizerAppPaths()
+        if self.appSelect.currentText() in appPaths:
+            iconPath = str(appPaths[self.appSelect.currentText()])
+            self.selectedIcon.setText(iconPath)
+            self.updateIconDisplay()
+
+    def selectIcon(self):
+        fileDialog = QFileDialog(self.dialog)
+        fileDialog.setFileMode(QFileDialog.AnyFile)
+        fileDialog.setNameFilter("Icons (*.ico *.exe)")
+        files = []
+        if fileDialog.exec():
+            files = fileDialog.selectedFiles()
+            if len(files) > 0:
+                self.selectedIcon.setText(files[0])
+                self.updateIconDisplay()
+
+    def updateIconDisplay(self):
+        iconFile = QtCore.QFileInfo(self.selectedIcon.text())
         ip = QFileIconProvider()
         icon = ip.icon(iconFile)
         pix = icon.pixmap(QSize(23, 23))
@@ -94,6 +109,8 @@ class ShortcutterCreateTool(ShortcutterPlugin, mobase.IPluginTool):
         self.iconButton = QtWidgets.QPushButton(widget)
         self.iconButton.setGeometry(QtCore.QRect(33, 155, 75, 23))
         self.iconButton.setObjectName("iconButton")
+        self.iconButton.clicked.connect(self.selectIcon)
+
         self.selectedIcon = QtWidgets.QLabel(widget)
         self.selectedIcon.setGeometry(QtCore.QRect(113, 160, 391, 13))
         self.selectedIcon.setObjectName("selectedIcon")
@@ -118,7 +135,7 @@ class ShortcutterCreateTool(ShortcutterPlugin, mobase.IPluginTool):
         self.selectedIcon.setText("...")
         self.nameLabel.setText("Name")
 
-        self.buttonBox.accepted.connect(widget.accept)
+        #self.buttonBox.accepted.connect(widget.accept)
         self.buttonBox.accepted.connect(self.createShortcut)
         self.buttonBox.rejected.connect(widget.reject)
         QtCore.QMetaObject.connectSlotsByName(widget)
