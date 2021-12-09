@@ -3,7 +3,7 @@ Shared repository for Mod Organizer plugins.
 
 ## Plugins
 
-### [Root Builder](/release/rootbuilder) 
+### [Root Builder](/release/rootbuilder)
 [NexusMods](https://www.nexusmods.com/skyrimspecialedition/mods/31720)
 Root Builder is a Mod Organizer 2 plugin that allows you to manage files in the base game folder through Mod Organizer, leaving your game folder in pristine, vanilla condition!
 
@@ -12,20 +12,20 @@ Root Builder is a Mod Organizer 2 plugin that allows you to manage files in the 
 Reinstaller is a Mod Organizer 2 plugin that allows you to backup downloaded mods and run their installers on demand. Useful for large fomod patch installers with loads of options that you have to re-run frequently. Don't let those files keep your downloads tab cluttered anymore!
 
 ### [Shortcutter](/release/shortcutter)
-Shortcutter is a Mod Organizer 2 plugin that gives you the option of quickly creating instance and profile specific desktop shortcuts, allowing you to quickly launch your game using different profiles without having to manually switch inside Mod Organizer. 
+Shortcutter is a Mod Organizer 2 plugin that gives you the option of quickly creating instance and profile specific desktop shortcuts, allowing you to quickly launch your game using different profiles without having to manually switch inside Mod Organizer.
 
 ## Usage
 
 ### Installing Mods
-To install a plugin from this repository, copy a folder from [release](/release/) into your `Mod Organizer\plugins` folder. 
+To install a plugin from this repository, copy a folder from [`release`](/release/) into your `Mod Organizer\plugins` folder.
 
-To install all plugins, rename the `src` folder and copy it into your `Mod Organizer\plugins` folder. 
+To install all plugins, rename the `src` folder and copy it into your `Mod Organizer\plugins` folder.
 
 ### This Repo
-`src` contains the plugin code and a shared code folder. Each plugin has its own folder and a `plugin_init.py` file. 
-`release` contains the plugins packaged for individual release. each folder is an individual plugin.
-`readme` contains the readme files (and any other documentation) in individual plugin folders.
-`tools` contains various batch files.
+- `src` contains the plugin code and a shared code folder. Each plugin has its own folder and a `plugin_init.py` file.
+- `release` contains the plugins packaged for individual release. each folder is an individual plugin.
+- `readme` contains the readme files (and any other documentation) in individual plugin folders.
+- `tools` contains various batch files.
 
 ### Tools
 the `tools` folder contains a few batch files.
