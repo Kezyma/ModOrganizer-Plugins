@@ -4,11 +4,13 @@ Shared repository for Mod Organizer plugins.
 ## Plugins
 
 ### [Root Builder](/release/rootbuilder)
-[NexusMods](https://www.nexusmods.com/skyrimspecialedition/mods/31720)
+[Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/31720)
+
 Root Builder is a Mod Organizer 2 plugin that allows you to manage files in the base game folder through Mod Organizer, leaving your game folder in pristine, vanilla condition!
 
 ### [Reinstaller](/release/reinstaller)
-[NexusMods](https://www.nexusmods.com/skyrimspecialedition/mods/59292)
+[Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/59292)
+
 Reinstaller is a Mod Organizer 2 plugin that allows you to backup downloaded mods and run their installers on demand. Useful for large fomod patch installers with loads of options that you have to re-run frequently. Don't let those files keep your downloads tab cluttered anymore!
 
 ### [Shortcutter](/release/shortcutter)
