@@ -1,5 +1,6 @@
 import mobase
 from ...shared.shared_paths import SharedPaths
+from pathlib import Path
 
 class PluginFinderPaths(SharedPaths):
     """ Plugin Finder path module. Used to load various paths for the plugin. """
@@ -9,7 +10,7 @@ class PluginFinderPaths(SharedPaths):
 
     _directoryJsonPath = str()
     def directoryJsonPath(self):
-        if self._directoryJsonPath = str():
+        if self._directoryJsonPath == str():
             self._directoryJsonPath = str(self.pluginDataPath() / "pluginfinder_directory.json")
         return Path(self._directoryJsonPath)
 

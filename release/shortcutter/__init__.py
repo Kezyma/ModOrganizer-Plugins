@@ -1,7 +1,7 @@
 import mobase
-from .pluginfinder.plugins.pluginfinder_tool_manage import PluginFinderManageTool
+from .shortcutter.plugins.shortcutter_tool_create import ShortcutterCreateTool
 
 def createPlugins():
     return [
-        PluginFinderManageTool()
+        ShortcutterCreateTool()
         ]

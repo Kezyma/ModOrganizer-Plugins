@@ -37,6 +37,4 @@ class PluginFinderManageTool(PluginFinderPlugin, mobase.IPluginTool):
         widget.setObjectName("PluginFinder")
         widget.resize(400, 215)
         widget.setWindowTitle("Plugin Finder")
-        self.buttonBox.accepted.connect(widget.accept)
-        self.buttonBox.rejected.connect(widget.reject)
         QtCore.QMetaObject.connectSlotsByName(widget)

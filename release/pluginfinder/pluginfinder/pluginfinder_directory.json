@@ -1,15 +1,3 @@
-/*
-  Please fill out all fields for each mod.
-
-  "Name": "Plugin Name",
-  "Description": "Short description of plugin's purpose.",
-  "Author": "Name",
-  "Nexus": "Link to nexus page for plugin, or empty if not applicable",
-  "Github": "Link to github repo for plugin, or empty if not applicable",
-  "Download": "Link to download for the plugin, must be a link to a zip file. Easiest way to get one is copying the link for the 'Download as zip' option on Github for the plugin repository",
-  "Path": "Path inside the download zip to the plugin itself. If this is a single-file plugin, point to the plugin file itself. If this is a multi-file plugin, point to the plugin folder.
-  */
-
 [
   {
     "Name": "Root Builder",
