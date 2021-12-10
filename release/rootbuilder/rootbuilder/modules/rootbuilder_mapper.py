@@ -6,11 +6,11 @@ import mobase, os
 class RootBuilderMapper():
     """ Root Builder mapping module. Used to generate root mappings for usvfs. """
 
-    def __init__(self, organiser=mobase.IOrganizer):
+    def __init__(self, organiser=mobase.IOrganizer, settings=RootBuilderSettings, paths=RootBuilderPaths, files=RootBuilderFiles):
         self.organiser = organiser
-        self.settings = RootBuilderSettings(self.organiser)
-        self.paths = RootBuilderPaths(self.organiser)
-        self.files = RootBuilderFiles(self.organiser)
+        self.settings = settings
+        self.paths = paths
+        self.files = files
         super().__init__()
 
     def mappings(self):

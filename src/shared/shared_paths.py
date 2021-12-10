@@ -7,10 +7,15 @@ class SharedPaths():
         self.organiser = organiser
         self.pluginName = pluginName
         super().__init__()
-
+        
+    _version = str()
     def gameVersion(self):
         """ Gets the current game version string. """
-        return self.organiser.managedGame().gameVersion()
+        if self._version == str():
+            self._version = self.organiser.managedGame().gameVersion()
+        if self._version == str():
+            return "Unknown"
+        return self._version
 
     _gamePath = str()
     def gamePath(self):

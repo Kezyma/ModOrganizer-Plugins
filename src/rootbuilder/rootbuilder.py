@@ -15,12 +15,12 @@ class RootBuilder():
         self.organiser = organiser
         self.settings = RootBuilderSettings(self.organiser)
         self.paths = RootBuilderPaths(self.organiser)
-        self.files = RootBuilderFiles(self.organiser)
-        self.backup = RootBuilderBackup(self.organiser)
-        self.mapper = RootBuilderMapper(self.organiser)
-        self.linker = RootBuilderLinker(self.organiser)
-        self.copier = RootBuilderCopy(self.organiser)
-        self.updater = RootBuilderUpdate(self.organiser)
+        self.files = RootBuilderFiles(self.organiser, self.settings, self.paths)
+        self.backup = RootBuilderBackup(self.organiser, self.settings, self.paths, self.files)
+        self.mapper = RootBuilderMapper(self.organiser, self.settings, self.paths, self.files)
+        self.linker = RootBuilderLinker(self.organiser, self.paths, self.files)
+        self.copier = RootBuilderCopy(self.organiser, self.settings, self.paths, self.files, self.backup)
+        self.updater = RootBuilderUpdate(self.organiser, self.paths, self.files)
         super().__init__()
 
     def migrate(self):
@@ -29,11 +29,11 @@ class RootBuilder():
     def updateFix(self):
         if self.updater.hasGameUpdateBug():
             self.updater.fixGameUpdateBug()
-            self.clear()
-            self.backup.clearBackupFiles()
-            self.backup.clearCache()
 
     def build(self):
+        qInfo("Running for version " + self.backup.paths.gameVersion())
+        self.updateFix()
+
         qInfo("RootBuilder: Starting build.")
 
         qInfo("RootBuilder: Backing up files.")
@@ -52,12 +52,18 @@ class RootBuilder():
         qInfo("RootBuilder: Build complete.")
 
     def sync(self):
+        qInfo("Running for version " + self.backup.paths.gameVersion())
+        self.updateFix()
+
         qInfo("RootBuilder: Starting sync.")
         self.copier.sync()
         qInfo("RootBuilder: Sync complete.")
         return
 
     def clear(self):
+        qInfo("Running for version " + self.backup.paths.gameVersion())
+        self.updateFix()
+
         qInfo("RootBuilder: Starting clear.")
 
         qInfo("RootBuilder: Clearing any links.")
@@ -69,6 +75,7 @@ class RootBuilder():
         qInfo("RootBuilder: Copied files cleared.")
 
         qInfo("RootBuilder: Restoring game files.")
+        #self.updateFix()
         self.backup.restore()
         qInfo("RootBuilder: Game files restored.")
         

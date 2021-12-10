@@ -9,12 +9,12 @@ import mobase, os, json
 class RootBuilderCopy():
     """ Root Builder copy module. Used to copy files to and from mod folders. """
 
-    def __init__(self, organiser=mobase.IOrganizer):
+    def __init__(self, organiser=mobase.IOrganizer, settings=RootBuilderSettings,paths=RootBuilderPaths,files=RootBuilderFiles,backup=RootBuilderBackup):
         self.organiser = organiser
-        self.settings = RootBuilderSettings(self.organiser)
-        self.paths = RootBuilderPaths(self.organiser)
-        self.files = RootBuilderFiles(self.organiser)
-        self.backup = RootBuilderBackup(self.organiser)
+        self.settings = settings
+        self.paths = paths
+        self.files = files
+        self.backup = backup
         self.utilities = SharedUtilities()
         super().__init__()
 

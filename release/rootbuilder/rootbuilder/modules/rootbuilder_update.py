@@ -10,10 +10,10 @@ import mobase, os, hashlib, json, shutil
 class RootBuilderUpdate():
     """ Root Builder update module. Used to prevent issues when games update. """
 
-    def __init__(self, organiser=mobase.IOrganizer):
+    def __init__(self, organiser=mobase.IOrganizer, paths=RootBuilderPaths,files=RootBuilderFiles):
         self.organiser = organiser
-        self.paths = RootBuilderPaths(self.organiser)
-        self.files = RootBuilderFiles(self.organiser)
+        self.paths = paths
+        self.files = files
         self.utilities = SharedUtilities()
         super().__init__()
 

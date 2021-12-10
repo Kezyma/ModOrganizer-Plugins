@@ -1,3 +1,6 @@
 C:\Games\Mod Organizer 2\Skyrim SE\plugins
 D:\Games\Mod Organizer 2\Morrowind\plugins
 D:\Games\Mod Organizer 2\Oblivion\plugins
+D:\Games\Mod Organizer 2\Fallout 3\plugins
+D:\Games\Mod Organizer 2\Fallout NV\plugins
+D:\Games\Mod Organizer 2\Fallout 4\plugins

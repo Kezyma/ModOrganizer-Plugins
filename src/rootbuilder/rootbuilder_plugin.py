@@ -6,7 +6,7 @@ from PyQt5.QtCore import QCoreApplication
 class RootBuilderPlugin(SharedPlugin):
 
     def __init__(self):
-        super().__init__("RootBuilder", "Root Builder", mobase.VersionInfo(4, 2, 4, mobase.ReleaseType.BETA))
+        super().__init__("RootBuilder", "Root Builder", mobase.VersionInfo(4, 2, 5, mobase.ReleaseType.BETA))
 
     def init(self, organiser=mobase.IOrganizer):
         self.rootBuilder = RootBuilder(organiser)

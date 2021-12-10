@@ -62,10 +62,12 @@ class RootBuilderMapperPlugin(RootBuilderPlugin, mobase.IPluginFileMapper):
         
     def onInitialise(self, mainWindow):
         self.rootBuilder.migrate()
-        if self.rootBuilder.updater.hasGameUpdateBug():
-            self.updateWarning()
+        self.rootBuilder.updateFix()
+        #if self.rootBuilder.updater.hasGameUpdateBug():
+        #    self.updateWarning()
 
     def updateWarning(self):
+        """ Obsolete. the fix effectively just runs, but the restore doesn't happen until the user clears and your backup/cache aren't cleared as a result. The bug only occurs if the game is actually updated while a build is still present, aka, almost never. """
         warnMsg = "<p>Your game has been updated since Root Builder last cleared. This can cause problems.</p>"
         warnMsg += "<p>Clicking OK will run Root Builder's update fix, which will do the following;</p>"
         warnMsg += "<ul>"

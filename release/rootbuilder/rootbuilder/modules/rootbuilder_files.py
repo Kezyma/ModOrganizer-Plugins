@@ -8,10 +8,10 @@ from ...shared.shared_files import SharedFiles
 class RootBuilderFiles(SharedFiles):
     """ Root Builder file module. Used to get collections of files from different game paths. """
 
-    def __init__(self, organiser=mobase.IOrganizer):
+    def __init__(self, organiser=mobase.IOrganizer, settings=RootBuilderSettings,paths=RootBuilderPaths):
         super().__init__("RootBuilder", organiser)
-        self.settings = RootBuilderSettings(self.organiser)
-        self.paths = RootBuilderPaths(self.organiser)
+        self.settings = settings
+        self.paths = paths
 
     def getGameFileList(self):
         """ Gets a list of all valid files in the current game folder. """

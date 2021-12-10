@@ -5,15 +5,16 @@ from .rootbuilder_settings import RootBuilderSettings
 from .rootbuilder_paths import RootBuilderPaths
 from .rootbuilder_files import RootBuilderFiles
 import mobase, os, hashlib, json, shutil, stat
+from PyQt5.QtCore import QCoreApplication, qInfo
 
 class RootBuilderBackup():
     """ Root Builder backup module. Used to back up and restore vanilla game installations. """
 
-    def __init__(self, organiser=mobase.IOrganizer):
+    def __init__(self, organiser=mobase.IOrganizer, settings=RootBuilderSettings, paths=RootBuilderPaths, files=RootBuilderFiles):
         self.organiser = organiser
-        self.settings = RootBuilderSettings(self.organiser)
-        self.paths = RootBuilderPaths(self.organiser)
-        self.files = RootBuilderFiles(self.organiser)
+        self.settings = settings
+        self.paths = paths
+        self.files = files
         self.utilities = SharedUtilities()
         super().__init__()
 
@@ -32,6 +33,7 @@ class RootBuilderBackup():
         """ Restores the game to the most vanilla state possible, copying changes to overwrite. """
         # Check if it's possible to restore.
         if self.canRestore():
+            qInfo("Can Restore.")
             if not self.paths.rootOverwritePath().exists():
                 os.makedirs(self.paths.rootOverwritePath())
             # Get hashes for our current vanilla game install.
@@ -39,14 +41,18 @@ class RootBuilderBackup():
             # Iterate through everything in the current game folder and look for changes.
             gameFiles = self.files.getGameFileList()
             for file in gameFiles:
+                #qInfo("Checking " + str(file))
                 if (Path(file).exists()):
                     # If we have a record of this file, check for changes.
                     if str(file) in fileData:
                         # If file has changed, check if we have a backup.
+                        #qInfo("Changes for " + str(file))
                         if fileData[str(file)] != str(self.utilities.hashFile(file)):
+                            qInfo("File changed " + str(file))
                             backupPath = self.paths.rootBackupPath() / self.paths.gameRelativePath(file)
                             # If we have a backup, move the file to overwrite and restore.
                             if backupPath.exists():
+                                qInfo("Backup exists, restoring " + str(file))
                                 overwritePath = self.paths.rootOverwritePath() / self.paths.gameRelativePath(file)
                                 self.utilities.moveTo(str(file), str(overwritePath))
                                 self.utilities.copyTo(str(backupPath), str(file))
@@ -56,11 +62,14 @@ class RootBuilderBackup():
                         self.utilities.moveTo(str(file), str(overwritePath))
             # Iterate through the files we've got data for.
             for file in fileData.keys():
+                #qInfo("Checking " + str(file))
                 # Check to see if the file has been deleted.
                 if not Path(file).exists():
+                    qInfo("File missing " + str(file))
                     backupPath = self.paths.rootBackupPath() / self.paths.gameRelativePath(file)
                     # If the file has been deleted and has a backup, restore it.
                     if backupPath.exists():
+                        qInfo("Restoring " + str(file))
                         self.utilities.copyTo(str(backupPath), str(file))
         # Clean up any empty game folders.
         gameFolders = self.files.getGameFolderList()
@@ -72,7 +81,9 @@ class RootBuilderBackup():
         if self.settings.backup() is False:
             self.clearBackupFiles()
         # Delete current backup data.
+        #qInfo("Clearing backup data.")
         self.clearFileData()
+        #qInfo("Backup data cleared.")
         
     def backupFileList(self, backupFiles=list):
         """ Backs up a list of game files if not already backed up. """
@@ -111,12 +122,12 @@ class RootBuilderBackup():
     def getFileData(self):
         """ Gets a dictionary of vanilla game files with their hashes. """
         fileData = {}
-        # If we have already run a build, just load the data from that.
-        if (self.paths.rootBackupDataFilePath().exists()):
-            fileData = json.load(open(self.paths.rootBackupDataFilePath()))
         # If we have a cache file for this game already load that.
-        elif (self.settings.cache() and self.paths.rootCacheFilePath().exists()):
+        if (self.settings.cache() and self.paths.rootCacheFilePath().exists()):
             fileData = json.load(open(self.paths.rootCacheFilePath()))
+        # If we have already run a build, just load the data from that.
+        elif (self.paths.rootBackupDataFilePath().exists()):
+            fileData = json.load(open(self.paths.rootBackupDataFilePath()))
         # Hash the base game files.
         else:
             fileData = self.buildCache()
@@ -164,6 +175,8 @@ class RootBuilderBackup():
         """ Checks if backup data exists and therefore whether a restore is possible """
         # We can attempt to restore as long as we have some data, either from a current run or from cache
         # We don't want to run this if we don't have data and risk generating data from a contaminated install
+        #qInfo("Checking " + str(self.paths.rootBackupDataFilePath()))
+        #qInfo("Checking" + str(self.paths.rootCacheFilePath()))
         backupDataExists = self.paths.rootBackupDataFilePath().exists()
         cacheDataExists = self.paths.rootCacheFilePath().exists()
         return backupDataExists or cacheDataExists

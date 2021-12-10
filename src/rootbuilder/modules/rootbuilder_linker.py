@@ -7,10 +7,10 @@ import mobase, os, json
 class RootBuilderLinker():
     """ Root Builder link module. Used to create links for specific file types. """
 
-    def __init__(self, organiser=mobase.IOrganizer):
+    def __init__(self, organiser=mobase.IOrganizer, paths=RootBuilderPaths, files=RootBuilderFiles):
         self.organiser = organiser
-        self.paths = RootBuilderPaths(self.organiser)
-        self.files = RootBuilderFiles(self.organiser)
+        self.paths = paths
+        self.files = files
         self.utilities = SharedUtilities()
         super().__init__()
 
@@ -23,7 +23,7 @@ class RootBuilderLinker():
             gamePath = self.paths.gamePath() / relativePath
             # If the linkable file is already in the game folder, rename it.
             if gamePath.exists():
-                self.utilities.copyTo(gamePath, Path(str(gamePath) + ".rbackup"))
+                self.utilities.moveTo(gamePath, Path(str(gamePath) + ".rbackup"))
             # Create the dirs if they don't exist.
             if not gamePath.parent.exists():
                     os.makedirs(gamePath.parent)
