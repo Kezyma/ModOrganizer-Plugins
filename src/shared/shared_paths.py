@@ -144,7 +144,6 @@ class SharedPaths():
         if "*" in str(basePath):
             result = False
             for path in glob.glob(str(basePath)):
-                qInfo("Matching " + str(path) + " and " + str(childPath))
                 if self.sharedPath(path, childPath):
                     result = True
             return result
