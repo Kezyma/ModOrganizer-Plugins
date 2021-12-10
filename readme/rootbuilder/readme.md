@@ -157,7 +157,7 @@ Please note, this does not work with all game and mod combinations.
 A comma separated list of file extensions that are valid for linking if linkmode is enabled.
 
 #### exclusions (default: "Saves,Morrowind.ini")
-A comma separated list of files and folders in the base game folder that will be ignored by Root Builder.
+A comma separated list of files and folders in the base game folder that will be ignored by Root Builder. Supports * as a wildcard.
 
 Any mods that contain these files and folders will be ignored and skipped during build.
 
