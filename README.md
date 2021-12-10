@@ -1,5 +1,5 @@
 # ModOrganizer-Plugins
-Shared repository for Mod Organizer plugins.
+Shared repository for [Mod Organizer](https://github.com/ModOrganizer2/modorganizer) plugins.
 
 ## Plugins
 
