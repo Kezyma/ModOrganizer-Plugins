@@ -271,11 +271,13 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.rootBuilder.backup.buildCache()
     
     def delBackupClick(self):
-        self.rootBuilder.backup.clearBackupFiles()
+        #self.rootBuilder.backup.clearBackupFiles()
+        self.rootBuilder.backup.clearAllBackupFiles()
         self.rootBuilder.backup.clearFileData()
 
     def delCacheClick(self):
-        self.rootBuilder.backup.clearCache()
+        #self.rootBuilder.backup.clearCache()
+        self.rootBuilder.backup.clearAllCache()
 
     def cacheChanged(self):
         self.updateSetting("cache", self.cacheCheck.isChecked())

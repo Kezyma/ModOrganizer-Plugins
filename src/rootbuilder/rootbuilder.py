@@ -27,8 +27,7 @@ class RootBuilder():
         self.updater.migrateLegacyGameData()
 
     def updateFix(self):
-        if self.updater.hasGameUpdateBug():
-            self.updater.fixGameUpdateBug()
+        self.updater.fixGameUpdateBug()
 
     def build(self):
         qInfo("Running for version " + self.backup.paths.gameVersion())

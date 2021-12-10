@@ -33,7 +33,7 @@ class RootBuilderBackup():
         """ Restores the game to the most vanilla state possible, copying changes to overwrite. """
         # Check if it's possible to restore.
         if self.canRestore():
-            qInfo("Can Restore.")
+            qInfo("Backup data exists, attempting restore.")
             if not self.paths.rootOverwritePath().exists():
                 os.makedirs(self.paths.rootOverwritePath())
             # Get hashes for our current vanilla game install.
@@ -41,14 +41,12 @@ class RootBuilderBackup():
             # Iterate through everything in the current game folder and look for changes.
             gameFiles = self.files.getGameFileList()
             for file in gameFiles:
-                #qInfo("Checking " + str(file))
                 if (Path(file).exists()):
                     # If we have a record of this file, check for changes.
                     if str(file) in fileData:
                         # If file has changed, check if we have a backup.
-                        #qInfo("Changes for " + str(file))
                         if fileData[str(file)] != str(self.utilities.hashFile(file)):
-                            qInfo("File changed " + str(file))
+                            qInfo("File has changed, checking for backup " + str(file))
                             backupPath = self.paths.rootBackupPath() / self.paths.gameRelativePath(file)
                             # If we have a backup, move the file to overwrite and restore.
                             if backupPath.exists():
@@ -56,21 +54,28 @@ class RootBuilderBackup():
                                 overwritePath = self.paths.rootOverwritePath() / self.paths.gameRelativePath(file)
                                 self.utilities.moveTo(str(file), str(overwritePath))
                                 self.utilities.copyTo(str(backupPath), str(file))
+                            else:
+                                qInfo("Backup does not exist, could not restore " + str(file))
                     # If this is a new file, move it to overwrite.
                     else:
+                        qInfo("New file detected, moving to overwrite " + str(file))
                         overwritePath = self.paths.rootOverwritePath() / self.paths.gameRelativePath(file)
                         self.utilities.moveTo(str(file), str(overwritePath))
             # Iterate through the files we've got data for.
             for file in fileData.keys():
-                #qInfo("Checking " + str(file))
                 # Check to see if the file has been deleted.
                 if not Path(file).exists():
                     qInfo("File missing " + str(file))
                     backupPath = self.paths.rootBackupPath() / self.paths.gameRelativePath(file)
                     # If the file has been deleted and has a backup, restore it.
                     if backupPath.exists():
-                        qInfo("Restoring " + str(file))
+                        qInfo("Backup exists, restoring " + str(file))
                         self.utilities.copyTo(str(backupPath), str(file))
+                    else:
+                        qInfo("Backup does not exist, could not restore " + str(file))
+        else:
+            qInfo("Backup data does not exist, skipping restore.")
+
         # Clean up any empty game folders.
         gameFolders = self.files.getGameFolderList()
         for folder in gameFolders:
@@ -80,10 +85,9 @@ class RootBuilderBackup():
         # If backup is disabled, we can clear any backed up files now that the restore is complete.
         if self.settings.backup() is False:
             self.clearBackupFiles()
+
         # Delete current backup data.
-        #qInfo("Clearing backup data.")
         self.clearFileData()
-        #qInfo("Backup data cleared.")
         
     def backupFileList(self, backupFiles=list):
         """ Backs up a list of game files if not already backed up. """
@@ -93,6 +97,7 @@ class RootBuilderBackup():
             backupPath = self.paths.rootBackupPath() / relativePath
             # Back them up if they don't already exist.
             if not backupPath.exists() and Path(file).exists():
+                qInfo("Backing up " + str(file))
                 self.utilities.copyTo(str(file), str(backupPath))
 
     def getBackupList(self, fileData=dict):
@@ -150,6 +155,13 @@ class RootBuilderBackup():
         if self.paths.rootBackupPath().exists():
             shutil.rmtree(self.paths.rootBackupPath())
 
+    def clearAllBackupFiles(self):
+        """ Clears backup files for all versions. """
+        paths = self.paths.rootBackupPathAllVersions()
+        if paths and len(paths) > 0:
+            for path in paths:
+                shutil.rmtree(str(path))
+
     def buildCache(self):
         """ Triggers a cache build if none exists """
         fileData = {}
@@ -170,6 +182,13 @@ class RootBuilderBackup():
         """ Clears the current cache file """
         if self.paths.rootCacheFilePath().exists():    
             self.utilities.deletePath(self.paths.rootCacheFilePath())
+
+    def clearAllCache(self):
+        """ Clears cache files for all versions. """
+        paths = self.paths.rootCacheFilePathAllVersions()
+        if paths and len(paths) > 0:
+            for path in paths:
+                self.utilities.deletePath(str(path))
 
     def canRestore(self):
         """ Checks if backup data exists and therefore whether a restore is possible """

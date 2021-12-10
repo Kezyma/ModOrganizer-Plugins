@@ -1,4 +1,4 @@
-import mobase, os
+import mobase, os, glob
 from pathlib import Path
 from ...shared.shared_paths import SharedPaths
 
@@ -73,6 +73,30 @@ class RootBuilderPaths(SharedPaths):
     def rootRelativePath(self, path):
         """ Gets the part of a path relative to the Root folder. """
         return Path(str(path)[(str(os.path.abspath(Path(path))).lower().find(os.path.sep + "root") + 6):])
+
+    def rootCacheFilePathAllVersions(self):
+        """ Gets all cache files for all versions of the game. """
+        searchPath = self.rootBuilderLegacyGameDataPath() / "*" / Path("RootBuilderCacheData.json")
+        return glob.glob(str(searchPath))
     
+    def rootBackupDataFilePathAllVersions(self):
+        """ Gets all backup data files for all versions of the game. """
+        searchPath = self.rootBuilderLegacyGameDataPath() / "*" / Path("RootBuilderBackupData.json")
+        return glob.glob(str(searchPath))
+    
+    def rootModDataFilePathAllVersions(self):
+        """ Gets all mod data files for all versions of the game. """
+        searchPath = self.rootBuilderLegacyGameDataPath() / "*" / Path("RootBuilderModData.json")
+        return glob.glob(str(searchPath))
+    
+    def rootLinkDataFilePathAllVersions(self):
+        """ Gets all link data files for all versions of the game. """
+        searchPath = self.rootBuilderLegacyGameDataPath() / "*" / Path("RootBuilderLinkData.json")
+        return glob.glob(str(searchPath))
+
+    def rootBackupPathAllVersions(self):
+        """ Gets all backup folders for all versions of the game. """
+        searchPath = self.rootBuilderLegacyGameDataPath() / "*" / "backup"
+        return glob.glob(str(searchPath))
     
         

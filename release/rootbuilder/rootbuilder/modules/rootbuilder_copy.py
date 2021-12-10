@@ -1,9 +1,12 @@
 from pathlib import Path
+
+from PyQt5.QtCore import qInf
 from .rootbuilder_settings import RootBuilderSettings
 from .rootbuilder_paths import RootBuilderPaths
 from .rootbuilder_files import RootBuilderFiles
 from .rootbuilder_backup import RootBuilderBackup
 from ...shared.shared_utilities import SharedUtilities
+from PyQt5.QtCore import QCoreApplication, qInfo
 import mobase, os, json
 
 class RootBuilderCopy():
@@ -45,6 +48,7 @@ class RootBuilderCopy():
             if sourcePath.exists():
                 if not destPath.parent.exists():
                     os.makedirs(destPath.parent)
+                qInfo("Copying from " + str(sourcePath))
                 self.utilities.copyTo(sourcePath, destPath)
         # Save data
         self.saveModData(fileData)
@@ -65,6 +69,7 @@ class RootBuilderCopy():
                     fileHash = str(self.utilities.hashFile(file))
                     if fileHash != modData[str(relativePath)]["Hash"]:
                         destPath = Path(modData[str(relativePath)]["Path"])
+                        qInfo("Mod file changed, updating " + str(destPath))
                         if not destPath.parent.exists():
                             os.makedirs(destPath.parent)
                         self.utilities.copyTo(file, destPath)
@@ -73,6 +78,7 @@ class RootBuilderCopy():
                     # This is a vanilla game file, check if it has changed and copy to overwrite and add to modData if it has.
                     fileHash = str(self.utilities.hashFile(file))
                     if fileHash != backupData[str(file)]:
+                        qInfo("File changed, copying to overwrite " + str(file))
                         overwritePath = self.paths.rootOverwritePath() / relativePath
                         if not overwritePath.parent.exists():
                             os.makedirs(overwritePath.parent)
@@ -80,6 +86,7 @@ class RootBuilderCopy():
                         modData[str(relativePath)] = { "Path" : str(overwritePath), "Hash" : fileHash }
                 else:
                     # This is a new file, copy it to overwrite and add to modData.
+                    qInfo("New file, copying to overwrite " + str(file))
                     overwritePath = self.paths.rootOverwritePath() / relativePath
                     if not overwritePath.parent.exists():
                         os.makedirs(overwritePath.parent)
@@ -101,6 +108,7 @@ class RootBuilderCopy():
                 gamePath = self.paths.gamePath() / relativePath
                 # If the file exists in the game, delete it.
                 if gamePath.exists():
+                    qInfo("Clearing file " + str(gamePath))
                     self.utilities.deletePath(gamePath)
             # Clear the existing mod data
             self.clearModData()
