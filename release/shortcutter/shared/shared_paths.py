@@ -143,29 +143,36 @@ class SharedPaths():
         """ Determines whether one path is a child of another path. Supports * wildcard. """
         # Wildcard search
         if "*" in str(basePath):
-            searchParts = str(basePath).split("*")
-            searchPath = str(childPath)
+            result = False
+            for path in glob.glob(str(basePath)):
+                qInfo("Matching " + str(path) + " and " + str(childPath))
+                if self.sharedPath(path, childPath):
+                    result = True
+            return result
 
-            #qInfo("Wildcard match " + searchPath + " with " + str(basePath))
-            matches = True
+            #searchParts = str(basePath).split("*")
+            #searchPath = str(childPath)
 
-            if searchPath.startswith(searchParts[0]): # Needs to start the same at least.
-                for part in searchParts: # Check each part around the wildcard.
-                    #qInfo("Checking part " + part)
-                    if part in searchPath: # If the part exists, it might match.
-                        #qInfo("Part found " + part)
-                        if (part != ""):
-                            searchPath = searchPath.split(part, maxsplit=1)[1] # Get the part immediately after the match.
-                    else:
-                        #qInfo("Not a match.")
-                        matches = False # This part isn't in the path, so it can be excluded.
-                searchParts.reverse()
-                if searchParts[0] != "" and searchPath != "": # The end isn't a wildcard and doesn't match.
-                    #qInfo("Ending different, not a match.")
-                    matches = False
-            else:
-                matches = False # Starts differently.
-            return matches
+            ##qInfo("Wildcard match " + searchPath + " with " + str(basePath))
+            #matches = True
+
+            #if searchPath.startswith(searchParts[0]): # Needs to start the same at least.
+            #    for part in searchParts: # Check each part around the wildcard.
+            #        #qInfo("Checking part " + part)
+            #        if part in searchPath: # If the part exists, it might match.
+            #            #qInfo("Part found " + part)
+            #            if (part != ""):
+            #                searchPath = searchPath.split(part, maxsplit=1)[1] # Get the part immediately after the match.
+            #        else:
+            #            #qInfo("Not a match.")
+            #            matches = False # This part isn't in the path, so it can be excluded.
+            #    searchParts.reverse()
+            #    if searchParts[0] != "" and searchPath != "": # The end isn't a wildcard and doesn't match.
+            #        #qInfo("Ending different, not a match.")
+            #        matches = False
+            #else:
+            #    matches = False # Starts differently.
+            #return matches
         try:
             if os.path.commonpath([os.path.abspath(basePath), os.path.abspath(childPath)]) == os.path.commonpath([os.path.abspath(basePath)]):
                 return True
