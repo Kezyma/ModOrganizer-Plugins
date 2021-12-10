@@ -25,7 +25,7 @@ The Reinstaller option will open a manager window for easily managing backed up 
 
 *Reinstaller window*
 
-![Reinstaller window](reinstaller_window.png "Reinstaller window")
+![Reinstaller window](reinstaller_window.PNG "Reinstaller window")
 
 #### Create
 Takes a backup of a file from your current downloads folder and stores it.
