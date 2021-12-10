@@ -1,5 +1,5 @@
 # ModOrganizer-Plugins
-Shared repository for Mod Organizer plugins.
+Shared repository for [Mod Organizer](https://github.com/ModOrganizer2/modorganizer) plugins.
 
 ## Plugins
 
@@ -15,6 +15,7 @@ Reinstaller is a Mod Organizer 2 plugin that allows you to backup downloaded mod
 
 ### [Shortcutter](/release/shortcutter)
 [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/59827)
+
 Shortcutter is a Mod Organizer 2 plugin that gives you the option of quickly creating instance and profile specific desktop shortcuts, allowing you to quickly launch your game using different profiles without having to manually switch inside Mod Organizer.
 
 ## Usage
