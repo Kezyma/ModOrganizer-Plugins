@@ -1,5 +1,6 @@
 [
   {
+    "Id": "rootbuilder",
     "Name": "Root Builder",
     "Description": "",
     "Author": "Kezyma",
@@ -9,6 +10,7 @@
     "Path": "/release/rootbuilder"
   },
   {
+    "Id": "reinstaller",
     "Name": "Reinstaller",
     "Description": "",
     "Author": "Kezyma",
@@ -18,6 +20,7 @@
     "Path": "/release/reinstaller"
   },
   {
+    "Id": "shortcutter",
     "Name": "Shortcutter",
     "Description": "",
     "Author": "Kezyma",

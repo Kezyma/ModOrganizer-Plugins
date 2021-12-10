@@ -26,3 +26,15 @@ class SharedIcons():
 
     def linkIcon(self):
         return self.icon("ui-link.ico")
+
+    def pluginIcon(self):
+        return self.icon("ui-plugin.ico")
+
+    def nexusIcon(self):
+        return self.icon("ui-nexus.ico")
+
+    def githubIcon(self):
+        return self.icon("ui-github.ico")
+
+    def installIcon(self):
+        return self.icon("ui-install.ico")
