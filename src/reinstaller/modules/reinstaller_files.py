@@ -8,8 +8,8 @@ from ...shared.shared_files import SharedFiles
 class ReinstallerFiles(SharedFiles):
     """ Reinstaller file module. Used to get collections of files from different game paths. """
 
-    def __init__(self, organiser=mobase.IOrganizer):
-        self.paths = ReinstallerPaths(organiser)
+    def __init__(self, organiser=mobase.IOrganizer, paths=ReinstallerPaths):
+        self.paths = paths
         super().__init__("Reinstaller", organiser)
 
     def getDownloadFileOptions(self):

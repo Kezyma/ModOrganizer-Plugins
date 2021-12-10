@@ -9,7 +9,7 @@ class Reinstaller():
     def __init__(self, organiser=mobase.IOrganizer):
         self.organiser = organiser
         self.paths = ReinstallerPaths(self.organiser)
-        self.files = ReinstallerFiles(self.organiser)
+        self.files = ReinstallerFiles(self.organiser, self.paths)
         self.utilities = SharedUtilities()
         super().__init__()
         

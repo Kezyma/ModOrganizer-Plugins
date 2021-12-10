@@ -162,5 +162,12 @@ A comma separated list of files and folders in the base game folder that will be
 Any mods that contain these files and folders will be ignored and skipped during build.
 
 ### Game Updates
-If you have autobuild disabled, please ensure you always clear Root Builder before exiting Mod Organizer. 
-If your game updates while you have root files copied across, Root Builder will show you a warning with steps to remedy the issue the next time you run Mod Organizer. 
+If you have autobuild disabled, please ensure you always clear Root Builder before exiting Mod Organizer. As long as Root Builder is cleared when the game updates, everything will function as expected.
+If your game updates while you have root files copied across you may notice base game files in your overwrite and the previous version being restored, to resolve this, do the following;
+- Run a clear, this will clean up the game and (if backup is enabled) restore the previous version.
+- Clear Mod Organizer's overwrite folder, this will get rid of the updated game files. 
+- Delete Backup & Cache (if enabled), this will prevent the previous version of the game from being restored on clear.
+- Re-update the game. If the version change was intentional (or an automated update), you will need to run it again before Root Builder next does a build.
+
+## Other Plugins
+#### [Root Builder](https://www.nexusmods.com/skyrimspecialedition/mods/31720), [Reinstaller](https://www.nexusmods.com/skyrimspecialedition/mods/59292), [Shortcutter](https://www.nexusmods.com/skyrimspecialedition/mods/59827)

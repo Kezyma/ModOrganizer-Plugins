@@ -75,7 +75,6 @@ class RootBuilder():
         qInfo("RootBuilder: Copied files cleared.")
 
         qInfo("RootBuilder: Restoring game files.")
-        #self.updateFix()
         self.backup.restore()
         qInfo("RootBuilder: Game files restored.")
         

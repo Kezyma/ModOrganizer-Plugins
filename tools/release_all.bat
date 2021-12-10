@@ -1,1 +1,1 @@
-release.bat rootbuilder reinstaller shortcutter > release_log.txt
+call release.bat rootbuilder reinstaller shortcutter > release_log.txt

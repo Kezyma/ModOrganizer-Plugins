@@ -16,8 +16,16 @@ Delete the following folders from Mod Organizer, assuming Mod Organizer is insta
 ### Usage
 A new item will appear in the tools menu of Mod Organizer with the three main functions of Reinstaller, install, create and delete.
 
+*Reinstaller menu item*
+
+![Reinstaller menu item](reinstaller_tool_menu.png "Reinstaller menu item")
+
 ### Reinstaller
 The Reinstaller option will open a manager window for easily managing backed up installers.
+
+*Reinstaller window*
+
+![Reinstaller window](reinstaller_window.png "Reinstaller window")
 
 #### Create
 Takes a backup of a file from your current downloads folder and stores it.
@@ -32,3 +40,6 @@ Lists all the currently backed up installers, when you select one, it will be de
 
 #### enabled (default: true)
 Determines whether the Reinstaller plugin is enabled in Mod Organizer.
+
+## Other Plugins
+#### [Root Builder](https://www.nexusmods.com/skyrimspecialedition/mods/31720), [Reinstaller](https://www.nexusmods.com/skyrimspecialedition/mods/59292), [Shortcutter](https://www.nexusmods.com/skyrimspecialedition/mods/59827)
