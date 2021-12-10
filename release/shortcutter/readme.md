@@ -19,11 +19,11 @@ Select your chosen profile and application, then select an icon and give your sh
 
 *Shortcutter menu item*
 
-![Shortcutter menu item](shortcutter_tools_menu.png "Shortcutter menu item")
+![Shortcutter menu item](shortcutter_tools_menu.PNG "Shortcutter menu item")
 
 *Shortcutter window*
 
-![Shortcutter window](shortcutter_window.png "Shortcutter window")
+![Shortcutter window](shortcutter_window.PNG "Shortcutter window")
 
 
 If you are using a global Mod Organizer instance, the shortcut will be created to launch that instance specifically.
