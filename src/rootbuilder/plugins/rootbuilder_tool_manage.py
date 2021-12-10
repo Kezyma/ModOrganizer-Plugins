@@ -89,19 +89,19 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.label.setText("<html><head/><body><p>Copy - <span style=\" font-style:italic;\">Build copies files to the game folder.</span></p><p>USVFS - <span style=\" font-style:italic;\">(Autobuild only) uses Mod Organizer\'s file system to add files to the game folder.</span></p><p>USVFS + Links - <span style=\" font-style:italic;\">(Autobuild only) uses Mod Organizer\'s file system to add files to the game folder. Adds links for specific files to increase compatibility.</span></p></body></html>")
 
         self.copyButton = QtWidgets.QRadioButton(dialog)
-        self.copyButton.setGeometry(QtCore.QRect(10, 125, 82, 17))
+        self.copyButton.setGeometry(QtCore.QRect(10, 125, 100, 17))
         self.copyButton.setObjectName("copyButton")
         self.copyButton.setText("Copy")
         self.copyButton.clicked.connect(self.copyModeChanged)
 
         self.usvfsButton = QtWidgets.QRadioButton(dialog)
-        self.usvfsButton.setGeometry(QtCore.QRect(10, 145, 82, 17))
+        self.usvfsButton.setGeometry(QtCore.QRect(10, 145, 100, 17))
         self.usvfsButton.setObjectName("usvfsButton")
         self.usvfsButton.setText("USVFS")
         self.usvfsButton.clicked.connect(self.usvfsModeChanged)
 
         self.linkButton = QtWidgets.QRadioButton(dialog)
-        self.linkButton.setGeometry(QtCore.QRect(10, 165, 82, 17))
+        self.linkButton.setGeometry(QtCore.QRect(10, 165, 100, 17))
         self.linkButton.setObjectName("linkButton")
         self.linkButton.setText("USVFS + Links")
         self.linkButton.clicked.connect(self.linkModeChanged)
