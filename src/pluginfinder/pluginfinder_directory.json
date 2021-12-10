@@ -1,0 +1,41 @@
+/*
+  Please fill out all fields for each mod.
+
+  "Name": "Plugin Name",
+  "Description": "Short description of plugin's purpose.",
+  "Author": "Name",
+  "Nexus": "Link to nexus page for plugin, or empty if not applicable",
+  "Github": "Link to github repo for plugin, or empty if not applicable",
+  "Download": "Link to download for the plugin, must be a link to a zip file. Easiest way to get one is copying the link for the 'Download as zip' option on Github for the plugin repository",
+  "Path": "Path inside the download zip to the plugin itself. If this is a single-file plugin, point to the plugin file itself. If this is a multi-file plugin, point to the plugin folder.
+  */
+
+[
+  {
+    "Name": "Root Builder",
+    "Description": "",
+    "Author": "Kezyma",
+    "Nexus": "https://www.nexusmods.com/skyrimspecialedition/mods/31720",
+    "Github": "https://github.com/Kezyma/ModOrganizer-Plugins",
+    "Download": "https://github.com/Kezyma/ModOrganizer-Plugins/archive/refs/heads/main.zip",
+    "Path": "/release/rootbuilder"
+  },
+  {
+    "Name": "Reinstaller",
+    "Description": "",
+    "Author": "Kezyma",
+    "Nexus": "https://www.nexusmods.com/skyrimspecialedition/mods/59292",
+    "Github": "https://github.com/Kezyma/ModOrganizer-Plugins",
+    "Download": "https://github.com/Kezyma/ModOrganizer-Plugins/archive/refs/heads/main.zip",
+    "Path": "/release/reinstaller"
+  },
+  {
+    "Name": "Shortcutter",
+    "Description": "",
+    "Author": "Kezyma",
+    "Nexus": "https://www.nexusmods.com/skyrimspecialedition/mods/59827",
+    "Github": "https://github.com/Kezyma/ModOrganizer-Plugins",
+    "Download": "https://github.com/Kezyma/ModOrganizer-Plugins/archive/refs/heads/main.zip",
+    "Path": "/release/shortcutter"
+  }
+]
