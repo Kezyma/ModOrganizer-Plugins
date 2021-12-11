@@ -30,10 +30,14 @@ class ShortcutterCreateTool(ShortcutterPlugin, mobase.IPluginTool):
         self.rebindUi()
         self.setInitialSettings()
 
+
+    invalidCharacters = '|<>"?*:/\\'
     def createShortcut(self):
         profile = self.profileSelect.currentText()
         app = self.appSelect.currentText()
-        label = self.nameText.text()
+        label = str(self.nameText.text())
+        for character in self.invalidCharacters:
+            label = str(label).replace(character, "")
         icon = self.selectedIcon.text()
         self.shortcutter.create(label, profile, app, self.shortcutter.paths.currentInstanceName(), icon)
 

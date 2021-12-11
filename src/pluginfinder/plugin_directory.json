@@ -1,0 +1,22 @@
+[
+    {
+        "Name": "Root Builder",
+        "Identifier": "rootbuilder",
+        "Manifest": ""
+    },
+    {
+        "Name": "Reinstaller",
+        "Identifier": "reinstaller",
+        "Manifest": ""
+    },
+    {
+        "Name": "Shortcutter",
+        "Identifier": "shortcutter",
+        "Manifest": ""
+    },
+    {
+        "Name": "Plugin Finder",
+        "Identifier": "pluginfinder",
+        "Manifest": ""
+    }
+]
