@@ -108,6 +108,9 @@ class PluginFinder():
             
         self.saveInstalledFiles(installedFiles)
 
+        self.utilities.deletePath(self.paths.pluginZipTempPath())
+        shutil.rmtree(self.paths.pluginStageTempPath())
+
     def uninstall(self, pluginId=str):
         """ Removes a plugin. """
         qInfo("Uninstalling "+ str(pluginId))

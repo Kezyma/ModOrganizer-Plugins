@@ -12,8 +12,9 @@ class ShortcutterCreateTool(ShortcutterPlugin, mobase.IPluginTool):
         super().__init__()
 
     def init(self, organiser=mobase.IOrganizer):
+        res = super().init(organiser)
         self.dialog = self.getDialog()
-        return super().init(organiser)
+        return res
 
     def __tr(self, trstr):
         return QCoreApplication.translate(self.pluginName, trstr)
@@ -81,6 +82,7 @@ class ShortcutterCreateTool(ShortcutterPlugin, mobase.IPluginTool):
         widget.setObjectName("Shortcutter")
         widget.resize(400, 215)
         widget.setFixedSize(400, 215)
+        widget.setWindowIcon(self.icon())
 
         self.buttonBox = QtWidgets.QDialogButtonBox(widget)
         self.buttonBox.setGeometry(QtCore.QRect(230, 180, 166, 32))

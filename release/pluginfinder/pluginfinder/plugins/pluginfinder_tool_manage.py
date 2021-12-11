@@ -12,8 +12,9 @@ class PluginFinderManageTool(PluginFinderPlugin, mobase.IPluginTool):
         super().__init__()
 
     def init(self, organiser=mobase.IOrganizer):
+        res = super().init(organiser)
         self.dialog = self.getDialog()
-        return super().init(organiser)
+        return res
 
     def __tr(self, trstr):
         return QCoreApplication.translate(self.pluginName, trstr)
@@ -26,9 +27,6 @@ class PluginFinderManageTool(PluginFinderPlugin, mobase.IPluginTool):
 
     def display(self):
         self.pluginfinder.deploy()
-        directory = self.pluginfinder.directory()
-        for plugin in directory:
-            qInfo(str(plugin))
         self.dialog.show()
         self.refreshItems()
         self.bindInstalled()
@@ -42,6 +40,7 @@ class PluginFinderManageTool(PluginFinderPlugin, mobase.IPluginTool):
         widget.setObjectName("PluginFinder")
         widget.setWindowTitle("Plugin Finder")
         widget.setFixedSize(600, 600)
+        widget.setWindowIcon(self.icon())
 
         self.layout = QVBoxLayout(widget)
         self.layout.setContentsMargins(0,0,0,0)

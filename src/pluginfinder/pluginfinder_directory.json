@@ -34,7 +34,7 @@
   {
     "Id": "pluginfinder",
     "Name": "Plugin Finder",
-    "Description": "A plugin for finding an installing other Mod Organizer plugins.",
+    "Description": "Plugin Finder allows you to browse a list of Mod Organizer plugins as well as both installing and uninstalling them.",
     "Author": "Kezyma",
     "Nexus": "",
     "Github": "https://github.com/Kezyma/ModOrganizer-Plugins",

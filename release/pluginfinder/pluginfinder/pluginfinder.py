@@ -9,6 +9,7 @@ from pathlib import Path
 # TODO: Search function to filter plugins by text
 # TODO: Uninstall needs to check for pluginData[plugin]["Data"] and remove those files/folders as well, if any exist.
 # TODO: Restart Mod Organizer if a plugin has been installed.
+# TODO: Fix issue with downloaded mods not getting deleted.
 
 class PluginFinder():
     
@@ -107,6 +108,9 @@ class PluginFinder():
             installedFiles[str(pluginId)]["Version"] = ""
             
         self.saveInstalledFiles(installedFiles)
+
+        self.utilities.deletePath(self.paths.pluginZipTempPath())
+        shutil.rmtree(self.paths.pluginStageTempPath())
 
     def uninstall(self, pluginId=str):
         """ Removes a plugin. """

@@ -8,8 +8,9 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         super().__init__()
 
     def init(self, organiser=mobase.IOrganizer):
+        res = super().init(organiser)
         self.dialog = self.getDialog()
-        return super().init(organiser)
+        return res
 
     def getDialog(self):
         dialog = QtWidgets.QDialog()
@@ -19,6 +20,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         dialog.resize(431, 406)
         dialog.setFixedSize(431, 406)
         dialog.setWindowTitle("Root Builder")
+        dialog.setWindowIcon(self.icon())
 
         # Build, Sync & Clear Settings
         self.buildButton = QtWidgets.QPushButton(dialog)

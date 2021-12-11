@@ -11,14 +11,12 @@ class ReinstallerManageTool(ReinstallerPlugin, mobase.IPluginTool):
         super().__init__()
 
     def init(self, organiser=mobase.IOrganizer):
+        res = super().init(organiser)
         self.dialog = self.getDialog()
-        return super().init(organiser)
+        return res
 
     def __tr(self, trstr):
         return QCoreApplication.translate(self.pluginName, trstr)
-    
-    #def displayName(self):
-    #    return self.baseDisplayName()
     
     def description(self):
         return self.__tr("Opens Reinstaller manager.")
@@ -26,19 +24,6 @@ class ReinstallerManageTool(ReinstallerPlugin, mobase.IPluginTool):
     def display(self):
         self.dialog.show()
         self.rebindUi()
-
-    #def settings(self):
-    #    return []
-
-    #def name(self):
-    #    return self.baseName()
-
-    #def displayName(self):
-    #    return self.baseDisplayName()
-    
-    #def icon(self):
-    #    return self.icons.menuIcon()
-
     # Add File
 
     def addFileTextChanged(self):
@@ -104,6 +89,7 @@ class ReinstallerManageTool(ReinstallerPlugin, mobase.IPluginTool):
         dialog.resize(560, 310)
         dialog.setFixedSize(560, 310)
         dialog.setWindowTitle("Reinstaller")
+        dialog.setWindowIcon(self.icon())
 
         ## Add New Mod
         self.addFileTextLabel = QtWidgets.QLabel(dialog)
