@@ -4,30 +4,32 @@ Shared repository for [Mod Organizer](https://github.com/ModOrganizer2/modorgani
 ## Plugins
 
 ### [Root Builder](/release/rootbuilder)
-[Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/31720)
+[Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/31720), 
+[Download](https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/Current/rootbuilder.zip)
 
 Root Builder is a Mod Organizer 2 plugin that allows you to manage files in the base game folder through Mod Organizer, leaving your game folder in pristine, vanilla condition!
 
 ### [Reinstaller](/release/reinstaller)
-[Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/59292)
+[Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/59292), 
+[Download](https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/Current/reinstaller.zip)
 
 Reinstaller is a Mod Organizer 2 plugin that allows you to backup downloaded mods and run their installers on demand. Useful for large fomod patch installers with loads of options that you have to re-run frequently. Don't let those files keep your downloads tab cluttered anymore!
 
 ### [Shortcutter](/release/shortcutter)
-[Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/59827)
+[Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/59827), 
+[Download](https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/Current/shortcutter.zip)
 
 Shortcutter is a Mod Organizer 2 plugin that gives you the option of quickly creating instance and profile specific desktop shortcuts, allowing you to quickly launch your game using different profiles without having to manually switch inside Mod Organizer.
 
 ### [Plugin Finder](/release/pluginfinder)
+[Download](https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/Current/pluginfinder.zip)
 
 Plugin Finder is a Mod Organizer 2 plugin that allows you to browse and install other plugins for Mod Organizer, as well as uninstall them.
 
 ## Usage
 
 ### Installing Mods
-To install a plugin from this repository, copy a folder from [`release`](/release/) into your `Mod Organizer\plugins` folder.
-
-To install all plugins, rename the `src` folder and copy it into your `Mod Organizer\plugins` folder.
+To install a plugin from this repository, download a plugin from above and extract the folder inside into your `Mod Organizer\plugins` folder.
 
 ### This Repo
 - `src` contains the plugin code and a shared code folder. Each plugin has its own folder and a `plugin_init.py` file.
