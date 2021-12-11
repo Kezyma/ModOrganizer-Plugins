@@ -102,6 +102,7 @@ class ReinstallerManageTool(ReinstallerPlugin, mobase.IPluginTool):
         
         dialog.setObjectName("dialog")
         dialog.resize(560, 310)
+        dialog.setFixedSize(560, 310)
         dialog.setWindowTitle("Reinstaller")
 
         ## Add New Mod

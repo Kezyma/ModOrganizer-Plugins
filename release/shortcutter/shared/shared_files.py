@@ -14,7 +14,7 @@ class SharedFiles():
         res = []   
         # Grab the full contents of the folder.
         for fp in listdir(path):
-            afp = path / fp
+            afp = Path(path) / fp
             # If the content is a file, add it to the list.
             if (Path.is_file(afp)):
                 res.append(afp)

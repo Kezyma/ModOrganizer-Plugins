@@ -1,4 +1,4 @@
-import mobase
+import mobase, os
 from ...shared.shared_paths import SharedPaths
 from pathlib import Path
 
@@ -16,3 +16,28 @@ class PluginFinderPaths(SharedPaths):
 
     githubDirectoryUrl = "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/src/pluginfinder/pluginfinder_directory.json"
     
+    _modOrganizerPluginPath = str()
+    def modOrganizerPluginPath(self):
+        if self._modOrganizerPluginPath == str():
+            self._modOrganizerPluginPath = str(self.modOrganizerPath() / "plugins")
+        return Path(self._modOrganizerPluginPath)
+
+    _installedPluginDataPath = str()
+    def installedPluginDataPath(self):
+        if self._installedPluginDataPath == str():
+            self._installedPluginDataPath = self.pluginDataPath() / "InstalledPlugins.json"
+        return Path(self._installedPluginDataPath)
+
+    _pluginZipTempPath = str()
+    def pluginZipTempPath(self):
+        if self._pluginZipTempPath == str():
+            self._pluginZipTempPath = self.pluginDataPath() / "DownloadedPlugin.zip"
+        return Path(self._pluginZipTempPath)
+
+    _pluginStageTempPath = str()
+    def pluginStageTempPath(self):
+        if self._pluginStageTempPath == str():
+            self._pluginStageTempPath = self.pluginDataPath() / "DownloadedPlugin"
+        if not Path(self._pluginStageTempPath).exists():
+            os.makedirs(self._pluginStageTempPath)
+        return Path(self._pluginStageTempPath)

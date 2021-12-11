@@ -90,10 +90,13 @@ class SharedPaths():
         return Path(self._modOrganizerInstancesPath)
 
     def currentInstanceName(self):
-        with winreg.OpenKey(winreg.HKEY_CURRENT_USER, "Software\\Mod Organizer Team\\Mod Organizer") as key:
-            value = winreg.QueryValueEx(key, "CurrentInstance")
-            result = str(value[0].replace("/", "\\"))
-            return result
+        try:
+            with winreg.OpenKey(winreg.HKEY_CURRENT_USER, "Software\\Mod Organizer Team\\Mod Organizer") as key:
+                value = winreg.QueryValueEx(key, "CurrentInstance")
+                result = str(value[0].replace("/", "\\"))
+                return result
+        except:
+            return ""
 
     def modOrganizerIniPath(self):
         if self.currentInstanceName() == "":
@@ -130,6 +133,9 @@ class SharedPaths():
     def gameRelativePath(self, path):
         """ Gets the part of a path relative to the current game folder. """
         return Path(str(os.path.abspath(Path(path))).replace(str(os.path.abspath(self.gamePath())), "")[1:])
+
+    def relativePath(self, basePath, searchPath):
+        return Path(str(os.path.abspath(Path(searchPath))).replace(str(os.path.abspath(str(basePath))), "")[1:])
 
     def safePathName(self, path):
         """ Gets a file safe string representing a specific path. """

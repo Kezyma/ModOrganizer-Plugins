@@ -31,6 +31,7 @@ class PluginFinderManageTool(PluginFinderPlugin, mobase.IPluginTool):
             qInfo(str(plugin))
         self.dialog.show()
         self.refreshItems()
+        self.bindInstalled()
 
     def getDialog(self):
         dialog = QtWidgets.QDialog()
@@ -51,16 +52,17 @@ class PluginFinderManageTool(PluginFinderPlugin, mobase.IPluginTool):
         self.layout.addWidget(self.scroll)
         QtCore.QMetaObject.connectSlotsByName(widget)
 
-    def installPlugin(id=str):
-        return True
-
-    def updatePlugin(id=str):
-        return True
-
-    def uninstallPlugin(id=str):
-        return True
+    def installPlugin(self, pluginId=str):
+        self.pluginfinder.install(pluginId)
+        self.bindInstalled()
+        
+    def uninstallPlugin(self, pluginId=str):
+        self.pluginfinder.uninstall(pluginId)
+        self.bindInstalled()
 
     def refreshItems(self):
+        self.pluginWidgets = {}
+        self.pluginButtons = {}
         self.listWidget = QWidget(self.dialog)
         self.listLayout = QFormLayout(self.listWidget)
         self.listLayout.setContentsMargins(0,5,0,0) # margin just to keep the top buttons looking silly.
@@ -68,8 +70,20 @@ class PluginFinderManageTool(PluginFinderPlugin, mobase.IPluginTool):
         for plugin in self.pluginfinder.directory():
             self.listLayout.addWidget(self.getPluginWidget(plugin))
         self.scroll.setWidget(self.listWidget)
+
+    def bindInstalled(self):
+        for plugin in self.pluginWidgets.keys():
+            widget = self.pluginWidgets[plugin]
+            widget = QWidget()
+            if self.pluginfinder.isInstalled(plugin):
+                self.pluginButtons[plugin]["Install"].setIcon(self.icons.syncIcon())
+                self.pluginButtons[plugin]["Uninstall"].setEnabled(True)
+            else:
+                self.pluginButtons[plugin]["Install"].setIcon(self.icons.installIcon())
+                self.pluginButtons[plugin]["Uninstall"].setEnabled(False)
             
     def getPluginWidget(self, pluginJson):
+        self.pluginButtons[pluginJson["Id"]] = {}
         pluginWidget = QtWidgets.QWidget()
         pluginWidget.setObjectName(pluginJson["Id"] + "_widget")
         pluginWidget.resize(570, 75)
@@ -101,6 +115,7 @@ class PluginFinderManageTool(PluginFinderPlugin, mobase.IPluginTool):
         nexusButton.setObjectName("nexusButton")
         nexusButton.clicked.connect(lambda: webbrowser.open(str(pluginJson["Nexus"])))
         nexusButton.setToolTip("View on Nexus Mods")
+        self.pluginButtons[pluginJson["Id"]]["Nexus"] = nexusButton
         
         githubButton = QtWidgets.QPushButton(pluginWidget)
         githubButton.setGeometry(QtCore.QRect(490, 0, 26, 26))
@@ -110,6 +125,7 @@ class PluginFinderManageTool(PluginFinderPlugin, mobase.IPluginTool):
         githubButton.setObjectName("githubButton")
         githubButton.clicked.connect(lambda: webbrowser.open(str(pluginJson["Github"])))
         githubButton.setToolTip("View on Github")
+        self.pluginButtons[pluginJson["Id"]]["Github"] = githubButton
 
         uninstallButton = QtWidgets.QPushButton(pluginWidget)
         uninstallButton.setGeometry(QtCore.QRect(450, 0, 26, 26))
@@ -119,33 +135,25 @@ class PluginFinderManageTool(PluginFinderPlugin, mobase.IPluginTool):
         uninstallButton.setObjectName("uninstallButton")
         uninstallButton.clicked.connect(lambda: self.uninstallPlugin(str(pluginJson["Id"])))
         uninstallButton.setToolTip("Uninstall this plugin.")
+        self.pluginButtons[pluginJson["Id"]]["Uninstall"] = uninstallButton
         
-        updateButton = QtWidgets.QPushButton(pluginWidget)
-        updateButton.setGeometry(QtCore.QRect(410, 0, 26, 26))
-        updateButton.setText("")
-        updateButton.setIcon(self.icons.syncIcon())
-        updateButton.setIconSize(QtCore.QSize(16,16))
-        updateButton.setObjectName("updateButton")
-        updateButton.setToolTip("Update this plugin.")
-        updateButton.clicked.connect(lambda: self.updatePlugin(str(pluginJson["Id"])))
-
         installButton = QtWidgets.QPushButton(pluginWidget)
-        installButton.setGeometry(QtCore.QRect(370, 0, 26, 26))
+        installButton.setGeometry(QtCore.QRect(410, 0, 26, 26))
         installButton.setText("")
         installButton.setIcon(self.icons.installIcon())
         installButton.setIconSize(QtCore.QSize(16,16))
         installButton.setObjectName("installButton")
         installButton.clicked.connect(lambda: self.installPlugin(str(pluginJson["Id"])))
         installButton.setToolTip("Install this plugin.")
-
-        
+        self.pluginButtons[pluginJson["Id"]]["Install"] = installButton
         
         line = QtWidgets.QFrame(pluginWidget)
-        line.setGeometry(QtCore.QRect(0, 65, 560, 10))
+        line.setGeometry(QtCore.QRect(0, 65, 590, 10))
         line.setFrameShape(QtWidgets.QFrame.HLine)
         line.setFrameShadow(QtWidgets.QFrame.Sunken)
         line.setObjectName("line")
         
         QtCore.QMetaObject.connectSlotsByName(pluginWidget)
 
+        self.pluginWidgets[pluginJson["Id"]] = pluginWidget
         return pluginWidget

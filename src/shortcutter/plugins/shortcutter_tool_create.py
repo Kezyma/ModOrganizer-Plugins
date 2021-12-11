@@ -80,6 +80,7 @@ class ShortcutterCreateTool(ShortcutterPlugin, mobase.IPluginTool):
     def setupUi(self, widget):
         widget.setObjectName("Shortcutter")
         widget.resize(400, 215)
+        widget.setFixedSize(400, 215)
 
         self.buttonBox = QtWidgets.QDialogButtonBox(widget)
         self.buttonBox.setGeometry(QtCore.QRect(230, 180, 166, 32))

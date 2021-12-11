@@ -17,6 +17,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         # Panel Settings
         dialog.setObjectName("dialog")
         dialog.resize(431, 406)
+        dialog.setFixedSize(431, 406)
         dialog.setWindowTitle("Root Builder")
 
         # Build, Sync & Clear Settings
