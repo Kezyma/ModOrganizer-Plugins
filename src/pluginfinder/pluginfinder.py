@@ -44,6 +44,16 @@ from pathlib import Path
 #    ]
 #}
 
+# Update PF to download a json file containing names and links to each plugin's manifest json file
+# Retrieve the plugin manifest json only for plugins on the current page.
+# Add paging system in place of the scrollbar.
+# Add a search box at the top that filters based on the name in the central json file.
+# Actually delete files in the DataFiles field on uninstall.
+# Add a versions field with an array of information on version support, use this if it exists, then fallback to the default values and get the version the hacky way.
+# Add localeFiles field with an array of files to be installed and uninstalled from localisations.
+# Add version checking to see if plugins need updating and display current + new version.
+# Restart ModOrganizer when PF is closed after a plugin was installed or uninstalled.
+
 class PluginFinder():
     
     def __init__(self, organiser = mobase.IOrganizer):
