@@ -1,4 +1,4 @@
-import mobase, reinstaller_init, rootbuilder_init, shortcutter_init
+import mobase, reinstaller_init, rootbuilder_init, shortcutter_init, pluginfinder_init
 
 def createPlugins():
-    return set().union(reinstaller_init.createPlugins(), rootbuilder_init.createPlugins(), shortcutter_init.createPlugins())
+    return set().union(reinstaller_init.createPlugins(), rootbuilder_init.createPlugins(), shortcutter_init.createPlugins(), pluginfinder_init.createPlugins())
