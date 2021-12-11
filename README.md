@@ -29,9 +29,7 @@ Plugin Finder is a Mod Organizer 2 plugin that allows you to browse and install 
 ## Usage
 
 ### Installing Mods
-To install a plugin from this repository, copy a folder from [`release`](/release/) into your `Mod Organizer\plugins` folder.
-
-To install all plugins, rename the `src` folder and copy it into your `Mod Organizer\plugins` folder.
+To install a plugin from this repository, download a plugin from above and extract the folder inside into your `Mod Organizer\plugins` folder.
 
 ### This Repo
 - `src` contains the plugin code and a shared code folder. Each plugin has its own folder and a `plugin_init.py` file.
