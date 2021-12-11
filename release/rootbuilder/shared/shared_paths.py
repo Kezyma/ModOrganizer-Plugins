@@ -66,7 +66,7 @@ class SharedPaths():
     def modOrganizerPath(self):
         """ Gets the path for Mod Organizer's base folder. """
         if self._modOrganizerPath == str():
-            self._modOrganizerPath = self.organiser.basePath()
+            self._modOrganizerPath = Path(__file__).parent.parent.parent.parent
         return Path(self._modOrganizerPath)
 
     _modOrganizerExePath = str()

@@ -5,6 +5,11 @@ from .modules.pluginfinder_files import PluginFinderFiles
 from PyQt5.QtCore import QCoreApplication, qInfo
 from pathlib import Path
 
+# TODO: Check for updates function to get all installed plugins again and check if the version has changed. 
+# TODO: Search function to filter plugins by text
+# TODO: Uninstall needs to check for pluginData[plugin]["Data"] and remove those files/folders as well, if any exist.
+# TODO: Restart Mod Organizer if a plugin has been installed.
+
 class PluginFinder():
     
     def __init__(self, organiser = mobase.IOrganizer):
