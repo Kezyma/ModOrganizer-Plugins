@@ -113,3 +113,6 @@ class PluginFinder():
         if str(pluginId) in files:
             return True
         return False
+
+    def hasLink(self, pluginId=str, linkName=str):
+        return next(p for p in self.directory() if str(p["Id"]) == str(pluginId))[linkName] != ""

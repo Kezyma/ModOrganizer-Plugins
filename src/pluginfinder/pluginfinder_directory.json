@@ -6,8 +6,8 @@
     "Author": "Kezyma",
     "Nexus": "https://www.nexusmods.com/skyrimspecialedition/mods/31720",
     "Github": "https://github.com/Kezyma/ModOrganizer-Plugins",
-    "Download": "https://github.com/Kezyma/ModOrganizer-Plugins/archive/refs/heads/main.zip",
-    "Path": [ "ModOrganizer-Plugins-main/release/rootbuilder" ]
+    "Download": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/Current/rootbuilder.zip",
+    "Path": [ "rootbuilder" ]
   },
   {
     "Id": "reinstaller",
@@ -16,8 +16,8 @@
     "Author": "Kezyma",
     "Nexus": "https://www.nexusmods.com/skyrimspecialedition/mods/59292",
     "Github": "https://github.com/Kezyma/ModOrganizer-Plugins",
-    "Download": "https://github.com/Kezyma/ModOrganizer-Plugins/archive/refs/heads/main.zip",
-    "Path": [ "ModOrganizer-Plugins-main/release/reinstaller" ]
+    "Download": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/Current/reinstaller.zip",
+    "Path": [ "reinstaller" ]
   },
   {
     "Id": "shortcutter",
@@ -26,8 +26,8 @@
     "Author": "Kezyma",
     "Nexus": "https://www.nexusmods.com/skyrimspecialedition/mods/59827",
     "Github": "https://github.com/Kezyma/ModOrganizer-Plugins",
-    "Download": "https://github.com/Kezyma/ModOrganizer-Plugins/archive/refs/heads/main.zip",
-    "Path": [ "ModOrganizer-Plugins-main/release/shortcutter" ]
+    "Download": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/Current/shortcutter.zip",
+    "Path": [ "shortcutter" ]
   },
   {
     "Id": "pluginfinder",
@@ -36,8 +36,8 @@
     "Author": "Kezyma",
     "Nexus": "",
     "Github": "https://github.com/Kezyma/ModOrganizer-Plugins",
-    "Download": "https://github.com/Kezyma/ModOrganizer-Plugins/archive/refs/heads/main.zip",
-    "Path": [ "ModOrganizer-Plugins-main/release/pluginfinder" ]
+    "Download": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/Current/pluginfinder.zip",
+    "Path": [ "pluginfinder" ]
   },
   {
     "Id": "orphanscriptsavedelete",

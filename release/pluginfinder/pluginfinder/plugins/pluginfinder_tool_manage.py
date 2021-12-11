@@ -81,6 +81,10 @@ class PluginFinderManageTool(PluginFinderPlugin, mobase.IPluginTool):
             else:
                 self.pluginButtons[plugin]["Install"].setIcon(self.icons.installIcon())
                 self.pluginButtons[plugin]["Uninstall"].setEnabled(False)
+            if not self.pluginfinder.hasLink(plugin, "Nexus"):
+                self.pluginButtons[plugin]["Nexus"].setEnabled(False)
+            if not self.pluginfinder.hasLink(plugin, "Github"):
+                self.pluginButtons[plugin]["Nexus"].setEnabled(False)
             
     def getPluginWidget(self, pluginJson):
         self.pluginButtons[pluginJson["Id"]] = {}
