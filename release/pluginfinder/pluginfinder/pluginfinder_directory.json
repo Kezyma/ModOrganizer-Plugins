@@ -7,7 +7,8 @@
     "Nexus": "https://www.nexusmods.com/skyrimspecialedition/mods/31720",
     "Github": "https://github.com/Kezyma/ModOrganizer-Plugins",
     "Download": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/Current/rootbuilder.zip",
-    "Path": [ "rootbuilder" ]
+    "Path": [ "rootbuilder" ],
+    "Data": [ "data/rootbuilder" ]
   },
   {
     "Id": "reinstaller",
@@ -17,7 +18,8 @@
     "Nexus": "https://www.nexusmods.com/skyrimspecialedition/mods/59292",
     "Github": "https://github.com/Kezyma/ModOrganizer-Plugins",
     "Download": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/Current/reinstaller.zip",
-    "Path": [ "reinstaller" ]
+    "Path": [ "reinstaller" ],
+    "Data": [ "data/reinstaller" ]
   },
   {
     "Id": "shortcutter",
@@ -37,7 +39,8 @@
     "Nexus": "",
     "Github": "https://github.com/Kezyma/ModOrganizer-Plugins",
     "Download": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/Current/pluginfinder.zip",
-    "Path": [ "pluginfinder" ]
+    "Path": [ "pluginfinder" ],
+    "Data": [ "data/pluginfinder" ]
   },
   {
     "Id": "orphanscriptsavedelete",
