@@ -9,6 +9,40 @@ from pathlib import Path
 # TODO: Search function to filter plugins by text
 # TODO: Uninstall needs to check for pluginData[plugin]["Data"] and remove those files/folders as well, if any exist.
 # TODO: Restart Mod Organizer if a plugin has been installed.
+# TODO: Add install for translation files as well.
+# TODO: Update data schema
+#[
+#    {
+#        "PluginID": "someid",
+#        "ManifestUrl": "url.to.github.manifest.file"
+#    },
+#    {
+#        "PluginID": "someid",
+#        "ManifestUrl": "url.to.github.manifest.file"
+#    }
+#]
+#{
+#    "Name": "plugin name",
+#    "Author": "plugin author",
+#    "Description": "plugin description",
+#    "NexusUrl": "nexus url",
+#    "GithubUrl": "github url",
+#    "Download": "url.to.download.zip.for.plugin",
+#    "InstallPaths": [ "path/to/plugin/files/or/folders" ],
+#    "DataPaths": [ "path/to/plugin/data/files/or/folders" ],
+#    "TranslationPaths": [ "path/to/translation/files/to/install"],
+#    "Versions": [
+#        {
+#            "Version": "versionnum",
+#            "SupportsMin": "minMOversion",
+#            "SupportsMax": "maxMOversion",
+#            "Download": "url.to.download.zip.for.plugin",
+#            "InstallPaths": [ "path/to/plugin/files/or/folders" ],
+#            "DataPaths": [ "path/to/plugin/data/files/or/folders" ],
+#            "TranslationPaths": [ "path/to/translation/files/to/install"]
+#        }
+#    ]
+#}
 
 class PluginFinder():
     
