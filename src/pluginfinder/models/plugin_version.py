@@ -14,6 +14,12 @@ class PluginVersion(SharedJson):
 
     def maxSupport(self):
         return str(self.getJsonProperty("MaxSupport"))
+
+    def minWorking(self):
+        return str(self.getJsonProperty("MinWorking"))
+
+    def maxWorking(self):
+        return str(self.getJsonProperty("MaxWorking"))
     
     def version(self):
         return str(self.getJsonProperty("Version"))

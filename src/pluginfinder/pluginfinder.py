@@ -13,48 +13,11 @@ except:
 # TODO: Search function to filter plugins by text
 # TODO: Uninstall needs to check for pluginData[plugin]["Data"] and remove those files/folders as well, if any exist.
 # TODO: Restart Mod Organizer if a plugin has been installed.
-# TODO: Add install for translation files as well.
-# TODO: Update data schema
-#[
-#    {
-#        "PluginID": "someid",
-#        "ManifestUrl": "url.to.github.manifest.file"
-#    },
-#    {
-#        "PluginID": "someid",
-#        "ManifestUrl": "url.to.github.manifest.file"
-#    }
-#]
-#{
-#    "Name": "plugin name",
-#    "Author": "plugin author",
-#    "Description": "plugin description",
-#    "NexusUrl": "nexus url",
-#    "GithubUrl": "github url",
-#    "Download": "url.to.download.zip.for.plugin",
-#    "InstallPaths": [ "path/to/plugin/files/or/folders" ],
-#    "DataPaths": [ "path/to/plugin/data/files/or/folders" ],
-#    "TranslationPaths": [ "path/to/translation/files/to/install"],
-#    "Versions": [
-#        {
-#            "Version": "versionnum",
-#            "SupportsMin": "minMOversion",
-#            "SupportsMax": "maxMOversion",
-#            "Download": "url.to.download.zip.for.plugin",
-#            "InstallPaths": [ "path/to/plugin/files/or/folders" ],
-#            "DataPaths": [ "path/to/plugin/data/files/or/folders" ],
-#            "TranslationPaths": [ "path/to/translation/files/to/install"]
-#        }
-#    ]
-#}
 
-# Update PF to download a json file containing names and links to each plugin's manifest json file
 # Retrieve the plugin manifest json only for plugins on the current page.
 # Add paging system in place of the scrollbar.
 # Add a search box at the top that filters based on the name in the central json file.
 # Actually delete files in the DataFiles field on uninstall.
-# Add a versions field with an array of information on version support, use this if it exists, then fallback to the default values and get the version the hacky way.
-# Add localeFiles field with an array of files to be installed and uninstalled from localisations.
 # Add version checking to see if plugins need updating and display current + new version.
 # Restart ModOrganizer when PF is closed after a plugin was installed or uninstalled.
 

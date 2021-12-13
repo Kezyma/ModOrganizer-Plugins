@@ -2,7 +2,7 @@ import mobase, os
 from plugin_version import PluginVersion
 from ...shared.shared_json import SharedJson
 
-class PluginData(SharedJson):
+class PluginData(PluginVersion):
 
     def __init__(self, jsonObject=dict):
         super().__init__(jsonObject)
@@ -24,19 +24,7 @@ class PluginData(SharedJson):
 
     def docsUrl(self):
         return str(self.getJsonProperty("DocsUrl"))
-
-    def downloadUrl(self):
-        return str(self.getJsonProperty("DownloadUrl"))
-
-    def pluginPaths(self):
-        return self.getJsonStringArray("PluginPath")
-
-    def localePaths(self):
-        return self.getJsonStringArray("LocalePath")
-
-    def dataPaths(self):
-        return self.getJsonStringArray("DataPath")
-
+    
     def versions():
         versions = []
         data = self.getJsonArray("Versions")
