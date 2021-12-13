@@ -1,0 +1,23 @@
+{
+  "Name": "Reinstaller",
+  "Author": "Kezyma",
+  "Description": "Reinstaller allows you to conveninetly backup mod installers to re-run later, without risk of them cluttering up your downloads section in Mod Organizer 2.",
+  "NexusUrl": "https://www.nexusmods.com/skyrimspecialedition/mods/59292",
+  "GithubUrl": "https://github.com/Kezyma/ModOrganizer-Plugins",
+  "DocsUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/readme/reinstaller/readme.md",
+  "Versions": [
+    {
+      "Version": "1.0.6",
+      "Released": "2021-12-13",
+      "MinSupport": "2.4.2",
+      "MaxSupport": "2.5.0",
+      "MinWorking": "",
+      "MaxWorking": "",
+      "ReleaseNotes": [ "Added basic support for Mod Organizer 2 v2.5.0" ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/reinstaller/reinstaller.1.0.6.zip",
+      "PluginPath": [ "reinstaller" ],
+      "LocalePath": [],
+      "DataPath": [ "data/reinstaller" ]
+    }
+  ]
+}

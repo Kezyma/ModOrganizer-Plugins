@@ -1,0 +1,23 @@
+{
+  "Name": "Plugin Finder",
+  "Author": "Kezyma",
+  "Description": "Plugin Finder allows you to browse a list of Mod Organizer plugins as well as both installing and uninstalling them.",
+  "NexusUrl": "",
+  "GithubUrl": "https://github.com/Kezyma/ModOrganizer-Plugins",
+  "DocsUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/readme/pluginfinder/readme.md",
+  "Versions": [
+    {
+      "Version": "1.1.0",
+      "Released": "2021-12-13",
+      "MinSupport": "2.4.2",
+      "MaxSupport": "2.4.2",
+      "MinWorking": "",
+      "MaxWorking": "2.4.2",
+      "ReleaseNotes": [ "Initial alpha. Demo version." ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/pluginfinder/pluginfinder.1.1.0.zip",
+      "PluginPath": [ "pluginfinder" ],
+      "LocalePath": [],
+      "DataPath": [ "data/pluginfinder" ]
+    }
+  ]
+}

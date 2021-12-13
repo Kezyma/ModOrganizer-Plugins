@@ -50,3 +50,24 @@ class SharedIcons():
 
     def nextIcon(self):
         return self.icon("ui-next.ico")
+
+    def infoIcon(self):
+        return self.icon("ui-info.ico")
+
+    def warningIcon(self):
+        return self.icon("ui-warning.ico")
+
+    def stopIcon(self):
+        return self.icon("ui-stop.ico")
+
+    def updateIcon(self):
+        return self.icon("ui-update.ico")
+
+    def updateAltIcon(self):
+        return self.icon("ui-update-alt.ico")
+
+    def noUpdateIcon(self):
+        return self.icon("ui-no-update.ico")
+
+    def refreshIcon(self):
+        return self.icon("ui-refresh.ico")

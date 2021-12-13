@@ -34,10 +34,8 @@ class PluginData(SharedJson):
     def versions(self):
         versions = []
         data = self.getJsonArray("Versions")
-        qInfo(str(data))
         if data:
             for version in data:
-                qInfo(str(version))
                 versions.append(PluginVersion(version))
             return versions 
         else:
@@ -45,21 +43,16 @@ class PluginData(SharedJson):
 
     def current(self, moVersion=str):
         """ The most recent working version for a given Mod Organizer version. """
-        qInfo("MO Version " + str(moVersion))
         allVersions = self.versions()
-        qInfo(str(allVersions))
         workingVersions = []
         for version in allVersions:
-            qInfo("Checking " + str(version.json))
             if version.maxWorking() == "" or not self.utilities.versionIsNewer(version.maxWorking(), moVersion):
                 if version.minWorking() == "" or not self.utilities.versionIsNewer(moVersion, version.minWorking()):
-                    qInfo("Version valid")
                     workingVersions.append(version)
 
         latestVersion = workingVersions[0]
         latest = latestVersion.version()
         for version in workingVersions:
-            qInfo("")
             if self.utilities.versionIsNewer(latest, version.version()):
                 latestVersion = version
                 latest = version.version()
@@ -72,7 +65,6 @@ class PluginData(SharedJson):
         latestVersion = allVersions[0]
         latest = latestVersion.version()
         for version in allVersions:
-            qInfo("")
             if self.utilities.versionIsNewer(latest, version.version()):
                 latestVersion = version
                 latest = version.version()

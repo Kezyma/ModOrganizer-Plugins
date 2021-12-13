@@ -1,19 +1,21 @@
-import mobase, os, urllib, json, math
+import mobase, os, urllib, json, math, shutil
 from pathlib import Path
 from datetime import datetime, timedelta
 from itertools import islice
 from .pluginfinder_paths import PluginFinderPaths
 from .pluginfinder_files import PluginFinderFiles
+from .pluginfinder_installer import PluginFinderInstaller
 from ...shared.shared_utilities import SharedUtilities
 from ..models.plugin_data import PluginData
 from PyQt5.QtCore import QCoreApplication, qInfo
 
 class PluginFinderSearch():
 
-    def __init__(self, organiser=mobase.IOrganizer, paths=PluginFinderPaths, files=PluginFinderFiles):
+    def __init__(self, organiser=mobase.IOrganizer, paths=PluginFinderPaths, files=PluginFinderFiles, installer=PluginFinderInstaller):
         self.organiser = organiser
         self.paths = paths
         self.files = files
+        self.installer = installer
         self.utilities = SharedUtilities()
         super().__init__() 
 
@@ -27,7 +29,6 @@ class PluginFinderSearch():
         try:
             with urllib.request.urlopen(self.paths.pluginDirectoryUrl()) as r:
                 data = json.load(r)
-                qInfo(str(data))
                 if not Path(self.paths.directoryJsonPath()).exists():
                     Path(self.paths.directoryJsonPath()).touch()
                 with open(self.paths.directoryJsonPath(), "w") as rcJson:
@@ -49,11 +50,20 @@ class PluginFinderSearch():
 
     def searchDirectory(self, searchTerms=str, installed=False):
         """ Searches the directory by plugin name. """
-        qInfo("Searching directory, terms = " + str(searchTerms) + ", installed = " + str(installed))
+        qInfo("Searching directory, terms = " + str(searchTerms) + " installed = " + str(installed))
+        plugins = []
+        directory = self.directory()
+        if installed:
+            for plugin in directory:
+                if plugin["Identifier"] in self.installer.installedPlugins():
+                    plugins.append(plugin)
+        else:
+            plugins = directory
+            
         if searchTerms == "":
-            return self.directory()
+            return plugins
         results = []
-        for plugin in self.directory():
+        for plugin in plugins:
             if "Name" in plugin.keys():
                 if searchTerms in plugin["Name"]:
                     results.append(plugin)
@@ -64,16 +74,15 @@ class PluginFinderSearch():
         for plugin in self.directory():
             if str(plugin["Identifier"]) == str(pluginId):
                 url = plugin["Manifest"]
-                #try:
-                with urllib.request.urlopen(str(url)) as r:
-                    data = json.load(r)
-                    qInfo(str(data))
-                    if not Path(self.paths.pluginDataCachePath(pluginId)).exists():
-                        Path(self.paths.pluginDataCachePath(pluginId)).touch()
-                    with open(self.paths.pluginDataCachePath(pluginId), "w") as rcJson:
-                        json.dump(data, rcJson)
-            #except:
-                #qInfo("Could not download update.")
+                try:
+                    with urllib.request.urlopen(str(url)) as r:
+                        data = json.load(r)
+                        if not Path(self.paths.pluginDataCachePath(pluginId)).exists():
+                            Path(self.paths.pluginDataCachePath(pluginId)).touch()
+                        with open(self.paths.pluginDataCachePath(pluginId), "w") as rcJson:
+                            json.dump(data, rcJson)
+                except:
+                    qInfo("Could not download update.")
                 urllib.request.urlcleanup()
 
     def pluginData(self, pluginId=str):
@@ -101,7 +110,6 @@ class PluginFinderSearch():
         results = []
         for item in pagedList:
             if "Identifier" in item.keys():
-                qInfo("Loading " + str(item["Name"]))
                 results.append(self.pluginData(str(item["Identifier"])))
         return results
 
@@ -109,3 +117,7 @@ class PluginFinderSearch():
         """ Gets the total number of pages from a search. """
         items = float(len(self.searchDirectory(searchTerms, installed)))
         return int(math.ceil(items / pageSize))
+
+    def refreshData(self):
+        self.updateDirectory()
+        shutil.rmtree(self.paths.pluginDataCacheFolderPath())

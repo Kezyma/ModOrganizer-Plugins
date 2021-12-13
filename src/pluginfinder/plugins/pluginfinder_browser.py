@@ -42,6 +42,10 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         self.page = self.page - 1
         self.bindPage()
 
+    def refreshPage(self):
+        self.pluginfinder.search.refreshData()
+        self.bindPage()
+
     def clearResults(self):
         while self.formLayout.count():
             child = self.formLayout.takeAt(0)
@@ -98,6 +102,13 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         self.pagingWidget.setMinimumSize(QtCore.QSize(0, 25))
         self.pagingWidget.setMaximumSize(QtCore.QSize(16777215, 25))
         self.pagingWidget.setObjectName("pagingWidget")
+        self.refreshButton = QtWidgets.QPushButton(self.pagingWidget)
+        self.refreshButton.setGeometry(QtCore.QRect(277, 0, 46, 26))
+        self.refreshButton.setText("")
+        self.refreshButton.setIcon(self.icons.refreshIcon())
+        self.refreshButton.setObjectName("refreshButton")
+        self.refreshButton.setToolTip("Refresh Data")
+        self.refreshButton.clicked.connect(self.refreshPage)
         self.backButton = QtWidgets.QPushButton(self.pagingWidget)
         self.backButton.setGeometry(QtCore.QRect(0, 0, 46, 26))
         self.backButton.setText("")
@@ -119,6 +130,14 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         return dialog
     
+    def installClick(self, pluginId=str):
+        self.pluginfinder.install(pluginId)
+        self.bindPage()
+
+    def uninstallClick(self, pluginId=str):
+        self.pluginfinder.uninstall(pluginId)
+        self.bindPage()
+
     def getPluginWidget(self, pluginData=PluginData):
         widget = QtWidgets.QWidget()
         widget.setMinimumSize(QtCore.QSize(602, 80))
@@ -142,13 +161,45 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         pluginDesc.setObjectName("pluginDesc")        
         pluginDesc.setText(pluginData.description())
 
-        plugin = pluginData.current(self.organiser.appVersion().canonicalString())
-        installed = False
-        installedVersion = ""
-        currentVersion
-        currentVersion = plugin.version()
-        updateAvailabe = installed and self.utilities.versionIsNewer(installedVersion, currentVersion)
+        moVersion = self.organiser.appVersion().canonicalString()
+        currentPlugin = pluginData.current(moVersion) # most recent working plugin.
+        currentSupported = not (currentPlugin.maxSupport() == "" or currentPlugin.minSupport() == "" or self.utilities.versionIsNewer(currentPlugin.maxSupport(), moVersion) or self.utilities.versionIsNewer(moVersion, currentPlugin.minSupport()))
+        latestPlugin = pluginData.latest() # most recent overall plugin.
+        installed = self.pluginfinder.installer.isInstalled(pluginData.identifier())
+        installedVersion = self.pluginfinder.installer.installedVersion(pluginData.identifier())
 
+        showUpdateIcon = False
+        showUnsupportedUpdateIcon = False
+        showUnsupportedInstallIcon = False
+        showNotWorkingIcon = False
+        showNotWorkingUpdateIcon = False
+        canUpdate = False
+        showVersion = False
+        canInstall = False
+
+        displayVersion = latestPlugin.version()
+        if currentPlugin:
+            displayVersion = currentPlugin.version()
+
+        if not currentPlugin:
+            showNotWorkingIcon = True
+            showVersion = True
+        elif installed and self.utilities.versionIsNewer(installedVersion, currentPlugin.version()):
+            showVersion = True
+            canUpdate = True
+            if currentSupported:
+                showUpdateIcon = True
+            else:
+                showUnsupportedUpdateIcon = True 
+        elif installed and self.utilities.versionIsNewer(installedVersion, latestPlugin.version()):
+            showVersion = True
+            showNotWorkingUpdateIcon = True
+        elif not installed:
+            showVersion = True
+            canUpdate = True
+            if not currentSupported:
+               showUnsupportedInstallIcon = True
+            
         if installed:
             pluginVersion = QtWidgets.QLabel(widget)
             pluginVersion.setGeometry(QtCore.QRect(345, 15, 41, 11))
@@ -156,20 +207,32 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
             pluginVersion.setToolTip("Installed Version")
             pluginVersion.setText("<html><head/><body><p><span style=\" font-size:7pt;\">v" + installedVersion + "</span></p></body></html>")
 
-        if not installed or updateAvailabe:
+        if showVersion:
             pluginUpdateLabel = QtWidgets.QLabel(widget)
             pluginUpdateLabel.setGeometry(QtCore.QRect(345, 0, 41, 16))
             pluginUpdateLabel.setObjectName("pluginUpdateLabel")
             pluginUpdateLabel.setToolTip("Current Version")
-            pluginUpdateLabel.setText("<html><head/><body><p><span style=\" font-size:7pt;\">v" + currentVersion + "</span></p></body></html>")
+            pluginUpdateLabel.setText("<html><head/><body><p><span style=\" font-size:7pt;\">v" + displayVersion + "</span></p></body></html>")
 
-        if updateAvailabe:
-            updateIcon = QtWidgets.QLabel(widget)
-            updateIcon.setGeometry(QtCore.QRect(325, 5, 16, 21))
-            updateIcon.setText("")
-            updateIcon.setPixmap(self.icons.syncIcon().pixmap(QSize(16, 16)))
-            updateIcon.setObjectName("updateIcon")
-            updateIcon.setToolTip("New Version Available")
+        statusIcon = QtWidgets.QLabel(widget)
+        statusIcon.setGeometry(QtCore.QRect(325, 5, 16, 21))
+        statusIcon.setText("")
+        statusIcon.setObjectName("statusIcon")
+        if showUpdateIcon:
+            statusIcon.setPixmap(self.icons.updateIcon().pixmap(QSize(16, 16)))
+            statusIcon.setToolTip("There is a new update available!")
+        elif showUnsupportedUpdateIcon:
+            statusIcon.setPixmap(self.icons.updateAltIcon().pixmap(QSize(16,16)))
+            statusIcon.setToolTip("There is a new update available but this update has not been tested with this version of Mod Organizer and may not work correctly.")
+        elif showNotWorkingIcon:
+            statusIcon.setPixmap(self.icons.stopIcon().pixmap(QSize(16,16)))
+            statusIcon.setToolTip("There is no version of this plugin that works with this version of Mod Organizer.")
+        elif showNotWorkingUpdateIcon:
+            statusIcon.setPixmap(self.icons.noUpdateIcon().pixmap(QSize(16,16)))
+            statusIcon.setToolTip("There is a new update available but does not work with this version of Mod Organizer.")
+        elif showUnsupportedInstallIcon:
+            statusIcon.setPixmap(self.icons.warningIcon().pixmap(QSize(16,16)))
+            statusIcon.setToolTip("This plugin has not been tested with this version of Mod Organizer and may not work correctly.")
             
         docsButton = QtWidgets.QPushButton(widget)
         docsButton.setGeometry(QtCore.QRect(480, 0, 40, 26))
@@ -207,6 +270,8 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         uninstallButton.setIcon(self.icons.minusIcon())
         uninstallButton.setObjectName("uninstallButton")
         uninstallButton.setToolTip("Uninstall")
+        uninstallButton.setEnabled(installed)
+        uninstallButton.clicked.connect(lambda: self.uninstallClick(pluginData.identifier()))
 
         installButton = QtWidgets.QPushButton(widget)
         installButton.setGeometry(QtCore.QRect(390, 0, 40, 26))
@@ -214,6 +279,8 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         installButton.setIcon(self.icons.installIcon())
         installButton.setObjectName("installButton")
         installButton.setToolTip("Install/Update")
+        installButton.setEnabled(canUpdate)
+        installButton.clicked.connect(lambda: self.installClick(pluginData.identifier()))
 
         line = QtWidgets.QFrame(widget)
         line.setGeometry(QtCore.QRect(0, 70, 601, 16))

@@ -14,6 +14,12 @@ class PluginFinderPaths(SharedPaths):
             self._modOrganizerPluginPath = str(self.modOrganizerPath() / "plugins")
         return Path(self._modOrganizerPluginPath)
 
+    _modOrganizerLocalePath = str()
+    def modOrganizerLocalePath(self):
+        if self._modOrganizerLocalePath == str():
+            self._modOrganizerLocalePath = str(self.modOrganizerPath() / "translations")
+        return Path(self._modOrganizerLocalePath)
+
     _installedPluginDataPath = str()
     def installedPluginDataPath(self):
         if self._installedPluginDataPath == str():
@@ -35,7 +41,7 @@ class PluginFinderPaths(SharedPaths):
         return Path(self._pluginStageTempPath)
 
     
-    _pluginDirectoryUrl = "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/manifest/plugin_directory.json"
+    _pluginDirectoryUrl = "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugin_directory.json"
     def pluginDirectoryUrl(self):
         """ Url to the directory json for updating. """
         return self._pluginDirectoryUrl
@@ -54,11 +60,15 @@ class PluginFinderPaths(SharedPaths):
             self._directoryJsonPath = str(self.pluginDataPath() / "plugin_directory.json")
         return Path(self._directoryJsonPath)
 
-    _pluginDataCachePath = str()
+    _pluginDataCacheFolderPath = str()
+    def pluginDataCacheFolderPath(self):
+        """ Gets the location of the current plugin json file. """
+        if self._pluginDataCacheFolderPath == str():
+            self._pluginDataCacheFolderPath = self.pluginDataPath() / "directory"
+        if not Path(self._pluginDataCacheFolderPath).exists():
+            os.makedirs(self._pluginDataCacheFolderPath)
+        return Path(self._pluginDataCacheFolderPath)
+    
     def pluginDataCachePath(self, pluginId=str):
         """ Gets the location of the current plugin json file. """
-        if self._pluginDataCachePath == str():
-            self._pluginDataCachePath = self.pluginDataPath() / "directory"
-        if not Path(self._pluginDataCachePath).exists():
-            os.makedirs(self._pluginDataCachePath)
-        return self._pluginDataCachePath / (str(pluginId) + ".json")
+        return self.pluginDataCacheFolderPath() / (str(pluginId) + ".json")

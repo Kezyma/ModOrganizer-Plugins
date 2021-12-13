@@ -1,0 +1,122 @@
+[
+  {
+    "Id": "orphanscriptsavedelete",
+    "Name": "Orphaned Script Extender Save Deleter Plugin",
+    "Description": "Mod Organizer plugin to delete orphaned script extender co-saves.",
+    "Author": "AnyOldName3",
+    "Nexus": "https://www.nexusmods.com/skyrimspecialedition/mods/17082",
+    "Github": "https://github.com/AnyOldName3/modorganizer-orphaned_script_extender_save_deleter",
+    "Download": "https://github.com/AnyOldName3/modorganizer-orphaned_script_extender_save_deleter/archive/refs/heads/master.zip",
+    "Path": [ "modorganizer-orphaned_script_extender_save_deleter-master/OrphanedScriptExtenderSaveDeleter.py" ]
+  },
+  {
+    "Id": "motoopenmw",
+    "Name": "ModOrganizer-to-OpenMW",
+    "Description": "A Mod Organizer plugin to export your VFS, plugin selection and load order to OpenMW.",
+    "Author": "AnyOldName3",
+    "Nexus": "https://www.nexusmods.com/morrowind/mods/45642",
+    "Github": "https://github.com/AnyOldName3/ModOrganizer-to-OpenMW",
+    "Download": "https://github.com/AnyOldName3/ModOrganizer-to-OpenMW/archive/refs/heads/master.zip",
+    "Path": [ "ModOrganizer-to-OpenMW-master/OpenMWExport.py", "ModOrganizer-to-OpenMW-master/openmw.ico" ]
+  },
+  {
+    "Id": "mergepluginhide",
+    "Name": "Merge Plugin Hide & Sync Mod Order",
+    "Description": "Hide/unhide plugins that were merged using Merge Plugins or zMerge & Sync mod order from current profile to another.",
+    "Author": "deorder",
+    "Nexus": "",
+    "Github": "https://github.com/deorder/mo2-plugins",
+    "Download": "https://github.com/deorder/mo2-plugins/releases/download/1.1/deorder_plugins-1.1.zip",
+    "Path": [ "deorder_plugins" ]
+  },
+  {
+    "Id": "conflictdeleter",
+    "Name": "Conflict Deleter",
+    "Description": "Moves overwritten files in the current mod order to a backup mod to improve Mod Organizer performance.",
+    "Author": "LostDragonist",
+    "Nexus": "https://www.nexusmods.com/site/mods/82",
+    "Github": "https://github.com/LostDragonist/MO2-Plugins",
+    "Download": "https://github.com/LostDragonist/MO2-Plugins/archive/refs/heads/master.zip",
+    "Path": [ "MO2-Plugins-master/src/ConflictDeleter/ConflictDeleter.py" ]
+  },
+  {
+    "Id": "fixgameregkey",
+    "Name": "Fix Game Registry Key",
+    "Description": "When running an application in MO2, this will check to make sure the registry key is correct according to the game being managed by MO2.",
+    "Author": "LostDragonist",
+    "Nexus": "https://www.nexusmods.com/site/mods/82",
+    "Github": "https://github.com/LostDragonist/MO2-Plugins",
+    "Download": "https://github.com/LostDragonist/MO2-Plugins/archive/refs/heads/master.zip",
+    "Path": [ "MO2-Plugins-master/src/FixGameRegKey/FixGameRegKey.py" ]
+  },
+  {
+    "Id": "gameredirector",
+    "Name": "Game Redirector",
+    "Description": "This plugin maps certain game files for some games to the game files used by other games.",
+    "Author": "LostDragonist",
+    "Nexus": "https://www.nexusmods.com/site/mods/82",
+    "Github": "https://github.com/LostDragonist/MO2-Plugins",
+    "Download": "https://github.com/LostDragonist/MO2-Plugins/archive/refs/heads/master.zip",
+    "Path": [ "MO2-Plugins-master/src/GameRedirector/GameRedirector.py" ]
+  },
+  {
+    "Id": "lootpreventifier",
+    "Name": "LOOT Preventifier",
+    "Description": "This plugins prevents the user from running 'LOOT.exe' or 'lootcli.exe' executables through MO2.",
+    "Author": "LostDragonist",
+    "Nexus": "https://www.nexusmods.com/site/mods/82",
+    "Github": "https://github.com/LostDragonist/MO2-Plugins",
+    "Download": "https://github.com/LostDragonist/MO2-Plugins/archive/refs/heads/master.zip",
+    "Path": [ "MO2-Plugins-master/src/LootPreventifier/LootPreventifier.py" ]
+  },
+  {
+    "Id": "rootlinker",
+    "Name": "Root Linker",
+    "Description": "Manage the files in your base game folder, such as ENB and Bodyslide files.",
+    "Author": "Vaneixus",
+    "Nexus": "https://www.nexusmods.com/fallout4/mods/43814",
+    "Github": "https://github.com/Vaneixus/modorganizer-rootbuilder",
+    "Download": "https://github.com/Vaneixus/modorganizer-rootbuilder/archive/refs/heads/master.zip",
+    "Path": [ "modorganizer-rootbuilder-master/src/rootbuilder.py" ]
+  },
+  {
+    "Id": "grassprecacher",
+    "Name": "Grass Precacher",
+    "Description": "A MO2 tool plugin that simplifies the precaching of grass on Skyrim Special Edition when using No Grass in Objects.",
+    "Author": "Al12rs",
+    "Nexus": "https://www.nexusmods.com/skyrimspecialedition/mods/42161",
+    "Github": "https://github.com/Al12rs/modorganizer-GrassPrecacher",
+    "Download": "https://github.com/Al12rs/modorganizer-GrassPrecacher/archive/refs/heads/master.zip",
+    "Path": [ "modorganizer-GrassPrecacher-master/GrassPrecacher.py" ]
+  },
+  {
+    "Id": "syncpluginmodorder",
+    "Name": "Sync Plugins with Mod Order",
+    "Description": "A simple plugin for Mod Organizer 2 to sync the order of the Plugins in the right pane to the order of Mods in the left pane.",
+    "Author": "Coldrifting",
+    "Nexus": "https://www.nexusmods.com/skyrimspecialedition/mods/47325",
+    "Github": "https://github.com/coldrifting/ModOrganizer-PluginSync",
+    "Download": "https://github.com/coldrifting/ModOrganizer-PluginSync/archive/refs/heads/main.zip",
+    "Path": [ "ModOrganizer-PluginSync-main/src" ]
+  },
+  {
+    "Id": "broom",
+    "Name": "Broom - The Loose File Sweeper",
+    "Description": "MO2/Vortex plugin that allows you to hide or delete files from other mods based on a configuration kept in your modlist.",
+    "Author": "mihaifm",
+    "Nexus": "https://www.nexusmods.com/skyrimspecialedition/mods/52097",
+    "Github": "https://github.com/mihaifm/broom",
+    "Download": "https://github.com/mihaifm/broom/archive/refs/heads/master.zip",
+    "Path": [ "broom-master/mo2/Broom.py" ]
+  },
+  {
+    "Id": "lootwarningcheck",
+    "Name": "LOOT Warning Checker",
+    "Description": "Mod Organizer 2 plugin to check for LOOT warnings and display them as notifications, without needing to sort the load order.",
+    "Author": "JonathanFeenstra",
+    "Nexus": "https://www.nexusmods.com/site/mods/323",
+    "Github": "https://github.com/JonathanFeenstra/modorganizer-loot-warning-checker",
+    "Download": "https://github.com/JonathanFeenstra/modorganizer-loot-warning-checker/archive/refs/heads/main.zip",
+    "Path": [ "modorganizer-loot-warning-checker-main/LOOT-Warning-Checker" ]
+  }
+]
