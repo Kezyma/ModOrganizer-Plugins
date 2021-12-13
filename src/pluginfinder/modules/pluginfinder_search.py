@@ -26,15 +26,15 @@ class PluginFinderSearch():
 
     def updateDirectory(self):
         """ Attempt to download a directory update from Github. """
-    #try:
-        with urllib.request.urlopen(self.paths.pluginDirectoryUrl()) as r:
-            data = json.load(r)
-            if not Path(self.paths.directoryJsonPath()).exists():
-                Path(self.paths.directoryJsonPath()).touch()
-            with open(self.paths.directoryJsonPath(), "w") as rcJson:
-                json.dump(data, rcJson)
-    #except:
-        qInfo("Could not download update.")
+        try:
+            with urllib.request.urlopen(self.paths.pluginDirectoryUrl()) as r:
+                data = json.load(r)
+                if not Path(self.paths.directoryJsonPath()).exists():
+                    Path(self.paths.directoryJsonPath()).touch()
+                with open(self.paths.directoryJsonPath(), "w") as rcJson:
+                    json.dump(data, rcJson)
+        except:
+            qInfo("Could not download update.")
         urllib.request.urlcleanup()
 
     def directory(self):

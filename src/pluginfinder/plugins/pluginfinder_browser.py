@@ -205,14 +205,14 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
             pluginVersion.setGeometry(QtCore.QRect(345, 15, 41, 11))
             pluginVersion.setObjectName("pluginVersion")
             pluginVersion.setToolTip("Installed Version")
-            pluginVersion.setText("<html><head/><body><p><span style=\" font-size:7pt;\">v" + installedVersion + "</span></p></body></html>")
+            pluginVersion.setText("<html><head/><body><p><span style=\" font-size:7pt;\">v" + mobase.VersionInfo(installedVersion).canonicalString() + "</span></p></body></html>")
 
         if showVersion:
             pluginUpdateLabel = QtWidgets.QLabel(widget)
             pluginUpdateLabel.setGeometry(QtCore.QRect(345, 0, 41, 16))
             pluginUpdateLabel.setObjectName("pluginUpdateLabel")
             pluginUpdateLabel.setToolTip("Current Version")
-            pluginUpdateLabel.setText("<html><head/><body><p><span style=\" font-size:7pt;\">v" + displayVersion + "</span></p></body></html>")
+            pluginUpdateLabel.setText("<html><head/><body><p><span style=\" font-size:7pt;\">v" + mobase.VersionInfo(displayVersion).canonicalString() + "</span></p></body></html>")
 
         statusIcon = QtWidgets.QLabel(widget)
         statusIcon.setGeometry(QtCore.QRect(325, 5, 16, 21))
