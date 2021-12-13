@@ -44,3 +44,9 @@ class SharedIcons():
 
     def docsIcon(self):
         return self.icon("ui-docs.ico")
+
+    def prevIcon(self):
+        return self.icon("ui-prev.ico")
+
+    def nextIcon(self):
+        return self.icon("ui-next.ico")

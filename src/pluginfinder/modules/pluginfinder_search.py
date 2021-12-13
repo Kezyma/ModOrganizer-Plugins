@@ -1,4 +1,4 @@
-import mobase, os, urllib, json
+import mobase, os, urllib, json, math
 from pathlib import Path
 from datetime import datetime, timedelta
 from itertools import islice
@@ -43,8 +43,10 @@ class PluginFinderSearch():
         directory = json.load(open(self.paths.directoryJsonPath()))
         return directory
 
-    def searchDirectory(self, searchTerms=str):
+    def searchDirectory(self, searchTerms=str, installed=False):
         """ Searches the directory by plugin name. """
+        if searchTerms == "":
+            return self.directory()
         results = []
         for plugin in self.directory():
             if "Name" in plugin:
@@ -81,12 +83,17 @@ class PluginFinderSearch():
         # Return an null if we can't load the file.
         return None
 
-    def pagedPluginData(self, searchTerms=str, page=int, pageSize=int):
+    def pagedPluginData(self, searchTerms=str, installed=False, page=int, pageSize=int):
         """ Get a paged list of plugin data. """
-        manifestSearch = self.searchDirectory(searchTerms)
+        manifestSearch = self.searchDirectory(searchTerms, installed)
         pagedList = list(islice(manifestSearch, ((page-1)*pageSize), ((page-1)*pageSize) + pageSize))
         results = []
         for item in pagedList:
             if "Identifier" in item:
                 results.append(self.pluginData(str(item["Identifier"])))
         return results
+
+    def totalPages(self, searchTerms=str, installed=False, pageSize=int):
+        """ Gets the total number of pages from a search. """
+        items = float(len(self.searchDirectory(searchTerms, installed))))
+        return int(math.ceil(items / pageSize))

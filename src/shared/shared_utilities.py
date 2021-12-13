@@ -1,4 +1,4 @@
-import os, shutil, hashlib, stat, re
+import os, shutil, hashlib, stat, re, mobase
 from shutil import copy2
 from pathlib import Path
 
@@ -44,37 +44,39 @@ class SharedUtilities():
         """ Works out if newVersion is newer than oldVersion. """
         oldVer = self.parseVersion(oldVersion)
         newVer = self.parseVersion(newVersion)
-        
-        parts = max(len(oldVer),len(newVer))
-        for i in range(parts):
-            oldPart = "0"
-            newPart = "0"
-            if len(oldVer) > i:
-                oldPart = oldVer[i]
-            if len(newVer) > i:
-                newPart = newVer[i]
-            try: # numeric sorting, for the version number itself.
-                oldInt = int(oldPart)
-                newInt = int(newPart)
-                if newInt > oldInt:
-                    return True
-                if newInt < oldInt:
-                    return False
-            except: # alphabetic string sorting. useful for picking in order for alpha and beta releases.
-                if newPart < oldPart:
-                    return True 
-                if newPart > oldPart:
-                    return False
-        return False
+        return newver > oldVer
+        #parts = max(len(oldVer),len(newVer))
+        #for i in range(parts):
+        #    oldPart = "0"
+        #    newPart = "0"
+        #    if len(oldVer) > i:
+        #        oldPart = oldVer[i]
+        #    if len(newVer) > i:
+        #        newPart = newVer[i]
+        #    if oldPart != "0" and newPart != "0":
+        #        try: # numeric sorting, for the version number itself.
+        #            oldInt = int(oldPart)
+        #            newInt = int(newPart)
+        #            if newInt > oldInt:
+        #                return True
+        #            if newInt < oldInt:
+        #                return False
+        #        except: # alphabetic string sorting. useful for picking in order for alpha and beta releases.
+        #            if newPart < oldPart:
+        #                return True 
+        #            if newPart > oldPart:
+        #                return False
+        #return False
     
     def parseVersion(self, version=str):
-        """ Splits up a version string. """
-        ver = []
-        for part in str(version).split("."):
-            numPart = "".join(filter(str.isdigit, part))
-            txtPart = "".join(filter(!str.isdigit, part))
-            if numPart != "":
-                ver.append(numPart)
-            if txtPart != "":
-                ver.append(txtPart)
-        return ver
+        """ Parses a version. """
+        return mobase.VersionInfo(version)
+        #ver = []
+        #for part in str(version).split("."):
+        #    numPart = "".join(filter(str.isdigit, part))
+        #    txtPart = "".join(filter(!str.isdigit, part))
+        #    if numPart != "":
+        #        ver.append(numPart)
+        #    if txtPart != "":
+        #        ver.append(txtPart)
+        #return ver
