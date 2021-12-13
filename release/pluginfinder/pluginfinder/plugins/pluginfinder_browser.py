@@ -145,7 +145,6 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         plugin = pluginData.current(self.organiser.appVersion().canonicalString())
         installed = False
         installedVersion = ""
-        currentVersion
         currentVersion = plugin.version()
         updateAvailabe = installed and self.utilities.versionIsNewer(installedVersion, currentVersion)
 

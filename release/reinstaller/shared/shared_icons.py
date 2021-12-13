@@ -41,3 +41,12 @@ class SharedIcons():
 
     def installIcon(self):
         return self.icon("ui-install.ico")
+
+    def docsIcon(self):
+        return self.icon("ui-docs.ico")
+
+    def prevIcon(self):
+        return self.icon("ui-prev.ico")
+
+    def nextIcon(self):
+        return self.icon("ui-next.ico")

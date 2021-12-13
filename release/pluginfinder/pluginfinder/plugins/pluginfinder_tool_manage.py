@@ -16,6 +16,11 @@ class PluginFinderManageTool(PluginFinderPlugin, mobase.IPluginTool):
         self.dialog = self.getDialog()
         return res
 
+    def getDialog(self):
+        dialog = QtWidgets.QDialog()
+        self.setupUi(dialog)
+        return dialog
+
     def __tr(self, trstr):
         return QCoreApplication.translate(self.pluginName, trstr)
 
@@ -30,12 +35,7 @@ class PluginFinderManageTool(PluginFinderPlugin, mobase.IPluginTool):
         self.dialog.show()
         self.refreshItems()
         self.bindInstalled()
-
-    def getDialog(self):
-        dialog = QtWidgets.QDialog()
-        self.setupUi(dialog)
-        return dialog
-    
+        
     def setupUi(self, widget=QtWidgets.QDialog):
         widget.setObjectName("PluginFinder")
         widget.setWindowTitle("Plugin Finder")

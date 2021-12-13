@@ -1,36 +1,23 @@
 import mobase, os
-from plugin_version import PluginVersion
+from .plugin_version import PluginVersion
+from ...shared.shared_json import SharedJson
+from ...shared.shared_utilities import SharedUtilities
+from PyQt5.QtCore import QCoreApplication, qInfo
 
-class PluginData(self):
+class PluginData(SharedJson):
 
     def __init__(self, jsonObject=dict):
-        self.json = jsonObject
-        super().__init__()
-
-    def getJsonProperty(self, key=str):
-        if key in self.json.keys():
-            return self.json[key]
-        else:
-            return None
-
-    def getJsonArray(self, key=str):
-        data = self.getJsonProperty(key)
-        res = []
-        if data:
-            try:
-                for val in data:
-                    res.append(data)
-                return res
-            except:
-                return None
-        else:
-            return None
-
+        self.utilities = SharedUtilities()
+        super().__init__(jsonObject)
+        
     def identifier(self):
         return str(self.getJsonProperty("Identifier"))
 
     def name(self):
         return str(self.getJsonProperty("Name"))
+
+    def author(self):
+        return str(self.getJsonProperty("Author"))
 
     def description(self):
         return str(self.getJsonProperty("Description"))
@@ -41,45 +28,40 @@ class PluginData(self):
     def githubUrl(self):
         return str(self.getJsonProperty("GithubUrl"))
 
-    def downloadUrl(self):
-        return str(self.getJsonProperty("DownloadUrl"))
-
-    def pluginPaths(self):
-        paths = []
-        data = self.getJsonArray("PluginPath")
-        if data:
-            for path in data:
-                paths.append(str(path))
-            return paths
-        else:
-            return None
-
-    def localePaths(self):
-        paths = []
-        data = self.getJsonArray("LocalePath")
-        if data:
-            for path in data:
-                paths.append(str(path))
-            return paths
-        else:
-            return None
-
-    def dataPaths(self):
-        paths = []
-        data = self.getJsonArray("DataPath")
-        if data:
-            for path in data:
-                paths.append(str(path))
-            return paths
-        else:
-            return None
-
-    def versions():
+    def docsUrl(self):
+        return str(self.getJsonProperty("DocsUrl"))
+    
+    def versions(self):
         versions = []
         data = self.getJsonArray("Versions")
+        qInfo(str(data))
         if data:
             for version in data:
+                qInfo(str(version))
                 versions.append(PluginVersion(version))
             return versions 
         else:
             return None
+
+    def current(self, moVersion=str):
+        """ The most recent working version for a given Mod Organizer version. """
+        qInfo("MO Version " + str(moVersion))
+        allVersions = self.versions()
+        qInfo(str(allVersions))
+        workingVersions = []
+        for version in allVersions:
+            qInfo("Checking " + str(version.json))
+            if version.maxWorking() == "" or not self.utilities.versionIsNewer(version.maxWorking(), moVersion):
+                if version.minWorking() == "" or not self.utilities.versionIsNewer(moVersion, version.minWorking()):
+                    qInfo("Version valid")
+                    workingVersions.append(version)
+
+        latestVersion = workingVersions[0]
+        latest = latestVersion.version()
+        for version in workingVersions:
+            qInfo("")
+            if self.utilities.versionIsNewer(latest, version.version()):
+                latestVersion = version
+                latest = version.version()
+
+        return latestVersion

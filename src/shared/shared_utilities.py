@@ -44,7 +44,7 @@ class SharedUtilities():
         """ Works out if newVersion is newer than oldVersion. """
         oldVer = self.parseVersion(oldVersion)
         newVer = self.parseVersion(newVersion)
-        return newver > oldVer
+        return newVer > oldVer
         #parts = max(len(oldVer),len(newVer))
         #for i in range(parts):
         #    oldPart = "0"

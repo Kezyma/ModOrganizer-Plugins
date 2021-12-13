@@ -1,29 +1,10 @@
 import mobase, os
+from ...shared.shared_json import SharedJson
 
-class PluginVersion(self):
+class PluginVersion(SharedJson):
 
     def __init__(self, jsonObject=dict):
-        self.json = jsonObject
-        super().__init__()
-
-    def getJsonProperty(self, key=str):
-        if key in self.json.keys():
-            return self.json[key]
-        else:
-            return None
-
-    def getJsonArray(self, key=str):
-        data = self.getJsonProperty(key)
-        res = []
-        if data:
-            try:
-                for val in data:
-                    res.append(data)
-                return res
-            except:
-                return None
-        else:
-            return None
+        super().__init__(jsonObject)
         
     def released(self):
         return str(self.getJsonProperty("Released"))
@@ -33,6 +14,12 @@ class PluginVersion(self):
 
     def maxSupport(self):
         return str(self.getJsonProperty("MaxSupport"))
+
+    def minWorking(self):
+        return str(self.getJsonProperty("MinWorking"))
+
+    def maxWorking(self):
+        return str(self.getJsonProperty("MaxWorking"))
     
     def version(self):
         return str(self.getJsonProperty("Version"))
@@ -41,31 +28,13 @@ class PluginVersion(self):
         return str(self.getJsonProperty("DownloadUrl"))
 
     def pluginPaths(self):
-        paths = []
-        data = self.getJsonArray("PluginPath")
-        if data:
-            for path in data:
-                paths.append(str(path))
-            return paths
-        else:
-            return None
+        return self.getJsonStringArray("PluginPath")
 
     def localePaths(self):
-        paths = []
-        data = self.getJsonArray("LocalePath")
-        if data:
-            for path in data:
-                paths.append(str(path))
-            return paths
-        else:
-            return None
+        return self.getJsonStringArray("LocalePath")
 
     def dataPaths(self):
-        paths = []
-        data = self.getJsonArray("DataPath")
-        if data:
-            for path in data:
-                paths.append(str(path))
-            return paths
-        else:
-            return None
+        return self.getJsonStringArray("DataPath")
+
+    def releaseNotes(self):
+        return self.getJsonStringArray("ReleaseNotes")

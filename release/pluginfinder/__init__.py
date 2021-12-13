@@ -1,8 +1,8 @@
 import mobase
-from .pluginfinder.plugins.pluginfinder_tool_manage import PluginFinderManageTool
+from .pluginfinder.plugins.pluginfinder_browser import PluginFinderBrowser
 
 def createPlugins():
     return [
-        PluginFinderManageTool()
+        PluginFinderBrowser()
         ]
 

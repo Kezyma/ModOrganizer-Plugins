@@ -2,10 +2,11 @@ import mobase, os, urllib, json, math
 from pathlib import Path
 from datetime import datetime, timedelta
 from itertools import islice
-from pluginfinder_paths import PluginFinderPaths
-from pluginfinder_files import PluginFinderFiles
+from .pluginfinder_paths import PluginFinderPaths
+from .pluginfinder_files import PluginFinderFiles
 from ...shared.shared_utilities import SharedUtilities
 from ..models.plugin_data import PluginData
+from PyQt5.QtCore import QCoreApplication, qInfo
 
 class PluginFinderSearch():
 
@@ -24,9 +25,13 @@ class PluginFinderSearch():
     def updateDirectory(self):
         """ Attempt to download a directory update from Github. """
         try:
-            data = json.loads(urllib.request.urlopen(self.paths.pluginDirectoryUrl()).read())
-            with open(self.paths.directoryJsonPath(), "w") as rcJson:
-                json.dump(data, rcJson)
+            with urllib.request.urlopen(self.paths.pluginDirectoryUrl()) as r:
+                data = json.load(r)
+                qInfo(str(data))
+                if not Path(self.paths.directoryJsonPath()).exists():
+                    Path(self.paths.directoryJsonPath()).touch()
+                with open(self.paths.directoryJsonPath(), "w") as rcJson:
+                    json.dump(data, rcJson)
         except:
             qInfo("Could not download update.")
         urllib.request.urlcleanup()
@@ -36,20 +41,20 @@ class PluginFinderSearch():
         # Deploy if it's first run.
         self.deployInitialDirectory()
         # If the file is missing or old, update it.
-        if not Path(self.paths.directoryJsonPath()).exists():
-            if datetime.fromtimestamp(os.path.getmtime(str(self.paths.directoryJsonPath()))) < (datetime.today() - timedelta(days=1)):
-                self.updateDirectory()
+        if not Path(self.paths.directoryJsonPath()).exists() or datetime.fromtimestamp(os.path.getmtime(str(self.paths.directoryJsonPath()))) < (datetime.today() - timedelta(days=1)):
+            self.updateDirectory()
         # Load the directory file.
         directory = json.load(open(self.paths.directoryJsonPath()))
         return directory
 
     def searchDirectory(self, searchTerms=str, installed=False):
         """ Searches the directory by plugin name. """
+        qInfo("Searching directory, terms = " + str(searchTerms) + ", installed = " + str(installed))
         if searchTerms == "":
             return self.directory()
         results = []
         for plugin in self.directory():
-            if "Name" in plugin:
+            if "Name" in plugin.keys():
                 if searchTerms in plugin["Name"]:
                     results.append(plugin)
         return results
@@ -57,14 +62,18 @@ class PluginFinderSearch():
     def updatePluginData(self, pluginId=str):
         """ Gets the json file for the current plugin. """
         for plugin in self.directory():
-            if plugin["Identifier"] == str(pluginId):
+            if str(plugin["Identifier"]) == str(pluginId):
                 url = plugin["Manifest"]
-                try:
-                    data = json.loads(urllib.request.urlopen(str(url)).read())
-                    with open(self.paths.pluginDataCachePath(pluginId) "w") as rcJson:
+                #try:
+                with urllib.request.urlopen(str(url)) as r:
+                    data = json.load(r)
+                    qInfo(str(data))
+                    if not Path(self.paths.pluginDataCachePath(pluginId)).exists():
+                        Path(self.paths.pluginDataCachePath(pluginId)).touch()
+                    with open(self.paths.pluginDataCachePath(pluginId), "w") as rcJson:
                         json.dump(data, rcJson)
-                except:
-                    qInfo("Could not download update.")
+            #except:
+                #qInfo("Could not download update.")
                 urllib.request.urlcleanup()
 
     def pluginData(self, pluginId=str):
@@ -86,14 +95,17 @@ class PluginFinderSearch():
     def pagedPluginData(self, searchTerms=str, installed=False, page=int, pageSize=int):
         """ Get a paged list of plugin data. """
         manifestSearch = self.searchDirectory(searchTerms, installed)
+        qInfo("Directory searched, paging list.")
         pagedList = list(islice(manifestSearch, ((page-1)*pageSize), ((page-1)*pageSize) + pageSize))
+        qInfo("List paged, loading plugin data.")
         results = []
         for item in pagedList:
-            if "Identifier" in item:
+            if "Identifier" in item.keys():
+                qInfo("Loading " + str(item["Name"]))
                 results.append(self.pluginData(str(item["Identifier"])))
         return results
 
     def totalPages(self, searchTerms=str, installed=False, pageSize=int):
         """ Gets the total number of pages from a search. """
-        items = float(len(self.searchDirectory(searchTerms, installed))))
+        items = float(len(self.searchDirectory(searchTerms, installed)))
         return int(math.ceil(items / pageSize))

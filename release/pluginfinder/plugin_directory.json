@@ -13,10 +13,5 @@
         "Name": "Shortcutter",
         "Identifier": "shortcutter",
         "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/manifest/plugins/shortcutter.json"
-    },
-    {
-        "Name": "Plugin Finder",
-        "Identifier": "pluginfinder",
-        "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/manifest/plugins/pluginfinder.json"
     }
 ]

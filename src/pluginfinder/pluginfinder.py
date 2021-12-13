@@ -1,5 +1,5 @@
 import mobase, json, urllib.request, zipfile, os, shutil, re
-from src.pluginfinder.modules.pluginfinder_search import PluginFinderSearch
+from .modules.pluginfinder_search import PluginFinderSearch
 from ..shared.shared_utilities import SharedUtilities
 from .modules.pluginfinder_paths import PluginFinderPaths
 from .modules.pluginfinder_files import PluginFinderFiles

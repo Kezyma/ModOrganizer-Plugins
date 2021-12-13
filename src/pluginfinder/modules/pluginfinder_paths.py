@@ -35,7 +35,7 @@ class PluginFinderPaths(SharedPaths):
         return Path(self._pluginStageTempPath)
 
     
-    _pluginDirectoryUrl = "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/src/pluginfinder/plugin_directory.json"
+    _pluginDirectoryUrl = "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/manifest/plugin_directory.json"
     def pluginDirectoryUrl(self):
         """ Url to the directory json for updating. """
         return self._pluginDirectoryUrl
@@ -59,4 +59,6 @@ class PluginFinderPaths(SharedPaths):
         """ Gets the location of the current plugin json file. """
         if self._pluginDataCachePath == str():
             self._pluginDataCachePath = self.pluginDataPath() / "directory"
+        if not Path(self._pluginDataCachePath).exists():
+            os.makedirs(self._pluginDataCachePath)
         return self._pluginDataCachePath / (str(pluginId) + ".json")
