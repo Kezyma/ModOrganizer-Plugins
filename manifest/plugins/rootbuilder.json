@@ -5,17 +5,6 @@
   "NexusUrl": "https://www.nexusmods.com/skyrimspecialedition/mods/31720",
   "GithubUrl": "https://github.com/Kezyma/ModOrganizer-Plugins",
   "DocsUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/readme/rootbuilder/readme.md",
-
-  "Released": "2021-12-13",
-  "MinSupport": "2.4.2",
-  "MaxSupport": "2.5.0",
-  "MinWorking": "",
-  "MaxWorking": "",
-  "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.zip",
-  "PluginPath": [ "rootbuilder" ],
-  "LocalePath": [],
-  "DataPath": [ "data/rootbuilder" ],
-
   "Versions": [
     {
       "Version": "4.2.7",

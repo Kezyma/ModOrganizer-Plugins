@@ -2,7 +2,7 @@ import mobase, os
 from plugin_version import PluginVersion
 from ...shared.shared_json import SharedJson
 
-class PluginData(PluginVersion):
+class PluginData(SharedJson):
 
     def __init__(self, jsonObject=dict):
         super().__init__(jsonObject)
