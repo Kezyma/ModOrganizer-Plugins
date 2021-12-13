@@ -18,5 +18,10 @@
     "Name": "Plugin Finder",
     "Identifier": "pluginfinder",
     "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugins/pluginfinder.json"
+  },
+  {
+    "Name": "LOOT Warning Checker",
+    "Identifier": "lootwarningchecker",
+    "Manifest": "https://raw.githubusercontent.com/JonathanFeenstra/modorganizer-loot-warning-checker/main/manifest.json"
   }
 ]

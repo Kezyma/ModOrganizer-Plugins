@@ -108,15 +108,5 @@
     "Github": "https://github.com/mihaifm/broom",
     "Download": "https://github.com/mihaifm/broom/archive/refs/heads/master.zip",
     "Path": [ "broom-master/mo2/Broom.py" ]
-  },
-  {
-    "Id": "lootwarningcheck",
-    "Name": "LOOT Warning Checker",
-    "Description": "Mod Organizer 2 plugin to check for LOOT warnings and display them as notifications, without needing to sort the load order.",
-    "Author": "JonathanFeenstra",
-    "Nexus": "https://www.nexusmods.com/site/mods/323",
-    "Github": "https://github.com/JonathanFeenstra/modorganizer-loot-warning-checker",
-    "Download": "https://github.com/JonathanFeenstra/modorganizer-loot-warning-checker/archive/refs/heads/main.zip",
-    "Path": [ "modorganizer-loot-warning-checker-main/LOOT-Warning-Checker" ]
   }
 ]
