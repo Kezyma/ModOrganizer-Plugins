@@ -7,7 +7,10 @@ from .pluginfinder_files import PluginFinderFiles
 from .pluginfinder_installer import PluginFinderInstaller
 from ...shared.shared_utilities import SharedUtilities
 from ..models.plugin_data import PluginData
-from PyQt5.QtCore import QCoreApplication, qInfo
+try:
+    from PyQt5.QtCore import QCoreApplication, qInfo
+except:
+    from PyQt6.QtCore import QCoreApplication, qInfo
 
 class PluginFinderSearch():
 

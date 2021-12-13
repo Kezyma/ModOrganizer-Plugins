@@ -10,7 +10,7 @@
       "Version": "4.2.7b",
       "Released": "2021-12-13",
       "MinSupport": "2.4.2",
-      "MaxSupport": "2.5.0",
+      "MaxSupport": "2.5.0.0-qt6dev2",
       "MinWorking": "",
       "MaxWorking": "",
       "ReleaseNotes": [ "Added basic support for Mod Organizer 2 v2.5.0" ],

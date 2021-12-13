@@ -2,7 +2,10 @@ import mobase, os
 from .plugin_version import PluginVersion
 from ...shared.shared_json import SharedJson
 from ...shared.shared_utilities import SharedUtilities
-from PyQt5.QtCore import QCoreApplication, qInfo
+try:
+    from PyQt5.QtCore import QCoreApplication, qInfo
+except:
+    from PyQt6.QtCore import QCoreApplication, qInfo
 
 class PluginData(SharedJson):
 
@@ -50,14 +53,16 @@ class PluginData(SharedJson):
                 if version.minWorking() == "" or not self.utilities.versionIsNewer(moVersion, version.minWorking()):
                     workingVersions.append(version)
 
-        latestVersion = workingVersions[0]
-        latest = latestVersion.version()
-        for version in workingVersions:
-            if self.utilities.versionIsNewer(latest, version.version()):
-                latestVersion = version
-                latest = version.version()
+        if len(workingVersions) > 0:
+            latestVersion = workingVersions[0]
+            latest = latestVersion.version()
+            for version in workingVersions:
+                if self.utilities.versionIsNewer(latest, version.version()):
+                    latestVersion = version
+                    latest = version.version()
 
-        return latestVersion
+            return latestVersion
+        return None
 
     def latest(self):
         """ The most recent overall version. """

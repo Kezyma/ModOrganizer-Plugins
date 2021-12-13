@@ -1,11 +1,25 @@
-from PyQt5.QtWidgets import QFileDialog, QFileIconProvider, QFormLayout, QInputDialog, QLineEdit, QVBoxLayout, QWidget
-from PyQt5.QtCore import QCoreApplication, qInfo, QSize
-from PyQt5 import QtGui, QtWidgets, QtCore
-from PyQt5.QtWidgets import QFileIconProvider
+try:
+    from PyQt5.QtWidgets import QFileDialog, QFileIconProvider, QFormLayout, QInputDialog, QLineEdit, QVBoxLayout, QWidget
+    from PyQt5.QtCore import QCoreApplication, qInfo, QSize
+    from PyQt5 import QtGui, QtWidgets, QtCore
+    qtAlignLeading = QtCore.Qt.AlignLeading
+    qtAlignLeft = QtCore.Qt.AlignLeft
+    qtAlignTop = QtCore.Qt.AlignTop
+    qtHLine = QtWidgets.QFrame.HLine
+    qtSunken = QtWidgets.QFrame.Sunken
+except:
+    from PyQt6.QtWidgets import QFileDialog, QFileIconProvider, QFormLayout, QInputDialog, QLineEdit, QVBoxLayout, QWidget
+    from PyQt6.QtCore import QCoreApplication, qInfo, QSize
+    from PyQt6 import QtGui, QtWidgets, QtCore
+    qtAlignLeading = QtCore.Qt.AlignmentFlag.AlignLeading
+    qtAlignLeft = QtCore.Qt.AlignmentFlag.AlignLeft
+    qtAlignTop = QtCore.Qt.AlignmentFlag.AlignTop
+    qtHLine = QtWidgets.QFrame.Shape.HLine
+    qtSunken = QtWidgets.QFrame.Shadow.Sunken
 from ..pluginfinder_plugin import PluginFinderPlugin
 from ..models.plugin_data import PluginData
 from ...shared.shared_utilities import SharedUtilities
-import mobase, webbrowser
+import mobase, webbrowser, os, subprocess
 
 class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
     
@@ -13,6 +27,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         self.dialog = QtWidgets.QDialog()
         self.page = 1
         self.pageSize = 7
+        self.hasChanged = False
         super().__init__()
 
     def init(self, organiser=mobase.IOrganizer):
@@ -66,10 +81,11 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         
         dialog.setWindowTitle("Plugin Finder")
         dialog.setObjectName("pluginFinder")
-        dialog.resize(620, 675)
-        dialog.setMinimumSize(QtCore.QSize(620, 675))
-        dialog.setMaximumSize(QtCore.QSize(620, 675))
+        dialog.resize(623, 675)
+        dialog.setMinimumSize(QtCore.QSize(623, 675))
+        dialog.setMaximumSize(QtCore.QSize(623, 675))
         dialog.setWindowIcon(self.icons.pluginIcon())
+        dialog.rejected.connect(self.onClose)
 
         self.dialogLayout = QtWidgets.QVBoxLayout(dialog)
         self.dialogLayout.setObjectName("verticalLayout")
@@ -132,11 +148,17 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
     
     def installClick(self, pluginId=str):
         self.pluginfinder.install(pluginId)
+        self.hasChanged = True
         self.bindPage()
 
     def uninstallClick(self, pluginId=str):
         self.pluginfinder.uninstall(pluginId)
+        self.hasChanged = True
         self.bindPage()
+
+    def onClose(self):
+        if self.hasChanged:
+            os.system("taskkill /F /IM ModOrganizer.exe && explorer \"" + str(self.pluginfinder.paths.modOrganizerExePath()) + "\"")
 
     def getPluginWidget(self, pluginData=PluginData):
         widget = QtWidgets.QWidget()
@@ -156,14 +178,15 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         pluginDesc = QtWidgets.QLabel(widget)
         pluginDesc.setGeometry(QtCore.QRect(0, 35, 601, 41))
-        pluginDesc.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        pluginDesc.setAlignment(qtAlignLeading|qtAlignLeft|qtAlignTop)
         pluginDesc.setWordWrap(True)
         pluginDesc.setObjectName("pluginDesc")        
         pluginDesc.setText(pluginData.description())
 
         moVersion = self.organiser.appVersion().canonicalString()
+        qInfo("Mod Organizer Version: " + moVersion)
         currentPlugin = pluginData.current(moVersion) # most recent working plugin.
-        currentSupported = not (currentPlugin.maxSupport() == "" or currentPlugin.minSupport() == "" or self.utilities.versionIsNewer(currentPlugin.maxSupport(), moVersion) or self.utilities.versionIsNewer(moVersion, currentPlugin.minSupport()))
+        currentSupported = currentPlugin and not (currentPlugin.maxSupport() == "" or currentPlugin.minSupport() == "" or self.utilities.versionIsNewer(currentPlugin.maxSupport(), moVersion) or self.utilities.versionIsNewer(moVersion, currentPlugin.minSupport()))
         latestPlugin = pluginData.latest() # most recent overall plugin.
         installed = self.pluginfinder.installer.isInstalled(pluginData.identifier())
         installedVersion = self.pluginfinder.installer.installedVersion(pluginData.identifier())
@@ -233,6 +256,9 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         elif showUnsupportedInstallIcon:
             statusIcon.setPixmap(self.icons.warningIcon().pixmap(QSize(16,16)))
             statusIcon.setToolTip("This plugin has not been tested with this version of Mod Organizer and may not work correctly.")
+        elif installed:
+            statusIcon.setPixmap(self.icons.checkIcon().pixmap(QSize(16,16)))
+            statusIcon.setToolTip("This plugin is up to date.")
             
         docsButton = QtWidgets.QPushButton(widget)
         docsButton.setGeometry(QtCore.QRect(480, 0, 40, 26))
@@ -284,8 +310,8 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         line = QtWidgets.QFrame(widget)
         line.setGeometry(QtCore.QRect(0, 70, 601, 16))
-        line.setFrameShape(QtWidgets.QFrame.HLine)
-        line.setFrameShadow(QtWidgets.QFrame.Sunken)
+        line.setFrameShape(qtHLine)
+        line.setFrameShadow(qtSunken)
         line.setObjectName("line")
 
         return widget

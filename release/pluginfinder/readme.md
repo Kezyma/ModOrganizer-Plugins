@@ -1,5 +1,5 @@
 # Plugin Finder
-## v1.0.*
+## v1.1.*
 
 ### Introduction
 Plugin Finder allows you to browse a list of Mod Organizer plugins as well as both installing and uninstalling them.
@@ -16,12 +16,15 @@ Delete the following folders from Mod Organizer, assuming Mod Organizer is insta
 ### Usage
 A new item will appear in the tools menu of Mod Organizer. This will open up a list of plugins.
 
-The Nexus and Github buttons open links to the relevant pages for the plugin. 
+The documentation, Nexus and Github buttons open links to the relevant pages for the plugin. 
 The green download button will download and install the plugin to Mod Organizer.
-The blue sync button will update download and reinstall the plugin to Mod Organizer.
 The red minus button will uninstall the plugin from Mod Organizer.
 
-After installing or uninstalling plugins, Mod Organizer must be restarted. 
+Plugins can be searched by name and can be filtered to show only installed plugins.
+At the bottom, arrow buttons on either side can be used to browse various pages and the refresh button in the middle will clear all cached data and reload it. 
+By default, data will be updated once per day, as it is needed.
+
+After installing or uninstalling plugins, Mod Organizer will restart.
 
 ### Settings
 
