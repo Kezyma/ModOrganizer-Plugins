@@ -1,5 +1,14 @@
-from PyQt5.QtCore import QCoreApplication
-from PyQt5 import QtCore, QtWidgets
+try:
+    from PyQt5.QtCore import QCoreApplication, qInfo
+    from PyQt5 import QtCore, QtWidgets
+    qtHLine = QtWidgets.QFrame.HLine
+    qtSunken = QtWidgets.QFrame.Sunken
+except:
+    from PyQt6.QtCore import QCoreApplication, qInfo
+    from PyQt6 import QtCore, QtWidgets
+    qtHLine = QtWidgets.QFrame.Shape.HLine
+    qtSunken = QtWidgets.QFrame.Shadow.Sunken
+
 from ..rootbuilder_plugin import RootBuilderPlugin
 import mobase
 
@@ -43,8 +52,8 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         
         self.line = QtWidgets.QFrame(dialog)
         self.line.setGeometry(QtCore.QRect(0, 30, 431, 16))
-        self.line.setFrameShape(QtWidgets.QFrame.HLine)
-        self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line.setFrameShape(qtHLine)
+        self.line.setFrameShadow(qtSunken)
         self.line.setObjectName("line")
 
         # Backup Settings
@@ -75,8 +84,8 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
 
         self.line_2 = QtWidgets.QFrame(dialog)
         self.line_2.setGeometry(QtCore.QRect(0, 95, 431, 16))
-        self.line_2.setFrameShape(QtWidgets.QFrame.HLine)
-        self.line_2.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_2.setFrameShape(qtHLine)
+        self.line_2.setFrameShadow(qtSunken)
         self.line_2.setObjectName("line_2")
 
         # Mode Settings
@@ -111,8 +120,8 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
 
         self.line_3 = QtWidgets.QFrame(dialog)
         self.line_3.setGeometry(QtCore.QRect(0, 215, 431, 16))
-        self.line_3.setFrameShape(QtWidgets.QFrame.HLine)
-        self.line_3.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_3.setFrameShape(qtHLine)
+        self.line_3.setFrameShadow(qtSunken)
         self.line_3.setObjectName("line_3")
 
         # Misc Settings

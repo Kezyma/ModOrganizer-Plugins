@@ -1,12 +1,13 @@
 from pathlib import Path
-
-from PyQt5.QtCore import qInf
 from .rootbuilder_settings import RootBuilderSettings
 from .rootbuilder_paths import RootBuilderPaths
 from .rootbuilder_files import RootBuilderFiles
 from .rootbuilder_backup import RootBuilderBackup
 from ...shared.shared_utilities import SharedUtilities
-from PyQt5.QtCore import QCoreApplication, qInfo
+try:
+    from PyQt5.QtCore import QCoreApplication, qInfo
+except:
+    from PyQt6.QtCore import QCoreApplication, qInfo
 import mobase, os, json
 
 class RootBuilderCopy():

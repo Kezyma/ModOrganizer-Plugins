@@ -1,12 +1,15 @@
 import mobase 
 from ..shared.shared_plugin import SharedPlugin
 from .rootbuilder import RootBuilder
-from PyQt5.QtCore import QCoreApplication
+try:
+    from PyQt5.QtCore import QCoreApplication, qInfo
+except:
+    from PyQt6.QtCore import QCoreApplication, qInfo
 
 class RootBuilderPlugin(SharedPlugin):
 
     def __init__(self):
-        super().__init__("RootBuilder", "Root Builder", mobase.VersionInfo(4, 2, 6, mobase.ReleaseType.BETA))
+        super().__init__("RootBuilder", "Root Builder", mobase.VersionInfo(4, 2, 7, mobase.ReleaseType.BETA))
 
     def init(self, organiser=mobase.IOrganizer):
         self.rootBuilder = RootBuilder(organiser)

@@ -1,6 +1,9 @@
 import mobase, os, winreg, glob
 from pathlib import Path, PurePath
-from PyQt5.QtCore import QCoreApplication, qInf, qInfo
+try:
+    from PyQt5.QtCore import QCoreApplication, qInfo
+except:
+    from PyQt6.QtCore import QCoreApplication, qInfo
 
 class SharedPaths():
 

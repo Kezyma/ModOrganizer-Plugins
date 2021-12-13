@@ -3,7 +3,10 @@ from .rootbuilder_paths import RootBuilderPaths
 from .rootbuilder_files import RootBuilderFiles
 from ...shared.shared_utilities import SharedUtilities
 import mobase, os, json
-from PyQt5.QtCore import QCoreApplication, qInfo
+try:
+    from PyQt5.QtCore import QCoreApplication, qInfo
+except:
+    from PyQt6.QtCore import QCoreApplication, qInfo
 
 class RootBuilderLinker():
     """ Root Builder link module. Used to create links for specific file types. """

@@ -1,5 +1,8 @@
 import mobase
-from PyQt5.QtCore import QCoreApplication
+try:
+    from PyQt5.QtCore import QCoreApplication
+except:
+    from PyQt6.QtCore import QCoreApplication
 from .shared_icons import SharedIcons
 from .shared_settings import SharedSettings
 
@@ -25,6 +28,9 @@ class SharedPlugin():
 
     def __tr(self, trstr):
         return QCoreApplication.translate(self.pluginName, trstr)
+
+    def tr(self, trstr):
+        return self.__tr(trstr)
 
     def icon(self):
         return self.icons.menuIcon()

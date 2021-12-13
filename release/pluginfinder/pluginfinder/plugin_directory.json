@@ -17,6 +17,6 @@
     {
         "Name": "Plugin Finder",
         "Identifier": "pluginfinder",
-        "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/readme/pluginfinder/pluginfinder.json"
+        "Manifest": ""
     }
 ]

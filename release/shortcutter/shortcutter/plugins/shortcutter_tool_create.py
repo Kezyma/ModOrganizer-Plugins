@@ -1,7 +1,20 @@
-from PyQt5.QtWidgets import QFileDialog, QFileIconProvider, QInputDialog, QLineEdit, QWidget
-from PyQt5.QtCore import QCoreApplication, qInfo, QSize
-from PyQt5 import QtGui, QtWidgets, QtCore
-from PyQt5.QtWidgets import QFileIconProvider
+try:
+    from PyQt5.QtWidgets import QFileDialog, QFileIconProvider, QInputDialog, QLineEdit, QWidget
+    from PyQt5.QtCore import QCoreApplication, qInfo, QSize
+    from PyQt5 import QtGui, QtWidgets, QtCore
+    from PyQt5.QtWidgets import QFileIconProvider
+    qtHorizontal = QtCore.Qt.Horizontal
+    qtCancel = QtWidgets.QDialogButtonBox.Cancel
+    qtOkay = QtWidgets.QDialogButtonBox.Ok
+except:
+    from PyQt6.QtWidgets import QFileDialog, QFileIconProvider, QInputDialog, QLineEdit, QWidget
+    from PyQt6.QtCore import QCoreApplication, qInfo, QSize
+    from PyQt6 import QtGui, QtWidgets, QtCore
+    from PyQt6.QtWidgets import QFileIconProvider
+    qtHorizontal = QtCore.Qt.Orientation.Horizontal
+    qtCancel = QtWidgets.QDialogButtonBox.StandardButton.Cancel
+    qtOkay = QtWidgets.QDialogButtonBox.StandardButton.Ok
+
 from ..shortcutter_plugin import ShortcutterPlugin
 import mobase
 
@@ -29,8 +42,7 @@ class ShortcutterCreateTool(ShortcutterPlugin, mobase.IPluginTool):
         self.dialog.show()
         self.rebindUi()
         self.setInitialSettings()
-
-
+        
     invalidCharacters = '|<>"?*:/\\'
     def createShortcut(self):
         profile = self.profileSelect.currentText()
@@ -90,8 +102,8 @@ class ShortcutterCreateTool(ShortcutterPlugin, mobase.IPluginTool):
 
         self.buttonBox = QtWidgets.QDialogButtonBox(widget)
         self.buttonBox.setGeometry(QtCore.QRect(230, 180, 166, 32))
-        self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
+        self.buttonBox.setOrientation(qtHorizontal)
+        self.buttonBox.setStandardButtons(qtCancel|qtOkay)
         self.buttonBox.setObjectName("buttonBox")
 
         self.profileLabel = QtWidgets.QLabel(widget)

@@ -5,7 +5,10 @@ from .rootbuilder_settings import RootBuilderSettings
 from .rootbuilder_paths import RootBuilderPaths
 from .rootbuilder_files import RootBuilderFiles
 import mobase, os, hashlib, json, shutil, stat
-from PyQt5.QtCore import QCoreApplication, qInfo
+try:
+    from PyQt5.QtCore import QCoreApplication, qInfo
+except:
+    from PyQt6.QtCore import QCoreApplication, qInfo
 
 class RootBuilderBackup():
     """ Root Builder backup module. Used to back up and restore vanilla game installations. """

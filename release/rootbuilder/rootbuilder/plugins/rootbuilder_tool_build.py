@@ -1,4 +1,7 @@
-from PyQt5.QtCore import QCoreApplication
+try:
+    from PyQt5.QtCore import QCoreApplication, qInfo
+except:
+    from PyQt6.QtCore import QCoreApplication, qInfo
 from ..rootbuilder_plugin import RootBuilderPlugin
 import mobase
 

@@ -1,4 +1,7 @@
-from PyQt5.QtCore import QCoreApplication, qInfo
+try:
+    from PyQt5.QtCore import QCoreApplication, qInfo
+except:
+    from PyQt6.QtCore import QCoreApplication, qInfo
 from .modules.rootbuilder_settings import RootBuilderSettings
 from .modules.rootbuilder_paths import RootBuilderPaths
 from .modules.rootbuilder_files import RootBuilderFiles

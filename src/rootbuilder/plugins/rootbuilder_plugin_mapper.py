@@ -1,5 +1,9 @@
-from PyQt5.QtCore import QCoreApplication
-from PyQt5 import QtWidgets
+try:
+    from PyQt5.QtCore import QCoreApplication, qInfo
+    from PyQt5 import QtWidgets
+except:
+    from PyQt6.QtCore import QCoreApplication, qInfo
+    from PyQt6 import QtWidgets
 from ..rootbuilder_plugin import RootBuilderPlugin
 import mobase
 

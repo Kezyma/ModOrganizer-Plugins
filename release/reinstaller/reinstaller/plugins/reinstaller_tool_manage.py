@@ -1,5 +1,15 @@
-from PyQt5.QtCore import QCoreApplication
-from PyQt5 import QtWidgets, QtCore
+try:
+    from PyQt5.QtWidgets import QInputDialog, QLineEdit
+    from PyQt5.QtCore import QCoreApplication
+    from PyQt5 import QtWidgets, QtCore
+    qtHLine = QtWidgets.QFrame.HLine
+    qtSunken = QtWidgets.QFrame.Sunken
+except:
+    from PyQt6.QtWidgets import QInputDialog, QLineEdit
+    from PyQt6.QtCore import QCoreApplication
+    from PyQt6 import QtWidgets, QtCore
+    qtHLine = QtWidgets.QFrame.Shape.HLine
+    qtSunken = QtWidgets.QFrame.Shadow.Sunken
 from pathlib import Path
 from ..reinstaller_plugin import ReinstallerPlugin
 import mobase
@@ -122,8 +132,8 @@ class ReinstallerManageTool(ReinstallerPlugin, mobase.IPluginTool):
 
         self.line = QtWidgets.QFrame(dialog)
         self.line.setGeometry(QtCore.QRect(0, 45, 560, 16))
-        self.line.setFrameShape(QtWidgets.QFrame.HLine)
-        self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line.setFrameShape(qtHLine)
+        self.line.setFrameShadow(qtSunken)
         self.line.setObjectName("line")
 
         # Select Existing Mod

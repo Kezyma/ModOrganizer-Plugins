@@ -1,4 +1,7 @@
-from PyQt5.QtGui import QIcon
+try:
+    from PyQt5.QtGui import QIcon
+except:
+    from PyQt6.QtGui import QIcon
 from pathlib import Path
 
 class SharedIcons():

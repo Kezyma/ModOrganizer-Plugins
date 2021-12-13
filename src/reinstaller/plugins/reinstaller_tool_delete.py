@@ -1,6 +1,11 @@
-from PyQt5.QtWidgets import QInputDialog
-from PyQt5.QtCore import QCoreApplication
-from PyQt5 import QtWidgets
+try:
+    from PyQt5.QtWidgets import QInputDialog, QLineEdit
+    from PyQt5.QtCore import QCoreApplication
+    from PyQt5 import QtWidgets
+except:
+    from PyQt6.QtWidgets import QInputDialog, QLineEdit
+    from PyQt6.QtCore import QCoreApplication
+    from PyQt6 import QtWidgets
 from ..reinstaller_plugin import ReinstallerPlugin
 import mobase, shutil, os
 

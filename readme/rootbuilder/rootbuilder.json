@@ -6,18 +6,18 @@
   "GithubUrl": "https://github.com/Kezyma/ModOrganizer-Plugins",
   "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/Current/rootbuilder.zip",
   "PluginPath": [ "rootbuilder" ],
-  "LocalePath": [ ],
+  "LocalePath": [],
   "DataPath": [ "data/rootbuilder" ],
   "Versions": [
     {
-      "Version": "",
-      "Released": "",
-      "MinSupport": "",
-      "MaxSupport": "",
-      "DownloadUrl": "",
-      "PluginPath": [],
+      "Version": "4.2.7",
+      "Released": "2021-12-13",
+      "MinSupport": "2.4.2",
+      "MaxSupport": "2.5.0",
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder-4.2.7/rootbuilder.4.2.7.zip",
+      "PluginPath": [ "rootbuilder" ],
       "LocalePath": [],
-      "DataPath": []
+      "DataPath": [ "data/rootbuilder" ]
     }
   ]
 }
