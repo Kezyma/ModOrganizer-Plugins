@@ -2,21 +2,21 @@
   {
     "Name": "Root Builder",
     "Identifier": "rootbuilder",
-    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/manifest/plugins/rootbuilder.json"
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugins/rootbuilder.json"
   },
   {
     "Name": "Reinstaller",
     "Identifier": "reinstaller",
-    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/manifest/plugins/reinstaller.json"
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugins/reinstaller.json"
   },
   {
     "Name": "Shortcutter",
     "Identifier": "shortcutter",
-    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/manifest/plugins/shortcutter.json"
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugins/shortcutter.json"
   },
   {
     "Name": "Plugin Finder",
     "Identifier": "pluginfinder",
-    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/manifest/plugins/pluginfinder.json"
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugins/pluginfinder.json"
   }
 ]
