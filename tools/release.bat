@@ -18,11 +18,11 @@ for %%x in (%*) do (
 	robocopy "src\%%x" "release\%%x\%%x" /E 
 	robocopy "src\shared" "release\%%x\shared" /E 
 	robocopy "src" "release\%%x" "%%x_init.py" 
+	if "%%x"=="pluginfinder" robocopy "manifest" "release\%%x" "plugin_directory.json" 
 
 	echo Renaming %%x init file.
 	ren "release\%%x\%%x_init.py" "__init__.py" 
 
-	
 	echo Moving the readme files.
 	robocopy "readme\%%x" "release\%%x" /E
 
