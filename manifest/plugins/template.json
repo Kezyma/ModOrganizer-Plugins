@@ -6,6 +6,7 @@
   "GithubUrl": "URL to the Github page for your plugin.",
   "DocsUrl": "URL to the documentation or readme for your plugin.",
 
+  "Version": "Version of this release. (Default if Versions not specified)",
   "Released": "Date of this version's release, in format yyyy-MM-dd (Default if Versions not specified)",
   "MinSupport": "Minimum version of Mod Organizer this release has been tested on. Versions earlier than this may work, but have not been tested. (Default if Versions not specified)",
   "MaxSupport": "Maxmimum version of Mod Organizer this release has been tested on. Versions later than this may work, but have not been tested. (Default if Versions not specified)",
@@ -15,6 +16,7 @@
   "PluginPath": [ "Array of paths, relative to the zipped download. Any files or folders specified will be copied to the Mod Organizer plugins folder on install. (Default if Versions not specified)" ],
   "LocalePath": [ "Array of paths, relative to the zipped download. Any files or folders specified will be copied to the Mod Organizer translations folder on install. (Default if Versions not specified)" ],
   "DataPath": [ "Array of paths, relative to the Mod Organizer plugins folder. Any files or folders specified will be deleted when the plugin is uninstalled. (Default if Versions not specified)" ],
+  "ReleaseNotes": [ "Array of release notes for this release. (Default if Versions not specified)" ],
 
   "Versions": [
     {
