@@ -1,31 +1,12 @@
 import mobase, os
 from plugin_version import PluginVersion
+from ...shared.shared_json import SharedJson
 
-class PluginData(self):
+class PluginData(SharedJson):
 
     def __init__(self, jsonObject=dict):
-        self.json = jsonObject
-        super().__init__()
-
-    def getJsonProperty(self, key=str):
-        if key in self.json.keys():
-            return self.json[key]
-        else:
-            return None
-
-    def getJsonArray(self, key=str):
-        data = self.getJsonProperty(key)
-        res = []
-        if data:
-            try:
-                for val in data:
-                    res.append(data)
-                return res
-            except:
-                return None
-        else:
-            return None
-
+        super().__init__(jsonObject)
+        
     def identifier(self):
         return str(self.getJsonProperty("Identifier"))
 
@@ -41,38 +22,20 @@ class PluginData(self):
     def githubUrl(self):
         return str(self.getJsonProperty("GithubUrl"))
 
+    def docsUrl(self):
+        return str(self.getJsonProperty("DocsUrl"))
+
     def downloadUrl(self):
         return str(self.getJsonProperty("DownloadUrl"))
 
     def pluginPaths(self):
-        paths = []
-        data = self.getJsonArray("PluginPath")
-        if data:
-            for path in data:
-                paths.append(str(path))
-            return paths
-        else:
-            return None
+        return self.getJsonStringArray("PluginPath")
 
     def localePaths(self):
-        paths = []
-        data = self.getJsonArray("LocalePath")
-        if data:
-            for path in data:
-                paths.append(str(path))
-            return paths
-        else:
-            return None
+        return self.getJsonStringArray("LocalePath")
 
     def dataPaths(self):
-        paths = []
-        data = self.getJsonArray("DataPath")
-        if data:
-            for path in data:
-                paths.append(str(path))
-            return paths
-        else:
-            return None
+        return self.getJsonStringArray("DataPath")
 
     def versions():
         versions = []
