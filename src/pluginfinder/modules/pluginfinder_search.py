@@ -53,7 +53,6 @@ class PluginFinderSearch():
 
     def searchDirectory(self, searchTerms=str, installed=False):
         """ Searches the directory by plugin name. """
-        qInfo("Searching directory, terms = " + str(searchTerms) + " installed = " + str(installed))
         plugins = []
         directory = self.directory()
         if installed:
@@ -116,6 +115,7 @@ class PluginFinderSearch():
 
     def pagedPluginData(self, searchTerms=str, installed=False, page=int, pageSize=int):
         """ Get a paged list of plugin data. """
+        qInfo("Searching directory, terms = " + str(searchTerms) + " installed = " + str(installed))
         manifestSearch = self.searchDirectory(searchTerms, installed)
         qInfo("Directory searched, paging list.")
         pagedList = list(islice(manifestSearch, ((page-1)*pageSize), ((page-1)*pageSize) + pageSize))
@@ -124,6 +124,7 @@ class PluginFinderSearch():
         for item in pagedList:
             if "Identifier" in item.keys():
                 results.append(self.pluginData(str(item["Identifier"])))
+        qInfo("Plugin data loaded.")
         return results
 
     def totalPages(self, searchTerms=str, installed=False, pageSize=int):
