@@ -43,3 +43,6 @@ class PluginFinder():
         """ Uninstalls the current version of a plugin. """
         qInfo("Uninstalling " + pluginId)
         self.installer.uninstallPlugin(pluginId)
+
+    def initial(self, pfVersion=str):
+        self.installer.initialInstall(pfVersion)

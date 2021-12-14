@@ -20,6 +20,22 @@ class PluginFinderInstaller():
         self.utilities = SharedUtilities()
         super().__init__() 
 
+    def initialInstall(self, pfVersion=str):
+        installedFiles = self.getInstalledFiles()
+        pfId = "pluginfinder"
+        if pfId not in installedFiles:
+            installedFiles[pfId] = {}
+            installedFiles[pfId]["Version"] = str(pfVersion)
+            installedFiles[pfId]["DataFiles"] = [ "data/pluginfinder" ]
+            installedFiles[pfId]["LocaleFiles"] = []
+            pfFiles = self.files.getFolderFileList(Path(__file__).parent.parent)
+            pluginPath = self.paths.modOrganizerPluginPath()
+            relativeFiles = []
+            for filePath in pfFiles:
+                relativeFiles.append(str(self.paths.relativePath(pluginPath, filePath)))
+            installedFiles[pfId]["PluginFiles"] = relativeFiles
+            self.saveInstalledFiles(installedFiles)
+
     def installPlugin(self, plugin=PluginData):
         pluginId = plugin.identifier()
         currentVersion = plugin.current(self.organiser.appVersion().canonicalString())
@@ -92,8 +108,8 @@ class PluginFinderInstaller():
                 installedFiles[str(pluginId)]["DataFiles"].append(str(path))
 
         self.saveInstalledFiles(installedFiles)
-        #self.utilities.deletePath(self.paths.pluginZipTempPath())
-        #shutil.rmtree(self.paths.pluginStageTempPath())
+        self.utilities.deletePath(self.paths.pluginZipTempPath())
+        shutil.rmtree(self.paths.pluginStageTempPath())
         
     def getInstalledFiles(self):
         if self.paths.installedPluginDataPath().exists():

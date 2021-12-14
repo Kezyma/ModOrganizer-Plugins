@@ -53,6 +53,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         return self.__tr("Opens the Plugin Finder manager.")
 
     def display(self):
+        self.pluginfinder.initial(self.version().canonicalString())
         self.dialog.show()
         self.bindPage()
 
