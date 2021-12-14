@@ -16,6 +16,14 @@ Delete the following folders from Mod Organizer, assuming Mod Organizer is insta
 ### Usage
 A new item will appear in the tools menu of Mod Organizer. This will open up a list of plugins.
 
+*Location of Plugin Finder in tools menu*
+
+![Location of Plugin Finder in tools menu](pluginfinder_tools_menu.png "Location of Plugin Finder in tools menu")
+
+*Plugin Finder browser window*
+
+![Plugin Finder browser window](pluginfinder_browser.png "Plugin Finder browser window")
+
 The documentation, Nexus and Github buttons open links to the relevant pages for the plugin. 
 The green download button will download and install the plugin to Mod Organizer.
 The red minus button will uninstall the plugin from Mod Organizer.
