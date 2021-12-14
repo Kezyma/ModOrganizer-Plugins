@@ -48,10 +48,11 @@ class PluginData(SharedJson):
         """ The most recent working version for a given Mod Organizer version. """
         allVersions = self.versions()
         workingVersions = []
-        for version in allVersions:
-            if version.maxWorking() == "" or not self.utilities.versionIsNewer(version.maxWorking(), moVersion):
-                if version.minWorking() == "" or not self.utilities.versionIsNewer(moVersion, version.minWorking()):
-                    workingVersions.append(version)
+        if allVersions and len(allVersions) > 0:
+            for version in allVersions:
+                if version.maxWorking() == "" or not self.utilities.versionIsNewer(version.maxWorking(), moVersion):
+                    if version.minWorking() == "" or not self.utilities.versionIsNewer(moVersion, version.minWorking()):
+                        workingVersions.append(version)
 
         if len(workingVersions) > 0:
             latestVersion = workingVersions[0]
@@ -67,11 +68,13 @@ class PluginData(SharedJson):
     def latest(self):
         """ The most recent overall version. """
         allVersions = self.versions()
-        latestVersion = allVersions[0]
-        latest = latestVersion.version()
-        for version in allVersions:
-            if self.utilities.versionIsNewer(latest, version.version()):
-                latestVersion = version
-                latest = version.version()
-
-        return latestVersion
+        if allVersions and len(allVersions) > 0:
+            latestVersion = allVersions[0]
+            latest = latestVersion.version()
+            for version in allVersions:
+                if self.utilities.versionIsNewer(latest, version.version()):
+                    latestVersion = version
+                    latest = version.version()
+            return latestVersion
+            
+        return None

@@ -23,5 +23,20 @@
     "Name": "LOOT Warning Checker",
     "Identifier": "lootwarningchecker",
     "Manifest": "https://raw.githubusercontent.com/JonathanFeenstra/modorganizer-loot-warning-checker/main/manifest.json"
+  },
+  {
+    "Name": "Sync Plugins With Mod Order",
+    "Identifier": "syncpluginwithmodorder",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/syncpluginwithmodorder.json"
+  },
+  {
+    "Name": "Grass Precacher",
+    "Identifier": "grassprecacher",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/grassprecacher.json"
+  },
+  {
+    "Name": "Orphaned Script Extender Save Deleter",
+    "Identifier": "orphanedscriptextendersavedeleter",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/orphanedscriptextendersavedeleter.json"
   }
 ]

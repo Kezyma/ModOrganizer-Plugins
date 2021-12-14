@@ -184,7 +184,6 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         pluginDesc.setText(pluginData.description())
 
         moVersion = self.organiser.appVersion().canonicalString()
-        qInfo("Mod Organizer Version: " + moVersion)
         currentPlugin = pluginData.current(moVersion) # most recent working plugin.
         currentSupported = currentPlugin and not (currentPlugin.maxSupport() == "" or currentPlugin.minSupport() == "" or self.utilities.versionIsNewer(currentPlugin.maxSupport(), moVersion) or self.utilities.versionIsNewer(moVersion, currentPlugin.minSupport()))
         latestPlugin = pluginData.latest() # most recent overall plugin.
@@ -198,13 +197,17 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         showNotWorkingUpdateIcon = False
         canUpdate = False
         showVersion = False
-        canInstall = False
+        showNoDownloadIcon = False
 
-        displayVersion = latestPlugin.version()
-        if currentPlugin:
+        displayVersion = ""
+        if latestPlugin:
+            displayVersion = latestPlugin.version()
+        if currentPlugin and self.utilities.versionIsNewer(installedVersion, currentPlugin.version()):
             displayVersion = currentPlugin.version()
 
-        if not currentPlugin:
+        if not currentPlugin and not latestPlugin:
+            showNoDownloadIcon = True
+        elif not currentPlugin:
             showNotWorkingIcon = True
             showVersion = True
         elif installed and self.utilities.versionIsNewer(installedVersion, currentPlugin.version()):
@@ -259,6 +262,9 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         elif installed:
             statusIcon.setPixmap(self.icons.checkIcon().pixmap(QSize(16,16)))
             statusIcon.setToolTip("This plugin is up to date.")
+        elif showNoDownloadIcon:
+            statusIcon.setPixmap(self.icons.infoIcon().pixmap(QSize(16,16)))
+            statusIcon.setToolTip("This plugin cannot be installed through Plugin Finder.")
             
         docsButton = QtWidgets.QPushButton(widget)
         docsButton.setGeometry(QtCore.QRect(480, 0, 40, 26))

@@ -39,5 +39,15 @@ After installing or uninstalling plugins, Mod Organizer will restart.
 #### enabled (default: true)
 Determines whether the Plugin Finder plugin is enabled in Mod Organizer.
 
+### Adding Plugins
+If you want a plugin added to Plugin Finder, you will need to create a json file in your github repository following this [template](https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/directory/plugin_template.json) and you can use the json file for Plugin Finder as an example [here](https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/directory/plugins/pluginfinder.json).
+
+Once your json file is on github (or somewhere else), you'll need to either;
+- Open a pull request adding your file to the [plugin directory](https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/directory/plugin_directory.json) 
+- Open an issue, providing your plugin name and link to your json file.
+- Contact me on Discord and I can add your plugin to the repository. My username is Kezyma#7969
+
+You will need to record new releases in your json file so that Plugin Finders can keep up to date with the latest version of your plugin!
+
 ## Other Plugins
 #### [Root Builder](https://www.nexusmods.com/skyrimspecialedition/mods/31720), [Reinstaller](https://www.nexusmods.com/skyrimspecialedition/mods/59292), [Shortcutter](https://www.nexusmods.com/skyrimspecialedition/mods/59827)
