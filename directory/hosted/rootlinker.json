@@ -1,0 +1,9 @@
+{
+  "Name": "Root Linker",
+  "Author": "Vaneixus",
+  "Description": "Ever wanted to switch through multiple ENBs or maybe control what's loaded in the main game directory like bodyslide files, without having to cleanup manually, using Mod Organizer 2, but found out that you couldn't? Well now you can!",
+  "NexusUrl": "https://www.nexusmods.com/fallout4/mods/43814",
+  "GithubUrl": "https://github.com/Vaneixus/modorganizer-rootbuilder",
+  "DocsUrl": "",
+  "Versions": []
+}

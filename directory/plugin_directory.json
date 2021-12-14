@@ -73,5 +73,10 @@
     "Name": "Broom - The Loose File Sweeper",
     "Identifier": "broom",
     "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/broom.json"
+  },
+  {
+    "Name": "Root Linker",
+    "Identifier": "rootlinker",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/rootlinker.json"
   }
 ]
