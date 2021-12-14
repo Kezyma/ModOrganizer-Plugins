@@ -1,7 +1,7 @@
 {
   "Name": "LOOT Preventifier",
   "Author": "LostDragonist",
-  "Description": "This plugins prevents the user from running \"LOOT.exe\" or \"lootcli.exe\" executables through MO2. This is designed to help out mod list authors using Wabbajack and other tools so users are less likely to mess up the load order.",
+  "Description": "This plugins prevents the user from running \"LOOT.exe\" or \"lootcli.exe\" executables through MO2. This is designed to help out mod list authors using Wabbajack and other tools so users are less likely to mess up the load order. The plugin is disabled by default. The user can customize the message displayed when LOOT is detected.",
   "NexusUrl": "https://www.nexusmods.com/site/mods/82",
   "GithubUrl": "https://github.com/LostDragonist/MO2-Plugins",
   "DocsUrl": "",

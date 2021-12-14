@@ -1,7 +1,7 @@
 {
   "Name": "Conflict Deleter",
   "Author": "LostDragonist",
-  "Description": "Adds an option to the tools menu called \"Conflict Deleter\". This will iterate through all enabled mods and find files that are overwritten by other mods. Those files are then moved to a new backup mod, effectively removing them from the install.",
+  "Description": "Adds an option to the tools menu called \"Conflict Deleter\". This will iterate through all enabled mods and find files that are overwritten by other mods. Those files are then moved to a new backup mod, effectively removing them from the install. This is intended to improve performance of MO2 and the game after a mod list is considered finished.",
   "NexusUrl": "https://www.nexusmods.com/site/mods/82",
   "GithubUrl": "https://github.com/LostDragonist/MO2-Plugins",
   "DocsUrl": "",
