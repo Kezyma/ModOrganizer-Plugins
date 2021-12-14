@@ -134,3 +134,8 @@ class PluginFinderSearch():
     def refreshData(self):
         self.updateDirectory()
         shutil.rmtree(self.paths.pluginDataCacheFolderPath())
+
+    def buildInitialCache(self):
+        """ Gets json data for every plugin. """
+        for plugin in self.directory():
+            self.pluginData(plugin["Identifier"])

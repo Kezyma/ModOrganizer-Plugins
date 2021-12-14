@@ -93,8 +93,8 @@ class PluginFinderInstaller():
                 installedFiles[str(pluginId)]["DataFiles"].append(str(path))
 
         self.saveInstalledFiles(installedFiles)
-        #self.utilities.deletePath(self.paths.pluginZipTempPath())
-        #shutil.rmtree(self.paths.pluginStageTempPath())
+        self.utilities.deletePath(self.paths.pluginZipTempPath())
+        shutil.rmtree(self.paths.pluginStageTempPath())
         
     def getInstalledFiles(self):
         if self.paths.installedPluginDataPath().exists():

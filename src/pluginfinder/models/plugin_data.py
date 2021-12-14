@@ -1,4 +1,5 @@
 import mobase, os
+from datetime import datetime, timedelta
 from .plugin_version import PluginVersion
 from ...shared.shared_json import SharedJson
 from ...shared.shared_utilities import SharedUtilities
@@ -77,4 +78,20 @@ class PluginData(SharedJson):
                     latest = version.version()
             return latestVersion
             
+        return None
+
+    def updated(self):
+        current = self.current()
+        if current:
+            try:
+                return datetime.fromisoformat(current.released())
+            except:
+                return None
+        else:
+            latest = self.latest()
+            if latest:
+                try:
+                    return datetime.fromisoformat(latest.released())
+                except:
+                    return None
         return None
