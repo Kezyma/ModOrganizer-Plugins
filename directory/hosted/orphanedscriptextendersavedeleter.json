@@ -1,0 +1,39 @@
+{
+  "Name": "Orphaned Script Extender Save Deleter",
+  "Author": "AnyOldName3",
+  "Description": "Mod Organizer plugin to delete orphaned script extender co-saves. Works with both global and profile-specific saves.",
+  "NexusUrl": "https://www.nexusmods.com/skyrimspecialedition/mods/17082",
+  "GithubUrl": "https://github.com/AnyOldName3/modorganizer-orphaned_script_extender_save_deleter",
+  "DocsUrl": "",
+  "Versions": [
+    {
+      "Version": "1.0.0",
+      "Released": "2018-05-08",
+      "MinSupport": "2.3.0",
+      "MaxSupport": "2.3.2",
+      "MinWorking": "",
+      "MaxWorking": "2.3.2",
+      "ReleaseNotes": [ "This is the initial public release of this plugin." ],
+      "DownloadUrl": "https://github.com/AnyOldName3/modorganizer-orphaned_script_extender_save_deleter/releases/download/v1.0.0/modorganizer-orphaned_script_extender_save_deleter-1-0-0.7z",
+      "PluginPath": [ "OrphanedScriptExtenderSaveDeleter.py" ],
+      "LocalePath": [],
+      "DataPath": []
+    },
+    {
+      "Version": "1.0.1",
+      "Released": "2018-05-24",
+      "MinSupport": "2.3.0",
+      "MaxSupport": "2.3.2",
+      "MinWorking": "",
+      "MaxWorking": "2.3.2",
+      "ReleaseNotes": [
+        "Someone else started developing a mod organizer plugin whose imports clashed with this one. While that plugin was changed, it's still safer to update this so it can't happen again with anyone else's plugins.",
+        "Moved glob import to the specific scope where it's used so it doesn't overwrite anyone else's glob and doesn't get overwritten. This needed doing because the glob namespace contains the glob function, so different import styles will redefine one as the other."
+      ],
+      "DownloadUrl": "https://github.com/AnyOldName3/modorganizer-orphaned_script_extender_save_deleter/releases/download/v1.0.1/modorganizer-orphaned_script_extender_save_deleter-1-0-1.7z",
+      "PluginPath": [ "OrphanedScriptExtenderSaveDeleter.py" ],
+      "LocalePath": [],
+      "DataPath": []
+    }
+  ]
+}

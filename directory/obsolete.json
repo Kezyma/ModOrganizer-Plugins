@@ -1,15 +1,5 @@
 [
   {
-    "Id": "orphanscriptsavedelete",
-    "Name": "Orphaned Script Extender Save Deleter Plugin",
-    "Description": "Mod Organizer plugin to delete orphaned script extender co-saves.",
-    "Author": "AnyOldName3",
-    "Nexus": "https://www.nexusmods.com/skyrimspecialedition/mods/17082",
-    "Github": "https://github.com/AnyOldName3/modorganizer-orphaned_script_extender_save_deleter",
-    "Download": "https://github.com/AnyOldName3/modorganizer-orphaned_script_extender_save_deleter/archive/refs/heads/master.zip",
-    "Path": [ "modorganizer-orphaned_script_extender_save_deleter-master/OrphanedScriptExtenderSaveDeleter.py" ]
-  },
-  {
     "Id": "motoopenmw",
     "Name": "ModOrganizer-to-OpenMW",
     "Description": "A Mod Organizer plugin to export your VFS, plugin selection and load order to OpenMW.",
@@ -78,26 +68,6 @@
     "Github": "https://github.com/Vaneixus/modorganizer-rootbuilder",
     "Download": "https://github.com/Vaneixus/modorganizer-rootbuilder/archive/refs/heads/master.zip",
     "Path": [ "modorganizer-rootbuilder-master/src/rootbuilder.py" ]
-  },
-  {
-    "Id": "grassprecacher",
-    "Name": "Grass Precacher",
-    "Description": "A MO2 tool plugin that simplifies the precaching of grass on Skyrim Special Edition when using No Grass in Objects.",
-    "Author": "Al12rs",
-    "Nexus": "https://www.nexusmods.com/skyrimspecialedition/mods/42161",
-    "Github": "https://github.com/Al12rs/modorganizer-GrassPrecacher",
-    "Download": "https://github.com/Al12rs/modorganizer-GrassPrecacher/archive/refs/heads/master.zip",
-    "Path": [ "modorganizer-GrassPrecacher-master/GrassPrecacher.py" ]
-  },
-  {
-    "Id": "syncpluginmodorder",
-    "Name": "Sync Plugins with Mod Order",
-    "Description": "A simple plugin for Mod Organizer 2 to sync the order of the Plugins in the right pane to the order of Mods in the left pane.",
-    "Author": "Coldrifting",
-    "Nexus": "https://www.nexusmods.com/skyrimspecialedition/mods/47325",
-    "Github": "https://github.com/coldrifting/ModOrganizer-PluginSync",
-    "Download": "https://github.com/coldrifting/ModOrganizer-PluginSync/archive/refs/heads/main.zip",
-    "Path": [ "ModOrganizer-PluginSync-main/src" ]
   },
   {
     "Id": "broom",
