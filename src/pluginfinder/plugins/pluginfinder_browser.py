@@ -16,6 +16,7 @@ except:
     qtAlignTop = QtCore.Qt.AlignmentFlag.AlignTop
     qtHLine = QtWidgets.QFrame.Shape.HLine
     qtSunken = QtWidgets.QFrame.Shadow.Sunken
+from datetime import datetime
 from ..pluginfinder_plugin import PluginFinderPlugin
 from ..models.plugin_data import PluginData
 from ...shared.shared_utilities import SharedUtilities
@@ -165,23 +166,6 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         widget.setMinimumSize(QtCore.QSize(602, 80))
         widget.setMaximumSize(QtCore.QSize(602, 80))
         widget.setObjectName("widget")
-        
-        pluginName = QtWidgets.QLabel(widget)
-        pluginName.setGeometry(QtCore.QRect(0, 0, 331, 21))
-        pluginName.setObjectName("pluginName")
-        pluginName.setText("<html><head/><body><p><span style=\" font-size:11pt; font-weight:600;\">" + pluginData.name() + "</span></p></body></html>")
-
-        pluginAuthor = QtWidgets.QLabel(widget)
-        pluginAuthor.setGeometry(QtCore.QRect(0, 20, 381, 16))
-        pluginAuthor.setObjectName("pluginAuthor")
-        pluginAuthor.setText("<html><head/><body><p><span style=\" font-size:7pt; font-style:italic;\">by " + pluginData.author() + "</span></p></body></html>")
-
-        pluginDesc = QtWidgets.QLabel(widget)
-        pluginDesc.setGeometry(QtCore.QRect(0, 35, 601, 41))
-        pluginDesc.setAlignment(qtAlignLeading|qtAlignLeft|qtAlignTop)
-        pluginDesc.setWordWrap(True)
-        pluginDesc.setObjectName("pluginDesc")        
-        pluginDesc.setText(pluginData.description())
 
         moVersion = self.organiser.appVersion().canonicalString()
         currentPlugin = pluginData.current(moVersion) # most recent working plugin.
@@ -200,10 +184,13 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         showNoDownloadIcon = False
 
         displayVersion = ""
+        displayDate = ""
         if latestPlugin:
             displayVersion = latestPlugin.version()
+            displayDate = datetime.fromisoformat(latestPlugin.released()).strftime("%d %b %Y") + " "
         if currentPlugin and self.utilities.versionIsNewer(installedVersion, currentPlugin.version()):
             displayVersion = currentPlugin.version()
+            displayDate = datetime.fromisoformat(currentPlugin.released()).strftime("%d %b %Y") + " "
 
         if not currentPlugin and not latestPlugin:
             showNoDownloadIcon = True
@@ -266,6 +253,25 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
             statusIcon.setPixmap(self.icons.infoIcon().pixmap(QSize(16,16)))
             statusIcon.setToolTip("This plugin cannot be installed through Plugin Finder.")
             
+        pluginName = QtWidgets.QLabel(widget)
+        pluginName.setGeometry(QtCore.QRect(0, 0, 331, 21))
+        pluginName.setObjectName("pluginName")
+        pluginName.setText("<html><head/><body><p><span style=\" font-size:11pt; font-weight:600;\">" + pluginData.name() + "</span></p></body></html>")
+
+        if pluginData.author() and pluginData.author() != "":
+            pluginAuthor = QtWidgets.QLabel(widget)
+            pluginAuthor.setGeometry(QtCore.QRect(0, 20, 381, 16))
+            pluginAuthor.setObjectName("pluginAuthor")
+            pluginAuthor.setText("<html><head/><body><p><span style=\"font-size:7pt;\">" + displayDate + "</span><span style=\" font-size:7pt; font-style:italic;\">by " + pluginData.author() + "</span></p></body></html>")
+
+        if pluginData.description() and pluginData.description() != "":
+            pluginDesc = QtWidgets.QLabel(widget)
+            pluginDesc.setGeometry(QtCore.QRect(0, 35, 601, 41))
+            pluginDesc.setAlignment(qtAlignLeading|qtAlignLeft|qtAlignTop)
+            pluginDesc.setWordWrap(True)
+            pluginDesc.setObjectName("pluginDesc")        
+            pluginDesc.setText(pluginData.description())
+
         docsButton = QtWidgets.QPushButton(widget)
         docsButton.setGeometry(QtCore.QRect(480, 0, 40, 26))
         docsButton.setText("")

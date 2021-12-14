@@ -76,17 +76,18 @@ class PluginFinderSearch():
         """ Gets the json file for the current plugin. """
         for plugin in self.directory():
             if str(plugin["Identifier"]) == str(pluginId):
-                url = plugin["Manifest"]
-                try:
-                    with urllib.request.urlopen(str(url)) as r:
-                        data = json.load(r)
-                        if not Path(self.paths.pluginDataCachePath(pluginId)).exists():
-                            Path(self.paths.pluginDataCachePath(pluginId)).touch()
-                        with open(self.paths.pluginDataCachePath(pluginId), "w") as rcJson:
-                            json.dump(data, rcJson)
-                except:
-                    qInfo("Could not download update.")
-                urllib.request.urlcleanup()
+                if "Manifest" in plugin:
+                    url = plugin["Manifest"]
+                    try:
+                        with urllib.request.urlopen(str(url)) as r:
+                            data = json.load(r)
+                            if not Path(self.paths.pluginDataCachePath(pluginId)).exists():
+                                Path(self.paths.pluginDataCachePath(pluginId)).touch()
+                            with open(self.paths.pluginDataCachePath(pluginId), "w") as rcJson:
+                                json.dump(data, rcJson)
+                    except:
+                        qInfo("Could not download update.")
+                    urllib.request.urlcleanup()
 
     def pluginData(self, pluginId=str):
         """ Loads the data for a plugin. """
@@ -98,11 +99,20 @@ class PluginFinderSearch():
             try:
                 data = json.load(open(self.paths.pluginDataCachePath(pluginId)))
                 data["Identifier"] = str(pluginId)
+                if "Name" not in data:
+                    data["Name"] = self.directoryEntryById(pluginId)["Name"]
                 return PluginData(data)
             except:
-                return None
+                qInfo("Could not load plugin " + self.directoryEntryById(pluginId)["Name"])
         # Return an null if we can't load the file.
-        return None
+        return PluginData(self.directoryEntryById(pluginId))
+
+    def directoryEntryById(self, pluginId = str):
+        """ Gets an entry from the directory using a plugin id. """
+        directory = self.directory()
+        for plugin in directory:
+            if plugin["Identifier"] == pluginId:
+                return plugin
 
     def pagedPluginData(self, searchTerms=str, installed=False, page=int, pageSize=int):
         """ Get a paged list of plugin data. """

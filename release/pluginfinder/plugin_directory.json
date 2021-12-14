@@ -30,6 +30,11 @@
     "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/syncpluginwithmodorder.json"
   },
   {
+    "Name": "ModOrganizer-to-OpenMW",
+    "Identifier": "modorganizertoopenmw",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/modorganizertoopenmw.json"
+  },
+  {
     "Name": "Grass Precacher",
     "Identifier": "grassprecacher",
     "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/grassprecacher.json"
@@ -38,5 +43,10 @@
     "Name": "Orphaned Script Extender Save Deleter",
     "Identifier": "orphanedscriptextendersavedeleter",
     "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/orphanedscriptextendersavedeleter.json"
+  },
+  {
+    "Name": "Merge Plugins Hide & Sync Mod Order",
+    "Identifier": "mergepluginhidesyncmodorder",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/mergepluginhidesyncmodorder.json"
   }
 ]

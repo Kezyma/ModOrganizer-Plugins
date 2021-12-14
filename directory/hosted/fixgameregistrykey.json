@@ -1,0 +1,23 @@
+{
+  "Name": "Fix Game Registry Key",
+  "Author": "LostDragonist",
+  "Description": "When running an application in MO2, this will check to make sure the registry key is correct according to the game being managed by MO2.",
+  "NexusUrl": "https://www.nexusmods.com/site/mods/82",
+  "GithubUrl": "https://github.com/LostDragonist/MO2-Plugins",
+  "DocsUrl": "",
+  "Versions": [
+    {
+      "Version": "2021.02.07",
+      "Released": "2021-02-07",
+      "MinSupport": "2.4.0",
+      "MaxSupport": "2.4.2",
+      "MinWorking": "",
+      "MaxWorking": "",
+      "ReleaseNotes": [ "Updates for compatibility with MO 2.4.0." ],
+      "DownloadUrl": "https://github.com/LostDragonist/MO2-Plugins/releases/download/2021.02.07/LostDragonist-MO2-Plugins.zip",
+      "PluginPath": [ "plugins/FixGameRegKey.py" ],
+      "LocalePath": [],
+      "DataPath": []
+    }
+  ]
+}

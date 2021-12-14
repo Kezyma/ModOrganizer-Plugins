@@ -1,0 +1,23 @@
+{
+  "Name": "LOOT Preventifier",
+  "Author": "LostDragonist",
+  "Description": "This plugins prevents the user from running \"LOOT.exe\" or \"lootcli.exe\" executables through MO2. This is designed to help out mod list authors using Wabbajack and other tools so users are less likely to mess up the load order.",
+  "NexusUrl": "https://www.nexusmods.com/site/mods/82",
+  "GithubUrl": "https://github.com/LostDragonist/MO2-Plugins",
+  "DocsUrl": "",
+  "Versions": [
+    {
+      "Version": "2021.02.07",
+      "Released": "2021-02-07",
+      "MinSupport": "2.4.0",
+      "MaxSupport": "2.4.2",
+      "MinWorking": "",
+      "MaxWorking": "",
+      "ReleaseNotes": [ "Updates for compatibility with MO 2.4.0." ],
+      "DownloadUrl": "https://github.com/LostDragonist/MO2-Plugins/releases/download/2021.02.07/LootPreventifier.zip",
+      "PluginPath": [ "plugins/LootPreventifier.py" ],
+      "LocalePath": [],
+      "DataPath": []
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "Name": "Game Redirector",
+  "Author": "LostDragonist",
+  "Description": "This plugin maps certain game files for some games to the game files used by other games. This is useful when mods/installers/tools are technically compatible with multiple games but may not be updated or might have some issues.",
+  "NexusUrl": "https://www.nexusmods.com/site/mods/82",
+  "GithubUrl": "https://github.com/LostDragonist/MO2-Plugins",
+  "DocsUrl": "",
+  "Versions": [
+    {
+      "Version": "2021.02.07",
+      "Released": "2021-02-07",
+      "MinSupport": "2.4.0",
+      "MaxSupport": "2.4.2",
+      "MinWorking": "",
+      "MaxWorking": "",
+      "ReleaseNotes": [ "Updates for compatibility with MO 2.4.0." ],
+      "DownloadUrl": "https://github.com/LostDragonist/MO2-Plugins/releases/download/2021.02.07/LostDragonist-MO2-Plugins.zip",
+      "PluginPath": [ "plugins/GameRedirector.py" ],
+      "LocalePath": [],
+      "DataPath": []
+    }
+  ]
+}

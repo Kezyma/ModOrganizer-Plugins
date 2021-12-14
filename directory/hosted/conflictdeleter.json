@@ -1,0 +1,23 @@
+{
+  "Name": "Conflict Deleter",
+  "Author": "LostDragonist",
+  "Description": "Adds an option to the tools menu called \"Conflict Deleter\". This will iterate through all enabled mods and find files that are overwritten by other mods. Those files are then moved to a new backup mod, effectively removing them from the install.",
+  "NexusUrl": "https://www.nexusmods.com/site/mods/82",
+  "GithubUrl": "https://github.com/LostDragonist/MO2-Plugins",
+  "DocsUrl": "",
+  "Versions": [
+    {
+      "Version": "2021.02.07",
+      "Released": "2021-02-07",
+      "MinSupport": "2.4.0",
+      "MaxSupport": "2.4.2",
+      "MinWorking": "",
+      "MaxWorking": "",
+      "ReleaseNotes": [ "Updates for compatibility with MO 2.4.0." ],
+      "DownloadUrl": "https://github.com/LostDragonist/MO2-Plugins/releases/download/2021.02.07/LostDragonist-MO2-Plugins.zip",
+      "PluginPath": [ "plugins/ConflictDeleter.py" ],
+      "LocalePath": [],
+      "DataPath": []
+    }
+  ]
+}
