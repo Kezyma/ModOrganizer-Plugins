@@ -67,7 +67,7 @@ class PluginFinderSearch():
         results = []
         for plugin in plugins:
             if "Name" in plugin.keys():
-                if searchTerms in plugin["Name"]:
+                if searchTerms.lower() in plugin["Name"].lower():
                     results.append(plugin)
         return results
 

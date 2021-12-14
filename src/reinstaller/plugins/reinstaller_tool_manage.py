@@ -4,12 +4,14 @@ try:
     from PyQt5 import QtWidgets, QtCore
     qtHLine = QtWidgets.QFrame.HLine
     qtSunken = QtWidgets.QFrame.Sunken
+    qtStaysOnTop = QtCore.Qt.WindowStaysOnTopHint
 except:
     from PyQt6.QtWidgets import QInputDialog, QLineEdit
     from PyQt6.QtCore import QCoreApplication
     from PyQt6 import QtWidgets, QtCore
     qtHLine = QtWidgets.QFrame.Shape.HLine
     qtSunken = QtWidgets.QFrame.Shadow.Sunken
+    qtStaysOnTop = QtCore.Qt.WindowType.WindowStaysOnTopHint
 from pathlib import Path
 from ..reinstaller_plugin import ReinstallerPlugin
 import mobase
@@ -100,6 +102,7 @@ class ReinstallerManageTool(ReinstallerPlugin, mobase.IPluginTool):
         dialog.setFixedSize(560, 310)
         dialog.setWindowTitle("Reinstaller")
         dialog.setWindowIcon(self.icon())
+        dialog.setWindowFlags(qtStaysOnTop)
 
         ## Add New Mod
         self.addFileTextLabel = QtWidgets.QLabel(dialog)

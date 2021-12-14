@@ -31,6 +31,19 @@
       "PluginPath": [ "shortcutter" ],
       "LocalePath": [],
       "DataPath": [ "data/shortcutter" ]
+    },
+    {
+      "Version": "1.0.6a",
+      "Released": "2021-12-14",
+      "MinSupport": "2.4.2",
+      "MaxSupport": "2.5.0.0-qt6dev2",
+      "MinWorking": "",
+      "MaxWorking": "",
+      "ReleaseNotes": [ "Fix for Shortcutter getting sent to the back when creating a shortcut." ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/shortcutter/shortcutter.1.0.6.zip",
+      "PluginPath": [ "shortcutter" ],
+      "LocalePath": [],
+      "DataPath": [ "data/shortcutter" ]
     }
   ]
 }

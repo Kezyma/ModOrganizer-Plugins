@@ -7,6 +7,9 @@ try:
     qtAlignTop = QtCore.Qt.AlignTop
     qtHLine = QtWidgets.QFrame.HLine
     qtSunken = QtWidgets.QFrame.Sunken
+    qtWindow = QtCore.Qt.Window 
+    qtWindowHint = QtCore.Qt.CustomizeWindowHint 
+    qtStaysOnTop = QtCore.Qt.WindowStaysOnTopHint
 except:
     from PyQt6.QtWidgets import QFileDialog, QFileIconProvider, QFormLayout, QInputDialog, QLineEdit, QVBoxLayout, QWidget
     from PyQt6.QtCore import QCoreApplication, qInfo, QSize
@@ -16,6 +19,9 @@ except:
     qtAlignTop = QtCore.Qt.AlignmentFlag.AlignTop
     qtHLine = QtWidgets.QFrame.Shape.HLine
     qtSunken = QtWidgets.QFrame.Shadow.Sunken
+    qtWindow = QtCore.Qt.WindowType.Window 
+    qtWindowHint = QtCore.Qt.WindowType.CustomizeWindowHint 
+    qtStaysOnTop = QtCore.Qt.WindowType.WindowStaysOnTopHint
 from datetime import datetime
 from ..pluginfinder_plugin import PluginFinderPlugin
 from ..models.plugin_data import PluginData
@@ -76,6 +82,9 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         pages = self.pluginfinder.search.totalPages(self.searchText.text(), self.installedCheck.isChecked(), self.pageSize)
         self.backButton.setEnabled(self.page != 1)
         self.nextButton.setEnabled(self.page < pages)
+        if self.page > pages:
+            self.page = pages
+            self.bindPage()
 
     def getDialog(self):
         dialog = QtWidgets.QDialog()
@@ -87,6 +96,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         dialog.setMaximumSize(QtCore.QSize(623, 700))
         dialog.setWindowIcon(self.icons.pluginIcon())
         dialog.rejected.connect(self.onClose)
+        dialog.setWindowFlags(qtStaysOnTop)
 
         self.dialogLayout = QtWidgets.QVBoxLayout(dialog)
         self.dialogLayout.setObjectName("verticalLayout")

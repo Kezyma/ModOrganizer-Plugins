@@ -3,11 +3,13 @@ try:
     from PyQt5 import QtCore, QtWidgets
     qtHLine = QtWidgets.QFrame.HLine
     qtSunken = QtWidgets.QFrame.Sunken
+    qtStaysOnTop = QtCore.Qt.WindowStaysOnTopHint
 except:
     from PyQt6.QtCore import QCoreApplication, qInfo
     from PyQt6 import QtCore, QtWidgets
     qtHLine = QtWidgets.QFrame.Shape.HLine
     qtSunken = QtWidgets.QFrame.Shadow.Sunken
+    qtStaysOnTop = QtCore.Qt.WindowType.WindowStaysOnTopHint
 
 from ..rootbuilder_plugin import RootBuilderPlugin
 import mobase
@@ -30,6 +32,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         dialog.setFixedSize(431, 406)
         dialog.setWindowTitle("Root Builder")
         dialog.setWindowIcon(self.icon())
+        dialog.setWindowFlags(qtStaysOnTop)
 
         # Build, Sync & Clear Settings
         self.buildButton = QtWidgets.QPushButton(dialog)

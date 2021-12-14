@@ -6,6 +6,7 @@ try:
     qtHorizontal = QtCore.Qt.Horizontal
     qtCancel = QtWidgets.QDialogButtonBox.Cancel
     qtOkay = QtWidgets.QDialogButtonBox.Ok
+    qtStaysOnTop = QtCore.Qt.WindowStaysOnTopHint
 except:
     from PyQt6.QtWidgets import QFileDialog, QFileIconProvider, QInputDialog, QLineEdit, QWidget
     from PyQt6.QtCore import QCoreApplication, qInfo, QSize
@@ -14,6 +15,7 @@ except:
     qtHorizontal = QtCore.Qt.Orientation.Horizontal
     qtCancel = QtWidgets.QDialogButtonBox.StandardButton.Cancel
     qtOkay = QtWidgets.QDialogButtonBox.StandardButton.Ok
+    qtStaysOnTop = QtCore.Qt.WindowType.WindowStaysOnTopHint
 
 from ..shortcutter_plugin import ShortcutterPlugin
 import mobase
@@ -99,6 +101,7 @@ class ShortcutterCreateTool(ShortcutterPlugin, mobase.IPluginTool):
         widget.resize(400, 215)
         widget.setFixedSize(400, 215)
         widget.setWindowIcon(self.icon())
+        widget.setWindowFlags(qtStaysOnTop)
 
         self.buttonBox = QtWidgets.QDialogButtonBox(widget)
         self.buttonBox.setGeometry(QtCore.QRect(230, 180, 166, 32))

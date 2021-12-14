@@ -60,6 +60,26 @@
       "PluginPath": [ "pluginfinder" ],
       "LocalePath": [],
       "DataPath": [ "data/pluginfinder" ]
+    },
+    {
+      "Version": "1.1.4a",
+      "Released": "2021-12-14",
+      "MinSupport": "2.4.2",
+      "MaxSupport": "2.5.0.0-qt6dev2",
+      "MinWorking": "",
+      "MaxWorking": "",
+      "ReleaseNotes": [
+        "Stopped displaying disabled buttons.",
+        "Fix for installing not actually working.",
+        "Fix for paging when total pages are reduced.",
+        "Stopped search from being case sensitive.",
+        "Replaced minus icon with trash icon.",
+        "Fix for plugin finder getting moved to the back."
+      ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/pluginfinder/pluginfinder.1.1.4.zip",
+      "PluginPath": [ "pluginfinder" ],
+      "LocalePath": [],
+      "DataPath": [ "data/pluginfinder" ]
     }
   ]
 }

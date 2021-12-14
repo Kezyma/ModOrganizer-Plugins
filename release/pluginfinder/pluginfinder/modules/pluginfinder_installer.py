@@ -1,4 +1,4 @@
-import mobase, json, urllib.request, zipfile, os, shutil, re
+import mobase, json, urllib.request, zipfile, os, shutil, re, subprocess
 from pathlib import Path
 from datetime import datetime, timedelta
 from itertools import islice
@@ -46,12 +46,12 @@ class PluginFinderInstaller():
         qInfo("Extracting " + str(destPath))
         command = "\"" + str(self.paths.zipExePath()) + "\" x \"" + str(destPath) + "\" -o\"" + str(self.paths.pluginStageTempPath()) + "\" -y"
         qInfo("Executing command " + command)
-        os.system(command)
+        subprocess.call(command, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
+        #os.system(command)
 
         for path in currentVersion.pluginPaths():
             sourcePath = str(self.paths.pluginStageTempPath() / str(path))
             sourceName = str(os.path.basename(str(sourcePath)))
-            destPath = str(self.paths.modOrganizerPluginPath() / sourceName)
             files = []
             if os.path.isfile(sourcePath):
                 files.append(sourcePath)
@@ -71,7 +71,6 @@ class PluginFinderInstaller():
         for path in currentVersion.localePaths():
             sourcePath = str(self.paths.pluginStageTempPath() / str(path))
             sourceName = str(os.path.basename(str(sourcePath)))
-            destPath = str(self.paths.modOrganizerLocalePath() / sourceName)
             files = []
             if os.path.isfile(sourcePath):
                 files.append(sourcePath)
@@ -93,8 +92,8 @@ class PluginFinderInstaller():
                 installedFiles[str(pluginId)]["DataFiles"].append(str(path))
 
         self.saveInstalledFiles(installedFiles)
-        self.utilities.deletePath(self.paths.pluginZipTempPath())
-        shutil.rmtree(self.paths.pluginStageTempPath())
+        #self.utilities.deletePath(self.paths.pluginZipTempPath())
+        #shutil.rmtree(self.paths.pluginStageTempPath())
         
     def getInstalledFiles(self):
         if self.paths.installedPluginDataPath().exists():

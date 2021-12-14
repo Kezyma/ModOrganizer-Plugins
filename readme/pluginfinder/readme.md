@@ -26,7 +26,7 @@ A new item will appear in the tools menu of Mod Organizer. This will open up a l
 
 The documentation, Nexus and Github buttons open links to the relevant pages for the plugin. 
 The green download button will download and install the plugin to Mod Organizer.
-The red minus button will uninstall the plugin from Mod Organizer.
+The red trash button will uninstall the plugin from Mod Organizer.
 
 Plugins can be searched by name and can be filtered to show only installed plugins.
 At the bottom, arrow buttons on either side can be used to browse various pages and the refresh button in the middle will clear all cached data and reload it. 
