@@ -52,7 +52,10 @@
       "MaxSupport": "2.5.0.0-qt6dev2",
       "MinWorking": "",
       "MaxWorking": "",
-      "ReleaseNotes": [ "Added support for installing plugins in formats other than zip files." ],
+      "ReleaseNotes": [
+        "Added support for installing plugins in formats other than zip files.",
+        "Resized window to support 3 lines of text in descriptions."
+      ],
       "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/pluginfinder/pluginfinder.1.1.3.zip",
       "PluginPath": [ "pluginfinder" ],
       "LocalePath": [],

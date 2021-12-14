@@ -82,9 +82,9 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         
         dialog.setWindowTitle("Plugin Finder")
         dialog.setObjectName("pluginFinder")
-        dialog.resize(623, 675)
-        dialog.setMinimumSize(QtCore.QSize(623, 675))
-        dialog.setMaximumSize(QtCore.QSize(623, 675))
+        dialog.resize(623, 700)
+        dialog.setMinimumSize(QtCore.QSize(623, 700))
+        dialog.setMaximumSize(QtCore.QSize(623, 700))
         dialog.setWindowIcon(self.icons.pluginIcon())
         dialog.rejected.connect(self.onClose)
 
@@ -163,8 +163,8 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
     def getPluginWidget(self, pluginData=PluginData):
         widget = QtWidgets.QWidget()
-        widget.setMinimumSize(QtCore.QSize(602, 80))
-        widget.setMaximumSize(QtCore.QSize(602, 80))
+        widget.setMinimumSize(QtCore.QSize(602, 85))
+        widget.setMaximumSize(QtCore.QSize(602, 85))
         widget.setObjectName("widget")
 
         moVersion = self.organiser.appVersion().canonicalString()
@@ -266,7 +266,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         if pluginData.description() and pluginData.description() != "":
             pluginDesc = QtWidgets.QLabel(widget)
-            pluginDesc.setGeometry(QtCore.QRect(0, 35, 601, 41))
+            pluginDesc.setGeometry(QtCore.QRect(0, 35, 601, 46))
             pluginDesc.setAlignment(qtAlignLeading|qtAlignLeft|qtAlignTop)
             pluginDesc.setWordWrap(True)
             pluginDesc.setObjectName("pluginDesc")        
@@ -321,7 +321,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         installButton.clicked.connect(lambda: self.installClick(pluginData.identifier()))
 
         line = QtWidgets.QFrame(widget)
-        line.setGeometry(QtCore.QRect(0, 70, 601, 16))
+        line.setGeometry(QtCore.QRect(0, 75, 601, 8))
         line.setFrameShape(qtHLine)
         line.setFrameShadow(qtSunken)
         line.setObjectName("line")

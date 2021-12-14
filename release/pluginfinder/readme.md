@@ -100,6 +100,7 @@ Once your json file is on github (or somewhere else), you'll need to either;
 - Contact me on Discord and I can add your plugin to the repository. My username is Kezyma#7969
 
 You will need to record new releases in your json file so that Plugin Finder can keep up to date with the latest version of your plugin!
+You do not need to keep a record of every release in your json file, however, if the Min or Max working Mod Organizer version changes, it's worth leaving the most updated release that still works on the previous Mod Organizer version. This way, people using that older version can still install it if they wish.
 
 ## Other Plugins
 #### [Root Builder](https://www.nexusmods.com/skyrimspecialedition/mods/31720), [Reinstaller](https://www.nexusmods.com/skyrimspecialedition/mods/59292), [Shortcutter](https://www.nexusmods.com/skyrimspecialedition/mods/59827)
