@@ -1,0 +1,23 @@
+{
+  "Name": "Sync Plugins With Mod Order",
+  "Author": "Coldrifting",
+  "Description": "A simple plugin for Mod Organizer 2 to sync the order of the Plugins in the right pane to the order of Mods in the left pane. Useful if you manually sort your load order via the left pane.",
+  "NexusUrl": "https://www.nexusmods.com/skyrimspecialedition/mods/47325",
+  "GithubUrl": "https://github.com/coldrifting/ModOrganizer-PluginSync",
+  "DocsUrl": "",
+  "Versions": [
+    {
+      "Version": "1.0.0",
+      "Released": "2021-03-23",
+      "MinSupport": "2.4.0",
+      "MaxSupport": "2.4.2",
+      "MinWorking": "2.4.0",
+      "MaxWorking": "",
+      "ReleaseNotes": [ "Removed direct writes to loadorder.txt and added checks to only work on game instances with plugins." ],
+      "DownloadUrl": "https://github.com/coldrifting/ModOrganizer-PluginSync/archive/refs/heads/main.zip",
+      "PluginPath": [ "ModOrganizer-PluginSync-main/src" ],
+      "LocalePath": [],
+      "DataPath": []
+    }
+  ]
+}

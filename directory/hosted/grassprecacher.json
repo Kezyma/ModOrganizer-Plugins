@@ -1,0 +1,23 @@
+{
+  "Name": "Grass Precacher",
+  "Author": "Al12rs",
+  "Description": "A MO2 tool plugin that simplifies the precaching of grass on Skyrim Special Edition when using No Grass in Objects.",
+  "NexusUrl": "https://www.nexusmods.com/skyrimspecialedition/mods/42161",
+  "GithubUrl": "https://github.com/Al12rs/modorganizer-GrassPrecacher",
+  "DocsUrl": "",
+  "Versions": [
+    {
+      "Version": "1.0.0",
+      "Released": "2020-11-24",
+      "MinSupport": "2.4.2",
+      "MaxSupport": "2.4.2",
+      "MinWorking": "",
+      "MaxWorking": "",
+      "ReleaseNotes": [],
+      "DownloadUrl": "https://github.com/Al12rs/modorganizer-GrassPrecacher/archive/refs/heads/master.zip",
+      "PluginPath": [ "modorganizer-GrassPrecacher-master/GrassPrecacher.py" ],
+      "LocalePath": [],
+      "DataPath": []
+    }
+  ]
+}
