@@ -72,3 +72,7 @@ class PluginFinderPaths(SharedPaths):
     def pluginDataCachePath(self, pluginId=str):
         """ Gets the location of the current plugin json file. """
         return self.pluginDataCacheFolderPath() / (str(pluginId) + ".json")
+
+    def zipExePath(self):
+        """ Gets the path to 7za.exe """
+        return Path(__file__).parent / "7za.exe"

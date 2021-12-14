@@ -18,6 +18,19 @@
       "PluginPath": [ "shortcutter" ],
       "LocalePath": [],
       "DataPath": [ "data/shortcutter" ]
+    },
+    {
+      "Version": "1.0.5a",
+      "Released": "2021-12-14",
+      "MinSupport": "2.4.2",
+      "MaxSupport": "2.5.0.0-qt6dev2",
+      "MinWorking": "",
+      "MaxWorking": "",
+      "ReleaseNotes": [ "Fix for a bug when Shortcutter is located at a path with spaces in it." ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/shortcutter/shortcutter.1.0.5.zip",
+      "PluginPath": [ "shortcutter" ],
+      "LocalePath": [],
+      "DataPath": [ "data/shortcutter" ]
     }
   ]
 }

@@ -37,12 +37,17 @@ class PluginFinderInstaller():
         installedFiles[str(pluginId)]["Version"] = currentVersion.version()
 
         qInfo("Downloading from " + downloadUrl)
-        urllib.request.urlretrieve(downloadUrl, self.paths.pluginZipTempPath())
-        qInfo("Download complete. Extracting to " + str(self.paths.pluginStageTempPath()))
-        with zipfile.ZipFile(self.paths.pluginZipTempPath(), 'r') as zip_ref:
-            zip_ref.extractall(self.paths.pluginStageTempPath())
-            qInfo("Extraction complete.")
-            
+        urlparts = str(downloadUrl).split(".")
+        urlparts.reverse()
+        extension = urlparts[0]
+        destPath = str(self.paths.pluginStageTempPath()) + "." + extension
+        urllib.request.urlretrieve(downloadUrl, destPath)
+        
+        qInfo("Extracting " + str(destPath))
+        command = "\"" + str(self.paths.zipExePath()) + "\" x \"" + str(destPath) + "\" -o\"" + str(self.paths.pluginStageTempPath()) + "\" -y"
+        qInfo("Executing command " + command)
+        os.system(command)
+
         for path in currentVersion.pluginPaths():
             sourcePath = str(self.paths.pluginStageTempPath() / str(path))
             sourceName = str(os.path.basename(str(sourcePath)))
@@ -88,8 +93,8 @@ class PluginFinderInstaller():
                 installedFiles[str(pluginId)]["DataFiles"].append(str(path))
 
         self.saveInstalledFiles(installedFiles)
-        self.utilities.deletePath(self.paths.pluginZipTempPath())
-        shutil.rmtree(self.paths.pluginStageTempPath())
+        #self.utilities.deletePath(self.paths.pluginZipTempPath())
+        #shutil.rmtree(self.paths.pluginStageTempPath())
         
     def getInstalledFiles(self):
         if self.paths.installedPluginDataPath().exists():

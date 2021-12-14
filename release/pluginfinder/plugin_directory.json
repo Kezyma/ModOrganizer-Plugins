@@ -48,5 +48,25 @@
     "Name": "Merge Plugins Hide & Sync Mod Order",
     "Identifier": "mergepluginhidesyncmodorder",
     "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/mergepluginhidesyncmodorder.json"
+  },
+  {
+    "Name": "Conflict Deleter",
+    "Identifier": "conflictdeleter",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/conflictdeleter.json"
+  },
+  {
+    "Name": "Fix Game Registry Key",
+    "Identifier": "fixgameregistrykey",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/fixgameregistrykey.json"
+  },
+  {
+    "Name": "Game Redirector",
+    "Identifier": "gameredirector",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/gameredirector.json"
+  },
+  {
+    "Name": "LOOT Preventifier",
+    "Identifier": "lootpreventifier",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/lootpreventifier.json"
   }
 ]

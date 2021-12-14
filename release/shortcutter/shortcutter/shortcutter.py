@@ -1,4 +1,4 @@
-import mobase, subprocess
+import mobase, subprocess, os
 from .modules.shortcutter_paths import ShortcutterPaths
 from .modules.shortcutter_files import ShortcutterFiles
 from ..shared.shared_utilities import SharedUtilities
@@ -23,5 +23,5 @@ class Shortcutter():
 
     def createShortcut(self, label=str, url=str, icon=str, args=str):
         shortcutterPath = str(Path(__file__).parent.joinpath("shortcutter.bat"))
-        command = shortcutterPath + ' "' + label + '" "' + url + '" "' + icon + '" "' + args + '" > shortcutter_log.txt'
+        command = '"' + shortcutterPath + '" "' + label + '" "' + url + '" "' + icon + '" "' + args + '" > shortcutter_log.txt'
         subprocess.call(command, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
