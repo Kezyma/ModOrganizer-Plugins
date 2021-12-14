@@ -68,5 +68,10 @@
     "Name": "LOOT Preventifier",
     "Identifier": "lootpreventifier",
     "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/lootpreventifier.json"
+  },
+  {
+    "Name": "Broom - The Loose File Sweeper",
+    "Identifier": "broom",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/broom.json"
   }
 ]
