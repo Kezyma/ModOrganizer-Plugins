@@ -71,3 +71,6 @@ class SharedIcons():
 
     def refreshIcon(self):
         return self.icon("ui-refresh.ico")
+
+    def trashIcon(self):
+        return self.icon("ui-trash.ico")

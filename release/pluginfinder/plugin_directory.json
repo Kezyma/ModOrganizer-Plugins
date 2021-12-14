@@ -25,6 +25,11 @@
     "Manifest": "https://raw.githubusercontent.com/JonathanFeenstra/modorganizer-loot-warning-checker/main/manifest.json"
   },
   {
+    "Name": "Root Linker",
+    "Identifier": "rootlinker",
+    "Manifest": "https://raw.githubusercontent.com/Vaneixus/modorganizer-rootlinker/plugin-installer/rootlinker.json"
+  },
+  {
     "Name": "Sync Plugins With Mod Order",
     "Identifier": "syncpluginwithmodorder",
     "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/syncpluginwithmodorder.json"
@@ -35,14 +40,14 @@
     "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/modorganizertoopenmw.json"
   },
   {
-    "Name": "Grass Precacher",
-    "Identifier": "grassprecacher",
-    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/grassprecacher.json"
-  },
-  {
     "Name": "Orphaned Script Extender Save Deleter",
     "Identifier": "orphanedscriptextendersavedeleter",
     "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/orphanedscriptextendersavedeleter.json"
+  },
+  {
+    "Name": "Grass Precacher",
+    "Identifier": "grassprecacher",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/grassprecacher.json"
   },
   {
     "Name": "Merge Plugins Hide & Sync Mod Order",
@@ -68,5 +73,10 @@
     "Name": "LOOT Preventifier",
     "Identifier": "lootpreventifier",
     "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/lootpreventifier.json"
+  },
+  {
+    "Name": "Broom - The Loose File Sweeper",
+    "Identifier": "broom",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/broom.json"
   }
 ]

@@ -94,6 +94,8 @@ And you can use the json file for Root Builder as an example;
 }
 ```
 
+If you're worried about making a mistake while generating your json file, you can use the [Plugin Finder Generator](https://kezyma.github.io/PluginFinderGenerator.html) written just for this purpose.
+
 Once your json file is on github (or somewhere else), you'll need to either;
 - Open a pull request adding your file to the [plugin directory](https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/directory/plugin_directory.json) 
 - Open an issue, providing your plugin name and link to your json file.
