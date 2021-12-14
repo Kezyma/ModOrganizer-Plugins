@@ -32,7 +32,7 @@
   {
     "Name": "ModOrganizer-to-OpenMW",
     "Identifier": "modorganizertoopenmw",
-    "Mafiest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/modorganizertoopenmw.json"
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/modorganizertoopenmw.json"
   },
   {
     "Name": "Grass Precacher",
