@@ -42,13 +42,12 @@ class PluginFinderSearch():
 
     def directory(self):
         """ Get the directory as json. """
-        # Deploy if it's first run.
-        self.deployInitialDirectory()
         # If the file is missing or old, update it.
-        if not Path(self.paths.directoryJsonPath()).exists() or datetime.fromtimestamp(os.path.getmtime(str(self.paths.directoryJsonPath()))) < (datetime.today() - timedelta(days=1)):
+        directoryJsonPath = self.paths.directoryJsonPath()
+        if not Path(directoryJsonPath).exists() or datetime.fromtimestamp(os.path.getmtime(str(directoryJsonPath))) < (datetime.today() - timedelta(days=1)):
             self.updateDirectory()
         # Load the directory file.
-        directory = json.load(open(self.paths.directoryJsonPath()))
+        directory = json.load(open(directoryJsonPath))
         return directory
 
     def searchDirectory(self, searchTerms=str, installed=False):

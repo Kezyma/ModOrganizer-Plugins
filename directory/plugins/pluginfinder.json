@@ -80,6 +80,21 @@
       "PluginPath": [ "pluginfinder" ],
       "LocalePath": [],
       "DataPath": [ "data/pluginfinder" ]
+    },
+    {
+      "Version": "1.1.5a",
+      "Released": "2021-12-14",
+      "MinSupport": "2.4.2",
+      "MaxSupport": "2.5.0.0-qt6dev2",
+      "MinWorking": "",
+      "MaxWorking": "",
+      "ReleaseNotes": [
+        "Fix for broken search when there are no search results."
+      ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/pluginfinder/pluginfinder.1.1.5.zip",
+      "PluginPath": [ "pluginfinder" ],
+      "LocalePath": [],
+      "DataPath": [ "data/pluginfinder" ]
     }
   ]
 }

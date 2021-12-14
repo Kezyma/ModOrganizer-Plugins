@@ -45,4 +45,5 @@ class PluginFinder():
         self.installer.uninstallPlugin(pluginId)
 
     def initial(self, pfVersion=str):
+        self.search.deployInitialDirectory()
         self.installer.initialInstall(pfVersion)

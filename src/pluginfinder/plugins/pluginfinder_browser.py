@@ -76,16 +76,19 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
                 child.widget().deleteLater()
 
     def bindPage(self):
+        pages = self.pluginfinder.search.totalPages(self.searchText.text(), self.installedCheck.isChecked(), self.pageSize)
+        if self.page > pages:
+            self.page = pages
+            if self.page < 1:
+                self.page = 1
+
         data = self.pluginfinder.search.pagedPluginData(self.searchText.text(), self.installedCheck.isChecked(), self.page, self.pageSize)
         self.clearResults()
         for plugin in data:
             self.formLayout.addWidget(self.getPluginWidget(plugin))
-        pages = self.pluginfinder.search.totalPages(self.searchText.text(), self.installedCheck.isChecked(), self.pageSize)
+        
         self.backButton.setEnabled(self.page != 1)
         self.nextButton.setEnabled(self.page < pages)
-        if self.page > pages:
-            self.page = pages
-            self.bindPage()
 
     def getDialog(self):
         dialog = QtWidgets.QDialog()
