@@ -1,0 +1,26 @@
+{
+	"Name": "Merge Plugins Hide & Sync Mod Order",
+	"Author": "deorder",
+	"Description": "Hide/unhide plugins that were merged using Merge Plugins or zMerge. Sync mod order from current profile to another while keeping the (enabled/disabled) state intact.",
+	"NexusUrl": "",
+	"GithubUrl": "https://github.com/deorder/mo2-plugins",
+	"DocsUrl": "",
+	"Versions": [
+		{
+			"Version": "1.1",
+			"Released": "2020-12-21",
+			"MinSupport": "2.4.2",
+			"MaxSupport": "2.4.2",
+			"MinWorking": "",
+			"MaxWorking": "",
+			"ReleaseNotes": [
+				"Switch to the new MO2 plugin format.",
+				"Sync mod order: Make it more clear where the mod order is synced to."
+			],
+			"DownloadUrl": "https://github.com/deorder/mo2-plugins/releases/download/1.1/deorder_plugins-1.1.zip",
+			"PluginPath": [ "deorder_plugins" ],
+			"LocalePath": [],
+			"DataPath": []
+		}
+	]
+}

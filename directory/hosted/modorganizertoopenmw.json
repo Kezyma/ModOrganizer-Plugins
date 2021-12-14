@@ -1,0 +1,29 @@
+{
+  "Name": "ModOrganizer-to-OpenMW",
+  "Author": "AnyOldName3",
+  "Description": "A Mod Organizer plugin to export your VFS, plugin selection and load order to OpenMW.",
+  "NexusUrl": "https://www.nexusmods.com/morrowind/mods/45642",
+  "GithubUrl": "https://github.com/AnyOldName3/ModOrganizer-to-OpenMW",
+  "DocsUrl": "",
+  "Versions": [
+    {
+      "Version": "3.0.0",
+      "Released": "2020-08-18",
+      "MinSupport": "2.3.2",
+      "MaxSupport": "2.4.2",
+      "MinWorking": "",
+      "MaxWorking": "",
+      "ReleaseNotes": [
+        "Automatically detect the location of openmw.cfg.",
+        "Check for updates automatically (in MO2 2.3.2 or later - a bug prevents this working in older releases).",
+        "Only show the menu item when the managed game is Morrowind.",
+        "Various developer-oriented improvements, including: VS Code integration. A build script & Code maintenance.",
+        "Translator-oriented improvements, including: Automatic upload of new strings to Transifex. Better use of format strings so I can change things in the future without requiring retranslation."
+      ],
+      "DownloadUrl": "https://github.com/AnyOldName3/ModOrganizer-to-OpenMW/releases/download/3.0.0/ModOrganizer-to-OpenMW-3-0-0.7z",
+      "PluginPath": [ "OpenMWExport.py", "openmw.ico" ],
+      "LocalePath": [],
+      "DataPath": []
+    }
+  ]
+}
