@@ -4,6 +4,9 @@
 ### Introduction
 Plugin Finder allows you to browse a list of Mod Organizer plugins as well as both installing and uninstalling them.
 
+##### Please note this is an alpha release for testing purposes, you may encounter issues.
+I also cannot vouch for the quality of any plugin you may install through Plugin Finder. Some may not work in certain versions of Mod Organizer and others may actively damage your setup if you do not read the documentation for them. Issues with plugins by other authors should be directed towards those authors through their nexus and github links.
+
 ### Installation
 Copy the pluginfinder folder to Mod Organizer's plugins folder. If Mod Organizer is installed at `D:\MO\`, the plugins folder will be located at `D:\MO\plugins\`
 Make sure that `__init__.py` is located at `D:\MO\plugins\pluginfinder\` and not directly copied into the plugins folder itself.

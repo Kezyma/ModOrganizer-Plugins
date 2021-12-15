@@ -74,3 +74,15 @@ class SharedIcons():
 
     def trashIcon(self):
         return self.icon("ui-trash.ico")
+
+    def alphaIcon(self):
+        return self.icon("ui-alpha.ico")
+
+    def betaIcon(self):
+        return self.icon("ui-beta.ico")
+
+    def gammaIcon(self):
+        return self.icon("ui-gamma.ico")
+
+    def deltaIcon(self):
+        return self.icon("ui-delta.ico")

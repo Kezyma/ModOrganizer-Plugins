@@ -205,7 +205,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         if currentPlugin and self.utilities.versionIsNewer(installedVersion, currentPlugin.version()):
             displayVersion = currentPlugin.version()
             displayDate = datetime.fromisoformat(currentPlugin.released()).strftime("%d %b %Y") + " "
-
+            
         if not currentPlugin and not latestPlugin:
             showNoDownloadIcon = True
         elif not currentPlugin:
@@ -240,6 +240,26 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
             pluginUpdateLabel.setObjectName("pluginUpdateLabel")
             pluginUpdateLabel.setToolTip("Current Version")
             pluginUpdateLabel.setText("<html><head/><body><p><span style=\" font-size:7pt;\">v" + mobase.VersionInfo(displayVersion).canonicalString() + "</span></p></body></html>")
+            
+        hasVersionIcon = False
+        if displayVersion != "":
+            versionIcon = QtWidgets.QLabel(widget)
+            versionIcon.setGeometry(QtCore.QRect(0, 0, 16, 21))
+            versionIcon.setText("")
+            versionIcon.setObjectName("versionIcon")
+            ver = mobase.VersionInfo(displayVersion).canonicalString()
+            if self.pluginfinder.utilities.alphaVersion(ver):
+                versionIcon.setPixmap(self.icons.alphaIcon().pixmap(QSize(16, 16)))
+                versionIcon.setToolTip("This plugin is currently in alpha.")
+                hasVersionIcon = True
+            elif self.pluginfinder.utilities.betaVersion(ver):
+                versionIcon.setPixmap(self.icons.betaIcon().pixmap(QSize(16, 16)))
+                versionIcon.setToolTip("This plugin is currently in beta.")
+                hasVersionIcon = True
+            elif self.pluginfinder.utilities.rcVersion(ver):
+                versionIcon.setPixmap(self.icons.gammaIcon().pixmap(QSize(16, 16)))
+                versionIcon.setToolTip("This plugin is currently a release candidate.")
+                hasVersionIcon = True
 
         statusIcon = QtWidgets.QLabel(widget)
         statusIcon.setGeometry(QtCore.QRect(325, 5, 16, 21))
@@ -267,8 +287,11 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
             statusIcon.setPixmap(self.icons.infoIcon().pixmap(QSize(16,16)))
             statusIcon.setToolTip("This plugin cannot be installed through Plugin Finder.")
             
+        indentModifier = 0
+        if hasVersionIcon:
+            indentModifier += 16
         pluginName = QtWidgets.QLabel(widget)
-        pluginName.setGeometry(QtCore.QRect(0, 0, 331, 21))
+        pluginName.setGeometry(QtCore.QRect((0 + indentModifier), 0, (331 - indentModifier), 21))
         pluginName.setObjectName("pluginName")
         pluginName.setText("<html><head/><body><p><span style=\" font-size:11pt; font-weight:600;\">" + pluginData.name() + "</span></p></body></html>")
 
@@ -316,7 +339,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
             githubButton.setToolTip("Github")
             githubButton.clicked.connect(lambda: webbrowser.open(str(pluginData.githubUrl())))
             
-        if installed:
+        if installed and pluginData.identifier() != "pluginfinder":
             uninstallButton = QtWidgets.QPushButton(widget)
             uninstallButton.setGeometry(QtCore.QRect(430, 0, 40, 26))
             uninstallButton.setText("")

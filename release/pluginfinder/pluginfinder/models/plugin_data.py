@@ -79,19 +79,13 @@ class PluginData(SharedJson):
             return latestVersion
             
         return None
-
-    def updated(self):
-        current = self.current()
+    
+    def currentOrLatest(self, moVersion=str):
+        current = self.current(moVersion)
         if current:
-            try:
-                return datetime.fromisoformat(current.released())
-            except:
-                return None
+            return current
         else:
             latest = self.latest()
             if latest:
-                try:
-                    return datetime.fromisoformat(latest.released())
-                except:
-                    return None
+                return latest
         return None

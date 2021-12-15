@@ -169,7 +169,8 @@ class PluginFinderInstaller():
                     shutil.rmtree(str(deletePath))
 
         files.pop(str(pluginId))
-        self.saveInstalledFiles(files)
+        if pluginId != "pluginfinder":
+            self.saveInstalledFiles(files)
         
     #_versionRegex = r"VersionInfo\(\s*([0-9]*)\s*,?\s*([0-9]*)\s*,?\s*([0-9]*)\s*,?\s*([0-9]*)\s*,?\s*([A-Za-z.]*)\s*\)"
     #def getPluginVersion(self, filePath=str):
