@@ -152,12 +152,31 @@
       "MinWorking": "",
       "MaxWorking": "",
       "ReleaseNotes": [
-        "Fix for uninstall crashing if a file cannot be deleted."
+        "(1.1.0) Initial alpha. Demo version.",
+        "(1.1.1) Added basic support for Mod Organizer 2 v2.5.0",
+        "(1.1.2) Added support for plugin definitions without any versions specified.",
+        "(1.1.3) Added support for installing plugins in formats other than zip files.",
+        "(1.1.3) Resized window to support 3 lines of text in descriptions.",
+        "(1.1.4) Stopped displaying disabled buttons.",
+        "(1.1.4) Fix for installing not actually working.",
+        "(1.1.4) Fix for paging when total pages are reduced.",
+        "(1.1.4) Stopped search from being case sensitive.",
+        "(1.1.4) Replaced minus icon with trash icon.",
+        "(1.1.4) Fix for plugin finder getting moved to the back.",
+        "(1.1.5) Fix for broken search when there are no search results.",
+        "(1.1.6) Added alpha, beta and release candidate icons.",
+        "(1.1.6) Prevents uninstallation of Plugin Finder.",
+        "(1.1.7) Added a total downloads counter.",
+        "(1.1.8) Reordered plugin list by installations.",
+        "(1.1.8) Stopped Plugin Finder opening until it has loaded data, prevents it from seeming broken.",
+        "(1.1.8) Fixed bottom row of buttons getting cut off (for some themes).",
+        "(1.1.9) Fix for uninstall crashing if a file cannot be deleted."
       ],
-      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/pluginfinder/pluginfinder.1.1.8.zip",
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/pluginfinder/pluginfinder.1.1.9.zip",
       "PluginPath": [ "pluginfinder" ],
       "LocalePath": [],
       "DataPath": [ "data/pluginfinder" ]
     }
   ]
 }
+
