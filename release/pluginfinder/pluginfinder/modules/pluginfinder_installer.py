@@ -147,28 +147,37 @@ class PluginFinderInstaller():
             deletePath = self.paths.modOrganizerPluginPath() / path
             if deletePath.exists():
                 qInfo("Deleting " + str(deletePath))
-                if os.path.isfile(str(deletePath)):
-                    self.utilities.deletePath(str(deletePath))
-                if os.path.isdir(str(deletePath)):
-                    shutil.rmtree(str(deletePath))
+                try:
+                    if os.path.isfile(str(deletePath)):
+                        self.utilities.deletePath(str(deletePath))
+                    if os.path.isdir(str(deletePath)):
+                        shutil.rmtree(str(deletePath))
+                except:
+                    qInfo("Could not delete " + str(deletePath))
 
         for path in files[str(pluginId)]["LocaleFiles"]:
             deletePath = self.paths.modOrganizerLocalePath() / path
             if deletePath.exists():
                 qInfo("Deleting " + str(deletePath))
-                if os.path.isfile(str(deletePath)):
-                    self.utilities.deletePath(str(deletePath))
-                if os.path.isdir(str(deletePath)):
-                    shutil.rmtree(str(deletePath))
+                try:
+                    if os.path.isfile(str(deletePath)):
+                        self.utilities.deletePath(str(deletePath))
+                    if os.path.isdir(str(deletePath)):
+                        shutil.rmtree(str(deletePath))
+                except:
+                    qInfo("Could not delete " + str(deletePath))
 
         for path in files[str(pluginId)]["DataFiles"]:
             deletePath = self.paths.modOrganizerPluginPath() / path
             if deletePath.exists():
                 qInfo("Deleting " + str(deletePath))
-                if os.path.isfile(str(deletePath)):
-                    self.utilities.deletePath(str(deletePath))
-                if os.path.isdir(str(deletePath)):
-                    shutil.rmtree(str(deletePath))
+                try:
+                    if os.path.isfile(str(deletePath)):
+                        self.utilities.deletePath(str(deletePath))
+                    if os.path.isdir(str(deletePath)):
+                        shutil.rmtree(str(deletePath))
+                except:
+                    qInfo("Could not delete " + str(deletePath))
 
         files.pop(str(pluginId))
         if pluginId != "pluginfinder":

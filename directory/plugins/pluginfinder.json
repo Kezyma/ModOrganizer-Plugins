@@ -1,7 +1,7 @@
 {
   "Name": "Plugin Finder",
   "Author": "Kezyma",
-  "Description": "Plugin Finder allows you to browse a list of Mod Organizer plugins as well as both installing and uninstalling them.",
+  "Description": "Plugin Finder allows you to browse a list of Mod Organizer plugins as well as both installing and uninstalling them. Keep your plugins organised and up to date all in one place!",
   "NexusUrl": "https://www.nexusmods.com/skyrimspecialedition/mods/59869",
   "GithubUrl": "https://github.com/Kezyma/ModOrganizer-Plugins",
   "DocsUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/readme/pluginfinder/readme.md",
@@ -138,6 +138,21 @@
         "Reordered plugin list by installations.",
         "Stopped Plugin Finder opening until it has loaded data, prevents it from seeming broken.",
         "Fixed bottom row of buttons getting cut off (for some themes)."
+      ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/pluginfinder/pluginfinder.1.1.8.zip",
+      "PluginPath": [ "pluginfinder" ],
+      "LocalePath": [],
+      "DataPath": [ "data/pluginfinder" ]
+    },
+    {
+      "Version": "1.1.9a",
+      "Released": "2021-12-15",
+      "MinSupport": "2.4.2",
+      "MaxSupport": "2.5.0.0-qt6dev2",
+      "MinWorking": "",
+      "MaxWorking": "",
+      "ReleaseNotes": [
+        "Fix for uninstall crashing if a file cannot be deleted."
       ],
       "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/pluginfinder/pluginfinder.1.1.8.zip",
       "PluginPath": [ "pluginfinder" ],

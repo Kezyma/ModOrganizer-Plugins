@@ -1,7 +1,7 @@
 {
   "Name": "Reinstaller",
   "Author": "Kezyma",
-  "Description": "Reinstaller allows you to conveninetly backup mod installers to re-run later, without risk of them cluttering up your downloads section in Mod Organizer 2.",
+  "Description": "Reinstaller allows you to conveninetly backup mod installers to re-run later, without risk of them cluttering up your downloads section in Mod Organizer 2. Perfect for handling mods that come with compatibility options!",
   "NexusUrl": "https://www.nexusmods.com/skyrimspecialedition/mods/59292",
   "GithubUrl": "https://github.com/Kezyma/ModOrganizer-Plugins",
   "DocsUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/readme/reinstaller/readme.md",
