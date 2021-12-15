@@ -89,3 +89,12 @@ class PluginData(SharedJson):
             if latest:
                 return latest
         return None
+
+    def specificVersion(self, version=str):
+        p1 = self.utilities.parseVersion(version)
+        allVersions = self.versions()
+        for ver in allVersions:
+            p2 = self.utilities.parseVersion(ver.version()) 
+            if p1 == p2:
+                return ver
+        return None

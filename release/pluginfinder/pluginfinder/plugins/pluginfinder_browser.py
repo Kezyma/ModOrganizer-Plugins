@@ -213,6 +213,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         latestPlugin = pluginData.latest() # most recent overall plugin.
         installed = self.pluginfinder.installer.isInstalled(pluginData.identifier())
         installedVersion = self.pluginfinder.installer.installedVersion(pluginData.identifier())
+        installedSpecific = pluginData.specificVersion(str(installedVersion))
 
         showUpdateIcon = False
         showUnsupportedUpdateIcon = False
@@ -225,12 +226,15 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         displayVersion = ""
         displayDate = ""
+        changelog = []
         if latestPlugin:
             displayVersion = latestPlugin.version()
             displayDate = datetime.fromisoformat(latestPlugin.released()).strftime("%d %b %Y") + " "
+            changelog = latestPlugin.releaseNotes()
         if currentPlugin and self.utilities.versionIsNewer(installedVersion, currentPlugin.version()):
             displayVersion = currentPlugin.version()
             displayDate = datetime.fromisoformat(currentPlugin.released()).strftime("%d %b %Y") + " "
+            changelog = currentPlugin.releaseNotes()
             
         if not currentPlugin and not latestPlugin:
             showNoDownloadIcon = True
@@ -254,17 +258,28 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
                showUnsupportedInstallIcon = True
             
         if installed:
+            string = "<p>Installed Version</p>"
+            if installedSpecific:
+                string = "<p>Installed Version <i>" + datetime.fromisoformat(installedSpecific.released()).strftime("%d %b %Y") + "</i></p>"
+                string = string + "<ul>"
+                for note in installedSpecific.releaseNotes():
+                    string = string + "<li>" + str(note) + "</li>"
+                string = string + "</ul>"
             pluginVersion = QtWidgets.QLabel(widget)
             pluginVersion.setGeometry(QtCore.QRect(345, 15, 41, 11))
             pluginVersion.setObjectName("pluginVersion")
-            pluginVersion.setToolTip("Installed Version")
+            pluginVersion.setToolTip(string)
             pluginVersion.setText("<html><head/><body><p><span style=\" font-size:7pt;\">v" + mobase.VersionInfo(installedVersion).canonicalString() + "</span></p></body></html>")
 
         if showVersion:
+            string = "<p>Latest Version <i>" + displayDate + "</i></p><ul>"
+            for note in changelog:
+                string = string + "<li>" + str(note) + "</li>"
+            string = string + "</ul>"
             pluginUpdateLabel = QtWidgets.QLabel(widget)
             pluginUpdateLabel.setGeometry(QtCore.QRect(345, 0, 41, 16))
             pluginUpdateLabel.setObjectName("pluginUpdateLabel")
-            pluginUpdateLabel.setToolTip("Current Version")
+            pluginUpdateLabel.setToolTip(string)
             pluginUpdateLabel.setText("<html><head/><body><p><span style=\" font-size:7pt;\">v" + mobase.VersionInfo(displayVersion).canonicalString() + "</span></p></body></html>")
             
         hasVersionIcon = False
