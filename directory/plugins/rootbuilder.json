@@ -13,7 +13,7 @@
       "MaxSupport": "2.5.0.0-qt6dev2",
       "MinWorking": "",
       "MaxWorking": "",
-      "ReleaseNotes": [ "Added basic support for Mod Organizer 2 v2.5.0" ],
+      "ReleaseNotes": [ "(4.2.7) Added basic support for Mod Organizer 2 v2.5.0" ],
       "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.4.2.7.zip",
       "PluginPath": [ "rootbuilder" ],
       "LocalePath": [],

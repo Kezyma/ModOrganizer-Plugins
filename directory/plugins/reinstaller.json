@@ -13,7 +13,7 @@
       "MaxSupport": "2.5.0.0-qt6dev2",
       "MinWorking": "",
       "MaxWorking": "",
-      "ReleaseNotes": [ "Added basic support for Mod Organizer 2 v2.5.0" ],
+      "ReleaseNotes": [ "(1.0.6) Added basic support for Mod Organizer 2 v2.5.0" ],
       "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/reinstaller/reinstaller.1.0.6.zip",
       "PluginPath": [ "reinstaller" ],
       "LocalePath": [],
