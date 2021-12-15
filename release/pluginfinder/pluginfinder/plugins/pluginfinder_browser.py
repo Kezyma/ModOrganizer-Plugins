@@ -5,6 +5,8 @@ try:
     qtAlignLeading = QtCore.Qt.AlignLeading
     qtAlignLeft = QtCore.Qt.AlignLeft
     qtAlignTop = QtCore.Qt.AlignTop
+    qtAlignHCenter = QtCore.Qt.AlignHCenter
+    qtAlignVCenter = QtCore.Qt.AlignVCenter
     qtHLine = QtWidgets.QFrame.HLine
     qtSunken = QtWidgets.QFrame.Sunken
     qtWindow = QtCore.Qt.Window 
@@ -17,6 +19,8 @@ except:
     qtAlignLeading = QtCore.Qt.AlignmentFlag.AlignLeading
     qtAlignLeft = QtCore.Qt.AlignmentFlag.AlignLeft
     qtAlignTop = QtCore.Qt.AlignmentFlag.AlignTop
+    qtAlignHCenter = QtCore.Qt.AlignmentFlag.AlignHCenter
+    qtAlignVCenter = QtCore.Qt.AlignmentFlag.AlignVCenter
     qtHLine = QtWidgets.QFrame.Shape.HLine
     qtSunken = QtWidgets.QFrame.Shadow.Sunken
     qtWindow = QtCore.Qt.WindowType.Window 
@@ -26,7 +30,7 @@ from datetime import datetime
 from ..pluginfinder_plugin import PluginFinderPlugin
 from ..models.plugin_data import PluginData
 from ...shared.shared_utilities import SharedUtilities
-import mobase, webbrowser, os, subprocess
+import mobase, webbrowser, os, subprocess, threading
 
 class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
     
@@ -52,10 +56,28 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
     def description(self):
         return self.__tr("Opens the Plugin Finder manager.")
 
+    def getTempDialog(self, text=str):
+        tempDialog = QtWidgets.QDialog()
+        tempDialog.resize(200, 50)
+        tempDialog.setMinimumSize(QtCore.QSize(200, 50))
+        tempDialog.setMaximumSize(QtCore.QSize(200, 50))
+        tempDialog.setObjectName("tempDialog")
+        tempDialog.setWindowTitle("Plugin Finder")
+        tempDialog.setWindowIcon(self.icons.pluginIcon())
+        tempLabel = QtWidgets.QLabel(tempDialog)
+        tempLabel.setObjectName("tempLabel")
+        tempLabel.setText(text)
+        tempLabel.setGeometry(QtCore.QRect(0, 0, 200, 50))
+        tempLabel.setAlignment(qtAlignHCenter | qtAlignVCenter)
+        tempLabel.setVisible(True)
+        tempLabel.setEnabled(True)
+        QtCore.QMetaObject.connectSlotsByName(tempDialog)
+        return tempDialog
+
     def display(self):
         self.pluginfinder.initial(self.version().canonicalString())
-        self.dialog.show()
         self.bindPage()
+        self.dialog.show()
 
     def nextPage(self):
         self.page = self.page + 1
@@ -76,13 +98,13 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
                 child.widget().deleteLater()
 
     def bindPage(self):
-        pages = self.pluginfinder.search.totalPages(self.searchText.text(), self.installedCheck.isChecked(), self.pageSize)
+        data, pages = self.pluginfinder.search.pagedPluginData(self.searchText.text(), self.installedCheck.isChecked(), self.page, self.pageSize)
         if self.page > pages:
             self.page = pages
             if self.page < 1:
                 self.page = 1
+            data, pages = self.pluginfinder.search.pagedPluginData(self.searchText.text(), self.installedCheck.isChecked(), self.page, self.pageSize)
 
-        data = self.pluginfinder.search.pagedPluginData(self.searchText.text(), self.installedCheck.isChecked(), self.page, self.pageSize)
         self.clearResults()
         for plugin in data:
             self.formLayout.addWidget(self.getPluginWidget(plugin))
@@ -130,8 +152,8 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         self.dialogLayout.addWidget(self.resultsWidget)
 
         self.pagingWidget = QtWidgets.QWidget(dialog)
-        self.pagingWidget.setMinimumSize(QtCore.QSize(0, 25))
-        self.pagingWidget.setMaximumSize(QtCore.QSize(16777215, 25))
+        self.pagingWidget.setMinimumSize(QtCore.QSize(0, 26))
+        self.pagingWidget.setMaximumSize(QtCore.QSize(16777215, 26))
         self.pagingWidget.setObjectName("pagingWidget")
         self.refreshButton = QtWidgets.QPushButton(self.pagingWidget)
         self.refreshButton.setGeometry(QtCore.QRect(277, 0, 46, 26))

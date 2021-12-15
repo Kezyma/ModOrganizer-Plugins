@@ -26,6 +26,8 @@ class PluginFinderSearch():
         """ Deploys the initial directory file, only happens on first run. """
         if Path(self.paths.initialDirectoryPath()).exists():
             self.utilities.moveTo(self.paths.initialDirectoryPath(), self.paths.directoryJsonPath())
+            for item in self.directory():
+                self.refreshPluginCount(item["Identifier"])
 
     def updateDirectory(self):
         """ Attempt to download a directory update from Github. """
@@ -39,6 +41,9 @@ class PluginFinderSearch():
         except:
             qInfo("Could not download update.")
         urllib.request.urlcleanup()
+
+        for item in self.directory():
+            self.refreshPluginCount(item["Identifier"])
 
     def directory(self):
         """ Get the directory as json. """
@@ -54,6 +59,21 @@ class PluginFinderSearch():
         """ Searches the directory by plugin name. """
         plugins = []
         directory = self.directory()
+        counters = self.loadCounters()
+        countless = []
+        counted = []
+        for item in directory:
+            try:
+                if item["Identifier"] not in counters:
+                    self.refreshPluginCount(item["Identifier"])
+                dl = int(str(counters[item["Identifier"]]["Downloads"]))
+                counted.append(item)
+            except:
+                countless.append(item)
+        
+        counted = sorted(counted, key=lambda p: int(str(counters[p["Identifier"]]["Downloads"])), reverse=True)
+        directory = counted + countless
+
         if installed:
             for plugin in directory:
                 if plugin["Identifier"] in self.installer.installedPlugins():
@@ -116,6 +136,7 @@ class PluginFinderSearch():
         """ Get a paged list of plugin data. """
         qInfo("Searching directory, terms = " + str(searchTerms) + " installed = " + str(installed))
         manifestSearch = self.searchDirectory(searchTerms, installed)
+        totalItems = int(math.ceil(float(len(manifestSearch)) / pageSize))
         qInfo("Directory searched, paging list.")
         pagedList = list(islice(manifestSearch, ((page-1)*pageSize), ((page-1)*pageSize) + pageSize))
         qInfo("List paged, loading plugin data.")
@@ -124,7 +145,7 @@ class PluginFinderSearch():
             if "Identifier" in item.keys():
                 results.append(self.pluginData(str(item["Identifier"])))
         qInfo("Plugin data loaded.")
-        return results
+        return results, totalItems
 
     def totalPages(self, searchTerms=str, installed=False, pageSize=int):
         """ Gets the total number of pages from a search. """
@@ -134,8 +155,6 @@ class PluginFinderSearch():
     def refreshData(self):
         self.updateDirectory()
         shutil.rmtree(self.paths.pluginDataCacheFolderPath())
-        if Path(self.paths.counterJsonPath()).exists():
-            self.utilities.deletePath(self.paths.counterJsonPath())
 
     def buildInitialCache(self):
         """ Gets json data for every plugin. """
