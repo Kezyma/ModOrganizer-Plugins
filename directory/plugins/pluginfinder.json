@@ -7,7 +7,7 @@
   "DocsUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/readme/pluginfinder/readme.md",
   "Versions": [
     {
-      "Version": "1.1.9a",
+      "Version": "1.1.10a",
       "Released": "2021-12-15",
       "MinSupport": "2.4.2",
       "MaxSupport": "2.5.0.0-qt6dev2",
@@ -32,9 +32,10 @@
         "(1.1.8) Reordered plugin list by installations.",
         "(1.1.8) Stopped Plugin Finder opening until it has loaded data, prevents it from seeming broken.",
         "(1.1.8) Fixed bottom row of buttons getting cut off (for some themes).",
-        "(1.1.9) Fix for uninstall crashing if a file cannot be deleted."
+        "(1.1.9) Fix for uninstall crashing if a file cannot be deleted.",
+        "(1.1.10) Added release notes as tooltips on version numbers."
       ],
-      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/pluginfinder/pluginfinder.1.1.9.zip",
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/pluginfinder/pluginfinder.1.1.10.zip",
       "PluginPath": [ "pluginfinder" ],
       "LocalePath": [],
       "DataPath": [ "data/pluginfinder" ]
