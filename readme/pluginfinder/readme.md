@@ -1,4 +1,4 @@
-# Plugin Finder
+﻿# Plugin Finder
 ## v1.1.*
 
 ### Introduction
@@ -56,14 +56,23 @@ If you want a plugin added to Plugin Finder, you will need to create a json file
     {
       "Version": "Version of this release.",
       "Released": "Date of this release, in format yyyy-MM-dd",
-      "MinSupport": "Minimum version of Mod Organizer that this release is known to work for. Displays a warning when installing to earlier versions.",
-      "MaxSupport": "Maximum version of Mod Organizer that this release is known to work for. Displays a warning when installing to newer versions.",
-      "MinWorking": "Minimum version of Mod Organizer that this release works for. Prevents installation to earlier versions.",
-      "MaxWorking": "Maximum version of Mod Organizer that this release works for. Prevents installation to newer versions.",
-      "DownloadUrl": "Direct download URL of the zipped release of this plugin",
-      "PluginPath": [ "Array of paths, relative to the zipped download. Any files or folders specified will be copied to the Mod Organizer plugins folder on install." ],
-      "LocalePath": [ "Array of paths, relative to the zipped download. Any files or folders specified will be copied to the Mod Organizer translations folder on install." ],
-      "DataPath": [ "Array of paths, relative to the Mod Organizer plugins folder. Any files or folders specified will be deleted when the plugin is uninstalled." ],
+      "MinSupport": "Minimum version of Mod Organizer. Displays an unsupported warning when installing to earlier versions.",
+      "MaxSupport": "Maximum version of Mod Organizer. Displays an unsupported warning when installing to newer versions.",
+      "MinWorking": "Minimum version of Mod Organizer. Prevents installation to earlier versions.",
+      "MaxWorking": "Maximum version of Mod Organizer. Prevents installation to newer versions.",
+      "DownloadUrl": "(required) Direct download URL of the zipped release of this plugin",
+      "PluginPath": [
+        ﻿﻿﻿"(required) Array of paths, relative to the zipped download.",
+        ﻿﻿﻿"Any files or folders specified will be copied to the Mod Organizer plugins folder on install."
+      ﻿﻿],
+      "LocalePath": [
+        ﻿﻿﻿"Array of paths, relative to the zipped download.",
+        ﻿﻿﻿"Any files or folders specified will be copied to the Mod Organizer translations folder on install."
+      ],
+      "DataPath": [
+        ﻿﻿﻿"Array of paths, relative to the Mod Organizer plugins folder.",
+        ﻿﻿﻿"Any files or folders specified will be deleted when the plugin is uninstalled."
+      ﻿﻿],
       "ReleaseNotes": [ "Array of release notes for this release." ]
     }
   ]
