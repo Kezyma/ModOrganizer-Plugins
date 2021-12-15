@@ -1,5 +1,5 @@
 
 .vs
 env
-release/zip
+release
 tools/*_log.txt
