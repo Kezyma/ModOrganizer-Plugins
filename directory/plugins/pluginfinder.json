@@ -126,6 +126,23 @@
       "PluginPath": [ "pluginfinder" ],
       "LocalePath": [],
       "DataPath": [ "data/pluginfinder" ]
+    },
+    {
+      "Version": "1.1.8a",
+      "Released": "2021-12-15",
+      "MinSupport": "2.4.2",
+      "MaxSupport": "2.5.0.0-qt6dev2",
+      "MinWorking": "",
+      "MaxWorking": "",
+      "ReleaseNotes": [
+        "Reordered plugin list by installations.",
+        "Stopped Plugin Finder opening until it has loaded data, prevents it from seeming broken.",
+        "Fixed bottom row of buttons getting cut off (for some themes)."
+      ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/pluginfinder/pluginfinder.1.1.8.zip",
+      "PluginPath": [ "pluginfinder" ],
+      "LocalePath": [],
+      "DataPath": [ "data/pluginfinder" ]
     }
   ]
 }
