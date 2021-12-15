@@ -46,4 +46,5 @@ class PluginFinder():
 
     def initial(self, pfVersion=str):
         self.search.deployInitialDirectory()
-        self.installer.initialInstall(pfVersion)
+        if self.installer.initialInstall(pfVersion):
+            self.search.increaseInstallCount("pluginfinder")

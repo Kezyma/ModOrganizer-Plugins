@@ -35,6 +35,8 @@ class PluginFinderInstaller():
                 relativeFiles.append(str(self.paths.relativePath(pluginPath, filePath)))
             installedFiles[pfId]["PluginFiles"] = relativeFiles
             self.saveInstalledFiles(installedFiles)
+            return True
+        return False
 
     def installPlugin(self, plugin=PluginData):
         pluginId = plugin.identifier()

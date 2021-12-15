@@ -51,7 +51,7 @@ class PluginFinderPaths(SharedPaths):
         """ Path to the initial directory json to be deployed during install. """
         if self._initialDirectoryPath == str():
             self._initialDirectoryPath = str(Path(__file__).parent.parent / "plugin_directory.json")
-        return self._initialDirectoryPath;
+        return self._initialDirectoryPath
 
     _directoryJsonPath = str()
     def directoryJsonPath(self):
@@ -59,6 +59,13 @@ class PluginFinderPaths(SharedPaths):
         if self._directoryJsonPath == str():
             self._directoryJsonPath = str(self.pluginDataPath() / "plugin_directory.json")
         return Path(self._directoryJsonPath)
+
+    _counterJsonPath = str()
+    def counterJsonPath(self):
+        """ Path to the current plugin counter json file. """
+        if self._counterJsonPath == str():
+            self._counterJsonPath = str(self.pluginDataPath() / "plugin_counters.json")
+        return Path(self._counterJsonPath)
 
     _pluginDataCacheFolderPath = str()
     def pluginDataCacheFolderPath(self):
@@ -72,6 +79,19 @@ class PluginFinderPaths(SharedPaths):
     def pluginDataCachePath(self, pluginId=str):
         """ Gets the location of the current plugin json file. """
         return self.pluginDataCacheFolderPath() / (str(pluginId) + ".json")
+
+    _githubReleaseJsonCacheFolderPath = str()
+    def githubReleaseJsonCacheFolderPath(self):
+        """ Gets the location of the current plugin json file. """
+        if self._githubReleaseJsonCacheFolderPath == str():
+            self._githubReleaseJsonCacheFolderPath = self.pluginDataPath() / "github"
+        if not Path(self._githubReleaseJsonCacheFolderPath).exists():
+            os.makedirs(self._githubReleaseJsonCacheFolderPath)
+        return Path(self._githubReleaseJsonCacheFolderPath)
+
+    def githubReleaseJsonCachePath(self, author=str, repo=str, tag=str):
+        """ Gets the location of the current plugin json file. """
+        return self.githubReleaseJsonCacheFolderPath() / (str(author) + "_" + repo + "_" + tag + ".json")
 
     def zipExePath(self):
         """ Gets the path to 7za.exe """

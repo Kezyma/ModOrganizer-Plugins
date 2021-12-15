@@ -162,12 +162,16 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         return dialog
     
     def installClick(self, pluginId=str):
+        increaseCount = not self.pluginfinder.installer.isInstalled(pluginId)
         self.pluginfinder.install(pluginId)
+        if increaseCount:
+            self.pluginfinder.search.increaseInstallCount(pluginId)
         self.hasChanged = True
         self.bindPage()
 
     def uninstallClick(self, pluginId=str):
         self.pluginfinder.uninstall(pluginId)
+        self.pluginfinder.search.decreaseInstallCount(pluginId)
         self.hasChanged = True
         self.bindPage()
 
@@ -287,6 +291,19 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
             statusIcon.setPixmap(self.icons.infoIcon().pixmap(QSize(16,16)))
             statusIcon.setToolTip("This plugin cannot be installed through Plugin Finder.")
             
+        totalDownloads = self.pluginfinder.search.getInstallCount(pluginData.identifier())
+        downloadsIcon = QtWidgets.QLabel(widget)
+        downloadsIcon.setGeometry(QtCore.QRect(150, 20, 16, 16))
+        downloadsIcon.setText("")
+        downloadsIcon.setObjectName("downloadsIcon")
+        downloadsIcon.setPixmap(self.icons.downloadIcon().pixmap(QSize(16,16)))
+        downloadsIcon.setToolTip("Total installations through Plugin Finder. Uninstallations are subtracted.")
+        downloadsLabel = QtWidgets.QLabel(widget)
+        downloadsLabel.setGeometry(QtCore.QRect(166, 20, 50, 16))
+        downloadsLabel.setObjectName("downloadsLabel")
+        downloadsLabel.setToolTip("Total installations through Plugin Finder. Uninstallations are subtracted.")
+        downloadsLabel.setText("<html><head/><body><p><span style=\"font-size:7pt;\">" + str(totalDownloads) + "</span></p></body></html>")
+
         indentModifier = 0
         if hasVersionIcon:
             indentModifier += 16
@@ -297,9 +314,10 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         if pluginData.author() and pluginData.author() != "":
             pluginAuthor = QtWidgets.QLabel(widget)
-            pluginAuthor.setGeometry(QtCore.QRect(0, 20, 381, 16))
+            pluginAuthor.setGeometry(QtCore.QRect(0, 20, 150, 16))
             pluginAuthor.setObjectName("pluginAuthor")
             pluginAuthor.setText("<html><head/><body><p><span style=\"font-size:7pt;\">" + displayDate + "</span><span style=\" font-size:7pt; font-style:italic;\">by " + pluginData.author() + "</span></p></body></html>")
+            pluginAuthor.setToolTip("The date of the most recent update and the name of the author.")
 
         if pluginData.description() and pluginData.description() != "":
             pluginDesc = QtWidgets.QLabel(widget)
@@ -309,7 +327,6 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
             pluginDesc.setObjectName("pluginDesc")        
             pluginDesc.setText(pluginData.description())
 
-        
         if pluginData.docsUrl() != "":
             docsButton = QtWidgets.QPushButton(widget)
             docsButton.setGeometry(QtCore.QRect(480, 0, 40, 26))
@@ -318,7 +335,6 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
             docsButton.setObjectName("docsButton")
             docsButton.setToolTip("Documentation")
             docsButton.clicked.connect(lambda: webbrowser.open(str(pluginData.docsUrl())))
-            
         
         if pluginData.nexusUrl() != "":
             nexusButton = QtWidgets.QPushButton(widget)
@@ -329,7 +345,6 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
             nexusButton.setToolTip("Nexus")
             nexusButton.clicked.connect(lambda: webbrowser.open(str(pluginData.nexusUrl())))
 
-        
         if pluginData.githubUrl() != "":
             githubButton = QtWidgets.QPushButton(widget)
             githubButton.setGeometry(QtCore.QRect(560, 0, 40, 26))

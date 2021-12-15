@@ -86,3 +86,6 @@ class SharedIcons():
 
     def deltaIcon(self):
         return self.icon("ui-delta.ico")
+
+    def downloadIcon(self):
+        return self.icon("ui-download.ico")
