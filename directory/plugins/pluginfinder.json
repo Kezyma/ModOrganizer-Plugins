@@ -7,6 +7,21 @@
   "DocsUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/readme/pluginfinder/readme.md",
   "Versions": [
     {
+      "Version": "1.2.0a",
+      "Released": "2021-12-16",
+      "MinSupport": "2.4.2",
+      "MaxSupport": "2.5.0.0-qt6dev2",
+      "MinWorking": "",
+      "MaxWorking": "",
+      "ReleaseNotes": [
+        "(1.2.0) Rebuilt the UI to be resizable and more responsive overall."
+      ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/pluginfinder/pluginfinder.1.2.0.zip",
+      "PluginPath": [ "pluginfinder" ],
+      "LocalePath": [],
+      "DataPath": [ "data/pluginfinder" ]
+    },
+    {
       "Version": "1.1.10a",
       "Released": "2021-12-15",
       "MinSupport": "2.4.2",

@@ -1,5 +1,5 @@
 ﻿# Plugin Finder
-## v1.1.*
+## v1.2.*
 
 ### Introduction
 Plugin Finder allows you to browse a list of Mod Organizer plugins as well as both installing and uninstalling them.
