@@ -4,6 +4,11 @@ from .modules.shortcutter_files import ShortcutterFiles
 from ..shared.shared_utilities import SharedUtilities
 from pathlib import Path
 
+try:
+    from PyQt5.QtCore import QCoreApplication, qInfo
+except:
+    from PyQt6.QtCore import QCoreApplication, qInfo
+
 class Shortcutter():
     
     def __init__(self, organiser = mobase.IOrganizer):
@@ -22,6 +27,8 @@ class Shortcutter():
         self.createShortcut(label, moPath, icon, args)
 
     def createShortcut(self, label=str, url=str, icon=str, args=str):
-        shortcutterPath = str(Path(__file__).parent.joinpath("shortcutter.bat"))
-        command = '"' + shortcutterPath + '" "' + label + '" "' + url + '" "' + icon + '" "' + args + '" > shortcutter_log.txt'
-        subprocess.call(command, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
+        qInfo("Generating desktop shortcut.")
+        scBat = str(Path(__file__).parent.joinpath("shortcutter.bat"))
+        scGen = f'"{scBat}" "{label}" "{url}" "{icon}" "{args}" > shortcutter_log.txt'
+        qInfo("Executing command " + str(scGen))
+        subprocess.call(scGen, shell=True, stdout=open(os.devnull, 'wb'))

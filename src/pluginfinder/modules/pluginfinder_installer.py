@@ -62,10 +62,12 @@ class PluginFinderInstaller():
         urllib.request.urlretrieve(downloadUrl, destPath)
         
         qInfo("Extracting " + str(destPath))
-        command = "\"" + str(self.paths.zipExePath()) + "\" x \"" + str(destPath) + "\" -o\"" + str(self.paths.pluginStageTempPath()) + "\" -y"
-        qInfo("Executing command " + command)
-        subprocess.call(command, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
-        #os.system(command)
+        szExe = str(self.paths.zipExePath())
+        dlZip = str(destPath)
+        exDir = str(self.paths.pluginStageTempPath())
+        exRun = f'"{szExe}" x "{dlZip}" -o"{exDir}" -y'
+        qInfo("Executing command " + str(exRun))
+        subprocess.call(exRun, shell=True, stdout=open(os.devnull, 'wb'))
 
         for path in currentVersion.pluginPaths():
             sourcePath = str(self.paths.pluginStageTempPath() / str(path))

@@ -134,7 +134,12 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
     def onClose(self):
         if self.hasChanged:
-            os.system("taskkill /F /IM ModOrganizer.exe && explorer \"" + str(self.pluginfinder.paths.modOrganizerExePath()) + "\"")
+            qInfo("Plugins changed, restarting Mod Organizer.")
+            tkExe = "C:/Windows/system32/taskkill.exe"
+            moExe = str(self.pluginfinder.paths.modOrganizerExePath())
+            moKill = f'"{tkExe}" /F /IM ModOrganizer.exe && explorer "{moExe}"'
+            qInfo("Executing command " + str(moKill))
+            subprocess.call(moKill, shell=True, stdout=open(os.devnull, 'wb'))
 
     def getDialog(self):
         # Main Dialog
