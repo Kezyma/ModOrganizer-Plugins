@@ -18,6 +18,24 @@
       "PluginPath": [ "rootbuilder" ],
       "LocalePath": [],
       "DataPath": [ "data/rootbuilder" ]
+    },
+    {
+      "Version": "4.3.0b",
+      "Released": "2021-12-13",
+      "MinSupport": "2.4.2",
+      "MaxSupport": "2.5.0.0-qt6dev2",
+      "MinWorking": "",
+      "MaxWorking": "",
+      "ReleaseNotes": [
+        "(4.3.0) Made UI resiazable.",
+        "(4.3.0) Added new icons to buttons.",
+        "(4.3.0) Moved buttons to the bottom the of the UI.",
+        "(4.3.0) Disable the delete cache and backup buttons if a cache or backup doesn't exist."
+      ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.4.3.0.zip",
+      "PluginPath": [ "rootbuilder" ],
+      "LocalePath": [],
+      "DataPath": [ "data/rootbuilder" ]
     }
   ]
 }
