@@ -3,10 +3,7 @@ Shared repository for [Mod Organizer](https://github.com/ModOrganizer2/modorgani
 
 ## Plugins
 
-### [Root Builder](/readme/rootbuilder/readme.md)
-[Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/31720), 
-[Download](https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.zip)
-
+### [Root Builder](https://kezyma.github.io/?p=rootbuilder)
 Root Builder is a Mod Organizer 2 plugin that allows you to manage files in the base game folder through Mod Organizer, leaving your game folder in pristine, vanilla condition!
 
 ### [Reinstaller](/readme/reinstaller/readme.md)
