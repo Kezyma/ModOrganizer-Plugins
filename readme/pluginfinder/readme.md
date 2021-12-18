@@ -1,120 +1,15 @@
-﻿# Plugin Finder
-## v1.2.*
+﻿## Plugin Finder
+Plugin Finder is a plugin for Mod Organizer 2, allowing users to browse and install other Mod Organizer plugins.
 
-### Introduction
-Plugin Finder allows you to browse a list of Mod Organizer plugins as well as both installing and uninstalling them.
+Some of the things you can do with Plugin Finder:
+- Browse a list of plugins and search for them by name.
+- Install plugins directly to Mod Organizer within Plugin Finder.
+- Check for updates to installed plugins and install them within Plugin Finder.
+- Remove plugins form Mod Organizer from within Plugin Finder.
 
-##### Please note this is an alpha release for testing purposes, you may encounter issues.
-I also cannot vouch for the quality of any plugin you may install through Plugin Finder. Some may not work in certain versions of Mod Organizer and others may actively damage your setup if you do not read the documentation for them. Issues with plugins by other authors should be directed towards those authors through their nexus and github links.
+Please note that the plugins found within Plugin Finder are produced and maintained by independent mod authors and may vary in quality. I am not responsible if a plugin installed through Plugin Finder causes damage to your installation or simply does not work. Any issues with plugins found in Plugin Finder should be directed to the independent plugin author.
 
-### Installation
-Copy the pluginfinder folder to Mod Organizer's plugins folder. If Mod Organizer is installed at `D:\MO\`, the plugins folder will be located at `D:\MO\plugins\`
-Make sure that `__init__.py` is located at `D:\MO\plugins\pluginfinder\` and not directly copied into the plugins folder itself.
+### [Installation Instructions](https://kezyma.github.io/?p=pluginfinder)
 
-### Uninstallation
-Delete the following folders from Mod Organizer, assuming Mod Organizer is installed at `D:\MO\`:
-`D:\MO\plugins\pluginfinder\`
-`D:\MO\plugins\data\pluginfinder\`
-
-### Usage
-A new item will appear in the tools menu of Mod Organizer. This will open up a list of plugins.
-
-*Location of Plugin Finder in tools menu*
-
-![Location of Plugin Finder in tools menu](pluginfinder_tools_menu.png "Location of Plugin Finder in tools menu")
-
-*Plugin Finder browser window*
-
-![Plugin Finder browser window](pluginfinder_browser.png "Plugin Finder browser window")
-
-The documentation, Nexus and Github buttons open links to the relevant pages for the plugin. 
-The green download button will download and install the plugin to Mod Organizer.
-The red trash button will uninstall the plugin from Mod Organizer.
-
-Plugins can be searched by name and can be filtered to show only installed plugins.
-At the bottom, arrow buttons on either side can be used to browse various pages and the refresh button in the middle will clear all cached data and reload it. 
-By default, data will be updated once per day, as it is needed.
-
-After installing or uninstalling plugins, Mod Organizer will restart.
-
-### Settings
-
-#### enabled (default: true)
-Determines whether the Plugin Finder plugin is enabled in Mod Organizer.
-
-### Adding Plugins
-If you want a plugin added to Plugin Finder, you will need to create a json file in your github repository following this template;
-```
-{
-  "Name": "Plugin Name",
-  "Author": "Author Name",
-  "Description": "A short description of your plugin.",
-  "NexusUrl": "URL to the Nexus page for your plugin.",
-  "GithubUrl": "URL to the Github page for your plugin.",
-  "DocsUrl": "URL to the documentation or readme for your plugin.",
-  "Versions": [
-    {
-      "Version": "Version of this release.",
-      "Released": "Date of this release, in format yyyy-MM-dd",
-      "MinSupport": "Minimum version of Mod Organizer. Displays an unsupported warning when installing to earlier versions.",
-      "MaxSupport": "Maximum version of Mod Organizer. Displays an unsupported warning when installing to newer versions.",
-      "MinWorking": "Minimum version of Mod Organizer. Prevents installation to earlier versions.",
-      "MaxWorking": "Maximum version of Mod Organizer. Prevents installation to newer versions.",
-      "DownloadUrl": "(required) Direct download URL of the zipped release of this plugin",
-      "PluginPath": [
-        ﻿﻿﻿"(required) Array of paths, relative to the zipped download.",
-        ﻿﻿﻿"Any files or folders specified will be copied to the Mod Organizer plugins folder on install."
-      ﻿﻿],
-      "LocalePath": [
-        ﻿﻿﻿"Array of paths, relative to the zipped download.",
-        ﻿﻿﻿"Any files or folders specified will be copied to the Mod Organizer translations folder on install."
-      ],
-      "DataPath": [
-        ﻿﻿﻿"Array of paths, relative to the Mod Organizer plugins folder.",
-        ﻿﻿﻿"Any files or folders specified will be deleted when the plugin is uninstalled."
-      ﻿﻿],
-      "ReleaseNotes": [ "Array of release notes for this release." ]
-    }
-  ]
-}
-```
-
-And you can use the json file for Root Builder as an example;
-```
-{
-  "Name": "Root Builder",
-  "Author": "Kezyma",
-  "Description": "Root Builder is a Mod Organizer 2 plugin that allows you to manage files in the base game folder, not just the Data folder.",
-  "NexusUrl": "https://www.nexusmods.com/skyrimspecialedition/mods/31720",
-  "GithubUrl": "https://github.com/Kezyma/ModOrganizer-Plugins",
-  "DocsUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/readme/rootbuilder/readme.md",
-  "Versions": [
-    {
-      "Version": "4.2.7b",
-      "Released": "2021-12-13",
-      "MinSupport": "2.4.2",
-      "MaxSupport": "2.5.0.0-qt6dev2",
-      "MinWorking": "",
-      "MaxWorking": "",
-      "ReleaseNotes": [ "Added basic support for Mod Organizer 2 v2.5.0" ],
-      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.4.2.7.zip",
-      "PluginPath": [ "rootbuilder" ],
-      "LocalePath": [],
-      "DataPath": [ "data/rootbuilder" ]
-    }
-  ]
-}
-```
-
-If you're worried about making a mistake while generating your json file, you can use the [Plugin Finder Generator](https://kezyma.github.io/PluginFinderGenerator.html) written just for this purpose.
-
-Once your json file is on github (or somewhere else), you'll need to either;
-- Open a pull request adding your file to the [plugin directory](https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/directory/plugin_directory.json) 
-- Open an issue, providing your plugin name and link to your json file.
-- Contact me on Discord and I can add your plugin to the repository. My username is Kezyma#7969
-
-You will need to record new releases in your json file so that Plugin Finder can keep up to date with the latest version of your plugin!
-You do not need to keep a record of every release in your json file, however, if the Min or Max working Mod Organizer version changes, it's worth leaving the most updated release that still works on the previous Mod Organizer version. This way, people using that older version can still install it if they wish.
-
-## Other Plugins
-#### [Root Builder](https://www.nexusmods.com/skyrimspecialedition/mods/31720), [Reinstaller](https://www.nexusmods.com/skyrimspecialedition/mods/59292), [Shortcutter](https://www.nexusmods.com/skyrimspecialedition/mods/59827)
+#### Other Plugins
+##### [Root Builder](https://www.nexusmods.com/skyrimspecialedition/mods/31720), [Reinstaller](https://www.nexusmods.com/skyrimspecialedition/mods/59292), [Shortcutter](https://www.nexusmods.com/skyrimspecialedition/mods/59827)
