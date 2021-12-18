@@ -18,10 +18,7 @@ Reinstaller is a Mod Organizer 2 plugin that allows you to backup downloaded mod
 
 Shortcutter is a Mod Organizer 2 plugin that gives you the option of quickly creating instance and profile specific desktop shortcuts, allowing you to quickly launch your game using different profiles without having to manually switch inside Mod Organizer.
 
-### [Plugin Finder](/readme/pluginfinder/readme.md)
-[Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/59869), 
-[Download](https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/pluginfinder/pluginfinder.zip)
-
+### [Plugin Finder](https://kezyma.github.io/?p=pluginfinder)
 Plugin Finder is a Mod Organizer 2 plugin that allows you to browse and install other plugins for Mod Organizer, as well as uninstall them.
 
 ## Usage
