@@ -18,6 +18,23 @@
       "PluginPath": [ "reinstaller" ],
       "LocalePath": [],
       "DataPath": [ "data/reinstaller" ]
+    },
+    {
+      "Version": "1.1.0b",
+      "Released": "2021-12-19",
+      "MinSupport": "2.4.2",
+      "MaxSupport": "2.5.0.0-qt6dev2",
+      "MinWorking": "",
+      "MaxWorking": "",
+      "ReleaseNotes": [
+        "(1.1.0) Resizable main UI.",
+        "(1.1.0) Added icons to buttons.",
+        "(1.1.0) Adding files will default to use the actual mod name."
+      ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/reinstaller/reinstaller.1.1.0.zip",
+      "PluginPath": [ "reinstaller" ],
+      "LocalePath": [],
+      "DataPath": [ "data/reinstaller" ]
     }
   ]
 }
