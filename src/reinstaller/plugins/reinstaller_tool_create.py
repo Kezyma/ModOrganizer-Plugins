@@ -43,6 +43,6 @@ class ReinstallerCreateTool(ReinstallerPlugin, mobase.IPluginTool):
         modFiles = self.reinstaller.files.getDownloadFileOptions()
         item, ok = QInputDialog.getItem(self.dialog, "Select Installer", "Installer:", modFiles, 0, False)
         if ok and item:
-            name, ok = QInputDialog.getText(self.dialog, "Name", "Installer Name:", QLineEdit.Normal, str(item).split("-")[0])
+            name, ok = QInputDialog.getText(self.dialog, "Name", "Installer Name:", QLineEdit.Normal, self.reinstaller.files.getDownloadFileName(str(item)))
             if ok and name:
                 self.reinstaller.create(str(name), str(item))
