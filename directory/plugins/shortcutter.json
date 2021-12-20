@@ -10,15 +10,33 @@
       "Version": "1.0.6a",
       "Released": "2021-12-14",
       "MinSupport": "2.4.2",
-      "MaxSupport": "2.5.0.0-qt6dev2",
-      "MinWorking": "",
+      "MaxSupport": "2.5.0.0-qt6dev4",
+      "MinWorking": "2.4.0",
       "MaxWorking": "",
-      "ReleaseNotes": [ 
+      "ReleaseNotes": [
         "(1.0.4) Added basic support for Mod Organizer 2 v2.5.0",
         "(1.0.5) Fix for a bug when Shortcutter is located at a path with spaces in it.",
-        "(1.0.6) Fix for Shortcutter getting sent to the back when creating a shortcut." 
+        "(1.0.6) Fix for Shortcutter getting sent to the back when creating a shortcut."
       ],
       "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/shortcutter/shortcutter.1.0.6.zip",
+      "PluginPath": [ "shortcutter" ],
+      "LocalePath": [],
+      "DataPath": [ "data/shortcutter" ]
+    },
+    {
+      "Version": "1.1.0b",
+      "Released": "2021-12-20",
+      "MinSupport": "2.4.2",
+      "MaxSupport": "2.5.0.0-qt6dev4",
+      "MinWorking": "2.4.0",
+      "MaxWorking": "",
+      "ReleaseNotes": [
+        "(1.1.0) Rebuilt the UI to be resizable and more responsive overall.",
+        "(1.1.0) Removed 'always on top' flag.",
+        "(1.1.0) Fixed issues with MO 2.5.0 support.",
+        "(1.1.0) Improved error handling."
+      ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/shortcutter/shortcutter.1.1.0.zip",
       "PluginPath": [ "shortcutter" ],
       "LocalePath": [],
       "DataPath": [ "data/shortcutter" ]

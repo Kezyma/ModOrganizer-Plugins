@@ -2,30 +2,20 @@ try:
     from PyQt5.QtWidgets import QFileDialog, QFileIconProvider, QFormLayout, QInputDialog, QLineEdit, QVBoxLayout, QWidget
     from PyQt5.QtCore import QCoreApplication, qInfo, QSize
     from PyQt5 import QtGui, QtWidgets, QtCore
-    qtAlignLeading = QtCore.Qt.AlignLeading
-    qtAlignLeft = QtCore.Qt.AlignLeft
-    qtAlignTop = QtCore.Qt.AlignTop
-    qtAlignHCenter = QtCore.Qt.AlignHCenter
-    qtAlignVCenter = QtCore.Qt.AlignVCenter
+    qtAlign = QtCore.Qt
     qtHLine = QtWidgets.QFrame.HLine
     qtSunken = QtWidgets.QFrame.Sunken
     qtWindow = QtCore.Qt.Window 
-    qtWindowHint = QtCore.Qt.CustomizeWindowHint 
-    qtStaysOnTop = QtCore.Qt.WindowStaysOnTopHint
+    qtSizePolicy = QtWidgets.QSizePolicy
 except:
     from PyQt6.QtWidgets import QFileDialog, QFileIconProvider, QFormLayout, QInputDialog, QLineEdit, QVBoxLayout, QWidget
     from PyQt6.QtCore import QCoreApplication, qInfo, QSize
     from PyQt6 import QtGui, QtWidgets, QtCore
-    qtAlignLeading = QtCore.Qt.AlignmentFlag.AlignLeading
-    qtAlignLeft = QtCore.Qt.AlignmentFlag.AlignLeft
-    qtAlignTop = QtCore.Qt.AlignmentFlag.AlignTop
-    qtAlignHCenter = QtCore.Qt.AlignmentFlag.AlignHCenter
-    qtAlignVCenter = QtCore.Qt.AlignmentFlag.AlignVCenter
+    qtAlign = QtCore.Qt.AlignmentFlag
     qtHLine = QtWidgets.QFrame.Shape.HLine
     qtSunken = QtWidgets.QFrame.Shadow.Sunken
     qtWindow = QtCore.Qt.WindowType.Window 
-    qtWindowHint = QtCore.Qt.WindowType.CustomizeWindowHint 
-    qtStaysOnTop = QtCore.Qt.WindowType.WindowStaysOnTopHint
+    qtSizePolicy = QtWidgets.QSizePolicy.Policy
 from datetime import datetime
 from ..pluginfinder_plugin import PluginFinderPlugin
 from ..models.plugin_data import PluginData
@@ -68,7 +58,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         tempLabel.setObjectName("tempLabel")
         tempLabel.setText(text)
         tempLabel.setGeometry(QtCore.QRect(0, 0, 200, 50))
-        tempLabel.setAlignment(qtAlignHCenter | qtAlignVCenter)
+        tempLabel.setAlignment(qtAlign.AlignHCenter | qtAlign.AlignVCenter)
         tempLabel.setVisible(True)
         tempLabel.setEnabled(True)
         QtCore.QMetaObject.connectSlotsByName(tempDialog)
@@ -150,13 +140,13 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         dialog.setMinimumSize(QtCore.QSize(623, 700))
         dialog.setWindowIcon(self.icons.pluginIcon())
         dialog.rejected.connect(self.onClose)
-        dialog.setWindowFlags(qtStaysOnTop)
+        #dialog.setWindowFlags(qtStaysOnTop)
         self.dialogLayout = QtWidgets.QVBoxLayout(dialog)
         self.dialogLayout.setObjectName("dialogLayout")
 
         # Header Widget
         self.filterWidget = QtWidgets.QWidget(dialog)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.filterWidget.sizePolicy().hasHeightForWidth())
@@ -187,7 +177,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         # Footer Widget
         self.footerWidget = QtWidgets.QWidget(dialog)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.footerWidget.sizePolicy().hasHeightForWidth())
@@ -197,7 +187,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         self.footerLayout.setObjectName("footerLayout")
         self.footerLayout.setContentsMargins(0, 0, 0, 0)
         self.prevButton = QtWidgets.QPushButton(self.footerWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Maximum, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.prevButton.sizePolicy().hasHeightForWidth())
@@ -210,11 +200,11 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         self.prevButton.clicked.connect(self.prevPage)
         self.footerLayout.addWidget(self.prevButton)
 
-        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem = QtWidgets.QSpacerItem(40, 20, qtSizePolicy.Expanding, qtSizePolicy.Minimum)
         self.footerLayout.addItem(spacerItem)
 
         self.refreshButton = QtWidgets.QPushButton(self.footerWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Maximum, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.refreshButton.sizePolicy().hasHeightForWidth())
@@ -227,11 +217,11 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         self.refreshButton.clicked.connect(self.refreshPage)
         self.footerLayout.addWidget(self.refreshButton)
 
-        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem1 = QtWidgets.QSpacerItem(40, 20, qtSizePolicy.Expanding, qtSizePolicy.Minimum)
         self.footerLayout.addItem(spacerItem1)
 
         self.nextButton = QtWidgets.QPushButton(self.footerWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Maximum, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.nextButton.sizePolicy().hasHeightForWidth())
@@ -304,7 +294,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         widget = QtWidgets.QWidget()
         widget.setObjectName("widget")
         widget.resize(949, 102)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Minimum, qtSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(1)
         sizePolicy.setHeightForWidth(widget.sizePolicy().hasHeightForWidth())
@@ -316,7 +306,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         
         # Plugin Header Container
         pluginHeaderWidget = QtWidgets.QWidget(widget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(pluginHeaderWidget.sizePolicy().hasHeightForWidth())
@@ -329,7 +319,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         
         # Plugin Label Container
         pluginLabelWidget = QtWidgets.QWidget(pluginHeaderWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(pluginLabelWidget.sizePolicy().hasHeightForWidth())
@@ -342,7 +332,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         # Plugin Title Container
         pluginTitleWidget = QtWidgets.QWidget(pluginLabelWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(pluginTitleWidget.sizePolicy().hasHeightForWidth())
@@ -362,7 +352,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
             isRC = self.pluginfinder.utilities.rcVersion(ver)
             if isAlpha or isBeta or isRC:
                 releaseTypeIcon = QtWidgets.QLabel(pluginTitleWidget)
-                sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Maximum)
+                sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Maximum)
                 sizePolicy.setHorizontalStretch(0)
                 sizePolicy.setVerticalStretch(0)
                 sizePolicy.setHeightForWidth(releaseTypeIcon.sizePolicy().hasHeightForWidth())
@@ -386,7 +376,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         # Plugin Title
         pluginNameLabel = QtWidgets.QLabel(pluginTitleWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Maximum, qtSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(pluginNameLabel.sizePolicy().hasHeightForWidth())
@@ -398,7 +388,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         # Plugin Tag
         pluginTagIcon = QtWidgets.QLabel(pluginTitleWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(pluginTagIcon.sizePolicy().hasHeightForWidth())
@@ -413,7 +403,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         # Subheading Container
         pluginSubheadingWidget = QtWidgets.QWidget(pluginLabelWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(pluginSubheadingWidget.sizePolicy().hasHeightForWidth())
@@ -426,7 +416,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         # Release Date
         pluginReleaseDate = QtWidgets.QLabel(pluginSubheadingWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Maximum, qtSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(pluginReleaseDate.sizePolicy().hasHeightForWidth())
@@ -441,7 +431,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         if pluginData.author() and pluginData.author() != "":
             authorText = "by " + pluginData.author()
         pluginAuthorLabel = QtWidgets.QLabel(pluginSubheadingWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(pluginAuthorLabel.sizePolicy().hasHeightForWidth())
@@ -453,7 +443,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         # Download Count
         downloadsIcon = QtWidgets.QLabel(pluginSubheadingWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(downloadsIcon.sizePolicy().hasHeightForWidth())
@@ -465,7 +455,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         downloadsIcon.setObjectName("downloadsIcon")
         pluginSubheadingLayout.addWidget(downloadsIcon)
         pluginInstallCount = QtWidgets.QLabel(pluginSubheadingWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Maximum, qtSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(pluginInstallCount.sizePolicy().hasHeightForWidth())
@@ -480,7 +470,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         # Update Info Widget
         pluginUpdateWidget = QtWidgets.QWidget(pluginHeaderWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Maximum, qtSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(pluginUpdateWidget.sizePolicy().hasHeightForWidth())
@@ -492,14 +482,14 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         # Plugin Update Icon
         updateIcon = QtWidgets.QLabel(pluginUpdateWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Maximum, qtSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(updateIcon.sizePolicy().hasHeightForWidth())
         updateIcon.setSizePolicy(sizePolicy)
         updateIcon.setText("")
         updateIcon.setScaledContents(False)
-        updateIcon.setAlignment(QtCore.Qt.AlignCenter)
+        updateIcon.setAlignment(qtAlign.AlignCenter)
         updateIcon.setMinimumSize(16, 16)
         updateIcon.setObjectName("updateIcon")
         if showUpdateIcon:
@@ -527,7 +517,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         # Version Info Container
         pluginVersionWidget = QtWidgets.QWidget(pluginUpdateWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Maximum, qtSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(pluginVersionWidget.sizePolicy().hasHeightForWidth())
@@ -541,7 +531,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         # Current Version
         currentVersionLabel = QtWidgets.QLabel(pluginVersionWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Maximum, qtSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(currentVersionLabel.sizePolicy().hasHeightForWidth())
@@ -558,7 +548,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         # Installed Version
         installedVersionLabel = QtWidgets.QLabel(pluginVersionWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Maximum, qtSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(installedVersionLabel.sizePolicy().hasHeightForWidth())
@@ -581,7 +571,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         # Installation Buttons Container
         pluginInstallWidget = QtWidgets.QWidget(pluginHeaderWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Maximum, qtSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(pluginInstallWidget.sizePolicy().hasHeightForWidth())
@@ -594,7 +584,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         # Install Button
         installButton = QtWidgets.QPushButton(pluginInstallWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Fixed, qtSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setRetainSizeWhenHidden(True)
@@ -613,7 +603,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         # Uninstall Button
         uninstallButton = QtWidgets.QPushButton(pluginInstallWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Maximum, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setRetainSizeWhenHidden(True)
@@ -634,7 +624,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         # Link Buttons Container
         pluginLinksWidget = QtWidgets.QWidget(pluginHeaderWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Maximum, qtSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(pluginLinksWidget.sizePolicy().hasHeightForWidth())
@@ -647,7 +637,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         # Docs Button
         docsButton = QtWidgets.QPushButton(pluginLinksWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Maximum, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(docsButton.sizePolicy().hasHeightForWidth())
@@ -667,7 +657,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         # Github Button
         githubButton = QtWidgets.QPushButton(pluginLinksWidget)
         githubButton.setFlat(True)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Maximum, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(docsButton.sizePolicy().hasHeightForWidth())
@@ -686,7 +676,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         # Nexus Button
         nexusButton = QtWidgets.QPushButton(pluginLinksWidget)
         nexusButton.setFlat(True)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Maximum, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(docsButton.sizePolicy().hasHeightForWidth())
@@ -707,13 +697,13 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         # Description
         pluginDescription = QtWidgets.QLabel(widget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Minimum, qtSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(pluginDescription.sizePolicy().hasHeightForWidth())
         pluginDescription.setSizePolicy(sizePolicy)
         pluginDescription.setScaledContents(False)
-        pluginDescription.setAlignment(qtAlignLeading|qtAlignLeft|qtAlignTop)
+        pluginDescription.setAlignment(qtAlign.AlignLeading|qtAlign.AlignLeft|qtAlign.AlignTop)
         pluginDescription.setWordWrap(True)
         pluginDescription.setObjectName("pluginDescription")
         if pluginData.description() and pluginData.description() != "":
@@ -729,7 +719,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
         widget = QtWidgets.QWidget()
         widget.setObjectName("widget")
         widget.resize(949, 102)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Minimum, qtSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(1)
         sizePolicy.setHeightForWidth(widget.sizePolicy().hasHeightForWidth())
@@ -741,7 +731,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         # Plugin Title
         pluginNameLabel = QtWidgets.QLabel(widget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Maximum, qtSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(pluginNameLabel.sizePolicy().hasHeightForWidth())
@@ -753,7 +743,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         # Release Date
         pluginReleaseDate = QtWidgets.QLabel(widget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Maximum, qtSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(pluginReleaseDate.sizePolicy().hasHeightForWidth())
@@ -764,13 +754,13 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
         # Description
         pluginDescription = QtWidgets.QLabel(widget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Minimum, qtSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(pluginDescription.sizePolicy().hasHeightForWidth())
         pluginDescription.setSizePolicy(sizePolicy)
         pluginDescription.setScaledContents(False)
-        pluginDescription.setAlignment(qtAlignLeading|qtAlignLeft|qtAlignTop)
+        pluginDescription.setAlignment(qtAlign.AlignLeading|qtAlign.AlignLeft|qtAlign.AlignTop)
         pluginDescription.setWordWrap(True)
         pluginDescription.setObjectName("pluginDescription")
         pluginLayout.addWidget(pluginDescription)
@@ -780,7 +770,7 @@ class PluginFinderBrowser(PluginFinderPlugin, mobase.IPluginTool):
 
     def getPluginSeparator(self):
         pluginSeparator = QtWidgets.QFrame()
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(pluginSeparator.sizePolicy().hasHeightForWidth())

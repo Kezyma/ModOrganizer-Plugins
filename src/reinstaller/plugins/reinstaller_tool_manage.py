@@ -5,6 +5,7 @@ try:
     qtHLine = QtWidgets.QFrame.HLine
     qtSunken = QtWidgets.QFrame.Sunken
     qtStaysOnTop = QtCore.Qt.WindowStaysOnTopHint
+    qtSizePolicy = QtWidgets.QSizePolicy
 except:
     from PyQt6.QtWidgets import QInputDialog, QLineEdit
     from PyQt6.QtCore import QCoreApplication
@@ -12,6 +13,7 @@ except:
     qtHLine = QtWidgets.QFrame.Shape.HLine
     qtSunken = QtWidgets.QFrame.Shadow.Sunken
     qtStaysOnTop = QtCore.Qt.WindowType.WindowStaysOnTopHint
+    qtSizePolicy = QtWidgets.QSizePolicy.Policy
 from pathlib import Path
 from ..reinstaller_plugin import ReinstallerPlugin
 import mobase
@@ -96,11 +98,10 @@ class ReinstallerManageTool(ReinstallerPlugin, mobase.IPluginTool):
 
     def getDialog(self):
         dialog = QtWidgets.QDialog()
-        
         dialog.setObjectName("dialog")
         dialog.resize(420, 230)
         dialog.setWindowIcon(self.icon())
-        dialog.setWindowFlags(qtStaysOnTop)
+        #dialog.setWindowFlags(qtStaysOnTop)
         dialog.setWindowTitle("Reinstaller")
         self.dialogLayout = QtWidgets.QVBoxLayout(dialog)
         self.dialogLayout.setContentsMargins(5, 5, 5, 5)
@@ -116,7 +117,7 @@ class ReinstallerManageTool(ReinstallerPlugin, mobase.IPluginTool):
         self.addLayout.setObjectName("addLayout")
 
         self.addFileText = QtWidgets.QLineEdit(self.addWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.addFileText.sizePolicy().hasHeightForWidth())
@@ -127,7 +128,7 @@ class ReinstallerManageTool(ReinstallerPlugin, mobase.IPluginTool):
         self.addFileText.textChanged.connect(self.addFileTextChanged)
 
         self.addFileSelect = QtWidgets.QComboBox(self.addWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.addFileSelect.sizePolicy().hasHeightForWidth())
@@ -137,7 +138,7 @@ class ReinstallerManageTool(ReinstallerPlugin, mobase.IPluginTool):
         self.addLayout.addWidget(self.addFileSelect, 1)
 
         self.addButton = QtWidgets.QPushButton(self.addWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Fixed, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.addButton.sizePolicy().hasHeightForWidth())
@@ -165,7 +166,7 @@ class ReinstallerManageTool(ReinstallerPlugin, mobase.IPluginTool):
         self.installLayout.setObjectName("installLayout")
         
         self.installerSelect = QtWidgets.QComboBox(self.installWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Minimum, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.installerSelect.sizePolicy().hasHeightForWidth())
@@ -174,7 +175,7 @@ class ReinstallerManageTool(ReinstallerPlugin, mobase.IPluginTool):
         self.installLayout.addWidget(self.installerSelect)
 
         self.installButton = QtWidgets.QPushButton(self.installWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Fixed, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.installButton.sizePolicy().hasHeightForWidth())
@@ -187,7 +188,7 @@ class ReinstallerManageTool(ReinstallerPlugin, mobase.IPluginTool):
         self.installButton.clicked.connect(self.installButtonClick)
 
         self.deleteButton = QtWidgets.QPushButton(self.installWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Fixed, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.deleteButton.sizePolicy().hasHeightForWidth())

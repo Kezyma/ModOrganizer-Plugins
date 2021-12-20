@@ -10,8 +10,8 @@
       "Version": "1.0.6a",
       "Released": "2021-12-13",
       "MinSupport": "2.4.2",
-      "MaxSupport": "2.5.0.0-qt6dev2",
-      "MinWorking": "",
+      "MaxSupport": "2.5.0.0-qt6dev4",
+      "MinWorking": "2.4.0",
       "MaxWorking": "",
       "ReleaseNotes": [ "(1.0.6) Added basic support for Mod Organizer 2 v2.5.0" ],
       "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/reinstaller/reinstaller.1.0.6.zip",
@@ -20,18 +20,21 @@
       "DataPath": [ "data/reinstaller" ]
     },
     {
-      "Version": "1.1.0b",
-      "Released": "2021-12-19",
+      "Version": "1.1.1b",
+      "Released": "2021-12-20",
       "MinSupport": "2.4.2",
-      "MaxSupport": "2.5.0.0-qt6dev2",
-      "MinWorking": "",
+      "MaxSupport": "2.5.0.0-qt6dev4",
+      "MinWorking": "2.4.0",
       "MaxWorking": "",
       "ReleaseNotes": [
         "(1.1.0) Resizable main UI.",
         "(1.1.0) Added icons to buttons.",
-        "(1.1.0) Adding files will default to use the actual mod name."
+        "(1.1.0) Adding files will default to use the actual mod name.",
+        "(1.1.1) Removed 'always on top' flag.",
+        "(1.1.1) Fixed issues with MO 2.5.0 support.",
+        "(1.1.1) Improved error handling."
       ],
-      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/reinstaller/reinstaller.1.1.0.zip",
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/reinstaller/reinstaller.1.1.1.zip",
       "PluginPath": [ "reinstaller" ],
       "LocalePath": [],
       "DataPath": [ "data/reinstaller" ]

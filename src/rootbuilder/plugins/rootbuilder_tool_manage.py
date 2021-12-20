@@ -4,13 +4,14 @@ try:
     qtHLine = QtWidgets.QFrame.HLine
     qtSunken = QtWidgets.QFrame.Sunken
     qtStaysOnTop = QtCore.Qt.WindowStaysOnTopHint
+    qtSizePolicy = QtWidgets.QSizePolicy
 except:
     from PyQt6.QtCore import QCoreApplication, qInfo
     from PyQt6 import QtCore, QtWidgets
     qtHLine = QtWidgets.QFrame.Shape.HLine
     qtSunken = QtWidgets.QFrame.Shadow.Sunken
     qtStaysOnTop = QtCore.Qt.WindowType.WindowStaysOnTopHint
-
+    qtSizePolicy = QtWidgets.QSizePolicy.Policy
 from ..rootbuilder_plugin import RootBuilderPlugin
 import mobase
 
@@ -29,7 +30,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         # Panel Settings
         dialog.setObjectName("dialog")
         dialog.resize(465, 400)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(dialog.sizePolicy().hasHeightForWidth())
@@ -37,7 +38,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         dialog.setMinimumSize(QtCore.QSize(465, 400))
         dialog.setWindowTitle("Root Builder")
         dialog.setWindowIcon(self.icon())
-        dialog.setWindowFlags(qtStaysOnTop)
+        #dialog.setWindowFlags(qtStaysOnTop)
         self.dialogLayout = QtWidgets.QVBoxLayout(dialog)
         self.dialogLayout.setContentsMargins(5, 5, 5, 5)
         self.dialogLayout.setSpacing(5)
@@ -45,7 +46,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
 
         # Mode Settings
         self.modeContainer = QtWidgets.QWidget(dialog)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Minimum, qtSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(1)
         sizePolicy.setHeightForWidth(self.modeContainer.sizePolicy().hasHeightForWidth())
@@ -57,7 +58,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.modeLayout.setObjectName("modeLayout")
 
         self.modeLabel = QtWidgets.QLabel(self.modeContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.modeLabel.sizePolicy().hasHeightForWidth())
@@ -68,7 +69,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
 
         # Copy
         self.copyContainer = QtWidgets.QWidget(self.modeContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.copyContainer.sizePolicy().hasHeightForWidth())
@@ -79,7 +80,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.copyLayout.setSpacing(5)
         self.copyLayout.setObjectName("copyLayout")
         self.copyButton = QtWidgets.QRadioButton(self.copyContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Fixed, qtSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.copyButton.sizePolicy().hasHeightForWidth())
@@ -98,7 +99,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
 
         # USVFS
         self.usvfsContainer = QtWidgets.QWidget(self.modeContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.usvfsContainer.sizePolicy().hasHeightForWidth())
@@ -109,7 +110,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.usvfsLayout.setSpacing(5)
         self.usvfsLayout.setObjectName("usvfsLayout")
         self.usvfsButton = QtWidgets.QRadioButton(self.usvfsContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Fixed, qtSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.usvfsButton.sizePolicy().hasHeightForWidth())
@@ -128,7 +129,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
 
         # USVFS + Links
         self.linkContainer = QtWidgets.QWidget(self.modeContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.linkContainer.sizePolicy().hasHeightForWidth())
@@ -139,7 +140,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.linkLayout.setSpacing(5)
         self.linkLayout.setObjectName("linkLayout")
         self.linkButton = QtWidgets.QRadioButton(self.linkContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Fixed, qtSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.linkButton.sizePolicy().hasHeightForWidth())
@@ -160,7 +161,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
 
         # Settings
         self.settingsContainer = QtWidgets.QWidget(dialog)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(2)
         sizePolicy.setHeightForWidth(self.settingsContainer.sizePolicy().hasHeightForWidth())
@@ -171,7 +172,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.settingsLayout.setSpacing(0)
         self.settingsLayout.setObjectName("settingsLayout")
         self.settingsLabel = QtWidgets.QLabel(self.settingsContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.settingsLabel.sizePolicy().hasHeightForWidth())
@@ -182,7 +183,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
 
         # Backup
         self.backupContainer = QtWidgets.QWidget(self.settingsContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.backupContainer.sizePolicy().hasHeightForWidth())
@@ -192,7 +193,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.backupLayout.setContentsMargins(0, 0, 0, 0)
         self.backupLayout.setObjectName("backupLayout")
         self.backupCheck = QtWidgets.QCheckBox(self.backupContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Fixed, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.backupCheck.sizePolicy().hasHeightForWidth())
@@ -203,7 +204,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.backupCheck.clicked.connect(self.backupChanged)
         self.backupLayout.addWidget(self.backupCheck)
         self.backupLabel = QtWidgets.QLabel(self.backupContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.backupLabel.sizePolicy().hasHeightForWidth())
@@ -216,7 +217,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
 
         # Cache
         self.cacheContainer = QtWidgets.QWidget(self.settingsContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.cacheContainer.sizePolicy().hasHeightForWidth())
@@ -226,7 +227,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.cacheLayout.setContentsMargins(0, 0, 0, 0)
         self.cacheLayout.setObjectName("cacheLayout")
         self.cacheCheck = QtWidgets.QCheckBox(self.cacheContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Fixed, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.cacheCheck.sizePolicy().hasHeightForWidth())
@@ -237,7 +238,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.cacheCheck.clicked.connect(self.cacheChanged)
         self.cacheLayout.addWidget(self.cacheCheck)
         self.cacheLabel = QtWidgets.QLabel(self.cacheContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.cacheLabel.sizePolicy().hasHeightForWidth())
@@ -250,7 +251,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
 
         # Autobuild
         self.autobuildContainer = QtWidgets.QWidget(self.settingsContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.autobuildContainer.sizePolicy().hasHeightForWidth())
@@ -260,7 +261,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.autobuildLayout.setContentsMargins(0, 0, 0, 0)
         self.autobuildLayout.setObjectName("autobuildLayout")
         self.autobuildCheck = QtWidgets.QCheckBox(self.autobuildContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Fixed, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.autobuildCheck.sizePolicy().hasHeightForWidth())
@@ -271,7 +272,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.autobuildCheck.clicked.connect(self.autobuildChanged)
         self.autobuildLayout.addWidget(self.autobuildCheck)
         self.autobuildLabel = QtWidgets.QLabel(self.autobuildContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.autobuildLabel.sizePolicy().hasHeightForWidth())
@@ -284,7 +285,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
 
         # Redirect
         self.redirectContainer = QtWidgets.QWidget(self.settingsContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.redirectContainer.sizePolicy().hasHeightForWidth())
@@ -294,7 +295,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.redirectLayout.setContentsMargins(0, 0, 0, 0)
         self.redirectLayout.setObjectName("redirectLayout")
         self.redirectCheck = QtWidgets.QCheckBox(self.redirectContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Fixed, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.redirectCheck.sizePolicy().hasHeightForWidth())
@@ -305,7 +306,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.redirectCheck.clicked.connect(self.redirectChanged)
         self.redirectLayout.addWidget(self.redirectCheck)
         self.redirectLabel = QtWidgets.QLabel(self.redirectContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.redirectLabel.sizePolicy().hasHeightForWidth())
@@ -318,7 +319,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
 
         # Text Settings
         self.textSettingContainer = QtWidgets.QWidget(self.settingsContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.textSettingContainer.sizePolicy().hasHeightForWidth())
@@ -330,7 +331,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.textSettingLayout.setObjectName("textSettingLayout")
 
         self.textInputContainer = QtWidgets.QWidget(self.settingsContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.textInputContainer.sizePolicy().hasHeightForWidth())
@@ -343,7 +344,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
 
         # Exclusions Label
         self.exclusionsLabelContainer = QtWidgets.QWidget(self.textSettingContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.exclusionsLabelContainer.sizePolicy().hasHeightForWidth())
@@ -354,7 +355,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.exclusionsLabelLayout.setSpacing(1)
         self.exclusionsLabelLayout.setObjectName("exclusionsLabelLayout")
         self.exclusionsLabel = QtWidgets.QLabel(self.exclusionsLabelContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.exclusionsLabel.sizePolicy().hasHeightForWidth())
@@ -363,7 +364,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.exclusionsLabel.setText("<html><head/><body><p><span style=\" font-size:9pt;\">Exclusions</span></p></body></html>")
         self.exclusionsLabelLayout.addWidget(self.exclusionsLabel)
         self.exclusionsDescLabel = QtWidgets.QLabel(self.exclusionsLabelContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.exclusionsDescLabel.sizePolicy().hasHeightForWidth())
@@ -381,7 +382,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
 
         # Extensions Label
         self.extensionsLabelWidget = QtWidgets.QWidget(self.textSettingContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.extensionsLabelWidget.sizePolicy().hasHeightForWidth())
@@ -392,7 +393,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.extensionsLayout.setSpacing(1)
         self.extensionsLayout.setObjectName("extensionsLayout")
         self.extensionsLabel = QtWidgets.QLabel(self.extensionsLabelWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.extensionsLabel.sizePolicy().hasHeightForWidth())
@@ -401,7 +402,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.extensionsLabel.setText("<html><head/><body><p><span style=\" font-size:9pt;\">Link Extensions</span></p></body></html>")
         self.extensionsLayout.addWidget(self.extensionsLabel)
         self.extensionsDescLabel = QtWidgets.QLabel(self.extensionsLabelWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.extensionsDescLabel.sizePolicy().hasHeightForWidth())
@@ -423,7 +424,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         
         # Actions
         self.actionsContainer = QtWidgets.QWidget(dialog)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.actionsContainer.sizePolicy().hasHeightForWidth())
@@ -437,7 +438,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
 
         # Build
         self.buildButton = QtWidgets.QPushButton(self.actionsContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Minimum, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.buildButton.sizePolicy().hasHeightForWidth())
@@ -450,7 +451,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
 
         # Sync
         self.syncButton = QtWidgets.QPushButton(self.actionsContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Minimum, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.syncButton.sizePolicy().hasHeightForWidth())
@@ -463,7 +464,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
 
         # Clear
         self.clearButton = QtWidgets.QPushButton(self.actionsContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Minimum, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.clearButton.sizePolicy().hasHeightForWidth())
@@ -478,7 +479,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
 
         # Utilities
         self.utilitiesContainer = QtWidgets.QWidget(dialog)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.utilitiesContainer.sizePolicy().hasHeightForWidth())
@@ -491,12 +492,12 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
 
         # Backup
         self.backupButton = QtWidgets.QPushButton(self.utilitiesContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.MinimumExpanding, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.backupButton.sizePolicy().hasHeightForWidth())
         self.backupButton.setSizePolicy(sizePolicy)
-        self.backupButton.setIcon(self.icons.downloadIcon())
+        self.backupButton.setIcon(self.icons.installIcon())
         self.backupButton.setObjectName("backupButton")
         self.backupButton.setText("Create Backup")
         self.backupButton.clicked.connect(self.backupClick)
@@ -504,7 +505,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
 
         # Delete Backup
         self.delBackupButton = QtWidgets.QPushButton(self.utilitiesContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.MinimumExpanding, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.delBackupButton.sizePolicy().hasHeightForWidth())
@@ -517,12 +518,12 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
 
         # Cache
         self.cacheButton = QtWidgets.QPushButton(self.utilitiesContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.MinimumExpanding, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.cacheButton.sizePolicy().hasHeightForWidth())
         self.cacheButton.setSizePolicy(sizePolicy)
-        self.cacheButton.setIcon(self.icons.downloadIcon())
+        self.cacheButton.setIcon(self.icons.installIcon())
         self.cacheButton.setObjectName("cacheButton")
         self.cacheButton.setText("Create Cache")
         self.cacheButton.clicked.connect(self.cacheClick)
@@ -530,7 +531,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
 
         # Delete Cache
         self.delCacheButton = QtWidgets.QPushButton(self.utilitiesContainer)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.MinimumExpanding, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.delCacheButton.sizePolicy().hasHeightForWidth())

@@ -1,6 +1,10 @@
 import os, shutil, hashlib, stat, re, mobase
 from shutil import copy2
 from pathlib import Path
+try:
+    from PyQt5.QtCore import QCoreApplication, qInfo
+except:
+    from PyQt6.QtCore import QCoreApplication, qInfo
 
 class SharedUtilities():
 
@@ -8,26 +12,38 @@ class SharedUtilities():
         super().__init__()
 
     def copyTo(self, fromPath=Path, toPath=Path):
-        if (Path(toPath).exists()):
-            os.chmod(toPath, stat.S_IWRITE)
-        os.makedirs(os.path.dirname(toPath), exist_ok=True)
-        copy2(fromPath, toPath)
+        try:
+            if (Path(toPath).exists()):
+                os.chmod(toPath, stat.S_IWRITE)
+            os.makedirs(os.path.dirname(toPath), exist_ok=True)
+            copy2(fromPath, toPath)
+        except:
+            qInfo("Could not copy " + str(fromPath) + " to " + str(toPath))
 
     def replaceDir(self, fromPath=Path, toPath=Path):
-        if (Path(toPath).exists()):
-            shutil.rmtree(toPath)
-        shutil.copytree(fromPath, toPath)
+        try:
+            if (Path(toPath).exists()):
+                shutil.rmtree(toPath)
+            shutil.copytree(fromPath, toPath)
+        except:
+            qInfo("Could not replace " + str(toPath) + " with " + str(fromPath))
 
     def deletePath(self, path=Path):
-        if (Path(path).exists()):
-            os.chmod(path, stat.S_IWRITE)
-        os.remove(path)
+        try:
+            if (Path(path).exists()):
+                os.chmod(path, stat.S_IWRITE)
+            os.remove(path)
+        except:
+            qInfo("Could not delete " + str(path))
 
     def moveTo(self, fromPath=Path, toPath=Path):
-        if (Path(toPath).exists()):
-            os.chmod(toPath, stat.S_IWRITE)
-        os.makedirs(os.path.dirname(toPath), exist_ok=True)
-        shutil.move(str(fromPath), str(toPath))
+        try:
+            if (Path(toPath).exists()):
+                os.chmod(toPath, stat.S_IWRITE)
+            os.makedirs(os.path.dirname(toPath), exist_ok=True)
+            shutil.move(str(fromPath), str(toPath))
+        except:
+            qInfo("Could not move " + str(fromPath) + " to " + str(toPath))
 
     def hashFile(self, path):
         """ Hashes a file and returns the hash """

@@ -10,8 +10,8 @@
       "Version": "4.2.7b",
       "Released": "2021-12-13",
       "MinSupport": "2.4.2",
-      "MaxSupport": "2.5.0.0-qt6dev2",
-      "MinWorking": "",
+      "MaxSupport": "2.5.0.0-qt6dev4",
+      "MinWorking": "2.4.0",
       "MaxWorking": "",
       "ReleaseNotes": [ "(4.2.7) Added basic support for Mod Organizer 2 v2.5.0" ],
       "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.4.2.7.zip",
@@ -20,19 +20,22 @@
       "DataPath": [ "data/rootbuilder" ]
     },
     {
-      "Version": "4.3.0b",
-      "Released": "2021-12-13",
+      "Version": "4.3.1b",
+      "Released": "2021-12-20",
       "MinSupport": "2.4.2",
-      "MaxSupport": "2.5.0.0-qt6dev2",
-      "MinWorking": "",
+      "MaxSupport": "2.5.0.0-qt6dev4",
+      "MinWorking": "2.4.0",
       "MaxWorking": "",
       "ReleaseNotes": [
         "(4.3.0) Made UI resiazable.",
         "(4.3.0) Added new icons to buttons.",
         "(4.3.0) Moved buttons to the bottom the of the UI.",
-        "(4.3.0) Disable the delete cache and backup buttons if a cache or backup doesn't exist."
+        "(4.3.0) Disable the delete cache and backup buttons if a cache or backup doesn't exist.",
+        "(4.3.1) Removed 'always on top' flag.",
+        "(4.3.1) Fixed issues with MO 2.5.0 support.",
+        "(4.3.1) Improved error handling."
       ],
-      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.4.3.0.zip",
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.4.3.1.zip",
       "PluginPath": [ "rootbuilder" ],
       "LocalePath": [],
       "DataPath": [ "data/rootbuilder" ]
