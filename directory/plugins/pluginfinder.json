@@ -9,7 +9,7 @@
     {
       "Version": "1.2.1a",
       "Released": "2021-12-20",
-      "MinSupport": "2.4.2",
+      "MinSupport": "2.4.0",
       "MaxSupport": "2.5.0.0-qt6dev4",
       "MinWorking": "2.4.0",
       "MaxWorking": "",
@@ -27,7 +27,7 @@
     {
       "Version": "1.1.10a",
       "Released": "2021-12-15",
-      "MinSupport": "2.4.2",
+      "MinSupport": "2.4.0",
       "MaxSupport": "2.5.0.0-qt6dev4",
       "MinWorking": "2.4.0",
       "MaxWorking": "",
