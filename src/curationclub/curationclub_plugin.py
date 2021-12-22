@@ -9,7 +9,7 @@ except:
 class CurationClubPlugin(SharedPlugin):
 
     def __init__(self):
-        super().__init__("CurationClub", "Curation Club", mobase.VersionInfo(0,0,1, mobase.ReleaseType.ALPHA))
+        super().__init__("CurationClub", "Curation Club", mobase.VersionInfo(1,0,0, mobase.ReleaseType.ALPHA))
 
     def init(self, organiser=mobase.IOrganizer):
         self.curationclub = CurationClub(organiser)

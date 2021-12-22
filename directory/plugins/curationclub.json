@@ -1,0 +1,23 @@
+{
+  "Name": "Reinstaller",
+  "Author": "Kezyma",
+  "Description": "Curation Club migrates Creation Club mods into Mod Organizer and sorts them into individual mod folders for you.",
+  "NexusUrl": "",
+  "GithubUrl": "https://github.com/Kezyma/ModOrganizer-Plugins",
+  "DocsUrl": "https://kezyma.github.io/?p=curationclub",
+  "Versions": [
+    {
+      "Version": "1.0.0a",
+      "Released": "2021-12-22",
+      "MinSupport": "2.4.0",
+      "MaxSupport": "2.5.3rc2",
+      "MinWorking": "2.4.0",
+      "MaxWorking": "2.5.3rc2",
+      "ReleaseNotes": [ "(1.0.0) Initial release." ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/curationclub/curationclub.1.0.0.zip",
+      "PluginPath": [ "curationclub" ],
+      "LocalePath": [],
+      "DataPath": [ "data/curationclub" ]
+    }
+  ]
+}

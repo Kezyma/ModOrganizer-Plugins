@@ -20,6 +20,11 @@
     "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugins/pluginfinder.json"
   },
   {
+    "Name": "Curation Club",
+    "Identifier": "curationclub",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugins/curationclub.json"
+  },
+  {
     "Name": "LOOT Warning Checker",
     "Identifier": "lootwarningchecker",
     "Manifest": "https://raw.githubusercontent.com/JonathanFeenstra/modorganizer-loot-warning-checker/main/manifest.json"
