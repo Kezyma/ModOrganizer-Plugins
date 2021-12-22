@@ -15,6 +15,9 @@ Shortcutter is a Mod Organizer 2 plugin that gives you the option of quickly cre
 ### [Plugin Finder](https://kezyma.github.io/?p=pluginfinder)
 Plugin Finder is a Mod Organizer 2 plugin that allows you to browse and install other plugins for Mod Organizer, as well as uninstall them.
 
+### [Curation Club](https://kezyma.github.io/?p=curationclub)
+Curation Club is a plugin for Mod Organizer 2, allowing users to import Creation Club content into Mod Organizer as separate mods.
+
 ## Usage
 
 ### Installing Mods
