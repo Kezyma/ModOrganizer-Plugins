@@ -1,1 +1,1 @@
-call release.bat rootbuilder reinstaller shortcutter pluginfinder creationeer > release_log.txt
+call release.bat rootbuilder reinstaller shortcutter pluginfinder curationclub > release_log.txt

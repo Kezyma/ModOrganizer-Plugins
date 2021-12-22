@@ -1,7 +1,7 @@
 import mobase
-from .creationeer.plugins.creationeer_tool_manage import CreationeerManageTool
+from .creationeer.plugins.creationeer_tool_manage import CurationClubManageTool
 
 def createPlugins():
     return [
-        CreationeerManageTool()
+        CurationClubManageTool()
         ]

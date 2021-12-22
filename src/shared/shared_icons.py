@@ -89,3 +89,12 @@ class SharedIcons():
 
     def downloadIcon(self):
         return self.icon("ui-download.ico")
+
+    def linkAltIcon(self):
+        return self.icon("ui-link-alt.ico")
+
+    def filterIcon(self):
+        return self.icon("ui-filter.ico")
+
+    def recycleIcon(self):
+        return self.icon("ui-recycle.ico")

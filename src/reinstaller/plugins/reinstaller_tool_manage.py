@@ -40,6 +40,9 @@ class ReinstallerManageTool(ReinstallerPlugin, mobase.IPluginTool):
         self.rebindUi()
     # Add File
 
+    def icon(self):
+        return self.icons.recycleIcon()
+
     def addFileTextChanged(self):
         value = self.addFileText.text().strip()
         if value:

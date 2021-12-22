@@ -1,1 +1,1 @@
-call deploy.bat rootbuilder reinstaller shortcutter pluginfinder creationeer > deploy_log.txt
+call deploy.bat rootbuilder reinstaller shortcutter pluginfinder curationclub > deploy_log.txt

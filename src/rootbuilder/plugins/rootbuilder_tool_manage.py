@@ -558,7 +558,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         return []
 
     def icon(self):
-        return self.icons.menuIcon()
+        return self.icons.linkAltIcon()
 
     def name(self):
         return self.baseName() + " Manager Tool"
@@ -715,5 +715,5 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.updateSetting("linkextensions", self.linkText.text())
 
     def updateSetting(self, name, value):
-        self.organiser.setPluginSetting("RootBuilder", name, value)
+        self.organiser.setPluginSetting(self.pluginName, name, value)
         
