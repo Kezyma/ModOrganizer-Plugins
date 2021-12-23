@@ -142,11 +142,14 @@ class SharedPaths():
 
     def safePathName(self, path):
         """ Gets a file safe string representing a specific path. """
-        return "_".join(os.path.normpath(path).split(os.path.sep)).replace(":", "").replace(" ", "_")
+        return self.fileSafeName("_".join(os.path.normpath(path).split(os.path.sep)))
+
+    def fileSafeName(self, string=str):
+        return string.replace(" ", "_").replace(".", "_").replace("<", "").replace(">", "").replace(":", "").replace("|", "").replace("*", "").replace("\\", "").replace("/", "").replace("?", "").replace("\"", "")
 
     def safeVersionName(self, version):
         """ Gets a file safe string representing a specific game version. """
-        return version.replace(".", "_").replace(":", "_")
+        return self.fileSafeName(version)
 
     def sharedPath(self, basePath, childPath):
         """ Determines whether one path is a child of another path. Supports * wildcard. """

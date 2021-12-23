@@ -1,0 +1,14 @@
+import mobase 
+from ..shared.shared_plugin import SharedPlugin
+from .profilesync import ProfileSync
+
+class ProfileSyncPlugin(SharedPlugin):
+
+    def __init__(self):
+        super().__init__("ProfileSync", "ProfileSync", mobase.VersionInfo(1,0,0, mobase.ReleaseType.ALPHA))
+
+    def init(self, organiser=mobase.IOrganizer):
+        self.profilesync = ProfileSync(organiser)
+        return super().init(organiser)
+    
+        
