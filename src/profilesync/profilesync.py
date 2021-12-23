@@ -67,14 +67,10 @@ class ProfileSync():
     def syncToGroup(self, profileName=str):
         self.organiser.refresh(True)
         groups = self.getSyncGroups()
-        g = ""
-        for k in groups.keys():
-            if profileName in groups[k]["Profiles"]:
-                g = k
+        g = self.getProfileGroup(profileName)
         qInfo("Sync from Profile " + profileName + " to Group " + g)
         mods, enabled = self.profileModlist(profileName)
         self.setGroupModlist(g, mods)
-        self.syncToProfiles(g)
 
     def syncToProfiles(self, groupName=str):
         groups = self.getSyncGroups()
@@ -84,6 +80,13 @@ class ProfileSync():
                 self.groupToProfile(groupName, profile)
         self.organiser.refresh()
     
+    def getProfileGroup(self, profileName=str):
+        groups = self.getSyncGroups()
+        for g in groups.keys():
+            if profileName in groups[g]["Profiles"]:
+                return g
+        return ""
+
     def groupToProfile(self, groupName=str, profileName=str):
         qInfo("Sync from Group " + groupName + " to Profile " + profileName)
         groupList = self.getGroupModlist(groupName)

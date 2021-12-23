@@ -31,6 +31,7 @@ class ProfileSyncManageTool(ProfileSyncPlugin, mobase.IPluginTool):
         self.dialog = self.getDialog()
         self.organiser.onProfileRenamed(lambda prof, old, new: self.profileRename(prof, old, new)) # need to find the profile in current sync groups and change name.
         self.organiser.modList().onModMoved(lambda mod, old, new: self.syncProfile(mod, old, new)) # need to get the profile modlist, sync it if applicable.
+        self.organiser.onProfileChanged(lambda old, new: self.loadProfile(new.name()))
         return res
 
     def __tr(self, trstr):
@@ -46,6 +47,9 @@ class ProfileSyncManageTool(ProfileSyncPlugin, mobase.IPluginTool):
         self.dialog.show()
         self.bindProfiles()
         self.bindSyncGroups()
+
+    def loadProfile(self, profileName=str):
+        self.profilesync.groupToProfile(self.profilesync.getProfileGroup(profileName), profileName)
 
     def profileRename(self, profile, oldName, newName):
         self.profilesync.renameProfile(oldName, newName)

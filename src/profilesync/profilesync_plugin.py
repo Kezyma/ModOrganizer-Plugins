@@ -5,7 +5,7 @@ from .profilesync import ProfileSync
 class ProfileSyncPlugin(SharedPlugin):
 
     def __init__(self):
-        super().__init__("ProfileSync", "ProfileSync", mobase.VersionInfo(1,0,0, mobase.ReleaseType.ALPHA))
+        super().__init__("ProfileSync", "Profile Sync", mobase.VersionInfo(1,0,0, mobase.ReleaseType.ALPHA))
 
     def init(self, organiser=mobase.IOrganizer):
         self.profilesync = ProfileSync(organiser)
