@@ -34,8 +34,10 @@ class RootBuilderMapperPlugin(RootBuilderPlugin, mobase.IPluginFileMapper):
     def build(self, appName):
         """ Runs a build if autobuild is enabled and potentially redirects the exe being run """
         res = True
+        qInfo("Building...")
         # Check if this is a secondary run from redirect.
         if (self.startingRootExe == False):
+            qInfo("Starting Root Exe = False")
             # Run a build if autobuild is enabled.
             if self.rootBuilder.settings.autobuild():
                 self.rootBuilder.build()
@@ -48,17 +50,22 @@ class RootBuilderMapperPlugin(RootBuilderPlugin, mobase.IPluginFileMapper):
         """ Runs a clear operation if autobuild is enabled. """
         if self.rootBuilder.settings.autobuild():
             self.rootBuilder.clear()
+            qInfo("Setting Root Exe = False")
+            self.startingRootExe = False
 
     def redirect(self, appName):
         """ Redirects an app to the game path version if it is from a root mod folder. """
         # Check if the app shares a path with the mods path.
+        qInfo("Redirecting")
         if self.rootBuilder.paths.sharedPath(self.rootBuilder.paths.modsPath(), appName):
             self.startingRootExe = True
+            qInfo("Setting Root Exe = True")
             # Check if the exe exists in the game path.
             exeGamePath = self.rootBuilder.paths.gamePath() / self.rootBuilder.paths.rootRelativePath(appName)
             if exeGamePath.exists():
                 # Run the game path version of the application.
                 self.organiser.waitForApplication(self.organiser.startApplication(str(exeGamePath)))
+                qInfo("Setting Root Exe = False")
                 self.startingRootExe = False
                 # Return false to prevent the original run.
                 return False

@@ -1,5 +1,4 @@
-﻿
-## Plugin Finder
+﻿## Plugin Finder
 Plugin Finder is a plugin for Mod Organizer 2, allowing users to browse and install other Mod Organizer plugins.
 
 Some of the things you can do with Plugin Finder:

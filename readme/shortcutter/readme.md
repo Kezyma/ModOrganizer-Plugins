@@ -1,4 +1,3 @@
-
 ## Shortcutter
 Shortcutter is a plugin for Mod Organizer 2, allowing users to create instance and profile specific desktop shortcuts to quickly launch apps through Mod Organizer.
 

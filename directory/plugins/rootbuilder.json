@@ -20,8 +20,8 @@
       "DataPath": [ "data/rootbuilder" ]
     },
     {
-      "Version": "4.3.1b",
-      "Released": "2021-12-20",
+      "Version": "4.3.2b",
+      "Released": "2021-12-24",
       "MinSupport": "2.4.0",
       "MaxSupport": "2.5.0.0-qt6dev4",
       "MinWorking": "2.4.0",
@@ -33,7 +33,8 @@
         "(4.3.0) Disable the delete cache and backup buttons if a cache or backup doesn't exist.",
         "(4.3.1) Removed 'always on top' flag.",
         "(4.3.1) Fixed issues with MO 2.5.0 support.",
-        "(4.3.1) Improved error handling."
+        "(4.3.1) Improved error handling.",
+        "(4.3.2) Fixed a bug where autobuild would sometimes stop working after launching certain apps with redirect."
       ],
       "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.4.3.1.zip",
       "PluginPath": [ "rootbuilder" ],

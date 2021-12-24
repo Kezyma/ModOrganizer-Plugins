@@ -1,5 +1,4 @@
-﻿
-## Curation Club
+﻿## Curation Club
 Curation Club is a plugin for Mod Organizer 2, allowing users to import Creation Club content into Mod Organizer as separate mods.
 
 Some of the things you can do with Curation Club:
@@ -13,4 +12,4 @@ Please note that the plugins found within Plugin Finder are produced and maintai
 ### [Installation Instructions](https://kezyma.github.io/?p=curationclub)
 
 #### Other Plugins
-##### [Root Builder](https://www.nexusmods.com/skyrimspecialedition/mods/31720), [Reinstaller](https://www.nexusmods.com/skyrimspecialedition/mods/59292), [Shortcutter](https://www.nexusmods.com/skyrimspecialedition/mods/59827), [Plugin Finder](https://www.nexusmods.com/skyrimspecialedition/mods/59869)
+##### [Root Builder](https://www.nexusmods.com/skyrimspecialedition/mods/31720), [Reinstaller](https://www.nexusmods.com/skyrimspecialedition/mods/59292), [Shortcutter](https://www.nexusmods.com/skyrimspecialedition/mods/59827), [Plugin Finder](https://www.nexusmods.com/skyrimspecialedition/mods/59869), [Profile Sync](https://www.nexusmods.com/skyrimspecialedition/mods/60690)
