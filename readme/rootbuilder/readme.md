@@ -1,3 +1,4 @@
+
 ## Root Builder
 Root Builder is a plugin for Mod Organizer 2, allowing users to manage files in the base game directory through Mod Organizer.
 
@@ -11,4 +12,4 @@ Some of the things you can do with Root Builder:
 ### [Installation Instructions](https://kezyma.github.io/?p=rootbuilder)
 
 #### Other Plugins
-##### [Reinstaller](https://www.nexusmods.com/skyrimspecialedition/mods/59292), [Shortcutter](https://www.nexusmods.com/skyrimspecialedition/mods/59827), [Plugin Finder](https://www.nexusmods.com/skyrimspecialedition/mods/59869), [Curation Club](https://www.nexusmods.com/skyrimspecialedition/mods/60552)
+##### [Reinstaller](https://www.nexusmods.com/skyrimspecialedition/mods/59292), [Shortcutter](https://www.nexusmods.com/skyrimspecialedition/mods/59827), [Plugin Finder](https://www.nexusmods.com/skyrimspecialedition/mods/59869), [Curation Club](https://www.nexusmods.com/skyrimspecialedition/mods/60552), [Profile Sync](https://www.nexusmods.com/skyrimspecialedition/mods/60690)

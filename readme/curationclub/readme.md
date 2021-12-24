@@ -1,4 +1,5 @@
-﻿## Curation Club
+﻿
+## Curation Club
 Curation Club is a plugin for Mod Organizer 2, allowing users to import Creation Club content into Mod Organizer as separate mods.
 
 Some of the things you can do with Curation Club:

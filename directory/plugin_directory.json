@@ -25,6 +25,11 @@
     "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugins/curationclub.json"
   },
   {
+    "Name": "Profile Sync",
+    "Identifier": "profilesync",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugins/profilesync.json"
+  },
+  {
     "Name": "LOOT Warning Checker",
     "Identifier": "lootwarningchecker",
     "Manifest": "https://raw.githubusercontent.com/JonathanFeenstra/modorganizer-loot-warning-checker/main/manifest.json"

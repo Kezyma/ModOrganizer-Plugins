@@ -1,3 +1,4 @@
+
 ## Shortcutter
 Shortcutter is a plugin for Mod Organizer 2, allowing users to create instance and profile specific desktop shortcuts to quickly launch apps through Mod Organizer.
 
@@ -10,4 +11,4 @@ Some of the things you can do with Shortcutter:
 ### [Installation Instructions](https://kezyma.github.io/?p=shortcutter)
 
 #### Other Plugins
-##### [Root Builder](https://www.nexusmods.com/skyrimspecialedition/mods/31720), [Reinstaller](https://www.nexusmods.com/skyrimspecialedition/mods/59292), [Plugin Finder](https://www.nexusmods.com/skyrimspecialedition/mods/59869), [Curation Club](https://www.nexusmods.com/skyrimspecialedition/mods/60552)
+##### [Root Builder](https://www.nexusmods.com/skyrimspecialedition/mods/31720), [Reinstaller](https://www.nexusmods.com/skyrimspecialedition/mods/59292), [Plugin Finder](https://www.nexusmods.com/skyrimspecialedition/mods/59869), [Curation Club](https://www.nexusmods.com/skyrimspecialedition/mods/60552), [Profile Sync](https://www.nexusmods.com/skyrimspecialedition/mods/60690)
