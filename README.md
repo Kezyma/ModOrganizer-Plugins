@@ -18,6 +18,9 @@ Plugin Finder is a Mod Organizer 2 plugin that allows you to browse and install 
 ### [Curation Club](https://kezyma.github.io/?p=curationclub)
 Curation Club is a plugin for Mod Organizer 2, allowing users to import Creation Club content into Mod Organizer as separate mods.
 
+### [Profile Sync](https://kezyma.github.io/?p=profilesync)
+Profile Sync is a plugin for Mod Organizer 2, it allows you to maintain the same mod order (while keeping the enabled/disabled state) across multiple profiles.
+
 ## Usage
 
 ### Installing Mods
