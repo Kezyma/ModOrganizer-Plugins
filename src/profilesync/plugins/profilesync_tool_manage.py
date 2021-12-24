@@ -55,7 +55,9 @@ class ProfileSyncManageTool(ProfileSyncPlugin, mobase.IPluginTool):
         self.profilesync.renameProfile(oldName, newName)
         
     def syncProfile(self, modName, oldPriority, newPriority):
-        self.profilesync.syncToGroup(self.organiser.profileName())
+        #self.profilesync.syncToGroup(self.organiser.profileName())
+        qInfo("Moved " + modName + " from " + str(oldPriority) + " to " + str(newPriority))
+        self.profilesync.syncFromCurrent()
 
     def checkGroupName(self):
         if self.addText.text().strip() == "" or self.addText.text().lower().strip() in [x.lower().strip() for x in self.profilesync.getSyncGroups().keys()]:

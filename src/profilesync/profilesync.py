@@ -87,20 +87,32 @@ class ProfileSync():
                 return g
         return ""
 
+    def syncFromCurrent(self):
+        profile = self.organiser.profile()
+        group = self.getProfileGroup(profile.name())
+        if group != "":
+            qInfo("Sync from Profile " + profile.name() + " to Group " + group)
+            mods = self.organiser.modList().allModsByProfilePriority(profile)
+            modNl = []
+            for m in mods:
+                modNl.append(m + "\n")
+            self.setGroupModlist(group, modNl)
+
     def groupToProfile(self, groupName=str, profileName=str):
         qInfo("Sync from Group " + groupName + " to Profile " + profileName)
-        groupList = self.getGroupModlist(groupName)
-        mods, enabled = self.profileModlist(profileName)
-        results = []
-        for mod in groupList:
-            if mod in enabled:
-                results.append("+" + mod)
-            else:
-                results.append("-" + mod)
-        results.reverse()
-        path = self.paths.profileModlistPath(profileName)
-        with open(str(path), "w") as w:
-            w.writelines(results)
+        if groupName != "":
+            groupList = self.getGroupModlist(groupName)
+            mods, enabled = self.profileModlist(profileName)
+            results = []
+            for mod in groupList:
+                if mod in enabled:
+                    results.append("+" + mod)
+                else:
+                    results.append("-" + mod)
+            results.reverse()
+            path = self.paths.profileModlistPath(profileName)
+            with open(str(path), "w") as w:
+                w.writelines(results)
 
     def removeProfileFromGroup(self, groupName=str, profileName=str):
         groups = self.getSyncGroups()
