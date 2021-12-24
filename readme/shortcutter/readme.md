@@ -10,4 +10,4 @@ Some of the things you can do with Shortcutter:
 ### [Installation Instructions](https://kezyma.github.io/?p=shortcutter)
 
 #### Other Plugins
-##### [Root Builder](https://www.nexusmods.com/skyrimspecialedition/mods/31720), [Reinstaller](https://www.nexusmods.com/skyrimspecialedition/mods/59292), [Plugin Finder](https://www.nexusmods.com/skyrimspecialedition/mods/59869)
+##### [Root Builder](https://www.nexusmods.com/skyrimspecialedition/mods/31720), [Reinstaller](https://www.nexusmods.com/skyrimspecialedition/mods/59292), [Plugin Finder](https://www.nexusmods.com/skyrimspecialedition/mods/59869), [Curation Club](https://www.nexusmods.com/skyrimspecialedition/mods/60552)

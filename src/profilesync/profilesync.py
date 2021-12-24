@@ -62,7 +62,7 @@ class ProfileSync():
         if len(groups[groupName]["Profiles"]) == 1:
             self.syncToGroup(profileName) # First addition, construct the initial group modlist.
         elif len(groups[groupName]["Profiles"]) > 1:
-            self.syncToProfiles(groupName) # Further additions need to sync immediately.
+            self.groupToProfile(groupName, profileName) # Just set this to the group order.
 
     def syncToGroup(self, profileName=str):
         self.organiser.refresh(True)
@@ -99,8 +99,8 @@ class ProfileSync():
             self.setGroupModlist(group, modNl)
 
     def groupToProfile(self, groupName=str, profileName=str):
-        qInfo("Sync from Group " + groupName + " to Profile " + profileName)
         if groupName != "":
+            qInfo("Sync from Group " + groupName + " to Profile " + profileName)
             groupList = self.getGroupModlist(groupName)
             mods, enabled = self.profileModlist(profileName)
             results = []

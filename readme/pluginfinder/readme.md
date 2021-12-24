@@ -12,4 +12,4 @@ Please note that the plugins found within Plugin Finder are produced and maintai
 ### [Installation Instructions](https://kezyma.github.io/?p=pluginfinder)
 
 #### Other Plugins
-##### [Root Builder](https://www.nexusmods.com/skyrimspecialedition/mods/31720), [Reinstaller](https://www.nexusmods.com/skyrimspecialedition/mods/59292), [Shortcutter](https://www.nexusmods.com/skyrimspecialedition/mods/59827)
+##### [Root Builder](https://www.nexusmods.com/skyrimspecialedition/mods/31720), [Reinstaller](https://www.nexusmods.com/skyrimspecialedition/mods/59292), [Shortcutter](https://www.nexusmods.com/skyrimspecialedition/mods/59827), [Curation Club](https://www.nexusmods.com/skyrimspecialedition/mods/60552)

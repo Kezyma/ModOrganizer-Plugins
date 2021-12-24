@@ -10,4 +10,4 @@ Some of the things you can do with Reinstaller:
 ### [Installation Instructions](https://kezyma.github.io/?p=reinstaller)
 
 #### Other Plugins
-##### [Root Builder](https://www.nexusmods.com/skyrimspecialedition/mods/31720), [Shortcutter](https://www.nexusmods.com/skyrimspecialedition/mods/59827), [Plugin Finder](https://www.nexusmods.com/skyrimspecialedition/mods/59869)
+##### [Root Builder](https://www.nexusmods.com/skyrimspecialedition/mods/31720), [Shortcutter](https://www.nexusmods.com/skyrimspecialedition/mods/59827), [Plugin Finder](https://www.nexusmods.com/skyrimspecialedition/mods/59869), [Curation Club](https://www.nexusmods.com/skyrimspecialedition/mods/60552)
