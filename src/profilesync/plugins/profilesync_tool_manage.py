@@ -29,8 +29,10 @@ class ProfileSyncManageTool(ProfileSyncPlugin, mobase.IPluginTool):
     def init(self, organiser=mobase.IOrganizer):
         res = super().init(organiser)
         self.dialog = self.getDialog()
-        self.organiser.onProfileRenamed(lambda prof, old, new: self.profileRename(prof, old, new)) # need to find the profile in current sync groups and change name.
-        self.organiser.modList().onModMoved(lambda mod, old, new: self.syncProfile(mod, old, new)) # need to get the profile modlist, sync it if applicable.
+        self.organiser.onProfileRenamed(lambda prof, old, new: self.profileRename(old, new)) # need to find the profile in current sync groups and change name.
+        self.organiser.modList().onModMoved(lambda mod, old, new: self.syncProfile()) # need to get the profile modlist, sync it if applicable.
+        self.organiser.modList().onModInstalled(lambda mod: self.syncProfile())
+        self.organiser.modList().onModRemoved(lambda mod: self.syncProfile())
         self.organiser.onProfileChanged(lambda old, new: self.loadProfile(new.name()))
         return res
 
@@ -51,12 +53,10 @@ class ProfileSyncManageTool(ProfileSyncPlugin, mobase.IPluginTool):
     def loadProfile(self, profileName=str):
         self.profilesync.groupToProfile(self.profilesync.getProfileGroup(profileName), profileName)
 
-    def profileRename(self, profile, oldName, newName):
+    def profileRename(self, oldName, newName):
         self.profilesync.renameProfile(oldName, newName)
         
-    def syncProfile(self, modName, oldPriority, newPriority):
-        #self.profilesync.syncToGroup(self.organiser.profileName())
-        qInfo("Moved " + modName + " from " + str(oldPriority) + " to " + str(newPriority))
+    def syncProfile(self):
         self.profilesync.syncFromCurrent()
 
     def checkGroupName(self):
