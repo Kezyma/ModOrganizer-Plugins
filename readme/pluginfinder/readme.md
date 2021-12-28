@@ -13,3 +13,6 @@ Please note that the plugins found within Plugin Finder are produced and maintai
 
 #### Other Plugins
 ##### [Root Builder](https://www.nexusmods.com/skyrimspecialedition/mods/31720), [Reinstaller](https://www.nexusmods.com/skyrimspecialedition/mods/59292), [Shortcutter](https://www.nexusmods.com/skyrimspecialedition/mods/59827), [Curation Club](https://www.nexusmods.com/skyrimspecialedition/mods/60552), [Profile Sync](https://www.nexusmods.com/skyrimspecialedition/mods/60690)
+
+#### Support
+If you find this plugin useful and wish to support its development, you can do so through [Patreon](https://www.patreon.com/KezymaOnline) or [Paypal](https://paypal.me/kezyma). 
