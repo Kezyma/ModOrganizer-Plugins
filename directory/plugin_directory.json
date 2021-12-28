@@ -88,5 +88,10 @@
     "Name": "Broom - The Loose File Sweeper",
     "Identifier": "broom",
     "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/broom.json"
+  },
+  {
+    "Name": "LOOT Config Loader",
+    "Identifier": "lootconfigloader",
+    "Manifest": "https://raw.githubusercontent.com/Exit-9B/LOOTConfigLoader/main/plugindefinition.json"
   }
 ]
