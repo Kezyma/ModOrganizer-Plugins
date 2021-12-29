@@ -39,3 +39,10 @@ class RootBuilderSettings(SharedSettings):
         """ Whether to redirect apps launched from mod root folders. """
         return self.setting("redirect")
 
+    def installer(self):
+        """ Enables the installer plugin. """
+        return self.setting("installer")
+
+    def priority(self):
+        """ The priority of the installer module for installing root mods. """
+        return self.setting("priority")

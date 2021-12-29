@@ -317,6 +317,40 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.redirectLayout.addWidget(self.redirectLabel)
         self.settingsLayout.addWidget(self.redirectContainer)
 
+        # Installer
+        self.installerContainer = QtWidgets.QWidget(self.settingsContainer)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.installerContainer.sizePolicy().hasHeightForWidth())
+        self.installerContainer.setSizePolicy(sizePolicy)
+        self.installerContainer.setObjectName("installerContainer")
+        self.installerLayout = QtWidgets.QHBoxLayout(self.installerContainer)
+        self.installerLayout.setContentsMargins(0, 0, 0, 0)
+        self.installerLayout.setObjectName("installerLayout")
+        self.installerCheck = QtWidgets.QCheckBox(self.installerContainer)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Fixed, qtSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.installerCheck.sizePolicy().hasHeightForWidth())
+        self.installerCheck.setSizePolicy(sizePolicy)
+        self.installerCheck.setMinimumSize(QtCore.QSize(75, 0))
+        self.installerCheck.setObjectName("installerCheck")
+        self.installerCheck.setText("Installer")
+        self.installerCheck.clicked.connect(self.installerChanged)
+        self.installerLayout.addWidget(self.installerCheck)
+        self.installerLabel = QtWidgets.QLabel(self.installerContainer)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.installerLabel.sizePolicy().hasHeightForWidth())
+        self.installerLabel.setSizePolicy(sizePolicy)
+        self.installerLabel.setWordWrap(True)
+        self.installerLabel.setObjectName("installerLabel")
+        self.installerLabel.setText("When installing a mod, Root Builder will attempt to detect if it is a root mod and install it for you. Highly experimental.")
+        self.installerLayout.addWidget(self.installerLabel)
+        self.settingsLayout.addWidget(self.installerContainer)
+
         # Text Settings
         self.textSettingContainer = QtWidgets.QWidget(self.settingsContainer)
         sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Minimum)
@@ -673,6 +707,9 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
 
     def redirectChanged(self):
         self.updateSetting("redirect", self.redirectCheck.isChecked())
+
+    def installerChanged(self):
+        self.updateSetting("installer", self.installerCheck.isChecked())
 
     def copyModeChanged(self):
         if self.copyButton.isChecked():
