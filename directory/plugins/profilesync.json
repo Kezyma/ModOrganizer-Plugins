@@ -7,14 +7,17 @@
   "DocsUrl": "https://kezyma.github.io/?p=profilesync",
   "Versions": [
     {
-      "Version": "1.0.1a",
-      "Released": "2021-12-24",
+      "Version": "1.0.2a",
+      "Released": "2021-12-29",
       "MinSupport": "2.4.0",
       "MaxSupport": "2.4.4",
       "MinWorking": "2.4.0",
       "MaxWorking": "2.4.4",
-      "ReleaseNotes": [ "(1.0.1) Initial alpha." ],
-      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/profilesync/profilesync.1.0.1.zip",
+      "ReleaseNotes": [
+        "(1.0.1) Initial alpha.",
+        "(1.0.2) Fixed a bug where Profile Sync could only support a single instance at a time."
+      ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/profilesync/profilesync.1.0.2.zip",
       "PluginPath": [ "profilesync" ],
       "LocalePath": [],
       "DataPath": [ "data/profilesync" ]
