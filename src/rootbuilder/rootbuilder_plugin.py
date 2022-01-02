@@ -9,7 +9,7 @@ except:
 class RootBuilderPlugin(SharedPlugin):
 
     def __init__(self):
-        super().__init__("RootBuilder", "Root Builder", mobase.VersionInfo(4, 3, 2, mobase.ReleaseType.BETA))
+        super().__init__("RootBuilder", "Root Builder", mobase.VersionInfo(4, 3, 3, mobase.ReleaseType.BETA))
 
     def init(self, organiser=mobase.IOrganizer):
         self.rootBuilder = RootBuilder(organiser)

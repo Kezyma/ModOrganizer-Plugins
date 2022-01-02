@@ -20,8 +20,8 @@
       "DataPath": [ "data/rootbuilder" ]
     },
     {
-      "Version": "4.3.2b",
-      "Released": "2021-12-24",
+      "Version": "4.3.3b",
+      "Released": "2022-01-02",
       "MinSupport": "2.4.0",
       "MaxSupport": "2.5.0.0-qt6dev4",
       "MinWorking": "2.4.0",
@@ -34,9 +34,10 @@
         "(4.3.1) Removed 'always on top' flag.",
         "(4.3.1) Fixed issues with MO 2.5.0 support.",
         "(4.3.1) Improved error handling.",
-        "(4.3.2) Fixed a bug where autobuild would sometimes stop working after launching certain apps with redirect."
+        "(4.3.2) Fixed a bug where autobuild would sometimes stop working after launching certain apps with redirect.",
+        "(4.3.3) Added experimental root mod installer plugin. Disabled by default."
       ],
-      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.4.3.1.zip",
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.4.3.3.zip",
       "PluginPath": [ "rootbuilder" ],
       "LocalePath": [],
       "DataPath": [ "data/rootbuilder" ]
