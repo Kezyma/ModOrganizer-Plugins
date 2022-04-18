@@ -93,5 +93,10 @@
     "Name": "LOOT Config Loader",
     "Identifier": "lootconfigloader",
     "Manifest": "https://raw.githubusercontent.com/Exit-9B/LOOTConfigLoader/main/plugindefinition.json"
+  },
+  {
+    "Name": "Crash Log Tools",
+    "Identifier": "crashlogtools",
+    "Manifest": "https://raw.githubusercontent.com/Exit-9B/ModOrganizer-CrashLogTools/main/plugindefinition.json"
   }
 ]
