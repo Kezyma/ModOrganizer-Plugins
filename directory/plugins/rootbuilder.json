@@ -41,6 +41,20 @@
       "PluginPath": [ "rootbuilder" ],
       "LocalePath": [],
       "DataPath": [ "data/rootbuilder" ]
+    },
+    {
+      "Version": "4.4.0b",
+      "Released": "2022-06-22",
+      "MinSupport": "2.4.0",
+      "MaxSupport": "2.5.0",
+      "MinWorking": "2.4.0",
+      "ReleaseNotes":[
+        "(4.4.0) Removed logging causing crashes with unicode characters."
+      ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.4.4.0.zip",
+      "PluginPath": [ "rootbuilder" ],
+      "LocalePath": [],
+      "DataPath": [ "data/rootbuilder" ]
     }
   ]
 }

@@ -90,11 +90,11 @@ class RootBuilderInstallPlugin(RootBuilderPlugin, mobase.IPluginInstallerSimple)
         for e in self.minRootTypes():
             if en.lower().endswith("." + e.lower()):
                 p = str(path)
-                qInfo("Path: " + p)
-                qInfo("Curr: " + self._installerValidFilePath)
+                #qInfo("Path: " + p)
+                #qInfo("Curr: " + self._installerValidFilePath)
                 pl = len(p.split("\\"))
                 cl = len(self._installerValidFilePath.split("\\"))
-                qInfo("PL:" + str(pl) + "CL:" + str(cl))
+                #qInfo("PL:" + str(pl) + "CL:" + str(cl))
                 if p != self._installerValidFilePath:
                     if not self._first and pl == cl:
                         self._sameLevelPaths = True
@@ -162,13 +162,13 @@ class RootBuilderInstallPlugin(RootBuilderPlugin, mobase.IPluginInstallerSimple)
         return self.rootBuilder.settings.priority()
 
     def install(self, name: mobase.GuessedString, tree: mobase.IFileTree, version: str, nexus_id: int) -> Union[mobase.InstallResult, mobase.IFileTree, Tuple[mobase.InstallResult, mobase.IFileTree, str, int]]:
-        qInfo(str(name))
-        qInfo(str(name.variants()))
+        #qInfo(str(name))
+        #qInfo(str(name.variants()))
 
         self.nameCombo.clear()
         self.nameCombo.addItems(name.variants())
         res = self.dialog.exec()
-        qInfo(str(res))
+        #qInfo(str(res))
         if res == QtWidgets.QDialog.Rejected:
             if self._manualRequest:
                 self._manualRequest = False
@@ -188,17 +188,17 @@ class RootBuilderInstallPlugin(RootBuilderPlugin, mobase.IPluginInstallerSimple)
             else:
                 dataTree = tree.addDirectory(self.rootBuilder.paths.gameDataDir())
             dataPath = str(dataTree.path())
-            qInfo("Data path location: " + str(dataPath))
+            #qInfo("Data path location: " + str(dataPath))
 
             # Find the root level folder in the mod.
             rootLevel = None
 
             # If it's a known mod, just use the map to save time.
             for f in self.knownRootFiles():
-                qInfo("Checking for known file: " + str(f))
+                #qInfo("Checking for known file: " + str(f))
                 ft = tree.find(f)
                 if ft:
-                    qInfo("Found known file: " + str(f))
+                    #qInfo("Found known file: " + str(f))
                     rp = self.knownRootMaps()[str(f)]
                     if rp == "":
                         rootLevel = tree
@@ -216,13 +216,13 @@ class RootBuilderInstallPlugin(RootBuilderPlugin, mobase.IPluginInstallerSimple)
                     rootLevel = tree
 
             self._rootLevelPath = rootLevel.path()
-            qInfo("Root Level: " + str(self._rootLevelPath))
+            #qInfo("Root Level: " + str(self._rootLevelPath))
 
             # Find all the valid entries to copy across.
             self._installableFiles = []
             tree.walk(self.findInstallableFiles)
             for f in self._installableFiles:
-                qInfo("Moving " + f.path() + " entry " + f.name() + " to " + dataPath + "\\Root\\")
+                #qInfo("Moving " + f.path() + " entry " + f.name() + " to " + dataPath + "\\Root\\")
                 if not tree.move(f, dataPath + "\\Root\\"):
                     qInfo("Move failed.")
 
