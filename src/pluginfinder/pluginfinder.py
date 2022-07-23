@@ -35,7 +35,11 @@ class PluginFinder():
         
     def install(self, pluginId=str):
         """ Installs the latest available version of a plugin. """
-        qInfo("Installing " + pluginId)
+        if self.installer.isInstalled(pluginId):
+            qInfo(f"Updating {pluginId}")
+            self.installer.uninstallPlugin(pluginId, keepData=True)
+        else:
+            qInfo("Installing " + pluginId)
         pluginData = self.search.pluginData(pluginId)
         self.installer.installPlugin(pluginData)
 

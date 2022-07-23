@@ -141,49 +141,32 @@ class PluginFinderInstaller():
     def installedPlugins(self):
         return self.getInstalledFiles().keys()
 
-    def uninstallPlugin(self, pluginId=str):
+    def uninstallPlugin(self, pluginId: str, keepData: bool = False) -> None:
         """ Removes a plugin. """
         files = self.getInstalledFiles()
+        pluginFiles = files[str(pluginId)]
 
-        for path in files[str(pluginId)]["PluginFiles"]:
-            deletePath = self.paths.modOrganizerPluginPath() / path
-            if deletePath.exists():
-                qInfo("Deleting " + str(deletePath))
-                try:
-                    if os.path.isfile(str(deletePath)):
-                        self.utilities.deletePath(str(deletePath))
-                    if os.path.isdir(str(deletePath)):
-                        shutil.rmtree(str(deletePath))
-                except:
-                    qInfo("Could not delete " + str(deletePath))
-
-        for path in files[str(pluginId)]["LocaleFiles"]:
-            deletePath = self.paths.modOrganizerLocalePath() / path
-            if deletePath.exists():
-                qInfo("Deleting " + str(deletePath))
-                try:
-                    if os.path.isfile(str(deletePath)):
-                        self.utilities.deletePath(str(deletePath))
-                    if os.path.isdir(str(deletePath)):
-                        shutil.rmtree(str(deletePath))
-                except:
-                    qInfo("Could not delete " + str(deletePath))
-
-        for path in files[str(pluginId)]["DataFiles"]:
-            deletePath = self.paths.modOrganizerPluginPath() / path
-            if deletePath.exists():
-                qInfo("Deleting " + str(deletePath))
-                try:
-                    if os.path.isfile(str(deletePath)):
-                        self.utilities.deletePath(str(deletePath))
-                    if os.path.isdir(str(deletePath)):
-                        shutil.rmtree(str(deletePath))
-                except:
-                    qInfo("Could not delete " + str(deletePath))
+        self._deleteFiles(pluginFiles["PluginFiles"])
+        self._deleteFiles(pluginFiles["LocaleFiles"])
+        if not keepData:
+            self._deleteFiles(pluginFiles["DataFiles"])
 
         files.pop(str(pluginId))
         if pluginId != "pluginfinder":
             self.saveInstalledFiles(files)
+			
+    def _deleteFiles(self, files: list[str]) -> None:
+        for path in files:
+            deletePath = self.paths.modOrganizerPluginPath() / path
+            if deletePath.exists():
+                qInfo(f"Deleting {deletePath}")
+            try:
+                if deletePath.is_file():
+                    self.utilities.deletePath(deletePath)
+                elif deletePath.is_dir():
+                    shutil.rmtree(str(deletePath))
+            except:
+                qInfo(f"Could not delete {deletePath}")
         
     #_versionRegex = r"VersionInfo\(\s*([0-9]*)\s*,?\s*([0-9]*)\s*,?\s*([0-9]*)\s*,?\s*([0-9]*)\s*,?\s*([A-Za-z.]*)\s*\)"
     #def getPluginVersion(self, filePath=str):
