@@ -5,6 +5,7 @@ from .essentials.rootbuilder import RootBuilderEssentials
 from .essentials.reinstaller import ReinstallerEssentials
 from .essentials.shortcutter import ShortcutterEssentials
 from .essentials.pluginfinder import PluginFinderEssentials
+from .essentials.pluginfinder_notifier import PluginFinderNotifierEssentials
 from .essentials.curationclub import CurationClubEssentials
 from .essentials.profilesync import ProfileSyncEssentials
 
@@ -28,6 +29,7 @@ def createPlugins():
     pfInit = pluginDir / "pluginfinder" / "__init__.py"
     if not pfInit.exists():
         plugins.append(PluginFinderEssentials())
+        plugins.append(PluginFinderNotifierEssentials())
 
     ccInit = pluginDir / "curationclub" / "__init__.py"
     if not ccInit.exists():
