@@ -155,7 +155,7 @@ class PluginFinderInstaller():
         if pluginId != "pluginfinder":
             self.saveInstalledFiles(files)
 			
-    def _deleteFiles(self, files: list[str]) -> None:
+    def _deleteFiles(self, files) -> None:
         for path in files:
             deletePath = self.paths.modOrganizerPluginPath() / path
             if deletePath.exists():
