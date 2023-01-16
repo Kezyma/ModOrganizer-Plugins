@@ -63,9 +63,10 @@ class RootBuilderFiles(SharedFiles):
                     exclude = False
                     # Check if the file is, or is in, an exclusion.
                     for ex in self.settings.exclusions():
-                        if self.paths.fileExists(self.paths.modsPath() / mod / "Root" / ex):
-                        #if (self.paths.modsPath() / mod / "Root" / ex).exists():
-                            exclude = True
+                        if (ex != ""):
+                            if self.paths.fileExists(self.paths.modsPath() / mod / "Root" / ex):
+                            #if (self.paths.modsPath() / mod / "Root" / ex).exists():
+                                exclude = True
                     # Check if the file is part of the game data folder.
                     if (self.paths.modsPath() / mod / "Root" / self.paths.gameDataDir()).exists():
                         exclude = True
