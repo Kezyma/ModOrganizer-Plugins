@@ -8,6 +8,10 @@ try:
     qtOkay = QtWidgets.QDialogButtonBox.Ok
     qtStaysOnTop = QtCore.Qt.WindowStaysOnTopHint
     qtSizePolicy = QtWidgets.QSizePolicy
+    qtItemView = QtWidgets.QAbstractItemView
+    qtItemFlag = QtCore.Qt
+    qtCheckState = QtCore.Qt
+    qtMatchFlag = QtCore.Qt
 except:
     from PyQt6.QtWidgets import QFileDialog, QFileIconProvider, QInputDialog, QLineEdit, QWidget
     from PyQt6.QtCore import QCoreApplication, qInfo, QSize
@@ -18,6 +22,10 @@ except:
     qtOkay = QtWidgets.QDialogButtonBox.StandardButton.Ok
     qtStaysOnTop = QtCore.Qt.WindowType.WindowStaysOnTopHint
     qtSizePolicy = QtWidgets.QSizePolicy.Policy
+    qtItemView = QtWidgets.QAbstractItemView.SelectionMode
+    qtItemFlag = QtCore.Qt.ItemFlag
+    qtCheckState = QtCore.Qt.CheckState
+    qtMatchFlag = QtCore.Qt.MatchFlag
 from ..profilesync_plugin import ProfileSyncPlugin
 import mobase, re
 
@@ -89,7 +97,7 @@ class ProfileSyncManageTool(ProfileSyncPlugin, mobase.IPluginTool):
         for x in range(self.profileSelect.count()):
             p = self.profileSelect.item(x)
             items.append(p.text())
-            if p.checkState() == QtCore.Qt.Checked:
+            if p.checkState() == qtCheckState.Checked:
                 selected.append(p.text())
         for item in items:
             enabled = False
@@ -123,26 +131,26 @@ class ProfileSyncManageTool(ProfileSyncPlugin, mobase.IPluginTool):
             self.addProfile(profile)
 
     def enableProfile(self, profileName=str):
-        for itm in self.profileSelect.findItems(profileName, QtCore.Qt.MatchExactly):
-            itm.setFlags(QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
+        for itm in self.profileSelect.findItems(profileName, qtMatchFlag.MatchExactly):
+            itm.setFlags(qtItemFlag.ItemIsUserCheckable|qtItemFlag.ItemIsEnabled)
 
     def disableProfile(self, profileName=str):
-        for itm in self.profileSelect.findItems(profileName, QtCore.Qt.MatchExactly):
-            itm.setFlags(QtCore.Qt.ItemIsUserCheckable)
+        for itm in self.profileSelect.findItems(profileName, qtMatchFlag.MatchExactly):
+            itm.setFlags(qtItemFlag.ItemIsUserCheckable)
 
     def checkProfile(self, profileName=str):
-        for itm in self.profileSelect.findItems(profileName, QtCore.Qt.MatchExactly):
-            itm.setCheckState(QtCore.Qt.Checked)
+        for itm in self.profileSelect.findItems(profileName, qtMatchFlag.MatchExactly):
+            itm.setCheckState(qtCheckState.Checked)
 
     def uncheckProfile(self, profileName=str):
-        for itm in self.profileSelect.findItems(profileName, QtCore.Qt.MatchExactly):
-            itm.setCheckState(QtCore.Qt.Unchecked)
+        for itm in self.profileSelect.findItems(profileName, qtMatchFlag.MatchExactly):
+            itm.setCheckState(qtCheckState.Unchecked)
 
     def addProfile(self, profileName=str):
         item = QtWidgets.QListWidgetItem()
         item.setText(profileName)
-        item.setFlags(QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
-        item.setCheckState(QtCore.Qt.Unchecked)
+        item.setFlags(qtItemFlag.ItemIsUserCheckable|qtItemFlag.ItemIsEnabled)
+        item.setCheckState(qtCheckState.Unchecked)
         self.profileSelect.addItem(item)
 
         __sortingEnabled = self.profileSelect.isSortingEnabled()
@@ -167,7 +175,7 @@ class ProfileSyncManageTool(ProfileSyncPlugin, mobase.IPluginTool):
         self.addLayout.setSpacing(5)
         self.addLayout.setObjectName("addLayout")
         self.addLabel = QtWidgets.QLabel(self.addWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Fixed, qtSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.addLabel.sizePolicy().hasHeightForWidth())
@@ -181,7 +189,7 @@ class ProfileSyncManageTool(ProfileSyncPlugin, mobase.IPluginTool):
         self.addText.textChanged.connect(self.checkGroupName)
         self.addLayout.addWidget(self.addText)
         self.addButton = QtWidgets.QPushButton(self.addWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Fixed, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.addButton.sizePolicy().hasHeightForWidth())
@@ -200,7 +208,7 @@ class ProfileSyncManageTool(ProfileSyncPlugin, mobase.IPluginTool):
         self.selectLayout.setSpacing(5)
         self.selectLayout.setObjectName("selectLayout")
         self.syncSelect = QtWidgets.QComboBox(self.selectWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Minimum, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.syncSelect.sizePolicy().hasHeightForWidth())
@@ -209,7 +217,7 @@ class ProfileSyncManageTool(ProfileSyncPlugin, mobase.IPluginTool):
         self.syncSelect.currentTextChanged.connect(self.bindGroup)
         self.selectLayout.addWidget(self.syncSelect)
         self.deleteButton = QtWidgets.QPushButton(self.selectWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Fixed, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.deleteButton.sizePolicy().hasHeightForWidth())
@@ -222,7 +230,7 @@ class ProfileSyncManageTool(ProfileSyncPlugin, mobase.IPluginTool):
         self.dialogLayout.addWidget(self.selectWidget)
 
         self.profileSelect = QtWidgets.QListWidget(dialog)
-        self.profileSelect.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
+        self.profileSelect.setSelectionMode(qtItemView.MultiSelection)
         self.profileSelect.setObjectName("profileSelect")
         self.profileSelect.itemChanged.connect(self.updateProfiles)
         self.dialogLayout.addWidget(self.profileSelect)

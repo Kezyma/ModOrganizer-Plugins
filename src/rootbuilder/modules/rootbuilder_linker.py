@@ -38,14 +38,14 @@ class RootBuilderLinker():
         # Save our link data.
         if not self.paths.rootLinkDataFilePath().exists():
             self.paths.rootLinkDataFilePath().touch()
-        with open(self.paths.rootLinkDataFilePath(), "w") as jsonFile:
+        with open(self.paths.rootLinkDataFilePath(), "w", encoding="utf-8") as jsonFile:
             json.dump(linkFileData, jsonFile)
 
     def clear(self):
         """ Clears any created links from mod files """
         # Check if we have any link data and load it if we do.
         if self.paths.rootLinkDataFilePath().exists():
-            linkFileData = json.load(open(self.paths.rootLinkDataFilePath()))
+            linkFileData = json.load(open(self.paths.rootLinkDataFilePath(),"r", encoding="utf-8"))
             # Loop through our link data and unlink individual files.
             for file in linkFileData:
                 relativePath = self.paths.rootRelativePath(file)

@@ -55,6 +55,22 @@
       "PluginPath": [ "rootbuilder" ],
       "LocalePath": [],
       "DataPath": [ "data/rootbuilder" ]
+    },
+    {
+      "Version": "4.4.1",
+      "Released": "2023-01-16",
+      "MinSupport": "2.4.0",
+      "MaxSupport": "2.5.0",
+      "MinWorking": "2.4.0",
+      "ReleaseNotes":[
+        "(4.4.1) Updated experimental installer plugin to fix an issue with FOMOD packaged mods.",
+        "(4.4.1) Moving the base game folder no longer causes Root Builder to crash. Requires the cache be cleared and recreated.",
+        "(4.4.1) Potential fix for previously non-supported characters."
+      ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.4.4.1.zip",
+      "PluginPath": [ "rootbuilder" ],
+      "LocalePath": [],
+      "DataPath": [ "data/rootbuilder" ]
     }
   ]
 }

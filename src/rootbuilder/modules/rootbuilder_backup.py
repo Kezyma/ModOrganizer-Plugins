@@ -132,20 +132,27 @@ class RootBuilderBackup():
         fileData = {}
         # If we have a cache file for this game already load that.
         if (self.settings.cache() and self.paths.rootCacheFilePath().exists()):
-            fileData = json.load(open(self.paths.rootCacheFilePath()))
+            fileData = json.load(open(self.paths.rootCacheFilePath(),"r", encoding="utf-8"))
         # If we have already run a build, just load the data from that.
         elif (self.paths.rootBackupDataFilePath().exists()):
-            fileData = json.load(open(self.paths.rootBackupDataFilePath()))
+            fileData = json.load(open(self.paths.rootBackupDataFilePath(),"r", encoding="utf-8"))
         # Hash the base game files.
         else:
             fileData = self.buildCache()
+
+        gamePath = str(self.paths.gamePath())
+        for file in list(fileData.keys()):
+            if not file.startswith(gamePath):
+                fullPath = os.path.join(gamePath, file)
+                fileData[fullPath] = fileData.pop(file)
+
         return fileData
 
     def saveFileData(self, fileData=dict):
         """ Saves current file data to the backup data path """
         if self.paths.rootBackupDataFilePath().exists():
             self.paths.rootBackupDataFilePath().touch()
-        with open(self.paths.rootBackupDataFilePath(), "w") as rcJson:
+        with open(self.paths.rootBackupDataFilePath(), "w", encoding="utf-8") as rcJson:
             json.dump(fileData, rcJson)
 
     def clearFileData(self):
@@ -168,13 +175,15 @@ class RootBuilderBackup():
     def buildCache(self):
         """ Triggers a cache build if none exists """
         fileData = {}
+        gamePath = self.paths.gamePath()
         for file in self.files.getGameFileList():
-            fileData.update({str(file):str(self.utilities.hashFile(file))})
+            relPath = os.path.relpath(str(file),str(gamePath))
+            fileData.update({str(relPath):str(self.utilities.hashFile(file))})
             # If cache is enabled, save the data to cache.
             if self.settings.cache():
                 if not self.paths.rootCacheFilePath().exists():
                     self.paths.rootCacheFilePath().touch()
-                with open(self.paths.rootCacheFilePath(), "w") as rcJson:
+                with open(self.paths.rootCacheFilePath(), "w", encoding="utf-8") as rcJson:
                     json.dump(fileData, rcJson)
             # Otherwise, clear any cache if it exists.
             else:

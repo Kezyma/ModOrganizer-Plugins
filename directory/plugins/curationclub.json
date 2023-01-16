@@ -18,6 +18,18 @@
       "PluginPath": [ "curationclub" ],
       "LocalePath": [],
       "DataPath": [ "data/curationclub" ]
+    },
+    {
+      "Version": "1.1.0a",
+      "Released": "2023-01-16",
+      "MinSupport": "2.4.0",
+      "MaxSupport": "2.5.0",
+      "MinWorking": "2.4.0",
+      "ReleaseNotes": [ "(1.1.0) Added support for MO 2.5.0" ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/curationclub/curationclub.1.1.0.zip",
+      "PluginPath": [ "curationclub" ],
+      "LocalePath": [],
+      "DataPath": [ "data/curationclub" ]
     }
   ]
 }

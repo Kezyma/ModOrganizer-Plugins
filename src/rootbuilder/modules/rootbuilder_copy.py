@@ -124,7 +124,7 @@ class RootBuilderCopy():
         fileData = {}
         # If we have already run a build, just load the data from that.
         if (self.paths.rootModDataFilePath().exists()):
-            fileData = json.load(open(self.paths.rootModDataFilePath()))
+            fileData = json.load(open(self.paths.rootModDataFilePath(),"r", encoding="utf-8"))
 
         return fileData
 
@@ -132,7 +132,7 @@ class RootBuilderCopy():
         """ Saves current mod data. """
         if self.paths.rootModDataFilePath().exists():
             self.paths.rootModDataFilePath().touch()
-        with open(self.paths.rootModDataFilePath(), "w") as rcJson:
+        with open(self.paths.rootModDataFilePath(), "w", encoding="utf-8") as rcJson:
             json.dump(fileData, rcJson)
 
     def clearModData(self):

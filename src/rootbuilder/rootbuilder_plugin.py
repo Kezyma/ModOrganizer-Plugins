@@ -9,7 +9,7 @@ except:
 class RootBuilderPlugin(SharedPlugin):
 
     def __init__(self):
-        super().__init__("RootBuilder", "Root Builder", mobase.VersionInfo(4, 4, 0, mobase.ReleaseType.BETA))
+        super().__init__("RootBuilder", "Root Builder", mobase.VersionInfo(4, 4, 1, mobase.ReleaseType.FINAL))
 
     def init(self, organiser=mobase.IOrganizer):
         self.rootBuilder = RootBuilder(organiser)
@@ -31,6 +31,6 @@ class RootBuilderPlugin(SharedPlugin):
             mobase.PluginSetting("exclusions",self.__tr("List of files and folders to exclude from RootBuilder."), "Saves,Morrowind.ini"),
             mobase.PluginSetting("redirect", self.__tr("Enables automatic redirection of exe files being launched from a mod folder to their respective game folder equivalent."), True),
             mobase.PluginSetting("installer", self.__tr("Enables an installer plugin to automatically install root mods when detected."), False),
-            mobase.PluginSetting("priority", self.__tr("The priority of the installer module for installing root mods."), 150)
+            mobase.PluginSetting("priority", self.__tr("The priority of the installer module for installing root mods."), 110)
             ]
         

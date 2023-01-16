@@ -24,7 +24,7 @@ class ProfileSync():
             return self._syncGroups
         if self.paths.profileSyncGroupJsonFile().exists():
             try:
-                with open(str(self.paths.profileSyncGroupJsonFile()), 'r') as r:
+                with open(str(self.paths.profileSyncGroupJsonFile()), 'r', encoding="utf-8") as r:
                     data = json.load(r)
                     self._syncGroups = data
             except:
@@ -35,7 +35,7 @@ class ProfileSync():
 
     def saveSyncGroups(self, data):
         self._syncGroups = data
-        with open(str(self.paths.profileSyncGroupJsonFile()), 'w') as r:
+        with open(str(self.paths.profileSyncGroupJsonFile()), 'w', encoding="utf-8") as r:
             json.dump(data, r)
 
     def addSyncGroup(self, groupName=str):
@@ -86,7 +86,7 @@ class ProfileSync():
             if profileName in groups[g]["Profiles"]:
                 return g
         return ""
-
+        
     def syncFromCurrent(self):
         profile = self.organiser.profile()
         group = self.getProfileGroup(profile.name())
@@ -111,7 +111,7 @@ class ProfileSync():
                     results.append("-" + mod)
             results.reverse()
             path = self.paths.profileModlistPath(profileName)
-            with open(str(path), "w") as w:
+            with open(str(path), "w", encoding="utf-8") as w:
                 w.writelines(results)
 
     def removeProfileFromGroup(self, groupName=str, profileName=str):
@@ -142,7 +142,7 @@ class ProfileSync():
     def getGroupModlist(self, groupName=str):
         groupList = self.paths.profileSyncGroupModlist(groupName)
         if groupList.exists():
-            with open(str(groupList), "r") as r:
+            with open(str(groupList), "r", encoding="utf-8") as r:
                 return r.readlines()
         else:
             return []
@@ -151,7 +151,7 @@ class ProfileSync():
         groupList = self.paths.profileSyncGroupModlist(groupName)
         if not groupList.exists():
             groupList.touch()
-        with open(str(groupList), "w") as w:
+        with open(str(groupList), "w", encoding="utf-8") as w:
             w.writelines(modList)
 
     def profileModlist(self, profileName):
@@ -159,7 +159,7 @@ class ProfileSync():
         mods = []
         enabled = []
         if path.exists():
-            with open(str(path), "r") as r:
+            with open(str(path), "r", encoding="utf-8") as r:
                 allmods = r.readlines()
                 allmods.reverse()
                 for x in allmods:

@@ -4,18 +4,24 @@ try:
     from PyQt5.QtWidgets import QInputDialog, QLineEdit
     from PyQt5.QtCore import QCoreApplication, qInfo
     from PyQt5 import QtWidgets, QtCore
+    qtAlign = QtCore.Qt
+    qtOrientation = QtCore.Qt
     qtHLine = QtWidgets.QFrame.HLine
     qtSunken = QtWidgets.QFrame.Sunken
     qtStaysOnTop = QtCore.Qt.WindowStaysOnTopHint
     qtSizePolicy = QtWidgets.QSizePolicy
+    qtButtonType = QtWidgets.QDialogButtonBox
 except:
     from PyQt6.QtWidgets import QInputDialog, QLineEdit
     from PyQt6.QtCore import QCoreApplication, qInfo
     from PyQt6 import QtWidgets, QtCore
+    qtAlign = QtCore.Qt.AlignmentFlag
+    qtOrientation = QtCore.Qt.Orientation
     qtHLine = QtWidgets.QFrame.Shape.HLine
     qtSunken = QtWidgets.QFrame.Shadow.Sunken
     qtStaysOnTop = QtCore.Qt.WindowType.WindowStaysOnTopHint
     qtSizePolicy = QtWidgets.QSizePolicy.Policy
+    qtButtonType = QtWidgets.QDialogButtonBox.StandardButton
 
 class CurationClubManageTool(CurationClubPlugin, mobase.IPluginTool):
     
@@ -72,7 +78,7 @@ class CurationClubManageTool(CurationClubPlugin, mobase.IPluginTool):
         dialog.setWindowTitle("Curation Club")
 
         self.headingWidget = QtWidgets.QWidget(dialog)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.headingWidget.sizePolicy().hasHeightForWidth())
@@ -83,7 +89,7 @@ class CurationClubManageTool(CurationClubPlugin, mobase.IPluginTool):
         self.headingLayout.setSpacing(5)
         self.headingLayout.setObjectName("headingLayout")
         self.headingLabel = QtWidgets.QLabel(self.headingWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.headingLabel.sizePolicy().hasHeightForWidth())
@@ -92,22 +98,22 @@ class CurationClubManageTool(CurationClubPlugin, mobase.IPluginTool):
         self.headingLabel.setText("Curation Club")
         self.headingLayout.addWidget(self.headingLabel)
         self.headingDescLabel = QtWidgets.QLabel(self.headingWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.headingDescLabel.sizePolicy().hasHeightForWidth())
         self.headingDescLabel.setSizePolicy(sizePolicy)
-        self.headingDescLabel.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        self.headingDescLabel.setAlignment(qtAlign.AlignLeading|qtAlign.AlignLeft|qtAlign.AlignTop)
         self.headingDescLabel.setWordWrap(True)
         self.headingDescLabel.setObjectName("formatDescLabel")
         self.headingDescLabel.setText("Click Ok to organise Creation Club content. Your game folder and enabled mods will be searched for Creation Club content and each Creation Club item will be moved to an individual mod in Mod Organizer. This may take a while and Mod Organizer can temporarily stop responding.")
         self.headingLayout.addWidget(self.headingDescLabel)
-        headingSpacer = QtWidgets.QSpacerItem(20, 0, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        headingSpacer = QtWidgets.QSpacerItem(20, 0, qtSizePolicy.Minimum, qtSizePolicy.Expanding)
         self.headingLayout.addItem(headingSpacer)
         self.dialogLayout.addWidget(self.headingWidget)
 
         self.formatWidget = QtWidgets.QWidget(dialog)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.formatWidget.sizePolicy().hasHeightForWidth())
@@ -118,7 +124,7 @@ class CurationClubManageTool(CurationClubPlugin, mobase.IPluginTool):
         self.formatLayout.setSpacing(5)
         self.formatLayout.setObjectName("formatLayout")
         self.formatLabel = QtWidgets.QLabel(self.formatWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.formatLabel.sizePolicy().hasHeightForWidth())
@@ -127,12 +133,12 @@ class CurationClubManageTool(CurationClubPlugin, mobase.IPluginTool):
         self.formatLabel.setText("Mod Format")
         self.formatLayout.addWidget(self.formatLabel)
         self.formatDescLabel = QtWidgets.QLabel(self.formatWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.formatDescLabel.sizePolicy().hasHeightForWidth())
         self.formatDescLabel.setSizePolicy(sizePolicy)
-        self.formatDescLabel.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        self.formatDescLabel.setAlignment(qtAlign.AlignLeading|qtAlign.AlignLeft|qtAlign.AlignTop)
         self.formatDescLabel.setWordWrap(True)
         self.formatDescLabel.setObjectName("formatDescLabel")
         self.formatDescLabel.setText("Specify the format for Creation Club mod names. {creation} specifies the name of the creation itself.")
@@ -141,12 +147,12 @@ class CurationClubManageTool(CurationClubPlugin, mobase.IPluginTool):
         self.formatText.setObjectName("formatText")
         self.formatText.textChanged.connect(self.updateFormat)
         self.formatLayout.addWidget(self.formatText)
-        formatSpacer = QtWidgets.QSpacerItem(20, 0, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        formatSpacer = QtWidgets.QSpacerItem(20, 0, qtSizePolicy.Minimum, qtSizePolicy.Expanding)
         self.formatLayout.addItem(formatSpacer)
         self.dialogLayout.addWidget(self.formatWidget)
 
         self.rootBuilderWidget = QtWidgets.QWidget(dialog)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.rootBuilderWidget.sizePolicy().hasHeightForWidth())
@@ -157,7 +163,7 @@ class CurationClubManageTool(CurationClubPlugin, mobase.IPluginTool):
         self.rootBuilderLayout.setSpacing(5)
         self.rootBuilderLayout.setObjectName("rootBuilderLayout")
         self.rootBuilderCheck = QtWidgets.QCheckBox(self.rootBuilderWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Minimum, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.rootBuilderCheck.sizePolicy().hasHeightForWidth())
@@ -167,23 +173,23 @@ class CurationClubManageTool(CurationClubPlugin, mobase.IPluginTool):
         self.rootBuilderCheck.clicked.connect(self.updateRootBuilder)
         self.rootBuilderLayout.addWidget(self.rootBuilderCheck)
         self.rootBuilderLabel = QtWidgets.QLabel(self.rootBuilderWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.rootBuilderLabel.sizePolicy().hasHeightForWidth())
         self.rootBuilderLabel.setSizePolicy(sizePolicy)
-        self.rootBuilderLabel.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        self.rootBuilderLabel.setAlignment(qtAlign.AlignLeading|qtAlign.AlignLeft|qtAlign.AlignTop)
         self.rootBuilderLabel.setWordWrap(True)
         self.rootBuilderLabel.setObjectName("rootBuilderLabel")
         self.rootBuilderLabel.setText("Enables support for Root Builder. Creation Club manifest files will also be moved to Mod Organizer inside Root folders with their respective mods. Enable if you use Root Builder, disable otherwise.")
         self.rootBuilderLayout.addWidget(self.rootBuilderLabel)
-        rootBuilderSpacer = QtWidgets.QSpacerItem(20, 0, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        rootBuilderSpacer = QtWidgets.QSpacerItem(20, 0, qtSizePolicy.Minimum, qtSizePolicy.Expanding)
         self.rootBuilderLayout.addItem(rootBuilderSpacer)
         self.dialogLayout.addWidget(self.rootBuilderWidget)        
         
         self.buttonBox = QtWidgets.QDialogButtonBox(dialog)
-        self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
+        self.buttonBox.setOrientation(qtOrientation.Horizontal)
+        self.buttonBox.setStandardButtons(qtButtonType.Cancel|qtButtonType.Ok)
         self.buttonBox.setObjectName("buttonBox")
         self.dialogLayout.addWidget(self.buttonBox)
 
