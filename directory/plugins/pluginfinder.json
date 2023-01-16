@@ -7,19 +7,19 @@
   "DocsUrl": "https://kezyma.github.io/?p=pluginfinder",
   "Versions": [
     {
-      "Version": "1.2.1a",
-      "Released": "2021-12-20",
+      "Version": "1.2.3a",
+      "Released": "2023-01-16",
       "MinSupport": "2.4.0",
-      "MaxSupport": "2.5.0.0-qt6dev4",
+      "MaxSupport": "2.5.0",
       "MinWorking": "2.4.0",
-      "MaxWorking": "",
       "ReleaseNotes": [
         "(1.2.0) Rebuilt the UI to be resizable and more responsive overall.",
         "(1.2.1) Removed 'always on top' flag.",
         "(1.2.1) Fixed issues with MO 2.5.0 support.",
-        "(1.2.1) Improved error handling."
+        "(1.2.1) Improved error handling.",
+        "(1.2.3) Added update notifier (courtesy of JonathanFeenstra)"
       ],
-      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/pluginfinder/pluginfinder.1.2.1.zip",
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/pluginfinder/pluginfinder.1.2.3.zip",
       "PluginPath": [ "pluginfinder" ],
       "LocalePath": [],
       "DataPath": [ "data/pluginfinder" ]
