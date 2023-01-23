@@ -50,7 +50,7 @@ class SharedUtilities():
         func = getattr(hashlib, 'md5')()
         if (Path(path).exists()):
             os.chmod(path, stat.S_IWRITE)
-        f = os.open(path, (os.O_RDWR | os.O_BINARY))
+        f = os.open(path, (os.O_RDONLY | os.O_BINARY))
         for block in iter(lambda: os.read(f, 2048*func.block_size), b''):
             func.update(block)
         os.close(f)
