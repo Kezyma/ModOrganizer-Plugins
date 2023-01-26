@@ -23,7 +23,7 @@ class CurationClub():
 
     fileRegex = r'data\/([A-Za-z0-9\-\_\s\(\)]+\.[a-zA-z0-9]{0,3})'
     nameRegex = r'"name":[\s]+"([^"]+)+"'
-    query = 'https://api.bethesda.net/mods/ugc-workshop/list?cc_mod=true&platform=WINDOWS&number_results=99999&bundle=false'
+    query = 'https://api.bethesda.net/mods/ugc-workshop/list?cc_mod=true&platform=WINDOWS&number_results=9999&bundle=false'
 
     def deployInitialCache(self):
         """ Deploys the initial cache file, only happens on first run. """
