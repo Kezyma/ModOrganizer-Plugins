@@ -4,6 +4,7 @@ from .modules.curationclub_files import CurationClubFiles
 from .modules.curationclub_settings import CurationClubSettings
 from ..shared.shared_utilities import SharedUtilities
 from pathlib import Path
+import urllib.request as request
 try:
     from PyQt5.QtCore import QCoreApplication, qInfo
 except:
@@ -31,7 +32,7 @@ class CurationClub():
 
     def generateCache(self):
         cache = self.readCache()
-        with urllib.request.urlopen(self.query) as r:
+        with request.urlopen(self.query) as r:
             dataraw = r.read()
             datadec = dataraw.decode('utf-8').encode('utf-8')
             datajson = json.loads(datadec)
