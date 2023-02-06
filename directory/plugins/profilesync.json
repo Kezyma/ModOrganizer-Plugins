@@ -23,16 +23,17 @@
       "DataPath": [ "data/profilesync" ]
     },
     {
-      "Version": "1.1.0a",
-      "Released": "2023-01-16",
+      "Version": "1.1.1a",
+      "Released": "2023-02-06",
       "MinSupport": "2.4.0",
       "MaxSupport": "2.5.0",
       "MinWorking": "2.4.0",
       "ReleaseNotes": [
         "(1.1.0) Potential fix for previously non-supported characters.",
-        "(1.1.0) Added support for MO 2.5.0"
+        "(1.1.0) Added support for MO 2.5.0",
+        "(1.1.1) Portable sync profiles (Requires recreating Sync Profiles on portable instances)."
       ],
-      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/profilesync/profilesync.1.1.0.zip",
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/profilesync/profilesync.1.1.1.zip",
       "PluginPath": [ "profilesync" ],
       "LocalePath": [],
       "DataPath": [ "data/profilesync" ]

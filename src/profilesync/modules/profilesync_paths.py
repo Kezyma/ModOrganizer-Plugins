@@ -11,7 +11,10 @@ class ProfileSyncPaths(SharedPaths):
     _profileSyncGroupJsonFile = str()
     def profileSyncGroupJsonFile(self):
         if self._profileSyncGroupJsonFile == str():
-            self._profileSyncGroupJsonFile = self.pluginDataPath() / self.safeGamePathName() / "profile_sync_groups.json"
+            if self.currentInstanceName() == "":
+                self._profileSyncGroupJsonFile = self.pluginDataPath() / "Portable" / "profile_sync_groups.json"
+            else:
+                self._profileSyncGroupJsonFile = self.pluginDataPath() / self.safeGamePathName() / "profile_sync_groups.json"
         if not Path(self._profileSyncGroupJsonFile).parent.exists():
             os.makedirs(str(Path(self._profileSyncGroupJsonFile).parent))
         if not Path(self._profileSyncGroupJsonFile).exists():
@@ -21,7 +24,10 @@ class ProfileSyncPaths(SharedPaths):
     _profileSyncModlistFolder = str()
     def profileSyncGroupModlist(self, groupName=str):
         if self._profileSyncModlistFolder == str():
-            self._profileSyncModlistFolder = self.pluginDataPath() / self.safeGamePathName() / "groups"
+            if self.currentInstanceName() == "":
+                self._profileSyncModlistFolder = self.pluginDataPath() / "Portable" / "groups"
+            else:    
+                self._profileSyncModlistFolder = self.pluginDataPath() / self.safeGamePathName() / "groups"
         if not Path(self._profileSyncModlistFolder).exists():
             os.makedirs(str(self._profileSyncModlistFolder))
         return Path(self._profileSyncModlistFolder) / (self.fileSafeName(str(groupName)) + ".txt")
