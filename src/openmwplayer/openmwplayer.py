@@ -44,6 +44,18 @@ class OpenMWPlayer():
         game = self.organiser.managedGame()
         self.clearOpenMWCfg(configPath)
 
+        profile = self.organiser.profile().name()
+        groundCoverCustom = self.paths.openMwGrassSettingsPath(profile)
+        groundCoverFiles = []
+        if not groundCoverCustom.exists():
+            with groundCoverCustom.open("x") as custNew:
+                custNew.write("\n")
+        with groundCoverCustom.open("r") as custGrnd:
+            for line in custGrnd:
+                line = line.replace("\n", "")
+                if len(line) > 0:
+                    groundCoverFiles.append(line)
+
         # Migrated from OpenMWExport by AnyOldName3
         with configPath.open("a", encoding="utf-8") as openmwcfg:
             # write out data directories
@@ -59,9 +71,13 @@ class OpenMWPlayer():
                 loadIndex = self.organiser.pluginList().loadOrder(plugin)
                 if loadIndex >= 0:
                     loadOrder[loadIndex] = plugin
+                elif plugin in groundCoverFiles:
+                    openmwcfg.write("groundcover=" + plugin + "\n")
+
             # actually write out the list
             for pluginIndex in range(len(loadOrder)):
-                openmwcfg.write("content=" + loadOrder[pluginIndex] + "\n")
+                pluginName = loadOrder[pluginIndex]
+                openmwcfg.write("content=" + pluginName + "\n")
 
     def clearOpenMWCfg(self, configPath):
         # Migrated from OpenMWExport by AnyOldName3
@@ -71,7 +87,7 @@ class OpenMWPlayer():
             lastLine = ""
             with configPath.open("r", encoding="utf-8-sig") as openmwcfg:
                 for line in openmwcfg:
-                    if not line.startswith("data=") and not line.startswith("content="):
+                    if not line.startswith("data=") and not line.startswith("content=") and not line.startswith("groundcover="):
                         f.write(line)
                         lastLine = line
             # ensure the last line ended with a line break

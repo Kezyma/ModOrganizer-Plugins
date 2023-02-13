@@ -1,4 +1,5 @@
 import mobase 
+from pathlib import Path
 from ..shared.shared_plugin import SharedPlugin
 from .openmwplayer import OpenMWPlayer
 try:
@@ -9,7 +10,7 @@ except:
 class OpenMWPlayerPlugin(SharedPlugin, mobase.IPlugin):
 
     def __init__(self):
-        super().__init__("OpenMWPlayer", "OpenMW Player", mobase.VersionInfo(0, 0, 2, mobase.ReleaseType.ALPHA))
+        super().__init__("OpenMWPlayer", "OpenMW Player", mobase.VersionInfo(0, 0, 3, mobase.ReleaseType.ALPHA))
 
     def init(self, organiser=mobase.IOrganizer):
         self.organiser = organiser
@@ -32,7 +33,7 @@ class OpenMWPlayerPlugin(SharedPlugin, mobase.IPlugin):
     def settings(self):
         """ Current list of game settings for Mod Organizer. """
         return [
-            mobase.PluginSetting("openmwcfgpath",self.__tr("Path to openmw.cfg"),str(QStandardPaths.locate(QStandardPaths.DocumentsLocation, str(Path("My Games", "OpenMW", "openmw.cfg")))))
+            mobase.PluginSetting("openmwcfgpath",self.__tr("Path to openmw.cfg"),"/Path/To/OpenMW/openmw.cfg")
             ]
         
     def runOpenMW(self, appName):
