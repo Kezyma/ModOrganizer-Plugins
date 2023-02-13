@@ -31,10 +31,14 @@ class OpenMWPlayer():
         fileName = appPath.name
         if fileName in self._openMwExeNames:
             # Export settings to OpenMW
+            qInfo("OpenMWPlayer: OpenMW exe detected, exporting setup.")
             self.exportMOSetup()
-            
+            qInfo("OpenMWPlayer: OpenMW setup export complete.")
+
             # Run app separately.
+            qInfo("OpenMWPlayer: Running selected exe.")
             os.startfile(appName)
+
             return False
         else:
             return True

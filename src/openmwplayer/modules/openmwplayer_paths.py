@@ -2,6 +2,12 @@ import mobase
 from ...shared.shared_paths import SharedPaths
 from .openmwplayer_settings import OpenMWPlayerSettings
 from pathlib import Path
+try:
+    from PyQt5.QtCore import QCoreApplication, QStandardPaths
+    from PyQt5.QtWidgets import QFileDialog
+except:
+    from PyQt6.QtCore import QCoreApplication, QStandardPaths
+    from PyQt6.QtWidgets import QFileDialog
 import os
 
 class OpenMWPlayerPaths(SharedPaths):
@@ -21,12 +27,12 @@ class OpenMWPlayerPaths(SharedPaths):
         # Grab the default path if it exists.
         defaultLocation = Path(QStandardPaths.locate(QStandardPaths.DocumentsLocation, str(Path("My Games", "OpenMW", "openmw.cfg"))))
         if defaultLocation.is_file():
-            self.__organizer.setPluginSetting(self.name(), "openmwcfgpath", str(defaultLocation))
+            self.organiser.setPluginSetting("OpenMWPlayer", "openmwcfgpath", str(defaultLocation))
             return defaultLocation
 
         # Otherwise, get the user to provide a path.
-        manualPath = Path(QFileDialog.getOpenFileName(self._parentWidget(), self.__tr("Locate OpenMW Config File"), ".", "OpenMW Config File (openmw.cfg)")[0])
-        self.__organizer.setPluginSetting(self.name(), "openmwcfgpath", str(manualPath))
+        manualPath = Path(QFileDialog.getOpenFileName(None, "Locate OpenMW Config File", ".", "OpenMW Config File (openmw.cfg)")[0])
+        self.organiser.setPluginSetting("OpenMWPlayer", "openmwcfgpath", str(manualPath))
         return manualPath
 
     def openMwCustomSettingsPath(self, profile):

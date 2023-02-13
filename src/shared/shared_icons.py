@@ -98,3 +98,6 @@ class SharedIcons():
 
     def recycleIcon(self):
         return self.icon("ui-recycle.ico")
+
+    def openMwIcon(self):
+        return self.icon("ui-openmw.ico")

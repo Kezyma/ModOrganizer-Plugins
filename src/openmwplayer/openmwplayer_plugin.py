@@ -7,25 +7,14 @@ try:
 except:
     from PyQt6.QtCore import QCoreApplication, qInfo
 
-class OpenMWPlayerPlugin(SharedPlugin, mobase.IPlugin):
+class OpenMWPlayerPlugin(SharedPlugin):
 
     def __init__(self):
-        super().__init__("OpenMWPlayer", "OpenMW Player", mobase.VersionInfo(0, 0, 3, mobase.ReleaseType.ALPHA))
+        super().__init__("OpenMWPlayer", "OpenMW Player", mobase.VersionInfo(0, 0, 4, mobase.ReleaseType.ALPHA))
 
     def init(self, organiser=mobase.IOrganizer):
-        self.organiser = organiser
-        self.openMWPlayer = OpenMWPlayer(self.organiser)
-        self.organiser.onAboutToRun(lambda appName: self.runOpenMW(appName))
+        self.openMWPlayer = OpenMWPlayer(organiser)
         return super().init(organiser)
-
-    def name(self):
-        return self.baseName()
-
-    def displayName(self):
-        return "OpenMW Player"
-
-    def description(self):
-        return self.__tr("Launches OpenMW executables using the current mod setup enabled in Mod Organizer 2.")
 
     def __tr(self, trstr):
         return QCoreApplication.translate(self.pluginName, trstr)
@@ -35,6 +24,3 @@ class OpenMWPlayerPlugin(SharedPlugin, mobase.IPlugin):
         return [
             mobase.PluginSetting("openmwcfgpath",self.__tr("Path to openmw.cfg"),"/Path/To/OpenMW/openmw.cfg")
             ]
-        
-    def runOpenMW(self, appName):
-        self.openMWPlayer.runOpenMW(appName)
