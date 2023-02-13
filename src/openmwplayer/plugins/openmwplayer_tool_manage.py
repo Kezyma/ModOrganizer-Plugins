@@ -112,7 +112,7 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
         dialog = QtWidgets.QDialog()
         dialog.setObjectName("dialog")
         dialog.resize(475, 340)
-        dialog.setWindowIcon(self.icons.syncIcon())
+        dialog.setWindowIcon(self.icons.openMwIcon())
         dialog.setWindowTitle("OpenMW Player")
         self.dialogLayout = QtWidgets.QVBoxLayout(dialog)
         self.dialogLayout.setContentsMargins(5, 5, 5, 5)

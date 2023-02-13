@@ -47,6 +47,10 @@ class OpenMWPlayerPaths(SharedPaths):
             os.makedirs(settingsPath)
         return Path(settingsPath)
 
+    def openMwTempFilePath(self, profile):
+        """ Gets the path to the RootBuilder data folder for the current game. """
+        return self.openMwCustomSettingsPath(profile) / "openmw.cfg"
+
     def openMwGrassSettingsPath(self, profile):
         """ Gets the path to the RootBuilder data folder for the current game. """
         settingsPath = self.openMwCustomSettingsPath(profile) / "OpenMWGroundcover.txt"

@@ -1,0 +1,25 @@
+{
+  "Name": "OpenMW Player",
+  "Author": "Kezyma",
+  "Description": "OpenMW Player automatically exports your mod list, enabled plugins, and grass mods to OpenMW whenever you run the game through Mod Organizer.",
+  "NexusUrl": "https://www.nexusmods.com/morrowind/mods/52345",
+  "GithubUrl": "https://github.com/Kezyma/ModOrganizer-Plugins",
+  "DocsUrl": "https://kezyma.github.io/?p=openmwplayer",
+  "Versions": [
+    {
+      "Version": "0.0.5a",
+      "Released": "2023-02-13",
+      "MinSupport": "2.4.0",
+      "MaxSupport": "2.5.0",
+      "MinWorking": "2.4.0",
+      "MaxWorking": "",
+      "ReleaseNotes": [
+        "(0.0.5) Initial release."
+      ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/openmwplayer/openmwplayer.0.0.5.zip",
+      "PluginPath": [ "openmwplayer" ],
+      "LocalePath": [],
+      "DataPath": [ "data/openmwplayer" ]
+    }
+  ]
+}

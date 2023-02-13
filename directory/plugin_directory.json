@@ -30,6 +30,11 @@
     "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugins/profilesync.json"
   },
   {
+    "Name": "OpenMW Player",
+    "Identifier": "openmwplayer",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugins/openmwplayer.json"
+  },
+  {
     "Name": "LOOT Warning Checker",
     "Identifier": "lootwarningchecker",
     "Manifest": "https://raw.githubusercontent.com/JonathanFeenstra/modorganizer-loot-warning-checker/main/manifest.json"
