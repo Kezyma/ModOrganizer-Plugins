@@ -92,6 +92,12 @@ class SharedPaths():
             self._modOrganizerInstancesPath = Path(os.getenv("LOCALAPPDATA")) / "ModOrganizer"
         return Path(self._modOrganizerInstancesPath)
 
+    _modOrganizerPluginPath = str()
+    def modOrganizerPluginPath(self):
+        if self._modOrganizerPluginPath == str():
+            self._modOrganizerPluginPath = str(self.modOrganizerPath() / "plugins")
+        return Path(self._modOrganizerPluginPath)
+
     def currentInstanceName(self):
         try:
             with winreg.OpenKey(winreg.HKEY_CURRENT_USER, "Software\\Mod Organizer Team\\Mod Organizer") as key:

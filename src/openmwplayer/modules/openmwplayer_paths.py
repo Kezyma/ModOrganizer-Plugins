@@ -55,3 +55,8 @@ class OpenMWPlayerPaths(SharedPaths):
         """ Gets the path to the RootBuilder data folder for the current game. """
         settingsPath = self.openMwCustomSettingsPath(profile) / "OpenMWGroundcover.txt"
         return Path(settingsPath)
+
+    def dummyEspPath(self):
+        """ Gets the path to the base dummy esp. """
+        espPath = Path(self.modOrganizerPluginPath()) / "openmwplayer" / "openmwplayer" / "openmwplayer.esp"
+        return espPath
