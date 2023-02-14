@@ -5,9 +5,9 @@ except:
 
 from .modules.openmwplayer_paths import OpenMWPlayerPaths
 from .modules.openmwplayer_settings import OpenMWPlayerSettings
+from ..shared.shared_utilities import SharedUtilities
 from pathlib import Path
 
-import tempfile
 import os
 import shutil
 import mobase
@@ -17,6 +17,7 @@ class OpenMWPlayer():
         self.organiser = organiser
         self.settings = OpenMWPlayerSettings(self.organiser)
         self.paths = OpenMWPlayerPaths(self.organiser, self.settings)
+        self.utilities = SharedUtilities()
         super().__init__()
 
     _openMwExeNames = [
@@ -70,7 +71,7 @@ class OpenMWPlayer():
             mods = self.organiser.modList().allModsByProfilePriority(self.organiser.profile())
             for mod in mods:
                 if (self.organiser.modList().state(mod) & 0x2) != 0:
-                    modBsa = filter(lambda x: x.lower().endswith(".bsa") , os.listdir(self.organiser.getMod(mod).absolutePath()))
+                    modBsa = filter(lambda x: x.lower().endswith(".bsa") , os.listdir(self.organiser.modList().getMod(mod).absolutePath()))
                     for bsa in modBsa:
                         bsas.append(bsa)
                     self.writeDataString(cfg, mod)
@@ -82,9 +83,19 @@ class OpenMWPlayer():
             loadOrder = sorted(filtered, key=pluginList.loadOrder)
             groundCover = filter(lambda x: x in groundCoverFiles, plugins)
             for plugin in loadOrder:
-                cfg.write("content=" + plugin + "\n")
+                if plugin.endswith(".omwaddon.esp"):
+                    cfg.write("content=" + plugin.replace(".omwaddon.esp", ".omwaddon") + "\n")
+                elif plugin.endswith(".omwscripts.esp"):
+                    cfg.write("content=" + plugin.replace(".omwscripts.esp", ".omwscripts") + "\n")
+                else:
+                    cfg.write("content=" + plugin + "\n")
             for ground in groundCover:
-                cfg.write("groundcover=" + ground + "\n")
+                if ground.endswith(".omwaddon.esp"):
+                    cfg.write("groundcover=" + ground.replace(".omwaddon.esp", ".omwaddon") + "\n")
+                elif ground.endswith(".omwscripts.esp"):
+                    cfg.write("groundcover=" + ground.replace(".omwscripts.esp", ".omwscripts") + "\n")
+                else:
+                    cfg.write("groundcover=" + ground + "\n")
             for bsa in bsas:
                 cfg.write("fallback-archive=" + bsa.split(os.path.sep)[-1] + "\n")
 
@@ -100,7 +111,50 @@ class OpenMWPlayer():
                 cfg.write("\n")
     
     def writeDataString(self, configFile, modName):
-        configFile.write(self.getDataString(self.organiser.getMod(modName).absolutePath()))
+        configFile.write(self.getDataString(self.organiser.modList().getMod(modName).absolutePath()))
 
     def getDataString(self, dataPath):
         return "data=\"" + dataPath.replace("&", "&&").replace("\"", "&\"") + "\"\n"
+        
+    def createDummy(self, mod):
+        # Identify any omwaddons and create a dummy esp for them.
+        modPath = self.organiser.modList().getMod(mod).absolutePath()
+        files = os.listdir(modPath)
+        omwaddons = filter(lambda x: x.lower().endswith(".omwaddon"), files)
+        for omwaddon in omwaddons:
+            dummyPath = Path(modPath) / Path(str(omwaddon) + ".esp")
+            if not dummyPath.exists():
+                dummyPath.open("w").close()
+        omwscripts = filter(lambda x: x.lower().endswith(".omwscripts"), files)
+        for omwaddon in omwscripts:
+            dummyPath = Path(modPath) / Path(str(omwaddon) + ".esp")
+            if not dummyPath.exists():
+                dummyPath.open("w").close()
+
+    def deleteDummy(self, mod):
+        # Remove any dummy esp files from the mod.
+        modPath = self.organiser.modList().getMod(mod).absolutePath()
+        files = os.listdir(modPath)
+        dummyfiles = filter(lambda x: x.lower().endswith(".omwaddon.esp"), files)
+        for dummy in dummyfiles:
+            dummyPath = Path(modPath) / Path(dummy)
+            if os.path.getsize(dummyPath) == 0:
+                self.utilities.deletePath(dummyPath)
+        dummyscripts = filter(lambda x: x.lower().endswith(".omwscripts.esp"), files)
+        for dummy in dummyscripts:
+            dummyPath = Path(modPath) / Path(dummy)
+            if os.path.getsize(dummyPath) == 0:
+                self.utilities.deletePath(dummyPath)
+
+
+    def enableDummy(self):
+        # Create dummy esp files for any omwaddons that currently exist.
+        allMods = self.organiser.modList().allMods()
+        for mod in allMods:
+            self.createDummy(mod)
+        
+    def disableDummy(self):
+        # Remove dummy esp files for any omwaddons that currently exist.
+        allMods = self.organiser.modList().allMods()
+        for mod in allMods:
+            self.deleteDummy(mod)

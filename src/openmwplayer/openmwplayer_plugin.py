@@ -10,7 +10,7 @@ except:
 class OpenMWPlayerPlugin(SharedPlugin):
 
     def __init__(self):
-        super().__init__("OpenMWPlayer", "OpenMW Player", mobase.VersionInfo(0, 0, 6, mobase.ReleaseType.ALPHA))
+        super().__init__("OpenMWPlayer", "OpenMW Player", mobase.VersionInfo(0, 0, 7, mobase.ReleaseType.ALPHA))
 
     def init(self, organiser=mobase.IOrganizer):
         self.openMWPlayer = OpenMWPlayer(organiser)
@@ -22,5 +22,6 @@ class OpenMWPlayerPlugin(SharedPlugin):
     def settings(self):
         """ Current list of game settings for Mod Organizer. """
         return [
-            mobase.PluginSetting("openmwcfgpath",self.__tr("Path to openmw.cfg"),"/Path/To/OpenMW/openmw.cfg")
+            mobase.PluginSetting("openmwcfgpath",self.__tr("Path to openmw.cfg"),"/Path/To/OpenMW/openmw.cfg"),
+            mobase.PluginSetting("dummyesp",self.__tr("Enables omwaddon and omwscripts support via esp files."), False)
             ]

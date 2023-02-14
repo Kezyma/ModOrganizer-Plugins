@@ -10,3 +10,7 @@ class OpenMWPlayerSettings(SharedSettings):
     def cfgpath(self):
         """ The path to the openmw.cfg to be used. """
         return self.setting("openmwcfgpath")
+
+    def dummyesp(self):
+        """ Whether to use dummy esp files to enable omwaddons. """
+        return self.setting("dummyesp")

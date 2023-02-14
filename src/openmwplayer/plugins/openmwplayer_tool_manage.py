@@ -64,6 +64,7 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
 
     def bindPlugins(self):
         self.addText.setText(str(self.openMWPlayer.paths.openMWCfgPath()))
+        self.dummyCheck.setChecked(self.openMWPlayer.settings.dummyesp())
 
         profile = self.organiser.profile().name()
         groundCoverCustom = self.openMWPlayer.paths.openMwGrassSettingsPath(profile)
@@ -89,10 +90,16 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
             for itm in self.profileSelect.findItems(name, qtMatchFlag.MatchExactly):
                 itm.setCheckState(qtCheckState.Checked)
 
-        
+    def dummyEspCheck(self):
+        self.organiser.setPluginSetting(self.baseName(), "dummyesp", self.dummyCheck.isChecked())
+        if self.dummyCheck.isChecked():
+            self.openMWPlayer.enableDummy()
+        else:
+            self.openMWPlayer.disableDummy()
+
     def selectOpenMWCfg(self):
         manualPath = QFileDialog.getOpenFileName(self._parentWidget(), self.__tr("Locate OpenMW Config File"), ".", "OpenMW Config File (openmw.cfg)")[0]
-        self.organiser.setPluginSetting(self.name(), "openmwcfgpath", str(manualPath))
+        self.organiser.setPluginSetting(self.baseName(), "openmwcfgpath", str(manualPath))
         self.addText.setText(str(manualPath))
 
     def changePluginState(self):
@@ -140,6 +147,30 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
         self.addLayout.addWidget(self.addButton)
         self.addLayout.addWidget(self.addText)
         self.dialogLayout.addWidget(self.addWidget)
+
+        self.dummyWidget = QtWidgets.QWidget(dialog)
+        self.dummyWidget.setObjectName("dummyWidget")
+        self.dummyLayout = QtWidgets.QHBoxLayout(self.dummyWidget)
+        self.dummyLayout.setContentsMargins(0, 0, 0, 0)
+        self.dummyLayout.setSpacing(5)
+        self.dummyLayout.setObjectName("dummyLayout")
+        #self.dummyText = QtWidgets.QLabel(self.dummyWidget)
+        #self.dummyText.setObjectName("dummyText")
+
+        self.dummyCheck = QtWidgets.QCheckBox(self.dummyWidget)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Fixed, qtSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.dummyCheck.sizePolicy().hasHeightForWidth())
+        self.dummyCheck.setSizePolicy(sizePolicy)
+        self.dummyCheck.setMinimumSize(QtCore.QSize(75, 0))
+        self.dummyCheck.setObjectName("dummyCheck")
+        self.dummyCheck.setText("Enable omwaddon and omwscripts support via esp files.")
+        self.dummyCheck.clicked.connect(self.dummyEspCheck)
+        self.dummyLayout.addWidget(self.dummyCheck)
+
+        #self.dummyLayout.dummyWidget(self.dummyText)
+        self.dialogLayout.addWidget(self.dummyWidget)
 
         self.gcvWidget = QtWidgets.QWidget(dialog)
         self.gcvWidget.setObjectName("gcvWidget")
