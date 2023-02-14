@@ -30,4 +30,4 @@ class OpenMWPlayerPluginLauncher(OpenMWPlayerPlugin, mobase.IPlugin):
 
     def createDummy(self, mod):
         if self.openMWPlayer.settings.dummyesp():
-            self.openMWPlayer.createDummy(mod)
+            self.openMWPlayer.createDummy(mod.name())
