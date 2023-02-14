@@ -8,12 +8,6 @@ class PluginFinderPaths(SharedPaths):
     def __init__(self, organiser=mobase.IOrganizer):
         super().__init__("PluginFinder", organiser) 
         
-    _modOrganizerPluginPath = str()
-    def modOrganizerPluginPath(self):
-        if self._modOrganizerPluginPath == str():
-            self._modOrganizerPluginPath = str(self.modOrganizerPath() / "plugins")
-        return Path(self._modOrganizerPluginPath)
-
     _modOrganizerLocalePath = str()
     def modOrganizerLocalePath(self):
         if self._modOrganizerLocalePath == str():
