@@ -60,11 +60,19 @@ class OpenMWPlayer():
                 if len(line) > 0:
                     groundCoverFiles.append(line)
 
+        bsas = []
+        rootBsa = filter(lambda x: x.lower().endswith(".bsa"), os.listdir(game.dataDirectory().absolutePath()))
+        for bsa in rootBsa:
+            bsas.append(bsa)
+
         with configPath.open("a", encoding="utf-8") as cfg:
             cfg.write(self.getDataString(game.dataDirectory().absolutePath()))
             mods = self.organiser.modList().allModsByProfilePriority(self.organiser.profile())
             for mod in mods:
                 if (self.organiser.modList().state(mod) & 0x2) != 0:
+                    modBsa = filter(lambda x: x.lower().endswith(".bsa") , os.listdir(self.organiser.getMod(mod).absolutePath()))
+                    for bsa in modBsa:
+                        bsas.append(bsa)
                     self.writeDataString(cfg, mod)
             self.writeDataString(cfg, "Overwrite")
 
@@ -77,6 +85,8 @@ class OpenMWPlayer():
                 cfg.write("content=" + plugin + "\n")
             for ground in groundCover:
                 cfg.write("groundcover=" + ground + "\n")
+            for bsa in bsas:
+                cfg.write("fallback-archive=" + bsa.split(os.path.sep)[-1] + "\n")
 
     def clearCfg(self, configPath):
         lines = []
@@ -84,9 +94,10 @@ class OpenMWPlayer():
             lines = cfg.readlines()
         with configPath.open("w", encoding="utf-8-sig") as cfg:
             for line in lines:
-                if not line.startswith("data=") and not line.startswith("content=") and not line.startswith("groundcover="):
+                if not line.startswith("data=") and not line.startswith("content=") and not line.startswith("groundcover=") and not line.startswith("fallback-archive="):
                     cfg.write(line)
-            cfg.write("\n")
+            if len(lines) == 0 and not lines[-1].endswith("\n"):
+                cfg.write("\n")
     
     def writeDataString(self, configFile, modName):
         configFile.write(self.getDataString(self.organiser.getMod(modName).absolutePath()))

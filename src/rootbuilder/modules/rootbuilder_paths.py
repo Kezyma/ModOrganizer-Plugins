@@ -72,6 +72,7 @@ class RootBuilderPaths(SharedPaths):
 
     def rootRelativePath(self, path):
         """ Gets the part of a path relative to the Root folder. """
+        pathTest = Path(str(path)[(str(os.path.abspath(Path(path))).lower().find(os.path.sep + "root" + os.path.sep) + 6):])
         return Path(str(path)[(str(os.path.abspath(Path(path))).lower().find(os.path.sep + "root") + 6):])
 
     def rootCacheFilePathAllVersions(self):
