@@ -118,7 +118,9 @@ class OpenMWPlayer():
         
     def createDummy(self, mod):
         # Identify any omwaddons and create a dummy esp for them.
-        modPath = self.organiser.modList().getMod(mod).absolutePath()
+        modData = self.organiser.modList().getMod(mod)
+        modPath = modData.absolutePath()
+        modChanged = False
         files = os.listdir(modPath)
         omwaddons = filter(lambda x: x.lower().endswith(".omwaddon"), files)
         dummySource = self.paths.dummyEspPath()
@@ -126,15 +128,22 @@ class OpenMWPlayer():
             dummyPath = Path(modPath) / Path(str(omwaddon) + ".esp")
             if not dummyPath.exists():
                 self.utilities.copyTo(dummySource, dummyPath)
+                modChanged = True
         omwscripts = filter(lambda x: x.lower().endswith(".omwscripts"), files)
         for omwaddon in omwscripts:
             dummyPath = Path(modPath) / Path(str(omwaddon) + ".esp")
             if not dummyPath.exists():
                 self.utilities.copyTo(dummySource, dummyPath)
+                modChanged = True
+        #if modChanged == True:
+            #self.organiser.modDataChanged(modData)
+        return modChanged
 
     def deleteDummy(self, mod):
         # Remove any dummy esp files from the mod.
-        modPath = self.organiser.modList().getMod(mod).absolutePath()
+        modData = self.organiser.modList().getMod(mod)
+        modPath = modData.absolutePath()
+        modChanged = False
         files = os.listdir(modPath)
         dummyfiles = filter(lambda x: x.lower().endswith(".omwaddon.esp"), files)
         clearSize = os.path.getsize(self.paths.dummyEspPath())
@@ -142,21 +151,35 @@ class OpenMWPlayer():
             dummyPath = Path(modPath) / Path(dummy)
             if os.path.getsize(dummyPath) == clearSize:
                 self.utilities.deletePath(dummyPath)
+                modChanged = True
         dummyscripts = filter(lambda x: x.lower().endswith(".omwscripts.esp"), files)
         for dummy in dummyscripts:
             dummyPath = Path(modPath) / Path(dummy)
             if os.path.getsize(dummyPath) == clearSize:
                 self.utilities.deletePath(dummyPath)
-
+                modChanged = True
+        #if modChanged == True:
+            #self.organiser.modDataChanged(modData)
+        return modChanged
 
     def enableDummy(self):
         # Create dummy esp files for any omwaddons that currently exist.
         allMods = self.organiser.modList().allMods()
+        refresh = False
         for mod in allMods:
-            self.createDummy(mod)
+            modChanged = self.createDummy(mod)
+            if modChanged == True:
+                refresh = True
+        if refresh == True:
+            self.organiser.refresh()
         
     def disableDummy(self):
         # Remove dummy esp files for any omwaddons that currently exist.
         allMods = self.organiser.modList().allMods()
+        refresh = False
         for mod in allMods:
-            self.deleteDummy(mod)
+            modChanged = self.deleteDummy(mod)
+            if modChanged == True:
+                refresh = True
+        if refresh == True:
+            self.organiser.refresh()

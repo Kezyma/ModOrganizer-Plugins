@@ -7,8 +7,8 @@
   "DocsUrl": "https://kezyma.github.io/?p=openmwplayer",
   "Versions": [
     {
-      "Version": "0.0.10a",
-      "Released": "2023-02-15",
+      "Version": "0.0.11a",
+      "Released": "2023-02-20",
       "MinSupport": "2.4.0",
       "MaxSupport": "2.5.0",
       "MinWorking": "2.4.0",
@@ -19,9 +19,10 @@
         "(0.0.7) Added omwaddon and omwscripts support.",
         "(0.0.8) Added headers to dummy esp so MO doesn't complain about it.",
         "(0.0.9) Fixed a bug preventing dummy esp creation on mod installation.",
-        "(0.0.10) If enabled, dummy plugins will be created on MO startup and on enable/disable of any mod."
+        "(0.0.10) If enabled, dummy plugins will be created on MO startup and on enable/disable of any mod.",
+        "(0.0.11) Triggers an MO refresh when dummy plugins are created or deleted."
       ],
-      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/openmwplayer/openmwplayer.0.0.10.zip",
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/openmwplayer/openmwplayer.0.0.11.zip",
       "PluginPath": [ "openmwplayer" ],
       "LocalePath": [],
       "DataPath": [ "data/openmwplayer" ]

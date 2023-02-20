@@ -32,7 +32,9 @@ class OpenMWPlayerPluginLauncher(OpenMWPlayerPlugin, mobase.IPlugin):
 
     def createDummy(self, mod):
         if self.openMWPlayer.settings.dummyesp():
-            self.openMWPlayer.createDummy(mod.name())
+            modChanged = self.openMWPlayer.createDummy(mod.name())
+            if modChanged == True:
+                self.organiser.refresh()
 
     def createDummyBulk(self):
         if self.openMWPlayer.settings.dummyesp():
