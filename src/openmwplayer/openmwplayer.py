@@ -11,6 +11,7 @@ from pathlib import Path
 import os
 import shutil
 import mobase
+import re
 
 class OpenMWPlayer():
     def __init__(self, organiser=mobase.IOrganizer):
@@ -26,6 +27,18 @@ class OpenMWPlayer():
         "openmw-launcher.exe",
         "openmw-wizard.exe"
     ]
+
+    _settingsRegex = r"fallback=(?P<setting>[^,]*),(?P<value>[^\n]*)"
+
+    def getCfgSettings(self, configPath):
+        cfgSettings = {}
+        with Path(configPath).open("r", encoding="utf-8-sig") as cfg:
+            lines = cfg.readlines()
+            for line in lines:
+                match = re.match(self._settingsRegex, line)
+                if match:
+                    cfgSettings[match.groups()[0]] = match.groups()[1]
+        return cfgSettings
 
     def runOpenMW(self, appName):
         appPath = Path(appName)
@@ -44,6 +57,7 @@ class OpenMWPlayer():
         else:
             return True
 
+    #TODO: Use the settings in plugins\data to replace all the fallback= settings in the config.
     def exportMOSetup(self):
         configPath = self.paths.openMWCfgPath()
         game = self.organiser.managedGame()

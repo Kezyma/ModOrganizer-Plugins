@@ -29,6 +29,7 @@ except:
 from ..openmwplayer_plugin import OpenMWPlayerPlugin
 from ...shared.shared_icons import SharedIcons
 import mobase, re
+from pathlib import Path
 
 class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
     
@@ -63,8 +64,10 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
         self.bindPlugins()
 
     def bindPlugins(self):
-        self.addText.setText(str(self.openMWPlayer.paths.openMWCfgPath()))
+        cfgPath = str(self.openMWPlayer.paths.openMWCfgPath())
+        self.addText.setText(cfgPath)
         self.dummyCheck.setChecked(self.openMWPlayer.settings.dummyesp())
+        self.refreshCfgSettings(cfgPath)
 
         profile = self.organiser.profile().name()
         groundCoverCustom = self.openMWPlayer.paths.openMwGrassSettingsPath(profile)
@@ -90,6 +93,15 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
             for itm in self.profileSelect.findItems(name, qtMatchFlag.MatchExactly):
                 itm.setCheckState(qtCheckState.Checked)
 
+    # TODO: Add import settings button to import current settings from a cfg to the one in plugins\data (overwriting any existing ones).
+    # TODO: Add a settings editor panel, where these settings can be configured.
+    def refreshCfgSettings(self, cfgPath):
+        if Path(cfgPath).exists():
+            cfgSettings = self.openMWPlayer.getCfgSettings(cfgPath)
+            for setting in cfgSettings:
+                if False:
+                    qInfo(setting + " " + cfgSettings[setting])
+
     def dummyEspCheck(self):
         self.organiser.setPluginSetting(self.baseName(), "dummyesp", self.dummyCheck.isChecked())
         if self.dummyCheck.isChecked():
@@ -101,6 +113,7 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
         manualPath = QFileDialog.getOpenFileName(self._parentWidget(), self.__tr("Locate OpenMW Config File"), ".", "OpenMW Config File (openmw.cfg)")[0]
         self.organiser.setPluginSetting(self.baseName(), "openmwcfgpath", str(manualPath))
         self.addText.setText(str(manualPath))
+        self.refreshCfgSettings(manualPath)
 
     def changePluginState(self):
         selected = []
