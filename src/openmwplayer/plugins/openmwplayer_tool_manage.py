@@ -87,6 +87,50 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
             count = count + 1
         self.settingsTable.itemChanged.connect(self.getTableSettings)
 
+    def bindBsas(self):
+        profile = self.organiser.profile().name()
+        self.bsaSelect.clear()
+
+        # Create a bsa config if it doesn't exist.
+        bsaCustom = self.openMWPlayer.paths.openMwBsaSettingsPath(profile)
+        bsaFiles = []
+        if not bsaCustom.exists():
+            with bsaCustom.open("x") as custNew:
+                custNew.write("\n")
+
+        # Load the bsa settings from config.
+        with bsaCustom.open("r") as custGrnd:
+            for line in custGrnd:
+                line = line.replace("\n", "")
+                if len(line) > 0:
+                    bsaFiles.append(line)
+
+        # Bind the bsa list to select bsa files.
+        bsas = []
+        game = self.organiser.managedGame()
+        rootBsa = filter(lambda x: x.lower().endswith(".bsa"), os.listdir(game.dataDirectory().absolutePath()))
+        for bsa in rootBsa:
+            bsas.append(bsa)
+        mods = self.organiser.modList().allModsByProfilePriority(self.organiser.profile())
+        for mod in mods:
+            if (self.organiser.modList().state(mod) & 0x2) != 0:
+                modBsa = filter(lambda x: x.lower().endswith(".bsa") , os.listdir(self.organiser.modList().getMod(mod).absolutePath()))
+                for bsa in modBsa:
+                    bsas.append(bsa)
+
+        self.bsaSelect.clear()
+        for name in bsas:
+            item = QtWidgets.QListWidgetItem()
+            item.setText(name)
+            item.setFlags(qtItemFlag.ItemIsUserCheckable|qtItemFlag.ItemIsEnabled)
+            item.setCheckState(qtCheckState.Unchecked)
+            self.bsaSelect.addItem(item)
+
+        # Check any currently enabled bsa files.
+        for name in bsaFiles:
+            for itm in self.bsaSelect.findItems(name, qtMatchFlag.MatchExactly):
+                itm.setCheckState(qtCheckState.Checked)
+
     def getTableSettings(self):
         row = 0
         newValues = {}
@@ -126,26 +170,12 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
             with groundCoverCustom.open("x") as custNew:
                 custNew.write("\n")
 
-        # Create a bsa config if it doesn't exist.
-        bsaCustom = self.openMWPlayer.paths.openMwBsaSettingsPath(profile)
-        bsaFiles = []
-        if not bsaCustom.exists():
-            with bsaCustom.open("x") as custNew:
-                custNew.write("\n")
-
         # Load the groundcover settings from config.
         with groundCoverCustom.open("r") as custGrnd:
             for line in custGrnd:
                 line = line.replace("\n", "")
                 if len(line) > 0:
                     groundCoverFiles.append(line)
-
-        # Load the bsa settings from config.
-        with bsaCustom.open("r") as custGrnd:
-            for line in custGrnd:
-                line = line.replace("\n", "")
-                if len(line) > 0:
-                    bsaFiles.append(line)
                     
         # Bind the plugin list to select groundcover. 
         self.groundcoverSelect.clear()
@@ -155,40 +185,17 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
             item.setFlags(qtItemFlag.ItemIsUserCheckable|qtItemFlag.ItemIsEnabled)
             item.setCheckState(qtCheckState.Unchecked)
             self.groundcoverSelect.addItem(item)
-
-        # Bind the bsa list to select bsa files.
-        bsas = []
-        game = self.organiser.managedGame()
-        rootBsa = filter(lambda x: x.lower().endswith(".bsa"), os.listdir(game.dataDirectory().absolutePath()))
-        for bsa in rootBsa:
-            bsas.append(bsa)
-        mods = self.organiser.modList().allModsByProfilePriority(self.organiser.profile())
-        for mod in mods:
-            if (self.organiser.modList().state(mod) & 0x2) != 0:
-                modBsa = filter(lambda x: x.lower().endswith(".bsa") , os.listdir(self.organiser.modList().getMod(mod).absolutePath()))
-                for bsa in modBsa:
-                    bsas.append(bsa)
-
-        self.bsaSelect.clear()
-        for name in bsas:
-            item = QtWidgets.QListWidgetItem()
-            item.setText(name)
-            item.setFlags(qtItemFlag.ItemIsUserCheckable|qtItemFlag.ItemIsEnabled)
-            item.setCheckState(qtCheckState.Unchecked)
-            self.bsaSelect.addItem(item)
             
         # Check any currently enabled groundcover.
         for name in groundCoverFiles:
             for itm in self.groundcoverSelect.findItems(name, qtMatchFlag.MatchExactly):
                 itm.setCheckState(qtCheckState.Checked)
 
-        # Check any currently enabled bsa files.
-        for name in bsaFiles:
-            for itm in self.bsaSelect.findItems(name, qtMatchFlag.MatchExactly):
-                itm.setCheckState(qtCheckState.Checked)
-
         # Bind setting table.
         self.bindSettings()
+
+        # Bind bsas
+        self.bindBsas()
 
     # TODO: Add a settings editor panel, where these settings can be configured.
     def refreshCfgSettings(self):
@@ -196,6 +203,7 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
         if Path(cfgPath).exists():
             cfgSettings = self.openMWPlayer.importOpenMWCfg(cfgPath)
             self.bindSettings()
+            self.bindBsas()
 
     def dummyEspCheck(self):
         self.organiser.setPluginSetting(self.baseName(), "dummyesp", self.dummyCheck.isChecked())
@@ -324,17 +332,17 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
         #self.dummyLayout.dummyWidget(self.dummyText)
         self.dialogLayout.addWidget(self.dummyWidget)
 
-        self.gcvWidget = QtWidgets.QWidget(dialog)
-        self.gcvWidget.setObjectName("gcvWidget")
-        self.gcvLayout = QtWidgets.QHBoxLayout(self.gcvWidget)
-        self.gcvLayout.setContentsMargins(0, 0, 0, 0)
-        self.gcvLayout.setSpacing(5)
-        self.gcvLayout.setObjectName("gcvLayout")
-        self.gcvText = QtWidgets.QLabel(self.gcvWidget)
-        self.gcvText.setText("Select Groundcover Plugins")
-        self.gcvText.setObjectName("gcvText")
-        self.gcvLayout.addWidget(self.gcvText)
-        self.dialogLayout.addWidget(self.gcvWidget)
+        #self.gcvWidget = QtWidgets.QWidget(dialog)
+        #self.gcvWidget.setObjectName("gcvWidget")
+        #self.gcvLayout = QtWidgets.QHBoxLayout(self.gcvWidget)
+        #self.gcvLayout.setContentsMargins(0, 0, 0, 0)
+        #self.gcvLayout.setSpacing(5)
+        #self.gcvLayout.setObjectName("gcvLayout")
+        #self.gcvText = QtWidgets.QLabel(self.gcvWidget)
+        #self.gcvText.setText("Select Groundcover Plugins")
+        #self.gcvText.setObjectName("gcvText")
+        #self.gcvLayout.addWidget(self.gcvText)
+        #self.dialogLayout.addWidget(self.gcvWidget)
 
         self.tabSelect = QtWidgets.QTabWidget(dialog)
         self.dialogLayout.addWidget(self.tabSelect)
@@ -351,7 +359,7 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
         self.bsaSelect.setObjectName("bsaSelect")
         self.bsaSelect.itemChanged.connect(self.changeBsaState)
         #self.dialogLayout.addWidget(self.bsaSelect)
-        self.tabSelect.addTab(self.bsaSelect, "Bsa")
+        self.tabSelect.addTab(self.bsaSelect, "Archives")
 
         self.settingsTable = QtWidgets.QTableWidget(dialog)
         self.settingsTable.setColumnCount(1)

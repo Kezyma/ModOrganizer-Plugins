@@ -71,7 +71,6 @@ class OpenMWPlayer():
         with Path(existingPath).open("w", encoding="utf-8-sig") as omwcfg:
             omwcfg.write("\n")
             for setting in settings:
-                qInfo(setting)
                 omwcfg.write(setting + "\n")
 
     def runOpenMW(self, appName):
