@@ -19,9 +19,6 @@ class OpenMWPlayerPaths(SharedPaths):
 
     def openMWCfgPath(self):
         """ Gets the path to the openmw.cfg file. """
-
-        # TODO: When cfg is selected, if no cfg in plugins\data, import the settings from it.
-
         # Grab the saved setting if there is one.
         settingPath = Path(self.settings.cfgpath())
         if settingPath.is_file():
@@ -64,6 +61,11 @@ class OpenMWPlayerPaths(SharedPaths):
     def openMwBaseCfgPath(self, profile):
         """ Gets the path to the RootBuilder data folder for the current game. """
         settingsPath = self.openMwCustomSettingsPath(profile) / "OpenMWConfig.txt"
+        return Path(settingsPath)
+
+    def openMwBaseSettingsPath(self, profile):
+        """ Gets the path to the RootBuilder data folder for the current game. """
+        settingsPath = self.openMwCustomSettingsPath(profile) / "OpenMWSettings.txt"
         return Path(settingsPath)
 
     def dummyEspPath(self):
