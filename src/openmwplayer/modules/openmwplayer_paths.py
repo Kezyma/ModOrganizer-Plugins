@@ -40,15 +40,17 @@ class OpenMWPlayerPaths(SharedPaths):
 
     def openMwCustomSettingsPath(self, profile):
         """ Gets the path to the RootBuilder data folder for the current game. """
-        settingsPath = ""
-        if self.currentInstanceName() == "":
-            settingsPath = self.pluginDataPath() / "Portable" / profile 
-        else:    
-            settingsPath = self.pluginDataPath() / self.currentInstanceName() / profile
+        profPath = Path(self.modOrganizerProfilesPath()) / profile
+        return profPath
+        #settingsPath = ""
+        #if self.currentInstanceName() == "":
+        #    settingsPath = self.pluginDataPath() / "Portable" / profile 
+        #else:    
+        #    settingsPath = self.pluginDataPath() / self.currentInstanceName() / profile
             
-        if not Path(settingsPath).exists():
-            os.makedirs(settingsPath)
-        return Path(settingsPath)
+        #if not Path(settingsPath).exists():
+        #    os.makedirs(settingsPath)
+        #return Path(settingsPath)
 
     def openMwTempFilePath(self, profile):
         """ Gets the path to the RootBuilder data folder for the current game. """
@@ -57,6 +59,11 @@ class OpenMWPlayerPaths(SharedPaths):
     def openMwGrassSettingsPath(self, profile):
         """ Gets the path to the RootBuilder data folder for the current game. """
         settingsPath = self.openMwCustomSettingsPath(profile) / "OpenMWGroundcover.txt"
+        return Path(settingsPath)
+
+    def openMwBaseCfgPath(self, profile):
+        """ Gets the path to the RootBuilder data folder for the current game. """
+        settingsPath = self.openMwCustomSettingsPath(profile) / "OpenMWConfig.txt"
         return Path(settingsPath)
 
     def dummyEspPath(self):

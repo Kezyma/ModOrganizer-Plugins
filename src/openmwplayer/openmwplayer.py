@@ -40,6 +40,17 @@ class OpenMWPlayer():
                     cfgSettings[match.groups()[0]] = match.groups()[1]
         return cfgSettings
 
+    def importOpenMWCfg(self, configPath):
+        currentSettings = self.getCfgSettings(configPath)
+        self.updateImportedSettings(currentSettings)
+
+    def updateImportedSettings(self, settings):
+        profile = self.organiser.profile().name()
+        existingPath = self.paths.openMwBaseCfgPath(profile)
+        with Path(existingPath).open("w", encoding="utf-8-sig") as omwcfg:
+            for setting in settings:
+                omwcfg.write("fallback=" + setting + "," + settings[setting] + "\n")
+
     def runOpenMW(self, appName):
         appPath = Path(appName)
         fileName = appPath.name
@@ -57,13 +68,16 @@ class OpenMWPlayer():
         else:
             return True
 
-    #TODO: Use the settings in plugins\data to replace all the fallback= settings in the config.
     def exportMOSetup(self):
+        profile = self.organiser.profile().name()
         configPath = self.paths.openMWCfgPath()
+        settingsPath = self.paths.openMwBaseCfgPath(profile)
+        if not Path(settingsPath).exists():
+            self.importOpenMWCfg(configPath)
+
         game = self.organiser.managedGame()
         self.clearCfg(configPath)
 
-        profile = self.organiser.profile().name()
         groundCoverCustom = self.paths.openMwGrassSettingsPath(profile)
         groundCoverFiles = []
         if not groundCoverCustom.exists():
@@ -74,6 +88,8 @@ class OpenMWPlayer():
                 line = line.replace("\n", "")
                 if len(line) > 0:
                     groundCoverFiles.append(line)
+
+        baseSettings = self.getCfgSettings(settingsPath)
 
         bsas = []
         rootBsa = filter(lambda x: x.lower().endswith(".bsa"), os.listdir(game.dataDirectory().absolutePath()))
@@ -96,6 +112,9 @@ class OpenMWPlayer():
             filtered = filter(lambda x: pluginList.loadOrder(x) >= 0, plugins)
             loadOrder = sorted(filtered, key=pluginList.loadOrder)
             groundCover = filter(lambda x: x in groundCoverFiles, plugins)
+            if self.settings.managesettings():
+                for setting in baseSettings:
+                    cfg.write("fallback=" + setting + "," + baseSettings[setting] + "\n")
             for plugin in loadOrder:
                 if plugin.endswith(".omwaddon.esp"):
                     cfg.write("content=" + plugin.replace(".omwaddon.esp", ".omwaddon") + "\n")
@@ -120,7 +139,8 @@ class OpenMWPlayer():
         with configPath.open("w", encoding="utf-8-sig") as cfg:
             for line in lines:
                 if not line.startswith("data=") and not line.startswith("content=") and not line.startswith("groundcover=") and not line.startswith("fallback-archive="):
-                    cfg.write(line)
+                    if not self.settings.managesettings() or not line.startswith("fallback="):
+                        cfg.write(line)
             if len(lines) == 0 and not lines[-1].endswith("\n"):
                 cfg.write("\n")
     

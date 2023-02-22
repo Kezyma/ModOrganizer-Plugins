@@ -14,3 +14,6 @@ class OpenMWPlayerSettings(SharedSettings):
     def dummyesp(self):
         """ Whether to use dummy esp files to enable omwaddons. """
         return self.setting("dummyesp")
+
+    def managesettings(self):
+        return self.setting("managesettings")
