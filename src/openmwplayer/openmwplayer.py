@@ -29,6 +29,7 @@ class OpenMWPlayer():
     ]
 
     _settingsRegex = r"fallback=(?P<setting>[^,]*),(?P<value>[^\n]*)"
+    _settingsBsaRegex = r"fallback-archive=(?P<value>[^\n]*)"
 
     def getCfgSettings(self, configPath):
         cfgSettings = {}
@@ -40,16 +41,38 @@ class OpenMWPlayer():
                     cfgSettings[match.groups()[0]] = match.groups()[1]
         return cfgSettings
 
+    def getCfgBsaSettings(self, configPath):
+        cfgSettings = []
+        with Path(configPath).open("r", encoding="utf-8-sig") as cfg:
+            lines = cfg.readlines()
+            for line in lines:
+                match = re.match(self._settingsBsaRegex, line)
+                if match:
+                    cfgSettings.append(match.groups()[0])
+        return cfgSettings
+
     def importOpenMWCfg(self, configPath):
         currentSettings = self.getCfgSettings(configPath)
         self.updateImportedSettings(currentSettings)
+        currentBsas = self.getCfgBsaSettings(configPath)
+        self.updateImportedBsas(currentBsas)
 
     def updateImportedSettings(self, settings):
         profile = self.organiser.profile().name()
         existingPath = self.paths.openMwBaseCfgPath(profile)
         with Path(existingPath).open("w", encoding="utf-8-sig") as omwcfg:
+            omwcfg.write("\n")
             for setting in settings:
                 omwcfg.write("fallback=" + setting + "," + settings[setting] + "\n")
+
+    def updateImportedBsas(self, settings):
+        profile = self.organiser.profile().name()
+        existingPath = self.paths.openMwBsaSettingsPath(profile)
+        with Path(existingPath).open("w", encoding="utf-8-sig") as omwcfg:
+            omwcfg.write("\n")
+            for setting in settings:
+                qInfo(setting)
+                omwcfg.write(setting + "\n")
 
     def runOpenMW(self, appName):
         appPath = Path(appName)
@@ -89,6 +112,17 @@ class OpenMWPlayer():
                 if len(line) > 0:
                     groundCoverFiles.append(line)
 
+        bsaCustom = self.paths.openMwBsaSettingsPath(profile)
+        bsaFiles = []
+        if not bsaCustom.exists():
+            with bsaCustom.open("x") as custNew:
+                custNew.write("\n")
+        with bsaCustom.open("r") as custGrnd:
+            for line in custGrnd:
+                line = line.replace("\n", "")
+                if len(line) > 0:
+                    bsaFiles.append(line)
+
         baseSettings = self.getCfgSettings(settingsPath)
 
         bsas = []
@@ -112,6 +146,7 @@ class OpenMWPlayer():
             filtered = filter(lambda x: pluginList.loadOrder(x) >= 0, plugins)
             loadOrder = sorted(filtered, key=pluginList.loadOrder)
             groundCover = filter(lambda x: x in groundCoverFiles, plugins)
+            bsaOpts = filter(lambda x: x in bsaFiles, bsas)
             if self.settings.managesettings():
                 for setting in baseSettings:
                     cfg.write("fallback=" + setting + "," + baseSettings[setting] + "\n")
@@ -129,7 +164,7 @@ class OpenMWPlayer():
                     cfg.write("groundcover=" + ground.replace(".omwscripts.esp", ".omwscripts") + "\n")
                 else:
                     cfg.write("groundcover=" + ground + "\n")
-            for bsa in bsas:
+            for bsa in bsaOpts:
                 cfg.write("fallback-archive=" + bsa.split(os.path.sep)[-1] + "\n")
 
     def clearCfg(self, configPath):
