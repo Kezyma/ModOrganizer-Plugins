@@ -141,6 +141,3 @@ class RootBuilderCopy():
         """ Removes any existing mod data. """
         if self.paths.rootModDataFilePath().exists():
             self.utilities.deletePath(self.paths.rootModDataFilePath())
-
-
-    
