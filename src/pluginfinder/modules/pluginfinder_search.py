@@ -168,15 +168,19 @@ class PluginFinderSearch():
         if Path(cacheName).exists() and datetime.fromtimestamp(os.path.getmtime(str(cacheName))) > (datetime.today() - timedelta(days=1)):
             return json.load(open(cacheName))
         # Load the data otherwise.
-        request = urllib.request.Request(endpointUrl)
-        request.add_header("Accept", "application/vnd.github.v3+json")
-        with urllib.request.urlopen(request) as r:
-            data = json.load(r)
-            if not Path(cacheName).exists():
-                Path(cacheName).touch()
-            with open(cacheName, "w") as rcJson:
-                json.dump(data, rcJson)
-            return data
+        try:
+            request = urllib.request.Request(endpointUrl)
+            request.add_header("Accept", "application/vnd.github.v3+json")
+            with urllib.request.urlopen(request) as r:
+                data = json.load(r)
+                if not Path(cacheName).exists():
+                    Path(cacheName).touch()
+                with open(cacheName, "w") as rcJson:
+                    json.dump(data, rcJson)
+                return data
+        except:
+            qInfo("Couldn't download " + endpointUrl)
+            return None
 
     def getGithubDownloadCount(self, author=str, repo=str, tag=str, zipName=str):
         releaseJson = self.getGithubReleaseJson(author, repo, tag)
@@ -247,15 +251,15 @@ class PluginFinderSearch():
             counters[pluginId] = { }
         counters[pluginId]["Updated"] = datetime.today().isoformat()
         counters[pluginId]["Downloads"] = "?"
-        self.tryCreateInstallCount(pluginId)
-        url = "https://api.countapi.xyz/get/pluginfinder/" + str(pluginId)
-        try:
-            with urllib.request.urlopen(url) as r:
-                data = json.load(r)
-                val = data["value"]
-                counters[pluginId]["Downloads"] = str(val)
-        except: 
-            counters[pluginId]["Downloads"] = "?"
+        #self.tryCreateInstallCount(pluginId)
+        #url = "https://api.countapi.xyz/get/pluginfinder/" + str(pluginId)
+        #try:
+        #    with urllib.request.urlopen(url) as r:
+        #        data = json.load(r)
+        #        val = data["value"]
+        #        counters[pluginId]["Downloads"] = str(val)
+        #except: 
+        #    counters[pluginId]["Downloads"] = "?"
         self.saveCounters(counters)
         return str(counters[pluginId]["Downloads"])
 
@@ -268,25 +272,27 @@ class PluginFinderSearch():
         return self.refreshPluginCount(pluginId)
 
     def increaseInstallCount(self, pluginId=str):
-        self.tryCreateInstallCount(pluginId)
-        url = "https://api.countapi.xyz/update/pluginfinder/" + str(pluginId) + "?amount=1"
-        try:
-            with urllib.request.urlopen(url) as r:
-                data = json.load(r)
-                val = data["value"]
-                self.refreshPluginCount(pluginId)
-                return str(val)
-        except: 
-            return "?"
+        return "?"
+        #self.tryCreateInstallCount(pluginId)
+        #url = "https://api.countapi.xyz/update/pluginfinder/" + str(pluginId) + "?amount=1"
+        #try:
+        #    with urllib.request.urlopen(url) as r:
+        #        data = json.load(r)
+        #        val = data["value"]
+        #        self.refreshPluginCount(pluginId)
+        #        return str(val)
+        #except: 
+        #    return "?"
 
     def decreaseInstallCount(self, pluginId=str):
-        self.tryCreateInstallCount(pluginId)
-        url = "https://api.countapi.xyz/update/pluginfinder/" + str(pluginId) + "?amount=-1"
-        try:
-            with urllib.request.urlopen(url) as r:
-                data = json.load(r)
-                val = data["value"]
-                self.refreshPluginCount(pluginId)
-                return str(val)
-        except: 
-            return "?"
+        return "?"
+        #self.tryCreateInstallCount(pluginId)
+        #url = "https://api.countapi.xyz/update/pluginfinder/" + str(pluginId) + "?amount=-1"
+        #try:
+        #    with urllib.request.urlopen(url) as r:
+        #        data = json.load(r)
+        #        val = data["value"]
+        #        self.refreshPluginCount(pluginId)
+        #        return str(val)
+        #except: 
+        #    return "?"
