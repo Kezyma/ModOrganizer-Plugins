@@ -57,7 +57,7 @@ class RootBuilderMapperPlugin(RootBuilderPlugin, mobase.IPluginFileMapper):
         """ Redirects an app to the game path version if it is from a root mod folder. """
         # Check if the app shares a path with the mods path.
         qInfo("Redirecting")
-        if self.rootBuilder.paths.sharedPath(self.rootBuilder.paths.modsPath(), appName):
+        if self.rootBuilder.paths.sharedPath(self.rootBuilder.paths.modsPath() / "*" / "Root", appName):
             #self.startingRootExe = True
             # qInfo("Setting Root Exe = True")
             # Check if the exe exists in the game path.
