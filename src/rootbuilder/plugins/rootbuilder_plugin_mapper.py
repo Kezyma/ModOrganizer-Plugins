@@ -36,14 +36,14 @@ class RootBuilderMapperPlugin(RootBuilderPlugin, mobase.IPluginFileMapper):
         res = True
         qInfo("Building...")
         # Check if this is a secondary run from redirect.
-        if (self.startingRootExe == False):
-            qInfo("Starting Root Exe = False")
-            # Run a build if autobuild is enabled.
-            if self.rootBuilder.settings.autobuild():
-                self.rootBuilder.build()
-            # Possibly redirect to a different exe.
-            if self.rootBuilder.settings.redirect():
-                res = self.redirect(appName)
+        #if (self.startingRootExe == False):
+        qInfo("Starting Root Exe = False")
+        # Possibly redirect to a different exe.
+        if self.rootBuilder.settings.redirect():
+            res = self.redirect(appName)
+        # Run a build if autobuild is enabled.
+        if res and self.rootBuilder.settings.autobuild():
+            self.rootBuilder.build()
         return res
 
     def clear(self, appName, resultCode):
@@ -51,24 +51,24 @@ class RootBuilderMapperPlugin(RootBuilderPlugin, mobase.IPluginFileMapper):
         if self.rootBuilder.settings.autobuild():
             self.rootBuilder.clear()
             qInfo("Setting Root Exe = False")
-            self.startingRootExe = False
+            #self.startingRootExe = False
 
     def redirect(self, appName):
         """ Redirects an app to the game path version if it is from a root mod folder. """
         # Check if the app shares a path with the mods path.
         qInfo("Redirecting")
         if self.rootBuilder.paths.sharedPath(self.rootBuilder.paths.modsPath(), appName):
-            self.startingRootExe = True
-            qInfo("Setting Root Exe = True")
+            #self.startingRootExe = True
+            # qInfo("Setting Root Exe = True")
             # Check if the exe exists in the game path.
             exeGamePath = self.rootBuilder.paths.gamePath() / self.rootBuilder.paths.rootRelativePath(appName)
-            if exeGamePath.exists():
+            #if exeGamePath.exists():
                 # Run the game path version of the application.
-                self.organiser.waitForApplication(self.organiser.startApplication(str(exeGamePath)))
-                qInfo("Setting Root Exe = False")
-                self.startingRootExe = False
+            self.organiser.waitForApplication(self.organiser.startApplication(str(exeGamePath)))
+                #qInfo("Setting Root Exe = False")
+                #self.startingRootExe = False
                 # Return false to prevent the original run.
-                return False
+            return False
         return True
         
     def onInitialise(self, mainWindow):
