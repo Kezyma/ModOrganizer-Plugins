@@ -130,6 +130,6 @@ class PluginFinderNotifier(PluginFinderPlugin, mobase.IPluginDiagnose):
         qInfo("Plugin updated, restarting Mod Organizer.")
         tkExe = "C:/Windows/system32/taskkill.exe"
         moExe = self.__pluginfinder.paths.modOrganizerExePath()
-        moKill = f'"{tkExe}" /F /IM ModOrganizer.exe && explorer "{moExe}"'
+        moKill = f'"{tkExe}" /IM ModOrganizer.exe && explorer "{moExe}"'
         qInfo(f"Executing command {moKill}")
         subprocess.call(moKill, shell=True, stdout=open(os.devnull, "wb"))

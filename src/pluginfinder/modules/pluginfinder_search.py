@@ -2,6 +2,7 @@ import mobase, os, urllib, json, math, shutil, re
 from pathlib import Path
 from datetime import datetime, timedelta
 from itertools import islice
+from threading import Thread
 from .pluginfinder_paths import PluginFinderPaths
 from .pluginfinder_files import PluginFinderFiles
 from .pluginfinder_installer import PluginFinderInstaller
@@ -45,12 +46,15 @@ class PluginFinderSearch():
         for item in self.directory():
             self.refreshPluginCount(item["Identifier"])
 
+        self.buildInitialCache()
+
     def directory(self):
         """ Get the directory as json. """
         # If the file is missing or old, update it.
         directoryJsonPath = self.paths.directoryJsonPath()
         if not Path(directoryJsonPath).exists() or datetime.fromtimestamp(os.path.getmtime(str(directoryJsonPath))) < (datetime.today() - timedelta(days=1)):
-            self.updateDirectory()
+            updateTask = Thread(target = self.updateDirectory, args = ())
+            updateTask.start()
         # Load the directory file.
         directory = json.load(open(directoryJsonPath))
         return directory
@@ -107,6 +111,22 @@ class PluginFinderSearch():
                         qInfo("Could not download update.")
                     urllib.request.urlcleanup()
 
+    def updateAllPluginData(self):
+        """ Gets the json file for the current plugin. """
+        for plugin in self.directory():
+            if "Manifest" in plugin:
+                url = plugin["Manifest"]
+                try:
+                    with urllib.request.urlopen(str(url)) as r:
+                        data = json.load(r)
+                        if not Path(self.paths.pluginDataCachePath(str(plugin["Identifier"]))).exists():
+                            Path(self.paths.pluginDataCachePath(str(plugin["Identifier"]))).touch()
+                        with open(self.paths.pluginDataCachePath(str(plugin["Identifier"])), "w") as rcJson:
+                            json.dump(data, rcJson)
+                except:
+                    qInfo("Could not download update.")
+                urllib.request.urlcleanup()
+
     def pluginData(self, pluginId=str):
         """ Loads the data for a plugin. """
         # If the file is missing or old, update it.
@@ -159,7 +179,8 @@ class PluginFinderSearch():
     def buildInitialCache(self):
         """ Gets json data for every plugin. """
         for plugin in self.directory():
-            self.pluginData(plugin["Identifier"])
+            updateTask = Thread(target = self.updateAllPluginData, args = ())
+            updateTask.start()
 
     def getGithubReleaseJson(self, author=str, repo=str, tag=str):
         endpointUrl = "https://api.github.com/repos/" + author + "/" + repo + "/releases/tags/" + tag
