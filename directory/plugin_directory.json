@@ -62,7 +62,7 @@
   {
     "Name": "Grass Precacher",
     "Identifier": "grassprecacher",
-    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/grassprecacher.json"
+    "Manifest": "https://raw.githubusercontent.com/Al12rs/modorganizer-GrassPrecacher/master/manifest.json"
   },
   {
     "Name": "Merge Plugins Hide & Sync Mod Order",
