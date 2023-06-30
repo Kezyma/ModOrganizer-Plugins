@@ -7,15 +7,15 @@
   "DocsUrl": "",
   "Versions": [
     {
-      "Version": "1.0.0",
+      "Version": "1.1.0",
       "Released": "2020-11-24",
-      "MinSupport": "2.4.2",
-      "MaxSupport": "2.4.2",
+      "MinSupport": "2.5.0alpha-3",
+      "MaxSupport": "2.5.0alpha-3",
       "MinWorking": "",
       "MaxWorking": "",
       "ReleaseNotes": [],
       "DownloadUrl": "https://github.com/Al12rs/modorganizer-GrassPrecacher/archive/refs/heads/master.zip",
-      "PluginPath": [ "modorganizer-GrassPrecacher-master/GrassPrecacher.py" ],
+      "PluginPath": [ "modorganizer-GrassPrecacher-master" ],
       "LocalePath": [],
       "DataPath": []
     }
