@@ -36,7 +36,7 @@
         "GameData": "Data"
     },
     {
-        "Name": "Fallout New Vegas",
+        "Name": "New Vegas",
         "SteamAppId": null,
         "GameExe":["FalloutNV.exe","FalloutNVLauncher.exe"],
         "GameData": "Data"
