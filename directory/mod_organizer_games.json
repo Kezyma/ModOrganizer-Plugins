@@ -1,0 +1,56 @@
+[
+    {
+        "Name": "Morrowind",
+        "SteamAppId": null,
+        "GameExe":[ "Morrowind.exe", "Morrowind Launcher.exe"],
+        "GameData": "Data Files"
+    },
+    {
+        "Name": "Oblivion",
+        "SteamAppId": null,
+        "GameExe": ["Oblivion.exe","OblivionLauncher.exe"],
+        "GameData": "Data"
+    },
+    {
+        "Name": "Skyrim",
+        "SteamAppId": null,
+        "GameExe": ["Skyrim.exe","SkyrimLauncher.exe"],
+        "GameData": "Data"
+    },
+    {
+        "Name": "Skyrim Special Edition",
+        "SteamAppId": null,
+        "GameExe": ["SkyrimSE.exe","SkyrimSELauncher.exe"],
+        "GameData": "Data"
+    },
+    {
+        "Name": "Skyrim VR",
+        "SteamAppId": null,
+        "GameExe": ["SkyrimVR.exe","SkyrimVRLauncher.exe"],
+        "GameData": "Data"
+    },
+    {
+        "Name": "Fallout 3",
+        "SteamAppId": null,
+        "GameExe": ["Fallout3.exe","Fallout3Launcher.exe"],
+        "GameData": "Data"
+    },
+    {
+        "Name": "Fallout New Vegas",
+        "SteamAppId": null,
+        "GameExe":["FalloutNV.exe","FalloutNVLauncher.exe"],
+        "GameData": "Data"
+    },
+    {
+        "Name": "Fallout 4",
+        "SteamAppId": null,
+        "GameExe": ["Fallout4.exe","Fallout4Launcher.exe"],
+        "GameData": "Data"
+    },
+    {
+        "Name": "Fallout 4 VR",
+        "SteamAppId": null,
+        "GameExe": ["Fallout4VR.exe","Fallout4VRLauncher.exe"],
+        "GameData": "Data"
+    }
+]
