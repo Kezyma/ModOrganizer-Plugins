@@ -3,22 +3,22 @@ import mobase
 from os import listdir
 
 try:
-    from PyQt5.QtCore import QCoreApplication, qInfo
+    from PyQt5.QtCore import qInfo
     from PyQt5.QtWidgets import QDialog
     from PyQt5 import QtWidgets, QtGui, QtCore
     qtSizePolicy = QtWidgets.QSizePolicy
 except:
-    from PyQt6.QtCore import QCoreApplication, qInfo
+    from PyQt6.QtCore import qInfo
     from PyQt6.QtWidgets import QDialog
     from PyQt6 import QtWidgets, QtGui, QtCore
     qtSizePolicy = QtWidgets.QSizePolicy.Policy
 
-from ..moddy_dialog import ModdyDialog
+from ..moddy_check import ModdyCheck
 
-class OverwriteFilesCheck:
+class OverwriteFilesCheck(ModdyCheck):
 
     def __init__(self, organiser=mobase.IOrganizer):
-        self.organiser = organiser
+        super().__init__(organiser)
 
     def identifier(self):
         return "OverwriteFiles"
@@ -28,6 +28,9 @@ class OverwriteFilesCheck:
     
     def description(self):
         return "Checks for files in the Mod Organizer overwrite folder and offers options to deal with them."
+    
+    def message(self):
+        return "There are files in your overwrite folder. Would you like to view the files, make a mod from them or delete them?"
 
     def level(self):
         return 2
@@ -38,24 +41,6 @@ class OverwriteFilesCheck:
         overwriteFiles = listdir(overwriteDir)
         return len(overwriteFiles) > 0
     
-    def stop(self):
-        currentStops = self.organiser.pluginSetting("Moddy", "disabledchecks")
-        stopArray = currentStops.split("|")
-        stopArray.append(self.identifier())
-        newStops = "|".join(stopArray)
-        self.organiser.setPluginSetting("Moddy", "disabledchecks", newStops)
-        self.dialog.hide()
-        
-    def resolve(self, dialog=ModdyDialog):
-        qInfo("Displaying overwrite files resolve dialog.")
-        self.dialog = dialog
-        dialog.setMessage("There are files in your overwrite folder. Would you like to view the files, make a mod from them or delete them?")
-        widget = self.getResolveWidget(dialog.dialog)
-        dialog.addOptions(widget)
-        dialog.stopBtn.clicked.disconnect()
-        dialog.stopBtn.clicked.connect(self.stop)
-        dialog.show()
-    
     def resolveView(self):
         qInfo("Opening the overwrite folder.")
 
@@ -65,36 +50,29 @@ class OverwriteFilesCheck:
     def resolveCreate(self):
         qInfo("Creating a mod from the overwrite folder.")
 
-    def getResolveWidget(self, dialog=QDialog):
-        self.overwriteActions = QtWidgets.QWidget(dialog)
-        self.overwriteActions.setObjectName("overwriteActions")
-        self.overwriteActions.resize(667, 104)
-        self.viewFilesBtn = QtWidgets.QPushButton(self.overwriteActions)
-        self.viewFilesBtn.setGeometry(QtCore.QRect(10, 10, 231, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.viewFilesBtn.setFont(font)
+    def getActions(self, dialog=QDialog):
+        self.overwriteActions = self.actionWidget(dialog)
+
+        self.viewFilesBtn = self.actionButton(self.overwriteActions)
+        self.viewFilesBtn.setGeometry(self.posTopLeft())
         self.viewFilesBtn.setObjectName("viewFilesBtn")
-        self.deleteFilesBtn = QtWidgets.QPushButton(self.overwriteActions)
-        self.deleteFilesBtn.setGeometry(QtCore.QRect(250, 10, 231, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.deleteFilesBtn.setFont(font)
-        self.deleteFilesBtn.setObjectName("deleteFilesBtn")
-        self.createModBtn = QtWidgets.QPushButton(self.overwriteActions)
-        self.createModBtn.setGeometry(QtCore.QRect(250, 60, 231, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.createModBtn.setFont(font)
-        self.createModBtn.setObjectName("createModBtn")
-        self.createModTxt = QtWidgets.QLineEdit(self.overwriteActions)
-        self.createModTxt.setGeometry(QtCore.QRect(10, 60, 231, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.createModTxt.setFont(font)
-        self.createModTxt.setObjectName("createModTxt")
-        #self.createModTxt.setAutoFillBackground(True)
         self.viewFilesBtn.setText("View Files")
+        self.viewFilesBtn.clicked.connect(self.resolveView)
+
+        self.deleteFilesBtn = self.actionButton(self.overwriteActions)
+        self.deleteFilesBtn.setGeometry(self.posTopRight())
+        self.deleteFilesBtn.setObjectName("deleteFilesBtn")
         self.deleteFilesBtn.setText("Delete Files")
+        self.deleteFilesBtn.clicked.connect(self.resolveDelete())
+
+        self.createModTxt = self.actionText(self.overwriteActions)
+        self.createModTxt.setGeometry(self.posBtmLeft())
+        self.createModTxt.setObjectName("createModTxt")
+        
+        self.createModBtn = self.actionButton(self.overwriteActions)
+        self.createModBtn.setGeometry(self.posBtmLeft())
+        self.createModBtn.setObjectName("createModBtn")
         self.createModBtn.setText("Create Mod")
+        self.createModBtn.clicked.connect(self.resolveCreate)
+
         return self.overwriteActions

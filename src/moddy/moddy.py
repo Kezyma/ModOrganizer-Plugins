@@ -16,6 +16,7 @@ except:
     qtSizePolicy = QtWidgets.QSizePolicy.Policy
 
 from .checks.overwrite_files_check import OverwriteFilesCheck
+from .checks.mo_in_game_check import MOInGameFolderCheck
 
 class Moddy():
     def __init__(self, organiser=mobase.IOrganizer):
@@ -24,7 +25,8 @@ class Moddy():
         self.paths = ModdyPaths(self.organiser, self.settings)
         self.dialog = ModdyDialog()
         self.checklist = [
-            OverwriteFilesCheck(self.organiser)
+            OverwriteFilesCheck(self.organiser),
+            MOInGameFolderCheck(self.organiser)
         ]
 
     def firstRun(self):

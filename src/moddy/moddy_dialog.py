@@ -1,6 +1,7 @@
 
 try:
     from PyQt5 import QtCore, QtGui, QtWidgets
+    from PyQt5.QtGui import QIcon
     qSizePolicyFixed = QtWidgets.QSizePolicy.Fixed
     qIconModeNormal = QtGui.QIcon.Normal
     qIconStateOff = QtGui.QIcon.Off
@@ -9,6 +10,7 @@ try:
     qAlignVCenter = QtCore.Qt.AlignVCenter
 except:
     from PyQt6 import QtCore, QtGui, QtWidgets
+    from PyQt6.QtGui import QIcon
     qSizePolicyFixed = QtWidgets.QSizePolicy.Policy.Fixed
     qIconModeNormal = QtGui.QIcon.Mode.Normal
     qIconStateOff = QtGui.QIcon.State.Off
@@ -55,10 +57,12 @@ class ModdyDialog:
 
     def getDialog(self):
         imagePath = Path(__file__).parent.joinpath("images")
+        ico = QIcon(str(Path(__file__).parent.joinpath("shared").joinpath("icons").joinpath("ui-clip.ico")))
 
         dialog = QtWidgets.QDialog()
         dialog.setObjectName("moddyDialog")
         dialog.resize(829, 209)
+        dialog.setWindowIcon(ico)
         sizePolicy = QtWidgets.QSizePolicy(qSizePolicyFixed, qSizePolicyFixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)

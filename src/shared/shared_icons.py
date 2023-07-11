@@ -101,3 +101,6 @@ class SharedIcons():
 
     def openMwIcon(self):
         return self.icon("ui-openmw.ico")
+    
+    def clipIcon(self):
+        return self.icon("ui-clip.ico")

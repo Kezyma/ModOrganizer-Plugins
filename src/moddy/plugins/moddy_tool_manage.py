@@ -25,7 +25,7 @@ class ModdyManageTool(ModdyPlugin, mobase.IPluginTool):
         return []
     
     def icon(self):
-        return self.icons.linkAltIcon()
+        return self.icons.clipIcon()
     
     def name(self):
         return self.baseName() + " Manager Tool"
