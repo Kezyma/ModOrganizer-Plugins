@@ -8,7 +8,7 @@ except:
 
 from ..moddy_plugin import ModdyPlugin
 
-class ModdyCheckerPlugin(ModdyPlugin, mobase.IPlugin):
+class ModdyCheckerPlugin(ModdyPlugin, mobase.IPluginDiagnose):
     """ Main Moddy plugin. Handles popup alerts. """
 
     def __init__(self):
@@ -17,8 +17,7 @@ class ModdyCheckerPlugin(ModdyPlugin, mobase.IPlugin):
     def init(self, organiser=mobase.IOrganizer):
         res = super().init(organiser)
         self.organiser.onAboutToRun(lambda appName: self.runChecks(appName))
-        self.organiser.onUserInterfaceInitialized(lambda window: self.firstRun())
-        
+        self.organiser.onUserInterfaceInitialized(lambda window: self.firstRun())      
         return res
 
     def __tr(self, trstr):
@@ -33,5 +32,26 @@ class ModdyCheckerPlugin(ModdyPlugin, mobase.IPlugin):
     
     def firstRun(self):
         self.moddy.firstRun()
+        
+    def activeProblems(self):
+        return self.moddy.runAll()
+    
+    def fullDescription(self, key):
+        checker = self.moddy.checkFromIx(key)
+        return checker.shortDescription()
+    
+    def hasGuidedFix(self, key):
+        checker = self.moddy.checkFromIx(key)
+        return checker.hasResolution()
+    
+    def shortDescription(self, key):
+        checker = self.moddy.checkFromIx(key)
+        return checker.description()
+    
+    def startGuidedFix(self, key):
+        qInfo("Running Fix")
+        checker = self.moddy.checkFromIx(key)
+        checker.resolve(self.moddy.dialog)
+
     
     

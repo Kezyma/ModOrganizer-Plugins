@@ -24,5 +24,5 @@ class ModdyPlugin(SharedPlugin):
             mobase.PluginSetting("enabled",self.__tr("Enables Moddy"),True),            
             mobase.PluginSetting("disabledchecks",self.__tr("List of checks that should be skipped."), ""),
             mobase.PluginSetting("messagelevel",self.__tr("Threshold for displaying messages."), 4),
+            mobase.PluginSetting("notificationsonly",self.__tr("If enabled, Moddy will not pop up and only notifications will be shown."), False),
             ]
-        

@@ -23,8 +23,14 @@ class ModdyCheck:
     def description(self):
         return "Description of what this check does."
     
+    def shortDescription(self):
+        return "Shorter description of what this check does."
+    
     def message(self):
         return "The message that Moddy will give to the user if this check fails."
+    
+    def hasResolution(self):
+        return False
 
     def level(self):
         # 3 = Critical Problem

@@ -33,14 +33,44 @@ class Moddy():
         dataPath = Path(self.paths.pluginDataPath())
         setupPath = dataPath.joinpath("setupcomplete.txt")
         if not setupPath.exists():
-            self.dialog.setMessage("Hi, I'm Moddy, your modding companion! I can give you suggestions about your modding setup and warn you about possible problems! What kind of things would you like me to tell you about?")
-            self.setupWidget = self.getSetupWidget(self.dialog.dialog)
-            self.dialog.addOptions(self.setupWidget)
+            self.notificationsWidget = self.getNotificationOptionWidget(self.dialog.dialog)
+            self.dialog.setMessage("Hi, I'm Moddy, your modding companion! I can pop up and let you know when I find issues or have suggestions, alternatively you can check the notifications in Mod Organizer to find them, which would you prefer?")
+            self.dialog.addOptions(self.notificationsWidget)
             self.dialog.stopBtn.setEnabled(False)
             self.dialog.closeBtn.setEnabled(False)
             self.dialog.stopBtn.setVisible(False)
             self.dialog.closeBtn.setVisible(False)
             self.dialog.show()
+
+    def runSetupLevel(self):
+        self.dialog.reset()
+        self.dialog.setMessage("I can give you suggestions about your modding setup and warn you about possible problems! What kind of things would you like me to tell you about?")
+        self.setupWidget = self.getSetupWidget(self.dialog.dialog)
+        self.dialog.addOptions(self.setupWidget)
+        self.dialog.stopBtn.setEnabled(False)
+        self.dialog.closeBtn.setEnabled(False)
+        self.dialog.stopBtn.setVisible(False)
+        self.dialog.closeBtn.setVisible(False)
+        self.dialog.show()
+
+    def runAll(self):
+        skip = self.settings.disabledchecks().split("|")
+        failed = False
+        failedItems = []
+
+        messageLevel = self.settings.messagelevel()
+        ix = 0
+        for item in self.checklist:
+            if item.identifier() not in skip and item.level() >= messageLevel:
+                failed = item.check()
+                if failed:
+                    failedItems.append(ix)
+            ix += 1
+
+        return failedItems
+    
+    def checkFromIx(self, ix):
+        return self.checklist[ix]
 
     def run(self):
         skip = self.settings.disabledchecks().split("|")
@@ -71,6 +101,9 @@ class Moddy():
             self.dialog.stopBtn.setVisible(True)
             self.dialog.closeBtn.setVisible(True)
 
+    def initialNotificationsOnly(self, notificationsonly):
+        self.organiser.setPluginSetting("Moddy", "notificationsonly", notificationsonly)
+
     def setupLevelNone(self):
         self.initialSetupLevel(3)
         self.dialog.reset()
@@ -91,6 +124,38 @@ class Moddy():
         self.dialog.reset()
         self.dialog.setMessage("Awesome, I'll keep you updated with any thoughts I have.")
     
+    def setupNotificationsOnly(self):
+        self.initialNotificationsOnly(True)
+        self.runSetupLevel()
+    
+    def setupMessagesIncluded(self):
+        self.initialNotificationsOnly(False)
+        self.runSetupLevel()
+
+    def getNotificationOptionWidget(self, dialog=QDialog):
+        self.notificationActions = QtWidgets.QWidget(dialog)
+        self.notificationActions.setObjectName("notificationActions")
+        self.notificationActions.resize(667, 104)
+
+        self.messagesIncludedBtn = QtWidgets.QPushButton(self.notificationActions)
+        self.messagesIncludedBtn.setGeometry(QtCore.QRect(10, 10, 231, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.messagesIncludedBtn.setFont(font)
+        self.messagesIncludedBtn.setObjectName("messagesIncludedBtn")
+        self.messagesIncludedBtn.clicked.connect(self.setupMessagesIncluded)
+        self.messagesIncludedBtn.setText("Let me know")
+
+        self.notificationsOnlyBtn = QtWidgets.QPushButton(self.notificationActions)
+        self.notificationsOnlyBtn.setGeometry(QtCore.QRect(250, 10, 231, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.notificationsOnlyBtn.setFont(font)
+        self.notificationsOnlyBtn.setObjectName("notificationsOnlyBtn")
+        self.notificationsOnlyBtn.clicked.connect(self.setupNotificationsOnly)
+        self.notificationsOnlyBtn.setText("I'll check myself")
+        return self.notificationActions
+
     def getSetupWidget(self, dialog=QDialog):
         self.setupActions = QtWidgets.QWidget(dialog)
         self.setupActions.setObjectName("setupActions")

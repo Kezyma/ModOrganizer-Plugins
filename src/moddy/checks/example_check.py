@@ -15,6 +15,9 @@ class ExampleCheck(ModdyCheck):
     def description(self):
         return "An example of an implementation of a ModdyCheck."
     
+    def shortDescription(self):
+        return "A shorter example."
+    
     def message(self):
         return "Hi! This is just an example, you don't need to do anything."
 
@@ -23,6 +26,9 @@ class ExampleCheck(ModdyCheck):
         # 2 = Potential Issue
         # 1 = General Suggestion
         return 1
+
+    def hasResolution(self):
+        return True
 
     def check(self):
         # Return true if the check fails. False otherwise.

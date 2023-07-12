@@ -28,13 +28,19 @@ class OverwriteFilesCheck(ModdyCheck):
         return "Files in Overwrite"
     
     def description(self):
-        return "Checks for files in the Mod Organizer overwrite folder and offers options to deal with them."
+        return "There are files in your overwrite folder."
     
+    def shortDescription(self):
+        return "There are files in your overwrite folder."
+
     def message(self):
         return "There are files in your overwrite folder. Would you like to view the files, make a mod from them or delete them?"
 
     def level(self):
         return 2
+
+    def hasResolution(self):
+        return True
 
     def check(self):
         qInfo("Checking for files in the overwrite folder.")

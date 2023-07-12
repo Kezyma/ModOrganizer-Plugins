@@ -27,7 +27,10 @@ class MOInGameFolderCheck(ModdyCheck):
         return "Mod Organizer in Game Folder"
     
     def description(self):
-        return "Checks to make sure that Mod Organizer 2 isn't installed in the game folder if Root Builder is installed."
+        return "Mod Organizer is installed in the game folder and Root Builder is currently enabled."
+    
+    def shortDescription(self):
+        return "Mod Organizer is installed in the game folder and Root Builder is currently enabled."
     
     def message(self):
         return "Mod Organizer is installed inside the game folder. This is not supported with Root Builder and will cause problems running the game! Please exit and move Mod Organizer, or disable Root Builder."
@@ -35,6 +38,9 @@ class MOInGameFolderCheck(ModdyCheck):
     def level(self):
         return 3
 
+    def hasResolution(self):
+        return True
+    
     def check(self):
         qInfo("Checking for MO in the game folder.")
         rootBuilderPath = Path(__file__).parent.parent.parent.parent.joinpath("plugins").joinpath("rootbuilder")

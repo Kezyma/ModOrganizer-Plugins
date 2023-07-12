@@ -14,3 +14,7 @@ class ModdySettings(SharedSettings):
     def messagelevel(self):
         """ The threshold to start showing messages. """
         return self.setting("messagelevel")
+    
+    def notificationsonly(self):
+        """ If enabled, only show regular notifications and don't have Moddy pop up otherwise. """
+        return self.setting("notificationsonly")
