@@ -79,6 +79,13 @@ class ModdyCheck:
         newTxt.setFont(font)
         return newTxt
     
+    def actionComboBox(self, widget=QtWidgets.QWidget):
+        newDdl = QtWidgets.QComboBox(widget)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        newDdl.setFont(font)
+        return newDdl
+
     def posTopLeft(self):
         return QtCore.QRect(10, 10, 231, 41)
     

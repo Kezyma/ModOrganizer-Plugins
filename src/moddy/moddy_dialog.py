@@ -75,9 +75,6 @@ class ModdyDialog:
         dialog.setMinimumWidth(dialog.width())
         dialog.setMinimumHeight(dialog.height())
         dialog.setModal(True)
-        #dialog.setWindowFlags(QtCore.Qt.FramelessWindowHint)
-        #dialog.setAttribute(QtCore.Qt.WidgetAttribute.WA_TranslucentBackground)
-        #dialog.setStyleSheet("background:transparent;")
         
         self.moddyImg = QtWidgets.QLabel(dialog)
         self.moddyImg.setText("")

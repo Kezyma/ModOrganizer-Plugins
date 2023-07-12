@@ -1,6 +1,7 @@
-import mobase
+import mobase, os, shutil, subprocess
 
 from os import listdir
+from pathlib import Path
 
 try:
     from PyQt5.QtCore import qInfo
@@ -43,14 +44,42 @@ class OverwriteFilesCheck(ModdyCheck):
     
     def resolveView(self):
         qInfo("Opening the overwrite folder.")
-
+        tkExe = "explorer.exe"
+        overwritePath = str(self.organiser.overwritePath()).replace("/", "\\")
+        viewFiles = f'"{tkExe}" "{overwritePath}"'
+        qInfo("Executing command " + str(viewFiles))
+        subprocess.call(viewFiles, shell=True, stdout=open(os.devnull, 'wb'))
+        
     def resolveDelete(self):
         qInfo("Clearing the overwrite folder.")
-
+        self.deleteOverwriteContents()
+        self.dialog.hide()
+        
     def resolveCreate(self):
         qInfo("Creating a mod from the overwrite folder.")
+        modName = self.createModDdl.currentText()
+        modDir = self.organiser.modsPath()
+        newModPath = Path(modDir).joinpath(str(modName))
+        if not newModPath.exists():
+            os.mkdir(newModPath)
+        shutil.copytree(str(self.organiser.overwritePath()), str(newModPath), dirs_exist_ok = True)
+        self.organiser.refresh(True)
+        self.deleteOverwriteContents()
+        self.dialog.hide()
 
-    def getActions(self, dialog=QDialog):
+    def deleteOverwriteContents(self):
+        overwriteDir = self.organiser.overwritePath()
+        for file in listdir(overwriteDir):
+            file_path = os.path.join(overwriteDir, file)
+            try:
+                if os.path.isfile(file_path) or os.path.islink(file_path):
+                    os.unlink(file_path)
+                elif os.path.isdir(file_path):
+                    shutil.rmtree(file_path)
+            except Exception as e:
+                qInfo("Could not delete: " + file_path)
+
+    def getResolveWidget(self, dialog=QDialog):
         self.overwriteActions = self.actionWidget(dialog)
 
         self.viewFilesBtn = self.actionButton(self.overwriteActions)
@@ -63,16 +92,21 @@ class OverwriteFilesCheck(ModdyCheck):
         self.deleteFilesBtn.setGeometry(self.posTopRight())
         self.deleteFilesBtn.setObjectName("deleteFilesBtn")
         self.deleteFilesBtn.setText("Delete Files")
-        self.deleteFilesBtn.clicked.connect(self.resolveDelete())
+        self.deleteFilesBtn.clicked.connect(self.resolveDelete)
 
-        self.createModTxt = self.actionText(self.overwriteActions)
-        self.createModTxt.setGeometry(self.posBtmLeft())
-        self.createModTxt.setObjectName("createModTxt")
+        self.createModDdl = self.actionComboBox(self.overwriteActions)
+        self.createModDdl.setGeometry(self.posBtmLeft())
+        self.createModDdl.setObjectName("createModDdl")
+        self.createModDdl.setEditable(True)
+        self.createModDdl.addItem("Overwrite Files")
+        for mod in self.organiser.modList().allMods():
+            if mod != "Overwrite Files":
+                self.createModDdl.addItem(mod)
         
         self.createModBtn = self.actionButton(self.overwriteActions)
-        self.createModBtn.setGeometry(self.posBtmLeft())
+        self.createModBtn.setGeometry(self.posBtmRight())
         self.createModBtn.setObjectName("createModBtn")
-        self.createModBtn.setText("Create Mod")
+        self.createModBtn.setText("Create or Merge with Mod")
         self.createModBtn.clicked.connect(self.resolveCreate)
 
         return self.overwriteActions

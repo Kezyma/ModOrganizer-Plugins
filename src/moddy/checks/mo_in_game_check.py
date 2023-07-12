@@ -57,7 +57,7 @@ class MOInGameFolderCheck(ModdyCheck):
         self.organiser.setPluginSetting("RootBuilder", "enabled", False)
         self.dialog.hide()
 
-    def getActions(self, dialog=QDialog):
+    def getResolveWidget(self, dialog=QDialog):
         self.overwriteActions = self.actionWidget(dialog)
 
         self.closeMoBtn = self.actionButton(self.overwriteActions)
