@@ -52,5 +52,11 @@
         "SteamAppId": null,
         "GameExe": ["Fallout4VR.exe","Fallout4VRLauncher.exe"],
         "GameData": "Data"
+    },
+    {
+        "Name": "S.T.A.L.K.E.R. Anomaly",
+        "SteamAppId": null,
+        "GameExe": ["AnomalyLauncher.exe","AnomalyDX8.exe","AnomalyDX8AVX.exe","AnomalyDX9.exe","AnomalyDX9AVX.exe","AnomalyDX10.exe","AnomalyDX10AVX.exe","AnomalyDX11.exe","AnomalyDX11AVX.exe"],
+        "GameData": "gamedata"
     }
 ]
