@@ -102,17 +102,15 @@ class RootBuilderFiles(SharedFiles):
     def getLinkableModFiles(self):
         """ Gets a list of all root files in active mods that are valid for linking """
         # Get all root files in currently active mods.
-        modFiles = self.getRootModFiles()
         linkableFiles = []
         # Loop through the files in each mod and look for linkable extensions.
-        for file in modFiles:
-            exclude = True
+        linked_extensions = set(self.settings.linkextensions())
+        for file in self.getRootModFiles():
+            # Exclude files with * in list instead of including them
+            exclude = False if "*" in linked_extensions else True
             # Loop through the linkable extensions and look for a match.
-            for ex in self.settings.linkextensions():
-                if (str(file)).endswith("." + ex):
-                    exclude = False
-            if exclude == False:
+            if (ext := Path(file).suffix[1:]) != "" and ext in linked_extensions:
+                exclude = not exclude
+            if exclude is False:
                 linkableFiles.append(file)
         return linkableFiles
-
-    
