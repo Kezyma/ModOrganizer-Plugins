@@ -103,5 +103,10 @@
     "Name": "Crash Log Tools",
     "Identifier": "crashlogtools",
     "Manifest": "https://raw.githubusercontent.com/Exit-9B/ModOrganizer-CrashLogTools/main/plugindefinition.json"
+  },
+  {
+    "Name": "Master Order Checker",
+    "Identifier": "masterorderchecker",
+    "Manifest": "https://raw.githubusercontent.com/ForgottenGlory/mo2-master-order-checker/main/plugindefinition.json"
   }
 ]
