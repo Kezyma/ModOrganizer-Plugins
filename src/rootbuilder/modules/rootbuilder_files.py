@@ -106,11 +106,10 @@ class RootBuilderFiles(SharedFiles):
         # Loop through the files in each mod and look for linkable extensions.
         linked_extensions = set(self.settings.linkextensions())
         for file in self.getRootModFiles():
-            # Exclude files with * in list instead of including them
-            exclude = False if "*" in linked_extensions else True
             # Loop through the linkable extensions and look for a match.
-            if (ext := Path(file).suffix[1:]) != "" and ext in linked_extensions:
-                exclude = not exclude
-            if exclude is False:
+            # Backlist with *, exclude from blacklist with ^.ext
+            if (ext := Path(file).suffix[1:]) in linked_extensions or (
+                "*" in linked_extensions and f"^{ext}" not in linked_extensions
+            ):
                 linkableFiles.append(file)
         return linkableFiles
