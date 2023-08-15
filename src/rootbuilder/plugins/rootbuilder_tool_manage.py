@@ -443,7 +443,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.extensionsDescLabel.setSizePolicy(sizePolicy)
         self.extensionsDescLabel.setWordWrap(True)
         self.extensionsDescLabel.setObjectName("extensionsDescLabel")
-        self.extensionsDescLabel.setText("List of file extensions to create links for when using Link mode.")
+        self.extensionsDescLabel.setText("List of file extensions to create links for when using Link mode. Include all files with * (except ^ext).")
         self.extensionsLayout.addWidget(self.extensionsDescLabel)
         self.textSettingLayout.addWidget(self.extensionsLabelWidget)
         
