@@ -64,5 +64,11 @@
         "SteamAppId": 1086940,
         "GameExe": ["bg3.exe"],
         "GameData": "Mods"
+    },
+    {
+        "Name": "Valheim",
+        "SteamAppId": 892970,
+        "GameExe": ["valheim.exe"],
+        "GameData": "\BepInEx\plugins"
     }
 ]
