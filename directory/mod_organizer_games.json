@@ -69,6 +69,6 @@
         "Name": "Valheim",
         "SteamAppId": 892970,
         "GameExe": ["valheim.exe"],
-        "GameData": "\BepInEx\plugins"
+        "GameData": "BepInEx\\plugins"
     }
 ]
