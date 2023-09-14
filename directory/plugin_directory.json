@@ -108,5 +108,10 @@
     "Name": "Master Order Checker",
     "Identifier": "masterorderchecker",
     "Manifest": "https://raw.githubusercontent.com/ForgottenGlory/mo2-master-order-checker/main/plugindefinition.json"
+  },
+  {
+    "Name": "Auto-Activator",
+    "Identifier": "autoactivator",
+    "Manifest": "https://raw.githubusercontent.com/JonathanFeenstra/modorganizer-auto-activator/main/manifest.json"
   }
 ]
