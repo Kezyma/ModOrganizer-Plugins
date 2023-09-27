@@ -43,8 +43,8 @@
       "DataPath": [ "data/rootbuilder" ]
     },
     {
-      "Version": "4.4.3",
-      "Released": "2023-06-07",
+      "Version": "4.4.4",
+      "Released": "2023-09-27",
       "MinSupport": "2.4.0",
       "MaxSupport": "2.5.0",
       "MinWorking": "2.4.0",
@@ -54,9 +54,11 @@
         "(4.4.1) Moving the base game folder no longer causes Root Builder to crash. Requires the cache be cleared and recreated.",
         "(4.4.1) Potential fix for previously non-supported characters.",
         "(4.4.2) Fix for mod names starting with 'Root'.",
-        "(4.4.3) Removed the flag that sometimes caused 'missing exe' errors."
+        "(4.4.3) Removed the flag that sometimes caused 'missing exe' errors.",
+        "(4.4.4) Fixed an issue with the installer plugin and MO 2.5",
+        "(4.4.4) Added more error handling to prevent RB crashes during file operations."
       ],
-      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.4.4.3.zip",
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.4.4.4.zip",
       "PluginPath": [ "rootbuilder" ],
       "LocalePath": [],
       "DataPath": [ "data/rootbuilder" ]

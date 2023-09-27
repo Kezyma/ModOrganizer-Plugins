@@ -8,7 +8,7 @@
   "Versions": [
     {
       "Version": "0.0.13a",
-      "Released": "2023-02-22",
+      "Released": "2023-09-27",
       "MinSupport": "2.4.0",
       "MaxSupport": "2.5.0",
       "MinWorking": "2.4.0",
@@ -24,9 +24,10 @@
         "(0.0.13) Added Bsa selection menu to OpenMW Player.",
         "(0.0.13) Added optional openmw.cfg full settings editor to OpenMW Player.",
         "(0.0.13) Moved OpenMW Player settings to be stored in the profile, so they are duplicated if a profile is copied.",
-        "(0.0.13) Added the ability to import current openmw.cfg settings to Mod Organiser."
+        "(0.0.13) Added the ability to import current openmw.cfg settings to Mod Organiser.",
+        "(0.0.14) Fixed an issue with MO 2.5 support."
       ],
-      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/openmwplayer/openmwplayer.0.0.13.zip",
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/openmwplayer/openmwplayer.0.0.14.zip",
       "PluginPath": [ "openmwplayer" ],
       "LocalePath": [],
       "DataPath": [ "data/openmwplayer" ]
