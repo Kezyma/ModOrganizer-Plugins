@@ -3,11 +3,13 @@ try:
     from PyQt5.QtWidgets import QInputDialog, QLineEdit
     from PyQt5 import QtWidgets, QtCore
     qtSizePolicy = QtWidgets.QSizePolicy
+    qtRejected = QtWidgets.QDialog.Rejected
 except:
     from PyQt6.QtCore import QCoreApplication, qInfo
     from PyQt6.QtWidgets import QInputDialog, QLineEdit
     from PyQt6 import QtWidgets, QtCore
     qtSizePolicy = QtWidgets.QSizePolicy.Policy
+    qtRejected = QtWidgets.QDialog.DialogCode.Rejected
 from ..rootbuilder_plugin import RootBuilderPlugin
 from typing import Union, Tuple
 from pathlib import Path
@@ -169,7 +171,7 @@ class RootBuilderInstallPlugin(RootBuilderPlugin, mobase.IPluginInstallerSimple)
         self.nameCombo.addItems(name.variants())
         res = self.dialog.exec()
         #qInfo(str(res))
-        if res == QtWidgets.QDialog.Rejected:
+        if res == qtRejected:
             if self._manualRequest:
                 self._manualRequest = False
                 return mobase.InstallResult.MANUAL_REQUESTED

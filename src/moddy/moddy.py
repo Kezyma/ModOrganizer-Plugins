@@ -54,7 +54,7 @@ class Moddy():
         self.dialog.show()
 
     def runAll(self):
-        skip = self.settings.disabledchecks().split("|")
+        skip = self.settings.disabledchecks()
         failed = False
         failedItems = []
 
@@ -73,13 +73,14 @@ class Moddy():
         return self.checklist[ix]
 
     def run(self):
-        skip = self.settings.disabledchecks().split("|")
+        skip = self.settings.disabledchecks()
+        notOnly = self.settings.notificationchecks()
         failed = False
         failedItem = None
 
         messageLevel = self.settings.messagelevel()
         for item in self.checklist:
-            if item.identifier() not in skip and item.level() >= messageLevel and not failed:
+            if item.identifier() not in skip and item.identifier() not in notOnly and item.level() >= messageLevel and not failed:
                 failed = item.check()
                 if failed:
                     failedItem = item

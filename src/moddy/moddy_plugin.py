@@ -9,7 +9,7 @@ except:
 class ModdyPlugin(SharedPlugin):
 
     def __init__(self):
-        super().__init__("Moddy", "Moddy", mobase.VersionInfo(0, 0, 1, mobase.ReleaseType.ALPHA))
+        super().__init__("Moddy", "Moddy", mobase.VersionInfo(0, 0, 2, mobase.ReleaseType.ALPHA))
 
     def init(self, organiser=mobase.IOrganizer):
         self.moddy = Moddy(organiser)
@@ -25,4 +25,5 @@ class ModdyPlugin(SharedPlugin):
             mobase.PluginSetting("disabledchecks",self.__tr("List of checks that should be skipped."), ""),
             mobase.PluginSetting("messagelevel",self.__tr("Threshold for displaying messages."), 4),
             mobase.PluginSetting("notificationsonly",self.__tr("If enabled, Moddy will not pop up and only notifications will be shown."), False),
+            mobase.PluginSetting("notificationchecks", self.__tr("Lists the checks to only show notifications for."), "")
             ]

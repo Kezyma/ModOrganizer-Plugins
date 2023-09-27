@@ -10,7 +10,7 @@ except:
 class OpenMWPlayerPlugin(SharedPlugin):
 
     def __init__(self):
-        super().__init__("OpenMWPlayer", "OpenMW Player", mobase.VersionInfo(0, 0, 13, mobase.ReleaseType.ALPHA))
+        super().__init__("OpenMWPlayer", "OpenMW Player", mobase.VersionInfo(0, 0, 14, mobase.ReleaseType.ALPHA))
 
     def init(self, organiser=mobase.IOrganizer):
         self.openMWPlayer = OpenMWPlayer(organiser)

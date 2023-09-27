@@ -9,8 +9,20 @@ class ModdySettings(SharedSettings):
         
     def disabledchecks(self):
         """ Lists the checks to skip. """
-        return self.setting("disabledchecks")
+        setting = self.setting("disabledchecks")
+        if setting:
+            return setting.split("|")
+        else:
+            return []
     
+    def notificationchecks(self):
+        """ Lists the checks to only show notifications for. """
+        setting = self.setting("notificationchecks")
+        if setting:
+            return setting.split("|")
+        else:
+            return []
+
     def messagelevel(self):
         """ The threshold to start showing messages. """
         return self.setting("messagelevel")

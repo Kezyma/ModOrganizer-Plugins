@@ -55,15 +55,21 @@ class RootBuilderBackup():
                             if backupPath.exists():
                                 #qInfo(u"Backup exists, restoring " + str(file))
                                 overwritePath = self.paths.rootOverwritePath() / self.paths.gameRelativePath(file)
-                                self.utilities.moveTo(str(file), str(overwritePath))
-                                self.utilities.copyTo(str(backupPath), str(file))
+                                try:
+                                    self.utilities.moveTo(str(file), str(overwritePath))
+                                    self.utilities.copyTo(str(backupPath), str(file))#
+                                except:
+                                    qInfo("Could not copy a file.")
                             #else:
                                 #qInfo(u"Backup does not exist, could not restore " + str(file))
                     # If this is a new file, move it to overwrite.
                     else:
                         #qInfo(u"New file detected, moving to overwrite " + str(file))
                         overwritePath = self.paths.rootOverwritePath() / self.paths.gameRelativePath(file)
-                        self.utilities.moveTo(str(file), str(overwritePath))
+                        try:
+                            self.utilities.moveTo(str(file), str(overwritePath))
+                        except:
+                            qInfo("Could not copy a file.")
             # Iterate through the files we've got data for.
             for file in fileData.keys():
                 # Check to see if the file has been deleted.
@@ -73,7 +79,10 @@ class RootBuilderBackup():
                     # If the file has been deleted and has a backup, restore it.
                     if backupPath.exists():
                         #qInfo(u"Backup exists, restoring " + str(file))
-                        self.utilities.copyTo(str(backupPath), str(file))
+                        try:
+                            self.utilities.copyTo(str(backupPath), str(file))
+                        except:
+                            qInfo("Could not copy a file.")
                     #else:
                         #qInfo(u"Backup does not exist, could not restore " + str(file))
         else:
@@ -84,7 +93,10 @@ class RootBuilderBackup():
         for folder in gameFolders:
             if folder.exists():
                 if len(self.files.getFolderFileList(folder)) == 0:
-                    shutil.rmtree(folder)
+                    try:
+                        shutil.rmtree(folder)
+                    except:
+                        qInfo("Could not remove a folder.")
         # If backup is disabled, we can clear any backed up files now that the restore is complete.
         if self.settings.backup() is False:
             self.clearBackupFiles()
@@ -101,7 +113,10 @@ class RootBuilderBackup():
             # Back them up if they don't already exist.
             if not backupPath.exists() and Path(file).exists():
                 #qInfo(u"Backing up " + str(file))
-                self.utilities.copyTo(str(file), str(backupPath))
+                try:
+                    self.utilities.copyTo(str(file), str(backupPath))
+                except:
+                    qInfo("Could not backup a file.")
 
     def getBackupList(self, fileData=dict):
         """ Gets a list of files that should be backed up. """
@@ -130,14 +145,25 @@ class RootBuilderBackup():
     def getFileData(self):
         """ Gets a dictionary of vanilla game files with their hashes. """
         fileData = {}
+        success = False
         # If we have a cache file for this game already load that.
         if (self.settings.cache() and self.paths.rootCacheFilePath().exists()):
-            fileData = json.load(open(self.paths.rootCacheFilePath(),"r", encoding="utf-8"))
+            try:
+                fileData = json.load(open(self.paths.rootCacheFilePath(),"r", encoding="utf-8"))
+                success = True
+            except:
+                qInfo("Cache corruped, rebuilding.")
+                self.utilities.deletePath(self.paths.rootCacheFilePath())
         # If we have already run a build, just load the data from that.
-        elif (self.paths.rootBackupDataFilePath().exists()):
-            fileData = json.load(open(self.paths.rootBackupDataFilePath(),"r", encoding="utf-8"))
+        if (self.paths.rootBackupDataFilePath().exists() and success == False):
+            try:
+                fileData = json.load(open(self.paths.rootBackupDataFilePath(),"r", encoding="utf-8"))
+                success = True
+            except:
+                qInfo("Backup file corruped, rebuilding.")
+                self.utilities.deletePath(self.paths.rootBackupDataFilePath())
         # Hash the base game files.
-        else:
+        if (success == False):
             fileData = self.buildCache()
 
         gamePath = str(self.paths.gamePath())
@@ -152,25 +178,37 @@ class RootBuilderBackup():
         """ Saves current file data to the backup data path """
         if self.paths.rootBackupDataFilePath().exists():
             self.paths.rootBackupDataFilePath().touch()
-        with open(self.paths.rootBackupDataFilePath(), "w", encoding="utf-8") as rcJson:
-            json.dump(fileData, rcJson)
+        try:
+            with open(self.paths.rootBackupDataFilePath(), "w", encoding="utf-8") as rcJson:
+                json.dump(fileData, rcJson)
+        except:
+            qInfo("Could not save backup data.")
 
     def clearFileData(self):
         """ Clears the current backup data file """
         if self.paths.rootBackupDataFilePath().exists():
-            self.utilities.deletePath(self.paths.rootBackupDataFilePath())
+            try:
+                self.utilities.deletePath(self.paths.rootBackupDataFilePath())
+            except:
+                qInfo("Could not delete backup data.")
 
     def clearBackupFiles(self):
         """ Clears the current backup file folder """
         if self.paths.rootBackupPath().exists():
-            shutil.rmtree(self.paths.rootBackupPath())
+            try:
+                shutil.rmtree(self.paths.rootBackupPath())
+            except:
+                qInfo("Could not delete backup files.")
 
     def clearAllBackupFiles(self):
         """ Clears backup files for all versions. """
         paths = self.paths.rootBackupPathAllVersions()
         if paths and len(paths) > 0:
             for path in paths:
-                shutil.rmtree(str(path))
+                try:
+                    shutil.rmtree(str(path))
+                except:
+                    qInfo("Could not delete backup file.")
 
     def buildCache(self):
         """ Triggers a cache build if none exists """
@@ -183,8 +221,11 @@ class RootBuilderBackup():
             if self.settings.cache():
                 if not self.paths.rootCacheFilePath().exists():
                     self.paths.rootCacheFilePath().touch()
-                with open(self.paths.rootCacheFilePath(), "w", encoding="utf-8") as rcJson:
-                    json.dump(fileData, rcJson)
+                try:
+                    with open(self.paths.rootCacheFilePath(), "w", encoding="utf-8") as rcJson:
+                        json.dump(fileData, rcJson)
+                except:
+                    qInfo("Could not create cache file.")
             # Otherwise, clear any cache if it exists.
             else:
                 self.clearCache()
@@ -193,14 +234,20 @@ class RootBuilderBackup():
     def clearCache(self):
         """ Clears the current cache file """
         if self.paths.rootCacheFilePath().exists():    
-            self.utilities.deletePath(self.paths.rootCacheFilePath())
+            try:
+                self.utilities.deletePath(self.paths.rootCacheFilePath())
+            except:
+                qInfo("Could not delete cache file.")
 
     def clearAllCache(self):
         """ Clears cache files for all versions. """
         paths = self.paths.rootCacheFilePathAllVersions()
         if paths and len(paths) > 0:
             for path in paths:
-                self.utilities.deletePath(str(path))
+                try:
+                    self.utilities.deletePath(str(path))
+                except:
+                    qInfo("Could not delete cache file.")
 
     def canRestore(self):
         """ Checks if backup data exists and therefore whether a restore is possible """

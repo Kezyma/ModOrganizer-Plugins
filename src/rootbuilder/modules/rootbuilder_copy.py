@@ -50,7 +50,10 @@ class RootBuilderCopy():
                 if not destPath.parent.exists():
                     os.makedirs(destPath.parent)
                 #qInfo(u"Copying from " + str(sourcePath))
-                self.utilities.copyTo(sourcePath, destPath)
+                try:
+                    self.utilities.copyTo(sourcePath, destPath)
+                except:
+                    qInfo("Could not copy a file during build.")
         # Save data
         self.saveModData(fileData)
         return
@@ -73,8 +76,11 @@ class RootBuilderCopy():
                         #qInfo(u"Mod file changed, updating " + str(destPath))
                         if not destPath.parent.exists():
                             os.makedirs(destPath.parent)
-                        self.utilities.copyTo(file, destPath)
-                        modData[str(relativePath)]["Hash"] = fileHash
+                        try:
+                            self.utilities.copyTo(file, destPath)
+                            modData[str(relativePath)]["Hash"] = fileHash
+                        except:
+                            qInfo("Could not sync a changed file.")
                 elif str(file) in backupData:
                     # This is a vanilla game file, check if it has changed and copy to overwrite and add to modData if it has.
                     fileHash = str(self.utilities.hashFile(file))
@@ -83,16 +89,22 @@ class RootBuilderCopy():
                         overwritePath = self.paths.rootOverwritePath() / relativePath
                         if not overwritePath.parent.exists():
                             os.makedirs(overwritePath.parent)
-                        self.utilities.copyTo(file, overwritePath)
-                        modData[str(relativePath)] = { "Path" : str(overwritePath), "Hash" : fileHash }
+                        try:
+                            self.utilities.copyTo(file, overwritePath)
+                            modData[str(relativePath)] = { "Path" : str(overwritePath), "Hash" : fileHash }
+                        except:
+                            qInfo("Could not sync a vanilla file.")
                 else:
                     # This is a new file, copy it to overwrite and add to modData.
                     #qInfo(u"New file, copying to overwrite " + str(file))
                     overwritePath = self.paths.rootOverwritePath() / relativePath
                     if not overwritePath.parent.exists():
                         os.makedirs(overwritePath.parent)
-                    self.utilities.copyTo(file, overwritePath)
-                    modData.update({str(relativePath): {"Path": str(overwritePath), "Hash": self.utilities.hashFile(file)}})
+                    try:
+                        self.utilities.copyTo(file, overwritePath)
+                        modData.update({str(relativePath): {"Path": str(overwritePath), "Hash": self.utilities.hashFile(file)}})
+                    except:
+                        qInfo("Could not sync a new file.")
             # Save mod data.
             self.saveModData(modData)
         return
@@ -110,7 +122,10 @@ class RootBuilderCopy():
                 # If the file exists in the game, delete it.
                 if gamePath.exists():
                     #qInfo(u"Clearing file " + str(gamePath))
-                    self.utilities.deletePath(gamePath)
+                    try:
+                        self.utilities.deletePath(gamePath)
+                    except:
+                        qInfo("Could not clear a file.")
             # Clear the existing mod data
             self.clearModData()
         return
@@ -124,7 +139,10 @@ class RootBuilderCopy():
         fileData = {}
         # If we have already run a build, just load the data from that.
         if (self.paths.rootModDataFilePath().exists()):
-            fileData = json.load(open(self.paths.rootModDataFilePath(),"r", encoding="utf-8"))
+            try:
+                fileData = json.load(open(self.paths.rootModDataFilePath(),"r", encoding="utf-8"))
+            except:
+                qInfo("Could not load build info.")
 
         return fileData
 
@@ -132,13 +150,19 @@ class RootBuilderCopy():
         """ Saves current mod data. """
         if self.paths.rootModDataFilePath().exists():
             self.paths.rootModDataFilePath().touch()
-        with open(self.paths.rootModDataFilePath(), "w", encoding="utf-8") as rcJson:
-            json.dump(fileData, rcJson)
+        try:
+            with open(self.paths.rootModDataFilePath(), "w", encoding="utf-8") as rcJson:
+                json.dump(fileData, rcJson)
+        except:
+            qInfo("Could not save build info.")
 
     def clearModData(self):
         """ Removes any existing mod data. """
         if self.paths.rootModDataFilePath().exists():
-            self.utilities.deletePath(self.paths.rootModDataFilePath())
+            try:
+                self.utilities.deletePath(self.paths.rootModDataFilePath())
+            except:
+                qInfo("Could not delete build info.")
 
 
     

@@ -82,7 +82,7 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
             headingItem = QtWidgets.QTableWidgetItem(setting)
             self.settingsTable.setVerticalHeaderItem(count, headingItem)
             tableItem = QtWidgets.QTableWidgetItem(settingColl[setting])
-            tableItem.setFlags(tableItem.flags() | QtCore.Qt.ItemIsEditable)
+            tableItem.setFlags(tableItem.flags() | qtItemFlag.ItemIsEditable)
             self.settingsTable.setItem(count-1, 1, tableItem)
             count = count + 1
         self.settingsTable.itemChanged.connect(self.getTableSettings)
