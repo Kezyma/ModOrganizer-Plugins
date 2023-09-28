@@ -74,7 +74,7 @@ class RootBuilderFiles(SharedFiles):
                         rootmods.append(mod)
         return rootmods
 
-    def getRootModFiles(self):
+    def getRootModFiles(self) -> dict[str, str]:
         """ Gets a list of all root files in active mods. """
         # Get all the current mods with valid root folders.
         modlist = self.getRootMods()
@@ -83,33 +83,28 @@ class RootBuilderFiles(SharedFiles):
         for mod in modlist:
             for file in self.getFolderFileList(self.paths.modsPath() / mod / "Root"):
                 relativePath = self.paths.rootRelativePath(file)
-                # If the file already exists from an earlier mod, overwrite it.
-                if relativePath in modFiles:
-                    modFiles[relativePath] = file
-                else:
-                    modFiles.update({str(relativePath):str(file)})
+                modFiles[str(relativePath)] = str(file)
         # Do the same for the root overwrite folder.
         if self.paths.rootOverwritePath().exists():
             for file in self.getFolderFileList(self.paths.rootOverwritePath()):
                 relativePath = self.paths.rootRelativePath(file)
                 # If the file already exists from an earlier mod, overwrite it.
-                if relativePath in modFiles:
-                    modFiles[relativePath] = file
-                else:
-                    modFiles.update({str(relativePath):str(file)})
-        return list(modFiles.values())
+                modFiles[str(relativePath)] = str(file)
+        return modFiles
 
-    def getLinkableModFiles(self):
+    def getLinkableModFiles(self) -> dict[str, str]:
         """ Gets a list of all root files in active mods that are valid for linking """
+        if not self.settings.usvfsmode():
+            return self.getRootModFiles()
         # Get all root files in currently active mods.
-        linkableFiles = []
+        linkableFiles = {}
         # Loop through the files in each mod and look for linkable extensions.
         linked_extensions = set(self.settings.linkextensions())
-        for file in self.getRootModFiles():
+        for relative_path, file in self.getRootModFiles().items():
             # Loop through the linkable extensions and look for a match.
             # Backlist with *, exclude from blacklist with ^.ext
             if (ext := Path(file).suffix[1:]) in linked_extensions or (
                 "*" in linked_extensions and f"^{ext}" not in linked_extensions
             ):
-                linkableFiles.append(file)
+                linkableFiles[relative_path] = file
         return linkableFiles

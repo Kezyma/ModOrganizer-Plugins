@@ -29,8 +29,7 @@ class RootBuilderCopy():
         # Get list of current mod files.
         modFiles = self.files.getRootModFiles()
         # Iterate over current mod files and update our data.
-        for file in modFiles:
-            relativePath = self.paths.rootRelativePath(file)
+        for relativePath, file in modFiles.items():
             modFileData = {
                     "Path" : str(file),
                     "Hash" : str(self.utilities.hashFile(file))

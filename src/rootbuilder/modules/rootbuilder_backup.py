@@ -134,8 +134,7 @@ class RootBuilderBackup():
             else:
                 conflictFiles = self.files.getRootModFiles()
             # Loop through the mod files and see if we have data for them.
-            for file in conflictFiles:
-                relativePath = self.paths.rootRelativePath(file)
+            for relativePath in conflictFiles:
                 gamePath = self.paths.gamePath() / relativePath
                 # If we have data, we need to back this file up.
                 if str(gamePath) in fileData:

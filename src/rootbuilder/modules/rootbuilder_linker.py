@@ -22,8 +22,7 @@ class RootBuilderLinker():
         """ Generates links for all linkable mod files and saves records of each of them """
         # Get all linkable mod files.
         linkFileData = self.files.getLinkableModFiles()
-        for file in linkFileData:
-            relativePath = self.paths.rootRelativePath(file)
+        for relativePath, file in linkFileData.items():
             gamePath = self.paths.gamePath() / relativePath
             # If the linkable file is already in the game folder, rename it.
             if gamePath.exists():
@@ -40,6 +39,7 @@ class RootBuilderLinker():
             self.paths.rootLinkDataFilePath().touch()
         with open(self.paths.rootLinkDataFilePath(), "w", encoding="utf-8") as jsonFile:
             json.dump(linkFileData, jsonFile)
+        return linkFileData
 
     def clear(self):
         """ Clears any created links from mod files """
@@ -47,8 +47,7 @@ class RootBuilderLinker():
         if self.paths.rootLinkDataFilePath().exists():
             linkFileData = json.load(open(self.paths.rootLinkDataFilePath(),"r", encoding="utf-8"))
             # Loop through our link data and unlink individual files.
-            for file in linkFileData:
-                relativePath = self.paths.rootRelativePath(file)
+            for relativePath, file in linkFileData.items():
                 gamePath = self.paths.gamePath() / relativePath
                 if gamePath.exists():
                     #qInfo("Removing link for " + str(gamePath))
