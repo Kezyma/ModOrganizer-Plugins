@@ -21,7 +21,7 @@ class RootBuilder():
         self.files = RootBuilderFiles(self.organiser, self.settings, self.paths)
         self.backup = RootBuilderBackup(self.organiser, self.settings, self.paths, self.files)
         self.mapper = RootBuilderMapper(self.organiser, self.settings, self.paths, self.files)
-        self.linker = RootBuilderLinker(self.organiser, self.paths, self.files)
+        self.linker = RootBuilderLinker(self.organiser, self.paths, self.files, self.settings)
         self.copier = RootBuilderCopy(self.organiser, self.settings, self.paths, self.files, self.backup)
         self.updater = RootBuilderUpdate(self.organiser, self.paths, self.files)
         super().__init__()
@@ -47,9 +47,14 @@ class RootBuilder():
                 self.linker.build()
                 qInfo("RootBuilder: Links generated.")
         else:
-            qInfo("RootBuilder: Copying files.")
-            self.copier.build()
-            qInfo("RootBuilder: Files copied.")
+            if self.settings.linkonlymode():
+                qInfo("RootBuilder: Generating links.")
+                self.linker.build()
+                qInfo("RootBuilder: Links generated.")
+            else:
+                qInfo("RootBuilder: Copying files.")
+                self.copier.build()
+                qInfo("RootBuilder: Files copied.")
 
         qInfo("RootBuilder: Build complete.")
 

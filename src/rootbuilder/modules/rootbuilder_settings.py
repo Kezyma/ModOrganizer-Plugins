@@ -22,6 +22,10 @@ class RootBuilderSettings(SharedSettings):
     def linkmode(self):
         """ Determines whether to use file linking. """
         return self.setting("linkmode")
+    
+    def linkonlymode(self):
+        """ Determines whether to use file linking only. """
+        return self.setting("linkonlymode")
 
     def usvfsmode(self):
         """ Determines whether to use usvfs root mapping. """

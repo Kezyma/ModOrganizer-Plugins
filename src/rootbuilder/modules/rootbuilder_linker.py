@@ -1,6 +1,7 @@
 from pathlib import Path
 from .rootbuilder_paths import RootBuilderPaths
 from .rootbuilder_files import RootBuilderFiles
+from .rootbuilder_settings import RootBuilderSettings
 from ...shared.shared_utilities import SharedUtilities
 import mobase, os, json
 try:
@@ -11,17 +12,23 @@ except:
 class RootBuilderLinker():
     """ Root Builder link module. Used to create links for specific file types. """
 
-    def __init__(self, organiser=mobase.IOrganizer, paths=RootBuilderPaths, files=RootBuilderFiles):
+    def __init__(self, organiser=mobase.IOrganizer, paths=RootBuilderPaths, files=RootBuilderFiles, settings=RootBuilderSettings):
         self.organiser = organiser
         self.paths = paths
         self.files = files
+        self.settings = settings
         self.utilities = SharedUtilities()
         super().__init__()
 
     def build(self):
         """ Generates links for all linkable mod files and saves records of each of them """
         # Get all linkable mod files.
-        linkFileData = self.files.getLinkableModFiles()
+        linkFileData = []
+        if self.settings.linkonlymode():
+            linkFileData = self.files.getRootModFiles()
+        else:
+            linkFileData = self.files.getLinkableModFiles()
+        linkOutputData = []
         for file in linkFileData:
             relativePath = self.paths.rootRelativePath(file)
             gamePath = self.paths.gamePath() / relativePath
@@ -35,11 +42,16 @@ class RootBuilderLinker():
             # Try and create a link. This will fail if a link is already there.
             #qInfo("Creating link for " + str(gamePath))
             Path(file).link_to(gamePath)
+            mapping = {
+                "Source": str(file),
+                "Destination": str(gamePath)
+            }
+            linkOutputData.append(mapping)
         # Save our link data.
         if not self.paths.rootLinkDataFilePath().exists():
             self.paths.rootLinkDataFilePath().touch()
         with open(self.paths.rootLinkDataFilePath(), "w", encoding="utf-8") as jsonFile:
-            json.dump(linkFileData, jsonFile)
+            json.dump(linkOutputData, jsonFile)
 
     def clear(self):
         """ Clears any created links from mod files """
@@ -48,11 +60,16 @@ class RootBuilderLinker():
             linkFileData = json.load(open(self.paths.rootLinkDataFilePath(),"r", encoding="utf-8"))
             # Loop through our link data and unlink individual files.
             for file in linkFileData:
-                relativePath = self.paths.rootRelativePath(file)
+                destPath = file["Destination"]
+                srcPath = file["Source"]
+                relativePath = self.paths.rootRelativePath(destPath)
                 gamePath = self.paths.gamePath() / relativePath
                 if gamePath.exists():
-                    #qInfo("Removing link for " + str(gamePath))
-                    gamePath.unlink(True)
+                    if os.stat(gamePath).st_nlink <= 1:
+                        self.utilities.moveTo(gamePath, srcPath)
+                    else:
+                        #qInfo("Removing link for " + str(gamePath))
+                        gamePath.unlink(True)
                 if Path(str(gamePath) + ".rbackup").exists():
                     #qInfo("Renaming from link " + str(gamePath))
                     self.utilities.moveTo(Path(str(gamePath) + ".rbackup"), gamePath)

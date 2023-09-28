@@ -26,6 +26,7 @@ class RootBuilderPlugin(SharedPlugin):
             mobase.PluginSetting("backup",self.__tr("Enables full backup of base game files on first run."), True),
             mobase.PluginSetting("autobuild",self.__tr("Enables automatic build and clear on running an application through Mod Organizer."), True),
             mobase.PluginSetting("linkmode",self.__tr("Enables the use of file linking when using usvfs mode."), False),
+            mobase.PluginSetting("linkonlymode", self.__tr("Enables the exclusive use of file linking without usvfs mode."), False),
             mobase.PluginSetting("usvfsmode",self.__tr("Enables the use of usvfs instead of copying during autobuild."), False),
             mobase.PluginSetting("linkextensions",self.__tr("List of file extensions to create links for if using link mode."), "dll,exe"),
             mobase.PluginSetting("exclusions",self.__tr("List of files and folders to exclude from RootBuilder."), "Saves,Morrowind.ini"),

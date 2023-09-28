@@ -157,6 +157,36 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.linkLayout.addWidget(self.linkLabel)
         self.modeLayout.addWidget(self.linkContainer)
 
+        # Links
+        self.linkOnlyContainer = QtWidgets.QWidget(self.modeContainer)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.linkOnlyContainer.sizePolicy().hasHeightForWidth())
+        self.linkOnlyContainer.setSizePolicy(sizePolicy)
+        self.linkOnlyContainer.setObjectName("linkOnlyContainer")
+        self.linkOnlyLayout = QtWidgets.QHBoxLayout(self.linkOnlyContainer)
+        self.linkOnlyLayout.setContentsMargins(0, 0, 0, 0)
+        self.linkOnlyLayout.setSpacing(5)
+        self.linkOnlyLayout.setObjectName("linkOnlyLayout")
+        self.linkOnlyButton = QtWidgets.QRadioButton(self.linkOnlyContainer)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Fixed, qtSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.linkOnlyButton.sizePolicy().hasHeightForWidth())
+        self.linkOnlyButton.setSizePolicy(sizePolicy)
+        self.linkOnlyButton.setMinimumSize(QtCore.QSize(100, 0))
+        self.linkOnlyButton.setObjectName("linkOnlyButton")
+        self.linkOnlyButton.setText("Links")
+        self.linkOnlyButton.clicked.connect(self.linkOnlyModeChanged)
+        self.linkOnlyLayout.addWidget(self.linkOnlyButton)
+        self.linkOnlyLabel = QtWidgets.QLabel(self.linkOnlyContainer)
+        self.linkOnlyLabel.setWordWrap(True)
+        self.linkOnlyLabel.setObjectName("linkOnlyLabel")
+        self.linkOnlyLabel.setText("Link mode. Building creates links for root files to improve support for exe and dll files.")
+        self.linkOnlyLayout.addWidget(self.linkOnlyLabel)
+        self.modeLayout.addWidget(self.linkOnlyContainer)
+
         self.dialogLayout.addWidget(self.modeContainer)
 
         # Settings
@@ -611,12 +641,15 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         copyMode = not self.rootBuilder.settings.usvfsmode()
         usvfsMode = not copyMode
         linkMode = usvfsMode and self.rootBuilder.settings.linkmode()
+        linkOnlyMode = self.rootBuilder.settings.linkonlymode()
         self.copyButton.setChecked(copyMode)
         self.copyModeChanged()
         self.usvfsButton.setChecked(usvfsMode)
         self.usvfsModeChanged()
         self.linkButton.setChecked(linkMode)
         self.linkModeChanged()
+        self.linkOnlyButton.setChecked(linkOnlyMode)
+        self.linkOnlyModeChanged()
 
         self.autobuildCheck.setChecked(self.rootBuilder.settings.autobuild())
         self.redirectCheck.setChecked(self.rootBuilder.settings.redirect())
@@ -715,10 +748,12 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         if self.copyButton.isChecked():
             self.updateSetting("usvfsmode", False)
             self.updateSetting("linkmode", False)
+            self.updateSetting("linkonlymode", False)
             self.autobuildCheck.setEnabled(True)
             self.linkText.setEnabled(False)
             self.usvfsButton.setChecked(False)
             self.linkButton.setChecked(False)
+            self.linkOnlyButton.setChecked(False)
             self.bindActions()
 
     def usvfsModeChanged(self):
@@ -726,11 +761,13 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
             self.updateSetting("usvfsmode", True)
             self.updateSetting("linkmode", False)
             self.updateSetting("autobuild", True)
+            self.updateSetting("linkonlymode", False)
             self.autobuildCheck.setChecked(True)
             self.autobuildCheck.setEnabled(False)
             self.linkText.setEnabled(False)
             self.copyButton.setChecked(False)
             self.linkButton.setChecked(False)
+            self.linkOnlyButton.setChecked(False)
             self.bindActions()
 
     def linkModeChanged(self):
@@ -738,11 +775,25 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
             self.updateSetting("usvfsmode", True)
             self.updateSetting("linkmode", True)
             self.updateSetting("autobuild", True)
+            self.updateSetting("linkonlymode", False)
             self.autobuildCheck.setChecked(True)
             self.autobuildCheck.setEnabled(False)
             self.linkText.setEnabled(True)
             self.copyButton.setChecked(False)
             self.usvfsButton.setChecked(False)
+            self.linkOnlyButton.setChecked(False)
+            self.bindActions()
+
+    def linkOnlyModeChanged(self):
+        if self.linkOnlyButton.isChecked():
+            self.updateSetting("usvfsmode", False)
+            self.updateSetting("linkmode", False)
+            self.updateSetting("linkonlymode", True)
+            self.autobuildCheck.setEnabled(True)
+            self.linkText.setEnabled(False)
+            self.copyButton.setChecked(False)
+            self.usvfsButton.setChecked(False)
+            self.linkButton.setChecked(False)
             self.bindActions()
 
     def exclusionsTextChanged(self):
