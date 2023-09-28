@@ -50,8 +50,13 @@ class RootBuilderLinker():
             for relativePath, file in linkFileData.items():
                 gamePath = self.paths.gamePath() / relativePath
                 if gamePath.exists():
-                    #qInfo("Removing link for " + str(gamePath))
-                    gamePath.unlink(True)
+                    if os.stat(gamePath).st_nlink <= 1:
+                        # Hard link got replaced by new file
+                        # qInfo(f"Hard link {relativePath} was replaced, updating: {file}")
+                        self.utilities.moveTo(gamePath, file)
+                    else:
+                        #qInfo("Removing link for " + str(gamePath))
+                        gamePath.unlink(True)
                 if Path(str(gamePath) + ".rbackup").exists():
                     #qInfo("Renaming from link " + str(gamePath))
                     self.utilities.moveTo(Path(str(gamePath) + ".rbackup"), gamePath)

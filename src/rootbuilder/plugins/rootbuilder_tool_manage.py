@@ -128,6 +128,36 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.modeLayout.addWidget(self.usvfsContainer)
 
         # USVFS + Links
+        self.usvfsLinkContainer = QtWidgets.QWidget(self.modeContainer)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.usvfsLinkContainer.sizePolicy().hasHeightForWidth())
+        self.usvfsLinkContainer.setSizePolicy(sizePolicy)
+        self.usvfsLinkContainer.setObjectName("usvfsLinkContainer")
+        self.usvfsLinkLayout = QtWidgets.QHBoxLayout(self.usvfsLinkContainer)
+        self.usvfsLinkLayout.setContentsMargins(0, 0, 0, 0)
+        self.usvfsLinkLayout.setSpacing(5)
+        self.usvfsLinkLayout.setObjectName("usvfsLinkLayout")
+        self.usvfsLinkButton = QtWidgets.QRadioButton(self.usvfsLinkContainer)
+        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Fixed, qtSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.usvfsLinkButton.sizePolicy().hasHeightForWidth())
+        self.usvfsLinkButton.setSizePolicy(sizePolicy)
+        self.usvfsLinkButton.setMinimumSize(QtCore.QSize(100, 0))
+        self.usvfsLinkButton.setObjectName("usvfsLinkButton")
+        self.usvfsLinkButton.setText("USVFS + Links")
+        self.usvfsLinkButton.clicked.connect(self.usvfsLinkModeChanged)
+        self.usvfsLinkLayout.addWidget(self.usvfsLinkButton)
+        self.usvfsLinkLabel = QtWidgets.QLabel(self.usvfsLinkContainer)
+        self.usvfsLinkLabel.setWordWrap(True)
+        self.usvfsLinkLabel.setObjectName("usvfsLinkLabel")
+        self.usvfsLinkLabel.setText("USVFS mode. Building creates hard Links for specific root files to improve support for exe and dll files.")
+        self.usvfsLinkLayout.addWidget(self.usvfsLinkLabel)
+        self.modeLayout.addWidget(self.usvfsLinkContainer)
+
+        # Hard links only
         self.linkContainer = QtWidgets.QWidget(self.modeContainer)
         sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
@@ -147,13 +177,13 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.linkButton.setSizePolicy(sizePolicy)
         self.linkButton.setMinimumSize(QtCore.QSize(100, 0))
         self.linkButton.setObjectName("linkButton")
-        self.linkButton.setText("USVFS + Links")
+        self.linkButton.setText("Links only")
         self.linkButton.clicked.connect(self.linkModeChanged)
         self.linkLayout.addWidget(self.linkButton)
         self.linkLabel = QtWidgets.QLabel(self.linkContainer)
         self.linkLabel.setWordWrap(True)
         self.linkLabel.setObjectName("linkLabel")
-        self.linkLabel.setText("USVFS mode. Building creates links for specific root files to improve support for exe and dll files.")
+        self.linkLabel.setText("Hard links only mode. Building creates links for all root files. Hard links do not take extra space on disk.")
         self.linkLayout.addWidget(self.linkLabel)
         self.modeLayout.addWidget(self.linkContainer)
 
@@ -443,10 +473,10 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.extensionsDescLabel.setSizePolicy(sizePolicy)
         self.extensionsDescLabel.setWordWrap(True)
         self.extensionsDescLabel.setObjectName("extensionsDescLabel")
-        self.extensionsDescLabel.setText("List of file extensions to create links for when using Link mode. Include all files with * (except ^ext).")
+        self.extensionsDescLabel.setText("List of file extensions to create hard links for when using usvfs + Link mode. Include all files with * (except ^ext).")
         self.extensionsLayout.addWidget(self.extensionsDescLabel)
         self.textSettingLayout.addWidget(self.extensionsLabelWidget)
-        
+
         self.linkText = QtWidgets.QLineEdit(self.textInputContainer)
         self.linkText.setObjectName("linkText")
         self.linkText.textChanged.connect(self.linkExtensionsChanged)
@@ -455,7 +485,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.settingsLayout.addWidget(self.textSettingContainer)
         self.settingsLayout.addWidget(self.textInputContainer)
         self.dialogLayout.addWidget(self.settingsContainer)
-        
+
         # Actions
         self.actionsContainer = QtWidgets.QWidget(dialog)
         sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Preferred, qtSizePolicy.Fixed)
@@ -602,15 +632,15 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
 
     def description(self):
         return self.__tr("Opens the Root Builder Manager.")
-    
+
     def display(self):
         self.dialog.show()
         self.bindSettings()
 
     def bindSettings(self):
-        copyMode = not self.rootBuilder.settings.usvfsmode()
-        usvfsMode = not copyMode
-        linkMode = usvfsMode and self.rootBuilder.settings.linkmode()
+        usvfsMode = self.rootBuilder.settings.usvfsmode()
+        linkMode = self.rootBuilder.settings.linkmode()
+        copyMode = not (usvfsMode or linkMode)
         self.copyButton.setChecked(copyMode)
         self.copyModeChanged()
         self.usvfsButton.setChecked(usvfsMode)
@@ -624,30 +654,34 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         self.cacheCheck.setChecked(self.rootBuilder.settings.cache())
 
         self.linkText.setText(self.organiser.pluginSetting("RootBuilder", "linkextensions"))
-        self.exclusionsText.setText(self.organiser.pluginSetting("RootBuilder", "exclusions"))    
-            
+        self.exclusionsText.setText(self.organiser.pluginSetting("RootBuilder", "exclusions"))
+
     def bindActions(self):
-        if not self.rootBuilder.settings.usvfsmode():
+        if self.rootBuilder.settings.usvfsmode():
+            self.buildButton.setEnabled(False)
+            self.syncButton.setEnabled(False)
+            self.clearButton.setEnabled(False)
+            self.autobuildCheck.setChecked(True)
+            self.autobuildCheck.setEnabled(False)
+            if self.rootBuilder.settings.linkmode():
+                self.redirectCheck.setEnabled(True)
+                self.linkText.setEnabled(True)
+            else:
+                self.redirectCheck.setEnabled(False)
+                self.linkText.setEnabled(False)
+        else:
             self.buildButton.setEnabled(True)
             self.redirectCheck.setEnabled(True)
             self.autobuildCheck.setEnabled(True)
+            self.linkText.setEnabled(False)
+            self.redirectCheck.setEnabled(self.rootBuilder.settings.linkmode())
             if self.rootBuilder.copier.hasModData():
                 self.syncButton.setEnabled(True)
                 self.clearButton.setEnabled(True)
             else:
                 self.syncButton.setEnabled(False)
                 self.clearButton.setEnabled(False)
-        else:
-            self.buildButton.setEnabled(False)
-            self.syncButton.setEnabled(False)
-            self.clearButton.setEnabled(False)
-            self.autobuildCheck.setChecked(True)
-            self.autobuildCheck.setEnabled(False)
-            if not self.rootBuilder.settings.linkmode():
-                self.redirectCheck.setEnabled(False)
-            else:
-                self.redirectCheck.setEnabled(True)
-                
+
         if self.rootBuilder.copier.hasModData() or self.rootBuilder.paths.rootLinkDataFilePath().exists():
             self.backupButton.setEnabled(False)
             self.delBackupButton.setEnabled(False)
@@ -686,7 +720,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
     def cacheClick(self):
         self.rootBuilder.backup.buildCache()
         self.bindActions()
-    
+
     def delBackupClick(self):
         self.rootBuilder.backup.clearAllBackupFiles()
         self.rootBuilder.backup.clearFileData()
@@ -698,7 +732,7 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
 
     def cacheChanged(self):
         self.updateSetting("cache", self.cacheCheck.isChecked())
-    
+
     def backupChanged(self):
         self.updateSetting("backup", self.backupCheck.isChecked())
 
@@ -715,9 +749,8 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
         if self.copyButton.isChecked():
             self.updateSetting("usvfsmode", False)
             self.updateSetting("linkmode", False)
-            self.autobuildCheck.setEnabled(True)
-            self.linkText.setEnabled(False)
             self.usvfsButton.setChecked(False)
+            self.usvfsLinkButton.setChecked(False)
             self.linkButton.setChecked(False)
             self.bindActions()
 
@@ -726,23 +759,28 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
             self.updateSetting("usvfsmode", True)
             self.updateSetting("linkmode", False)
             self.updateSetting("autobuild", True)
-            self.autobuildCheck.setChecked(True)
-            self.autobuildCheck.setEnabled(False)
-            self.linkText.setEnabled(False)
             self.copyButton.setChecked(False)
+            self.usvfsLinkButton.setChecked(False)
+            self.linkButton.setChecked(False)
+            self.bindActions()
+
+    def usvfsLinkModeChanged(self):
+        if self.usvfsLinkButton.isChecked():
+            self.updateSetting("usvfsmode", True)
+            self.updateSetting("linkmode", True)
+            self.updateSetting("autobuild", True)
+            self.copyButton.setChecked(False)
+            self.usvfsButton.setChecked(False)
             self.linkButton.setChecked(False)
             self.bindActions()
 
     def linkModeChanged(self):
         if self.linkButton.isChecked():
-            self.updateSetting("usvfsmode", True)
+            self.updateSetting("usvfsmode", False)
             self.updateSetting("linkmode", True)
-            self.updateSetting("autobuild", True)
-            self.autobuildCheck.setChecked(True)
-            self.autobuildCheck.setEnabled(False)
-            self.linkText.setEnabled(True)
             self.copyButton.setChecked(False)
             self.usvfsButton.setChecked(False)
+            self.usvfsLinkButton.setChecked(False)
             self.bindActions()
 
     def exclusionsTextChanged(self):
@@ -753,4 +791,3 @@ class RootBuilderManageTool(RootBuilderPlugin, mobase.IPluginTool):
 
     def updateSetting(self, name, value):
         self.organiser.setPluginSetting(self.pluginName, name, value)
-        

@@ -41,12 +41,11 @@ class RootBuilder():
         qInfo("RootBuilder: Backing up files.")
         self.backup.backup()
         qInfo("RootBuilder: Backed up files.")
-        if self.settings.usvfsmode():
-            if self.settings.linkmode():
-                qInfo("RootBuilder: Generating links.")
-                self.linker.build()
-                qInfo("RootBuilder: Links generated.")
-        else:
+        if self.settings.linkmode():
+            qInfo("RootBuilder: Generating links.")
+            self.linker.build()
+            qInfo("RootBuilder: Links generated.")
+        elif not self.settings.usvfsmode():
             qInfo("RootBuilder: Copying files.")
             self.copier.build()
             qInfo("RootBuilder: Files copied.")
