@@ -62,6 +62,21 @@
       "PluginPath": [ "rootbuilder" ],
       "LocalePath": [],
       "DataPath": [ "data/rootbuilder" ]
+    },
+    {
+      "Version": "4.5.1",
+      "Released": "2023-10-06",
+      "MinSupport": "2.4.0",
+      "MaxSupport": "2.5.0",
+      "MinWorking": "2.4.0",
+      "ReleaseNotes":[
+        "(4.5.0) Added a link only mode.",
+        "(4.5.1) Fixed an issue resulting in all root mods being copied to overwrite if link only mode is enabled."
+      ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.4.5.1.zip",
+      "PluginPath": [ "rootbuilder" ],
+      "LocalePath": [],
+      "DataPath": [ "data/rootbuilder" ]
     }
   ]
 }

@@ -60,18 +60,16 @@ class RootBuilderLinker():
             linkFileData = json.load(open(self.paths.rootLinkDataFilePath(),"r", encoding="utf-8"))
             # Loop through our link data and unlink individual files.
             for file in linkFileData:
-                destPath = file["Destination"]
-                srcPath = file["Source"]
-                relativePath = self.paths.rootRelativePath(destPath)
-                gamePath = self.paths.gamePath() / relativePath
-                if gamePath.exists():
-                    if os.stat(gamePath).st_nlink <= 1:
-                        self.utilities.moveTo(gamePath, srcPath)
+                destPath = Path(file["Destination"])
+                srcPath = Path(file["Source"])
+                if destPath.exists():
+                    if os.stat(destPath).st_nlink <= 1:
+                        self.utilities.moveTo(destPath, srcPath)
                     else:
                         #qInfo("Removing link for " + str(gamePath))
-                        gamePath.unlink(True)
-                if Path(str(gamePath) + ".rbackup").exists():
+                        destPath.unlink(True)
+                if Path(str(destPath) + ".rbackup").exists():
                     #qInfo("Renaming from link " + str(gamePath))
-                    self.utilities.moveTo(Path(str(gamePath) + ".rbackup"), gamePath)
+                    self.utilities.moveTo(Path(str(destPath) + ".rbackup"), destPath)
             # Remove our link data file.
             self.utilities.deletePath(self.paths.rootLinkDataFilePath())
