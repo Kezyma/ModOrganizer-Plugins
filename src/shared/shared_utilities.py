@@ -2,14 +2,20 @@ import os, shutil, hashlib, stat, re, mobase
 from shutil import copy2
 from pathlib import Path
 try:
-    from PyQt5.QtCore import QCoreApplication, qInfo
+    from PyQt5.QtCore import QCoreApplication, qInfo, qDebug
 except:
-    from PyQt6.QtCore import QCoreApplication, qInfo
+    from PyQt6.QtCore import QCoreApplication, qInfo, qDebug
 
 class SharedUtilities():
 
     def __init__(self):
         super().__init__()
+
+    def debugMsg(self, message):
+        try:
+            qDebug(str(message))
+        except:
+            qDebug("Could not log message.")
 
     def copyTo(self, fromPath=Path, toPath=Path):
         try:
