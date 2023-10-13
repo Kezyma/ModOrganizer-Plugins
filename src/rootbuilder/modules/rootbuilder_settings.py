@@ -50,3 +50,7 @@ class RootBuilderSettings(SharedSettings):
     def priority(self):
         """ The priority of the installer module for installing root mods. """
         return self.setting("priority")
+    
+    def debug(self):
+        """ Determines whether to log debug messages to MO. """
+        return self.setting("debug")
