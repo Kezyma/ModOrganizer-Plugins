@@ -28,25 +28,34 @@ class RootBuilderLinker():
             linkFileData = self.files.getRootModFiles()
         else:
             linkFileData = self.files.getLinkableModFiles()
-        linkOutputData = []
+
+        if self.paths.rootLinkDataFilePath().exists():
+            linkOutputData = json.load(open(self.paths.rootLinkDataFilePath(),"r", encoding="utf-8"))
+        else:
+            linkOutputData = {}
+
         for file in linkFileData:
             relativePath = self.paths.rootRelativePath(file)
             gamePath = self.paths.gamePath() / relativePath
-            # If the linkable file is already in the game folder, rename it.
+            file_path = Path(file)
+            createLink = True
             if gamePath.exists():
-                #qInfo("Renaming for link " + str(gamePath))
-                self.utilities.moveTo(gamePath, Path(str(gamePath) + ".rbackup"))
-            # Create the dirs if they don't exist.
-            if not gamePath.parent.exists():
-                os.makedirs(gamePath.parent)
-            # Try and create a link. This will fail if a link is already there.
-            #qInfo("Creating link for " + str(gamePath))
-            Path(file).link_to(gamePath)
-            mapping = {
-                "Source": str(file),
-                "Destination": str(gamePath)
-            }
-            linkOutputData.append(mapping)
+                if str(gamePath) not in linkOutputData:
+                    # The linkable file is already in the game folder, rename it.
+                    self.utilities.moveTo(gamePath, Path(str(gamePath) + ".rbackup"))
+                elif gamePath.samefile(file_path):
+                    # This is already linked.
+                    createLink = False
+                else:
+                    # Remove old link to update with new one
+                    gamePath.unlink()
+            if createLink:
+                # Create the dirs if they don't exist.
+                if not gamePath.parent.exists():
+                    os.makedirs(gamePath.parent)
+                # Try and create a link. This will fail if a link is already there.
+                file_path.link_to(gamePath)
+                linkOutputData[str(gamePath)] = str(file)
         # Save our link data.
         if not self.paths.rootLinkDataFilePath().exists():
             self.paths.rootLinkDataFilePath().touch()
@@ -59,9 +68,9 @@ class RootBuilderLinker():
         if self.paths.rootLinkDataFilePath().exists():
             linkFileData = json.load(open(self.paths.rootLinkDataFilePath(),"r", encoding="utf-8"))
             # Loop through our link data and unlink individual files.
-            for file in linkFileData:
-                destPath = Path(file["Destination"])
-                srcPath = Path(file["Source"])
+            for dest in linkFileData:
+                destPath = Path(dest)
+                srcPath = Path(linkFileData[dest])
                 if destPath.exists():
                     if os.stat(destPath).st_nlink <= 1:
                         self.utilities.moveTo(destPath, srcPath)
