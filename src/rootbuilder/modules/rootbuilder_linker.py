@@ -32,16 +32,22 @@ class RootBuilderLinker():
         for file in linkFileData:
             relativePath = self.paths.rootRelativePath(file)
             gamePath = self.paths.gamePath() / relativePath
+            file_path = Path(file)
             # If the linkable file is already in the game folder, rename it.
+            create_link = True
             if gamePath.exists():
-                #qInfo("Renaming for link " + str(gamePath))
-                self.utilities.moveTo(gamePath, Path(str(gamePath) + ".rbackup"))
-            # Create the dirs if they don't exist.
-            if not gamePath.parent.exists():
-                os.makedirs(gamePath.parent)
-            # Try and create a link. This will fail if a link is already there.
-            #qInfo("Creating link for " + str(gamePath))
-            Path(file).link_to(gamePath)
+                if gamePath.samefile(file_path):
+                    create_link = False
+                else:
+                    #qInfo("Renaming for link " + str(gamePath))
+                    self.utilities.moveTo(gamePath, Path(str(gamePath) + ".rbackup"))
+            if create_link:
+                # Create the dirs if they don't exist.
+                if not gamePath.parent.exists():
+                    os.makedirs(gamePath.parent)
+                # Try and create a link. This will fail if a link is already there.
+                #qInfo("Creating link for " + str(gamePath))
+                file_path.link_to(gamePath)
             mapping = {
                 "Source": str(file),
                 "Destination": str(gamePath)
