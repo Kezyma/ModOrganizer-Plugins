@@ -43,7 +43,6 @@ class RootBuilderLinker():
                 if gamePath.exists():
                     if not gamePath.samefile(Path(file)):
                         createLink = True
-                        Path(file).unlink(True)
                 else:
                     createLink = True
             else:
