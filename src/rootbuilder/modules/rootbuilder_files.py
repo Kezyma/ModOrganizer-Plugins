@@ -15,32 +15,36 @@ class RootBuilderFiles(SharedFiles):
         self.paths = paths
         self.utilities = SharedUtilities()
 
+    def logMessage(self, message):
+        if self.settings.debug():
+            self.utilities.debugMsg("[RootBuilder]" + message)
+
     def getGameFileList(self):
         """ Gets a list of all valid files in the current game folder. """
         # Get all the current game files.
         gameFiles = self.getFolderFileList(self.paths.gamePath())
         validFiles = []
 
-        self.utilities.debugMsg("[Files] Building game file list.")
+        self.logMessage("[Files] Building game file list.")
         # Loop through files and look for invalid ones.
         for file in gameFiles:
             exclude = False
             # Check if the file is, or is in, an exclusion.
             for ex in self.settings.exclusions():
                 if self.paths.sharedPath(self.paths.gamePath() / ex, file):
-                    self.utilities.debugMsg("[Files] File matches exclusion: " + str(ex) + " " + str(file))
+                    self.logMessage("[Files] File matches exclusion: " + str(ex) + " " + str(file))
                     exclude = True
 
             # Check if the file is part of the game data.
             if self.paths.sharedPath(self.paths.gamePath() / self.paths.gameDataDir(), file):
-                self.utilities.debugMsg("[Files] File part of game data: " + str(file))
+                self.logMessage("[Files] File part of game data: " + str(file))
                 exclude = True
 
             if exclude == False:
-                self.utilities.debugMsg("[Files] File is valid game file: " + str(file))
+                self.logMessage("[Files] File is valid game file: " + str(file))
                 validFiles.append(file)
         
-        self.utilities.debugMsg("[Files] Game file list built.")
+        self.logMessage("[Files] Game file list built.")
         return validFiles
 
     def getGameFolderList(self):

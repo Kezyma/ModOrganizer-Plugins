@@ -22,6 +22,10 @@ class RootBuilderCopy():
         self.utilities = SharedUtilities()
         super().__init__()
 
+    def logMessage(self, message):
+        if self.settings.debug():
+            self.utilities.debugMsg("[RootBuilder]" + message)
+
     def build(self):
         """ Copies root mod files to the game folder """
         # Check for existing data and load it.
@@ -61,58 +65,58 @@ class RootBuilderCopy():
     def sync(self):
         """ Copies changed mod files back to their original mod folders. """
         # Only run if there's already data.
-        self.utilities.debugMsg("[Copy] Synchronising files with Mod Organizer.")
+        self.logMessage("[Copy] Synchronising files with Mod Organizer.")
         if self.hasModData():
             # Get existing data
-            self.utilities.debugMsg("[Copy] Mod data exists, continuing sync.")
+            self.logMessage("[Copy] Mod data exists, continuing sync.")
             modData = self.getModData()
             backupData = self.backup.getFileData()
             gameFiles = self.files.getGameFileList()
             for file in gameFiles:
-                self.utilities.debugMsg("[Copy] Checking file: " + str(file))
+                self.logMessage("[Copy] Checking file: " + str(file))
                 relativePath = self.paths.gameRelativePath(file)
                 if str(relativePath) in modData:
-                    self.utilities.debugMsg("[Copy] Mod file detected: " + str(relativePath))
+                    self.logMessage("[Copy] Mod file detected: " + str(relativePath))
                     fileHash = str(self.utilities.hashFile(file))
                     if fileHash != modData[str(relativePath)]["Hash"]:
-                        self.utilities.debugMsg("[Copy] Mod file changed: " + str(relativePath))
+                        self.logMessage("[Copy] Mod file changed: " + str(relativePath))
                         destPath = Path(modData[str(relativePath)]["Path"])
                         if not destPath.parent.exists():
                             os.makedirs(destPath.parent)
                         try:
                             self.utilities.copyTo(file, destPath)
                             modData[str(relativePath)]["Hash"] = fileHash
-                            self.utilities.debugMsg("[Copy] Mod file syncronised: " + str(relativePath))
+                            self.logMessage("[Copy] Mod file syncronised: " + str(relativePath))
                         except:
-                            self.utilities.debugMsg("[Copy] Could not syncronise: " + str(relativePath))
+                            self.logMessage("[Copy] Could not syncronise: " + str(relativePath))
                 elif str(file) in backupData:
-                    self.utilities.debugMsg("[Copy] Game file detected: " + str(file))
+                    self.logMessage("[Copy] Game file detected: " + str(file))
                     fileHash = str(self.utilities.hashFile(file))
                     if fileHash != backupData[str(file)]:
-                        self.utilities.debugMsg("[Copy] Game file changed: " + str(relativePath))
+                        self.logMessage("[Copy] Game file changed: " + str(relativePath))
                         overwritePath = self.paths.rootOverwritePath() / relativePath
                         if not overwritePath.parent.exists():
                             os.makedirs(overwritePath.parent)
                         try:
                             self.utilities.copyTo(file, overwritePath)
                             modData[str(relativePath)] = { "Path" : str(overwritePath), "Hash" : fileHash }
-                            self.utilities.debugMsg("[Copy] Game file syncronised: " + str(relativePath))
+                            self.logMessage("[Copy] Game file syncronised: " + str(relativePath))
                         except:
-                            self.utilities.debugMsg("[Copy] Could not syncronise: " + str(relativePath))
+                            self.logMessage("[Copy] Could not syncronise: " + str(relativePath))
                 else:
-                    self.utilities.debugMsg("[Copy] New file detected: " + str(relativePath))
+                    self.logMessage("[Copy] New file detected: " + str(relativePath))
                     overwritePath = self.paths.rootOverwritePath() / relativePath
                     if not overwritePath.parent.exists():
                         os.makedirs(overwritePath.parent)
                     try:
                         self.utilities.copyTo(file, overwritePath)
                         modData.update({str(relativePath): {"Path": str(overwritePath), "Hash": self.utilities.hashFile(file)}})
-                        self.utilities.debugMsg("[Copy] New file syncronised: " + str(relativePath))
+                        self.logMessage("[Copy] New file syncronised: " + str(relativePath))
                     except:
-                        self.utilities.debugMsg("[Copy] Could not syncronise: " + str(relativePath))
-            self.utilities.debugMsg("[Copy] Updating mod data.")
+                        self.logMessage("[Copy] Could not syncronise: " + str(relativePath))
+            self.logMessage("[Copy] Updating mod data.")
             self.saveModData(modData)
-            self.utilities.debugMsg("[Copy] Mod data updated.")
+            self.logMessage("[Copy] Mod data updated.")
         return
 
     def clear(self):

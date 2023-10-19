@@ -21,6 +21,10 @@ class RootBuilderBackup():
         self.utilities = SharedUtilities()
         super().__init__()
 
+    def logMessage(self, message):
+        if self.settings.debug():
+            self.utilities.debugMsg("[RootBuilder]" + message)
+
     def backup(self):
         """ Backs up base game files, or conflicts if backup is disabled. """
         # Get hashes for our current vanilla game install
@@ -35,90 +39,90 @@ class RootBuilderBackup():
     def restore(self):
         """ Restores the game to the most vanilla state possible, copying changes to overwrite. """
         # Check if it's possible to restore.
-        self.utilities.debugMsg("[Backup] Checking for backup files to restore.")
+        self.logMessage("[Backup] Checking for backup files to restore.")
         if self.canRestore():
-            self.utilities.debugMsg("[Backup] Backup data exists, attempting restore.")
+            self.logMessage("[Backup] Backup data exists, attempting restore.")
             if not self.paths.rootOverwritePath().exists():
                 os.makedirs(self.paths.rootOverwritePath())
             # Get hashes for our current vanilla game install.
             fileData = self.getFileData()
             # Iterate through everything in the current game folder and look for changes.
             gameFiles = self.files.getGameFileList()
-            self.utilities.debugMsg("[Backup] Checking for new or modified game files.")
+            self.logMessage("[Backup] Checking for new or modified game files.")
             for file in gameFiles:
                 if (Path(file).exists()):
                     # If we have a record of this file, check for changes.
                     if str(file) in fileData:
                         # If file has changed, check if we have a backup.
                         if fileData[str(file)] != str(self.utilities.hashFile(file)):
-                            self.utilities.debugMsg("[Backup] Game file has changed: " + str(file))
+                            self.logMessage("[Backup] Game file has changed: " + str(file))
                             backupPath = self.paths.rootBackupPath() / self.paths.gameRelativePath(file)
                             # If we have a backup, move the file to overwrite and restore.
                             if backupPath.exists():
-                                self.utilities.debugMsg("[Backup] Backup exists: " + str(backupPath))
+                                self.logMessage("[Backup] Backup exists: " + str(backupPath))
                                 overwritePath = self.paths.rootOverwritePath() / self.paths.gameRelativePath(file)
                                 try:
                                     self.utilities.moveTo(str(file), str(overwritePath))
                                     self.utilities.copyTo(str(backupPath), str(file))#
-                                    self.utilities.debugMsg("[Backup] File restored: " + str(file))
+                                    self.logMessage("[Backup] File restored: " + str(file))
                                 except:
-                                    self.utilities.debugMsg("[Backup] Could not restore: " + str(file))
+                                    self.logMessage("[Backup] Could not restore: " + str(file))
                             else:
-                                self.utilities.debugMsg("[Backup] Backup does not exist: " + str(backupPath))
+                                self.logMessage("[Backup] Backup does not exist: " + str(backupPath))
                     # If this is a new file, move it to overwrite.
                     else:
-                        self.utilities.debugMsg("[Backup] New file found: " + str(file))
+                        self.logMessage("[Backup] New file found: " + str(file))
                         overwritePath = self.paths.rootOverwritePath() / self.paths.gameRelativePath(file)
                         try:
                             self.utilities.moveTo(str(file), str(overwritePath))
-                            self.utilities.debugMsg("[Backup] Moved to overwrite: " + str(file))
+                            self.logMessage("[Backup] Moved to overwrite: " + str(file))
                         except:
-                            self.utilities.debugMsg("[Backup] Could not move to overwrite: " + str(file))
+                            self.logMessage("[Backup] Could not move to overwrite: " + str(file))
             # Iterate through the files we've got data for.
-            self.utilities.debugMsg("[Backup] Checking for deleted game files.")
+            self.logMessage("[Backup] Checking for deleted game files.")
             for file in fileData.keys():
                 # Check to see if the file has been deleted.
                 if not Path(file).exists():
-                    self.utilities.debugMsg("[Backup] File missing: " + str(file))
+                    self.logMessage("[Backup] File missing: " + str(file))
                     backupPath = self.paths.rootBackupPath() / self.paths.gameRelativePath(file)
                     # If the file has been deleted and has a backup, restore it.
                     if backupPath.exists():
                         #qInfo(u"Backup exists, restoring " + str(file))
                         try:
                             self.utilities.copyTo(str(backupPath), str(file))
-                            self.utilities.debugMsg("[Backup] File restored: " + str(file))
+                            self.logMessage("[Backup] File restored: " + str(file))
                         except:
-                            self.utilities.debugMsg("[Backup] File could not be restored: " + str(file))
+                            self.logMessage("[Backup] File could not be restored: " + str(file))
                     else:
-                        self.utilities.debugMsg("[Backup] Backup does not exist: " + str(backupPath))
+                        self.logMessage("[Backup] Backup does not exist: " + str(backupPath))
         else:
-            self.utilities.debugMsg("[Backup] No backup data exists.")
+            self.logMessage("[Backup] No backup data exists.")
 
         # Clean up any empty game folders.
-        self.utilities.debugMsg("[Backup] Cleaning up empty folders.")
+        self.logMessage("[Backup] Cleaning up empty folders.")
         gameFolders = self.files.getGameFolderList()
         for folder in gameFolders:
             if folder.exists():
                 if len(self.files.getFolderFileList(folder)) == 0:
                     try:
                         shutil.rmtree(folder)
-                        self.utilities.debugMsg("[Backup] Cleaned up folder: " + str(folder))
+                        self.logMessage("[Backup] Cleaned up folder: " + str(folder))
                     except:
-                        self.utilities.debugMsg("[Backup] Could not clean up folder: " + str(folder))
+                        self.logMessage("[Backup] Could not clean up folder: " + str(folder))
         # If backup is disabled, we can clear any backed up files now that the restore is complete.
 
         if self.settings.backup() is False:
-            self.utilities.debugMsg("[Backup] Backup disabled, removing any existing backup files.")
+            self.logMessage("[Backup] Backup disabled, removing any existing backup files.")
             self.clearBackupFiles()
 
         # Delete current backup data.
-        self.utilities.debugMsg("[Backup] Deleting exising backup file data.")
+        self.logMessage("[Backup] Deleting exising backup file data.")
         self.clearFileData()
         
     def backupFileList(self, backupFiles=list):
         """ Backs up a list of game files if not already backed up. """
         # Loop through our list of files.
-        self.utilities.debugMsg("[Backup] Backing up files.")
+        self.logMessage("[Backup] Backing up files.")
         for file in backupFiles:
             relativePath = self.paths.gameRelativePath(file)
             backupPath = self.paths.rootBackupPath() / relativePath
@@ -126,73 +130,73 @@ class RootBuilderBackup():
             if not backupPath.exists() and Path(file).exists():
                 #qInfo(u"Backing up " + str(file))
                 try:
-                    self.utilities.debugMsg("[Backup] Backing up file: " + str(file))
+                    self.logMessage("[Backup] Backing up file: " + str(file))
                     self.utilities.copyTo(str(file), str(backupPath))
                 except:
-                    self.utilities.debugMsg("[Backup] Could not create backup: " + str(file))
-        self.utilities.debugMsg("[Backup] File backup complete.")
+                    self.logMessage("[Backup] Could not create backup: " + str(file))
+        self.logMessage("[Backup] File backup complete.")
 
     def getBackupList(self, fileData=dict):
         """ Gets a list of files that should be backed up. """
         backupFiles = []
-        self.utilities.debugMsg("[Backup] Compiling list of files to backup.")
+        self.logMessage("[Backup] Compiling list of files to backup.")
         # If backup is enabled, we want to back up all the vanilla files.
         if self.settings.backup():
-            self.utilities.debugMsg("[Backup] Backup enabled, backing up all game files.")
+            self.logMessage("[Backup] Backup enabled, backing up all game files.")
             backupFiles = fileData.keys()
         # Otherwise, we need to identify which files are going to conflict.
         else:
-            self.utilities.debugMsg("[Backup] Backup disabled, only backing up conflict files.")
+            self.logMessage("[Backup] Backup disabled, only backing up conflict files.")
             conflictFiles = []
             # If we're in linkmode, only linked files could cause conflicts.
             if self.settings.linkmode() or self.settings.linkonlymode():
-                self.utilities.debugMsg("[Backup] Link mode enabled, only checking for link conflicts.")
+                self.logMessage("[Backup] Link mode enabled, only checking for link conflicts.")
                 conflictFiles = self.files.getLinkableModFiles()
             # Otherwise, every root mod file could be a conflict.
             else:
-                self.utilities.debugMsg("[Backup] Link mode disabled, checking for all conflicts.")
+                self.logMessage("[Backup] Link mode disabled, checking for all conflicts.")
                 conflictFiles = self.files.getRootModFiles()
             # Loop through the mod files and see if we have data for them.
             for file in conflictFiles:
-                self.utilities.debugMsg("[Backup] Checking for file conflict: " + str(file))
+                self.logMessage("[Backup] Checking for file conflict: " + str(file))
                 relativePath = self.paths.rootRelativePath(file)
                 gamePath = self.paths.gamePath() / relativePath
                 # If we have data, we need to back this file up.
                 if str(gamePath) in fileData:
-                    self.utilities.debugMsg("[Backup] File conflict found: " + str(file))
+                    self.logMessage("[Backup] File conflict found: " + str(file))
                     backupFiles.append(gamePath)
 
-        self.utilities.debugMsg("[Backup] Backup file list compiled.")
+        self.logMessage("[Backup] Backup file list compiled.")
         return backupFiles
 
     def getFileData(self):
         """ Gets a dictionary of vanilla game files with their hashes. """
         fileData = {}
         success = False
-        self.utilities.debugMsg("[Backup] Loading file data.")
+        self.logMessage("[Backup] Loading file data.")
         # If we have a cache file for this game already load that.
         if (self.settings.cache() and self.paths.rootCacheFilePath().exists()):
             try:
-                self.utilities.debugMsg("[Backup] Cache file found, attempting to load.")
+                self.logMessage("[Backup] Cache file found, attempting to load.")
                 fileData = json.load(open(self.paths.rootCacheFilePath(),"r", encoding="utf-8"))
-                self.utilities.debugMsg("[Backup] Cache file loaded successfully.")
+                self.logMessage("[Backup] Cache file loaded successfully.")
                 success = True
             except:
-                self.utilities.debugMsg("[Backup] Cache file could not be loaded, deleting cache.")
+                self.logMessage("[Backup] Cache file could not be loaded, deleting cache.")
                 self.utilities.deletePath(self.paths.rootCacheFilePath())
         # If we have already run a build, just load the data from that.
         if (self.paths.rootBackupDataFilePath().exists() and success == False):
             try:
-                self.utilities.debugMsg("[Backup] Existing backup hash file found, attempting to load.")
+                self.logMessage("[Backup] Existing backup hash file found, attempting to load.")
                 fileData = json.load(open(self.paths.rootBackupDataFilePath(),"r", encoding="utf-8"))
-                self.utilities.debugMsg("[Backup] Existing backup hash file loaded successfully.")
+                self.logMessage("[Backup] Existing backup hash file loaded successfully.")
                 success = True
             except:
-                self.utilities.debugMsg("[Backup] Existing backup hash file could not be loaded, deleting cache.")
+                self.logMessage("[Backup] Existing backup hash file could not be loaded, deleting cache.")
                 self.utilities.deletePath(self.paths.rootBackupDataFilePath())
         # Hash the base game files.
         if (success == False):
-            self.utilities.debugMsg("[Backup] No existing hashes found, building file data.")
+            self.logMessage("[Backup] No existing hashes found, building file data.")
             fileData = self.buildCache()
 
         gamePath = str(self.paths.gamePath())
@@ -201,38 +205,38 @@ class RootBuilderBackup():
                 fullPath = os.path.join(gamePath, file)
                 fileData[fullPath] = fileData.pop(file)
 
-        self.utilities.debugMsg("[Backup] File data loaded.")
+        self.logMessage("[Backup] File data loaded.")
         return fileData
 
     def saveFileData(self, fileData=dict):
         """ Saves current file data to the backup data path """
-        self.utilities.debugMsg("[Backup] Saving backup data file.")
+        self.logMessage("[Backup] Saving backup data file.")
         if self.paths.rootBackupDataFilePath().exists():
             self.paths.rootBackupDataFilePath().touch()
         try:
             with open(self.paths.rootBackupDataFilePath(), "w", encoding="utf-8") as rcJson:
                 json.dump(fileData, rcJson)
-            self.utilities.debugMsg("[Backup] Backup data file saved.")
+            self.logMessage("[Backup] Backup data file saved.")
         except:
-            self.utilities.debugMsg("[Backup] Could not save backup data file.")
+            self.logMessage("[Backup] Could not save backup data file.")
 
     def clearFileData(self):
         """ Clears the current backup data file """
         if self.paths.rootBackupDataFilePath().exists():
             try:
                 self.utilities.deletePath(self.paths.rootBackupDataFilePath())
-                self.utilities.debugMsg("[Backup] Backup data file deleted.")
+                self.logMessage("[Backup] Backup data file deleted.")
             except:
-                self.utilities.debugMsg("[Backup] Could not delete backup file data.")
+                self.logMessage("[Backup] Could not delete backup file data.")
 
     def clearBackupFiles(self):
         """ Clears the current backup file folder """
         if self.paths.rootBackupPath().exists():
             try:
                 shutil.rmtree(self.paths.rootBackupPath())
-                self.utilities.debugMsg("[Backup] Deleted backup files.")
+                self.logMessage("[Backup] Deleted backup files.")
             except:
-                self.utilities.debugMsg("[Backup] Could not delete backup files.")
+                self.logMessage("[Backup] Could not delete backup files.")
 
     def clearAllBackupFiles(self):
         """ Clears backup files for all versions. """
@@ -241,37 +245,37 @@ class RootBuilderBackup():
             for path in paths:
                 try:
                     shutil.rmtree(str(path))
-                    self.utilities.debugMsg("[Backup] Deleted backup files: " + str(path))
+                    self.logMessage("[Backup] Deleted backup files: " + str(path))
                 except:
-                    self.utilities.debugMsg("[Backup] Could not delete backup files: " + str(path))
+                    self.logMessage("[Backup] Could not delete backup files: " + str(path))
 
     def buildCache(self):
         """ Triggers a cache build if none exists """
         fileData = {}
         gamePath = self.paths.gamePath()
-        self.utilities.debugMsg("[Backup] Building file hash collection.")
+        self.logMessage("[Backup] Building file hash collection.")
         for file in self.files.getGameFileList():
-            self.utilities.debugMsg("[Backup] Hashing file: " + str(file))
+            self.logMessage("[Backup] Hashing file: " + str(file))
             relPath = os.path.relpath(str(file),str(gamePath))
             fileData.update({str(relPath):str(self.utilities.hashFile(file))})
 
         # If cache is enabled, save the data to cache.
         if self.settings.cache():
-            self.utilities.debugMsg("[Backup] Cache enabled, saving cache file.")
+            self.logMessage("[Backup] Cache enabled, saving cache file.")
             if not self.paths.rootCacheFilePath().exists():
                 self.paths.rootCacheFilePath().touch()
             try:
                 with open(self.paths.rootCacheFilePath(), "w", encoding="utf-8") as rcJson:
                     json.dump(fileData, rcJson)
-                self.utilities.debugMsg("[Backup] Cache file saved successfully.")
+                self.logMessage("[Backup] Cache file saved successfully.")
             except:
-                self.utilities.debugMsg("[Backup] Cache file could not be saved.")
+                self.logMessage("[Backup] Cache file could not be saved.")
         # Otherwise, clear any cache if it exists.
         else:
-            self.utilities.debugMsg("[Backup] Cache disabled, deleting any existing file.")
+            self.logMessage("[Backup] Cache disabled, deleting any existing file.")
             self.clearCache()
         
-        self.utilities.debugMsg("[Backup] File hash collection built.")
+        self.logMessage("[Backup] File hash collection built.")
         return fileData
 
     def clearCache(self):
@@ -280,7 +284,7 @@ class RootBuilderBackup():
             try:
                 self.utilities.deletePath(self.paths.rootCacheFilePath())
             except:
-                self.utilities.debugMsg("[Backup] Could not delete cache file.")
+                self.logMessage("[Backup] Could not delete cache file.")
 
     def clearAllCache(self):
         """ Clears cache files for all versions. """
@@ -290,7 +294,7 @@ class RootBuilderBackup():
                 try:
                     self.utilities.deletePath(str(path))
                 except:
-                    self.utilities.debugMsg("[Backup] Could not delete cache file: " + str(path))
+                    self.logMessage("[Backup] Could not delete cache file: " + str(path))
 
     def canRestore(self):
         """ Checks if backup data exists and therefore whether a restore is possible """
