@@ -39,15 +39,16 @@ class OpenMWPlayerPaths(SharedPaths):
         """ Gets the path to the RootBuilder data folder for the current game. """
         profPath = Path(self.modOrganizerProfilesPath()) / profile
         return profPath
-        #settingsPath = ""
-        #if self.currentInstanceName() == "":
-        #    settingsPath = self.pluginDataPath() / "Portable" / profile 
-        #else:    
-        #    settingsPath = self.pluginDataPath() / self.currentInstanceName() / profile
-            
-        #if not Path(settingsPath).exists():
-        #    os.makedirs(settingsPath)
-        #return Path(settingsPath)
+
+    def openMwSettingsCfgPath(self):
+        # Grab the saved setting if there is one.
+        settingPath = Path(self.openMWCfgPath())
+        if settingPath.is_file():
+            return settingPath.parent / "settings.cfg"
+
+    def openMWSavedSettingsCfgPath(self, profile):
+        """ Gets the path to the RootBuilder data folder for the current game. """
+        return self.openMwCustomSettingsPath(profile) / "OpenMWSettingsCfg.txt"
 
     def openMwTempFilePath(self, profile):
         """ Gets the path to the RootBuilder data folder for the current game. """

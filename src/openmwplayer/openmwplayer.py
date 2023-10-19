@@ -31,6 +31,9 @@ class OpenMWPlayer():
     _settingsRegex = r"fallback=(?P<setting>[^,]*),(?P<value>[^\n]*)"
     _settingsBsaRegex = r"fallback-archive=(?P<value>[^\n]*)"
 
+    _settingsCfgHeadingRegex = r"\[(?P<title>[^\]]*)\]"
+    _settingsCfgSettingRegex = r"^(?P<setting>[^=\n#]*)\s=\s(?P<value>[^\n]*)"
+
     def getCfgSettings(self, configPath):
         cfgSettings = {}
         with Path(configPath).open("r", encoding="utf-8-sig") as cfg:
@@ -51,11 +54,40 @@ class OpenMWPlayer():
                     cfgSettings.append(match.groups()[0])
         return cfgSettings
 
+    def getSettingsCfgSettings(self, settingsCfgPath):
+        settingsCfg = {}
+        with Path(settingsCfgPath).open("r", encoding="utf-8-sig") as cfg:
+            lines = cfg.readlines()
+            currentGroup = ""
+            for line in lines:
+                headingMatch = re.match(self._settingsCfgHeadingRegex, line)
+                settingMatch = re.match(self._settingsCfgSettingRegex, line)
+                if headingMatch:
+                    currentGroup = headingMatch.groups()[0]
+                    settingsCfg[currentGroup] = {}
+                elif settingMatch:
+                    settingsCfg[currentGroup][settingMatch.groups()[0]] = settingMatch.groups()[1]
+        return settingsCfg
+
     def importOpenMWCfg(self, configPath):
         currentSettings = self.getCfgSettings(configPath)
         self.updateImportedSettings(currentSettings)
         currentBsas = self.getCfgBsaSettings(configPath)
         self.updateImportedBsas(currentBsas)
+
+    def importOpenMwSettingsCfg(self, configPath):
+        currentSettingsCfg = self.getSettingsCfgSettings(configPath)
+        self.updateImportedSettingsCfg(currentSettingsCfg)
+
+    def updateImportedSettingsCfg(self, settings):
+        profile = self.organiser.profile().name()
+        existingPath = self.paths.openMWSavedSettingsCfgPath(profile)
+        with Path(existingPath).open("w", encoding="utf-8-sig") as settingscfg:
+            settingscfg.write("\n")
+            for category in settings:
+                settingscfg.write("\n[" + category + "]\n")
+                for setting in settings[category]:
+                    settingscfg.write(setting + " = " + settings[category][setting] + "\n")
 
     def updateImportedSettings(self, settings):
         profile = self.organiser.profile().name()
@@ -77,10 +109,8 @@ class OpenMWPlayer():
         appPath = Path(appName)
         fileName = appPath.name
         if fileName in self._openMwExeNames:
-            # Export settings to OpenMW
             qInfo("OpenMWPlayer: OpenMW exe detected, exporting setup.")
-            self.exportMOSetup()
-            qInfo("OpenMWPlayer: OpenMW setup export complete.")
+            self.runExport()
 
             # Run app separately.
             qInfo("OpenMWPlayer: Running selected exe.")
@@ -89,6 +119,23 @@ class OpenMWPlayer():
             return False
         else:
             return True
+        
+    def runExport(self):
+        # Export settings to OpenMW
+        self.exportMOSetup()
+        if self.settings.manageengine():
+            self.exportMOSettingsSetup()
+        qInfo("OpenMWPlayer: OpenMW setup export complete.")
+
+    def exportMOSettingsSetup(self):
+        profile = self.organiser.profile().name()
+        outputPath = self.paths.openMwSettingsCfgPath()
+        savedPath = self.paths.openMWSavedSettingsCfgPath(profile)
+        if not Path(savedPath).exists():
+            self.importOpenMwSettingsCfg(outputPath)
+
+        self.utilities.deletePath(outputPath)
+        self.utilities.copyTo(Path(savedPath), Path(outputPath))
 
     def exportMOSetup(self):
         profile = self.organiser.profile().name()
@@ -126,8 +173,10 @@ class OpenMWPlayer():
 
         bsas = []
         rootBsa = filter(lambda x: x.lower().endswith(".bsa"), os.listdir(game.dataDirectory().absolutePath()))
-        for bsa in rootBsa:
-            bsas.append(bsa)
+        for bsaFile in bsaFiles:
+            for bsa in rootBsa:
+                if bsa == bsaFile:
+                    bsas.append(bsa)
 
         with configPath.open("a", encoding="utf-8") as cfg:
             cfg.write(self.getDataString(game.dataDirectory().absolutePath()))

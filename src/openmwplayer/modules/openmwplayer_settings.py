@@ -17,3 +17,6 @@ class OpenMWPlayerSettings(SharedSettings):
 
     def managesettings(self):
         return self.setting("managesettings")
+    
+    def manageengine(self):
+        return self.setting("manageengine")
