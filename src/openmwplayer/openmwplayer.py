@@ -8,7 +8,7 @@ from .modules.openmwplayer_settings import OpenMWPlayerSettings
 from ..shared.shared_utilities import SharedUtilities
 from pathlib import Path
 
-import os, shutil, mobase, re, codecs, sys, urllib.request
+import os, shutil, mobase, re, codecs, sys, urllib.request, subprocess, asyncio, threading
 from datetime import datetime, timedelta
 
 class OpenMWPlayer():
@@ -143,10 +143,6 @@ class OpenMWPlayer():
     def runOpenMW(self, appName):
         appPath = Path(appName)
         fileName = appPath.name
-        #if fileName in self._openMwExeNames:
-        #    qInfo("OpenMWPlayer: OpenMW exe detected, exporting setup.")
-        #    self.runExport()
-        #return True
         # Legacy Method.
         if fileName in self._openMwExeNames:
             qInfo("OpenMWPlayer: OpenMW exe detected, exporting setup.")
@@ -154,12 +150,18 @@ class OpenMWPlayer():
 
             # Run app separately.
             qInfo("OpenMWPlayer: Running selected exe.")
-            os.startfile(appName)
+            t = threading.Thread(target=self.runOpenMWAsync, args=[appName], daemon=True)
+            t.start()
 
             return False
         else:
             return True
         
+    def runOpenMWAsync(self, appName):
+        subprocess.call(appName)
+        qInfo("OpenMWPlayer: Closing selected exe.")
+        self.runImport(appName)
+    
     def runExport(self):
         # Export settings to OpenMW
         self.exportMOSetup()
