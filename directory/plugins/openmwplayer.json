@@ -33,7 +33,7 @@
       "DataPath": [ "data/openmwplayer" ]
     },
     {
-      "Version": "0.1.1b",
+      "Version": "0.1.2b",
       "Released": "2023-10-20",
       "MinSupport": "2.4.0",
       "MaxSupport": "2.5.0",
@@ -45,9 +45,10 @@
         "(0.1.0) Added a manual export tool to the menu, for those who wanted it.",
         "(0.1.1) Fixed an issue causing OpenMW to fail when exporting settings.cfg",
         "(0.1.1) Fixed an issue where Bsa files wouldn't sort correctly.",
-        "(0.1.1) Added import of default settings so all options are available in OpenMW Player."
+        "(0.1.1) Added import of default settings so all options are available in OpenMW Player.",
+        "(0.1.2) Added a manual import tool to the menu, for those who want it."
       ],
-      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/openmwplayer/openmwplayer.0.1.1.zip",
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/openmwplayer/openmwplayer.0.1.2.zip",
       "PluginPath": [ "openmwplayer" ],
       "LocalePath": [],
       "DataPath": [ "data/openmwplayer" ]

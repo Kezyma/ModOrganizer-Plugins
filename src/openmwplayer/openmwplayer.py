@@ -126,9 +126,28 @@ class OpenMWPlayer():
             for setting in settings:
                 omwcfg.write(setting + "\n")
 
+    def runImport(self, appName):
+        appPath = Path(appName)
+        fileName = appPath.name
+        if fileName in self._openMwExeNames:
+            qInfo("OpenMWPlayer: OpenMW exe closing, importing setup.")
+            self.importAllConfigs()
+        return True
+    
+    def importAllConfigs(self):
+        configPath = self.paths.openMWCfgPath()
+        settingsPath = self.paths.openMwSettingsCfgPath()
+        self.importOpenMWCfg(configPath)
+        self.importOpenMwSettingsCfg(settingsPath)
+
     def runOpenMW(self, appName):
         appPath = Path(appName)
         fileName = appPath.name
+        #if fileName in self._openMwExeNames:
+        #    qInfo("OpenMWPlayer: OpenMW exe detected, exporting setup.")
+        #    self.runExport()
+        #return True
+        # Legacy Method.
         if fileName in self._openMwExeNames:
             qInfo("OpenMWPlayer: OpenMW exe detected, exporting setup.")
             self.runExport()

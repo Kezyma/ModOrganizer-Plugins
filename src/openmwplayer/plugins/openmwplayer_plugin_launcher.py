@@ -13,6 +13,7 @@ class OpenMWPlayerPluginLauncher(OpenMWPlayerPlugin, mobase.IPlugin):
 
     def init(self, organiser=mobase.IOrganizer):
         organiser.onAboutToRun(lambda appName: self.runOpenMW(appName))
+        #organiser.onFinishedRun(lambda appName, resultCode: self.importChanges(appName, resultCode))
         organiser.onUserInterfaceInitialized(lambda window: self.createDummyBulk())
         organiser.modList().onModInstalled(lambda mod: self.createDummy(mod))
         organiser.modList().onModStateChanged(lambda mods: self.createDummyBulk())
@@ -29,6 +30,9 @@ class OpenMWPlayerPluginLauncher(OpenMWPlayerPlugin, mobase.IPlugin):
         
     def runOpenMW(self, appName):
         return self.openMWPlayer.runOpenMW(appName)
+
+    def importChanges(self, appName, resultCode):
+        self.openMWPlayer.runImport(appName)
 
     def createDummy(self, mod):
         if self.openMWPlayer.settings.dummyesp():
