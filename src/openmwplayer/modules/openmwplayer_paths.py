@@ -35,6 +35,9 @@ class OpenMWPlayerPaths(SharedPaths):
         self.organiser.setPluginSetting("OpenMWPlayer", "openmwcfgpath", str(manualPath))
         return manualPath
 
+    def openMwDefaultSettingsCfgPath(self):
+        return self.pluginDataPath() / "settings-default.cfg"
+
     def openMwCustomSettingsPath(self, profile):
         """ Gets the path to the RootBuilder data folder for the current game. """
         profPath = Path(self.modOrganizerProfilesPath()) / profile

@@ -8,10 +8,8 @@ from .modules.openmwplayer_settings import OpenMWPlayerSettings
 from ..shared.shared_utilities import SharedUtilities
 from pathlib import Path
 
-import os
-import shutil
-import mobase
-import re
+import os, shutil, mobase, re, codecs, sys, urllib.request
+from datetime import datetime, timedelta
 
 class OpenMWPlayer():
     def __init__(self, organiser=mobase.IOrganizer):
@@ -27,6 +25,8 @@ class OpenMWPlayer():
         "openmw-launcher.exe",
         "openmw-wizard.exe"
     ]
+
+    _openMwDefaultSettingsCfgUrl = "https://raw.githubusercontent.com/OpenMW/openmw/master/files/settings-default.cfg"
 
     _settingsRegex = r"fallback=(?P<setting>[^,]*),(?P<value>[^\n]*)"
     _settingsBsaRegex = r"fallback-archive=(?P<value>[^\n]*)"
@@ -54,9 +54,21 @@ class OpenMWPlayer():
                     cfgSettings.append(match.groups()[0])
         return cfgSettings
 
+    def getDefaultSettingsCfg(self):
+        defaultCfgPath = self.paths.openMwDefaultSettingsCfgPath()
+        if not defaultCfgPath.exists() or datetime.fromtimestamp(os.path.getmtime(str(defaultCfgPath))) < (datetime.today() - timedelta(days=1)):
+            try:
+                urllib.request.urlretrieve(self._openMwDefaultSettingsCfgUrl, defaultCfgPath)
+            except:
+                qInfo("Could not update OpenMW base settings.cfg")
+        if defaultCfgPath.exists():
+            defaultSettings = self.getSettingsCfgSettings(defaultCfgPath)
+            return defaultSettings
+        return {}
+
     def getSettingsCfgSettings(self, settingsCfgPath):
         settingsCfg = {}
-        with Path(settingsCfgPath).open("r", encoding="utf-8-sig") as cfg:
+        with Path(settingsCfgPath).open("r", encoding="utf-8") as cfg:
             lines = cfg.readlines()
             currentGroup = ""
             for line in lines:
@@ -68,6 +80,16 @@ class OpenMWPlayer():
                 elif settingMatch:
                     settingsCfg[currentGroup][settingMatch.groups()[0]] = settingMatch.groups()[1]
         return settingsCfg
+    
+    def getCompleteSettingsCfg(self, settingsCfgPath):
+        defaultSettings = self.getDefaultSettingsCfg()
+        overrides = self.getSettingsCfgSettings(settingsCfgPath)
+        for category in overrides:
+            if category not in defaultSettings:
+                defaultSettings[category] = {}
+            for setting in overrides[category]:
+                defaultSettings[category][setting] = overrides[category][setting]
+        return defaultSettings
 
     def importOpenMWCfg(self, configPath):
         currentSettings = self.getCfgSettings(configPath)
@@ -76,14 +98,13 @@ class OpenMWPlayer():
         self.updateImportedBsas(currentBsas)
 
     def importOpenMwSettingsCfg(self, configPath):
-        currentSettingsCfg = self.getSettingsCfgSettings(configPath)
+        currentSettingsCfg = self.getCompleteSettingsCfg(configPath)
         self.updateImportedSettingsCfg(currentSettingsCfg)
 
     def updateImportedSettingsCfg(self, settings):
         profile = self.organiser.profile().name()
         existingPath = self.paths.openMWSavedSettingsCfgPath(profile)
-        with Path(existingPath).open("w", encoding="utf-8-sig") as settingscfg:
-            settingscfg.write("\n")
+        with Path(existingPath).open("w", encoding="utf-8") as settingscfg:
             for category in settings:
                 settingscfg.write("\n[" + category + "]\n")
                 for setting in settings[category]:
@@ -136,6 +157,7 @@ class OpenMWPlayer():
 
         self.utilities.deletePath(outputPath)
         self.utilities.copyTo(Path(savedPath), Path(outputPath))
+        self.clearBOMFlag(str(outputPath))
 
     def exportMOSetup(self):
         profile = self.organiser.profile().name()
@@ -173,10 +195,8 @@ class OpenMWPlayer():
 
         bsas = []
         rootBsa = filter(lambda x: x.lower().endswith(".bsa"), os.listdir(game.dataDirectory().absolutePath()))
-        for bsaFile in bsaFiles:
-            for bsa in rootBsa:
-                if bsa == bsaFile:
-                    bsas.append(bsa)
+        for bsa in rootBsa:
+            bsas.append(bsa)
 
         with configPath.open("a", encoding="utf-8") as cfg:
             cfg.write(self.getDataString(game.dataDirectory().absolutePath()))
@@ -194,7 +214,12 @@ class OpenMWPlayer():
             filtered = filter(lambda x: pluginList.loadOrder(x) >= 0, plugins)
             loadOrder = sorted(filtered, key=pluginList.loadOrder)
             groundCover = filter(lambda x: x in groundCoverFiles, plugins)
-            bsaOpts = filter(lambda x: x in bsaFiles, bsas)
+
+            bsaOrdered = []
+            for bsaFile in bsaFiles:
+                if bsaFile in bsas:
+                    bsaOrdered.append(bsaFile)
+
             if self.settings.managesettings():
                 for setting in baseSettings:
                     cfg.write("fallback=" + setting + "," + baseSettings[setting] + "\n")
@@ -212,7 +237,7 @@ class OpenMWPlayer():
                     cfg.write("groundcover=" + ground.replace(".omwscripts.esp", ".omwscripts") + "\n")
                 else:
                     cfg.write("groundcover=" + ground + "\n")
-            for bsa in bsaOpts:
+            for bsa in bsaOrdered:
                 cfg.write("fallback-archive=" + bsa.split(os.path.sep)[-1] + "\n")
 
     def clearCfg(self, configPath):
@@ -300,3 +325,20 @@ class OpenMWPlayer():
                 refresh = True
         if refresh == True:
             self.organiser.refresh()
+
+    def clearBOMFlag(self, path):
+        BUFSIZE = 4096
+        BOMLEN = len(codecs.BOM_UTF8)
+        with open(path, "r+b") as fp:
+            chunk = fp.read(BUFSIZE)
+            if chunk.startswith(codecs.BOM_UTF8):
+                i = 0
+                chunk = chunk[BOMLEN:]
+                while chunk:
+                    fp.seek(i)
+                    fp.write(chunk)
+                    i += len(chunk)
+                    fp.seek(BOMLEN, os.SEEK_CUR)
+                    chunk = fp.read(BUFSIZE)
+                fp.seek(-BOMLEN, os.SEEK_CUR)
+                fp.truncate()
