@@ -34,4 +34,5 @@ class OpenMWPlayerExportTool(OpenMWPlayerPlugin, mobase.IPluginTool):
         return self.__tr("Exports the current settings to OpenMW.")
 
     def display(self):
-        self.openMWPlayer.runExport()
+        self.openMWPlayer.newExportOpenMwCfg()
+        self.openMWPlayer.newExportSettingsCfg()

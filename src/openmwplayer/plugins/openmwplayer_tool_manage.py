@@ -67,10 +67,8 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
     _settingCfgRows = []
 
     def bindSettings(self):
-        profile = self.organiser.profile().name()
-        settingsPath = str(self.openMWPlayer.paths.openMwBaseCfgPath(profile))
-        settingColl = self.openMWPlayer.getCfgSettings(settingsPath)
-        self._settingRows = sorted(settingColl)
+        settingCollection = self.openMWPlayer.newLoadOpenMwCfgSettings()
+        self._settingRows = sorted(settingCollection)
         rows = len(self._settingRows)
         self.settingsTable.clear()
         self.settingsTable.setColumnCount(1)
@@ -82,17 +80,15 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
         for setting in self._settingRows:
             headingItem = QtWidgets.QTableWidgetItem(setting)
             self.settingsTable.setVerticalHeaderItem(count, headingItem)
-            tableItem = QtWidgets.QTableWidgetItem(settingColl[setting])
+            tableItem = QtWidgets.QTableWidgetItem(settingCollection[setting])
             tableItem.setFlags(tableItem.flags() | qtItemFlag.ItemIsEditable)
             self.settingsTable.setItem(count-1, 1, tableItem)
             count = count + 1
         self.settingsTable.itemChanged.connect(self.getTableSettings)
 
     def bindSettingsCfg(self):
-        profile = self.organiser.profile().name()
-        settingsPath = str(self.openMWPlayer.paths.openMWSavedSettingsCfgPath(profile))
-        settingColl = self.openMWPlayer.getSettingsCfgSettings(settingsPath)
-        self._settingCfgRows = settingColl
+        settingCollection = self.openMWPlayer.newLoadSettingsCfgSettings()
+        self._settingCfgRows = settingCollection
         self.settingsCfgTable.clear()
         self.settingsCfgTable.setColumnCount(1)
         total = 0
@@ -101,7 +97,6 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
             for setting in self._settingCfgRows[category]:
                 total = total + 1
         self.settingsCfgTable.setRowCount(total)
-        qInfo("Loading " + str(total) + " Rows")
         self.settingsCfgTable.horizontalHeader().hide()
         self.settingsCfgTable.horizontalHeader().setStretchLastSection(True)
         self.settingsCfgTable.verticalHeader().setDefaultSectionSize(23)
@@ -124,22 +119,10 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
         self.settingsCfgTable.itemChanged.connect(self.getSettingsCfgTableSettings)
 
     def bindBsas(self):
-        profile = self.organiser.profile().name()
         self.bsaSelect.clear()
 
         # Create a bsa config if it doesn't exist.
-        bsaCustom = self.openMWPlayer.paths.openMwBsaSettingsPath(profile)
-        bsaFiles = []
-        if not bsaCustom.exists():
-            with bsaCustom.open("x") as custNew:
-                custNew.write("\n")
-
-        # Load the bsa settings from config.
-        with bsaCustom.open("r") as custGrnd:
-            for line in custGrnd:
-                line = line.replace("\n", "")
-                if len(line) > 0:
-                    bsaFiles.append(line)
+        bsaList = self.openMWPlayer.newLoadOpenMwCfgArchives()
 
         # Bind the bsa list to select bsa files.
         bsas = []
@@ -156,18 +139,18 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
 
         # Remove missing files
         bsaIx = 0
-        for bsa in bsaFiles:
+        for bsa in bsaList:
             if bsa not in bsas:
-                bsaFiles.pop(bsaIx)
+                bsaList.pop(bsaIx)
             bsaIx = bsaIx + 1
 
         # Add new files
         for bsa in bsas:
-            if bsa not in bsaFiles:
-                bsaFiles.append(bsa)
+            if bsa not in bsaList:
+                bsaList.append(bsa)
 
         self.bsaSelect.clear()
-        for name in bsaFiles:
+        for name in bsaList:
             item = QtWidgets.QListWidgetItem()
             item.setText(name)
             item.setFlags(item.flags() | qtItemFlag.ItemIsUserCheckable|qtItemFlag.ItemIsEnabled)
@@ -175,7 +158,7 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
             self.bsaSelect.addItem(item)
 
         # Check any currently enabled bsa files.
-        for name in bsaFiles:
+        for name in bsaList:
             for itm in self.bsaSelect.findItems(name, qtMatchFlag.MatchExactly):
                 itm.setCheckState(qtCheckState.Checked)
 
@@ -186,7 +169,7 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
             item = self.settingsTable.item(row, 0)
             newValues[setting] = item.text()
             row = row + 1
-        self.openMWPlayer.updateImportedSettings(newValues)
+        self.openMWPlayer.newUpdateOpenMwCfgSettings(newValues)
 
     def getSettingsCfgTableSettings(self):
         row = 0
@@ -198,7 +181,7 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
                 item = self.settingsCfgTable.item(row, 0)
                 newSettings[category][setting] = item.text()
                 row = row + 1
-        self.openMWPlayer.updateImportedSettingsCfg(newSettings)
+        self.openMWPlayer.newUpdateSettingsCfgSettings(newSettings)
 
     def bindPlugins(self):
         profile = self.organiser.profile().name()
@@ -211,43 +194,32 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
         self.dummyCheck.setChecked(self.openMWPlayer.settings.dummyesp())
 
         # Bind the manage settings checkbox.
-        self.manageCheck.setChecked(self.openMWPlayer.settings.managesettings())
-        if self.openMWPlayer.settings.managesettings():
-            self.tabSelect.setTabEnabled(2, True)
-        else:
-            self.tabSelect.setTabEnabled(2, False)
+        #self.manageCheck.setChecked(self.openMWPlayer.settings.managesettings())
+        #if self.openMWPlayer.settings.managesettings():
+        #    self.tabSelect.setTabEnabled(2, True)
+        #else:
+        #    self.tabSelect.setTabEnabled(2, False)
 
         # Bind the manage engine checkbox.
-        self.settingsCfgCheck.setChecked(self.openMWPlayer.settings.manageengine())
-        if self.openMWPlayer.settings.manageengine():
-            self.tabSelect.setTabEnabled(3, True)
-        else:
-            self.tabSelect.setTabEnabled(3, False)
+        #self.settingsCfgCheck.setChecked(self.openMWPlayer.settings.manageengine())
+        #if self.openMWPlayer.settings.manageengine():
+        #    self.tabSelect.setTabEnabled(3, True)
+        #else:
+        #    self.tabSelect.setTabEnabled(3, False)
 
         # If there's no settings and there is a valid config, import the settings.
-        settingsPath = str(self.openMWPlayer.paths.openMwBaseCfgPath(profile))
+        settingsPath = str(self.openMWPlayer.paths.openMwCustomOpenMwCfgPath(profile))
         if not Path(settingsPath).exists() and Path(cfgPath).exists():
-            self.openMWPlayer.importOpenMWCfg(cfgPath)
+            self.openMWPlayer.newImportOpenMwCfg()
 
         # If there's no settings.cfg and there is a valid config, import the settings.
         settingsCfgBasePath = str(self.openMWPlayer.paths.openMwSettingsCfgPath())
-        settingsCfgPath = str(self.openMWPlayer.paths.openMWSavedSettingsCfgPath(profile))
+        settingsCfgPath = str(self.openMWPlayer.paths.openMwCustomSettingsCfgPath(profile))
         if not Path(settingsCfgPath).exists() and Path(settingsCfgBasePath).exists():
-            self.openMWPlayer.importOpenMwSettingsCfg(settingsCfgBasePath)
+            self.openMWPlayer.newImportSettingsCfg()
 
         # Create a groundcover config if it doesn't exist.
-        groundCoverCustom = self.openMWPlayer.paths.openMwGrassSettingsPath(profile)
-        groundCoverFiles = []
-        if not groundCoverCustom.exists():
-            with groundCoverCustom.open("x") as custNew:
-                custNew.write("\n")
-
-        # Load the groundcover settings from config.
-        with groundCoverCustom.open("r") as custGrnd:
-            for line in custGrnd:
-                line = line.replace("\n", "")
-                if len(line) > 0:
-                    groundCoverFiles.append(line)
+        groundCoverFiles = self.openMWPlayer.newLoadOpenMwCfgGroundcover()
                     
         # Bind the plugin list to select groundcover. 
         self.groundcoverSelect.clear()
@@ -274,11 +246,10 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
 
     # TODO: Add a settings editor panel, where these settings can be configured.
     def refreshCfgSettings(self):
-        cfgPath = str(self.openMWPlayer.paths.openMWCfgPath())
-        settingsCfgPath = str(self.openMWPlayer.paths.openMwSettingsCfgPath())
+        cfgPath = self.openMWPlayer.paths.openMWCfgPath()
         if Path(cfgPath).exists():
-            cfgSettings = self.openMWPlayer.importOpenMWCfg(cfgPath)
-            settingsCfgSettings = self.openMWPlayer.importOpenMwSettingsCfg(settingsCfgPath)
+            self.openMWPlayer.newImportOpenMwCfg()
+            self.openMWPlayer.newImportSettingsCfg()
             self.bindSettings()
             self.bindBsas()
             self.bindSettingsCfg()
@@ -290,19 +261,19 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
         else:
             self.openMWPlayer.disableDummy()
 
-    def manageSettingsCheck(self):
-        self.organiser.setPluginSetting(self.baseName(), "managesettings", self.manageCheck.isChecked())
-        if self.manageCheck.isChecked():
-            self.tabSelect.setTabEnabled(2, True)
-        else:
-            self.tabSelect.setTabEnabled(2, False)
+    #def manageSettingsCheck(self):
+        #self.organiser.setPluginSetting(self.baseName(), "managesettings", True)
+        #if self.manageCheck.isChecked():
+        #    self.tabSelect.setTabEnabled(2, True)
+        #else:
+        #    self.tabSelect.setTabEnabled(2, False)
 
-    def manageSettingsCfgCheck(self):
-        self.organiser.setPluginSetting(self.baseName(), "manageengine", self.settingsCfgCheck.isChecked())
-        if self.settingsCfgCheck.isChecked():
-            self.tabSelect.setTabEnabled(3, True)
-        else:
-            self.tabSelect.setTabEnabled(3, False)
+    #def manageSettingsCfgCheck(self):
+    #    self.organiser.setPluginSetting(self.baseName(), "manageengine", self.settingsCfgCheck.isChecked())
+    #    if self.settingsCfgCheck.isChecked():
+    #        self.tabSelect.setTabEnabled(3, True)
+    #    else:
+    #        self.tabSelect.setTabEnabled(3, False)
 
     def selectOpenMWCfg(self):
         manualPath = QFileDialog.getOpenFileName(self._parentWidget(), self.__tr("Locate OpenMW Config File"), ".", "OpenMW Config File (openmw.cfg)")[0]
@@ -315,12 +286,7 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
             p = self.groundcoverSelect.item(x)
             if p.checkState() == qtCheckState.Checked:
                 selected.append(p.text())
-        
-        profile = self.organiser.profile().name()
-        groundCoverCustom = self.openMWPlayer.paths.openMwGrassSettingsPath(profile)
-        with groundCoverCustom.open("w") as custGrnd:
-            for item in selected:
-                custGrnd.write(item + "\n")
+        self.openMWPlayer.newUpdateOpenMwCfgGroundcover(selected)
 
     def changeBsaState(self):
         selected = []
@@ -328,12 +294,7 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
             p = self.bsaSelect.item(x)
             if p.checkState() == qtCheckState.Checked:
                 selected.append(p.text())
-        
-        profile = self.organiser.profile().name()
-        bsaCustom = self.openMWPlayer.paths.openMwBsaSettingsPath(profile)
-        with bsaCustom.open("w") as custGrnd:
-            for item in selected:
-                custGrnd.write(item + "\n")
+        self.openMWPlayer.newUpdateOpenMwCfgArchives(selected)
 
     def getDialog(self):
         dialog = QtWidgets.QDialog()
@@ -402,29 +363,29 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
         self.dummyCheck.clicked.connect(self.dummyEspCheck)
         self.dummyLayout.addWidget(self.dummyCheck)
 
-        self.manageCheck = QtWidgets.QCheckBox(self.dummyWidget)
-        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Fixed, qtSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.manageCheck.sizePolicy().hasHeightForWidth())
-        self.manageCheck.setSizePolicy(sizePolicy)
-        self.manageCheck.setMinimumSize(QtCore.QSize(75, 0))
-        self.manageCheck.setObjectName("manageCheck")
-        self.manageCheck.setText("Manage openmw.cfg settings through Mod Organizer.")
-        self.manageCheck.clicked.connect(self.manageSettingsCheck)
-        self.dummyLayout.addWidget(self.manageCheck)
+        #self.manageCheck = QtWidgets.QCheckBox(self.dummyWidget)
+        #sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Fixed, qtSizePolicy.Fixed)
+        #sizePolicy.setHorizontalStretch(0)
+        #sizePolicy.setVerticalStretch(0)
+        #sizePolicy.setHeightForWidth(self.manageCheck.sizePolicy().hasHeightForWidth())
+        #self.manageCheck.setSizePolicy(sizePolicy)
+        #self.manageCheck.setMinimumSize(QtCore.QSize(75, 0))
+        #self.manageCheck.setObjectName("manageCheck")
+        #self.manageCheck.setText("Manage openmw.cfg settings through Mod Organizer.")
+        #self.manageCheck.clicked.connect(self.manageSettingsCheck)
+        #self.dummyLayout.addWidget(self.manageCheck)
 
-        self.settingsCfgCheck = QtWidgets.QCheckBox(self.dummyWidget)
-        sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Fixed, qtSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.settingsCfgCheck.sizePolicy().hasHeightForWidth())
-        self.settingsCfgCheck.setSizePolicy(sizePolicy)
-        self.settingsCfgCheck.setMinimumSize(QtCore.QSize(75, 0))
-        self.settingsCfgCheck.setObjectName("settingsCfgCheck")
-        self.settingsCfgCheck.setText("Manage settings.cfg settings through Mod Organizer.")
-        self.settingsCfgCheck.clicked.connect(self.manageSettingsCfgCheck)
-        self.dummyLayout.addWidget(self.settingsCfgCheck)
+        #self.settingsCfgCheck = QtWidgets.QCheckBox(self.dummyWidget)
+        #sizePolicy = QtWidgets.QSizePolicy(qtSizePolicy.Fixed, qtSizePolicy.Fixed)
+        #sizePolicy.setHorizontalStretch(0)
+        #sizePolicy.setVerticalStretch(0)
+        #sizePolicy.setHeightForWidth(self.settingsCfgCheck.sizePolicy().hasHeightForWidth())
+        #self.settingsCfgCheck.setSizePolicy(sizePolicy)
+        #self.settingsCfgCheck.setMinimumSize(QtCore.QSize(75, 0))
+        #self.settingsCfgCheck.setObjectName("settingsCfgCheck")
+        #self.settingsCfgCheck.setText("Manage settings.cfg settings through Mod Organizer.")
+        #self.settingsCfgCheck.clicked.connect(self.manageSettingsCfgCheck)
+        #self.dummyLayout.addWidget(self.settingsCfgCheck)
 
 
         #self.dummyLayout.dummyWidget(self.dummyText)
