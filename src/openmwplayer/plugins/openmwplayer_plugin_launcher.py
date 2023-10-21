@@ -1,4 +1,4 @@
-import mobase 
+import mobase, threading
 from pathlib import Path
 from ..openmwplayer_plugin import OpenMWPlayerPlugin
 try:
@@ -22,8 +22,7 @@ class OpenMWPlayerPluginLauncher(OpenMWPlayerPlugin, mobase.IPlugin):
         organiser.modList().onModMoved(lambda mod, old, new: self.refreshConfig())
         organiser.modList().onModRemoved(lambda name: self.refreshConfig())
         organiser.pluginList().onPluginMoved(lambda name, old, new: self.refreshConfig())
-        organiser.pluginList().onPluginStateChanged(lambda map: self.refreshConfig())
-        organiser.pluginList().onRefreshed(lambda: self.onRefreshed())
+        organiser.pluginList().onPluginStateChanged(lambda plugin, map: self.refreshConfig())
         return super().init(organiser)
         
     def name(self):
@@ -73,5 +72,14 @@ class OpenMWPlayerPluginLauncher(OpenMWPlayerPlugin, mobase.IPlugin):
         if self.openMWPlayer.settings.dummyesp():
             self.openMWPlayer.enableDummy()
 
+    _refreshing = False
     def refreshConfig(self):
+        if (self._refreshing == False):
+            self._refreshing = True
+            qInfo("Refreshing openmw.cfg & settings.cfg")
+            t = threading.Thread(target=self.refreshConfigAsync, daemon=True)
+            t.start()
+
+    def refreshConfigAsync(self):
         self.openMWPlayer.newRefreshContentAndData()
+        self._refreshing = False
