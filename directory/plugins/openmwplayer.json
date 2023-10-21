@@ -52,6 +52,24 @@
       "PluginPath": [ "openmwplayer" ],
       "LocalePath": [],
       "DataPath": [ "data/openmwplayer" ]
+    },
+    {
+      "Version": "1.0.0b",
+      "Released": "2023-10-21",
+      "MinSupport": "2.4.0",
+      "MaxSupport": "2.5.0",
+      "MinWorking": "2.4.0",
+      "MaxWorking": "",
+      "ReleaseNotes": [
+        "(1.0.0) Running OpenMW executables through Mod Organizer now backs up and restores the original configuration when the application closes.",
+        "(1.0.0) Running OpenMW.exe through Mod Organizer now supports profile-specific saves.",
+        "(1.0.0) Each profile has their own openmw.cfg and settings.cfg which can be edited directly from the profile folder.",
+        "(1.0.0) Changes made while running OpenMW.exe or OpenMW-launcher.exe are now copied back to the profile in Mod Organizer without an import."
+      ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/openmwplayer/openmwplayer.1.0.0.zip",
+      "PluginPath": [ "openmwplayer" ],
+      "LocalePath": [],
+      "DataPath": [ "data/openmwplayer" ]
     }
   ]
 }
