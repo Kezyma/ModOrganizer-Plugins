@@ -21,6 +21,9 @@ Curation Club is a plugin for Mod Organizer 2, allowing users to import Creation
 ### [Profile Sync](https://kezyma.github.io/?p=profilesync)
 Profile Sync is a plugin for Mod Organizer 2, it allows you to maintain the same mod order (while keeping the enabled/disabled state) across multiple profiles.
 
+### [OpenMW Player](https://kezyma.github.io/?p=openmwplayer)
+A plugin for Mod Organizer 2 that automatically exports your mod list, enabled plugins, and grass mods to OpenMW whenever you run the game through Mod Organizer. 
+
 ## Usage
 
 ### Installing Mods
