@@ -17,6 +17,15 @@ class OpenMWPlayerPaths(SharedPaths):
         self.settings = settings
         super().__init__("OpenMWPlayer", organiser) 
 
+    def openMWCfgPathOrSelect(self):
+        path = self.openMWCfgPath()
+        if path == None:
+            # Otherwise, get the user to provide a path.
+            manualPath = Path(QFileDialog.getOpenFileName(None, "Locate OpenMW Config File", ".", "OpenMW Config File (openmw.cfg)")[0])
+            self.organiser.setPluginSetting("OpenMWPlayer", "openmwcfgpath", str(manualPath))
+            return self.openMWCfgPathOrSelect()
+        return path
+
     def openMWCfgPath(self):
         """ Gets the path to the openmw.cfg file. """
         # Grab the saved setting if there is one.
@@ -30,10 +39,15 @@ class OpenMWPlayerPaths(SharedPaths):
             self.organiser.setPluginSetting("OpenMWPlayer", "openmwcfgpath", str(defaultLocation))
             return defaultLocation
 
-        # Otherwise, get the user to provide a path.
-        manualPath = Path(QFileDialog.getOpenFileName(None, "Locate OpenMW Config File", ".", "OpenMW Config File (openmw.cfg)")[0])
-        self.organiser.setPluginSetting("OpenMWPlayer", "openmwcfgpath", str(manualPath))
-        return manualPath
+        return None
+    
+    def hasOpenMwCfg(self):
+        path = self.openMWCfgPath()
+        if path == None:
+            return False
+        if not Path(path).exists():
+            return False
+        return True
 
     def openMwDefaultSettingsCfgPath(self):
         return self.pluginDataPath() / "settings-default.cfg"

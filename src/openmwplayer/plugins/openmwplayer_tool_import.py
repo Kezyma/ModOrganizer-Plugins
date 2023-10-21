@@ -34,5 +34,6 @@ class OpenMWPlayerImportTool(OpenMWPlayerPlugin, mobase.IPluginTool):
         return self.__tr("Imports the current settings from OpenMW.")
 
     def display(self):
-        self.openMWPlayer.newImportOpenMwCfg()
-        self.openMWPlayer.newImportSettingsCfg()
+        if self.openMWPlayer.paths.hasOpenMwCfg():
+            self.openMWPlayer.newImportOpenMwCfg()
+            self.openMWPlayer.newImportSettingsCfg()

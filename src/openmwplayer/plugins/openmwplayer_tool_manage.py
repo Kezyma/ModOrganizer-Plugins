@@ -187,7 +187,12 @@ class OpenMWPlayerManageTool(OpenMWPlayerPlugin, mobase.IPluginTool):
         profile = self.organiser.profile().name()
 
         # Get the current settings path and display it.
-        cfgPath = str(self.openMWPlayer.paths.openMWCfgPath())
+        hasPath = self.openMWPlayer.paths.hasOpenMwCfg()
+        cfgPath = str(self.openMWPlayer.paths.openMWCfgPathOrSelect())
+        if not hasPath:
+            # Run an initial import
+            self.openMWPlayer.newInitialSetup()
+            self.openMWPlayer.newRefreshContentAndData()
         self.addText.setText(cfgPath)
 
         # Bind the dummy esp setting checkbox.

@@ -35,50 +35,60 @@ class OpenMWPlayerPluginLauncher(OpenMWPlayerPlugin, mobase.IPlugin):
         return QCoreApplication.translate(self.pluginName, trstr)
         
     def runOpenMW(self, appName):
-        return self.openMWPlayer.newRunOpenMw(appName)
+        if self.openMWPlayer.paths.hasOpenMwCfg():
+            return self.openMWPlayer.newRunOpenMw(appName)
 
     def importChanges(self, appName, resultCode):
-        self.openMWPlayer.newImportOpenMwCfg()
-        self.openMWPlayer.newImportSettingsCfg()
+        if self.openMWPlayer.paths.hasOpenMwCfg():
+            self.openMWPlayer.newImportOpenMwCfg()
+            self.openMWPlayer.newImportSettingsCfg()
 
     def onUserInterfaceInitialized(self):
-        self.openMWPlayer.newInitialSetup()
-        self.createDummyBulk()
-        self.refreshConfig()
+        if self.openMWPlayer.paths.hasOpenMwCfg():
+            self.openMWPlayer.newInitialSetup()
+            self.createDummyBulk()
+            self.refreshConfig()
 
     def onModInstalled(self, mod):
-        self.createDummy(mod)
-        self.refreshConfig()
+        if self.openMWPlayer.paths.hasOpenMwCfg():
+            self.createDummy(mod)
+            self.refreshConfig()
 
     def onModStateChanged(self):
-        self.createDummyBulk()
-        self.refreshConfig()
+        if self.openMWPlayer.paths.hasOpenMwCfg():
+            self.createDummyBulk()
+            self.refreshConfig()
 
     def onProfileChanged(self):
-        self.openMWPlayer.newInitialSetup()
-        self.refreshConfig()
+        if self.openMWPlayer.paths.hasOpenMwCfg():
+            self.openMWPlayer.newInitialSetup()
+            self.refreshConfig()
 
     def onRefreshed(self):
-        self.openMWPlayer.newInitialSetup()
-        self.refreshConfig()
+        if self.openMWPlayer.paths.hasOpenMwCfg():
+            self.openMWPlayer.newInitialSetup()
+            self.refreshConfig()
 
     def createDummy(self, mod):
-        if self.openMWPlayer.settings.dummyesp():
-            modChanged = self.openMWPlayer.createDummy(mod.name())
-            if modChanged == True:
-                self.organiser.refresh()
+        if self.openMWPlayer.paths.hasOpenMwCfg():
+            if self.openMWPlayer.settings.dummyesp():
+                modChanged = self.openMWPlayer.createDummy(mod.name())
+                if modChanged == True:
+                    self.organiser.refresh()
 
     def createDummyBulk(self):
-        if self.openMWPlayer.settings.dummyesp():
-            self.openMWPlayer.enableDummy()
+        if self.openMWPlayer.paths.hasOpenMwCfg():
+            if self.openMWPlayer.settings.dummyesp():
+                self.openMWPlayer.enableDummy()
 
     _refreshing = False
     def refreshConfig(self):
-        if (self._refreshing == False):
-            self._refreshing = True
-            qInfo("Refreshing openmw.cfg & settings.cfg")
-            t = threading.Thread(target=self.refreshConfigAsync, daemon=True)
-            t.start()
+        if self.openMWPlayer.paths.hasOpenMwCfg():
+            if (self._refreshing == False):
+                self._refreshing = True
+                qInfo("Refreshing openmw.cfg & settings.cfg")
+                t = threading.Thread(target=self.refreshConfigAsync, daemon=True)
+                t.start()
 
     def refreshConfigAsync(self):
         self.openMWPlayer.newRefreshContentAndData()
