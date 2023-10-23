@@ -54,5 +54,10 @@ class CommonPaths:
         basePath = Path(path)
         if recursive:
             basePath = basePath / "**" 
-        basePath = basePath / "*.*"
-        return glob.glob(str(basePath), recursive=True)
+        basePath = basePath / "*"
+        files = []
+        allItems = glob.glob(str(basePath), recursive=True)
+        for itm in allItems:
+            if Path(itm).is_file():
+                files.append(itm)
+        return files

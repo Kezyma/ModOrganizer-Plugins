@@ -67,8 +67,8 @@ class RootBuilderBackup():
                 backupFilePath = backupPath / relativePath
                 if backupFilePath.exists():
                     if self._util.copyFile(str(backupFilePath), file):
-                        self._log.debug("Restored file from " + str(backupFilePath) + " to " + file)
+                        self._log.debug("Restored file from " + str(backupFilePath) + " to " + str(file))
                     else:
-                        self._log.warning("Failed to restore file from " + str(backupFilePath) + " to " + file)
+                        self._log.warning("Failed to restore file from " + str(backupFilePath) + " to " + str(file))
                 else:
-                    self._log.info("Missing file has no backup " + file)
+                    self._log.info("Missing file has no backup " + str(file))
