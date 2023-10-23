@@ -106,22 +106,28 @@ class RootBuilderData():
            if copyPriority <= linkPriority or not fileKey in base[self._linkKey]:
                 if copyPriority <= usvfsPriority or not fileKey in base[self._usvfsKey]:
                     base[self._copyKey][fileKey] = overwrite[self._copyKey][fileKey]
-                    base[self._linkKey].pop(fileKey)
-                    base[self._usvfsKey].pop(fileKey)
+                    if fileKey in base[self._linkKey]:
+                        base[self._linkKey].pop(fileKey)
+                    if fileKey in base[self._usvfsKey]:
+                        base[self._usvfsKey].pop(fileKey)
 
         for fileKey in overwrite[self._linkKey]:
            if linkPriority < copyPriority or not fileKey in base[self._copyKey]:
                 if linkPriority <= usvfsPriority or not fileKey in base[self._usvfsKey]:
                     base[self._linkKey][fileKey] = overwrite[self._linkKey][fileKey]
-                    base[self._copyKey].pop(fileKey)
-                    base[self._usvfsKey].pop(fileKey)
+                    if fileKey in base[self._copyKey]:
+                        base[self._copyKey].pop(fileKey)
+                    if fileKey in base[self._usvfsKey]:
+                        base[self._usvfsKey].pop(fileKey)
 
         for fileKey in overwrite[self._usvfsKey]:
            if usvfsPriority < copyPriority or not fileKey in base[self._copyKey]:
                 if usvfsPriority < linkPriority or not fileKey in base[self._linkKey]:
                     base[self._usvfsKey][fileKey] = overwrite[self._usvfsKey][fileKey]
-                    base[self._copyKey].pop(fileKey)
-                    base[self._linkKey].pop(fileKey)
+                    if fileKey in base[self._copyKey]:
+                        base[self._copyKey].pop(fileKey)
+                    if fileKey in base[self._linkKey]:
+                        base[self._linkKey].pop(fileKey)
 
         return base
 

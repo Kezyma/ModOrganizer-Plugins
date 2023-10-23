@@ -29,7 +29,9 @@ class CommonStrings:
     def gameDataFolder(self) -> str:
         """Gets the name of the Data folder for the current game."""
         if self._gameDataFolder == str():
-            self._gameDataFolder = PurePath(Path(self.gameDataPath())).name
+            gamePath = self.gamePath()
+            gameDataPath = self.gameDataPath()
+            self._gameDataFolder = gameDataPath.replace(gamePath, "")
         return self._gameDataFolder
 
     _gameDataPath = str()
@@ -49,7 +51,8 @@ class CommonStrings:
     _moIniPath = str()
     def moIniPath(self) -> str:
         if self._moIniPath == str():
-            self._moIniPath = str(Path(self.moInstancePath()) / "ModOrganizer.ini")
+            moIniPath = Path(self.moInstancePath() / "ModOrganizer.ini")
+            self._moIniPath = str(moIniPath.absolute())
         return self._moIniPath
 
     _moModsPath = str()
@@ -95,7 +98,7 @@ class CommonStrings:
             try:
                 with winreg.OpenKey(winreg.HKEY_CURRENT_USER,"Software\\Mod Organizer Team\\Mod Organizer",) as key:
                     value = winreg.QueryValueEx(key, "CurrentInstance")
-                    self._moInstanceName = str(value[0].replace("/", "\\"))
+                    self._moInstanceName = str(value[0]).replace("/", "\\")
             except:
                 self._moInstanceName = str()
         return self._moInstanceName
@@ -129,14 +132,15 @@ class CommonStrings:
     def moOverwritePath(self) -> str:
         """Gets the path to the current overwrite folder."""
         if self._moOverwritePath == str():
-            self._moOverwritePath = self.organiser.overwritePath()
+            self._moOverwritePath = self._organiser.overwritePath()
         return self._moOverwritePath
 
-    _pluginDataPath = str
+    _pluginDataPath = str()
     def pluginDataPath(self) -> str:
         """Gets the path to the data folder for the current plugin."""
         if self._pluginDataPath == str():
-            self._pluginDataPath = str(Path(self._organiser.pluginDataPath()) / self._plugin)
+            pluginDataPath = Path(self._organiser.pluginDataPath(), self._plugin)
+            self._pluginDataPath = str(pluginDataPath.absolute())
         return self._pluginDataPath
     
     _unsafePathSpaces = [" ", "."]

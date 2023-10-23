@@ -12,37 +12,42 @@ class RootBuilderStrings(CommonStrings):
     def rbOverwritePath(self) -> str:
         """Gets the path to the Root folder in the current overwrite folder."""
         if self._rbOverwritePath == str():
-            self._rbOverwritePath = str(Path(self.moOverwritePath()) / "Root")
+            overwritePath = Path(self.moOverwritePath(), "Root")
+            self._rbOverwritePath = str(overwritePath.absolute())
         return self._rbOverwritePath
     
     _rbDataPath = str()
     def rbDataPath(self) -> str:
         """Gets the path to any current build data for the selected game and version."""
         if self._rbDataPath == str():
-            gamePath = self.gamePath()
-            gameVer = self.gameVersion()
+            gamePath = self.pathSafeString(self.gamePath())
+            gameVer = self.pathSafeString(self.gameVersion())
             basePath = self.pluginDataPath()
-            self._rbDataPath = str(Path(basePath) / self.pathSafeString(gamePath) / self.pathSafeString(gameVer))
+            safePath = Path(basePath, gamePath, gameVer)
+            self._rbDataPath = str(safePath.absolute())
         return self._rbDataPath
     
     _rbCachePath = str()
     def rbCachePath(self) -> str:
         """Gets the path to the game cache for the current game and version."""
         if self._rbCachePath == str():
-            self._rbCachePath = str(Path(self.rbDataPath()) / "GameData.json")
+            cachePath = Path(self.rbDataPath(), "GameData.json")
+            self._rbCachePath = str(cachePath.absolute())
         return self._rbCachePath
     
     _rbBackupPath = str()
     def rbBackupPath(self) -> str:
         """Gets the path to the backup folder for the current game and version."""
         if self._rbBackupPath == str():
-            self._rbBackupPath = str(Path(self.rbDataPath()) / "Backup")
+            backupPath = Path(self.rbDataPath(), "Backup")
+            self._rbBackupPath = str(backupPath.absolute())
         return self._rbBackupPath
     
     _rbBuildDataPath = str()
     def rbBuildDataPath(self) -> str:
         """Gets the path to the current build data."""
         if self._rbBuildDataPath == str():
-            self._rbBuildDataPath = str(Path(self.rbDataPath()) / "BuildData.json")
+            buildDataPath = Path(self.rbDataPath(), "BuildData.json")
+            self._rbBuildDataPath = str(buildDataPath.absolute())
         return self._rbBuildDataPath
     

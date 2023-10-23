@@ -1,5 +1,6 @@
 import mobase
 from ....base.base_plugin import BasePlugin
+from ....common.common_ui import CommonUI
 from .rootbuilder import RootBuilder
 try:
     from PyQt5.QtCore import QCoreApplication
@@ -14,6 +15,7 @@ class RootBuilderPlugin(BasePlugin):
 
     def init(self, organiser=mobase.IOrganizer):
         self._rootBuilder = RootBuilder(organiser)
+        self._ui = CommonUI()
         return super().init(organiser)
 
     def __tr(self, trstr):
@@ -35,7 +37,9 @@ class RootBuilderPlugin(BasePlugin):
             mobase.PluginSetting("usvfsfiles",self.__tr("Determines the files that should be mapped with usvfs"), ""),
             mobase.PluginSetting("copypriority",self.__tr("Priority order for determining when to copy files. Lower is better."), 10),
             mobase.PluginSetting("linkpriority",self.__tr("Priority order for determining when to link files. Lower is better."), 20),
-            mobase.PluginSetting("usvfspriority",self.__tr("Priority order for determining when to usvfs map files. Lower is better."), 30)
+            mobase.PluginSetting("usvfspriority",self.__tr("Priority order for determining when to usvfs map files. Lower is better."), 30),
+            mobase.PluginSetting("enabled",self.__tr("Enables " + self._pluginName), True),
+            mobase.PluginSetting("loglevel", self.__tr("Controls the logging for " + self._pluginName), 1)
             ]
         for setting in customSettings:
             baseSettings.append(setting)

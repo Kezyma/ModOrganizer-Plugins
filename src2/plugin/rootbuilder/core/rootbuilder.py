@@ -21,8 +21,8 @@ class RootBuilder():
         self._paths = RootBuilderPaths("RootBuilder", self._organiser, self._settings, self._strings)
         self._data = RootBuilderData(self._organiser, self._strings, self._paths, self._settings, self._util, self._log)
         self._cache = RootBuilderCache(self._organiser, self._strings, self._paths, self._settings, self._util, self._log)
-        self._backup = RootBuilderBackup(self._organiser, self._strings, self._paths, self._settings, self._util, self._log)
-        self._builder = RootBuilderBuilder(self._organiser, self._strings, self._paths, self._settings, self._util, self._log)
+        self._backup = RootBuilderBackup(self._organiser, self._strings, self._paths, self._settings, self._cache, self._util, self._log)
+        self._builder = RootBuilderBuilder(self._organiser, self._strings, self._paths, self._settings, self._data, self._cache, self._util, self._log)
         super().__init__()
 
     def build(self):
@@ -35,9 +35,11 @@ class RootBuilder():
         # Calculate any possible overwrites for if we need to update our backup or cache.
         possibleOverwrites = []
         for fileKey in newBuildData[self._data._copyKey]:
-            possibleOverwrites.append(fileKey)
+            relativePath = newBuildData[self._data._copyKey][fileKey][self._data._relativeKey]
+            possibleOverwrites.append(relativePath)
         for fileKey in newBuildData[self._data._linkKey]:
-            possibleOverwrites.append(fileKey)
+            relativePath = newBuildData[self._data._linkKey][fileKey][self._data._relativeKey]
+            possibleOverwrites.append(relativePath)
 
         # Generate a full or partial set of file hashes.
         if self._settings.cache():
@@ -60,9 +62,9 @@ class RootBuilder():
 
         # Deploy any files that can go via copy or links.
         self._log.info("Deploying files for Copy mode.")
-        self._builder.deployCopy()
+        self._builder.deployCopy(newBuildData[self._data._copyKey])
         self._log.info("Deploying files for Link mode.")
-        self._builder.deployLinks()
+        self._builder.deployLinks(newBuildData[self._data._linkKey])
 
         # Update any existing build data or save the new one.
         if hasExistingBuild:
@@ -72,16 +74,18 @@ class RootBuilder():
 
         self._log.info("Saving build data.")
         self._data.saveDataFile(newBuildData)
+        self._log.info("Build complete!")
 
 
     def sync(self):
         """Runs a sync between the game and Mod Organizer."""
         hasExistingBuild = self._data.dataFileExists()
         if hasExistingBuild:
+            self._log.info("Build exists, updating mod files.")
             newData = self._builder.syncFiles()
             self._data.saveDataFile(newData)
+            self._log.info("Sync complete!")
             
-
     def clear(self):
         """Runs a sync and then clears up the game folder."""
         hasExistingBuild = self._data.dataFileExists()
@@ -90,26 +94,45 @@ class RootBuilder():
             self.sync()
 
             # Delete any deployed files or links
+            self._log.info("Clearing deployed files and links.")
             self._builder.clearFiles()
 
             # Restore any vanilla files from backup.
+            self._log.info("Restoring files from backup.")
             self._backup.restoreBackup()
 
             # Cleanup any build data if it's not wanted.
+            self._log.info("Cleaning up remaining files.")
             self._data.deleteDataFile()
             if not self._settings.cache():
                 self._cache.deleteCacheFile()
             if not self._settings.backup():
                 self._backup.deleteBackup()
+            
+            self._log.info("Clear complete!")
 
     def mappings(self):
         """Retrieves mappings for usvfs if applicable."""
-
-    def backup(self):
-        """Takes a backup of the current game files."""
-
-    def restore(self):
-        """Restores a game from the current backup."""
-
-    def cache(self):
-        """Caches the file hashes of a current game."""
+        hasExistingBuild = self._data.dataFileExists()
+        mappings = []
+        if hasExistingBuild:
+            self._log.info("Build exists, generating usvfs mappings.")
+            gamePath = Path(self._strings.gamePath())
+            buildData = self._data.loadDataFile()
+            usvfsFiles = buildData[self._data._usvfsKey]
+            for file in usvfsFiles:
+                fileData = usvfsFiles[file]
+                mapping = mobase.Mapping()
+                mapping.source = fileData[self._data._sourceKey]
+                mapping.destination = str(gamePath / fileData[self._data._relativeKey])
+                mapping.isDirectory = False
+                mapping.createTarget = False
+                mappings.append(mapping)
+        overwrite = mobase.Mapping()
+        overwrite.source = self._strings.rbOverwritePath()
+        overwrite.destination = self._strings.gamePath()
+        overwrite.createTarget = True
+        overwrite.isDirectory = True
+        mappings.append(overwrite)
+        self._log.info("Usvfs mappings generated!")
+        return mappings

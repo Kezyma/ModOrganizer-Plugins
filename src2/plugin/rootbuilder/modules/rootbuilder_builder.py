@@ -35,16 +35,16 @@ class RootBuilderBuilder():
                         self._log.debug("Deleted " + str(fullPath))
                     else:
                         self._log.warning("Failed to delete " + str(fullPath))
-                    if links:
-                        if self._util.linkFile(str(srcPath), str(fullPath)):
-                            self._log.debug("Linked file from " + str(srcPath) + " to " + str(fullPath))
-                        else:
-                            self._log.warning("Failed to link file from " + str(srcPath) + " to " + str(fullPath))
+                if links:
+                    if self._util.linkFile(str(srcPath), str(fullPath)):
+                        self._log.debug("Linked file from " + str(srcPath) + " to " + str(fullPath))
                     else:
-                        if self._util.copyFile(str(srcPath), str(fullPath)):
-                            self._log.debug("Copied file from " + str(srcPath) + " to " + str(fullPath))
-                        else:
-                            self._log.warning("Failed to copy file from " + str(srcPath) + " to " + str(fullPath))
+                        self._log.warning("Failed to link file from " + str(srcPath) + " to " + str(fullPath))
+                else:
+                    if self._util.copyFile(str(srcPath), str(fullPath)):
+                        self._log.debug("Copied file from " + str(srcPath) + " to " + str(fullPath))
+                    else:
+                        self._log.warning("Failed to copy file from " + str(srcPath) + " to " + str(fullPath))
 
 
     def deployLinks(self, data:dict):
@@ -117,3 +117,24 @@ class RootBuilderBuilder():
                 else:
                     self._log.warning("Failed to copy file from " + file + " to " + str(destPath))
         return buildData
+    
+    def clearFiles(self):
+        """Clears any deployed files or links."""
+        buildData = self._data.loadDataFile()
+        gamePath = Path(self._strings.gamePath())
+        copiedFiles = buildData[self._data._copyKey]
+        linkedFiles = buildData[self._data._linkKey]
+        for relativeFile in copiedFiles:
+            fullPath = gamePath / str(relativeFile)
+            if fullPath.exists():
+                if self._util.deleteFile(str(fullPath)):
+                    self._log.debug("Deleted file " + str(fullPath))
+                else:
+                    self._log.warning("Could not delete file " + str(fullPath))
+        for relativeFile in linkedFiles:
+            fullPath = gamePath / str(relativeFile)
+            if fullPath.exists():
+                if self._util.unlinkFile(str(fullPath)):
+                    self._log.debug("Unlinked file " + str(fullPath))
+                else:
+                    self._log.warning("Could not unlink file " + str(fullPath))

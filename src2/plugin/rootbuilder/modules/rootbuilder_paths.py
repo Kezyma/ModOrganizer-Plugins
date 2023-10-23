@@ -53,7 +53,7 @@ class RootBuilderPaths(CommonPaths):
     def validRootFiles(self, rootPath:str) -> List[str]:
         """Gets a complete list of valid Root files in a given path."""
         allFiles = self.files(rootPath)
-        return self.removeExclusions(allFiles)
+        return self.removeExclusions(rootPath, allFiles)
         
     def removeExclusions(self, rootPath:str, fileList:List[str]) -> List[str]:
         """Removes any exclusions from a list of files."""

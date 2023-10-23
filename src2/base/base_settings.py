@@ -16,7 +16,7 @@ class BaseSettings():
     def __tr(self, trstr):
         return QCoreApplication.translate(self._pluginName, trstr)
 
-    def setting(self, settingName=str):
+    def setting(self, settingName:str):
         """ Gets a setting from Mod Organizer. """
         return self._organiser.pluginSetting(self._pluginName, settingName)
 
@@ -27,3 +27,7 @@ class BaseSettings():
     def loglevel(self):
         """ Determines whether the plugin is in debug mode. """
         return self.setting("loglevel")
+    
+    def updateSetting(self, settingName:str, newValue):
+        """Updates a setting."""
+        self._organiser.setPluginSetting(self._pluginName, settingName, newValue)

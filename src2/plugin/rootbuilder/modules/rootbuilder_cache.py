@@ -41,16 +41,18 @@ class RootBuilderCache():
         filePath = self._strings.rbCachePath()
         return self._util.deleteFile(filePath)
     
-    def generateCache(self) -> dict:
-        """Generates full file hashes of valid base game files."""
-        cacheFiles = self._paths.validGameRootFiles()
-        gamePath = self._strings.gamePath()
-        fileHashes = {}
-        for file in cacheFiles:
-            relativePath = self._paths.relativePath(gamePath, file).lower()
-            if Path(file).exists():
-                fileHashes[relativePath] = self._util.hashFile(file)
-        return fileHashes
+    def cachedValidRootGameFiles(self) -> List[str]:
+        """Gets the list of game files from cache, or from the raw files if none exists."""
+        if self.cacheFileExists():
+            gamePath = self._strings.gamePath()
+            cacheFiles = self.loadCacheFile()
+            gameFiles = []
+            for cacheFile in cacheFiles:
+                finalPath = Path(gamePath, cacheFile)
+                gameFiles.append(finalPath.absolute())
+            return gameFiles
+        else:
+            return self._paths.validGameRootFiles()
     
     def updateCache(self) -> dict:
         """Loads the current cache file and then updates it with any changes."""
@@ -62,33 +64,6 @@ class RootBuilderCache():
             if (relativePath not in currentCache or currentCache[relativePath] == "") and Path(file).exists():
                 currentCache[relativePath] = self._util.hashFile(file)
         return currentCache
-    
-    def cachedValidRootGameFiles(self) -> List[str]:
-        """Gets the list of game files from cache, or from the raw files if none exists."""
-        if self.cacheFileExists():
-            gamePath = self._strings.gamePath()
-            cacheFiles = self.loadCacheFile()
-            gameFiles = []
-            for cacheFile in cacheFiles:
-                gameFiles.append(str(gamePath / cacheFile))
-            return gameFiles
-        else:
-            return self._paths.validGameRootFiles()
-
-
-    def generateOverwriteCache(self, paths:List[str]) -> dict:
-        """Generates a cache for files overwritten by the given build data."""
-        gamePath = Path(self._strings.gamePath())
-        cacheFiles = self._paths.validGameRootFiles()
-        fileHashes = {}
-        for file in cacheFiles:
-            relativeLower = self._paths.relativePath(str(gamePath), file).lower()
-            if relativeLower in paths:
-                if Path(file).exists():
-                    fileHashes[relativeLower] = self._util.hashFile(str(file))
-            else:
-                fileHashes[relativeLower] = ""           
-        return fileHashes
 
     def updateOverwriteCache(self, paths:List[str]) -> dict:
         """Loads the current cache file and then updates it with the provided overwrites."""

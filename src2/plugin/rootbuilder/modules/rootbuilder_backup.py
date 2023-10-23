@@ -45,14 +45,30 @@ class RootBuilderBackup():
         gamePath = self._strings.gamePath()
         backupPath = self._strings.rbBackupPath()
         for file in paths:
-            relativePath = self._paths.relativePath(gamePath, file).lower()
-            backupPath = Path(backupPath) / relativePath
-            if not backupPath.exists() or overwrite:
-                backupString = str(backupPath)
-                if self._util.copyFile(file, backupString):
-                    self._log.debug("Backed up " + file + " to " + backupString)
-                else:
-                    self._log.warning("Failed to back up " + file + " to " + backupString)
+            self._log.debug("GP:" + gamePath + " FP:" + file)
+            fullBackupPath = Path(backupPath) / file
+            fullGamePath = Path(gamePath) / file
+            if not fullBackupPath.exists() or overwrite:
+                if fullGamePath.exists():
+                    backupString = str(fullBackupPath.absolute())
+                    if self._util.copyFile(str(fullGamePath), backupString):
+                        self._log.debug("Backed up " + str(fullGamePath) + " to " + backupString)
+                    else:
+                        self._log.warning("Failed to back up " + str(fullGamePath) + " to " + backupString)
 
     def restoreBackup(self):
         """Restores every possible file from the backup."""
+        gameFiles = self._cache.cachedValidRootGameFiles()
+        gamePath = Path(self._strings.gamePath())
+        backupPath = Path(self._strings.rbBackupPath())
+        for file in gameFiles:
+            if not Path(file).exists():
+                relativePath = self._paths.relativePath(str(gamePath), file)
+                backupFilePath = backupPath / relativePath
+                if backupFilePath.exists():
+                    if self._util.copyFile(str(backupFilePath), file):
+                        self._log.debug("Restored file from " + str(backupFilePath) + " to " + file)
+                    else:
+                        self._log.warning("Failed to restore file from " + str(backupFilePath) + " to " + file)
+                else:
+                    self._log.info("Missing file has no backup " + file)

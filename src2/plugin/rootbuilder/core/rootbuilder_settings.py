@@ -21,7 +21,7 @@ class RootBuilderSettings(BaseSettings):
 
     def exclusions(self):
         """ Files to be excluded from all operations. """
-        return self.setting("exclusions").split(",")
+        return str(self.setting("exclusions")).split(",")
 
     def redirect(self):
         """ Whether to redirect apps launched from mod root folders. """
@@ -37,7 +37,7 @@ class RootBuilderSettings(BaseSettings):
     
     def copyfiles(self):
         """Wildcard supporting list of files that should be copied."""
-        return self.setting("copyfiles").split(",")
+        return str(self.setting("copyfiles")).split(",")
     
     def copypriority(self):
         """Priority order for files to be copied."""
@@ -45,7 +45,7 @@ class RootBuilderSettings(BaseSettings):
     
     def linkfiles(self):
         """Wildcard supporting list of files that should be linked."""
-        return self.setting("linkfiles").split(",")
+        return str(self.setting("linkfiles")).split(",")
     
     def linkpriority(self):
         """Priority order for files to be linked."""
@@ -53,7 +53,7 @@ class RootBuilderSettings(BaseSettings):
     
     def usvfsfiles(self):
         """Wildcard supporting list of files that should be handled by usvfs."""
-        return self.setting("usvfsfiles").split(",")
+        return str(self.setting("usvfsfiles")).split(",")
     
     def usvfspriority(self):
         """Priority order for files to be mapped."""
