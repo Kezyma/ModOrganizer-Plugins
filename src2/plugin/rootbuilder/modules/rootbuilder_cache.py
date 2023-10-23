@@ -76,11 +76,11 @@ class RootBuilderCache():
         # If any of these new overwrites aren't already cached, add them!
         for file in gameFiles:
             relativeLower = self._paths.relativePath(str(gamePath), file).lower()
-            fullPath = Path(file)
-            if relativeLower in paths:
-                if (relativeLower not in currentCache or currentCache[relativeLower] == "") and fullPath.exists():
-                    currentCache[relativeLower] = self._util.hashFile(str(fullPath))
-            else:
-                if relativeLower not in currentCache:
-                    currentCache[relativeLower] = ""
+            #fullPath = Path(file)
+            #if relativeLower in paths:
+                #if (relativeLower not in currentCache or currentCache[relativeLower] == "") and fullPath.exists():
+                #    currentCache[relativeLower] = self._util.hashFile(str(fullPath))
+            #else:
+            if relativeLower not in currentCache:
+                currentCache[relativeLower] = ""
         return currentCache

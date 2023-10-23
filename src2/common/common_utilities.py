@@ -37,6 +37,15 @@ class CommonUtilities():
             return True
         except:
             return False
+        
+    def deleteFolder(self, file=str) -> bool:
+        """Deletes a folder."""
+        try:
+            if Path(file).exists():
+                shutil.rmtree(file)
+            return True
+        except:
+            return False
 
     def linkFile(self, source:str, dest:str) -> bool:
         """Links a file to a specific location."""

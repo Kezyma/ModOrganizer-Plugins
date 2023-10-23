@@ -35,9 +35,9 @@ class RootBuilderPlugin(BasePlugin):
             mobase.PluginSetting("copyfiles",self.__tr("Determines the files that should be copied."), "**"),
             mobase.PluginSetting("linkfiles", self.__tr("Determines the files that should be linked."), ""),
             mobase.PluginSetting("usvfsfiles",self.__tr("Determines the files that should be mapped with usvfs"), ""),
-            mobase.PluginSetting("copypriority",self.__tr("Priority order for determining when to copy files. Lower is better."), 10),
-            mobase.PluginSetting("linkpriority",self.__tr("Priority order for determining when to link files. Lower is better."), 20),
-            mobase.PluginSetting("usvfspriority",self.__tr("Priority order for determining when to usvfs map files. Lower is better."), 30),
+            mobase.PluginSetting("copypriority",self.__tr("Priority order for determining when to copy files. Lower is better."), 1),
+            mobase.PluginSetting("linkpriority",self.__tr("Priority order for determining when to link files. Lower is better."), 2),
+            mobase.PluginSetting("usvfspriority",self.__tr("Priority order for determining when to usvfs map files. Lower is better."), 3),
             mobase.PluginSetting("enabled",self.__tr("Enables " + self._pluginName), True),
             mobase.PluginSetting("loglevel", self.__tr("Controls the logging for " + self._pluginName), 1)
             ]

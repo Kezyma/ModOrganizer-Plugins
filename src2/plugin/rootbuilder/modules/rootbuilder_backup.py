@@ -28,7 +28,7 @@ class RootBuilderBackup():
     def deleteBackup(self) -> bool:
         """Deletes the current backup if it exists."""
         backupPath = self._strings.rbBackupPath()
-        return self._util.deleteFile(backupPath)
+        return self._util.deleteFolder(backupPath)
     
     def createBackup(self):
         """Creates a new full backup of valid game files."""
@@ -45,8 +45,9 @@ class RootBuilderBackup():
         gamePath = self._strings.gamePath()
         backupPath = self._strings.rbBackupPath()
         for file in paths:
-            fullBackupPath = Path(backupPath) / file
-            fullGamePath = Path(gamePath) / file
+            relativePath = self._paths.relativePath(gamePath, file)
+            fullBackupPath = Path(backupPath) / relativePath
+            fullGamePath = Path(gamePath) / relativePath
             if not fullBackupPath.exists() or overwrite:
                 if fullGamePath.exists():
                     backupString = str(fullBackupPath.absolute())
