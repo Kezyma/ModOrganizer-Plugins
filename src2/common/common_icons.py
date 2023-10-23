@@ -38,6 +38,9 @@ class CommonIcons:
     def nexusIcon(self):
         return self.icon("ui-nexus.ico")
 
+    def patreonIcon(self):
+        return self.icon("ui-patreon.ico")
+    
     def githubIcon(self):
         return self.icon("ui-github.ico")
 
@@ -106,3 +109,6 @@ class CommonIcons:
 
     def clipIcon(self):
         return self.icon("ui-clip.ico")
+    
+    def discordIcon(self):
+        return self.icon("ui-discord.ico")

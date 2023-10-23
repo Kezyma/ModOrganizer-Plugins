@@ -1,4 +1,5 @@
-import mobase
+import mobase, webbrowser
+from pathlib import Path
 try:
     from ..ui.qt6.rootbuilder_menu import Ui_RootBuilderMenu
     from ..ui.qt6.rootbuilder_mode import Ui_modeTabWidget
@@ -6,6 +7,7 @@ try:
     from ..ui.qt6.rootbuilder_settings import Ui_settingsTabWidget
     from ..ui.qt6.rootbuilder_exclusions import Ui_exclusionsTabWidget
     from ..ui.qt6.rootbuilder_actions import Ui_actionsTabWidget
+    from ..ui.qt6.rootbuilder_help import Ui_helpTabWidget
     from PyQt6 import QtCore, QtWidgets
 except:
     from ..ui.qt5.rootbuilder_menu import Ui_RootBuilderMenu
@@ -14,6 +16,7 @@ except:
     from ..ui.qt5.rootbuilder_settings import Ui_settingsTabWidget
     from ..ui.qt5.rootbuilder_exclusions import Ui_exclusionsTabWidget
     from ..ui.qt5.rootbuilder_actions import Ui_actionsTabWidget
+    from ..ui.qt5.rootbuilder_help import Ui_helpTabWidget
     from PyQt5 import QtCore, QtWidgets
 
 from .rootbuilder import RootBuilder
@@ -49,6 +52,9 @@ class RootBuilderMenu(QtWidgets.QWidget):
 
         self.actionsTabWidget = Ui_actionsTabWidget()
         self.actionsTabWidget.setupUi(self.widget.actionsTab)
+
+        self.helpTabWidget = Ui_helpTabWidget()
+        self.helpTabWidget.setupUi(self.widget.helpTab)
 
         self.modeTabWidget.copyModeRadio.clicked.connect(self.copyModeButton_clicked)
         self.modeTabWidget.usvfsModeRadio.clicked.connect(self.usvfsModeButton_clicked)
@@ -88,6 +94,21 @@ class RootBuilderMenu(QtWidgets.QWidget):
         self.actionsTabWidget.backupCreateButton.setIcon(self._icons.refreshIcon())
         self.actionsTabWidget.backupCreateButton.clicked.connect(self.createBackup_clicked)
 
+        self.helpTabWidget.discordButton.setIcon(self._icons.discordIcon())
+        self.helpTabWidget.discordButton.clicked.connect(self.discord_clicked)
+        self.helpTabWidget.docsButton.setIcon(self._icons.docsIcon())
+        self.helpTabWidget.docsButton.clicked.connect(self.docs_clicked)
+        self.helpTabWidget.githubButton.setIcon(self._icons.githubIcon())
+        self.helpTabWidget.githubButton.clicked.connect(self.github_clicked)
+        self.helpTabWidget.nexusButton.setIcon(self._icons.nexusIcon())
+        self.helpTabWidget.nexusButton.clicked.connect(self.nexus_clicked)
+        self.helpTabWidget.patreonButton.setIcon(self._icons.patreonIcon())
+        self.helpTabWidget.patreonButton.clicked.connect(self.patreon_clicked)
+
+        helpPath = Path(__file__).parent.parent / "readme.md"
+        helpUrl = QtCore.QUrl.fromLocalFile(str(helpPath.absolute()))
+        self.helpTabWidget.helpBrowser.setSource(helpUrl)
+
     def rebind(self):
         """Rebinds the settings and visibility."""
         self._rebind = True
@@ -106,6 +127,14 @@ class RootBuilderMenu(QtWidgets.QWidget):
         redirectEnabled = self._rootBuilder._settings.redirect()
         installerEnabled = self._rootBuilder._settings.installer()
         loglevel = self._rootBuilder._settings.loglevel()
+        noBuild = not self._rootBuilder._data.dataFileExists()
+
+        self.settingsTabWidget.cacheCheck.setEnabled(noBuild)
+        self.settingsTabWidget.backupCheck.setEnabled(noBuild)
+        self.settingsTabWidget.autobuildCheck.setEnabled(noBuild)
+        self.settingsTabWidget.redirectCheck.setEnabled(noBuild)
+        self.settingsTabWidget.installerCheck.setEnabled(noBuild)
+        self.settingsTabWidget.debugLevelCombo.setEnabled(noBuild)
 
         self.settingsTabWidget.cacheCheck.setChecked(cacheEnabled)
         self.settingsTabWidget.backupCheck.setChecked(backupEnabled)
@@ -131,6 +160,7 @@ class RootBuilderMenu(QtWidgets.QWidget):
         linkPriority = self._rootBuilder._settings.linkpriority()
         copyPriority = self._rootBuilder._settings.copypriority()
         usvfsPriority = self._rootBuilder._settings.usvfspriority()
+        noBuild = not self._rootBuilder._data.dataFileExists()
 
         linkModeOn = len(linkFiles) == 1 and linkFiles[0] == "**"
         linkModeOff = len(linkFiles) == 1 and linkFiles[0] == ""
@@ -145,6 +175,12 @@ class RootBuilderMenu(QtWidgets.QWidget):
         usvfsMode = usvfsModeOn and copyModeOff and linkModeOff
         usvfsLinkMode = usvfsModeOn and usvfsLinkModeOn and copyModeOff 
         customMode = not linkMode and not copyMode and not usvfsMode and not usvfsLinkMode
+
+        self.modeTabWidget.linkModeRadio.setEnabled(noBuild)
+        self.modeTabWidget.copyModeRadio.setEnabled(noBuild)
+        self.modeTabWidget.usvfsModeRadio.setEnabled(noBuild)
+        self.modeTabWidget.usvfsLinkModeRadio.setEnabled(noBuild)
+        self.modeTabWidget.customModeRadio.setEnabled(noBuild)
 
         self.modeTabWidget.linkModeRadio.setChecked(False)
         self.modeTabWidget.copyModeRadio.setChecked(False)
@@ -162,6 +198,10 @@ class RootBuilderMenu(QtWidgets.QWidget):
         else:
             self.modeTabWidget.customModeRadio.setChecked(True)
 
+        self.customTabWidget.copyModePrioritySpin.setEnabled(noBuild)
+        self.customTabWidget.linkModePrioritySpin.setEnabled(noBuild)
+        self.customTabWidget.usvfsModePrioritySpin.setEnabled(noBuild)
+
         self.customTabWidget.copyModePrioritySpin.setValue(copyPriority)
         self.customTabWidget.linkModePrioritySpin.setValue(linkPriority)
         self.customTabWidget.usvfsModePrioritySpin.setValue(usvfsPriority)
@@ -171,6 +211,8 @@ class RootBuilderMenu(QtWidgets.QWidget):
         copyModeFiles = self._rootBuilder._settings.copyfiles()
         linkModeFiles = self._rootBuilder._settings.linkfiles()
         usvfsModeFiles = self._rootBuilder._settings.usvfsfiles()
+        noBuild = not self._rootBuilder._data.dataFileExists()
+
         while "" in copyModeFiles:
             copyModeFiles.remove("")
         while "" in linkModeFiles:
@@ -205,6 +247,10 @@ class RootBuilderMenu(QtWidgets.QWidget):
             self.customTabWidget.usvfsModeTable.setItem(rows-1,1,tableItem)
             rows = rows + 1
 
+        self.customTabWidget.copyModeTable.setEnabled(noBuild)
+        self.customTabWidget.linkModeTable.setEnabled(noBuild)
+        self.customTabWidget.usvfsModeTable.setEnabled(noBuild)
+
     def bindActionButtons(self):
         """Binds the buttons for different actions."""
         hasBuild = self._rootBuilder._data.dataFileExists()
@@ -212,22 +258,25 @@ class RootBuilderMenu(QtWidgets.QWidget):
         hasCache = self._rootBuilder._cache.cacheFileExists()
         backupEnabled = self._rootBuilder._settings.backup()
         cacheEnabled = self._rootBuilder._settings.cache()
+        noBuild = not hasBuild
 
         self.actionsTabWidget.syncButton.setEnabled(hasBuild)
         self.actionsTabWidget.clearButton.setEnabled(hasBuild)
-        self.actionsTabWidget.buildButton.setEnabled(not hasBuild)
+        self.actionsTabWidget.buildButton.setEnabled(noBuild)
 
-        self.actionsTabWidget.backupCreateButton.setEnabled(backupEnabled and not hasBackup)
-        self.actionsTabWidget.backupDeleteButton.setEnabled(backupEnabled and hasBackup)
+        self.actionsTabWidget.backupCreateButton.setEnabled(noBuild and backupEnabled and not hasBackup)
+        self.actionsTabWidget.backupDeleteButton.setEnabled(noBuild and backupEnabled and hasBackup)
 
-        self.actionsTabWidget.cacheCreateButton.setEnabled(cacheEnabled and not hasCache)
-        self.actionsTabWidget.cacheDeleteButton.setEnabled(cacheEnabled and hasCache)
+        self.actionsTabWidget.cacheCreateButton.setEnabled(noBuild and cacheEnabled and not hasCache)
+        self.actionsTabWidget.cacheDeleteButton.setEnabled(noBuild and cacheEnabled and hasCache)
 
     def bindExclusionsTable(self):
         excludeFiles = self._rootBuilder._settings.exclusions()
+        noBuild = not self._rootBuilder._data.dataFileExists()
         while "" in excludeFiles:
             excludeFiles.remove("")
 
+        self.exclusionsTabWidget.exclusionsTable.setEnabled(noBuild)
         self.exclusionsTabWidget.exclusionsTable.clear()
         self.exclusionsTabWidget.exclusionsTable.setColumnCount(1)
         self.exclusionsTabWidget.exclusionsTable.setRowCount(len(excludeFiles) + 1)
@@ -470,3 +519,18 @@ class RootBuilderMenu(QtWidgets.QWidget):
     def clear_clicked(self):
         self._rootBuilder.clear()
         self.rebind()
+
+    def discord_clicked(self):
+        webbrowser.open("https://discord.com/invite/kPA3RrxAYz")
+
+    def docs_clicked(self):
+        webbrowser.open("https://kezyma.github.io/?p=rootbuilder")
+
+    def nexus_clicked(self):
+        webbrowser.open("https://www.nexusmods.com/skyrimspecialedition/mods/31720")
+
+    def github_clicked(self):
+        webbrowser.open("https://github.com/Kezyma/ModOrganizer-Plugins")
+
+    def patreon_clicked(self):
+        webbrowser.open("https://www.patreon.com/KezymaOnline")

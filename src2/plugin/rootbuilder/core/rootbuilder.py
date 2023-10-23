@@ -128,11 +128,11 @@ class RootBuilder():
                 mapping.isDirectory = False
                 mapping.createTarget = False
                 mappings.append(mapping)
-        overwrite = mobase.Mapping()
-        overwrite.source = self._strings.rbOverwritePath()
-        overwrite.destination = self._strings.gamePath()
-        overwrite.createTarget = True
-        overwrite.isDirectory = True
-        mappings.append(overwrite)
+        #overwrite = mobase.Mapping()
+        #overwrite.source = self._strings.rbOverwritePath()
+        #overwrite.destination = self._strings.gamePath()
+        #overwrite.createTarget = True
+        #overwrite.isDirectory = True
+        #mappings.append(overwrite)
         self._log.info("Usvfs mappings generated!")
         return mappings

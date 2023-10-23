@@ -90,7 +90,7 @@ class RootBuilderBuilder():
                     
             elif relativeLower in cacheData:
                 self._log.debug("Found game file at " + file)
-                gameHash = cacheData[relativeLower]
+                gameHash = cacheData[relativeLower][self._cache._hashKey]
                 if gameHash != "":
                     newHash = self._util.hashFile(file)
                     if gameHash != newHash:

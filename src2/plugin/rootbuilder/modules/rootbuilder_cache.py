@@ -18,6 +18,9 @@ class RootBuilderCache():
         self._util = utilities
         self._log = log
 
+    _relativeKey = "Relative"
+    _hashKey = "Hash"
+
     def cacheFileExists(self) -> bool:
         """Returns true if there is a current build data file."""
         filePath = self._strings.rbCachePath()
@@ -48,8 +51,9 @@ class RootBuilderCache():
             cacheFiles = self.loadCacheFile()
             gameFiles = []
             for cacheFile in cacheFiles:
-                finalPath = Path(gamePath, cacheFile)
-                gameFiles.append(finalPath.absolute())
+                relativePath = cacheFiles[cacheFile][self._relativeKey]
+                finalPath = Path(gamePath, relativePath)
+                gameFiles.append(str(finalPath.absolute()))
             return gameFiles
         else:
             return self._paths.validGameRootFiles()
@@ -60,9 +64,13 @@ class RootBuilderCache():
         cacheFiles = self._paths.validGameRootFiles()
         gamePath = self._strings.gamePath()
         for file in cacheFiles:
-            relativePath = self._paths.relativePath(gamePath, file).lower()
-            if (relativePath not in currentCache or currentCache[relativePath] == "") and Path(file).exists():
-                currentCache[relativePath] = self._util.hashFile(file)
+            relativePath = self._paths.relativePath(gamePath, file)
+            relativeLower = relativePath.lower()
+            if (relativeLower not in currentCache or currentCache[relativeLower][self._hashKey] == "") and Path(file).exists():
+                currentCache[relativeLower] = {
+                    self._relativeKey: relativePath,
+                    self._hashKey: self._util.hashFile(file)
+                }
         return currentCache
 
     def updateOverwriteCache(self, paths:List[str]) -> dict:
@@ -75,12 +83,16 @@ class RootBuilderCache():
 
         # If any of these new overwrites aren't already cached, add them!
         for file in gameFiles:
-            relativeLower = self._paths.relativePath(str(gamePath), file).lower()
+            relativePath = self._paths.relativePath(str(gamePath), file)
+            relativeLower = relativePath.lower()
             #fullPath = Path(file)
             #if relativeLower in paths:
                 #if (relativeLower not in currentCache or currentCache[relativeLower] == "") and fullPath.exists():
                 #    currentCache[relativeLower] = self._util.hashFile(str(fullPath))
             #else:
             if relativeLower not in currentCache:
-                currentCache[relativeLower] = ""
+                currentCache[relativeLower] = {
+                    self._relativeKey: relativePath,
+                    self._hashKey: ""
+                }
         return currentCache

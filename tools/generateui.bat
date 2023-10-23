@@ -18,3 +18,6 @@ python -m PyQt5.uic.pyuic ..\src2\plugin\rootbuilder\ui\rootbuilder_exclusions.u
 
 python -m PyQt6.uic.pyuic ..\src2\plugin\rootbuilder\ui\rootbuilder_actions.ui -o ..\src2\plugin\rootbuilder\ui\qt6\rootbuilder_actions.py
 python -m PyQt5.uic.pyuic ..\src2\plugin\rootbuilder\ui\rootbuilder_actions.ui -o ..\src2\plugin\rootbuilder\ui\qt5\rootbuilder_actions.py
+
+python -m PyQt6.uic.pyuic ..\src2\plugin\rootbuilder\ui\rootbuilder_help.ui -o ..\src2\plugin\rootbuilder\ui\qt6\rootbuilder_help.py
+python -m PyQt5.uic.pyuic ..\src2\plugin\rootbuilder\ui\rootbuilder_help.ui -o ..\src2\plugin\rootbuilder\ui\qt5\rootbuilder_help.py
