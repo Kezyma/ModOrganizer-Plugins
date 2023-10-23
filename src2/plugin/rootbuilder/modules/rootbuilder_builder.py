@@ -75,9 +75,9 @@ class RootBuilderBuilder():
                 fileSize = os.path.getsize(file)
                 if sourceTime != fileTime or sourceSize != fileSize:
                     if self._util.copyFile(file, copyData[self._data._sourceKey]):
-                        self._log.debug("Copied file from " + file + " to " + linkData[self._data._sourceKey])
+                        self._log.debug("Copied file from " + file + " to " + copyData[self._data._sourceKey])
                     else:
-                        self._log.warning("Failed to copy file from " + file + " to " + linkData[self._data._sourceKey])
+                        self._log.warning("Failed to copy file from " + file + " to " + copyData[self._data._sourceKey])
 
             elif relativeLower in buildData[self._data._linkKey]:
                 self._log.debug("Found link at " + file)

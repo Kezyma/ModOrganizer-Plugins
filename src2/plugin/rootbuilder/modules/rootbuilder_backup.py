@@ -45,7 +45,6 @@ class RootBuilderBackup():
         gamePath = self._strings.gamePath()
         backupPath = self._strings.rbBackupPath()
         for file in paths:
-            self._log.debug("GP:" + gamePath + " FP:" + file)
             fullBackupPath = Path(backupPath) / file
             fullGamePath = Path(gamePath) / file
             if not fullBackupPath.exists() or overwrite:
