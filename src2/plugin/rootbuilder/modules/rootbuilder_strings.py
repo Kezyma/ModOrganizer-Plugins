@@ -51,3 +51,9 @@ class RootBuilderStrings(CommonStrings):
             self._rbBuildDataPath = str(buildDataPath.absolute())
         return self._rbBuildDataPath
     
+    _rbUpdateFilePath = str()
+    def rbUpdateFilePath(self) -> str:
+        """Gets the path to the file used for checking Root Builder updates."""
+        if self._rbUpdateFilePath == str():
+            self._rbUpdateFilePath = str(Path(self.pluginDataPath(), "VersionManifest.json"))
+        return self._rbUpdateFilePath

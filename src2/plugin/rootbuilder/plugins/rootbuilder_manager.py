@@ -1,6 +1,7 @@
 import mobase
 from ..core.rootbuilder_plugin import RootBuilderPlugin
 from ..core.rootbuilder_menu import RootBuilderMenu
+from ..modules.rootbuilder_update import RootBuilderUpdate
 from ....base.base_dialog import BaseDialog
 try:
     from PyQt5.QtCore import QCoreApplication
@@ -15,6 +16,7 @@ class RootBuilderManager(RootBuilderPlugin, mobase.IPluginTool):
 
     def init(self, organiser=mobase.IOrganizer):
         res = super().init(organiser)
+        self._update = RootBuilderUpdate(self._organiser, self, self._rootBuilder._strings, self._rootBuilder._util, self._rootBuilder._log)
         self._dialog = self.getDialog()
         return res
 
@@ -45,6 +47,6 @@ class RootBuilderManager(RootBuilderPlugin, mobase.IPluginTool):
 
     def getDialog(self) -> QtWidgets.QDialog:
         dialog = BaseDialog(self.displayName(), "v" + self.version().displayString(), self.icon())
-        self._rootBuilderMenu = RootBuilderMenu(dialog, self._organiser, self._rootBuilder)
+        self._rootBuilderMenu = RootBuilderMenu(dialog, self._organiser, self._rootBuilder, self._update)
         dialog.addContent(self._rootBuilderMenu)
         return dialog

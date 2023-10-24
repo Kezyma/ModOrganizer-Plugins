@@ -1,6 +1,5 @@
 import mobase
 from ....base.base_plugin import BasePlugin
-from ....common.common_ui import CommonUI
 from .rootbuilder import RootBuilder
 try:
     from PyQt5.QtCore import QCoreApplication
@@ -15,7 +14,6 @@ class RootBuilderPlugin(BasePlugin):
 
     def init(self, organiser=mobase.IOrganizer):
         self._rootBuilder = RootBuilder(organiser)
-        self._ui = CommonUI()
         return super().init(organiser)
 
     def __tr(self, trstr):

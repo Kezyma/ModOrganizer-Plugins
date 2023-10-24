@@ -1,4 +1,4 @@
-import mobase, json, shutil, os, stat, hashlib
+import mobase, json, shutil, os, stat, hashlib, urllib.request
 from pathlib import Path
 
 class CommonUtilities():
@@ -89,3 +89,11 @@ class CommonUtilities():
             func.update(block)
         os.close(f)
         return func.hexdigest()
+    
+    def downloadFile(self, url:str, path:str) -> bool:
+        """Downloads a file to a specific location."""
+        try:
+            urllib.request.urlretrieve(url, path)
+            return True
+        except:
+            return False

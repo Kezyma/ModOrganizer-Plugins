@@ -8,6 +8,7 @@ try:
     from ..ui.qt6.rootbuilder_exclusions import Ui_exclusionsTabWidget
     from ..ui.qt6.rootbuilder_actions import Ui_actionsTabWidget
     from ..ui.qt6.rootbuilder_help import Ui_helpTabWidget
+    from ..ui.qt6.rootbuilder_update import Ui_updateTabWidget
     from PyQt6 import QtCore, QtWidgets
 except:
     from ..ui.qt5.rootbuilder_menu import Ui_RootBuilderMenu
@@ -17,18 +18,21 @@ except:
     from ..ui.qt5.rootbuilder_exclusions import Ui_exclusionsTabWidget
     from ..ui.qt5.rootbuilder_actions import Ui_actionsTabWidget
     from ..ui.qt5.rootbuilder_help import Ui_helpTabWidget
+    from ..ui.qt5.rootbuilder_update import Ui_updateTabWidget
     from PyQt5 import QtCore, QtWidgets
 
 from .rootbuilder import RootBuilder
+from ..modules.rootbuilder_update import RootBuilderUpdate
 from ....common.common_icons import CommonIcons
 
 class RootBuilderMenu(QtWidgets.QWidget):
     """Root Builder menu widget."""
 
-    def __init__(self, parent:QtWidgets.QWidget, organiser:mobase.IOrganizer, rootBuilder:RootBuilder):
+    def __init__(self, parent:QtWidgets.QWidget, organiser:mobase.IOrganizer, rootBuilder:RootBuilder, update:RootBuilderUpdate):
         super().__init__(parent)
         self._organiser = organiser
         self._rootBuilder = rootBuilder
+        self._update = update
         self._rebind = False
         self._icons = CommonIcons()
         self.generateLayout()
@@ -55,6 +59,16 @@ class RootBuilderMenu(QtWidgets.QWidget):
 
         self.helpTabWidget = Ui_helpTabWidget()
         self.helpTabWidget.setupUi(self.widget.helpTab)
+
+        self.updateTabWidget = Ui_updateTabWidget()
+        self.updateTabWidget.setupUi(self.widget.updateTab)
+
+        self.updateTabWidget.updateFoundWidget.setVisible(False)
+        self.updateTabWidget.noUpdateWidget.setVisible(False)
+        self.updateTabWidget.checkUpdateButton.setIcon(self._icons.refreshIcon())
+        self.updateTabWidget.updateFoundButton.setIcon(self._icons.downloadIcon())
+        self.updateTabWidget.updateFoundButton.clicked.connect(self.updateFound_clicked)
+        self.updateTabWidget.checkUpdateButton.clicked.connect(self.checkUpdate_clicked)
 
         self.modeTabWidget.copyModeRadio.clicked.connect(self.copyModeButton_clicked)
         self.modeTabWidget.usvfsModeRadio.clicked.connect(self.usvfsModeButton_clicked)
@@ -105,7 +119,7 @@ class RootBuilderMenu(QtWidgets.QWidget):
         self.helpTabWidget.patreonButton.setIcon(self._icons.patreonIcon())
         self.helpTabWidget.patreonButton.clicked.connect(self.patreon_clicked)
 
-        helpPath = Path(__file__).parent.parent / "readme.md"
+        helpPath = Path(__file__).parent.parent / "docs" / "readme.md"
         helpUrl = QtCore.QUrl.fromLocalFile(str(helpPath.absolute()))
         self.helpTabWidget.helpBrowser.setSource(helpUrl)
 
@@ -449,6 +463,7 @@ class RootBuilderMenu(QtWidgets.QWidget):
             self._rootBuilder._settings.updateSetting("backup", enabled)
             if not enabled:
                 self._rootBuilder._backup.deleteBackup()
+            self.rebind()    
 
     def cacheCheck_changed(self):
         """When cache is enabled/disabled."""
@@ -457,6 +472,7 @@ class RootBuilderMenu(QtWidgets.QWidget):
             self._rootBuilder._settings.updateSetting("cache", enabled)
             if not enabled:
                 self._rootBuilder._cache.deleteCacheFile()
+            self.rebind()    
 
     def autobuildCheck_changed(self):
         """When autobuild is enabled/disabled."""
@@ -534,3 +550,13 @@ class RootBuilderMenu(QtWidgets.QWidget):
 
     def patreon_clicked(self):
         webbrowser.open("https://www.patreon.com/KezymaOnline")
+
+    def updateFound_clicked(self):
+        webbrowser.open("https://www.nexusmods.com/skyrimspecialedition/mods/31720?tab=files")
+       
+    def checkUpdate_clicked(self):
+        """Checks for an update"""
+        newVersion = self._update.getLatestVersion()
+        hasUpdate = newVersion != None
+        self.updateTabWidget.updateFoundWidget.setVisible(hasUpdate)
+        self.updateTabWidget.noUpdateWidget.setVisible(not hasUpdate)

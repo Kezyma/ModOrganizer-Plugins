@@ -14,8 +14,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_actionsTabWidget(object):
     def setupUi(self, actionsTabWidget):
         actionsTabWidget.setObjectName("actionsTabWidget")
-        actionsTabWidget.resize(563, 130)
-        actionsTabWidget.setMinimumSize(QtCore.QSize(0, 130))
+        actionsTabWidget.resize(563, 120)
+        actionsTabWidget.setMinimumSize(QtCore.QSize(0, 120))
         self.verticalLayout = QtWidgets.QVBoxLayout(actionsTabWidget)
         self.verticalLayout.setObjectName("verticalLayout")
         self.widget = QtWidgets.QWidget(actionsTabWidget)

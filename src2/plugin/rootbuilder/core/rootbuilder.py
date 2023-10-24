@@ -9,6 +9,7 @@ from ..modules.rootbuilder_data import RootBuilderData
 from ..modules.rootbuilder_cache import RootBuilderCache
 from ..modules.rootbuilder_backup import RootBuilderBackup
 from ..modules.rootbuilder_builder import RootBuilderBuilder
+from ..modules.rootbuilder_export import RootBuilderExport
 class RootBuilder():
     """Core Root Builder class that handles all plugin functionality."""
 
@@ -23,6 +24,7 @@ class RootBuilder():
         self._cache = RootBuilderCache(self._organiser, self._strings, self._paths, self._settings, self._util, self._log)
         self._backup = RootBuilderBackup(self._organiser, self._strings, self._paths, self._settings, self._cache, self._util, self._log)
         self._builder = RootBuilderBuilder(self._organiser, self._strings, self._paths, self._settings, self._data, self._cache, self._util, self._log)
+        self._export = RootBuilderExport(self._organiser, self._settings, self._util, self._log)
         super().__init__()
 
     def build(self):
@@ -31,15 +33,18 @@ class RootBuilder():
         hasExistingBuild = self._data.dataFileExists()
         self._log.info("Generating root mod build data.")
         newBuildData = self._data.generateBuildData()
+        gamePath = self._strings.gamePath()
 
         # Calculate any possible overwrites for if we need to update our backup or cache.
         possibleOverwrites = []
         for fileKey in newBuildData[self._data._copyKey]:
             relativePath = newBuildData[self._data._copyKey][fileKey][self._data._relativeKey]
-            possibleOverwrites.append(relativePath)
+            destPath = Path(gamePath) / relativePath
+            possibleOverwrites.append(str(destPath))
         for fileKey in newBuildData[self._data._linkKey]:
             relativePath = newBuildData[self._data._linkKey][fileKey][self._data._relativeKey]
-            possibleOverwrites.append(relativePath)
+            destPath = Path(gamePath) / relativePath
+            possibleOverwrites.append(str(destPath))
 
         # Generate a full or partial set of file hashes.
         if self._settings.cache():
@@ -128,11 +133,11 @@ class RootBuilder():
                 mapping.isDirectory = False
                 mapping.createTarget = False
                 mappings.append(mapping)
-        #overwrite = mobase.Mapping()
-        #overwrite.source = self._strings.rbOverwritePath()
-        #overwrite.destination = self._strings.gamePath()
-        #overwrite.createTarget = True
-        #overwrite.isDirectory = True
-        #mappings.append(overwrite)
+            #overwrite = mobase.Mapping()
+            #overwrite.source = self._strings.rbOverwritePath()
+            #overwrite.destination = self._strings.gamePath()
+            #overwrite.createTarget = True
+            #overwrite.isDirectory = True
+            #mappings.append(overwrite)
         self._log.info("Usvfs mappings generated!")
         return mappings
