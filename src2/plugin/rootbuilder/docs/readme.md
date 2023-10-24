@@ -46,13 +46,32 @@ When a clear runs, the following things happen;
 # Configuration
 
 ## Mode
+Root Builder has various modes that determine how files in `Root` folders are deployed to the game folder.
 
 ### Copy
+Copy mode is enabled by default, in copy mode, any files found in `Root` folders are copied to the game folder during a build.
+
 ### Link
+In link mode, any files found in `Root` folders have links created in the game folder during a build.
+
 ### USVFS
+In usvfs mode, any files found in `Root` folders are mapped to the game folder using Mod Organizer’s VFS. This setting is often incompatible with any mods that contain `dll` or `exe` files.
+
 ### USVFS + Link
+In usvfs + link mode, any files found in `Root` folders are mapped to the game folder using Mod Organizer’s VFS. Any `dll` or `exe` files found in `Root` folders will have links created instead to improve mod compatibility.
 
 ## Custom Mode
+Instead of using the preset mode, you can define your own custom mode. With a custom mode you can control exactly which files are deployed from `Root` folders and which methods are used to deploy them.
+
+### Rules
+Each mode has a list of rules, these rules determine which files in `Root` folders use those methods. 
+- Each rule should be the path to a file or folder, relative to the `Root` folder.
+- Rules can contain the `**` wildcard which will match all files and folders.
+- Rules can contain the `*` wildcard, which matches anything in a file or folder name.
+- Any other wildcards supported by Python’s glob module should also function.
+
+### Priority
+Each deployment method has a priority. If a `Root` file matches the rules for multiple modes, the method with the lowest priority number is the one used. 
 
 ## Settings
 
