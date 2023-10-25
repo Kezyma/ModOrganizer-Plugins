@@ -12,12 +12,12 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_helpTabWidget(object):
     def setupUi(self, helpTabWidget):
         helpTabWidget.setObjectName("helpTabWidget")
-        helpTabWidget.resize(238, 135)
+        helpTabWidget.resize(449, 391)
         self.verticalLayout = QtWidgets.QVBoxLayout(helpTabWidget)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.helpBrowser = QtWidgets.QTextBrowser(parent=helpTabWidget)
-        self.helpBrowser.setObjectName("helpBrowser")
-        self.verticalLayout.addWidget(self.helpBrowser)
+        self.helpText = QtWidgets.QTextBrowser(parent=helpTabWidget)
+        self.helpText.setObjectName("helpText")
+        self.verticalLayout.addWidget(self.helpText)
         self.linksWidget = QtWidgets.QWidget(parent=helpTabWidget)
         self.linksWidget.setObjectName("linksWidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.linksWidget)

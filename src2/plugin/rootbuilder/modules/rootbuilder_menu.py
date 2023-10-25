@@ -21,8 +21,8 @@ except:
     from ..ui.qt5.rootbuilder_update import Ui_updateTabWidget
     from PyQt5 import QtCore, QtWidgets
 
-from .rootbuilder import RootBuilder
-from ..modules.rootbuilder_update import RootBuilderUpdate
+from ..core.rootbuilder import RootBuilder
+from .rootbuilder_update import RootBuilderUpdate
 from ....common.common_icons import CommonIcons
 
 class RootBuilderMenu(QtWidgets.QWidget):
@@ -119,9 +119,10 @@ class RootBuilderMenu(QtWidgets.QWidget):
         self.helpTabWidget.patreonButton.setIcon(self._icons.patreonIcon())
         self.helpTabWidget.patreonButton.clicked.connect(self.patreon_clicked)
 
-        helpPath = Path(__file__).parent.parent / "docs" / "readme.md"
+        helpPath = Path(__file__).parent.parent / "docs" / "readme.html"
         helpUrl = QtCore.QUrl.fromLocalFile(str(helpPath.absolute()))
-        self.helpTabWidget.helpBrowser.setSource(helpUrl)
+        self.helpTabWidget.helpText.setSource(helpUrl)
+    
 
     def rebind(self):
         """Rebinds the settings and visibility."""

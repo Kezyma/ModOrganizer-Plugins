@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>665</width>
-    <height>650</height>
+    <width>449</width>
+    <height>391</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,96 +15,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QToolBox" name="helpToolBox">
-     <property name="currentIndex">
-      <number>0</number>
-     </property>
-     <property name="tabSpacing">
-      <number>0</number>
-     </property>
-     <widget class="QWidget" name="instructWidget">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>647</width>
-        <height>540</height>
-       </rect>
-      </property>
-      <attribute name="label">
-       <string>Instructions</string>
-      </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
-       <item>
-        <widget class="QTextBrowser" name="instructText"/>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="configWidget">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>647</width>
-        <height>540</height>
-       </rect>
-      </property>
-      <attribute name="label">
-       <string>Configuration</string>
-      </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
-       <item>
-        <widget class="QTextBrowser" name="configText"/>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="troubleWidget">
-      <attribute name="label">
-       <string>Troubleshooting</string>
-      </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_4">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
-       <item>
-        <widget class="QTextBrowser" name="troubleText"/>
-       </item>
-      </layout>
-     </widget>
-    </widget>
+    <widget class="QTextBrowser" name="helpText"/>
    </item>
    <item>
     <widget class="QWidget" name="linksWidget" native="true">

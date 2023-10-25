@@ -1,6 +1,6 @@
 import mobase
 from ..core.rootbuilder_plugin import RootBuilderPlugin
-from ..core.rootbuilder_menu import RootBuilderMenu
+from ..modules.rootbuilder_menu import RootBuilderMenu
 from ..modules.rootbuilder_update import RootBuilderUpdate
 from ....base.base_dialog import BaseDialog
 try:
