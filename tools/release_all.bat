@@ -1,1 +1,1 @@
-call release.bat rootbuilder reinstaller shortcutter pluginfinder curationclub profilesync openmwplayer moddy > release_log.txt
+call release.bat rootbuilder

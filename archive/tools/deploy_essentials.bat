@@ -1,0 +1,1 @@
+call deploy.bat essentials > deploy_log.txt

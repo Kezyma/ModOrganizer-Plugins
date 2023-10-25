@@ -1,0 +1,2248 @@
+{
+    "4233896": {
+        "Name": "The Contest",
+        "Game": "SKYRIM",
+        "Meta": "4233896-2.manifest",
+        "Files": [
+            "ccbgssse069-contest.bsa",
+            "ccbgssse069-contest.esl"
+        ]
+    },
+    "4233893": {
+        "Name": "Headman's Cleaver",
+        "Game": "SKYRIM",
+        "Meta": "4233893-2.manifest",
+        "Files": [
+            "ccbgssse068-bloodfall.bsa",
+            "ccbgssse068-bloodfall.esl"
+        ]
+    },
+    "4233890": {
+        "Name": "Farming",
+        "Game": "SKYRIM",
+        "Meta": "4233890-2.manifest",
+        "Files": [
+            "ccvsvsse004-beafarmer.bsa",
+            "ccvsvsse004-beafarmer.esl"
+        ]
+    },
+    "4233874": {
+        "Name": "Necromantic Grimoire",
+        "Game": "SKYRIM",
+        "Meta": "4233874-2.manifest",
+        "Files": [
+            "ccvsvsse003-necroarts.bsa",
+            "ccvsvsse003-necroarts.esl"
+        ]
+    },
+    "4233871": {
+        "Name": "Horse Armor - Steel",
+        "Game": "SKYRIM",
+        "Meta": "4233871-2.manifest",
+        "Files": [
+            "ccbgssse012-hrsarmrstl.bsa",
+            "ccbgssse012-hrsarmrstl.esl"
+        ]
+    },
+    "4233868": {
+        "Name": "Horse Armor - Elven",
+        "Game": "SKYRIM",
+        "Meta": "4233868-2.manifest",
+        "Files": [
+            "ccbgssse011-hrsarmrelvn.bsa",
+            "ccbgssse011-hrsarmrelvn.esl"
+        ]
+    },
+    "4233861": {
+        "Name": "Alternative Armors - Silver",
+        "Game": "SKYRIM",
+        "Meta": "4233861-2.manifest",
+        "Files": [
+            "ccbgssse056-ba_silver.bsa",
+            "ccbgssse056-ba_silver.esl"
+        ]
+    },
+    "4202984": {
+        "Name": "Alternative Armors - Dragon Plate",
+        "Game": "SKYRIM",
+        "Meta": "4202984-2.manifest",
+        "Files": [
+            "ccbgssse059-ba_dragonplate.bsa",
+            "ccbgssse059-ba_dragonplate.esl"
+        ]
+    },
+    "4202980": {
+        "Name": "Alternative Armors - Dwarven Plate",
+        "Game": "SKYRIM",
+        "Meta": "4202980-2.manifest",
+        "Files": [
+            "ccbgssse061-ba_dwarven.bsa",
+            "ccbgssse061-ba_dwarven.esl"
+        ]
+    },
+    "4202976": {
+        "Name": "Alternative Armors - Leather",
+        "Game": "SKYRIM",
+        "Meta": "4202976-2.manifest",
+        "Files": [
+            "ccbgssse053-ba_leather.bsa",
+            "ccbgssse053-ba_leather.esl"
+        ]
+    },
+    "4202970": {
+        "Name": "Alternative Armors - Orcish Scaled",
+        "Game": "SKYRIM",
+        "Meta": "4202970-2.manifest",
+        "Files": [
+            "ccbgssse055-ba_orcishscaled.bsa",
+            "ccbgssse055-ba_orcishscaled.esl"
+        ]
+    },
+    "4202967": {
+        "Name": "Alternative Armors - Orcish Plate",
+        "Game": "SKYRIM",
+        "Meta": "4202967-2.manifest",
+        "Files": [
+            "ccbgssse054-ba_orcish.bsa",
+            "ccbgssse054-ba_orcish.esl"
+        ]
+    },
+    "4183063": {
+        "Name": "Alternative Armors - Iron",
+        "Game": "SKYRIM",
+        "Meta": "4183063-2.manifest",
+        "Files": [
+            "ccbgssse052-ba_iron.bsa",
+            "ccbgssse052-ba_iron.esl"
+        ]
+    },
+    "4202964": {
+        "Name": "Fearsome Fists",
+        "Game": "SKYRIM",
+        "Meta": "4202964-2.manifest",
+        "Files": [
+            "cccbhsse001-gaunt.bsa",
+            "cccbhsse001-gaunt.esl"
+        ]
+    },
+    "4233899": {
+        "Name": "Staves",
+        "Game": "SKYRIM",
+        "Meta": "4233899-2.manifest",
+        "Files": [
+            "ccbgssse066-staves.bsa",
+            "ccbgssse066-staves.esl"
+        ]
+    },
+    "4233904": {
+        "Name": "Redguard Elite Armaments",
+        "Game": "SKYRIM",
+        "Meta": "4233904-2.manifest",
+        "Files": [
+            "ccedhsse003-redguard.bsa",
+            "ccedhsse003-redguard.esl"
+        ]
+    },
+    "4233855": {
+        "Name": "Goldbrand",
+        "Game": "SKYRIM",
+        "Meta": "4233855-2.manifest",
+        "Files": [
+            "ccbgssse005-goldbrand.bsa",
+            "ccbgssse005-goldbrand.esl"
+        ]
+    },
+    "4233911": {
+        "Name": "Nchuanthumz: Dwarven Home",
+        "Game": "SKYRIM",
+        "Meta": "4233911-3.manifest",
+        "Files": [
+            "ccafdsse001-dwesanctuary.bsa",
+            "ccafdsse001-dwesanctuary.esm"
+        ]
+    },
+    "4233877": {
+        "Name": "Gallows Hall",
+        "Game": "SKYRIM",
+        "Meta": "4233877-2.manifest",
+        "Files": [
+            "ccrmssse001-necrohouse.bsa",
+            "ccrmssse001-necrohouse.esl"
+        ]
+    },
+    "4233887": {
+        "Name": "The Cause",
+        "Game": "SKYRIM",
+        "Meta": "4233887-2.manifest",
+        "Files": [
+            "ccbgssse067-daedinv.bsa",
+            "ccbgssse067-daedinv.esm"
+        ]
+    },
+    "4233908": {
+        "Name": "Bloodchill Manor",
+        "Game": "SKYRIM",
+        "Meta": "4233908-3.manifest",
+        "Files": [
+            "cceejsse005-cave.bsa",
+            "cceejsse005-cave.esm"
+        ]
+    },
+    "4233884": {
+        "Name": "Ghosts of the Tribunal",
+        "Game": "SKYRIM",
+        "Meta": "4233884-6.manifest",
+        "Files": [
+            "ccasvsse001-almsivi.bsa",
+            "ccasvsse001-almsivi.esm"
+        ]
+    },
+    "4233858": {
+        "Name": "Bittercup",
+        "Game": "SKYRIM",
+        "Meta": "4233858-2.manifest",
+        "Files": [
+            "cckrtsse001_altar.bsa",
+            "cckrtsse001_altar.esl"
+        ]
+    },
+    "4233865": {
+        "Name": "Alternative Armors - Daedric Plate",
+        "Game": "SKYRIM",
+        "Meta": "4233865-2.manifest",
+        "Files": [
+            "ccbgssse050-ba_daedric.bsa",
+            "ccbgssse050-ba_daedric.esl"
+        ]
+    },
+    "4233881": {
+        "Name": "Fishing",
+        "Game": "SKYRIM",
+        "Files": [
+            "ccBGSSSE001-Fish.bsa",
+            "ccBGSSSE001-Fish.esm"
+        ]
+    },
+    "4233914": {
+        "Name": "Bow of Shadows",
+        "Game": "SKYRIM",
+        "Meta": "4233914-2.manifest",
+        "Files": [
+            "ccbgssse038-bowofshadows.bsa",
+            "ccbgssse038-bowofshadows.esl"
+        ]
+    },
+    "4138281": {
+        "Name": "Virtual Workshop: Grid World",
+        "Game": "FALLOUT4",
+        "Meta": "4138281-1.manifest",
+        "Files": [
+            "ccbgsfo4040-vrworkshop01 - main.ba2",
+            "ccbgsfo4040-vrworkshop01 - textures.ba2",
+            "ccbgsfo4040-vrworkshop01.esl"
+        ]
+    },
+    "4134879": {
+        "Name": "CR-74L Combat Rifle",
+        "Game": "FALLOUT4",
+        "Meta": "4134879-1.manifest",
+        "Files": [
+            "ccfrsfo4003-cr75l - main.ba2",
+            "ccfrsfo4003-cr75l - textures.ba2",
+            "ccfrsfo4003-cr75l.esl"
+        ]
+    },
+    "4134884": {
+        "Name": "Vault Suit Customization",
+        "Game": "FALLOUT4",
+        "Meta": "4134884-1.manifest",
+        "Files": [
+            "ccacxfo4001-vsuit - main.ba2",
+            "ccacxfo4001-vsuit - textures.ba2",
+            "ccacxfo4001-vsuit.esl"
+        ]
+    },
+    "4134887": {
+        "Name": "Capital Wasteland Mercenaries",
+        "Game": "FALLOUT4",
+        "Meta": "4134887-2.manifest",
+        "Files": [
+            "ccbgsfo4117-capmerc - main.ba2",
+            "ccbgsfo4117-capmerc - textures.ba2",
+            "ccbgsfo4117-capmerc.esl"
+        ]
+    },
+    "4134890": {
+        "Name": "Gunners vs. Minutemen",
+        "Game": "FALLOUT4",
+        "Meta": "4134890-1.manifest",
+        "Files": [
+            "ccgcafo4025-pagunmm - main.ba2",
+            "ccgcafo4025-pagunmm - textures.ba2",
+            "ccgcafo4025-pagunmm.esl"
+        ]
+    },
+    "4135453": {
+        "Name": "Pip-Boy Paint Job - Children of Atom",
+        "Game": "FALLOUT4",
+        "Meta": "4135453-1.manifest",
+        "Files": [
+            "cccrsfo4001-pipcoa - main.ba2",
+            "cccrsfo4001-pipcoa - textures.ba2",
+            "cccrsfo4001-pipcoa.esl"
+        ]
+    },
+    "4135456": {
+        "Name": "Tesla Cannon",
+        "Game": "FALLOUT4",
+        "Meta": "4135456-1.manifest",
+        "Files": [
+            "ccbgsfo4046-tescan - main.ba2",
+            "ccbgsfo4046-tescan - textures.ba2",
+            "ccbgsfo4046-tescan.esl"
+        ]
+    },
+    "4135502": {
+        "Name": "Virtual Workshop: Desert Island",
+        "Game": "FALLOUT4",
+        "Meta": "4135502-1.manifest",
+        "Files": [
+            "ccfsvfo4005-vrdesertisland - main.ba2",
+            "ccfsvfo4005-vrdesertisland - textures.ba2",
+            "ccfsvfo4005-vrdesertisland.esl"
+        ]
+    },
+    "4135505": {
+        "Name": "Virtual Workshop: Atomic Crater",
+        "Game": "FALLOUT4",
+        "Meta": "4135505-1.manifest",
+        "Files": [
+            "ccfsvfo4006-vrwasteland - main.ba2",
+            "ccfsvfo4006-vrwasteland - textures.ba2",
+            "ccfsvfo4006-vrwasteland.esl"
+        ]
+    },
+    "4135508": {
+        "Name": "Virtual Workshop: GNR",
+        "Game": "FALLOUT4",
+        "Meta": "4135508-7.manifest",
+        "Files": [
+            "ccfsvfo4004-vrworkshopgnrplaza - main.ba2",
+            "ccfsvfo4004-vrworkshopgnrplaza - textures.ba2",
+            "ccfsvfo4004-vrworkshopgnrplaza.esl"
+        ]
+    },
+    "4135463": {
+        "Name": "The Gray Cowl Returns!",
+        "Game": "SKYRIM",
+        "Meta": "4135463-2.manifest",
+        "Files": [
+            "ccbgssse020-graycowl.bsa",
+            "ccbgssse020-graycowl.esl"
+        ]
+    },
+    "4135479": {
+        "Name": "Hendraheim",
+        "Game": "SKYRIM",
+        "Meta": "4135479-2.manifest",
+        "Files": [
+            "cceejsse004-hall.bsa",
+            "cceejsse004-hall.esl"
+        ]
+    },
+    "4135483": {
+        "Name": "Dead Man's Dread",
+        "Game": "SKYRIM",
+        "Meta": "4135483-3.manifest",
+        "Files": [
+            "ccbgssse031-advcyrus.bsa",
+            "ccbgssse031-advcyrus.esm"
+        ]
+    },
+    "4135487": {
+        "Name": "Saints & Seducers",
+        "Game": "SKYRIM",
+        "Files": [
+            "ccBGSSSE025-AdvDSGS.bsa",
+            "ccBGSSSE025-AdvDSGS.esm"
+        ]
+    },
+    "4135493": {
+        "Name": "Alternative Armors - Steel Soldier",
+        "Game": "SKYRIM",
+        "Meta": "4135493-2.manifest",
+        "Files": [
+            "ccbgssse058-ba_steel.bsa",
+            "ccbgssse058-ba_steel.esl"
+        ]
+    },
+    "4135496": {
+        "Name": "Goblins",
+        "Game": "SKYRIM",
+        "Meta": "4135496-2.manifest",
+        "Files": [
+            "ccbgssse040-advobgobs.bsa",
+            "ccbgssse040-advobgobs.esl"
+        ]
+    },
+    "4135499": {
+        "Name": "Alternative Armors - Ebony Plate",
+        "Game": "SKYRIM",
+        "Meta": "4135499-2.manifest",
+        "Files": [
+            "ccbgssse063-ba_ebony.bsa",
+            "ccbgssse063-ba_ebony.esl"
+        ]
+    },
+    "4111002": {
+        "Name": "Alternative Armors - Dragonscale",
+        "Game": "SKYRIM",
+        "Meta": "4111002-3.manifest",
+        "Files": [
+            "ccbgssse060-ba_dragonscale.bsa",
+            "ccbgssse060-ba_dragonscale.esl"
+        ]
+    },
+    "4110999": {
+        "Name": "Alternative Armors - Elven Hunter",
+        "Game": "SKYRIM",
+        "Meta": "4110999-3.manifest",
+        "Files": [
+            "ccbgssse064-ba_elven.bsa",
+            "ccbgssse064-ba_elven.esl"
+        ]
+    },
+    "4110993": {
+        "Name": "Alternative Armors - Daedric Mail",
+        "Game": "SKYRIM",
+        "Meta": "4110993-3.manifest",
+        "Files": [
+            "ccbgssse051-ba_daedricmail.bsa",
+            "ccbgssse051-ba_daedricmail.esl"
+        ]
+    },
+    "4110989": {
+        "Name": "Alternative Armors - Dwarven Mail",
+        "Game": "SKYRIM",
+        "Meta": "4110989-3.manifest",
+        "Files": [
+            "ccbgssse062-ba_dwarvenmail.bsa",
+            "ccbgssse062-ba_dwarvenmail.esl"
+        ]
+    },
+    "4110986": {
+        "Name": "Alternative Armors - Stalhrim Fur",
+        "Game": "SKYRIM",
+        "Meta": "4110986-3.manifest",
+        "Files": [
+            "ccbgssse057-ba_stalhrim.bsa",
+            "ccbgssse057-ba_stalhrim.esl"
+        ]
+    },
+    "4110983": {
+        "Name": "Expanded Crossbow Pack",
+        "Game": "SKYRIM",
+        "Meta": "4110983-2.manifest",
+        "Files": [
+            "ccffbsse002-crossbowpack.bsa",
+            "ccffbsse002-crossbowpack.esl"
+        ]
+    },
+    "4110980": {
+        "Name": "Dawnfang & Duskfang",
+        "Game": "SKYRIM",
+        "Meta": "4110980-6.manifest",
+        "Files": [
+            "ccbgssse013-dawnfang.bsa",
+            "ccbgssse013-dawnfang.esl"
+        ]
+    },
+    "4110977": {
+        "Name": "Netch Leather Armor",
+        "Game": "SKYRIM",
+        "Meta": "4110977-3.manifest",
+        "Files": [
+            "ccbgssse041-netchleather.bsa",
+            "ccbgssse041-netchleather.esl"
+        ]
+    },
+    "4110967": {
+        "Name": "Quake Thunderbolt",
+        "Game": "FALLOUT4",
+        "Meta": "4110967-1.manifest",
+        "Files": [
+            "ccbgsfo4047-qthund - main.ba2",
+            "ccbgsfo4047-qthund - textures.ba2",
+            "ccbgsfo4047-qthund.esl"
+        ]
+    },
+    "4110963": {
+        "Name": "Manwell Rifle Set",
+        "Game": "FALLOUT4",
+        "Meta": "4110963-2.manifest",
+        "Files": [
+            "ccsbjfo4002_manwellrifle - main.ba2",
+            "ccsbjfo4002_manwellrifle - textures.ba2",
+            "ccsbjfo4002_manwellrifle.esl"
+        ]
+    },
+    "4110959": {
+        "Name": "Neon Flats",
+        "Game": "FALLOUT4",
+        "Meta": "4110959-2.manifest",
+        "Files": [
+            "cctosfo4002_neonflats - main.ba2",
+            "cctosfo4002_neonflats - textures.ba2",
+            "cctosfo4002_neonflats.esm"
+        ]
+    },
+    "4099673": {
+        "Name": "Heavy Incinerator",
+        "Game": "FALLOUT4",
+        "Meta": "4099673-1.manifest",
+        "Files": [
+            "ccbgsfo4116-heavyflamer - main.ba2",
+            "ccbgsfo4116-heavyflamer - textures.ba2",
+            "ccbgsfo4116-heavyflamer.esl"
+        ]
+    },
+    "4098882": {
+        "Name": "Umbra",
+        "Game": "SKYRIM",
+        "Meta": "4098882-2.manifest",
+        "Files": [
+            "ccbgssse016-umbra.bsa",
+            "ccbgssse016-umbra.esm"
+        ]
+    },
+    "4098885": {
+        "Name": "Spell Knight Armor",
+        "Game": "SKYRIM",
+        "Meta": "4098885-3.manifest",
+        "Files": [
+            "ccedhsse002-splkntset.bsa",
+            "ccedhsse002-splkntset.esl"
+        ]
+    },
+    "4098879": {
+        "Name": "Arms of Chaos",
+        "Game": "SKYRIM",
+        "Meta": "4098879-2.manifest",
+        "Files": [
+            "ccpewsse002-armsofchaos.bsa",
+            "ccpewsse002-armsofchaos.esl"
+        ]
+    },
+    "4098870": {
+        "Name": "Shadowfoot Sanctum",
+        "Game": "SKYRIM",
+        "Meta": "4098870-3.manifest",
+        "Files": [
+            "cceejsse003-hollow.bsa",
+            "cceejsse003-hollow.esl"
+        ]
+    },
+    "4098906": {
+        "Name": "Shroud Manor",
+        "Game": "FALLOUT4",
+        "Meta": "4098906-2.manifest",
+        "Files": [
+            "cczsefo4002-smanor - main.ba2",
+            "cczsefo4002-smanor - textures.ba2",
+            "cczsefo4002-smanor.esm"
+        ]
+    },
+    "4098901": {
+        "Name": "Pip-Boy Paint Job- Adventure",
+        "Game": "FALLOUT4",
+        "Meta": "4098901-1.manifest",
+        "Files": [
+            "ccbgsfo4086-pipadventure - main.ba2",
+            "ccbgsfo4086-pipadventure - textures.ba2",
+            "ccbgsfo4086-pipadventure.esl"
+        ]
+    },
+    "4088138": {
+        "Name": "Pint-Sized Slasher",
+        "Game": "FALLOUT4",
+        "Meta": "4088138-2.manifest",
+        "Files": [
+            "ccbgsfo4035-pint - main.ba2",
+            "ccbgsfo4035-pint - textures.ba2",
+            "ccbgsfo4035-pint.esl"
+        ]
+    },
+    "4087368": {
+        "Name": "Weapon Paint Job - Pickman",
+        "Game": "FALLOUT4",
+        "Meta": "4087368-1.manifest",
+        "Files": [
+            "ccbgsfo4112-ws_pickman - main.ba2",
+            "ccbgsfo4112-ws_pickman - textures.ba2",
+            "ccbgsfo4112-ws_pickman.esl"
+        ]
+    },
+    "4087365": {
+        "Name": "Weapon Paint Job - Reilly's Rangers",
+        "Game": "FALLOUT4",
+        "Meta": "4087365-1.manifest",
+        "Files": [
+            "ccbgsfo4113-ws_reillysrangers - main.ba2",
+            "ccbgsfo4113-ws_reillysrangers - textures.ba2",
+            "ccbgsfo4113-ws_reillysrangers.esl"
+        ]
+    },
+    "4087471": {
+        "Name": "Pip-Boy Paint Job - Neon Sunrise",
+        "Game": "FALLOUT4",
+        "Meta": "4087471-1.manifest",
+        "Files": [
+            "ccbgsfo4089-pipsynthwave - main.ba2",
+            "ccbgsfo4089-pipsynthwave - textures.ba2",
+            "ccbgsfo4089-pipsynthwave.esl"
+        ]
+    },
+    "4087399": {
+        "Name": "Pip-Boy Paint Job - Hawaii",
+        "Game": "FALLOUT4",
+        "Meta": "4087399-1.manifest",
+        "Files": [
+            "ccbgsfo4085-piphawaii - main.ba2",
+            "ccbgsfo4085-piphawaii - textures.ba2",
+            "ccbgsfo4085-piphawaii.esl"
+        ]
+    },
+    "4087396": {
+        "Name": "Pip-Boy Paint Job - Haida",
+        "Game": "FALLOUT4",
+        "Meta": "4087396-1.manifest",
+        "Files": [
+            "ccbgsfo4087-piphaida - main.ba2",
+            "ccbgsfo4087-piphaida - textures.ba2",
+            "ccbgsfo4087-piphaida.esl"
+        ]
+    },
+    "4087393": {
+        "Name": "Pip-Boy Paint Job - Tribal",
+        "Game": "FALLOUT4",
+        "Meta": "4087393-1.manifest",
+        "Files": [
+            "ccbgsfo4090-piptribal - main.ba2",
+            "ccbgsfo4090-piptribal - textures.ba2",
+            "ccbgsfo4090-piptribal.esl"
+        ]
+    },
+    "4087408": {
+        "Name": "Pip-Boy Paint Job - Five-Star Red",
+        "Game": "FALLOUT4",
+        "Meta": "4087408-1.manifest",
+        "Files": [
+            "ccbgsfo4082-pipprc - main.ba2",
+            "ccbgsfo4082-pipprc - textures.ba2",
+            "ccbgsfo4082-pipprc.esl"
+        ]
+    },
+    "4087405": {
+        "Name": "Pip-Boy Paint Job - Art Deco",
+        "Game": "FALLOUT4",
+        "Meta": "4087405-2.manifest",
+        "Files": [
+            "ccbgsfo4083-pipartdeco - main.ba2",
+            "ccbgsfo4083-pipartdeco - textures.ba2",
+            "ccbgsfo4083-pipartdeco.esl"
+        ]
+    },
+    "4087402": {
+        "Name": "Pip-Boy Paint Job - Corvega",
+        "Game": "FALLOUT4",
+        "Meta": "4087402-1.manifest",
+        "Files": [
+            "ccbgsfo4084-pipretro - main.ba2",
+            "ccbgsfo4084-pipretro - textures.ba2",
+            "ccbgsfo4084-pipretro.esl"
+        ]
+    },
+    "4087414": {
+        "Name": "Pip-Boy Paint Job - Pop",
+        "Game": "FALLOUT4",
+        "Meta": "4087414-1.manifest",
+        "Files": [
+            "ccbgsfo4080-pippop - main.ba2",
+            "ccbgsfo4080-pippop - textures.ba2",
+            "ccbgsfo4080-pippop.esl"
+        ]
+    },
+    "4087411": {
+        "Name": "Pip-Boy Paint Job - Phenol Resin",
+        "Game": "FALLOUT4",
+        "Meta": "4087411-1.manifest",
+        "Files": [
+            "ccbgsfo4081-pipphenolresin - main.ba2",
+            "ccbgsfo4081-pipphenolresin - textures.ba2",
+            "ccbgsfo4081-pipphenolresin.esl"
+        ]
+    },
+    "4087390": {
+        "Name": "Armor Paint Job - Children of Atom",
+        "Game": "FALLOUT4",
+        "Meta": "4087390-1.manifest",
+        "Files": [
+            "ccbgsfo4095-as_childrenofatom - main.ba2",
+            "ccbgsfo4095-as_childrenofatom - textures.ba2",
+            "ccbgsfo4095-as_childrenofatom.esl"
+        ]
+    },
+    "4087362": {
+        "Name": "Weapon Paint Job - Tunnel Snakes",
+        "Game": "FALLOUT4",
+        "Meta": "4087362-1.manifest",
+        "Files": [
+            "ccbgsfo4118-ws_tunnelsnakes - main.ba2",
+            "ccbgsfo4118-ws_tunnelsnakes - textures.ba2",
+            "ccbgsfo4118-ws_tunnelsnakes.esl"
+        ]
+    },
+    "4087375": {
+        "Name": "Weapon Paint Job - Children of Atom",
+        "Game": "FALLOUT4",
+        "Meta": "4087375-1.manifest",
+        "Files": [
+            "ccbgsfo4108-ws_childrenofatom - main.ba2",
+            "ccbgsfo4108-ws_childrenofatom - textures.ba2",
+            "ccbgsfo4108-ws_childrenofatom.esl"
+        ]
+    },
+    "4087378": {
+        "Name": "Armor Paint Job - Tunnel Snakes",
+        "Game": "FALLOUT4",
+        "Meta": "4087378-1.manifest",
+        "Files": [
+            "ccbgsfo4103-as_tunnelsnakes - main.ba2",
+            "ccbgsfo4103-as_tunnelsnakes - textures.ba2",
+            "ccbgsfo4103-as_tunnelsnakes.esl"
+        ]
+    },
+    "4087381": {
+        "Name": "Armor Paint Job - Reilly's Rangers",
+        "Game": "FALLOUT4",
+        "Meta": "4087381-1.manifest",
+        "Files": [
+            "ccbgsfo4099-as_reillysrangers - main.ba2",
+            "ccbgsfo4099-as_reillysrangers - textures.ba2",
+            "ccbgsfo4099-as_reillysrangers.esl"
+        ]
+    },
+    "4087384": {
+        "Name": "Armor Paint Job - Pickman",
+        "Game": "FALLOUT4",
+        "Meta": "4087384-1.manifest",
+        "Files": [
+            "ccbgsfo4098-as_pickman - main.ba2",
+            "ccbgsfo4098-as_pickman - textures.ba2",
+            "ccbgsfo4098-as_pickman.esl"
+        ]
+    },
+    "4087371": {
+        "Name": "Weapon Paint Job - Enclave",
+        "Game": "FALLOUT4",
+        "Meta": "4087371-1.manifest",
+        "Files": [
+            "ccbgsfo4110-ws_enclave - main.ba2",
+            "ccbgsfo4110-ws_enclave - textures.ba2",
+            "ccbgsfo4110-ws_enclave.esl"
+        ]
+    },
+    "4087387": {
+        "Name": "Armor Paint Job - Enclave",
+        "Game": "FALLOUT4",
+        "Meta": "4087387-2.manifest",
+        "Files": [
+            "ccbgsfo4096-as_enclave - main.ba2",
+            "ccbgsfo4096-as_enclave - textures.ba2",
+            "ccbgsfo4096-as_enclave.esl"
+        ]
+    },
+    "4088142": {
+        "Name": "Zetan Arsenal",
+        "Game": "FALLOUT4",
+        "Meta": "4088142-1.manifest",
+        "Files": [
+            "ccrzrfo4002-disintegrate - main.ba2",
+            "ccrzrfo4002-disintegrate - textures.ba2",
+            "ccrzrfo4002-disintegrate.esl"
+        ]
+    },
+    "4088146": {
+        "Name": "Holiday Workshop Pack",
+        "Game": "FALLOUT4",
+        "Meta": "4088146-2.manifest",
+        "Files": [
+            "ccjvdfo4001-holiday - main.ba2",
+            "ccjvdfo4001-holiday - textures.ba2",
+            "ccjvdfo4001-holiday.esl"
+        ]
+    },
+    "4087499": {
+        "Name": "Elite Crossbows",
+        "Game": "SKYRIM",
+        "Meta": "4087499-2.manifest",
+        "Files": [
+            "ccbgssse043-crosselv.bsa",
+            "ccbgssse043-crosselv.esl"
+        ]
+    },
+    "4087487": {
+        "Name": "Forgotten Seasons",
+        "Game": "SKYRIM",
+        "Meta": "4087487-5.manifest",
+        "Files": [
+            "cctwbsse001-puzzledungeon.bsa",
+            "cctwbsse001-puzzledungeon.esm"
+        ]
+    },
+    "4087493": {
+        "Name": "Vigil Enforcer Armor Set",
+        "Game": "SKYRIM",
+        "Meta": "4087493-4.manifest",
+        "Files": [
+            "ccmtysse002-ve.bsa",
+            "ccmtysse002-ve.esl"
+        ]
+    },
+    "4087490": {
+        "Name": "Saturalia Holiday Pack",
+        "Game": "SKYRIM",
+        "Meta": "4087490-3.manifest",
+        "Files": [
+            "ccvsvsse001-winter.bsa",
+            "ccvsvsse001-winter.esl"
+        ]
+    },
+    "4087502": {
+        "Name": "Sunder & Wraithguard",
+        "Game": "SKYRIM",
+        "Meta": "4087502-3.manifest",
+        "Files": [
+            "ccbgssse008-wraithguard.bsa",
+            "ccbgssse008-wraithguard.esl"
+        ]
+    },
+    "4087496": {
+        "Name": "Civil War Champions",
+        "Game": "SKYRIM",
+        "Meta": "4087496-4.manifest",
+        "Files": [
+            "ccffbsse001-imperialdragon.bsa",
+            "ccffbsse001-imperialdragon.esl"
+        ]
+    },
+    "4078130": {
+        "Name": "Wild Horses",
+        "Game": "SKYRIM",
+        "Meta": "4078130-3.manifest",
+        "Files": [
+            "ccbgssse034-mntuni.bsa",
+            "ccbgssse034-mntuni.esl"
+        ]
+    },
+    "4081276": {
+        "Name": "Staff of Hasedoki",
+        "Game": "SKYRIM",
+        "Meta": "4081276-6.manifest",
+        "Files": [
+            "ccbgssse045-hasedoki.bsa",
+            "ccbgssse045-hasedoki.esl"
+        ]
+    },
+    "4081273": {
+        "Name": "Bone Wolf",
+        "Game": "SKYRIM",
+        "Meta": "4081273-6.manifest",
+        "Files": [
+            "ccbgssse036-petbwolf.bsa",
+            "ccbgssse036-petbwolf.esl"
+        ]
+    },
+    "4081299": {
+        "Name": "Weapon Paint Job - Desert Camo",
+        "Game": "FALLOUT4",
+        "Meta": "4081299-2.manifest",
+        "Files": [
+            "ccbgsfo4107-ws_camotan - main.ba2",
+            "ccbgsfo4107-ws_camotan - textures.ba2",
+            "ccbgsfo4107-ws_camotan.esl"
+        ]
+    },
+    "4081302": {
+        "Name": "Weapon Paint Job - Swamp Camo",
+        "Game": "FALLOUT4",
+        "Meta": "4081302-4.manifest",
+        "Files": [
+            "ccbgsfo4106-ws_camogreen - main.ba2",
+            "ccbgsfo4106-ws_camogreen - textures.ba2",
+            "ccbgsfo4106-ws_camogreen.esl"
+        ]
+    },
+    "4081305": {
+        "Name": "Weapon Paint Job - Aquatic Camo",
+        "Game": "FALLOUT4",
+        "Meta": "4081305-5.manifest",
+        "Files": [
+            "ccbgsfo4105-ws_camoblue - main.ba2",
+            "ccbgsfo4105-ws_camoblue - textures.ba2",
+            "ccbgsfo4105-ws_camoblue.esl"
+        ]
+    },
+    "4081308": {
+        "Name": "Weapon Paint Job - Bats",
+        "Game": "FALLOUT4",
+        "Meta": "4081308-2.manifest",
+        "Files": [
+            "ccbgsfo4104-ws_bats - main.ba2",
+            "ccbgsfo4104-ws_bats - textures.ba2",
+            "ccbgsfo4104-ws_bats.esl"
+        ]
+    },
+    "4081312": {
+        "Name": "Weapon Paint Job - Jack O'Lantern",
+        "Game": "FALLOUT4",
+        "Meta": "4081312-2.manifest",
+        "Files": [
+            "ccbgsfo4111-ws_jack-olantern - main.ba2",
+            "ccbgsfo4111-ws_jack-olantern - textures.ba2",
+            "ccbgsfo4111-ws_jack-olantern.esl"
+        ]
+    },
+    "4081316": {
+        "Name": "Weapon Paint Job - Shi",
+        "Game": "FALLOUT4",
+        "Files": [
+            "ccbgsfo4114-ws_shi.esl",
+            "ccbgsfo4114-ws_shi - main.ba2",
+            "ccbgsfo4114-ws_shi - textures.ba2"
+        ],
+        "Meta": "4081316-1.manifest"
+    },
+    "4081319": {
+        "Name": "Armor Paint Job - Desert Camo",
+        "Game": "FALLOUT4",
+        "Meta": "4081319-1.manifest",
+        "Files": [
+            "ccbgsfo4094-as_camotan - main.ba2",
+            "ccbgsfo4094-as_camotan - textures.ba2",
+            "ccbgsfo4094-as_camotan.esl"
+        ]
+    },
+    "4081323": {
+        "Name": "Armor Paint Job - Swamp Camo",
+        "Game": "FALLOUT4",
+        "Meta": "4081323-1.manifest",
+        "Files": [
+            "ccbgsfo4093-as_camogreen - main.ba2",
+            "ccbgsfo4093-as_camogreen - textures.ba2",
+            "ccbgsfo4093-as_camogreen.esl"
+        ]
+    },
+    "4081326": {
+        "Name": "Armor Paint Job - Aquatic Camo",
+        "Game": "FALLOUT4",
+        "Meta": "4081326-1.manifest",
+        "Files": [
+            "ccbgsfo4092-as_camoblue - main.ba2",
+            "ccbgsfo4092-as_camoblue - textures.ba2",
+            "ccbgsfo4092-as_camoblue.esl"
+        ]
+    },
+    "4081330": {
+        "Name": "Armor Paint Job - Bats",
+        "Game": "FALLOUT4",
+        "Meta": "4081330-1.manifest",
+        "Files": [
+            "ccbgsfo4091-as_bats - main.ba2",
+            "ccbgsfo4091-as_bats - textures.ba2",
+            "ccbgsfo4091-as_bats.esl"
+        ]
+    },
+    "4081333": {
+        "Name": "Armor Paint Job - Jack O'Lantern",
+        "Game": "FALLOUT4",
+        "Meta": "4081333-1.manifest",
+        "Files": [
+            "ccbgsfo4097-as_jack-olantern - main.ba2",
+            "ccbgsfo4097-as_jack-olantern - textures.ba2",
+            "ccbgsfo4097-as_jack-olantern.esl"
+        ]
+    },
+    "4081336": {
+        "Name": "Armor Paint Job - Shi",
+        "Game": "FALLOUT4",
+        "Files": [
+            "ccbgsfo4101-as_shi.esl",
+            "ccbgsfo4101-as_shi - main.ba2",
+            "ccbgsfo4101-as_shi - textures.ba2"
+        ],
+        "Meta": "4081336-1.manifest"
+    },
+    "4081176": {
+        "Name": "X-02 Power Armor",
+        "Game": "FALLOUT4",
+        "Meta": "4081176-2.manifest",
+        "Files": [
+            "ccbgsfo4115-x02 - main.ba2",
+            "ccbgsfo4115-x02 - textures.ba2",
+            "ccbgsfo4115-x02.esl"
+        ]
+    },
+    "4078134": {
+        "Name": "Nordic Jewelry",
+        "Game": "SKYRIM",
+        "Meta": "4078134-2.manifest",
+        "Files": [
+            "ccedhsse001-norjewel.bsa",
+            "ccedhsse001-norjewel.esl"
+        ]
+    },
+    "4078138": {
+        "Name": "Myrwatch",
+        "Game": "SKYRIM",
+        "Meta": "4078138-3.manifest",
+        "Files": [
+            "cceejsse002-tower.bsa",
+            "cceejsse002-tower.esl"
+        ]
+    },
+    "4078141": {
+        "Name": "Rare Curios",
+        "Game": "SKYRIM",
+        "Files": [
+            "ccBGSSSE037-Curios.bsa",
+            "ccBGSSSE037-Curios.esl"
+        ]
+    },
+    "4078144": {
+        "Name": "Pets of Skyrim",
+        "Game": "SKYRIM",
+        "Meta": "4078144-3.manifest",
+        "Files": [
+            "ccvsvsse002-pets.bsa",
+            "ccvsvsse002-pets.esl"
+        ]
+    },
+    "4078127": {
+        "Name": "Fantasy Hero Set",
+        "Game": "FALLOUT4",
+        "Meta": "4078127-1.manifest",
+        "Files": [
+            "ccbgsfo4048-dovah - main.ba2",
+            "ccbgsfo4048-dovah - textures.ba2",
+            "ccbgsfo4048-dovah.esl"
+        ]
+    },
+    "4078124": {
+        "Name": "Settlement Ambush Kit",
+        "Game": "FALLOUT4",
+        "Meta": "4078124-4.manifest",
+        "Files": [
+            "cckgjfo4001-bastion - main.ba2",
+            "cckgjfo4001-bastion - textures.ba2",
+            "cckgjfo4001-bastion.esl"
+        ]
+    },
+    "4073447": {
+        "Name": "Noir Penthouse",
+        "Game": "FALLOUT4",
+        "Meta": "4073447-4.manifest",
+        "Files": [
+            "cctosfo4001-neosky - main.ba2",
+            "cctosfo4001-neosky - textures.ba2",
+            "cctosfo4001-neosky.esm"
+        ]
+    },
+    "4073450": {
+        "Name": "Sentinel Control System Companion",
+        "Game": "FALLOUT4",
+        "Meta": "4073450-1.manifest",
+        "Files": [
+            "ccqdrfo4001_powerarmorai - main.ba2",
+            "ccqdrfo4001_powerarmorai - textures.ba2",
+            "ccqdrfo4001_powerarmorai.esl"
+        ]
+    },
+    "4073329": {
+        "Name": "Pip-Boy Paint Job - Vim! Refresh",
+        "Game": "FALLOUT4",
+        "Meta": "4073329-1.manifest",
+        "Files": [
+            "ccgrcfo4002-pipgreenvim - main.ba2",
+            "ccgrcfo4002-pipgreenvim - textures.ba2",
+            "ccgrcfo4002-pipgreenvim.esl"
+        ]
+    },
+    "4073326": {
+        "Name": "Pip-Boy Paint Job - Grey Tortoise",
+        "Game": "FALLOUT4",
+        "Meta": "4073326-1.manifest",
+        "Files": [
+            "ccgrcfo4001-pipgreytort - main.ba2",
+            "ccgrcfo4001-pipgreytort - textures.ba2",
+            "ccgrcfo4001-pipgreytort.esl"
+        ]
+    },
+    "4063952": {
+        "Name": "Pip-Boy Paint Job - Abraxo",
+        "Game": "FALLOUT4",
+        "Meta": "4063952-1.manifest",
+        "Files": [
+            "ccbgsfo4070-pipabra - main.ba2",
+            "ccbgsfo4070-pipabra - textures.ba2",
+            "ccbgsfo4070-pipabra.esl"
+        ]
+    },
+    "4063974": {
+        "Name": "Pip-Boy Paint Job - ArcJet",
+        "Game": "FALLOUT4",
+        "Meta": "4063974-1.manifest",
+        "Files": [
+            "ccbgsfo4071-piparc - main.ba2",
+            "ccbgsfo4071-piparc - textures.ba2",
+            "ccbgsfo4071-piparc.esl"
+        ]
+    },
+    "4063783": {
+        "Name": "Pip-Boy Paint Job - Red Rocket",
+        "Game": "FALLOUT4",
+        "Meta": "4063783-3.manifest",
+        "Files": [
+            "ccbgsfo4077-piprocket - main.ba2",
+            "ccbgsfo4077-piprocket - textures.ba2",
+            "ccbgsfo4077-piprocket.esl"
+        ]
+    },
+    "4063963": {
+        "Name": "Pip-Boy Paint Job - Vim!",
+        "Game": "FALLOUT4",
+        "Meta": "4063963-1.manifest",
+        "Files": [
+            "ccbgsfo4079-pipvim - main.ba2",
+            "ccbgsfo4079-pipvim - textures.ba2",
+            "ccbgsfo4079-pipvim.esl"
+        ]
+    },
+    "4071494": {
+        "Name": "Power Armor Paint Job - Patriotic",
+        "Game": "FALLOUT4",
+        "Meta": "4071494-1.manifest",
+        "Files": [
+            "ccbgsfo4063-papat - main.ba2",
+            "ccbgsfo4063-papat - textures.ba2",
+            "ccbgsfo4063-papat.esl"
+        ]
+    },
+    "4071491": {
+        "Name": "Pip-Boy Paint Job - Patriotic",
+        "Game": "FALLOUT4",
+        "Meta": "4071491-1.manifest",
+        "Files": [
+            "ccbgsfo4062-pippat - main.ba2",
+            "ccbgsfo4062-pippat - textures.ba2",
+            "ccbgsfo4062-pippat.esl"
+        ]
+    },
+    "4063786": {
+        "Name": "Pip-Boy Paint Job - Cruiser",
+        "Game": "FALLOUT4",
+        "Meta": "4063786-1.manifest",
+        "Files": [
+            "ccygpfo4001-pipcruiser - main.ba2",
+            "ccygpfo4001-pipcruiser - textures.ba2",
+            "ccygpfo4001-pipcruiser.esl"
+        ]
+    },
+    "4069903": {
+        "Name": "Pip-Boy Paint Job - Blue",
+        "Game": "FALLOUT4",
+        "Meta": "4069903-1.manifest",
+        "Files": [
+            "ccbgsfo4002-pipboy(blue) - main.ba2",
+            "ccbgsfo4002-pipboy(blue) - textures.ba2",
+            "ccbgsfo4002-pipboy(blue).esl"
+        ]
+    },
+    "4069906": {
+        "Name": "Pip-Boy Paint Job - Green",
+        "Game": "FALLOUT4",
+        "Meta": "4069906-2.manifest",
+        "Files": [
+            "ccbgsfo4008-pipgrn - main.ba2",
+            "ccbgsfo4008-pipgrn - textures.ba2",
+            "ccbgsfo4008-pipgrn.esl"
+        ]
+    },
+    "4069909": {
+        "Name": "Pip-Boy Paint Job - Orange",
+        "Game": "FALLOUT4",
+        "Meta": "4069909-2.manifest",
+        "Files": [
+            "ccbgsfo4009-piporan - main.ba2",
+            "ccbgsfo4009-piporan - textures.ba2",
+            "ccbgsfo4009-piporan.esl"
+        ]
+    },
+    "4069912": {
+        "Name": "Pip-Boy Paint Job - Pink",
+        "Game": "FALLOUT4",
+        "Meta": "4069912-1.manifest",
+        "Files": [
+            "ccbgsfo4010-pippnk - main.ba2",
+            "ccbgsfo4010-pippnk - textures.ba2",
+            "ccbgsfo4010-pippnk.esl"
+        ]
+    },
+    "4069915": {
+        "Name": "Pip-Boy Paint Job - Purple",
+        "Game": "FALLOUT4",
+        "Meta": "4069915-2.manifest",
+        "Files": [
+            "ccbgsfo4011-pippurp - main.ba2",
+            "ccbgsfo4011-pippurp - textures.ba2",
+            "ccbgsfo4011-pippurp.esl"
+        ]
+    },
+    "4069918": {
+        "Name": "Pip-Boy Paint Job - Red",
+        "Game": "FALLOUT4",
+        "Meta": "4069918-1.manifest",
+        "Files": [
+            "ccbgsfo4012-pipboy(red) - main.ba2",
+            "ccbgsfo4012-pipboy(red) - textures.ba2",
+            "ccbgsfo4012-pipboy(red).esl"
+        ]
+    },
+    "4069921": {
+        "Name": "Pip-Boy Paint Job - Tan",
+        "Game": "FALLOUT4",
+        "Meta": "4069921-1.manifest",
+        "Files": [
+            "ccbgsfo4013-piptan - main.ba2",
+            "ccbgsfo4013-piptan - textures.ba2",
+            "ccbgsfo4013-piptan.esl"
+        ]
+    },
+    "4069924": {
+        "Name": "Pip-Boy Paint Job - Yellow",
+        "Game": "FALLOUT4",
+        "Meta": "4069924-2.manifest",
+        "Files": [
+            "ccbgsfo4015-pipyell - main.ba2",
+            "ccbgsfo4015-pipyell - textures.ba2",
+            "ccbgsfo4015-pipyell.esl"
+        ]
+    },
+    "4069927": {
+        "Name": "Power Armor Paint Job - Blue",
+        "Game": "FALLOUT4",
+        "Meta": "4069927-1.manifest",
+        "Files": [
+            "ccbgsfo4021-powerarmorskinblue - main.ba2",
+            "ccbgsfo4021-powerarmorskinblue - textures.ba2",
+            "ccbgsfo4021-powerarmorskinblue.esl"
+        ]
+    },
+    "4069930": {
+        "Name": "Power Armor Paint Job - Green",
+        "Game": "FALLOUT4",
+        "Meta": "4069930-1.manifest",
+        "Files": [
+            "ccbgsfo4027-powerarmorskingreen - main.ba2",
+            "ccbgsfo4027-powerarmorskingreen - textures.ba2",
+            "ccbgsfo4027-powerarmorskingreen.esl"
+        ]
+    },
+    "4069933": {
+        "Name": "Power Armor Paint Job - Orange",
+        "Game": "FALLOUT4",
+        "Meta": "4069933-1.manifest",
+        "Files": [
+            "ccbgsfo4028-powerarmorskinorange - main.ba2",
+            "ccbgsfo4028-powerarmorskinorange - textures.ba2",
+            "ccbgsfo4028-powerarmorskinorange.esl"
+        ]
+    },
+    "4069936": {
+        "Name": "Power Armor Paint Job - Pink",
+        "Game": "FALLOUT4",
+        "Meta": "4069936-1.manifest",
+        "Files": [
+            "ccbgsfo4029-powerarmorskinpink - main.ba2",
+            "ccbgsfo4029-powerarmorskinpink - textures.ba2",
+            "ccbgsfo4029-powerarmorskinpink.esl"
+        ]
+    },
+    "4069939": {
+        "Name": "Power Armor Paint Job - Purple",
+        "Game": "FALLOUT4",
+        "Meta": "4069939-1.manifest",
+        "Files": [
+            "ccbgsfo4030-powerarmorskinpurple - main.ba2",
+            "ccbgsfo4030-powerarmorskinpurple - textures.ba2",
+            "ccbgsfo4030-powerarmorskinpurple.esl"
+        ]
+    },
+    "4069942": {
+        "Name": "Power Armor Paint Job - Red",
+        "Game": "FALLOUT4",
+        "Meta": "4069942-1.manifest",
+        "Files": [
+            "ccbgsfo4031-powerarmorskinred - main.ba2",
+            "ccbgsfo4031-powerarmorskinred - textures.ba2",
+            "ccbgsfo4031-powerarmorskinred.esl"
+        ]
+    },
+    "4069946": {
+        "Name": "Power Armor Paint Job - Tan",
+        "Game": "FALLOUT4",
+        "Meta": "4069946-1.manifest",
+        "Files": [
+            "ccbgsfo4032-powerarmorskintan - main.ba2",
+            "ccbgsfo4032-powerarmorskintan - textures.ba2",
+            "ccbgsfo4032-powerarmorskintan.esl"
+        ]
+    },
+    "4069949": {
+        "Name": "Power Armor Paint Job - Yellow",
+        "Game": "FALLOUT4",
+        "Meta": "4069949-1.manifest",
+        "Files": [
+            "ccbgsfo4034-powerarmorskinyellow - main.ba2",
+            "ccbgsfo4034-powerarmorskinyellow - textures.ba2",
+            "ccbgsfo4034-powerarmorskinyellow.esl"
+        ]
+    },
+    "4070074": {
+        "Name": "Charlestown Condo",
+        "Game": "FALLOUT4",
+        "Meta": "4070074-1.manifest",
+        "Files": [
+            "cczsef04001-bhouse - main.ba2",
+            "cczsef04001-bhouse - textures.ba2",
+            "cczsef04001-bhouse.esm"
+        ]
+    },
+    "4070077": {
+        "Name": "Solar Cannon",
+        "Game": "FALLOUT4",
+        "Meta": "4070077-1.manifest",
+        "Files": [
+            "ccsbjfo4001-solarflare - main.ba2",
+            "ccsbjfo4001-solarflare - textures.ba2",
+            "ccsbjfo4001-solarflare.esl"
+        ]
+    },
+    "4063959": {
+        "Name": "Pip-Boy Paint Job - Reilly's Rangers",
+        "Game": "FALLOUT4",
+        "Meta": "4063959-1.manifest",
+        "Files": [
+            "ccbgsfo4078-pipreily - main.ba2",
+            "ccbgsfo4078-pipreily - textures.ba2",
+            "ccbgsfo4078-pipreily.esl"
+        ]
+    },
+    "4051108": {
+        "Name": "Armor Paint Job - Nuka Cherry",
+        "Game": "FALLOUT4",
+        "Meta": "4051108-4.manifest",
+        "Files": [
+            "ccgcafo4019-factionas08nuk - main.ba2",
+            "ccgcafo4019-factionas08nuk - textures.ba2",
+            "ccgcafo4019-factionas08nuk.esl"
+        ]
+    },
+    "4063955": {
+        "Name": "Pip-Boy Paint Job - Silver Shroud",
+        "Game": "FALLOUT4",
+        "Meta": "4063955-2.manifest",
+        "Files": [
+            "ccbgsfo4075-pipshroud - main.ba2",
+            "ccbgsfo4075-pipshroud - textures.ba2",
+            "ccbgsfo4075-pipshroud.esl"
+        ]
+    },
+    "4063771": {
+        "Name": "Pip-Boy Paint Job - Grognak",
+        "Game": "FALLOUT4",
+        "Meta": "4063771-1.manifest",
+        "Files": [
+            "ccbgsfo4072-pipgrog - main.ba2",
+            "ccbgsfo4072-pipgrog - textures.ba2",
+            "ccbgsfo4072-pipgrog.esl"
+        ]
+    },
+    "4063777": {
+        "Name": "Pip-Boy Paint Job - Mistress of Mystery",
+        "Game": "FALLOUT4",
+        "Meta": "4063777-2.manifest",
+        "Files": [
+            "ccbgsfo4076-pipmystery - main.ba2",
+            "ccbgsfo4076-pipmystery - textures.ba2",
+            "ccbgsfo4076-pipmystery.esl"
+        ]
+    },
+    "4063780": {
+        "Name": "Pip-Boy Paint Job - The Inspector",
+        "Game": "FALLOUT4",
+        "Meta": "4063780-1.manifest",
+        "Files": [
+            "ccbgsfo4074-pipinspect - main.ba2",
+            "ccbgsfo4074-pipinspect - textures.ba2",
+            "ccbgsfo4074-pipinspect.esl"
+        ]
+    },
+    "4063774": {
+        "Name": "Pip-Boy Paint Job - Manta Man",
+        "Game": "FALLOUT4",
+        "Meta": "4063774-2.manifest",
+        "Files": [
+            "ccbgsfo4073-pipmman - main.ba2",
+            "ccbgsfo4073-pipmman - textures.ba2",
+            "ccbgsfo4073-pipmman.esl"
+        ]
+    },
+    "4062776": {
+        "Name": "Nuka-Cola Collector Workshop",
+        "Game": "FALLOUT4",
+        "Meta": "4062776-3.manifest",
+        "Files": [
+            "cceejfo4002-nuka - main.ba2",
+            "cceejfo4002-nuka - textures.ba2",
+            "cceejfo4002-nuka.esl"
+        ]
+    },
+    "4062788": {
+        "Name": "Anti-Materiel Rifle",
+        "Game": "FALLOUT4",
+        "Meta": "4062788-2.manifest",
+        "Files": [
+            "ccfrsfo4002-antimaterielrifle - main.ba2",
+            "ccfrsfo4002-antimaterielrifle - textures.ba2",
+            "ccfrsfo4002-antimaterielrifle.esl"
+        ]
+    },
+    "4062793": {
+        "Name": "Captain Cosmos",
+        "Game": "FALLOUT4",
+        "Meta": "4062793-2.manifest",
+        "Files": [
+            "ccswkfo4001-astronautpowerarmor - main.ba2",
+            "ccswkfo4001-astronautpowerarmor - textures.ba2",
+            "ccswkfo4001-astronautpowerarmor.esm"
+        ]
+    },
+    "4056070": {
+        "Name": "Border Collie",
+        "Game": "FALLOUT4",
+        "Meta": "4056070-1.manifest",
+        "Files": [
+            "ccbgsfo4050-dgbcoll - main.ba2",
+            "ccbgsfo4050-dgbcoll - textures.ba2",
+            "ccbgsfo4050-dgbcoll.esl"
+        ]
+    },
+    "4052944": {
+        "Name": "Husky",
+        "Game": "FALLOUT4",
+        "Meta": "4052944-2.manifest",
+        "Files": [
+            "ccbgsfo4055-dghusk - main.ba2",
+            "ccbgsfo4055-dghusk - textures.ba2",
+            "ccbgsfo4055-dghusk.esl"
+        ]
+    },
+    "4060701": {
+        "Name": "Black Labrador",
+        "Game": "FALLOUT4",
+        "Meta": "4060701-1.manifest",
+        "Files": [
+            "ccbgsfo4056-dglabb - main.ba2",
+            "ccbgsfo4056-dglabb - textures.ba2",
+            "ccbgsfo4056-dglabb.esl"
+        ]
+    },
+    "4060698": {
+        "Name": "Yellow Labrador",
+        "Game": "FALLOUT4",
+        "Meta": "4060698-1.manifest",
+        "Files": [
+            "ccbgsfo4057-dglaby - main.ba2",
+            "ccbgsfo4057-dglaby - textures.ba2",
+            "ccbgsfo4057-dglaby.esl"
+        ]
+    },
+    "4060692": {
+        "Name": "Chocolate Labrador",
+        "Game": "FALLOUT4",
+        "Meta": "4060692-1.manifest",
+        "Files": [
+            "ccbgsfo4058-dglabc - main.ba2",
+            "ccbgsfo4058-dglabc - textures.ba2",
+            "ccbgsfo4058-dglabc.esl"
+        ]
+    },
+    "4059054": {
+        "Name": "Tundra Homestead",
+        "Game": "SKYRIM",
+        "Meta": "4059054-2.manifest",
+        "Files": [
+            "cceejsse001-hstead.bsa",
+            "cceejsse001-hstead.esm"
+        ]
+    },
+    "4059051": {
+        "Name": "Nix-Hound",
+        "Game": "SKYRIM",
+        "Meta": "4059051-2.manifest",
+        "Files": [
+            "ccbgssse035-petnhound.bsa",
+            "ccbgssse035-petnhound.esl"
+        ]
+    },
+    "4059064": {
+        "Name": "Shadowrend",
+        "Game": "SKYRIM",
+        "Meta": "4059064-3.manifest",
+        "Files": [
+            "ccbgssse018-shadowrend.bsa",
+            "ccbgssse018-shadowrend.esl"
+        ]
+    },
+    "4059057": {
+        "Name": "Adventurer's Backpack",
+        "Game": "SKYRIM",
+        "Meta": "4059057-2.manifest",
+        "Files": [
+            "ccfsvsse001-backpacks.bsa",
+            "ccfsvsse001-backpacks.esl"
+        ]
+    },
+    "4059060": {
+        "Name": "Camping",
+        "Game": "SKYRIM",
+        "Meta": "4059060-2.manifest",
+        "Files": [
+            "ccqdrsse002-firewood.bsa",
+            "ccqdrsse002-firewood.esl"
+        ]
+    },
+    "4058946": {
+        "Name": "Pip-Boy Paint Job - Overseer's Edition",
+        "Game": "FALLOUT4",
+        "Meta": "4058946-1.manifest",
+        "Files": [
+            "ccrzrfo4003-pipover - main.ba2",
+            "ccrzrfo4003-pipover - textures.ba2",
+            "ccrzrfo4003-pipover.esl"
+        ]
+    },
+    "4059068": {
+        "Name": "Shiba Inu",
+        "Game": "FALLOUT4",
+        "Meta": "4059068-1.manifest",
+        "Files": [
+            "ccbgsfo4061-dgshiinu - main.ba2",
+            "ccbgsfo4061-dgshiinu - textures.ba2",
+            "ccbgsfo4061-dgshiinu.esl"
+        ]
+    },
+    "4059071": {
+        "Name": "Rottweiler",
+        "Game": "FALLOUT4",
+        "Meta": "4059071-1.manifest",
+        "Files": [
+            "ccbgsfo4060-dgrot - main.ba2",
+            "ccbgsfo4060-dgrot - textures.ba2",
+            "ccbgsfo4060-dgrot.esl"
+        ]
+    },
+    "4058945": {
+        "Name": "TransDOGrifier",
+        "Game": "FALLOUT4",
+        "Meta": "4058945-2.manifest",
+        "Files": [
+            "ccbgsfo4036-trnsdg - main.ba2",
+            "ccbgsfo4036-trnsdg - textures.ba2",
+            "ccbgsfo4036-trnsdg.esl"
+        ]
+    },
+    "4058952": {
+        "Name": "Pip-Boy Paint Job - The Institute",
+        "Game": "FALLOUT4",
+        "Meta": "4058952-1.manifest",
+        "Files": [
+            "ccrzrfo4004-pipinst - main.ba2",
+            "ccrzrfo4004-pipinst - textures.ba2",
+            "ccrzrfo4004-pipinst.esl"
+        ]
+    },
+    "4059077": {
+        "Name": "Pitbull",
+        "Game": "FALLOUT4",
+        "Meta": "4059077-1.manifest",
+        "Files": [
+            "ccbgsfo4059-dgpit - main.ba2",
+            "ccbgsfo4059-dgpit - textures.ba2",
+            "ccbgsfo4059-dgpit.esl"
+        ]
+    },
+    "4056071": {
+        "Name": "Dalmatian",
+        "Game": "FALLOUT4",
+        "Meta": "4056071-1.manifest",
+        "Files": [
+            "ccbgsfo4052-dgdal - main.ba2",
+            "ccbgsfo4052-dgdal - textures.ba2",
+            "ccbgsfo4052-dgdal.esl"
+        ]
+    },
+    "4058160": {
+        "Name": "Great Dane",
+        "Game": "FALLOUT4",
+        "Meta": "4058160-1.manifest",
+        "Files": [
+            "ccbgsfo4054-dggreatd - main.ba2",
+            "ccbgsfo4054-dggreatd - textures.ba2",
+            "ccbgsfo4054-dggreatd.esl"
+        ]
+    },
+    "4052932": {
+        "Name": "Pip-Boy Paint Job - Nuka-Cola Quantum",
+        "Game": "FALLOUT4",
+        "Meta": "4052932-3.manifest",
+        "Files": [
+            "ccswkfo4003-pipquan - main.ba2",
+            "ccswkfo4003-pipquan - textures.ba2",
+            "ccswkfo4003-pipquan.esl"
+        ]
+    },
+    "4051088": {
+        "Name": "Armor Paint Job - Brotherhood of Steel",
+        "Game": "FALLOUT4",
+        "Meta": "4051088-2.manifest",
+        "Files": [
+            "ccgcafo4013-factionas02bos - main.ba2",
+            "ccgcafo4013-factionas02bos - textures.ba2",
+            "ccgcafo4013-factionas02bos.esl"
+        ]
+    },
+    "4051104": {
+        "Name": "Armor Paint Job - Minutemen",
+        "Game": "FALLOUT4",
+        "Meta": "4051104-2.manifest",
+        "Files": [
+            "ccgcafo4018-factionas07mm - main.ba2",
+            "ccgcafo4018-factionas07mm - textures.ba2",
+            "ccgcafo4018-factionas07mm.esl"
+        ]
+    },
+    "4051101": {
+        "Name": "Armor Paint Job - Institute",
+        "Game": "FALLOUT4",
+        "Meta": "4051101-2.manifest",
+        "Files": [
+            "ccgcafo4017-factionas06inst - main.ba2",
+            "ccgcafo4017-factionas06inst - textures.ba2",
+            "ccgcafo4017-factionas06inst.esl"
+        ]
+    },
+    "4051112": {
+        "Name": "Armor Paint Job - Railroad",
+        "Game": "FALLOUT4",
+        "Meta": "4051112-2.manifest",
+        "Files": [
+            "ccgcafo4020-factionas09rr - main.ba2",
+            "ccgcafo4020-factionas09rr - textures.ba2",
+            "ccgcafo4020-factionas09rr.esl"
+        ]
+    },
+    "4052929": {
+        "Name": "Pip-Boy Paint Job - Nuka-Cola",
+        "Game": "FALLOUT4",
+        "Meta": "4052929-2.manifest",
+        "Files": [
+            "ccswkfo4002-pipnuka - main.ba2",
+            "ccswkfo4002-pipnuka - textures.ba2",
+            "ccswkfo4002-pipnuka.esl"
+        ]
+    },
+    "4052941": {
+        "Name": "Golden Retriever",
+        "Game": "FALLOUT4",
+        "Meta": "4052941-2.manifest",
+        "Files": [
+            "ccbgsfo4053-dggoldr - main.ba2",
+            "ccbgsfo4053-dggoldr - textures.ba2",
+            "ccbgsfo4053-dggoldr.esl"
+        ]
+    },
+    "4051091": {
+        "Name": "Armor Paint Job - Gunners",
+        "Game": "FALLOUT4",
+        "Meta": "4051091-2.manifest",
+        "Files": [
+            "ccgcafo4014-factionas03gun - main.ba2",
+            "ccgcafo4014-factionas03gun - textures.ba2",
+            "ccgcafo4014-factionas03gun.esl"
+        ]
+    },
+    "4052935": {
+        "Name": "Graphic T-Shirt Pack",
+        "Game": "FALLOUT4",
+        "Meta": "4052935-3.manifest",
+        "Files": [
+            "ccawnfo4001-brandedattire - main.ba2",
+            "ccawnfo4001-brandedattire - textures.ba2",
+            "ccawnfo4001-brandedattire.esl"
+        ]
+    },
+    "4051121": {
+        "Name": "Armor Paint Job - Army",
+        "Game": "FALLOUT4",
+        "Meta": "4051121-2.manifest",
+        "Files": [
+            "ccgcafo4023-factionas12army - main.ba2",
+            "ccgcafo4023-factionas12army - textures.ba2",
+            "ccgcafo4023-factionas12army.esl"
+        ]
+    },
+    "4051084": {
+        "Name": "Armor Paint Job - Atom Cats",
+        "Game": "FALLOUT4",
+        "Meta": "4051084-2.manifest",
+        "Files": [
+            "ccgcafo4012-factionas01acat - main.ba2",
+            "ccgcafo4012-factionas01acat - textures.ba2",
+            "ccgcafo4012-factionas01acat.esl"
+        ]
+    },
+    "4051094": {
+        "Name": "Armor Paint Job - Hot Rod Pink",
+        "Game": "FALLOUT4",
+        "Meta": "4051094-2.manifest",
+        "Files": [
+            "ccgcafo4015-factionas04hrpink - main.ba2",
+            "ccgcafo4015-factionas04hrpink - textures.ba2",
+            "ccgcafo4015-factionas04hrpink.esl"
+        ]
+    },
+    "4051097": {
+        "Name": "Armor Paint Job - Hot Rod Shark",
+        "Game": "FALLOUT4",
+        "Meta": "4051097-2.manifest",
+        "Files": [
+            "ccgcafo4016-factionas05hrshark - main.ba2",
+            "ccgcafo4016-factionas05hrshark - textures.ba2",
+            "ccgcafo4016-factionas05hrshark.esl"
+        ]
+    },
+    "4051115": {
+        "Name": "Armor Paint Job - Hot Rod Red Flames",
+        "Game": "FALLOUT4",
+        "Meta": "4051115-2.manifest",
+        "Files": [
+            "ccgcafo4021-factionas10hrflames - main.ba2",
+            "ccgcafo4021-factionas10hrflames - textures.ba2",
+            "ccgcafo4021-factionas10hrflames.esl"
+        ]
+    },
+    "4051118": {
+        "Name": "Armor Paint Job - Vault-Tec",
+        "Game": "FALLOUT4",
+        "Meta": "4051118-2.manifest",
+        "Files": [
+            "ccgcafo4022-factionas11vt - main.ba2",
+            "ccgcafo4022-factionas11vt - textures.ba2",
+            "ccgcafo4022-factionas11vt.esl"
+        ]
+    },
+    "4055379": {
+        "Name": "Boxer",
+        "Game": "FALLOUT4",
+        "Meta": "4055379-1.manifest",
+        "Files": [
+            "ccbgsfo4051-dgbox - main.ba2",
+            "ccbgsfo4051-dgbox - textures.ba2",
+            "ccbgsfo4051-dgbox.esl"
+        ]
+    },
+    "4044097": {
+        "Name": "Coffee and Donuts Workshop Pack",
+        "Game": "FALLOUT4",
+        "Meta": "4044097-4.manifest",
+        "Files": [
+            "ccfsvfo4003-slocum - main.ba2",
+            "ccfsvfo4003-slocum - textures.ba2",
+            "ccfsvfo4003-slocum.esl"
+        ]
+    },
+    "4044092": {
+        "Name": "Tunnel Snakes Rule!",
+        "Game": "FALLOUT4",
+        "Meta": "4044092-3.manifest",
+        "Files": [
+            "ccrzrfo4001-tunnelsnakes - main.ba2",
+            "ccrzrfo4001-tunnelsnakes - textures.ba2",
+            "ccrzrfo4001-tunnelsnakes.esm"
+        ]
+    },
+    "4049267": {
+        "Name": "Pip-Boy Paint Job - Aquatic Camo",
+        "Game": "FALLOUT4",
+        "Meta": "4049267-2.manifest",
+        "Files": [
+            "ccbgsfo4005-bluecamo - main.ba2",
+            "ccbgsfo4005-bluecamo - textures.ba2",
+            "ccbgsfo4005-bluecamo.esl"
+        ]
+    },
+    "4049270": {
+        "Name": "Power Armor Paint Job - Aquatic Camo",
+        "Game": "FALLOUT4",
+        "Meta": "4049270-2.manifest",
+        "Files": [
+            "ccbgsfo4024-pacamo03 - main.ba2",
+            "ccbgsfo4024-pacamo03 - textures.ba2",
+            "ccbgsfo4024-pacamo03.esl"
+        ]
+    },
+    "4043839": {
+        "Name": "Weapon Paint Job - Railroad",
+        "Game": "FALLOUT4",
+        "Meta": "4043839-3.manifest",
+        "Files": [
+            "ccgcafo4010-factionws10rr - main.ba2",
+            "ccgcafo4010-factionws10rr - textures.ba2",
+            "ccgcafo4010-factionws10rr.esl"
+        ]
+    },
+    "4043836": {
+        "Name": "Weapon Paint Job - Minutemen",
+        "Game": "FALLOUT4",
+        "Meta": "4043836-3.manifest",
+        "Files": [
+            "ccgcafo4009-factionws09mm - main.ba2",
+            "ccgcafo4009-factionws09mm - textures.ba2",
+            "ccgcafo4009-factionws09mm.esl"
+        ]
+    },
+    "4044111": {
+        "Name": "Weapon Paint Job - Vault Tec",
+        "Game": "FALLOUT4",
+        "Meta": "4044111-3.manifest",
+        "Files": [
+            "ccgcafo4011-factionws11vt - main.ba2",
+            "ccgcafo4011-factionws11vt - textures.ba2",
+            "ccgcafo4011-factionws11vt.esl"
+        ]
+    },
+    "4044104": {
+        "Name": "Weapon Paint Job - Atom Cats",
+        "Game": "FALLOUT4",
+        "Meta": "4044104-2.manifest",
+        "Files": [
+            "ccgcafo4002-factionws02acat - main.ba2",
+            "ccgcafo4002-factionws02acat - textures.ba2",
+            "ccgcafo4002-factionws02acat.esl"
+        ]
+    },
+    "4043833": {
+        "Name": "Weapon Paint Job - The Institute",
+        "Game": "FALLOUT4",
+        "Meta": "4043833-2.manifest",
+        "Files": [
+            "ccgcafo4008-factionws08inst - main.ba2",
+            "ccgcafo4008-factionws08inst - textures.ba2",
+            "ccgcafo4008-factionws08inst.esl"
+        ]
+    },
+    "4044107": {
+        "Name": "Weapon Paint Job - Gunners",
+        "Game": "FALLOUT4",
+        "Meta": "4044107-3.manifest",
+        "Files": [
+            "ccgcafo4004-factionws04gun - main.ba2",
+            "ccgcafo4004-factionws04gun - textures.ba2",
+            "ccgcafo4004-factionws04gun.esl"
+        ]
+    },
+    "4043830": {
+        "Name": "Weapon Paint Job - Brotherhood of Steel",
+        "Game": "FALLOUT4",
+        "Meta": "4043830-4.manifest",
+        "Files": [
+            "ccgcafo4003-factionws03bos - main.ba2",
+            "ccgcafo4003-factionws03bos - textures.ba2",
+            "ccgcafo4003-factionws03bos.esl"
+        ]
+    },
+    "4044101": {
+        "Name": "Weapon Paint Job - Army",
+        "Game": "FALLOUT4",
+        "Meta": "4044101-2.manifest",
+        "Files": [
+            "ccgcafo4001-factionws01army - main.ba2",
+            "ccgcafo4001-factionws01army - textures.ba2",
+            "ccgcafo4001-factionws01army.esl"
+        ]
+    },
+    "4043129": {
+        "Name": "Power Armor Paint Job - Desert Camo",
+        "Game": "FALLOUT4",
+        "Meta": "4043129-2.manifest",
+        "Files": [
+            "ccbgsfo4022-powerarmorskin(camo01) - main.ba2",
+            "ccbgsfo4022-powerarmorskin(camo01) - textures.ba2",
+            "ccbgsfo4022-powerarmorskin(camo01).esl"
+        ]
+    },
+    "4043175": {
+        "Name": "Arcade Workshop Pack",
+        "Game": "FALLOUT4",
+        "Meta": "4043175-4.manifest",
+        "Files": [
+            "ccbgsfo4045-advarccab - main.ba2",
+            "ccbgsfo4045-advarccab - textures.ba2",
+            "ccbgsfo4045-advarccab.esl"
+        ]
+    },
+    "4043133": {
+        "Name": "Weapon Paint Job - Hot Rod Pink",
+        "Game": "FALLOUT4",
+        "Meta": "4043133-2.manifest",
+        "Files": [
+            "ccgcafo4005-factionws05hrpink - main.ba2",
+            "ccgcafo4005-factionws05hrpink - textures.ba2",
+            "ccgcafo4005-factionws05hrpink.esl"
+        ]
+    },
+    "4043136": {
+        "Name": "Weapon Paint Job - Hot Rod Shark",
+        "Game": "FALLOUT4",
+        "Meta": "4043136-2.manifest",
+        "Files": [
+            "ccgcafo4006-factionws06hrshark - main.ba2",
+            "ccgcafo4006-factionws06hrshark - textures.ba2",
+            "ccgcafo4006-factionws06hrshark.esl"
+        ]
+    },
+    "4043139": {
+        "Name": "Weapon Paint Job - Hot Rod Red Flames",
+        "Game": "FALLOUT4",
+        "Meta": "4043139-2.manifest",
+        "Files": [
+            "ccgcafo4007-factionws07hrflames - main.ba2",
+            "ccgcafo4007-factionws07hrflames - textures.ba2",
+            "ccgcafo4007-factionws07hrflames.esl"
+        ]
+    },
+    "4043184": {
+        "Name": "Power Armor Paint Job - White",
+        "Game": "FALLOUT4",
+        "Meta": "4043184-3.manifest",
+        "Files": [
+            "ccbgsfo4033-powerarmorskinwhite - main.ba2",
+            "ccbgsfo4033-powerarmorskinwhite - textures.ba2",
+            "ccbgsfo4033-powerarmorskinwhite.esl"
+        ]
+    },
+    "4043181": {
+        "Name": "Pip-Boy Paint Job - White",
+        "Game": "FALLOUT4",
+        "Meta": "4043181-1.manifest",
+        "Files": [
+            "ccbgsfo4014-pipboy(white) - main.ba2",
+            "ccbgsfo4014-pipboy(white) - textures.ba2",
+            "ccbgsfo4014-pipboy(white).esl"
+        ]
+    },
+    "4043114": {
+        "Name": "Pip-Boy Paint Job - Desert Camo",
+        "Game": "FALLOUT4",
+        "Meta": "4043114-1.manifest",
+        "Files": [
+            "ccbgsfo4003-pipboy(camo01) - main.ba2",
+            "ccBGSFO4003-PipBoy(Camo01) - Main.ba2",
+            "ccbgsfo4003-pipboy(camo01) - textures.ba2",
+            "ccBGSFO4003-PipBoy(Camo01) - Textures.ba2",
+            "ccbgsfo4003-pipboy(camo01).esl"
+        ]
+    },
+    "4043111": {
+        "Name": "Home Decor Workshop Pack",
+        "Game": "FALLOUT4",
+        "Meta": "4043111-2.manifest",
+        "Files": [
+            "cceejfo4001-decorationpack - main.ba2",
+            "cceejfo4001-decorationpack - textures.ba2",
+            "cceejfo4001-decorationpack.esl"
+        ]
+    },
+    "4042546": {
+        "Name": "Lord's Mail",
+        "Game": "SKYRIM",
+        "Meta": "4042546-4.manifest",
+        "Files": [
+            "ccbgssse021-lordsmail.bsa",
+            "ccbgssse021-lordsmail.esl"
+        ]
+    },
+    "4042550": {
+        "Name": "Dwarven Armored Mudcrab",
+        "Game": "SKYRIM",
+        "Meta": "4042550-2.manifest",
+        "Files": [
+            "ccbgssse010-petdwarvenarmoredmudcrab.bsa",
+            "ccbgssse010-petdwarvenarmoredmudcrab.esl"
+        ]
+    },
+    "4036200": {
+        "Name": "Ruin's Edge",
+        "Game": "SKYRIM",
+        "Meta": "4036200-4.manifest",
+        "Files": [
+            "ccbgssse004-ruinsedge.bsa",
+            "ccbgssse004-ruinsedge.esl"
+        ]
+    },
+    "4036199": {
+        "Name": "Plague of the Dead",
+        "Game": "SKYRIM",
+        "Meta": "4036199-6.manifest",
+        "Files": [
+            "ccbgssse003-zombies.bsa",
+            "ccbgssse003-zombies.esl"
+        ]
+    },
+    "4036198": {
+        "Name": "Survival Mode",
+        "Game": "SKYRIM",
+        "Files": [
+            "ccQDRSSE001-SurvivalMode.bsa",
+            "ccQDRSSE001-SurvivalMode.esl"
+        ]
+    },
+    "4036197": {
+        "Name": "Divine Crusader ",
+        "Game": "SKYRIM",
+        "Meta": "4036197-3.manifest",
+        "Files": [
+            "ccmtysse001-knightsofthenine.bsa",
+            "ccmtysse001-knightsofthenine.esl"
+        ]
+    },
+    "4036201": {
+        "Name": "Chrysamere",
+        "Game": "SKYRIM",
+        "Meta": "4036201-2.manifest",
+        "Files": [
+            "ccbgssse007-chrysamere.bsa",
+            "ccbgssse007-chrysamere.esl"
+        ]
+    },
+    "4036203": {
+        "Name": "Staff of Sheogorath",
+        "Game": "SKYRIM",
+        "Meta": "4036203-3.manifest",
+        "Files": [
+            "ccbgssse019-staffofsheogorath.bsa",
+            "ccbgssse019-staffofsheogorath.esl"
+        ]
+    },
+    "4036204": {
+        "Name": "Stendarr's Hammer",
+        "Game": "SKYRIM",
+        "Meta": "4036204-2.manifest",
+        "Files": [
+            "ccbgssse006-stendarshammer.bsa",
+            "ccbgssse006-stendarshammer.esl"
+        ]
+    },
+    "4036205": {
+        "Name": "Arcane Archer Pack",
+        "Game": "SKYRIM",
+        "Meta": "4036205-5.manifest",
+        "Files": [
+            "ccbgssse002-exoticarrows.bsa",
+            "ccbgssse002-exoticarrows.esl"
+        ]
+    },
+    "4036206": {
+        "Name": "Arcane Accessories",
+        "Game": "SKYRIM",
+        "Meta": "4036206-5.manifest",
+        "Files": [
+            "ccbgssse014-spellpack01.bsa",
+            "ccbgssse014-spellpack01.esl"
+        ]
+    },
+    "4036176": {
+        "Name": "Power Armor Paint Job - Chrome",
+        "Game": "FALLOUT4",
+        "Meta": "4036176-3.manifest",
+        "Files": [
+            "ccbgsfo4025-powerarmorskin(chrome) - main.ba2",
+            "ccbgsfo4025-powerarmorskin(chrome) - textures.ba2",
+            "ccbgsfo4025-powerarmorskin(chrome).esl"
+        ]
+    },
+    "4036177": {
+        "Name": "Power Armor Paint Job - Swamp Camo",
+        "Game": "FALLOUT4",
+        "Meta": "4036177-2.manifest",
+        "Files": [
+            "ccbgsfo4023-powerarmorskin(camo02) - main.ba2",
+            "ccbgsfo4023-powerarmorskin(camo02) - textures.ba2",
+            "ccbgsfo4023-powerarmorskin(camo02).esl"
+        ]
+    },
+    "4036178": {
+        "Name": "Doom BFG",
+        "Game": "FALLOUT4",
+        "Meta": "4036178-1.manifest",
+        "Files": [
+            "ccbgsfo4042-bfg - main.ba2",
+            "ccbgsfo4042-bfg - textures.ba2",
+            "ccbgsfo4042-bfg.esl"
+        ]
+    },
+    "4036175": {
+        "Name": "Doom Classic Marine Armor",
+        "Game": "FALLOUT4",
+        "Meta": "4036175-2.manifest",
+        "Files": [
+            "ccbgsfo4041-doommarinearmor - main.ba2",
+            "ccbgsfo4041-doommarinearmor - textures.ba2",
+            "ccbgsfo4041-doommarinearmor.esl"
+        ]
+    },
+    "4031925": {
+        "Name": "Chinese Stealth Armor",
+        "Game": "FALLOUT4",
+        "Meta": "4031925-2.manifest",
+        "Files": [
+            "ccbgsfo4019-chinesestealtharmor.esl",
+            "ccBGSFO4019-ChineseStealthArmor - Main.ba2",
+            "ccBGSFO4019-ChineseStealthArmor - Textures.ba2"
+        ]
+    },
+    "4031933": {
+        "Name": "Handmade Shotgun",
+        "Game": "FALLOUT4",
+        "Meta": "4031933-2.manifest",
+        "Files": [
+            "ccfrsfo4001-handmadeshotgun.esl",
+            "ccFRSFO4001-HandmadeShotgun - Main.ba2",
+            "ccFRSFO4001-HandmadeShotgun - Textures.ba2"
+        ]
+    },
+    "4031929": {
+        "Name": "Hellfire Power Armor",
+        "Game": "FALLOUT4",
+        "Meta": "4031929-2.manifest",
+        "Files": [
+            "ccbgsfo4044-hellfirepowerarmor.esl",
+            "ccBGSFO4044-HellfirePowerArmor - Main.ba2",
+            "ccBGSFO4044-HellfirePowerArmor - Textures.ba2"
+        ]
+    },
+    "4031937": {
+        "Name": "Modern Furniture Workshop Pack",
+        "Game": "FALLOUT4",
+        "Meta": "4031937-5.manifest",
+        "Files": [
+            "ccfsvfo4002-midcenturymodern.esl",
+            "ccFSVFO4002-MidCenturyModern - Main.ba2",
+            "ccFSVFO4002-MidCenturyModern - Textures.ba2"
+        ]
+    },
+    "4031941": {
+        "Name": "Modular Military Backpack",
+        "Game": "FALLOUT4",
+        "Meta": "4031941-1.manifest",
+        "Files": [
+            "ccfsvfo4001-modularmilitarybackpack.esl",
+            "ccFSVFO4001-ModularMilitaryBackpack - Main.ba2",
+            "ccFSVFO4001-ModularMilitaryBackpack - Textures.ba2"
+        ]
+    },
+    "4031948": {
+        "Name": "Pip-Boy Paint Job - Swamp Camo",
+        "Game": "FALLOUT4",
+        "Meta": "4031948-1.manifest",
+        "Files": [
+            "ccbgsfo4004-pipboy(camo02).esl",
+            "ccBGSFO4004-PipBoy(Camo02) - Main.ba2",
+            "ccBGSFO4004-PipBoy(Camo02) - Textures.ba2"
+        ]
+    },
+    "4031945": {
+        "Name": "Pip-Boy Paint Job - Onyx",
+        "Game": "FALLOUT4",
+        "Meta": "4031945-1.manifest",
+        "Files": [
+            "ccbgsfo4001-pipboy(black).esl",
+            "ccBGSFO4001-PipBoy(Black) - Main.ba2",
+            "ccBGSFO4001-PipBoy(Black) - Textures.ba2"
+        ]
+    },
+    "4031953": {
+        "Name": "Pip-Boy Paint Job - Chrome",
+        "Game": "FALLOUT4",
+        "Meta": "4031953-1.manifest",
+        "Files": [
+            "ccbgsfo4006-pipboy(chrome).esl",
+            "ccBGSFO4006-PipBoy(Chrome) - Main.ba2",
+            "ccBGSFO4006-PipBoy(Chrome) - Textures.ba2"
+        ]
+    },
+    "4031958": {
+        "Name": "Horse Power Armor",
+        "Game": "FALLOUT4",
+        "Meta": "4031958-1.manifest",
+        "Files": [
+            "ccbgsfo4038-horsearmor.esl",
+            "ccBGSFO4038-HorseArmor - Main.ba2",
+            "ccBGSFO4038-HorseArmor - Textures.ba2"
+        ]
+    },
+    "4031955": {
+        "Name": "Power Armor Paint Job - Onyx",
+        "Game": "FALLOUT4",
+        "Meta": "4031955-2.manifest",
+        "Files": [
+            "ccbgsfo4020-powerarmorskin(black) - main.ba2",
+            "ccBGSFO4020-PowerArmorSkin(Black) - Main.ba2",
+            "ccbgsfo4020-powerarmorskin(black) - textures.ba2",
+            "ccBGSFO4020-PowerArmorSkin(Black) - Textures.ba2",
+            "ccbgsfo4020-powerarmorskin(black).esl"
+        ]
+    },
+    "4031961": {
+        "Name": "Prototype Gauss Rifle",
+        "Game": "FALLOUT4",
+        "Meta": "4031961-2.manifest",
+        "Files": [
+            "ccbgsfo4018-gaussrifleprototype.esl",
+            "ccBGSFO4018-GaussRiflePrototype - Main.ba2",
+            "ccBGSFO4018-GaussRiflePrototype - Textures.ba2"
+        ]
+    },
+    "4030864": {
+        "Name": "Morgan's Space Suit",
+        "Game": "FALLOUT4",
+        "Meta": "4030864-2.manifest",
+        "Files": [
+            "ccbgsfo4016-prey.esl",
+            "ccBGSFO4016-Prey - Main.ba2",
+            "ccBGSFO4016-Prey - Textures.ba2"
+        ]
+    }
+}

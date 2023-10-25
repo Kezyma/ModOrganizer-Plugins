@@ -1,0 +1,5 @@
+D:\Portable\Morrowind\plugins
+D:\Portable\Oblivion\plugins
+D:\Portable\Skyrim SE\plugins
+D:\Portable\Fallout 3\plugins
+D:\Portable\Fallout NV\plugins

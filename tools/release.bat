@@ -15,16 +15,13 @@ for %%x in (%*) do (
 	mkdir "release\%%x"
 
 	echo Copying %%x mod files to release folder.
-	robocopy "src\%%x" "release\%%x\%%x" /E 
-	robocopy "src\shared" "release\%%x\shared" /E 
+	robocopy "src\plugin\%%x" "release\%%x\plugin\%%x" /E 
+	robocopy "src\base" "release\%%x\base" /E 
+	robocopy "src\common" "release\%%x\common" /E 
 	robocopy "src" "release\%%x" "%%x_init.py" 
-	if "%%x"=="pluginfinder" robocopy "directory" "release\%%x\%%x" "plugin_directory.json" 
 
 	echo Renaming %%x init file.
 	ren "release\%%x\%%x_init.py" "__init__.py" 
-
-	echo Moving the readme files.
-	robocopy "readme\%%x" "release\%%x" /E
 
 	echo Creating zip folder.
 	if not exist "release\zip" mkdir "release\zip" 

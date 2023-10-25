@@ -1,0 +1,1 @@
+call deploy.bat rootbuilder reinstaller shortcutter pluginfinder curationclub profilesync openmwplayer > deploy_log.txt
