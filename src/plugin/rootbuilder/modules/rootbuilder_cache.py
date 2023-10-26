@@ -20,6 +20,8 @@ class RootBuilderCache():
 
     _relativeKey = "Relative"
     _hashKey = "Hash"
+    _modifiedKey = "Modified"
+    _sizeKey = "Size"
 
     def cacheFileExists(self) -> bool:
         """Returns true if there is a current build data file."""
@@ -63,13 +65,23 @@ class RootBuilderCache():
         currentCache = self.loadCacheFile()
         cacheFiles = self._paths.validGameRootFiles()
         gamePath = self._strings.gamePath()
+        useHash = self._settings.hash()
         for file in cacheFiles:
             relativePath = self._paths.relativePath(gamePath, file)
             relativeLower = relativePath.lower()
-            if (relativeLower not in currentCache or currentCache[relativeLower][self._hashKey] == "") and Path(file).exists():
+            if (useHash and relativeLower not in currentCache or currentCache[relativeLower][self._hashKey] == "") and Path(file).exists():
                 currentCache[relativeLower] = {
                     self._relativeKey: relativePath,
-                    self._hashKey: self._util.hashFile(file)
+                    self._hashKey: self._util.hashFile(file),
+                    self._modifiedKey: os.path.mtime(file),
+                    self._sizeKey: os.path.size(file)
+                }
+            elif (not useHash and relativeLower not in currentCache):
+                currentCache[relativeLower] = {
+                    self._relativeKey: relativePath,
+                    self._hashKey: "",
+                    self._modifiedKey: os.path.mtime(file),
+                    self._sizeKey: os.path.size(file)
                 }
         return currentCache
 
