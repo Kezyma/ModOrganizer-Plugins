@@ -1,11 +1,7 @@
 import mobase
-from pathlib import Path
 from .rootbuilder_strings import RootBuilderStrings
-from .rootbuilder_paths import RootBuilderPaths
-from ..core.rootbuilder_settings import RootBuilderSettings
 from ....common.common_utilities import CommonUtilities
 from ....common.common_log import CommonLog
-from typing import List
 
 class RootBuilderUpdate():
     """Root Builder update module, used to check if Root Builder is on the current version."""

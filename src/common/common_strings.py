@@ -1,5 +1,5 @@
 import mobase, winreg, os
-from pathlib import PurePath, Path
+from pathlib import Path
 
 
 class CommonStrings:

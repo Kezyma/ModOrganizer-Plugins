@@ -5,9 +5,7 @@ except:
 
 from .base_settings import BaseSettings
 from ..common.common_icons import CommonIcons
-from ..common.common_strings import CommonStrings
 from ..common.common_log import CommonLog
-from ..common.common_paths import CommonPaths
 
 import mobase
 
