@@ -37,7 +37,8 @@ class RootBuilderPlugin(BasePlugin):
             mobase.PluginSetting("linkpriority",self.__tr("Priority order for determining when to link files. Lower is better."), 2),
             mobase.PluginSetting("usvfspriority",self.__tr("Priority order for determining when to usvfs map files. Lower is better."), 3),
             mobase.PluginSetting("enabled",self.__tr("Enables " + self._pluginName), True),
-            mobase.PluginSetting("loglevel", self.__tr("Controls the logging for " + self._pluginName), 1)
+            mobase.PluginSetting("loglevel", self.__tr("Controls the logging for " + self._pluginName), 1),
+            mobase.PluginSetting("hash",self.__tr("Enables hashing as the method of change detection."), False),
             ]
         for setting in customSettings:
             baseSettings.append(setting)
