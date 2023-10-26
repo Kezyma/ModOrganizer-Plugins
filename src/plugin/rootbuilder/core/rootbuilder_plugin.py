@@ -29,7 +29,7 @@ class RootBuilderPlugin(BasePlugin):
             mobase.PluginSetting("redirect", self.__tr("Enables automatic redirection of exe files being launched from a mod folder to their respective game folder equivalent."), True),
             mobase.PluginSetting("installer", self.__tr("Enables an installer plugin to automatically install root mods when detected."), False),
             mobase.PluginSetting("priority", self.__tr("The priority of the installer module for installing root mods."), 110),
-            mobase.PluginSetting("exclusions",self.__tr("List of files and folders to exclude from RootBuilder."), "Saves,Morrowind.ini"),
+            mobase.PluginSetting("exclusions",self.__tr("List of files and folders to exclude from RootBuilder."), "Saves,Morrowind.ini,Data,Data Files"),
             mobase.PluginSetting("copyfiles",self.__tr("Determines the files that should be copied."), "**"),
             mobase.PluginSetting("linkfiles", self.__tr("Determines the files that should be linked."), ""),
             mobase.PluginSetting("usvfsfiles",self.__tr("Determines the files that should be mapped with usvfs"), ""),

@@ -18,6 +18,8 @@
     "exclusions": [
         "Saves",
         "Morrowind.ini",
+        "Data",
+        "Data Files",
         ""
     ],
     "installer": false,
