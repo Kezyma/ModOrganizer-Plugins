@@ -14,6 +14,10 @@ class RootBuilderSettings(BaseSettings):
     def backup(self):
         """ Determines whether to take a full game backup. """
         return self.setting("backup")
+        
+    def hash(self):
+        """ Determines if change tracking should use hashes or not."""
+        return self.setting("hash")
 
     def autobuild(self):
         """ Determines whether to build automatically on run. """
