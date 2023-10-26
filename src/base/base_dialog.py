@@ -1,18 +1,5 @@
 import mobase
-try:
-    from .ui.qt6.plugin_dialog import Ui_pluginDialog
-    from PyQt6 import QtCore, QtWidgets
-    from PyQt6.QtWidgets import QDialog, QWidget, QVBoxLayout, QHBoxLayout, QSizePolicy, QLabel
-    from PyQt6.QtGui import QIcon, QFont
-    qSizePolicy = QtWidgets.QSizePolicy.Policy
-    qAlignmentFlag = QtCore.Qt.AlignmentFlag
-except:
-    from .ui.qt5.plugin_dialog import Ui_pluginDialog
-    from PyQt5 import QtCore, QtWidgets
-    from PyQt5.QtWidgets import QDialog, QWidget, QVBoxLayout, QHBoxLayout, QSizePolicy, QLabel
-    from PyQt5.QtGui import QIcon, QFont
-    qSizePolicy = QtWidgets.QSizePolicy
-    qAlignmentFlag = QtCore.Qt
+from ..common.common_qt import *
 
 class BaseDialog(QDialog):
     """Base plugin dialog to be used for menu plugins."""

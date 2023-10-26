@@ -52,3 +52,8 @@ class RootBuilderExport():
             self._settings.updateSetting("exclusions", ",".join(rbSettings["exclusions"]))
             self._settings.updateSetting("installer", rbSettings["installer"])
             self._settings.updateSetting("loglevel", rbSettings["loglevel"])
+
+    def resetSettings(self):
+        """Resets to default settings."""
+        defaultsFile = Path(__file__).parent / "rootbuilder_defaults.json"
+        self.importSettings(str(defaultsFile.absolute()))

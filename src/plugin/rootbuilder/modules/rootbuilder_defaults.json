@@ -1,0 +1,25 @@
+{
+    "copypriority": 1,
+    "copyfiles": [
+        "**"
+    ],
+    "linkpriority": 2,
+    "linkfiles": [
+        ""
+    ],
+    "usvfspriority": 3,
+    "usvfsfiles": [
+        ""
+    ],
+    "backup": true,
+    "cache": true,
+    "autobuild": true,
+    "redirect": true,
+    "exclusions": [
+        "Saves",
+        "Morrowind.ini",
+        ""
+    ],
+    "installer": false,
+    "loglevel": 1
+}

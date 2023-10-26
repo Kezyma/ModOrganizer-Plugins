@@ -44,6 +44,9 @@ class Ui_RootBuilderMenu(object):
         self.actionsTab = QtWidgets.QWidget()
         self.actionsTab.setObjectName("actionsTab")
         self.btmTabWidget.addTab(self.actionsTab, "")
+        self.exportTab = QtWidgets.QWidget()
+        self.exportTab.setObjectName("exportTab")
+        self.btmTabWidget.addTab(self.exportTab, "")
         self.updateTab = QtWidgets.QWidget()
         self.updateTab.setObjectName("updateTab")
         self.btmTabWidget.addTab(self.updateTab, "")
@@ -51,7 +54,7 @@ class Ui_RootBuilderMenu(object):
 
         self.retranslateUi(RootBuilderMenu)
         self.topTabWidget.setCurrentIndex(0)
-        self.btmTabWidget.setCurrentIndex(0)
+        self.btmTabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(RootBuilderMenu)
 
     def retranslateUi(self, RootBuilderMenu):
@@ -63,4 +66,5 @@ class Ui_RootBuilderMenu(object):
         self.topTabWidget.setTabText(self.topTabWidget.indexOf(self.exclusionsTab), _translate("RootBuilderMenu", "Exclusions"))
         self.topTabWidget.setTabText(self.topTabWidget.indexOf(self.helpTab), _translate("RootBuilderMenu", "Help"))
         self.btmTabWidget.setTabText(self.btmTabWidget.indexOf(self.actionsTab), _translate("RootBuilderMenu", "Actions"))
+        self.btmTabWidget.setTabText(self.btmTabWidget.indexOf(self.exportTab), _translate("RootBuilderMenu", "Export"))
         self.btmTabWidget.setTabText(self.btmTabWidget.indexOf(self.updateTab), _translate("RootBuilderMenu", "Update"))

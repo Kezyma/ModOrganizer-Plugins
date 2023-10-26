@@ -66,11 +66,16 @@
      </widget>
      <widget class="QTabWidget" name="btmTabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="actionsTab">
        <attribute name="title">
         <string>Actions</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="exportTab">
+       <attribute name="title">
+        <string>Export</string>
        </attribute>
       </widget>
       <widget class="QWidget" name="updateTab">

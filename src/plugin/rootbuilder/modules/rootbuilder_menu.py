@@ -9,6 +9,7 @@ try:
     from ..ui.qt6.rootbuilder_actions import Ui_actionsTabWidget
     from ..ui.qt6.rootbuilder_help import Ui_helpTabWidget
     from ..ui.qt6.rootbuilder_update import Ui_updateTabWidget
+    from ..ui.qt6.rootbuilder_export import Ui_exportTabWidget
     from PyQt6 import QtCore, QtWidgets
 except:
     from ..ui.qt5.rootbuilder_menu import Ui_RootBuilderMenu
@@ -19,6 +20,7 @@ except:
     from ..ui.qt5.rootbuilder_actions import Ui_actionsTabWidget
     from ..ui.qt5.rootbuilder_help import Ui_helpTabWidget
     from ..ui.qt5.rootbuilder_update import Ui_updateTabWidget
+    from ..ui.qt5.rootbuilder_export import Ui_exportTabWidget
     from PyQt5 import QtCore, QtWidgets
 
 from ..core.rootbuilder import RootBuilder
@@ -44,24 +46,20 @@ class RootBuilderMenu(QtWidgets.QWidget):
 
         self.modeTabWidget = Ui_modeTabWidget()
         self.modeTabWidget.setupUi(self.widget.modeTab)
-        
         self.customTabWidget = Ui_customTabWidget()
         self.customTabWidget.setupUi(self.widget.customModeTab)
-
         self.settingsTabWidget = Ui_settingsTabWidget()
         self.settingsTabWidget.setupUi(self.widget.settingsTab)
-
         self.exclusionsTabWidget = Ui_exclusionsTabWidget()
         self.exclusionsTabWidget.setupUi(self.widget.exclusionsTab)
-
         self.actionsTabWidget = Ui_actionsTabWidget()
         self.actionsTabWidget.setupUi(self.widget.actionsTab)
-
         self.helpTabWidget = Ui_helpTabWidget()
         self.helpTabWidget.setupUi(self.widget.helpTab)
-
         self.updateTabWidget = Ui_updateTabWidget()
         self.updateTabWidget.setupUi(self.widget.updateTab)
+        self.exportTabWidget = Ui_exportTabWidget()
+        self.exportTabWidget.setupUi(self.widget.exportTab)
 
         self.updateTabWidget.updateFoundWidget.setVisible(False)
         self.updateTabWidget.noUpdateWidget.setVisible(False)
@@ -122,6 +120,13 @@ class RootBuilderMenu(QtWidgets.QWidget):
         helpPath = Path(__file__).parent.parent / "docs" / "readme.html"
         helpUrl = QtCore.QUrl.fromLocalFile(str(helpPath.absolute()))
         self.helpTabWidget.helpText.setSource(helpUrl)
+
+        self.exportTabWidget.exportButton.clicked.connect(self.exportButton_clicked)
+        self.exportTabWidget.exportButton.setIcon(self._icons.linkIcon())
+        self.exportTabWidget.importButton.clicked.connect(self.importButton_clicked)
+        self.exportTabWidget.importButton.setIcon(self._icons.downloadIcon())
+        self.exportTabWidget.resetButton.clicked.connect(self.resetButton_clicked)
+        self.exportTabWidget.resetButton.setIcon(self._icons.refreshIcon())
     
 
     def rebind(self):
@@ -561,3 +566,22 @@ class RootBuilderMenu(QtWidgets.QWidget):
         hasUpdate = newVersion != None
         self.updateTabWidget.updateFoundWidget.setVisible(hasUpdate)
         self.updateTabWidget.noUpdateWidget.setVisible(not hasUpdate)
+
+    def exportButton_clicked(self):
+        """Exports the current settings file."""
+        fileDialog = QtWidgets.QFileDialog()
+        if fileDialog.exec():
+            filePath = fileDialog.selectedFiles()[0]
+            self._rootBuilder._export.exportSettings(filePath)
+            self.rebind()
+
+    def importButton_clicked(self):
+        fileDialog = QtWidgets.QFileDialog()
+        if fileDialog.exec():
+            filePath = fileDialog.selectedFiles()[0]
+            self._rootBuilder._export.importSettings(filePath)
+            self.rebind()
+
+    def resetButton_clicked(self):
+        self._rootBuilder._export.resetSettings()
+        self.rebind()
