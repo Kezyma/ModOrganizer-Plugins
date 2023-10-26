@@ -69,12 +69,12 @@ class RootBuilderCache():
         for file in cacheFiles:
             relativePath = self._paths.relativePath(gamePath, file)
             relativeLower = relativePath.lower()
-            if (useHash and relativeLower not in currentCache or currentCache[relativeLower][self._hashKey] == "") and Path(file).exists():
+            if (useHash and (relativeLower not in currentCache or currentCache[relativeLower][self._hashKey] == "")) and Path(file).exists():
                 currentCache[relativeLower] = {
                     self._relativeKey: relativePath,
                     self._hashKey: self._util.hashFile(file),
-                    self._modifiedKey: os.path.mtime(file),
-                    self._sizeKey: os.path.size(file)
+                    self._modifiedKey: os.path.getmtime(file),
+                    self._sizeKey: os.path.getsize(file)
                 }
             elif (not useHash and relativeLower not in currentCache):
                 currentCache[relativeLower] = {
