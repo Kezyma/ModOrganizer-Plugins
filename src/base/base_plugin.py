@@ -5,16 +5,14 @@ except:
 
 from .base_settings import BaseSettings
 from ..common.common_icons import CommonIcons
-from ..common.common_strings import CommonStrings
 from ..common.common_log import CommonLog
-from ..common.common_paths import CommonPaths
 
 import mobase
 
 class BasePlugin():
     """ Base class for all plugins to inherit from and overwrite. """
 
-    def __init__(self, pluginName = str, displayName = str, version = mobase.VersionInfo):
+    def __init__(self, pluginName : str, displayName : str, version : mobase.VersionInfo):
         self._pluginName = pluginName
         self._displayName = displayName
         self._pluginVersion = version

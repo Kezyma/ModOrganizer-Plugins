@@ -8,7 +8,7 @@ import mobase
 class BaseSettings():
     """ Base class for settings modules to inherit from. Contains settings shared across plugins. """
 
-    def __init__(self, pluginName = str, organiser = mobase.IOrganizer):
+    def __init__(self, pluginName : str, organiser : mobase.IOrganizer):
         self._pluginName = pluginName
         self._organiser = organiser
         super().__init__()

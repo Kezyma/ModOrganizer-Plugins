@@ -1,11 +1,8 @@
 import mobase
 from pathlib import Path
-from .rootbuilder_strings import RootBuilderStrings
-from .rootbuilder_paths import RootBuilderPaths
 from ..core.rootbuilder_settings import RootBuilderSettings
 from ....common.common_utilities import CommonUtilities
 from ....common.common_log import CommonLog
-from typing import List
 
 class RootBuilderExport():
     """Root Builder export module, used to export and import settings from files."""

@@ -9,7 +9,7 @@ class RootBuilderAutobuild(RootBuilderPlugin, mobase.IPluginFileMapper):
     def __init__(self):
         super().__init__()
 
-    def init(self, organiser=mobase.IOrganizer):
+    def init(self, organiser:mobase.IOrganizer):
         res = super().init(organiser)
         self._organiser.onAboutToRun(lambda appName: self.onAboutToRun(appName))
         self._organiser.onFinishedRun(lambda appName, resultCode: self.onFinishedRun(appName, resultCode))

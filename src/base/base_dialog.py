@@ -1,4 +1,3 @@
-import mobase
 from ..common.common_qt import *
 
 class BaseDialog(QDialog):
