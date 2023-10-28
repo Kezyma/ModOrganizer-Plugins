@@ -24,6 +24,7 @@ class RootBuilderExport():
             "usvfsfiles": self._settings.usvfsfiles(),
             "backup": self._settings.backup(),
             "cache": self._settings.cache(),
+            "hash": self._settings.hash(),
             "autobuild": self._settings.autobuild(),
             "redirect": self._settings.redirect(),
             "exclusions": self._settings.exclusions(),
@@ -44,6 +45,7 @@ class RootBuilderExport():
             self._settings.updateSetting("usvfsfiles", ",".join(rbSettings["usvfsfiles"]))
             self._settings.updateSetting("backup", rbSettings["backup"])
             self._settings.updateSetting("cache", rbSettings["cache"])
+            self._settings.updateSetting("hash", rbSettings["hash"])
             self._settings.updateSetting("autobuild", rbSettings["autobuild"])
             self._settings.updateSetting("redirect", rbSettings["redirect"])
             self._settings.updateSetting("exclusions", ",".join(rbSettings["exclusions"]))

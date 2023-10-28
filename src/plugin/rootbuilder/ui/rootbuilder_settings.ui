@@ -7,13 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>620</width>
-    <height>420</height>
+    <height>490</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>620</width>
-    <height>420</height>
+    <height>490</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -55,7 +55,7 @@
       <item>
        <widget class="QLabel" name="cacheLabel">
         <property name="text">
-         <string>If cache is enabled, all file hashes for base game files (excluding the data files) are stored and reused during all future builds. The hashes are used to determine if a file has changed. If cache is disabled, changes to base game files cannot be detected.</string>
+         <string>If cache is enabled, any file names and hashes for the base game are stored and reused for each build. Otherwise they are generated again for each build.</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -89,6 +89,39 @@
        <widget class="QLabel" name="backupLabel">
         <property name="text">
          <string>If backup is enabled, a full backup of the base game files (excluding the data files) is taken. This is used to restore any changes to the base game during a clear. If backup is disabled, only files that are about to be overwritten will be backed up.</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="hashWidget" native="true">
+     <layout class="QVBoxLayout" name="verticalLayout_8">
+      <item>
+       <widget class="QCheckBox" name="hashCheck">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Hash</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="hashLabel">
+        <property name="text">
+         <string>If hash is enabled, file hashing is used to determine if game or mod files have changed, otherwise modified time and file size will be used. </string>
         </property>
         <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>

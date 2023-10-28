@@ -88,6 +88,7 @@ class RootBuilderMenu(QtWidgets.QWidget):
         self.settingsTabWidget.redirectCheck.stateChanged.connect(self.redirectCheck_changed)
         self.settingsTabWidget.installerCheck.stateChanged.connect(self.installerCheck_changed)
         self.settingsTabWidget.debugLevelCombo.currentTextChanged.connect(self.debugModeCombo_changed)
+        self.settingsTabWidget.hashCheck.stateChanged.connect(self.hashCheck_changed)
 
         self.exclusionsTabWidget.exclusionsTable.cellChanged.connect(self.exclusionsTable_cellChanged)
 
@@ -147,6 +148,7 @@ class RootBuilderMenu(QtWidgets.QWidget):
         redirectEnabled = self._rootBuilder._settings.redirect()
         installerEnabled = self._rootBuilder._settings.installer()
         loglevel = self._rootBuilder._settings.loglevel()
+        hashEnabled = self._rootBuilder._settings.hash()
         noBuild = not self._rootBuilder._data.dataFileExists()
 
         self.settingsTabWidget.cacheCheck.setEnabled(noBuild)
@@ -155,12 +157,14 @@ class RootBuilderMenu(QtWidgets.QWidget):
         self.settingsTabWidget.redirectCheck.setEnabled(noBuild)
         self.settingsTabWidget.installerCheck.setEnabled(noBuild)
         self.settingsTabWidget.debugLevelCombo.setEnabled(noBuild)
+        self.settingsTabWidget.hashCheck.setEnabled(noBuild)
 
         self.settingsTabWidget.cacheCheck.setChecked(cacheEnabled)
         self.settingsTabWidget.backupCheck.setChecked(backupEnabled)
         self.settingsTabWidget.autobuildCheck.setChecked(autobuildEnabled)
         self.settingsTabWidget.redirectCheck.setChecked(redirectEnabled)
         self.settingsTabWidget.installerCheck.setChecked(installerEnabled)
+        self.settingsTabWidget.hashCheck.setChecked(hashEnabled)
         modeText = "Info"
         if loglevel == 0:
             modeText = "Debug"
@@ -479,6 +483,12 @@ class RootBuilderMenu(QtWidgets.QWidget):
             if not enabled:
                 self._rootBuilder._cache.deleteCacheFile()
             self.rebind()    
+
+    def hashCheck_changed(self):
+        """When hashing is enabled/disabled."""
+        if not self._rebind:
+            enabled = self.settingsTabWidget.hashCheck.isChecked()
+            self._rootBuilder._settings.updateSetting("hash", enabled)
 
     def autobuildCheck_changed(self):
         """When autobuild is enabled/disabled."""

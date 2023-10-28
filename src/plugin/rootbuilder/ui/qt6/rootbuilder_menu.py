@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_RootBuilderMenu(object):
     def setupUi(self, RootBuilderMenu):
         RootBuilderMenu.setObjectName("RootBuilderMenu")
-        RootBuilderMenu.resize(617, 468)
+        RootBuilderMenu.resize(530, 458)
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(RootBuilderMenu)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_2.setSpacing(0)
@@ -52,7 +52,7 @@ class Ui_RootBuilderMenu(object):
 
         self.retranslateUi(RootBuilderMenu)
         self.topTabWidget.setCurrentIndex(0)
-        self.btmTabWidget.setCurrentIndex(1)
+        self.btmTabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(RootBuilderMenu)
 
     def retranslateUi(self, RootBuilderMenu):

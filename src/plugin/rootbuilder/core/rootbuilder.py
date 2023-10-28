@@ -47,15 +47,9 @@ class RootBuilder():
             possibleOverwrites.append(str(destPath))
 
         # Generate a full or partial set of file hashes.
-        if self._settings.cache():
-            if not self._cache.cacheFileExists():
-                self._log.info("No game cache found, generating.")
-                fullCache = self._cache.updateCache()
-                self._cache.saveCacheFile(fullCache)
-        else:
-            self._log.info("Cache disabled, only recording potential overwrites.")
-            overwriteCache = self._cache.updateOverwriteCache(possibleOverwrites)
-            self._cache.saveCacheFile(overwriteCache)
+        self._log.info("No game cache found, generating.")
+        fullCache = self._cache.updateCache()
+        self._cache.saveCacheFile(fullCache)
 
         # Generate a full or partial backup.
         if self._settings.backup():
