@@ -5,9 +5,11 @@ from pathlib import Path
 try:
     from PyQt5.QtCore import QCoreApplication, QStandardPaths
     from PyQt5.QtWidgets import QFileDialog
+    qDocLocation = QStandardPaths.DocumentsLocation
 except:
     from PyQt6.QtCore import QCoreApplication, QStandardPaths
     from PyQt6.QtWidgets import QFileDialog
+    qDocLocation = QStandardPaths.StandardLocation.DocumentsLocation
 import os
 
 class OpenMWPlayerPaths(SharedPaths):
@@ -34,7 +36,7 @@ class OpenMWPlayerPaths(SharedPaths):
             return settingPath
 
         # Grab the default path if it exists.
-        defaultLocation = Path(QStandardPaths.locate(QStandardPaths.DocumentsLocation, str(Path("My Games", "OpenMW", "openmw.cfg"))))
+        defaultLocation = Path(QStandardPaths.locate(qDocLocation, str(Path("My Games", "OpenMW", "openmw.cfg"))))
         if defaultLocation.is_file():
             self.organiser.setPluginSetting("OpenMWPlayer", "openmwcfgpath", str(defaultLocation))
             return defaultLocation
