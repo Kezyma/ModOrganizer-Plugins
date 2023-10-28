@@ -1,3 +1,4 @@
+import os
 import mobase
 from pathlib import Path
 from .rootbuilder_strings import RootBuilderStrings
@@ -80,8 +81,8 @@ class RootBuilderCache():
                 currentCache[relativeLower] = {
                     self._relativeKey: relativePath,
                     self._hashKey: "",
-                    self._modifiedKey: os.path.mtime(file),
-                    self._sizeKey: os.path.size(file)
+                    self._modifiedKey: os.path.getmtime(file),
+                    self._sizeKey: os.path.getsize(file)
                 }
         return currentCache
 
