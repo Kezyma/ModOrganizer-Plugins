@@ -22,16 +22,16 @@ class RootBuilderPaths(CommonPaths):
     def gameRootFiles(self)-> List[str]:
         """Gets a complete list of files in the game folder, minus the game data folder."""
         allFiles = self.gameFiles()
-        dataFolder = self._strings.gameDataPath()
-        gameFolder = self._strings.gamePath()
-        res = []
-        if dataFolder != gameFolder:
-            for path in allFiles:
-                if not self.pathShared(dataFolder, path):
-                    res.append(path)
-        else:
-            res = allFiles
-        return res
+        #dataFolder = self._strings.gameDataPath()
+        #gameFolder = self._strings.gamePath()
+        #res = []
+        #if dataFolder != gameFolder:
+        #    for path in allFiles:
+        #        if not self.pathShared(dataFolder, path):
+        #            res.append(path)
+        #else:
+        #    res = allFiles
+        return allFiles
     
     def validGameRootFiles(self) -> List[str]:
         """Gets a complete list of files in the game folder that are valid for Root Builder."""

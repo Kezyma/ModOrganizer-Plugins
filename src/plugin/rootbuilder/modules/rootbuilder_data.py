@@ -22,6 +22,7 @@ class RootBuilderData():
     _usvfsKey = "USVFS"
     _sourceKey = "Source"
     _relativeKey = "Relative"
+    _hashKey = "Hash"
 
     def dataFileExists(self) -> bool:
         """Returns true if there is a current build data file."""
@@ -55,6 +56,7 @@ class RootBuilderData():
         modFolders = self._paths.enabledRootModFolders()
         overwriteFolder = self._strings.rbOverwritePath()
         modFolders.append(overwriteFolder)
+        useHash = self._settings.hash()
         buildData = {
             self._copyKey: {},
             self._linkKey: {},
@@ -73,9 +75,13 @@ class RootBuilderData():
                 if copyPriority <= linkPriority or not file in linkFiles:
                     if copyPriority <= usvfsPriority or not file in usvfsFiles:
                         relativePath = self._paths.relativePath(mod, file)
+                        hash = ""
+                        if useHash:
+                            hash = self._util.hashFile(file)
                         buildData[self._copyKey][relativePath.lower()] = {
                             self._sourceKey: file,
-                            self._relativeKey: relativePath 
+                            self._relativeKey: relativePath,
+                            self._hashKey: hash
                         }
             for file in linkFiles:
                 if linkPriority < copyPriority or not file in copyFiles:
@@ -83,7 +89,7 @@ class RootBuilderData():
                         relativePath = self._paths.relativePath(mod, file)
                         buildData[self._linkKey][relativePath.lower()] = {
                             self._sourceKey: file,
-                            self._relativeKey: relativePath 
+                            self._relativeKey: relativePath
                         }
             for file in usvfsFiles:
                 if usvfsPriority < copyPriority or not file in copyFiles:

@@ -1,4 +1,4 @@
-import mobase
+import mobase, os
 from pathlib import Path
 from .rootbuilder_strings import RootBuilderStrings
 from .rootbuilder_paths import RootBuilderPaths
@@ -63,7 +63,7 @@ class RootBuilderCache():
     def updateCache(self) -> dict:
         """Loads the current cache file and then updates it with any changes."""
         currentCache = self.loadCacheFile()
-        cacheFiles = self._paths.validGameRootFiles()
+        cacheFiles = self.cachedValidRootGameFiles()
         gamePath = self._strings.gamePath()
         useHash = self._settings.hash()
         for file in cacheFiles:
@@ -80,31 +80,7 @@ class RootBuilderCache():
                 currentCache[relativeLower] = {
                     self._relativeKey: relativePath,
                     self._hashKey: "",
-                    self._modifiedKey: os.path.mtime(file),
-                    self._sizeKey: os.path.size(file)
-                }
-        return currentCache
-
-    def updateOverwriteCache(self, paths:List[str]) -> dict:
-        """Loads the current cache file and then updates it with the provided overwrites."""
-        currentCache = self.loadCacheFile()
-        gamePath = Path(self._strings.gamePath())
-
-        # If a cache file already exists, it's the definitive answer to all of the official game files.
-        gameFiles = self.cachedValidRootGameFiles()
-
-        # If any of these new overwrites aren't already cached, add them!
-        for file in gameFiles:
-            relativePath = self._paths.relativePath(str(gamePath), file)
-            relativeLower = relativePath.lower()
-            #fullPath = Path(file)
-            #if relativeLower in paths:
-                #if (relativeLower not in currentCache or currentCache[relativeLower] == "") and fullPath.exists():
-                #    currentCache[relativeLower] = self._util.hashFile(str(fullPath))
-            #else:
-            if relativeLower not in currentCache:
-                currentCache[relativeLower] = {
-                    self._relativeKey: relativePath,
-                    self._hashKey: ""
+                    self._modifiedKey: os.path.getmtime(file),
+                    self._sizeKey: os.path.getsize(file)
                 }
         return currentCache
