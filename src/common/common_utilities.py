@@ -28,7 +28,7 @@ class CommonUtilities():
         except:
             return False
 
-    def deleteFile(self, file=str) -> bool:
+    def deleteFile(self, file:str) -> bool:
         """Deletes a file."""
         try:
             if (Path(file).exists()):
@@ -38,7 +38,7 @@ class CommonUtilities():
         except:
             return False
         
-    def deleteFolder(self, file=str) -> bool:
+    def deleteFolder(self, file:str) -> bool:
         """Deletes a folder."""
         try:
             if Path(file).exists():

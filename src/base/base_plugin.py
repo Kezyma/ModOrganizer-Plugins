@@ -12,7 +12,7 @@ import mobase
 class BasePlugin():
     """ Base class for all plugins to inherit from and overwrite. """
 
-    def __init__(self, pluginName = str, displayName = str, version = mobase.VersionInfo):
+    def __init__(self, pluginName : str, displayName : str, version : mobase.VersionInfo):
         self._pluginName = pluginName
         self._displayName = displayName
         self._pluginVersion = version

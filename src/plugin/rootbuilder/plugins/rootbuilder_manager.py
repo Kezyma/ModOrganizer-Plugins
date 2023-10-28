@@ -9,7 +9,7 @@ class RootBuilderManager(RootBuilderPlugin, mobase.IPluginTool):
     def __init__(self):
         super().__init__()
 
-    def init(self, organiser=mobase.IOrganizer):
+    def init(self, organiser:mobase.IOrganizer):
         res = super().init(organiser)
         self._update = RootBuilderUpdate(self._organiser, self, self._rootBuilder._strings, self._rootBuilder._util, self._rootBuilder._log)
         self._dialog = self.getDialog()

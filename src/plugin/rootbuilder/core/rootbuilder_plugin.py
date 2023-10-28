@@ -12,7 +12,7 @@ class RootBuilderPlugin(BasePlugin):
     def __init__(self):
         super().__init__("RootBuilder", "Root Builder", mobase.VersionInfo(5, 0, 0, mobase.ReleaseType.FINAL))
 
-    def init(self, organiser=mobase.IOrganizer):
+    def init(self, organiser:mobase.IOrganizer):
         self._rootBuilder = RootBuilder(organiser)
         return super().init(organiser)
 
