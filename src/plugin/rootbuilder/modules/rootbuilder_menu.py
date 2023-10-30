@@ -10,7 +10,6 @@ try:
     from ..ui.qt6.rootbuilder_help import Ui_helpTabWidget
     from ..ui.qt6.rootbuilder_update import Ui_updateTabWidget
     from ..ui.qt6.rootbuilder_export import Ui_exportTabWidget
-    from PyQt6 import QtCore, QtWidgets
 except:
     from ..ui.qt5.rootbuilder_menu import Ui_RootBuilderMenu
     from ..ui.qt5.rootbuilder_mode import Ui_modeTabWidget
@@ -21,11 +20,11 @@ except:
     from ..ui.qt5.rootbuilder_help import Ui_helpTabWidget
     from ..ui.qt5.rootbuilder_update import Ui_updateTabWidget
     from ..ui.qt5.rootbuilder_export import Ui_exportTabWidget
-    from PyQt5 import QtCore, QtWidgets
 
 from ..core.rootbuilder import RootBuilder
 from .rootbuilder_update import RootBuilderUpdate
 from ....common.common_icons import CommonIcons
+from ....common.common_qt import *
 
 class RootBuilderMenu(QtWidgets.QWidget):
     """Root Builder menu widget."""

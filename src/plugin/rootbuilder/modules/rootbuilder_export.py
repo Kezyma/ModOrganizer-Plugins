@@ -54,5 +54,5 @@ class RootBuilderExport():
 
     def resetSettings(self):
         """Resets to default settings."""
-        defaultsFile = Path(__file__).parent / "rootbuilder_defaults.json"
+        defaultsFile = Path(__file__).parent.parent / "data" / "rootbuilder_defaults.json"
         self.importSettings(str(defaultsFile.absolute()))

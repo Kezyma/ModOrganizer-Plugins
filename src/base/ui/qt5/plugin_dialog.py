@@ -15,7 +15,7 @@ class Ui_pluginDialog(object):
     def setupUi(self, pluginDialog):
         pluginDialog.setObjectName("pluginDialog")
         pluginDialog.setWindowModality(QtCore.Qt.ApplicationModal)
-        pluginDialog.resize(400, 300)
+        pluginDialog.resize(238, 53)
         self.pluginLayout = QtWidgets.QVBoxLayout(pluginDialog)
         self.pluginLayout.setObjectName("pluginLayout")
         self.titleWidget = QtWidgets.QWidget(pluginDialog)

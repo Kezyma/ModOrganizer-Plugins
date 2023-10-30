@@ -7,6 +7,7 @@ try:
     from PyQt5.QtGui import QIcon, QFont
     qSizePolicy = QtWidgets.QSizePolicy
     qAlignmentFlag = QtCore.Qt
+    qDialogCode = QtWidgets.QDialog.DialogCode
 except:
     from ..base.ui.qt6.plugin_dialog import Ui_pluginDialog
     from ..base.ui.qt6.progress_dialog import Ui_progressDialog
@@ -16,3 +17,4 @@ except:
     from PyQt6.QtGui import QIcon, QFont
     qSizePolicy = QtWidgets.QSizePolicy.Policy
     qAlignmentFlag = QtCore.Qt.AlignmentFlag
+    qDialogCode = QtWidgets.QDialog
