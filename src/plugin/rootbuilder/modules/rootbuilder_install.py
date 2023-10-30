@@ -48,6 +48,11 @@ class RootBuilderInstall(QtWidgets.QWidget):
         """Determines if an IFileTree represents a likely root mod."""
         maps = self.maps()
 
+        # Has this mod got a root folder? If so, someone has actually packaged it for Root Builder!!
+        rootItm = tree.find("Root")
+        if rootItm != None:
+            return True
+
         # Has this mod got any of the custom Root mod maps in here? If so, it's a Root mod.
         customMaps = maps[self._rootKey]
         for cm in customMaps:
@@ -75,12 +80,6 @@ class RootBuilderInstall(QtWidgets.QWidget):
                 self._log.debug("Found " + dataItm.name())
                 return False
             
-        # Does the top level of this mod contain a Data folder file? if so, it's not a Root mod.
-        #self._foundDataExt = False
-        #tree.walk(self.hasDataExt)
-        #if self._foundDataExt:
-        #    return False
-            
         # Has this mod got any sepcifically Root files in here? If so, it's a Root mod.
         self._foundRootExt = False
         tree.walk(self.hasRootExt)
@@ -92,32 +91,42 @@ class RootBuilderInstall(QtWidgets.QWidget):
 
     def repackMod(self, tree: mobase.IFileTree):
         """Repacks a data folder for install."""
+        # If this contains root already, just return it, it's packaged for RB!
+        rootItm = tree.find("Root")
+        if rootItm != None:
+            return tree
+
+        self._tree = tree
+
+        # Figure out where any relevant data files are and record the path.
         gameDataDir = self._strings.gameDataPath()
         gameDir = self._strings.gamePath()
         dataIsSubdir = self._paths.pathShared(gameDir, gameDataDir)
         dataFolder = self._strings.gameDataFolder()
         if not dataIsSubdir:
             dataFolder = "Data"
+        self._log.debug("Data folder name: " + dataFolder)
         maps = self.maps()
-        self._tree = tree
 
         rootLevel = None
-        dataLevel = None
+        self._dataPath = None
 
         # If Data is a subdir of the game, search for it.
         if dataIsSubdir:
             dataItm = tree.find(dataFolder)
             if dataItm:
-                dataLevel = dataItm
+                self._dataPath = dataItm
+                self._log.debug("Found Data as subdirectory: " + dataItm.path())
         # If Data wasn't found, search for the appropriate place.
-        if dataLevel == None:
+        if self._dataPath == None:
             self._dataPath = None
             tree.walk(self.findDataPath)
             if self._dataPath != None:
-                dataLevel = self._dataPath
+                self._log.debug("Found Data through item match: " + dataItm.path())
         # If there is no data, create a data path.
-        if dataLevel == None:
-            dataLevel = tree.addDirectory(dataFolder)
+        if self._dataPath == None:
+            self._log.debug("Could not find Data, creating default folder.")
+            self._dataPath = tree.addDirectory(dataFolder)
 
         # If there's a custom map, the data level is there.
         customMaps = maps[self._rootKey]
@@ -134,10 +143,10 @@ class RootBuilderInstall(QtWidgets.QWidget):
         # Detach any root invalid files.
         rootLevel.walk(self.detachInvalid)
 
-        self._root = dataLevel.addDirectory("Root")
+        self._root = self._dataPath.addDirectory("Root")
         rootLevel.walk(self.moveToRoot)
 
-        return dataLevel
+        return self._dataPath
 
     _foundDataExt = False
     def hasDataExt(self, path:str, entry:mobase.FileTreeEntry) -> mobase.IFileTree.WalkReturn:
