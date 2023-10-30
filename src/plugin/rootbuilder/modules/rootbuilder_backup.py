@@ -1,4 +1,4 @@
-import mobase
+import mobase, threading
 from pathlib import Path
 from .rootbuilder_strings import RootBuilderStrings
 from .rootbuilder_paths import RootBuilderPaths
@@ -40,35 +40,59 @@ class RootBuilderBackup():
         gameFiles = self._cache.cachedValidRootGameFiles()
         self.createPartialBackup(gameFiles, overwrite)
 
+    _overwrite = False
+    _gamePath = Path()
+    _backupPath = Path()
     def createPartialBackup(self, paths:List[str], overwrite=False):
         """Creates a backup of a specific list of game paths."""
-        gamePath = self._strings.gamePath()
-        backupPath = self._strings.rbBackupPath()
-        for file in paths:
-            relativePath = self._paths.relativePath(gamePath, file)
-            fullBackupPath = Path(backupPath) / relativePath
-            fullGamePath = Path(gamePath) / relativePath
-            if not fullBackupPath.exists() or overwrite:
-                if fullGamePath.exists():
-                    backupString = str(fullBackupPath.absolute())
-                    if self._util.copyFile(str(fullGamePath), backupString):
-                        self._log.debug("Backed up " + str(fullGamePath) + " to " + backupString)
-                    else:
-                        self._log.warning("Failed to back up " + str(fullGamePath) + " to " + backupString)
+        self._gamePath = Path(self._strings.gamePath())
+        self._backupPath = Path(self._strings.rbBackupPath())
+        self._overwrite = overwrite
+        threads = []
+        for path in paths:
+            nt = threading.Thread(target=self._backupFile, args=[path])
+            nt.start()
+            threads.append(nt)
+        for t in threads:
+            t.join()
+
+    def _backupFile(self, filePath:str):
+        """Backs up a single file to the specified backup path."""
+        relativePath = self._paths.relativePath(self._gamePath, filePath)
+        fullBackupPath = self._backupPath / relativePath
+        fullGamePath = self._gamePath / relativePath
+        if not fullBackupPath.exists() or self._overwrite:
+            if fullGamePath.exists():
+                backupString = str(fullBackupPath.absolute())
+                gameString = str(fullGamePath)
+                if self._util.copyFile(gameString, backupString):
+                    self._log.debug("Backed up " + gameString + " to " + backupString)
+                else:
+                    self._log.warning("Failed to back up " + gameString + " to " + backupString)
 
     def restoreBackup(self):
         """Restores every possible file from the backup."""
         gameFiles = self._cache.cachedValidRootGameFiles()
-        gamePath = Path(self._strings.gamePath())
-        backupPath = Path(self._strings.rbBackupPath())
-        for file in gameFiles:
-            if not Path(file).exists():
-                relativePath = self._paths.relativePath(str(gamePath), file)
-                backupFilePath = backupPath / relativePath
-                if backupFilePath.exists():
-                    if self._util.copyFile(str(backupFilePath), file):
-                        self._log.debug("Restored file from " + str(backupFilePath) + " to " + str(file))
-                    else:
-                        self._log.warning("Failed to restore file from " + str(backupFilePath) + " to " + str(file))
+        self._gamePath = Path(self._strings.gamePath())
+        self._backupPath = Path(self._strings.rbBackupPath())
+        threads = []
+        for path in gameFiles:
+            nt = threading.Thread(target=self._restoreFile, args=[path])
+            nt.start()
+            threads.append(nt)
+        for t in threads:
+            t.join()
+            
+    def _restoreFile(self, filePath:str):
+        """Restores a single file."""
+        if not Path(filePath).exists():
+            relativePath = self._paths.relativePath(str(self._gamePath), filePath)
+            backupFilePath = self._backupPath / relativePath
+            if backupFilePath.exists():
+                backupString = str(backupFilePath)
+                if self._util.copyFile(backupString, filePath):
+                    self._log.debug("Restored file from " + backupString + " to " + filePath)
                 else:
-                    self._log.info("Missing file has no backup " + str(file))
+                    self._log.warning("Failed to restore file from " + backupString + " to " + filePath)
+            else:
+                self._log.info("Missing file has no backup " + filePath)

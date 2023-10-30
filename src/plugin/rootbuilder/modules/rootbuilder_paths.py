@@ -58,20 +58,25 @@ class RootBuilderPaths(CommonPaths):
     def removeExclusions(self, rootPath:str, fileList:List[str]) -> List[str]:
         """Removes any exclusions from a list of files."""
         exclusions = self._settings.exclusions()
-        validFiles = []
-        invalidFiles = []
+        validFiles = fileList
+        #invalidFiles = []
         for exc in exclusions:
             if exc != "":
                 excludePath = str(Path(rootPath) / exc)
                 for match in glob.glob(excludePath, recursive=True):
                     matchPath = Path(match)
-                    if matchPath.is_file():
-                        invalidFiles.append(match)
+                    if matchPath.is_file() and match in validFiles:
+                        validFiles.pop(validFiles.index(match))
+                        #invalidFiles.append(match)
                     elif matchPath.is_dir():
-                        invalidFiles.extend(self.files(match))
-        for file in fileList:
-            if file not in invalidFiles:
-                validFiles.append(file)
+                        for file in self.files(match):
+                            if file in validFiles:
+                                validFiles.pop(validFiles.index(file))
+                        #invalidFiles.extend(self.files(match))
+        #for file in fileList:
+        #    if file not in invalidFiles:
+        #        validFiles.index()
+        #        validFiles.append(file)
         return validFiles
     
     def filterFiles(self, rootPath:str, fileList:List[str], inclusions:List[str]) -> List[str]:

@@ -1,4 +1,4 @@
-import mobase
+import mobase, threading
 from pathlib import Path
 from .rootbuilder_strings import RootBuilderStrings
 from .rootbuilder_paths import RootBuilderPaths
@@ -29,12 +29,15 @@ class RootBuilderData():
         filePath = self._strings.rbBuildDataPath()
         return Path(filePath).exists()
 
+    _data = None
     def loadDataFile(self) -> dict:
         """Loads and returns the current data file, or an empty object if none exists."""
+        if self._data != None:
+            return self._data
         filePath = self._strings.rbBuildDataPath()
-        data = self._util.loadJson(filePath)
-        if data != None:
-            return data
+        self._data = self._util.loadJson(filePath)
+        if self._data != None:
+            return self._data
         return {
             self._copyKey: {},
             self._linkKey: {},
@@ -43,51 +46,53 @@ class RootBuilderData():
     
     def saveDataFile(self, data:dict) -> bool:
         """Saves new data to the current data file."""
+        self._data = data
         filePath = self._strings.rbBuildDataPath()
-        return self._util.saveJson(filePath, data)
+        return self._util.saveJson(filePath, self._data)
     
     def deleteDataFile(self) -> bool:
         """Deletes the current data file."""
+        self._data = None
         filePath = self._strings.rbBuildDataPath()
         return self._util.deleteFile(filePath)
     
+    _buildData = {}
     def generateBuildData(self) -> dict:
         """Generates complete build data for the existing setup."""
+        self._log.debug("Finding root mod folders.")
         modFolders = self._paths.enabledRootModFolders()
         overwriteFolder = self._strings.rbOverwritePath()
+        copyPriority = self._settings.copypriority()
+        linkPriority = self._settings.linkpriority()
+        usvfsPriority = self._settings.usvfspriority()
         modFolders.append(overwriteFolder)
         useHash = self._settings.hash()
-        buildData = {
+        self._buildData = {
             self._copyKey: {},
             self._linkKey: {},
             self._usvfsKey: {},
         }
+        self._log.debug("Checking root mod folders for files.")
         for mod in modFolders:
+            self._log.debug("Checking mod: " + mod)
             rootFiles = self._paths.validRootFiles(mod)
             copyFiles = self._paths.validCopyFiles(mod, rootFiles)
             linkFiles = self._paths.validLinkFiles(mod, rootFiles)
             usvfsFiles = self._paths.validUsvfsFiles(mod, rootFiles)
-            copyPriority = self._settings.copypriority()
-            linkPriority = self._settings.linkpriority()
-            usvfsPriority = self._settings.usvfspriority()
-
             for file in copyFiles:
                 if copyPriority <= linkPriority or not file in linkFiles:
                     if copyPriority <= usvfsPriority or not file in usvfsFiles:
                         relativePath = self._paths.relativePath(mod, file)
-                        hash = ""
-                        if useHash:
-                            hash = self._util.hashFile(file)
-                        buildData[self._copyKey][relativePath.lower()] = {
+                        self._buildData[self._copyKey][relativePath.lower()] = {
                             self._sourceKey: file,
                             self._relativeKey: relativePath,
-                            self._hashKey: hash
+                            self._hashKey: ""
                         }
             for file in linkFiles:
                 if linkPriority < copyPriority or not file in copyFiles:
                     if linkPriority <= usvfsPriority or not file in usvfsFiles:
                         relativePath = self._paths.relativePath(mod, file)
-                        buildData[self._linkKey][relativePath.lower()] = {
+                        self._buildData[self._linkKey][relativePath.lower()] = {
                             self._sourceKey: file,
                             self._relativeKey: relativePath
                         }
@@ -95,12 +100,26 @@ class RootBuilderData():
                 if usvfsPriority < copyPriority or not file in copyFiles:
                     if usvfsPriority < linkPriority or not file in linkFiles:
                         relativePath = self._paths.relativePath(mod, file)
-                        buildData[self._usvfsKey][relativePath.lower()] = {
+                        self._buildData[self._usvfsKey][relativePath.lower()] = {
                             self._sourceKey: file,
                             self._relativeKey: relativePath 
                         }
-        return buildData
+        if useHash:
+            self._log.debug("Hash enabled, hashing root mod files.")
+            threads = []
+            for copyFile in self._buildData[self._copyKey]:
+                nt = threading.Thread(target=self._hashModFile, args=[copyFile])
+                nt.start()
+                threads.append(nt)
+            for t in threads:
+                t.join()
+        return self._buildData
             
+    def _hashModFile(self, fileKey:str):
+        cData = self._buildData[self._copyKey][fileKey]
+        srcPath = cData[self._sourceKey]
+        hash = self._util.hashFile(srcPath)
+        self._buildData[self._copyKey][fileKey][self._hashKey] = hash
 
     def mergeBuildData(self, base:dict, overwrite:dict) -> dict:
         """Overwrites older build data with new build data."""

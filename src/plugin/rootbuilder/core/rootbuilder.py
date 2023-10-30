@@ -33,21 +33,9 @@ class RootBuilder():
         hasExistingBuild = self._data.dataFileExists()
         self._log.info("Generating root mod build data.")
         newBuildData = self._data.generateBuildData()
-        gamePath = self._strings.gamePath()
-
-        # Calculate any possible overwrites for if we need to update our backup or cache.
-        possibleOverwrites = []
-        for fileKey in newBuildData[self._data._copyKey]:
-            relativePath = newBuildData[self._data._copyKey][fileKey][self._data._relativeKey]
-            destPath = Path(gamePath) / relativePath
-            possibleOverwrites.append(str(destPath))
-        for fileKey in newBuildData[self._data._linkKey]:
-            relativePath = newBuildData[self._data._linkKey][fileKey][self._data._relativeKey]
-            destPath = Path(gamePath) / relativePath
-            possibleOverwrites.append(str(destPath))
 
         # Generate a full or partial set of file hashes.
-        self._log.info("No game cache found, generating.")
+        self._log.info("Updating cache.")
         fullCache = self._cache.updateCache()
         self._cache.saveCacheFile(fullCache)
 
@@ -56,6 +44,17 @@ class RootBuilder():
             self._log.info("Checking for updates to backup files.")
             self._backup.updateBackup()
         else:
+            # Calculate any possible overwrites for if we need to update our backup or cache.
+            gamePath = Path(self._strings.gamePath())
+            possibleOverwrites = []
+            for fileKey in newBuildData[self._data._copyKey]:
+                relativePath = newBuildData[self._data._copyKey][fileKey][self._data._relativeKey]
+                destPath = gamePath / relativePath
+                possibleOverwrites.append(str(destPath))
+            for fileKey in newBuildData[self._data._linkKey]:
+                relativePath = newBuildData[self._data._linkKey][fileKey][self._data._relativeKey]
+                destPath = gamePath / relativePath
+                possibleOverwrites.append(str(destPath))
             self._log.info("Backup disabled, only storing potential overwrites.")
             self._backup.createPartialBackup(possibleOverwrites)
 
@@ -82,15 +81,19 @@ class RootBuilder():
         if hasExistingBuild:
             self._log.info("Build exists, updating mod files.")
             newData = self._builder.syncFiles()
-            self._data.saveDataFile(newData)
+            if not self._isClear:
+                self._data.saveDataFile(newData)
             self._log.info("Sync complete!")
             
+    _isClear = False
     def clear(self):
         """Runs a sync and then clears up the game folder."""
         hasExistingBuild = self._data.dataFileExists()
         if hasExistingBuild:
             # Update the files in Mod Organizer if needed.
+            self._isClear = True
             self.sync()
+            self._isClear = False
 
             # Delete any deployed files or links
             self._log.info("Clearing deployed files and links.")
