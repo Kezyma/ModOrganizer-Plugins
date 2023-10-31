@@ -7,7 +7,6 @@ try:
     from ..ui.qt6.rootbuilder_settings import Ui_settingsTabWidget
     from ..ui.qt6.rootbuilder_exclusions import Ui_exclusionsTabWidget
     from ..ui.qt6.rootbuilder_actions import Ui_actionsTabWidget
-    from ..ui.qt6.rootbuilder_help import Ui_helpTabWidget
     from ..ui.qt6.rootbuilder_update import Ui_updateTabWidget
     from ..ui.qt6.rootbuilder_export import Ui_exportTabWidget
 except:
@@ -17,7 +16,6 @@ except:
     from ..ui.qt5.rootbuilder_settings import Ui_settingsTabWidget
     from ..ui.qt5.rootbuilder_exclusions import Ui_exclusionsTabWidget
     from ..ui.qt5.rootbuilder_actions import Ui_actionsTabWidget
-    from ..ui.qt5.rootbuilder_help import Ui_helpTabWidget
     from ..ui.qt5.rootbuilder_update import Ui_updateTabWidget
     from ..ui.qt5.rootbuilder_export import Ui_exportTabWidget
 
@@ -117,7 +115,7 @@ class RootBuilderMenu(QtWidgets.QWidget):
         self.helpTabWidget.patreonButton.setIcon(self._icons.patreonIcon())
         self.helpTabWidget.patreonButton.clicked.connect(self.patreon_clicked)
 
-        helpPath = Path(__file__).parent.parent / "docs" / "readme.html"
+        helpPath = Path(__file__).parent.parent / "data" / "rootbuilder_help.html"
         helpUrl = QtCore.QUrl.fromLocalFile(str(helpPath.absolute()))
         self.helpTabWidget.helpText.setSource(helpUrl)
 

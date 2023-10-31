@@ -55,7 +55,7 @@
       <item>
        <widget class="QLabel" name="copyModeDesc">
         <property name="text">
-         <string>Files matching the specified rules will be copied to the game folder during a build. During a clear, the source files will be updated with any changes and the copied files are deleted.</string>
+         <string>Files matching the specified rules will be copied to the game folder during a build. During a clear, the source files will be updated with any changes and the copied files are deleted. These rules support wildcards such as * and **.</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
@@ -186,7 +186,7 @@
       <item>
        <widget class="QLabel" name="linkModeDesc">
         <property name="text">
-         <string>Files matching the specified rules will have links created in the game folder during build. During a clear, the source files will be updated with any changes and the links are removed.</string>
+         <string>Files matching the specified rules will have links created in the game folder during build. During a clear, the source files will be updated with any changes and the links are removed. These rules support wildcards such as * and **.</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
@@ -320,7 +320,7 @@
       <item>
        <widget class="QLabel" name="usvfsModeDesc">
         <property name="text">
-         <string>Files matching the specified rules will be mapped to the game folder using Mod Organizer's VFS. This is not compatible with all mods and will only function if Autobuild is enabled.</string>
+         <string>Files matching the specified rules will be mapped to the game folder using Mod Organizer's VFS. This is not compatible with all mods and does not support manual build, sync or clear. These rules support wildcards such as * and **.</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
