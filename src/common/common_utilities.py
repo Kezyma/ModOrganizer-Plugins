@@ -79,6 +79,15 @@ class CommonUtilities():
         except:
             return None
         
+    def loadLines(self, path:str):
+        """Loads a list of lines from a file."""
+        try:
+            with open(path, "r") as file:
+                lines = [line.rstrip() for line in file]
+                return lines
+        except:
+            return None
+        
     def hashFile(self, path:str) -> str:
         """ Hashes a file and returns the hash """
         func = hashlib.md5()
@@ -125,3 +134,4 @@ class CommonUtilities():
         if empty:
             os.rmdir(path)
         return empty
+
