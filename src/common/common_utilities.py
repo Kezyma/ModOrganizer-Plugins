@@ -97,3 +97,31 @@ class CommonUtilities():
             return True
         except:
             return False
+        
+    def folderIsEmpty(self, path:str):
+        items = os.listdir(path)
+        empty = True
+        if len(items) > 0:
+            for itm in items:
+                fullPath = os.path.join(path, itm)
+                if os.path.isdir(fullPath):
+                    subIsEmpty = self.folderIsEmpty(fullPath)
+                    empty = empty and subIsEmpty
+                else:
+                    empty = False
+        return empty
+    
+    def deleteEmptyFolders(self, path:str):
+        items = os.listdir(path)
+        empty = True
+        if len(items) > 0:
+            for itm in items:
+                fullPath = os.path.join(path, itm)
+                if os.path.isdir(fullPath):
+                    subIsEmpty = self.deleteEmptyFolders(fullPath)
+                    empty = empty and subIsEmpty
+                else:
+                    empty = False
+        if empty:
+            os.rmdir(path)
+        return empty

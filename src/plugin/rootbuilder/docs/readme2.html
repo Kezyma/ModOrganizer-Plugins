@@ -64,17 +64,16 @@
         <h3>Build</h3>
         <p>When a build runs, the following things happen;</p>
         <ul>
-            <li>(Cache enabled) If no cache exists, all base game files (minus the data folder) will be hashed and recorded.</li>
-            <li>(Cache disabled) The names of base game files (minus the data folder) will be recorded.</li>
-            <li>(Backup enabled) If no backup exists, all base game files (minus the data folder) will be backed up.</li>
-            <li>(Backup disabled) Any base game files that would be overwritten by <code>Root</code> files are backed up.</li>
+            <li>All <code>Root</code> mod files are recorded. If Hash is enabled, they are also hashed.</li>
+            <li>All base game files (minus the data folder) will be recorded. If Hash is enabled, they are also hashed. If Cache is enabled, these are stored and reused in future builds.</li>
+            <li>If Backup is enabled, base game files (minus the data folder) are backed up, otherwise only files about to be overwritten by <code>Root</code> mods will be backed up.</li>
             <li>All files in <code>Root</code> folders are either copied or linked to the base game folder based on the current mode.</li>
         </ul>
         <h3>Sync</h3>
         <p>When a sync runs, the following things happen;</p>
         <ul>
             <li>Any files from <code>Root</code> mods that have changed in the game folder are copied back to Mod Organizer.</li>
-            <li>(Cache enabled) Any base game files that have changed are copied to Mod Organizer's overwrite folder.</li>
+            <li>Any base game files that have changed are copied to Mod Organizer's overwrite folder.</li>
             <li>Any new files in the base game folder are copied to Mod Organizer's overwrite folder.</li>
         </ul>
         <h3>Clear</h3>
@@ -83,8 +82,6 @@
             <li>A sync is run.</li>
             <li>Any files copied or linked from <code>Root</code> folders are deleted.</li>
             <li>Any missing game files that were backed up are restored.</li>
-            <li>(Backup disabled) Any backed up files are deleted.</li>
-            <li>(Cache disabled) Any recorded base game file names and hashed are deleted.</li>
         </ul>
     </div>
 </div>
@@ -127,6 +124,8 @@
         <p>Backup, when enabled, will cause a full backup of the game folder (minus the data folder) to be taken during the first build. Whenever a clear is run, if a game file changes or is removed, it is restored from this backup.</p>
         <h3>Cache</h3>
         <p>Cache, when enabled, will cause all game files (minus the data folder) to be hashed and recorded during the first build. These hashes are used to detect changes in game files during a sync. Without cache being enabled, changes to base game files cannot be detected.</p>
+        <h3>Hash</h3>
+        <p>Hash, when enabled, will use file hashes to look for changes to <code>Root</code> mod and game files. If disabled, file size and modified times will be used instead.</p>
         <h3>Autobuild</h3>
         <p>Autobuild, when enabled, will cause a build to run whenever an application is launched through Mod Organizer. A clear will also run when that application closes (or Mod Organzier is unlocked).</p>
         <h3>Redirect</h3>
@@ -139,9 +138,21 @@
 
     <div id="ExclusionsSection">
         <h2>Exclusions</h2>
+        <p>Exclusions are files, folders or custom rules that if found in the base game folder or in <code>Root</code> mods, will be completely ignored by Root Builder.</p>
+        <ul>
+            <li>Each rule should be the path to a file or folder, relative to the <code>Root</code> folder.</li>
+            <li>Rules can contain the <code>**</code> wildcard which will match all files and folders.</li>
+            <li>Rules can contain the <code>*</code> wildcard, which matches anything in a file or folder name.</li>
+            <li>Any other wildcards supported by Python's glob module should also function.</li>
+        </ul>
     </div>
 </div>
 
 <div id="TroubleSection">
     <h1>Troubleshooting</h1>
+
+    <div id="GameUpdate">
+        <h2>Game files are being copied to overwrite after a game update.</h2>
+        <p>Root Builder attempts to automatically detect when a game has updated, but this is not possible for all games. If your game has updated and now game files are being copied to </p>
+    </div>
 </div>

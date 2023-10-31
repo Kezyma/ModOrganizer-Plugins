@@ -195,6 +195,7 @@ class RootBuilderBuilder():
             threads.append(nt)
         for t in threads:
             t.join()
+        self.folderCleanup()
 
     def _clearLink(self, linkPath:str):
         fullPath = self._gamePath / str(linkPath)
@@ -211,3 +212,9 @@ class RootBuilderBuilder():
                 self._log.debug("Deleted file " + str(fullPath))
             else:
                 self._log.warning("Could not delete file " + str(fullPath))
+
+    def folderCleanup(self):
+        gamePath = self._strings.gamePath()
+        self._util.deleteEmptyFolders(gamePath)
+
+    
