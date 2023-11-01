@@ -35,7 +35,7 @@ class ProfileSyncGroups():
         """Creates a new sync group."""
         groups = self.loadSyncGroups()
         if groupName not in groups:
-            groups[groupName] = {}
+            groups[groupName] = []
             self.saveSyncGroups(groups)
         
     def updateSyncgroup(self, groupName:str, profileList:list):
@@ -52,6 +52,7 @@ class ProfileSyncGroups():
             for p in groups[g]:
                 if p == profile:
                     return g
+        return None
                 
     def renameProfile(self, oldProfile:str, newProfile:str):
         """Renames a profile in their given group."""

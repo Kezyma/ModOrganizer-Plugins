@@ -88,6 +88,15 @@ class CommonUtilities():
         except:
             return None
         
+    def saveLines(self, path:str, data:list) -> bool:
+        """Saves a list of lines to a file."""
+        try:
+            with open(Path(path), "w", encoding="utf-8") as jsonFile:
+                jsonFile.writelines(data)
+                return True
+        except:
+            return False
+        
     def hashFile(self, path:str) -> str:
         """ Hashes a file and returns the hash """
         func = hashlib.md5()

@@ -60,3 +60,8 @@ class ProfileSyncMenu(QtWidgets.QWidget):
 
     def updateFound_clicked(self):
         webbrowser.open("https://www.nexusmods.com/skyrimspecialedition/mods/60690?tab=files")
+
+    def createGroup_clicked(self):
+        newName = self.groupsTabWidget.newGroupText.text()
+        if newName != "":
+            self._profileSync._groups.createSyncGroup(newName)
