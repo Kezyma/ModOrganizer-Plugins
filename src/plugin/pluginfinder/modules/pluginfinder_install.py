@@ -1,0 +1,128 @@
+import mobase, threading, os, subprocess
+from .pluginfinder_strings import PluginFinderStrings
+from .pluginfinder_directory import PluginFinderDirectory
+from ....common.common_utilities import CommonUtilities
+from ....common.common_log import CommonLog
+from pathlib import Path
+
+class PluginFinderInstall():
+    """Plugin Finder install module, handles install, update and uninstall of plugins."""
+
+    def __init__(self, organiser:mobase.IOrganizer, strings:PluginFinderStrings, directory:PluginFinderDirectory, util:CommonUtilities, log:CommonLog):
+        self._strings = strings
+        self._util = util
+        self._log = log
+        self._directory = directory
+        self._organiser = organiser
+    
+    VERSION = "Version"
+    DATA = "DataPath"
+    LOCALE = "LocalePath"
+    PLUGIN = "PluginPath"
+    URL = "DownloadUrl"
+
+    _installData = None
+    def loadInstallData(self, reload=False) -> list:
+        if self._installData == None or reload:
+            filePath = self._strings.pfInstallDataPath()
+            if Path(filePath).exists():
+                self._installData = self._util.loadJson(filePath)
+            else:
+                self._installData = {}
+        return self._installData
+    
+    def saveInstallData(self, data:dict) -> bool:
+        """Saves new data to the current data file."""
+        self._installData = data
+        filePath = self._strings.pfInstallDataPath()
+        return self._util.saveJson(filePath, self._installData)
+
+    def installPlugin(self, pluginId:str):
+        """Installs a plugin from the directory."""
+        manifest = self._directory.getPluginManifest(pluginId)
+        latestVer = self._directory.getLatestVersion(pluginId)
+        allVer = manifest[self._directory.VERSIONS]
+        for ver in allVer:
+            versionItm = mobase.VersionInfo(ver[self._directory.VERSION])
+            # Only install the latest version.
+            if versionItm == latestVer:
+                url = ver[self.URL]
+                tempName = Path(self._strings.pfStagingFolderPath()) / os.path.basename(url)
+                # Download the plugin from its source.
+                if self._util.downloadFile(url, str(tempName)):
+                    self._log.debug("Downloaded " + url)
+                    sZ = self._strings.pf7zPath()
+                    tempPath = Path(self._strings.pfStagingFolderPath()) / pluginId
+                    unzipCommand = f'"{sZ}" x "{str(tempName)}" -o"{str(tempPath)}" -y'
+                    self._log.debug("Unzipping " + str(tempName))
+                    #try:
+                    # Unzip the plugin download.
+                    subprocess.call(unzipCommand, shell=True, stdout=open(os.devnull, 'wb'))
+
+                    # Copy over any plugin files.
+                    pluginDest = Path(self._strings.moPluginsPath())
+                    pluginFiles = []
+                    for pluginFile in ver[self.PLUGIN]:
+                        relativePath = tempPath / pluginFile
+                        if relativePath.exists():
+                            fileFolderName = os.path.basename(str(relativePath))
+                            pluginFiles.append(fileFolderName)
+                            destPath = pluginDest / fileFolderName
+                            self._log.debug("Moving from " + str(relativePath) + " to " + str(destPath))
+                            if self._util.moveFile(str(relativePath), str(destPath)):
+                                self._log.debug("Moved from " + str(relativePath) + " to " + str(destPath))
+                            else:
+                                self._log.warning("Could not move " + str(relativePath) + " to " + str(destPath))    
+                        else:
+                            self._log.warning("Could not find " + str(relativePath))
+                    
+                    # Copy over any locale files.
+                    localeDest = Path(self._strings.moLocalePath())
+                    localeFiles = []
+                    for localeFile in ver[self.LOCALE]:
+                        relativePath = tempPath / localeFile
+                        if relativePath.exists():
+                            fileFolderName = os.path.basename(str(relativePath))
+                            localeFiles.append(fileFolderName)
+                            destPath = localeDest / fileFolderName
+                            self._log.debug("Moving from " + str(relativePath) + " to " + str(destPath))
+                            if self._util.moveFile(str(relativePath), str(destPath)):
+                                self._log.debug("Moved from " + str(relativePath) + " to " + str(destPath))
+                            else:
+                                self._log.warning("Could not move " + str(relativePath) + " to " + str(destPath))    
+                        else:
+                            self._log.warning("Could not find " + str(relativePath))
+
+                    installItem = {
+                        self.VERSION: ver[self._directory.VERSION],
+                        self.LOCALE: localeFiles,
+                        self.PLUGIN: pluginFiles,
+                        self.DATA: ver[self.DATA]
+                    }
+                    installData = self.loadInstallData()
+                    installData[pluginId] = installItem
+                    self.saveInstallData(installData)
+
+                    # Remove the temp download
+                    self._util.deleteFolder(str(tempPath))
+                    #except:
+                    #    self._log.warning("Could not install " + str(tempName))
+
+                    # Remove the download
+                    self._util.deleteFile(str(tempName))
+                else:
+                    self._log.warning("Could not download " + url)
+
+    def uninstallPlugin(self, pluginId:str):
+        """Uninstalls a currently installed plugin."""
+
+    def installFromFile(self, filePath:str):
+        """Installs a plugin from a file."""
+
+    def treeIsPlugin(self, tree:mobase.IFileTree):
+        """Determines if a tree is an MO2 plugin installer."""
+        # Load manifests
+        # For each manifest
+            # Get the plugin path
+            # If the path is a folder, look for the final folder in the path and check it contains __init__.py
+            # If the path is a file, look for that specific .py file in the tree

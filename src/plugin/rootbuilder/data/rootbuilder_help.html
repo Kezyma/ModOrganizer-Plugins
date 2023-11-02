@@ -1,12 +1,18 @@
 <div id="ContentsSection">
     <h1>Troubleshooting</h1>
     <ul>
+        <li><a href="#InstallWarn">Mod Organizer warns me that mods with Root folders appear invalid or empty.</a></li>
         <li><a href="#GameUpdate">Game files are being copied to the overwrite folder.</a></li>
         <li><a href="#SlowBuild">Running a Build, Sync or Clear is slow or freezes Mod Organizer.</a></li>
+        <li><a href="#Linux">Root Builder is not functioning correctly on Linux.</a></li>
     </ul>
 </div>
 
 <div id="TroubleSection">
+    <div id="InstallWarn">
+        <h2>Mod Organizer warns me that mods with Root folders appear invalid or empty.</h2>
+        <p>The Root folder isn't recognised by Mod Organizer as a valid folder and shows a warning as a result. This can be safely ignored however and will not stop the mod working with Root Builder.</p>
+    </div>
     <div id="GameUpdate">
         <h2>Game files are being copied to the overwrite folder.</h2>
         <p>Root Builder uses Mod Organizer to detect when a game has updated and to rebuild the backup and cache when this happens. This does not work with all games and therefore Root Builder can sometimes believe game updates are actually mod files.</p>
@@ -26,5 +32,9 @@
             <li>Disasble Hash in the Settings tab. Hashing is more accurate than comparing file size and modified time, but it is also slower.</li>
             <li>Disable Backup, assuming no game files are likely to change as a result of mods, disabling Backup can improve performance on the first Build. Using Exclusions to improve backup speed is preferred though.</li>
         </ul>
+    </div>
+    <div id="Linux">
+        <h2>Root Builder is not functioning correctly on Linux.</h2>
+        <p>The autobuild functionality of Root Builder doesn't work on Linux. Run a manual build before launching applications and a manual clear after they close.</p>
     </div>
 </div>

@@ -39,6 +39,12 @@ class RootBuilderPlugin(BasePlugin):
             mobase.PluginSetting("enabled",self.__tr("Enables " + self._pluginName), True),
             mobase.PluginSetting("loglevel", self.__tr("Controls the logging for " + self._pluginName), 1),
             mobase.PluginSetting("hash",self.__tr("Enables hashing as the method of change detection."), True),
+            # Legacy Settings, obsolete.
+            mobase.PluginSetting("migrated", self.__tr("Determiens whether to run v4 migration to v5."),False),
+            mobase.PluginSetting("linkmode",self.__tr("[OBSOLETE] Enables the use of file linking when using usvfs mode."), False),
+            mobase.PluginSetting("linkonlymode", self.__tr("[OBSOLETE] Enables the exclusive use of file linking without usvfs mode."), False),
+            mobase.PluginSetting("usvfsmode",self.__tr("[OBSOLETE] Enables the use of usvfs instead of copying during autobuild."), False),
+            mobase.PluginSetting("linkextensions",self.__tr("[OBSOLETE] List of file extensions to create links for if using link mode."), "dll,exe"),
             ]
         for setting in customSettings:
             baseSettings.append(setting)

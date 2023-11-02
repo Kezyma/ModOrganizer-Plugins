@@ -6,8 +6,10 @@ try:
     from PyQt5 import QtCore, QtWidgets
     from PyQt5.QtWidgets import QDialog, QWidget, QVBoxLayout, QHBoxLayout, QSizePolicy, QLabel
     from PyQt5.QtGui import QIcon, QFont
+    qItemFlag = QtCore.Qt
     qSizePolicy = QtWidgets.QSizePolicy
     qAlignmentFlag = QtCore.Qt
+    qCheckState = QtCore.Qt
     qDialogCode = QtWidgets.QDialog.DialogCode
 except:
     from ..base.ui.qt6.plugin_dialog import Ui_pluginDialog
@@ -20,3 +22,5 @@ except:
     qSizePolicy = QtWidgets.QSizePolicy.Policy
     qAlignmentFlag = QtCore.Qt.AlignmentFlag
     qDialogCode = QtWidgets.QDialog
+    qItemFlag = QtCore.Qt.ItemFlag
+    qCheckState = QtCore.Qt.CheckState

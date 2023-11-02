@@ -38,104 +38,11 @@
       <item>
        <widget class="QLabel" name="infoLabel">
         <property name="text">
-         <string>Each group will synchronise the order of mods between all selected profiles. When creating a new group, the first profile selected is the one that will by synchronised to any other selected groups.</string>
+         <string>Every profile selected within the same group will synchronise their mod list order. When creating a new group, the first profile selected is the starting order. Each profile can only be a member of one group.</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
         </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QWidget" name="groupSelectWidget" native="true">
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
-      <item>
-       <widget class="QWidget" name="groupCreateWidget" native="true">
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <item>
-          <widget class="QLabel" name="newGroupLabel">
-           <property name="text">
-            <string>New Group</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="newGroupText"/>
-         </item>
-         <item>
-          <widget class="QPushButton" name="newGroupButton">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Create</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QWidget" name="selectWidget" native="true">
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <item>
-          <widget class="QComboBox" name="groupSelect"/>
-         </item>
-         <item>
-          <widget class="QPushButton" name="groupDeleteButton">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Delete</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
        </widget>
       </item>
      </layout>
@@ -157,7 +64,11 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QListWidget" name="profileList"/>
+       <widget class="QListWidget" name="profileList">
+        <property name="selectionMode">
+         <enum>QAbstractItemView::MultiSelection</enum>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>

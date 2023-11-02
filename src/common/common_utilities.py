@@ -66,6 +66,7 @@ class CommonUtilities():
     def saveJson(self, path:str, data) -> bool:
         """Saves an object to a json file."""
         try:
+            os.makedirs(os.path.dirname(path), exist_ok=True)
             with open(Path(path), "w", encoding="utf-8") as jsonFile:
                 json.dump(data, jsonFile)
                 return True
@@ -91,6 +92,7 @@ class CommonUtilities():
     def saveLines(self, path:str, data:list) -> bool:
         """Saves a list of lines to a file."""
         try:
+            os.makedirs(os.path.dirname(path), exist_ok=True)
             with open(Path(path), "w", encoding="utf-8") as jsonFile:
                 jsonFile.writelines(data)
                 return True
@@ -111,6 +113,7 @@ class CommonUtilities():
     def downloadFile(self, url:str, path:str) -> bool:
         """Downloads a file to a specific location."""
         try:
+            os.makedirs(os.path.dirname(path), exist_ok=True)
             urllib.request.urlretrieve(url, path)
             return True
         except:

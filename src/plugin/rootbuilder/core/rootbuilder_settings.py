@@ -62,3 +62,24 @@ class RootBuilderSettings(BaseSettings):
     def usvfspriority(self):
         """Priority order for files to be mapped."""
         return self.setting("usvfspriority")
+    
+    # Legacy Settings
+    def linkmode(self):
+        """ Determines whether to use file linking. """
+        return self.setting("linkmode")
+    
+    def linkonlymode(self):
+        """ Determines whether to use file linking only. """
+        return self.setting("linkonlymode")
+
+    def usvfsmode(self):
+        """ Determines whether to use usvfs root mapping. """
+        return self.setting("usvfsmode")
+
+    def linkextensions(self):
+        """ Extensions to be linked if link mode is enabled. """
+        return self.setting("linkextensions").split(",")
+    
+    def migrated(self):
+        """Determines if the existing setup has been migrated."""
+        return self.setting("migrated")
