@@ -9,77 +9,77 @@ class CommonStrings:
         self._organiser = organiser
         self._plugin = plugin
 
-    _gameVersion = str()
+    _gameVersion = ""
     def gameVersion(self) -> str:
         """Gets the currently installed version of the game."""
-        if self._gameVersion == str():
+        if self._gameVersion == "":
             self._gameVersion = self._organiser.managedGame().gameVersion()
-            if self._gameVersion == str():
+            if self._gameVersion == "":
                 self._gameVersion = "unknown"
         return self._gameVersion
 
-    _gamePath = str()
+    _gamePath = ""
     def gamePath(self) -> str:
         """Gets the path to the current game folder."""
-        if self._gamePath == str():
+        if self._gamePath == "":
             self._gamePath = self._organiser.managedGame().gameDirectory().path()
         return self._gamePath
 
-    _gameDataFolder = str()
+    _gameDataFolder = ""
     def gameDataFolder(self) -> str:
         """Gets the name of the Data folder for the current game."""
-        if self._gameDataFolder == str():
+        if self._gameDataFolder == "":
             gamePath = self.gamePath()
             gameDataPath = self.gameDataPath()
             self._gameDataFolder = gameDataPath.replace(gamePath, "")
         return self._gameDataFolder
 
-    _gameDataPath = str()
+    _gameDataPath = ""
     def gameDataPath(self) -> str:
         """Gets the path to the Data folder for the current game."""
-        if self._gameDataPath == str():
+        if self._gameDataPath == "":
             self._gameDataPath = self._organiser.managedGame().dataDirectory().path()
         return self._gameDataPath
 
-    _moPath = str()
+    _moPath = ""
     def moPath(self) -> str:
         """Gets the path for Mod Organizer's base folder."""
-        if self._moPath == str():
+        if self._moPath == "":
             self._moPath = str(Path(__file__).parent.parent.parent.parent)
         return self._moPath
 
-    _moIniPath = str()
+    _moIniPath = ""
     def moIniPath(self) -> str:
-        if self._moIniPath == str():
+        if self._moIniPath == "":
             moIniPath = Path(self.moInstancePath() / "ModOrganizer.ini")
             self._moIniPath = str(moIniPath.absolute())
         return self._moIniPath
 
-    _moModsPath = str()
+    _moModsPath = ""
     def moModsPath(self) -> str:
         """Gets the path to Mod Organizer's current mods folder."""
-        if self._moModsPath == str():
+        if self._moModsPath == "":
             self._moModsPath = self._organiser.modsPath()
         return self._moModsPath
 
-    _moDownloadsPath = str()
+    _moDownloadsPath = ""
     def moDownloadsPath(self) -> str:
         """Gets the path to Mod Organizer's downloads folder."""
-        if self._moDownloadsPath == str():
+        if self._moDownloadsPath == "":
             self._moDownloadsPath = self._organiser.downloadsPath()
         return self._moDownloadsPath
 
-    _moExecutablePath = str()
+    _moExecutablePath = ""
     def moExecutablePath(self) -> str:
         """Gets the path to the current ModOrganizer.exe"""
-        if self._moExecutablePath == str():
+        if self._moExecutablePath == "":
             self._moExecutablePath = str(Path(self.moPath()) / "ModOrganizer.exe")
         return self._moExecutablePath
 
-    _moProfilesPath = str()
+    _moProfilesPath = ""
     def moProfilesPath(self) -> str:
         """Gets the path to the Mod Organizer profiles folder for the current instance."""
-        if self._moProfilesPath == str():
+        if self._moProfilesPath == "":
             self._moProfilesPath = str(Path(self._organiser.profilePath()).parent)
         return self._moProfilesPath
 
@@ -91,29 +91,29 @@ class CommonStrings:
         """Gets the name of the current Mod Organizer profile."""
         return self._organiser.profileName()
     
-    _moInstanceName = str()
+    _moInstanceName = ""
     def moInsatanceName(self) -> str:
         """Gets the name of the current Mod Organizer instance. Empty if portable."""
-        if self._moInstanceName == str():
+        if self._moInstanceName == "":
             try:
                 with winreg.OpenKey(winreg.HKEY_CURRENT_USER,"Software\\Mod Organizer Team\\Mod Organizer",) as key:
                     value = winreg.QueryValueEx(key, "CurrentInstance")
                     self._moInstanceName = str(value[0]).replace("/", "\\")
             except:
-                self._moInstanceName = str()
+                self._moInstanceName = ""
         return self._moInstanceName
 
-    _moInstancesPath = str()
+    _moInstancesPath = ""
     def moInstancesPath(self) -> str:
         """Gets the path to local Mod Organizer instances."""
-        if self._moInstancesPath == str():
+        if self._moInstancesPath == "":
             self._moInstancesPath = str(Path(os.getenv("LOCALAPPDATA")) / "ModOrganizer")
         return self._moInstancesPath
     
-    _moInstancePath = str()
+    _moInstancePath = ""
     def moInstancePath(self) -> str:
         """Gets the path to the current Mod Organizer instance."""
-        if self._moInstancePath == str():
+        if self._moInstancePath == "":
             currentInstance = self.moInsatanceName()
             if currentInstance == "":
                 _moInstancePath = self.moPath()
@@ -121,24 +121,24 @@ class CommonStrings:
                 _moInstancePath = str(Path(self.moInstancesPath()) / currentInstance)
         return _moInstancePath
 
-    _moPluginsPath = str()
+    _moPluginsPath = ""
     def moPluginsPath(self) -> str:
         """Gets the path to Mod Organizer's plugins folder."""
-        if self._moPluginsPath == str():
+        if self._moPluginsPath == "":
             self._moPluginsPath = str(Path(self.moPath()) / "plugins")
         return self._moPluginsPath
 
-    _moOverwritePath = str()
+    _moOverwritePath = ""
     def moOverwritePath(self) -> str:
         """Gets the path to the current overwrite folder."""
-        if self._moOverwritePath == str():
+        if self._moOverwritePath == "":
             self._moOverwritePath = self._organiser.overwritePath()
         return self._moOverwritePath
 
-    _pluginDataPath = str()
+    _pluginDataPath = ""
     def pluginDataPath(self) -> str:
         """Gets the path to the data folder for the current plugin."""
-        if self._pluginDataPath == str():
+        if self._pluginDataPath == "":
             pluginDataPath = Path(self._organiser.pluginDataPath(), self._plugin)
             self._pluginDataPath = str(pluginDataPath.absolute())
         return self._pluginDataPath

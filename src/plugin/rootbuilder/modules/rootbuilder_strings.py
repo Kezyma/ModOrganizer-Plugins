@@ -8,18 +8,18 @@ class RootBuilderStrings(CommonStrings):
     def __init__(self, plugin:str, organiser:mobase.IOrganizer):
         super().__init__(plugin, organiser)
 
-    _rbOverwritePath = str()
+    _rbOverwritePath = ""
     def rbOverwritePath(self) -> str:
         """Gets the path to the Root folder in the current overwrite folder."""
-        if self._rbOverwritePath == str():
+        if self._rbOverwritePath == "":
             overwritePath = Path(self.moOverwritePath(), "Root")
             self._rbOverwritePath = str(overwritePath.absolute())
         return self._rbOverwritePath
     
-    _rbDataPath = str()
+    _rbDataPath = ""
     def rbDataPath(self) -> str:
         """Gets the path to any current build data for the selected game and version."""
-        if self._rbDataPath == str():
+        if self._rbDataPath == "":
             gamePath = self.pathSafeString(self.gamePath())
             gameVer = self.pathSafeString(self.gameVersion())
             basePath = self.pluginDataPath()
@@ -27,33 +27,33 @@ class RootBuilderStrings(CommonStrings):
             self._rbDataPath = str(safePath.absolute())
         return self._rbDataPath
     
-    _rbCachePath = str()
+    _rbCachePath = ""
     def rbCachePath(self) -> str:
         """Gets the path to the game cache for the current game and version."""
-        if self._rbCachePath == str():
+        if self._rbCachePath == "":
             cachePath = Path(self.rbDataPath(), "GameData.json")
             self._rbCachePath = str(cachePath.absolute())
         return self._rbCachePath
     
-    _rbBackupPath = str()
+    _rbBackupPath = ""
     def rbBackupPath(self) -> str:
         """Gets the path to the backup folder for the current game and version."""
-        if self._rbBackupPath == str():
+        if self._rbBackupPath == "":
             backupPath = Path(self.rbDataPath(), "Backup")
             self._rbBackupPath = str(backupPath.absolute())
         return self._rbBackupPath
     
-    _rbBuildDataPath = str()
+    _rbBuildDataPath = ""
     def rbBuildDataPath(self) -> str:
         """Gets the path to the current build data."""
-        if self._rbBuildDataPath == str():
+        if self._rbBuildDataPath == "":
             buildDataPath = Path(self.rbDataPath(), "BuildData.json")
             self._rbBuildDataPath = str(buildDataPath.absolute())
         return self._rbBuildDataPath
     
-    _rbUpdateFilePath = str()
+    _rbUpdateFilePath = ""
     def rbUpdateFilePath(self) -> str:
         """Gets the path to the file used for checking Root Builder updates."""
-        if self._rbUpdateFilePath == str():
+        if self._rbUpdateFilePath == "":
             self._rbUpdateFilePath = str(Path(self.pluginDataPath(), "VersionManifest.json"))
         return self._rbUpdateFilePath

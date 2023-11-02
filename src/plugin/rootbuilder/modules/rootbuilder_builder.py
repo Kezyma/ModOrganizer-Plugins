@@ -77,8 +77,8 @@ class RootBuilderBuilder():
 
     _buildData = {}
     _cacheData = {}
-    _overwritePath = str()
-    _backupPath = str()
+    _overwritePath = ""
+    _backupPath = ""
     def syncFiles(self) -> dict:
         """Synchronises any deployed files with Mod Organizer and returns updated build data."""
         self._log.debug("Loading build and cache data.")
