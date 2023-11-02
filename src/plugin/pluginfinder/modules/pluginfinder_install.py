@@ -3,17 +3,19 @@ from .pluginfinder_strings import PluginFinderStrings
 from .pluginfinder_directory import PluginFinderDirectory
 from ....common.common_utilities import CommonUtilities
 from ....common.common_log import CommonLog
+from ....common.common_paths import CommonPaths
 from pathlib import Path
 
 class PluginFinderInstall():
     """Plugin Finder install module, handles install, update and uninstall of plugins."""
 
-    def __init__(self, organiser:mobase.IOrganizer, strings:PluginFinderStrings, directory:PluginFinderDirectory, util:CommonUtilities, log:CommonLog):
+    def __init__(self, organiser:mobase.IOrganizer, strings:PluginFinderStrings, directory:PluginFinderDirectory, paths:CommonPaths, util:CommonUtilities, log:CommonLog):
         self._strings = strings
         self._util = util
         self._log = log
         self._directory = directory
         self._organiser = organiser
+        self._paths = paths
     
     VERSION = "Version"
     DATA = "DataPath"
@@ -22,7 +24,7 @@ class PluginFinderInstall():
     URL = "DownloadUrl"
 
     _installData = None
-    def loadInstallData(self, reload=False) -> list:
+    def loadInstallData(self, reload=False) -> dict:
         if self._installData == None or reload:
             filePath = self._strings.pfInstallDataPath()
             if Path(filePath).exists():
@@ -55,7 +57,7 @@ class PluginFinderInstall():
                     tempPath = Path(self._strings.pfStagingFolderPath()) / pluginId
                     unzipCommand = f'"{sZ}" x "{str(tempName)}" -o"{str(tempPath)}" -y'
                     self._log.debug("Unzipping " + str(tempName))
-                    #try:
+                    
                     # Unzip the plugin download.
                     subprocess.call(unzipCommand, shell=True, stdout=open(os.devnull, 'wb'))
 
@@ -65,33 +67,47 @@ class PluginFinderInstall():
                     for pluginFile in ver[self.PLUGIN]:
                         relativePath = tempPath / pluginFile
                         if relativePath.exists():
-                            fileFolderName = os.path.basename(str(relativePath))
-                            pluginFiles.append(fileFolderName)
-                            destPath = pluginDest / fileFolderName
-                            self._log.debug("Moving from " + str(relativePath) + " to " + str(destPath))
-                            if self._util.moveFile(str(relativePath), str(destPath)):
-                                self._log.debug("Moved from " + str(relativePath) + " to " + str(destPath))
+                            toMove = []
+                            if relativePath.is_dir():
+                                toMove.extend(self._paths.files(str(relativePath)))
                             else:
-                                self._log.warning("Could not move " + str(relativePath) + " to " + str(destPath))    
+                                toMove.append(str(relativePath))
+                            pluginFiles.append(os.path.basename(str(relativePath)))
+                            relativePath = Path(relativePath).parent
+                            for file in toMove:
+                                rel = self._paths.relativePath(str(relativePath), str(file))
+                                new = pluginDest / rel
+                                if self._util.copyFile(str(file), str(new)):
+                                    self._log.debug("Moved from " + str(file) + " to " + str(new))
+                                else:
+                                    self._log.warning("Could not move " + str(file) + " to " + str(new))
                         else:
                             self._log.warning("Could not find " + str(relativePath))
                     
                     # Copy over any locale files.
                     localeDest = Path(self._strings.moLocalePath())
                     localeFiles = []
-                    for localeFile in ver[self.LOCALE]:
-                        relativePath = tempPath / localeFile
-                        if relativePath.exists():
-                            fileFolderName = os.path.basename(str(relativePath))
-                            localeFiles.append(fileFolderName)
-                            destPath = localeDest / fileFolderName
-                            self._log.debug("Moving from " + str(relativePath) + " to " + str(destPath))
-                            if self._util.moveFile(str(relativePath), str(destPath)):
-                                self._log.debug("Moved from " + str(relativePath) + " to " + str(destPath))
+                    if self.LOCALE in ver:
+                        for localeFile in ver[self.LOCALE]:
+                            relativePath = tempPath / localeFile
+                            if relativePath.exists():
+                                toMove = []
+                                if relativePath.is_dir():
+                                    toMove.extend(self._paths.files(str(relativePath)))
+                                else:
+                                    toMove.append(str(relativePath))
+                                localeFiles.append(os.path.basename(str(relativePath)))
+                                relativePath = Path(relativePath).parent
+                                for file in toMove:
+                                    rel = self._paths.relativePath(str(relativePath), str(file))
+                                    new = localeDest / rel
+                                    localeFiles.append(str(rel))
+                                    if self._util.copyFile(str(file), str(new)):
+                                        self._log.debug("Moved from " + str(file) + " to " + str(new))
+                                    else:
+                                        self._log.warning("Could not move " + str(file) + " to " + str(new))
                             else:
-                                self._log.warning("Could not move " + str(relativePath) + " to " + str(destPath))    
-                        else:
-                            self._log.warning("Could not find " + str(relativePath))
+                                self._log.warning("Could not find " + str(relativePath))
 
                     installItem = {
                         self.VERSION: ver[self._directory.VERSION],
@@ -105,8 +121,6 @@ class PluginFinderInstall():
 
                     # Remove the temp download
                     self._util.deleteFolder(str(tempPath))
-                    #except:
-                    #    self._log.warning("Could not install " + str(tempName))
 
                     # Remove the download
                     self._util.deleteFile(str(tempName))
@@ -115,6 +129,44 @@ class PluginFinderInstall():
 
     def uninstallPlugin(self, pluginId:str):
         """Uninstalls a currently installed plugin."""
+        installData = self.loadInstallData()
+        pluginData = installData[pluginId]
+        pluginPath = Path(self._strings.moPluginsPath())
+        localePath = Path(self._strings.moLocalePath())
+        success = True
+        for locale in pluginData[self.LOCALE]:
+            path = localePath / locale
+            if path.exists():
+                if path.is_dir() and self._util.deleteFolder(str(path)):
+                    self._log.debug("Deleted " + str(path))
+                elif path.is_file() and self._util.deleteFile(str(path)):
+                    self._log.debug("Deleted " + str(path))
+                else:
+                    success = False
+                    self._log.warning("Could not delete " + str(path))
+        for plugin in pluginData[self.PLUGIN]:
+            path = pluginPath / plugin
+            if path.exists():
+                if path.is_dir() and self._util.deleteFolder(str(path)):
+                    self._log.debug("Deleted " + str(path))
+                elif path.is_file() and self._util.deleteFile(str(path)):
+                    self._log.debug("Deleted " + str(path))
+                else:
+                    success = False
+                    self._log.warning("Could not delete " + str(path))
+        for data in pluginData[self.DATA]:
+            path = pluginPath / data
+            if path.exists():
+                if path.is_dir() and self._util.deleteFolder(str(path)):
+                    self._log.debug("Deleted " + str(path))
+                elif path.is_file() and self._util.deleteFile(str(path)):
+                    self._log.debug("Deleted " + str(path))
+                else:
+                    success = False
+                    self._log.warning("Could not delete " + str(path))
+        if success:
+            installData.pop(pluginId, None)
+            self.saveInstallData(installData)
 
     def installFromFile(self, filePath:str):
         """Installs a plugin from a file."""

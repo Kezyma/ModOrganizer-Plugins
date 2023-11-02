@@ -50,6 +50,12 @@ class PluginFinderMenu(QtWidgets.QWidget):
         self.helpTabWidget.patreonButton.setIcon(self._icons.patreonIcon())
         self.helpTabWidget.patreonButton.clicked.connect(self.patreon_clicked)
 
+        self.finderTabWidget.searchText.textChanged.connect(self.rebind)
+        self.finderTabWidget.updateCheck.stateChanged.connect(self.rebind)
+        self.finderTabWidget.installedCheck.stateChanged.connect(self.rebind)
+        self.finderTabWidget.supportedCheck.stateChanged.connect(self.rebind)
+        self.finderTabWidget.workingCheck.stateChanged.connect(self.rebind)
+
     def rebind(self):
         self.bindPluginList()
 
@@ -57,7 +63,11 @@ class PluginFinderMenu(QtWidgets.QWidget):
     _manifests = {}
     _installData = {}
     def bindPluginList(self):
-        self._manifests = self._pluginFinder._directory.loadManifests()
+        self._manifests = self._pluginFinder._search.searchDirectory(self.finderTabWidget.searchText.text(), 
+                                                                     self.finderTabWidget.installedCheck.isChecked(), 
+                                                                     self.finderTabWidget.updateCheck.isChecked(), 
+                                                                     self.finderTabWidget.supportedCheck.isChecked(),
+                                                                     self.finderTabWidget.workingCheck.isChecked()) #self._pluginFinder._directory.loadManifests()
         self._installData = self._pluginFinder._install.loadInstallData()
         self._pluginListItems = {}
 
@@ -70,7 +80,6 @@ class PluginFinderMenu(QtWidgets.QWidget):
     def getPluginWidget(self, pluginId:str) -> QtWidgets.QWidget:
         manifest = self._manifests[pluginId]
         latestVersion = self._pluginFinder._directory.getLatestVersion(pluginId)
-        moVersion = self._organiser.appVersion()
         
         listWidget = QtWidgets.QWidget()
         listItem = Ui_pluginItemWidget()
@@ -105,22 +114,41 @@ class PluginFinderMenu(QtWidgets.QWidget):
             listItem.docsButton.setEnabled(False)
 
         # Install and Uninstall buttons.
-        installed = False
-        currentVersion = None
-        if pluginId in self._installData.keys():
-            installed = True
-            currentVersion = mobase.VersionInfo(self._installData[pluginId][self._pluginFinder._install.VERSION])
-        needsUpdate = currentVersion != None and currentVersion < latestVersion
-        if needsUpdate:
-            listItem.installButton.setIcon(self._icons.updateIcon())
+        installed = self._pluginFinder._search.pluginInstalled(pluginId)
+        needsUpdate = self._pluginFinder._search.pluginNeedsUpdate(pluginId)
+        supported = self._pluginFinder._search.pluginIsSupported(pluginId)
+        working = self._pluginFinder._search.pluginIsWorking(pluginId)
+        isPluginFinder = pluginId == "pluginfinder"
+        if not working:
+            listItem.installButton.setEnabled(False)
+            listItem.installButton.setToolTip("Unsupported")
+            if needsUpdate:
+                listItem.installButton.setIcon(self._icons.noUpdateIcon())
+            else:
+                listItem.installButton.setIcon(self._icons.stopIcon())
+        elif needsUpdate:
+            if supported:
+                listItem.installButton.setToolTip("Update Available")
+                listItem.installButton.setIcon(self._icons.updateIcon())
+            else:
+                listItem.installButton.setToolTip("Update; this update may not work on this version of Mod Organizer.")
+                listItem.installButton.setIcon(self._icons.updateAltIcon())
         elif installed:
+            listItem.installButton.setToolTip("Installed")
             listItem.installButton.setIcon(self._icons.checkIcon())
             listItem.installButton.setEnabled(False)
         else:
-            listItem.installButton.setIcon(self._icons.installIcon())
+            if supported:
+                listItem.installButton.setToolTip("Install")
+                listItem.installButton.setIcon(self._icons.installIcon())
+            else:
+                listItem.installButton.setToolTip("Install; this plugin may not work on this version of Mod Organizer.")
+                listItem.installButton.setIcon(self._icons.warningIcon())
         listItem.installButton.clicked.connect(lambda: self.install_clicked(pluginId))
+        listItem.uninstallButton.clicked.connect(lambda: self.uninstall_clicked(pluginId))
 
-        listItem.uninstallButton.setEnabled(installed)
+        listItem.uninstallButton.setToolTip("Uninstall")
+        listItem.uninstallButton.setEnabled(installed and not isPluginFinder)
         listItem.uninstallButton.setIcon(self._icons.trashIcon())
 
         self.finderTabWidget.pluginListLayout.addWidget(listWidget)
@@ -128,6 +156,11 @@ class PluginFinderMenu(QtWidgets.QWidget):
 
     def install_clicked(self, pluginId:str):
         self._pluginFinder._install.installPlugin(pluginId)
+        self.rebind()
+
+    def uninstall_clicked(self, pluginId:str):
+        self._pluginFinder._install.uninstallPlugin(pluginId)
+        self.rebind()
 
     def discord_clicked(self):
         webbrowser.open("https://discord.com/invite/kPA3RrxAYz")

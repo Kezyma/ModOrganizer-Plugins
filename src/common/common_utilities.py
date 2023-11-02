@@ -6,6 +6,19 @@ class CommonUtilities():
     def __init__(self, organiser:mobase.IOrganizer) -> None:
         self._organiser = organiser
 
+    def copyFileOrFolder(self, source:str, dest:str) -> bool:
+        """Copies a file or folder from source to destination."""
+        try:
+            path = Path(dest)
+            if path.exists():
+                if path.is_dir():
+                    return self.copyFolder(source,dest)
+                elif path.is_file():
+                    return self.copyFile(source,dest)
+            return False
+        except:
+            return False
+
     def copyFile(self, source:str, dest:str) -> bool:
         """Copies a file from source to destination."""
         try:
@@ -13,6 +26,14 @@ class CommonUtilities():
                 os.chmod(dest, stat.S_IWRITE)
             os.makedirs(os.path.dirname(dest), exist_ok=True)
             shutil.copy2(source, dest)
+            return True
+        except:
+            return False
+
+    def copyFolder(self, source:str, dest:str) -> bool:
+        """Copies a folder from source to destination."""
+        try:
+            shutil.copytree(source, dest, dirs_exist_ok=True)
             return True
         except:
             return False
