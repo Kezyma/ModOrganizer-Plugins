@@ -18,7 +18,7 @@ class ProfileSyncSync():
     def syncFromProfile(self, profile:str):
         """Syncs a group to a selected profile."""
         group = self._groups.groupFromProfile(profile)
-        if group != None:
+        if group is not None:
             profilePath = self._strings.moProfilePath()
             modListPath = Path(profilePath) / "modlist.txt"
             modLines = self._util.loadLines(str(modListPath))

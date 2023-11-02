@@ -16,7 +16,7 @@ class ProfileSyncGroups():
     _groups = None
     def loadSyncGroups(self) -> dict:
         """Loads and returns the current sync groups."""
-        if self._groups != None:
+        if self._groups is not None:
             return self._groups
         groupPath = self._strings.psGroupDataPath()
         if Path(groupPath).exists():

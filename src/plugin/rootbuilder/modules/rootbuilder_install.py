@@ -39,7 +39,7 @@ class RootBuilderInstall(QtWidgets.QWidget):
 
     def maps(self) -> dict:
         """Gets the current maps."""
-        if self._maps == None:
+        if self._maps is None:
             mapPath = Path(__file__).parent.parent / "data" / "rootbuilder_maps.json"
             self._maps = self._util.loadJson(str(mapPath.absolute()))
         return self._maps
@@ -50,7 +50,7 @@ class RootBuilderInstall(QtWidgets.QWidget):
 
         # Has this mod got a root folder? If so, someone has actually packaged it for Root Builder!!
         rootItm = tree.find("Root")
-        if rootItm != None:
+        if rootItm is not None:
             return True
 
         # Has this mod got any of the custom Root mod maps in here? If so, it's a Root mod.
@@ -93,7 +93,7 @@ class RootBuilderInstall(QtWidgets.QWidget):
         """Repacks a data folder for install."""
         # If this contains root already, just return it, it's packaged for RB!
         rootItm = tree.find("Root")
-        if rootItm != None:
+        if rootItm is not None:
             return tree
 
         self._tree = tree
@@ -118,13 +118,13 @@ class RootBuilderInstall(QtWidgets.QWidget):
                 self._dataPath = dataItm
                 self._log.debug(f"Found Data as subdirectory: {dataItm.path()}")
         # If Data wasn't found, search for the appropriate place.
-        if self._dataPath == None:
+        if self._dataPath is None:
             self._dataPath = None
             tree.walk(self.findDataPath)
-            if self._dataPath != None:
+            if self._dataPath is not None:
                 self._log.debug(f"Found Data through item match: {dataItm.path()}")
         # If there is no data, create a data path.
-        if self._dataPath == None:
+        if self._dataPath is None:
             self._log.debug("Could not find Data, creating default folder.")
             self._dataPath = tree.addDirectory(dataFolder)
 
@@ -135,10 +135,10 @@ class RootBuilderInstall(QtWidgets.QWidget):
             if dataItm:
                 rootLevel = dataItm
         # If there's no custom map, look for the root files.
-        if rootLevel == None:
+        if rootLevel is None:
             self._rootPath = None
             tree.walk(self.findRootPath)
-            if self._rootPath != None:
+            if self._rootPath is not None:
                 rootLevel = self._rootPath
         # Detach any root invalid files.
         rootLevel.walk(self.detachInvalid)
@@ -176,9 +176,9 @@ class RootBuilderInstall(QtWidgets.QWidget):
         for ft in self.maps()[self._rootExtKey]:
             if entry.name().lower().endswith(f".{ft}"):
                 parentItem = entry.parent()
-                if parentItem == None:
+                if parentItem is None:
                     self._rootPath = self._tree
-                elif self._rootPath == None:
+                elif self._rootPath is None:
                     self._rootPath = parentItem
                 else:
                     isHigher = self._rootPath.pathTo(parentItem) == ""
@@ -193,7 +193,7 @@ class RootBuilderInstall(QtWidgets.QWidget):
         for ft in self.maps()[self._dataExtKey]:
             if entry.name().lower().endswith(f".{ft}"):
                 parentItem = entry.parent()
-                if parentItem == None:
+                if parentItem is None:
                     self._dataPath = self._tree
                 else:
                     self._dataPath = parentItem

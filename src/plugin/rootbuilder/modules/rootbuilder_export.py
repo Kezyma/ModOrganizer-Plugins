@@ -36,7 +36,7 @@ class RootBuilderExport():
     def importSettings(self, path:str):
         """Imports settings from a path."""
         rbSettings = self._util.loadJson(path)
-        if rbSettings != None:
+        if rbSettings is not None:
             self._settings.updateSetting("copypriority", rbSettings["copypriority"])
             self._settings.updateSetting("copyfiles", ",".join(rbSettings["copyfiles"]))
             self._settings.updateSetting("linkpriority", rbSettings["linkpriority"])
