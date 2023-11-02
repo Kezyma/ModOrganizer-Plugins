@@ -7,7 +7,7 @@ class RootBuilderQuickClear(RootBuilderPlugin, mobase.IPluginTool):
     def __init__(self):
         super().__init__()
 
-    def init(self, organiser=mobase.IOrganizer):
+    def init(self, organiser: mobase.IOrganizer):
         return super().init(organiser)
 
     def __tr(self, trstr):
