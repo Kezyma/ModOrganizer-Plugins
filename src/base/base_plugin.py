@@ -64,6 +64,6 @@ class BasePlugin():
     def settings(self):
         """ Current list of game settings for Mod Organizer. """
         return [
-            mobase.PluginSetting("enabled",self.__tr("Enables " + self._pluginName), True),
-            mobase.PluginSetting("loglevel", self.__tr("Controls the logging for " + self._pluginName), 1)
+            mobase.PluginSetting("enabled", f"Enables {self._pluginName}", True),
+            mobase.PluginSetting("loglevel", f"Controls the logging for {self._pluginName}", 1)
             ]

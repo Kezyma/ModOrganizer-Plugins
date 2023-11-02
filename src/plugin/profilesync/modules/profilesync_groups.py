@@ -66,6 +66,6 @@ class ProfileSyncGroups():
 
     def groupModlist(self, group:str):
         """Gets the path to the modlist for this group."""
-        fileName = group + ".txt"
+        fileName = f"{group}.txt"
         dataPath = Path(self._strings.psGroupDataPath()) / fileName
         return str(dataPath)

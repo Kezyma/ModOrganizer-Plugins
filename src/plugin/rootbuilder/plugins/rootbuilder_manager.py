@@ -28,7 +28,7 @@ class RootBuilderManager(RootBuilderPlugin, mobase.IPluginTool):
         return self._icons.linkAltIcon()
 
     def name(self):
-        return self.baseName() + " Manager Tool"
+        return f"{self.baseName()} Manager Tool"
 
     def displayName(self):
         return self.baseDisplayName()
@@ -41,7 +41,7 @@ class RootBuilderManager(RootBuilderPlugin, mobase.IPluginTool):
         self._rootBuilderMenu.rebind()
 
     def getDialog(self) -> QtWidgets.QDialog:
-        dialog = BaseDialog(self.displayName(), "v" + self.version().displayString(), self.icon())
+        dialog = BaseDialog(self.displayName(), f"v{self.version().displayString()}", self.icon())
         self._rootBuilderMenu = RootBuilderMenu(dialog, self._organiser, self._rootBuilder, self._update)
         dialog.addContent(self._rootBuilderMenu)
         return dialog

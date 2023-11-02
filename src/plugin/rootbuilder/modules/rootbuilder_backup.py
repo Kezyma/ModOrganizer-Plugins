@@ -66,9 +66,9 @@ class RootBuilderBackup():
                 backupString = str(fullBackupPath.absolute())
                 gameString = str(fullGamePath)
                 if self._util.copyFile(gameString, backupString):
-                    self._log.debug("Backed up " + gameString + " to " + backupString)
+                    self._log.debug(f"Backed up {gameString} to {backupString}")
                 else:
-                    self._log.warning("Failed to back up " + gameString + " to " + backupString)
+                    self._log.warning(f"Failed to back up {gameString} to {backupString}")
 
     def restoreBackup(self):
         """Restores every possible file from the backup."""
@@ -91,8 +91,8 @@ class RootBuilderBackup():
             if backupFilePath.exists():
                 backupString = str(backupFilePath)
                 if self._util.copyFile(backupString, filePath):
-                    self._log.debug("Restored file from " + backupString + " to " + filePath)
+                    self._log.debug(f"Restored file from {backupString} to {filePath}")
                 else:
-                    self._log.warning("Failed to restore file from " + backupString + " to " + filePath)
+                    self._log.warning(f"Failed to restore file from {backupString} to {filePath}")
             else:
-                self._log.info("Missing file has no backup " + filePath)
+                self._log.info(f"Missing file has no backup {filePath}")

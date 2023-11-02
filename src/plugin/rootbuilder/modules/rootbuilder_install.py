@@ -56,28 +56,28 @@ class RootBuilderInstall(QtWidgets.QWidget):
         # Has this mod got any of the custom Root mod maps in here? If so, it's a Root mod.
         customMaps = maps[self._rootKey]
         for cm in customMaps:
-            self._log.debug("Searching for " + cm)
+            self._log.debug(f"Searching for {cm}")
             dataItm = tree.find(cm)
             if dataItm:
-                self._log.debug("Found " + dataItm.name())
+                self._log.debug(f"Found {dataItm.name()}")
                 return True
             
         # Has this mod been explicitly ignored (eg. FOMOD mods), if so, it's not a Root mod.
         ignoreMaps = maps[self._ignoreKey]
         for im in ignoreMaps:
-            self._log.debug("Searching for " + im)
+            self._log.debug(f"Searching for {im}")
             dataItm = tree.find(im)
             if dataItm:
-                self._log.debug("Found " + dataItm.name())
+                self._log.debug(f"Found {dataItm.name()}")
                 return False
 
         # Does the top level of this mod contain a Data folder item? if so, it's not a Root mod.
         dataMaps = maps[self._dataKey]
         for dm in dataMaps:
-            self._log.debug("Searching for " + dm)
+            self._log.debug(f"Searching for {dm}")
             dataItm = tree.find(dm)
             if dataItm:
-                self._log.debug("Found " + dataItm.name())
+                self._log.debug(f"Found {dataItm.name()}")
                 return False
             
         # Has this mod got any sepcifically Root files in here? If so, it's a Root mod.
@@ -105,7 +105,7 @@ class RootBuilderInstall(QtWidgets.QWidget):
         dataFolder = self._strings.gameDataFolder()
         if not dataIsSubdir:
             dataFolder = "Data"
-        self._log.debug("Data folder name: " + dataFolder)
+        self._log.debug(f"Data folder name: {dataFolder}")
         maps = self.maps()
 
         rootLevel = None
@@ -116,13 +116,13 @@ class RootBuilderInstall(QtWidgets.QWidget):
             dataItm = tree.find(dataFolder)
             if dataItm:
                 self._dataPath = dataItm
-                self._log.debug("Found Data as subdirectory: " + dataItm.path())
+                self._log.debug(f"Found Data as subdirectory: {dataItm.path()}")
         # If Data wasn't found, search for the appropriate place.
         if self._dataPath == None:
             self._dataPath = None
             tree.walk(self.findDataPath)
             if self._dataPath != None:
-                self._log.debug("Found Data through item match: " + dataItm.path())
+                self._log.debug(f"Found Data through item match: {dataItm.path()}")
         # If there is no data, create a data path.
         if self._dataPath == None:
             self._log.debug("Could not find Data, creating default folder.")
@@ -152,9 +152,9 @@ class RootBuilderInstall(QtWidgets.QWidget):
     def hasDataExt(self, path:str, entry:mobase.FileTreeEntry) -> mobase.IFileTree.WalkReturn:
         """Checks if an entry is data folder item and skips it if so."""
         for ft in self.maps()[self._dataExtKey]:
-            self._log.debug("Checking for extension " + ft)
-            if entry.name().lower().endswith("." + ft):
-                self._log.debug("Found " + entry.name())
+            self._log.debug(f"Checking for extension {ft}")
+            if entry.name().lower().endswith(f".{ft}"):
+                self._log.debug(f"Found {entry.name()}")
                 self._foundDataExt = True
                 return mobase.IFileTree.STOP
         return mobase.IFileTree.CONTINUE
@@ -163,9 +163,9 @@ class RootBuilderInstall(QtWidgets.QWidget):
     def hasRootExt(self, path:str, entry:mobase.FileTreeEntry) -> mobase.IFileTree.WalkReturn:
         """Checks if an entry is Root folder item and skips it if so."""
         for ft in self.maps()[self._rootExtKey]:
-            self._log.debug("Checking for extension " + ft)
-            if entry.name().lower().endswith("." + ft):
-                self._log.debug("Found " + entry.name())
+            self._log.debug(f"Checking for extension {ft}")
+            if entry.name().lower().endswith(f".{ft}"):
+                self._log.debug(f"Found {entry.name()}")
                 self._foundRootExt = True
                 return mobase.IFileTree.STOP
         return mobase.IFileTree.CONTINUE
@@ -174,7 +174,7 @@ class RootBuilderInstall(QtWidgets.QWidget):
     def findRootPath(self, path:str, entry:mobase.FileTreeEntry) -> mobase.IFileTree.WalkReturn:
         """Finds the path to the Root directory in a mod."""
         for ft in self.maps()[self._rootExtKey]:
-            if entry.name().lower().endswith("." + ft):
+            if entry.name().lower().endswith(f".{ft}"):
                 parentItem = entry.parent()
                 if parentItem == None:
                     self._rootPath = self._tree
@@ -191,7 +191,7 @@ class RootBuilderInstall(QtWidgets.QWidget):
     def findDataPath(self, path:str, entry:mobase.FileTreeEntry) -> mobase.IFileTree.WalkReturn:
         """Finds the path to the Data directory in a mod."""
         for ft in self.maps()[self._dataExtKey]:
-            if entry.name().lower().endswith("." + ft):
+            if entry.name().lower().endswith(f".{ft}"):
                 parentItem = entry.parent()
                 if parentItem == None:
                     self._dataPath = self._tree

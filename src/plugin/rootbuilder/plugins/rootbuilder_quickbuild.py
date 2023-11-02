@@ -22,10 +22,10 @@ class RootBuilderQuickBuild(RootBuilderPlugin, mobase.IPluginTool):
         return self._icons.plusIcon()
 
     def name(self):
-        return self.baseName() + " Build Tool"
+        return f"{self.baseName()} Build Tool"
 
     def displayName(self):
-        return self.baseDisplayName() + "/Build"
+        return f"{self.baseDisplayName()}/Build"
 
     def description(self):
         return self.__tr("Runs a build operation using the current settings.")

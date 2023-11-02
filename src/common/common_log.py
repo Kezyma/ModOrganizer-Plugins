@@ -14,20 +14,20 @@ class CommonLog():
         self._settings = settings
 
     def _prefix(self):
-        return "[" + self._plugin + "] "
+        return f"[{self._plugin}] "
 
     def debug(self, message:str):
         if self._settings.loglevel() < 1:
-            qDebug(self._prefix() + message)
+            qDebug(f"{self._prefix()}{message}")
 
     def info(self, message:str):
         if self._settings.loglevel() < 2:
-            qInfo(self._prefix() + message)
+            qInfo(f"{self._prefix()}{message}")
 
     def warning(self, message:str):
         if self._settings.loglevel() < 3:
-            qWarning(self._prefix() + message)
+            qWarning(f"{self._prefix()}{message}")
 
     def critical(self, message:str):
         if self._settings.loglevel() < 4:
-            qCritical(self._prefix() + message) 
+            qCritical(f"{self._prefix()}{message}") 

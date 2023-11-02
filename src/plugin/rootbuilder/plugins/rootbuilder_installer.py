@@ -29,10 +29,10 @@ class RootBuilderInstaller(RootBuilderPlugin, mobase.IPluginInstallerSimple):
         return self._icons.linkAltIcon()
 
     def name(self):
-        return self.baseName() + " Installer"
+        return f"{self.baseName()} Installer"
 
     def displayName(self):
-        return self.baseDisplayName() + " Installer"
+        return f"{self.baseDisplayName()} Installer"
 
     def description(self):
         return self.__tr("Installs Root mods.")
@@ -70,7 +70,7 @@ class RootBuilderInstaller(RootBuilderPlugin, mobase.IPluginInstallerSimple):
         self._dialog.show()
 
     def getDialog(self) -> QtWidgets.QDialog:
-        dialog = BaseDialog(self.displayName(), "v" + self.version().displayString(), self.icon())
+        dialog = BaseDialog(self.displayName(), f"v{self.version().displayString()}", self.icon())
         self._install = RootBuilderInstall(dialog, self._organiser, self._rootBuilder._strings, self._rootBuilder._paths,  self._rootBuilder._util, self._log)
         dialog.addContent(self._install)
         return dialog
