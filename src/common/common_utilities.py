@@ -1,4 +1,4 @@
-import mobase, json, shutil, os, stat, hashlib, urllib.request, threading
+import mobase, json, shutil, os, stat, hashlib, urllib.request
 from pathlib import Path
 
 class CommonUtilities():

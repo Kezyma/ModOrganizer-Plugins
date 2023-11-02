@@ -2,7 +2,6 @@ from ....common import common_icons
 from ....common.common_qt import *
 from ..core.profilesync import ProfileSync
 import mobase, webbrowser
-from pathlib import Path
 
 try:
     from ..ui.qt6.profilesync_menu import Ui_profileSyncMenuWidget

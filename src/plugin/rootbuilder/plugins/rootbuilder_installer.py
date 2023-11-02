@@ -3,7 +3,6 @@ import mobase
 from mobase import GuessedString, IFileTree, InstallResult
 from ..core.rootbuilder_plugin import RootBuilderPlugin
 from ..modules.rootbuilder_install import RootBuilderInstall
-from ..modules.rootbuilder_update import RootBuilderUpdate
 from ....base.base_dialog import BaseDialog
 from ....common.common_qt import *
 from ....common.common_icons import LINK_ALT_ICON

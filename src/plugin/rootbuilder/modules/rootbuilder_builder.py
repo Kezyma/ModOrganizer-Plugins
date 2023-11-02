@@ -7,7 +7,6 @@ from .rootbuilder_cache import RootBuilderCache
 from ..core.rootbuilder_settings import RootBuilderSettings
 from ....common.common_utilities import CommonUtilities
 from ....common.common_log import CommonLog
-from typing import List
 
 class RootBuilderBuilder():
     """Root Builder builder module, handles the deployment of game files."""
