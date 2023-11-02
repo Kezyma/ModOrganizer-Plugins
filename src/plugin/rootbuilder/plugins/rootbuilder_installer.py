@@ -6,6 +6,7 @@ from ..modules.rootbuilder_install import RootBuilderInstall
 from ..modules.rootbuilder_update import RootBuilderUpdate
 from ....base.base_dialog import BaseDialog
 from ....common.common_qt import *
+from ....common.common_icons import LINK_ALT_ICON
 
 class RootBuilderInstaller(RootBuilderPlugin, mobase.IPluginInstallerSimple):
     def __init__(self):
@@ -26,7 +27,7 @@ class RootBuilderInstaller(RootBuilderPlugin, mobase.IPluginInstallerSimple):
         return []
 
     def icon(self):
-        return self._icons.linkAltIcon()
+        return LINK_ALT_ICON
 
     def name(self):
         return f"{self.baseName()} Installer"

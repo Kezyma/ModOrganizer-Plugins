@@ -1,5 +1,6 @@
 from ..core.rootbuilder_plugin import RootBuilderPlugin
 from ....common.common_qt import *
+from ....common.common_icons import SYNC_ICON
 import mobase
 
 class RootBuilderQuickSync(RootBuilderPlugin, mobase.IPluginTool):
@@ -19,7 +20,7 @@ class RootBuilderQuickSync(RootBuilderPlugin, mobase.IPluginTool):
         return []
 
     def icon(self):
-        return self._icons.syncIcon()
+        return SYNC_ICON
 
     def name(self):
         return f"{self.baseName()} Sync Tool"

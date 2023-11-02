@@ -21,7 +21,7 @@ except:
 
 from ..core.rootbuilder import RootBuilder
 from .rootbuilder_update import RootBuilderUpdate
-from ....common.common_icons import CommonIcons
+from ....common import common_icons
 from ....common.common_qt import *
 
 class RootBuilderMenu(QtWidgets.QWidget):
@@ -33,7 +33,6 @@ class RootBuilderMenu(QtWidgets.QWidget):
         self._rootBuilder = rootBuilder
         self._update = update
         self._rebind = False
-        self._icons = CommonIcons()
         self.generateLayout()
 
     def generateLayout(self):
@@ -60,8 +59,8 @@ class RootBuilderMenu(QtWidgets.QWidget):
 
         self.updateTabWidget.updateFoundWidget.setVisible(False)
         self.updateTabWidget.noUpdateWidget.setVisible(False)
-        self.updateTabWidget.checkUpdateButton.setIcon(self._icons.refreshIcon())
-        self.updateTabWidget.updateFoundButton.setIcon(self._icons.downloadIcon())
+        self.updateTabWidget.checkUpdateButton.setIcon(common_icons.REFRESH_ICON)
+        self.updateTabWidget.updateFoundButton.setIcon(common_icons.DOWNLOAD_ICON)
         self.updateTabWidget.updateFoundButton.clicked.connect(self.updateFound_clicked)
         self.updateTabWidget.checkUpdateButton.clicked.connect(self.checkUpdate_clicked)
 
@@ -89,30 +88,30 @@ class RootBuilderMenu(QtWidgets.QWidget):
 
         self.exclusionsTabWidget.exclusionsTable.cellChanged.connect(self.exclusionsTable_cellChanged)
 
-        self.actionsTabWidget.buildButton.setIcon(self._icons.plusIcon())
+        self.actionsTabWidget.buildButton.setIcon(common_icons.PLUS_ICON)
         self.actionsTabWidget.buildButton.clicked.connect(self.build_clicked)
-        self.actionsTabWidget.syncButton.setIcon(self._icons.syncIcon())
+        self.actionsTabWidget.syncButton.setIcon(common_icons.SYNC_ICON)
         self.actionsTabWidget.syncButton.clicked.connect(self.sync_clicked)
-        self.actionsTabWidget.clearButton.setIcon(self._icons.minusIcon())
+        self.actionsTabWidget.clearButton.setIcon(common_icons.MINUS_ICON)
         self.actionsTabWidget.clearButton.clicked.connect(self.clear_clicked)
-        self.actionsTabWidget.cacheDeleteButton.setIcon(self._icons.trashIcon())
+        self.actionsTabWidget.cacheDeleteButton.setIcon(common_icons.TRASH_ICON)
         self.actionsTabWidget.cacheDeleteButton.clicked.connect(self.deleteCache_clicked)
-        self.actionsTabWidget.cacheCreateButton.setIcon(self._icons.refreshIcon())
+        self.actionsTabWidget.cacheCreateButton.setIcon(common_icons.REFRESH_ICON)
         self.actionsTabWidget.cacheCreateButton.clicked.connect(self.createCache_clicked)
-        self.actionsTabWidget.backupDeleteButton.setIcon(self._icons.trashIcon())
+        self.actionsTabWidget.backupDeleteButton.setIcon(common_icons.TRASH_ICON)
         self.actionsTabWidget.backupDeleteButton.clicked.connect(self.deleteBackup_clicked)
-        self.actionsTabWidget.backupCreateButton.setIcon(self._icons.refreshIcon())
+        self.actionsTabWidget.backupCreateButton.setIcon(common_icons.REFRESH_ICON)
         self.actionsTabWidget.backupCreateButton.clicked.connect(self.createBackup_clicked)
 
-        self.helpTabWidget.discordButton.setIcon(self._icons.discordIcon())
+        self.helpTabWidget.discordButton.setIcon(common_icons.DISCORD_ICON)
         self.helpTabWidget.discordButton.clicked.connect(self.discord_clicked)
-        self.helpTabWidget.docsButton.setIcon(self._icons.docsIcon())
+        self.helpTabWidget.docsButton.setIcon(common_icons.DOCS_ICON)
         self.helpTabWidget.docsButton.clicked.connect(self.docs_clicked)
-        self.helpTabWidget.githubButton.setIcon(self._icons.githubIcon())
+        self.helpTabWidget.githubButton.setIcon(common_icons.GITHUB_ICON)
         self.helpTabWidget.githubButton.clicked.connect(self.github_clicked)
-        self.helpTabWidget.nexusButton.setIcon(self._icons.nexusIcon())
+        self.helpTabWidget.nexusButton.setIcon(common_icons.NEXUS_ICON)
         self.helpTabWidget.nexusButton.clicked.connect(self.nexus_clicked)
-        self.helpTabWidget.patreonButton.setIcon(self._icons.patreonIcon())
+        self.helpTabWidget.patreonButton.setIcon(common_icons.PATREON_ICON)
         self.helpTabWidget.patreonButton.clicked.connect(self.patreon_clicked)
 
         helpPath = Path(__file__).parent.parent / "data" / "rootbuilder_help.html"
@@ -120,11 +119,11 @@ class RootBuilderMenu(QtWidgets.QWidget):
         self.helpTabWidget.helpText.setSource(helpUrl)
 
         self.exportTabWidget.exportButton.clicked.connect(self.exportButton_clicked)
-        self.exportTabWidget.exportButton.setIcon(self._icons.linkIcon())
+        self.exportTabWidget.exportButton.setIcon(common_icons.LINK_ICON)
         self.exportTabWidget.importButton.clicked.connect(self.importButton_clicked)
-        self.exportTabWidget.importButton.setIcon(self._icons.downloadIcon())
+        self.exportTabWidget.importButton.setIcon(common_icons.DOWNLOAD_ICON)
         self.exportTabWidget.resetButton.clicked.connect(self.resetButton_clicked)
-        self.exportTabWidget.resetButton.setIcon(self._icons.refreshIcon())
+        self.exportTabWidget.resetButton.setIcon(common_icons.REFRESH_ICON)
     
 
     def rebind(self):

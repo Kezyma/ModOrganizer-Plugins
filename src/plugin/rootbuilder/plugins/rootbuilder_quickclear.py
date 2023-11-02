@@ -1,5 +1,6 @@
 from ..core.rootbuilder_plugin import RootBuilderPlugin
 from ....common.common_qt import *
+from ....common.common_icons import MINUS_ICON
 import mobase
 
 class RootBuilderQuickClear(RootBuilderPlugin, mobase.IPluginTool):
@@ -19,7 +20,7 @@ class RootBuilderQuickClear(RootBuilderPlugin, mobase.IPluginTool):
         return []
 
     def icon(self):
-        return self._icons.minusIcon()
+        return MINUS_ICON
 
     def name(self):
         return f"{self.baseName()} Clear Tool"

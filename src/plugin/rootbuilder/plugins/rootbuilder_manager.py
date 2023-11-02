@@ -4,6 +4,7 @@ from ..modules.rootbuilder_menu import RootBuilderMenu
 from ..modules.rootbuilder_update import RootBuilderUpdate
 from ....base.base_dialog import BaseDialog
 from ....common.common_qt import *
+from ....common.common_icons import LINK_ALT_ICON
 
 class RootBuilderManager(RootBuilderPlugin, mobase.IPluginTool):
     def __init__(self):
@@ -25,7 +26,7 @@ class RootBuilderManager(RootBuilderPlugin, mobase.IPluginTool):
         return []
 
     def icon(self):
-        return self._icons.linkAltIcon()
+        return LINK_ALT_ICON
 
     def name(self):
         return f"{self.baseName()} Manager Tool"

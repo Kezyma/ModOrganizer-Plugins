@@ -1,5 +1,6 @@
 from ..core.rootbuilder_plugin import RootBuilderPlugin
 from ....common.common_qt import *
+from ....common.common_icons import PLUS_ICON
 import mobase
 
 class RootBuilderQuickBuild(RootBuilderPlugin, mobase.IPluginTool):
@@ -19,7 +20,7 @@ class RootBuilderQuickBuild(RootBuilderPlugin, mobase.IPluginTool):
         return []
 
     def icon(self):
-        return self._icons.plusIcon()
+        return PLUS_ICON
 
     def name(self):
         return f"{self.baseName()} Build Tool"

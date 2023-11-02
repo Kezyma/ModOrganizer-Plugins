@@ -3,6 +3,7 @@ from ..core.profilesync_plugin import ProfileSyncPlugin
 from ..modules.profilesync_menu import ProfileSyncMenu
 from ....base.base_dialog import BaseDialog
 from ....common.common_qt import *
+from ....common.common_icons import SYNC_ICON
 
 class ProfileSyncManager(ProfileSyncPlugin, mobase.IPluginTool):
     def __init__(self):
@@ -29,7 +30,7 @@ class ProfileSyncManager(ProfileSyncPlugin, mobase.IPluginTool):
     #    return []
 
     def icon(self):
-        return self._icons.syncIcon()
+        return SYNC_ICON
 
     def name(self):
         return self.baseName()

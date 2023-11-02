@@ -4,7 +4,7 @@ except:
     from PyQt6.QtCore import QCoreApplication
 
 from .base_settings import BaseSettings
-from ..common.common_icons import CommonIcons
+from ..common.common_icons import MENU_ICON
 from ..common.common_log import CommonLog
 
 import mobase
@@ -21,7 +21,6 @@ class BasePlugin():
     def init(self, organiser = mobase.IOrganizer):
         self._organiser = organiser
         self._baseSettings = BaseSettings(self._pluginName, self._organiser)
-        self._icons = CommonIcons()
         self._log = CommonLog(self._pluginName, self._organiser, self._baseSettings)
         return True
 
@@ -38,7 +37,7 @@ class BasePlugin():
         return self.__tr(trstr)
 
     def icon(self):
-        return self._icons.menuIcon()
+        return MENU_ICON
 
     def author(self):
         return "Kezyma"
