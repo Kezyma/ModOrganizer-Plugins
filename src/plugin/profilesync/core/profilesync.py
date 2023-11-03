@@ -5,6 +5,7 @@ from .profilesync_settings import ProfileSyncSettings
 from ..modules.profilesync_groups import ProfileSyncGroups
 from ..modules.profilesync_strings import ProfileSyncStrings
 from ..modules.profilesync_sync import ProfileSyncSync
+from ..modules.profilesync_legacy import ProfileSyncLegacy
 
 class ProfileSync():
     """Core Profile Sync class that handles all plugin functionality."""
@@ -17,4 +18,7 @@ class ProfileSync():
         self._strings = ProfileSyncStrings("ProfileSync", self._organiser)
         self._groups = ProfileSyncGroups(self._organiser, self._strings, self._util, self._log)
         self._sync = ProfileSyncSync(self._organiser, self._strings, self._groups, self._util, self._log)
+        self._legacy = ProfileSyncLegacy(self._organiser, self._strings, self._settings, self._groups, self._util, self._log)
         super().__init__()
+
+    

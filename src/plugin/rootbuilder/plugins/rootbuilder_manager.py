@@ -19,17 +19,11 @@ class RootBuilderManager(RootBuilderPlugin, mobase.IPluginTool):
     def __tr(self, trstr):
         return QCoreApplication.translate(self._pluginName, trstr)
 
-    def master(self):
-        return self._pluginName
-
-    def settings(self):
-        return []
-
     def icon(self):
         return LINK_ALT_ICON
 
     def name(self):
-        return f"{self.baseName()} Manager Tool"
+        return self.baseName()
 
     def displayName(self):
         return self.baseDisplayName()

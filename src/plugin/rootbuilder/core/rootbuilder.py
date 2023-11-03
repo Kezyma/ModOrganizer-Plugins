@@ -10,6 +10,7 @@ from ..modules.rootbuilder_cache import RootBuilderCache
 from ..modules.rootbuilder_backup import RootBuilderBackup
 from ..modules.rootbuilder_builder import RootBuilderBuilder
 from ..modules.rootbuilder_export import RootBuilderExport
+from ..modules.rootbuilder_legacy import RootBuilderLegacy
 class RootBuilder():
     """Core Root Builder class that handles all plugin functionality."""
 
@@ -25,6 +26,7 @@ class RootBuilder():
         self._backup = RootBuilderBackup(self._organiser, self._strings, self._paths, self._settings, self._cache, self._util, self._log)
         self._builder = RootBuilderBuilder(self._organiser, self._strings, self._paths, self._settings, self._data, self._cache, self._util, self._log)
         self._export = RootBuilderExport(self._organiser, self._settings, self._util, self._log)
+        self._legacy = RootBuilderLegacy(self._organiser, self._settings, self._util, self._log)
         super().__init__()
 
     def build(self):

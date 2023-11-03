@@ -1,6 +1,7 @@
 import mobase
 from ..core.profilesync_plugin import ProfileSyncPlugin
 from ..modules.profilesync_menu import ProfileSyncMenu
+from ..modules.profilesync_update import ProfileSyncUpdate
 from ....base.base_dialog import BaseDialog
 from ....common.common_qt import *
 from ....common.common_icons import SYNC_ICON
@@ -11,23 +12,12 @@ class ProfileSyncManager(ProfileSyncPlugin, mobase.IPluginTool):
 
     def init(self, organiser:mobase.IOrganizer):
         res = super().init(organiser)
+        self._update = ProfileSyncUpdate(self._organiser, self, self._profileSync._strings, self._profileSync._util, self._profileSync._log)
         self._dialog = self.getDialog()
-        self._organiser.onProfileChanged(self.changeProfile)
-        self._organiser.onProfileRemoved(self.removeProfile)
-        self._organiser.onProfileRenamed(self.renameProfile)
-        self._organiser.modList().onModInstalled(self.syncCurrent)
-        self._organiser.modList().onModMoved(self.syncCurrent)
-        self._organiser.modList().onModRemoved(self.syncCurrent)
         return res
 
     def __tr(self, trstr):
         return QCoreApplication.translate(self._pluginName, trstr)
-
-    #def master(self):
-    #    return self._pluginName
-
-    #def settings(self):
-    #    return []
 
     def icon(self):
         return SYNC_ICON
@@ -43,11 +33,11 @@ class ProfileSyncManager(ProfileSyncPlugin, mobase.IPluginTool):
     
     def display(self):
         self._dialog.show()
-        #self._profileSyncMenu.rebind()
+        self._profileSyncMenu.rebind()
 
     def getDialog(self) -> QtWidgets.QDialog:
         dialog = BaseDialog(self.displayName(), f"v{self.version().displayString()}", self.icon())
-        self._profileSyncMenu = ProfileSyncMenu(dialog, self._organiser, self._profileSync)
+        self._profileSyncMenu = ProfileSyncMenu(dialog, self._organiser, self._profileSync, self._update)
         dialog.addContent(self._profileSyncMenu)
         return dialog
 

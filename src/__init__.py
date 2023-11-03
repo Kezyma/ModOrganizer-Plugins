@@ -1,16 +1,20 @@
-from .plugin.rootbuilder.plugins.rootbuilder_autobuild import RootBuilderAutobuild
-from .plugin.rootbuilder.plugins.rootbuilder_manager import RootBuilderManager
-from .plugin.rootbuilder.plugins.rootbuilder_installer import RootBuilderInstaller
-from .plugin.rootbuilder.plugins.rootbuilder_quickbuild import RootBuilderQuickBuild
-from .plugin.rootbuilder.plugins.rootbuilder_quicksync import RootBuilderQuickSync
-from .plugin.rootbuilder.plugins.rootbuilder_quickclear import RootBuilderQuickClear
+
+try:
+    from .rootbuilder_init import createPlugins as rbPlugins
+except:
+    def rbPlugins(): return []
+try: 
+    from .profilesync_init import createPlugins as psPlugins
+except: 
+    def psPlugins(): return []
+try:
+    from .pluginfinder_init import createPlugins as pfPlugins
+except:
+    def pfPlugins(): return []
 
 def createPlugins():
-    return [
-        RootBuilderAutobuild(),
-        RootBuilderManager(),
-        RootBuilderInstaller(),
-        RootBuilderQuickBuild(),
-        RootBuilderQuickSync(),
-        RootBuilderQuickClear()
-    ]
+    plugins = []
+    plugins.extend(rbPlugins())
+    plugins.extend(psPlugins())
+    plugins.extend(pfPlugins())
+    return plugins

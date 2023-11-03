@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>407</width>
+    <height>337</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,13 +27,26 @@
     <number>0</number>
    </property>
    <item>
+    <widget class="QWidget" name="groupSelectWidget" native="true"/>
+   </item>
+   <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
       <number>0</number>
      </property>
      <widget class="QWidget" name="groupsTab">
       <attribute name="title">
-       <string>Sync Groups</string>
+       <string>Profiles</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="stateTab">
+      <attribute name="title">
+       <string>State Groups</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="updateTab">
+      <attribute name="title">
+       <string>Update</string>
       </attribute>
      </widget>
      <widget class="QWidget" name="helpTab">

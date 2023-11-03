@@ -13,6 +13,8 @@ class ProfileSyncStrings(CommonStrings):
         """Gets the path to any current build data for the selected game."""
         if self._psDataPath == "":
             instanceName = self.pathSafeString(self.moInsatanceName())
+            if instanceName == "":
+                instanceName = "Portable"
             basePath = self.pluginDataPath()
             safePath = Path(basePath, instanceName)
             self._psDataPath = str(safePath.absolute())
@@ -25,3 +27,10 @@ class ProfileSyncStrings(CommonStrings):
             buildDataPath = Path(self.psDataPath(), "SyncGroups.json")
             self._psGroupDataPath = str(buildDataPath.absolute())
         return self._psGroupDataPath
+    
+    _psUpdateFilePath = str()
+    def psUpdateFilePath(self) -> str:
+        """Gets the path to the file used for checking Profile Sync updates."""
+        if self._psUpdateFilePath == str():
+            self._psUpdateFilePath = str(Path(self.pluginDataPath(), "VersionManifest.json"))
+        return self._psUpdateFilePath

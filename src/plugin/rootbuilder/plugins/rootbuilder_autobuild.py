@@ -13,13 +13,26 @@ class RootBuilderAutobuild(RootBuilderPlugin, mobase.IPluginFileMapper):
         res = super().init(organiser)
         self._organiser.onAboutToRun(lambda appName: self.onAboutToRun(appName))
         self._organiser.onFinishedRun(lambda appName, resultCode: self.onFinishedRun(appName, resultCode))
+        self._organiser.onUserInterfaceInitialized(lambda window: self.migrate())
         return res
+    
+    def master(self):
+        return self._pluginName
+
+    def settings(self):
+        return []
+    
+    def name(self):
+        return self.baseName() + " Autobuild"
     
     def description(self):
         return self.__tr("Handles the automated build and clear for Root Builder's autobuild mode.")
     
     def __tr(self, trstr):
         return QCoreApplication.translate(self._pluginName, trstr)
+
+    def migrate(self):
+        self._rootBuilder._legacy.migrate()
 
     def mappings(self):
         """Returns mappings, if there are any, for usvfs mode."""

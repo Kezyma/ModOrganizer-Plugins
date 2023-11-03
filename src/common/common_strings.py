@@ -48,6 +48,14 @@ class CommonStrings:
             self._moPath = str(Path(__file__).parent.parent.parent.parent)
         return self._moPath
 
+    _moLocalePath = str()
+    def moLocalePath(self) -> str:
+        """Gets the path for Mod Organizer's translations folder."""
+        if self._moLocalePath == str():
+            moPath = Path(self.moPath()) / "translations"
+            self._moLocalePath = str(moPath)
+        return self._moLocalePath
+    
     _moIniPath = ""
     def moIniPath(self) -> str:
         if self._moIniPath == "":

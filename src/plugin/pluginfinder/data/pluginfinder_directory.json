@@ -1,0 +1,117 @@
+[
+  {
+    "Name": "Root Builder",
+    "Identifier": "rootbuilder",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugins/rootbuilder.json"
+  },
+  {
+    "Name": "Reinstaller",
+    "Identifier": "reinstaller",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugins/reinstaller.json"
+  },
+  {
+    "Name": "Shortcutter",
+    "Identifier": "shortcutter",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugins/shortcutter.json"
+  },
+  {
+    "Name": "Plugin Finder",
+    "Identifier": "pluginfinder",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugins/pluginfinder.json"
+  },
+  {
+    "Name": "Curation Club",
+    "Identifier": "curationclub",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugins/curationclub.json"
+  },
+  {
+    "Name": "Profile Sync",
+    "Identifier": "profilesync",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugins/profilesync.json"
+  },
+  {
+    "Name": "OpenMW Player",
+    "Identifier": "openmwplayer",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugins/openmwplayer.json"
+  },
+  {
+    "Name": "LOOT Warning Checker",
+    "Identifier": "lootwarningchecker",
+    "Manifest": "https://raw.githubusercontent.com/JonathanFeenstra/modorganizer-loot-warning-checker/main/manifest.json"
+  },
+  {
+    "Name": "Root Linker",
+    "Identifier": "rootlinker",
+    "Manifest": "https://raw.githubusercontent.com/Vaneixus/modorganizer-rootlinker/plugin-installer/rootlinker.json"
+  },
+  {
+    "Name": "Sync Plugins With Mod Order",
+    "Identifier": "syncpluginwithmodorder",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/syncpluginwithmodorder.json"
+  },
+  {
+    "Name": "ModOrganizer-to-OpenMW",
+    "Identifier": "modorganizertoopenmw",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/modorganizertoopenmw.json"
+  },
+  {
+    "Name": "Orphaned Script Extender Save Deleter",
+    "Identifier": "orphanedscriptextendersavedeleter",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/orphanedscriptextendersavedeleter.json"
+  },
+  {
+    "Name": "Grass Precacher",
+    "Identifier": "grassprecacher",
+    "Manifest": "https://raw.githubusercontent.com/Al12rs/modorganizer-GrassPrecacher/master/manifest.json"
+  },
+  {
+    "Name": "Merge Plugins Hide & Sync Mod Order",
+    "Identifier": "mergepluginhidesyncmodorder",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/mergepluginhidesyncmodorder.json"
+  },
+  {
+    "Name": "Conflict Deleter",
+    "Identifier": "conflictdeleter",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/conflictdeleter.json"
+  },
+  {
+    "Name": "Fix Game Registry Key",
+    "Identifier": "fixgameregistrykey",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/fixgameregistrykey.json"
+  },
+  {
+    "Name": "Game Redirector",
+    "Identifier": "gameredirector",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/gameredirector.json"
+  },
+  {
+    "Name": "LOOT Preventifier",
+    "Identifier": "lootpreventifier",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/hosted/lootpreventifier.json"
+  },
+  {
+    "Name": "Broom - The Loose File Sweeper",
+    "Identifier": "broom",
+    "Manifest": "https://raw.githubusercontent.com/mihaifm/broom/master/mo2/broom.json"
+  },
+  {
+    "Name": "LOOT Config Loader",
+    "Identifier": "lootconfigloader",
+    "Manifest": "https://raw.githubusercontent.com/Exit-9B/LOOTConfigLoader/main/plugindefinition.json"
+  },
+  {
+    "Name": "Crash Log Tools",
+    "Identifier": "crashlogtools",
+    "Manifest": "https://raw.githubusercontent.com/Exit-9B/ModOrganizer-CrashLogTools/main/plugindefinition.json"
+  },
+  {
+    "Name": "Master Order Checker",
+    "Identifier": "masterorderchecker",
+    "Manifest": "https://raw.githubusercontent.com/ForgottenGlory/mo2-master-order-checker/main/plugindefinition.json"
+  },
+  {
+    "Name": "Auto-Activator",
+    "Identifier": "autoactivator",
+    "Manifest": "https://raw.githubusercontent.com/JonathanFeenstra/modorganizer-auto-activator/main/manifest.json"
+  }
+]
