@@ -3,9 +3,9 @@ import mobase
 from mobase import GuessedString, IFileTree, InstallResult
 from ..core.rootbuilder_plugin import RootBuilderPlugin
 from ..modules.rootbuilder_install import RootBuilderInstall
-from ..modules.rootbuilder_update import RootBuilderUpdate
 from ....base.base_dialog import BaseDialog
 from ....common.common_qt import *
+from ....common.common_icons import LINK_ALT_ICON
 
 class RootBuilderInstaller(RootBuilderPlugin, mobase.IPluginInstallerSimple):
     def __init__(self):
@@ -26,13 +26,13 @@ class RootBuilderInstaller(RootBuilderPlugin, mobase.IPluginInstallerSimple):
         return []
 
     def icon(self):
-        return self._icons.linkAltIcon()
+        return LINK_ALT_ICON
 
     def name(self):
-        return self.baseName() + " Installer"
+        return f"{self.baseName()} Installer"
 
     def displayName(self):
-        return self.baseDisplayName() + " Installer"
+        return f"{self.baseDisplayName()} Installer"
 
     def description(self):
         return self.__tr("Installs Root mods.")
@@ -70,7 +70,7 @@ class RootBuilderInstaller(RootBuilderPlugin, mobase.IPluginInstallerSimple):
         self._dialog.show()
 
     def getDialog(self) -> QtWidgets.QDialog:
-        dialog = BaseDialog(self.displayName(), "v" + self.version().displayString(), self.icon())
+        dialog = BaseDialog(self.displayName(), f"v{self.version().displayString()}", self.icon())
         self._install = RootBuilderInstall(dialog, self._organiser, self._rootBuilder._strings, self._rootBuilder._paths,  self._rootBuilder._util, self._log)
         dialog.addContent(self._install)
         return dialog

@@ -31,11 +31,11 @@ class RootBuilderCache():
     _cache = None
     def loadCacheFile(self):
         """Loads and returns the current cache file, or an empty object if none exists."""
-        if self._cache != None:
+        if self._cache is not None:
             return self._cache
         filePath = self._strings.rbCachePath()
         self._cache = self._util.loadJson(filePath)
-        if self._cache != None:
+        if self._cache is not None:
             return self._cache
         return {}
     

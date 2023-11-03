@@ -20,8 +20,8 @@ class ProfileSyncPlugin(BasePlugin):
         """ Current list of game settings for Mod Organizer. """
         baseSettings = super().settings()
         customSettings = [
-            mobase.PluginSetting("enabled",self.__tr("Enables " + self._pluginName), True),
-            mobase.PluginSetting("loglevel", self.__tr("Controls the logging for " + self._pluginName), 1)
+            mobase.PluginSetting("enabled",self.__tr(f"Enables {self._pluginName}"), True),
+            mobase.PluginSetting("loglevel", self.__tr(f"Controls the logging for {self._pluginName}", 1)
             ]
         for setting in customSettings:
             baseSettings.append(setting)

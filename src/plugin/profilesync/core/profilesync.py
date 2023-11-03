@@ -1,5 +1,4 @@
 import mobase
-from pathlib import Path
 from ....common.common_log import CommonLog
 from ....common.common_utilities import CommonUtilities
 from .profilesync_settings import ProfileSyncSettings

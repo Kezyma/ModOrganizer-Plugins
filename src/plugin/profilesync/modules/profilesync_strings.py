@@ -8,10 +8,10 @@ class ProfileSyncStrings(CommonStrings):
     def __init__(self, plugin:str, organiser:mobase.IOrganizer):
         super().__init__(plugin, organiser)
 
-    _psDataPath = str()
+    _psDataPath = ""
     def psDataPath(self) -> str:
         """Gets the path to any current build data for the selected game."""
-        if self._psDataPath == str():
+        if self._psDataPath == "":
             instanceName = self.pathSafeString(self.moInsatanceName())
             if instanceName == "":
                 instanceName = "Portable"
@@ -20,10 +20,10 @@ class ProfileSyncStrings(CommonStrings):
             self._psDataPath = str(safePath.absolute())
         return self._psDataPath
     
-    _psGroupDataPath = str()
+    _psGroupDataPath = ""
     def psGroupDataPath(self) -> str:
         """Gets the path to the current group data."""
-        if self._psGroupDataPath == str():
+        if self._psGroupDataPath == "":
             buildDataPath = Path(self.psDataPath(), "SyncGroups.json")
             self._psGroupDataPath = str(buildDataPath.absolute())
         return self._psGroupDataPath

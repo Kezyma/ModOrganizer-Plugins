@@ -4,111 +4,39 @@ except:
     from PyQt6.QtGui import QIcon
 from pathlib import Path
 
+def icon(icon: str) -> QIcon:
+    return QIcon(str(Path(__file__).parent.joinpath("icons").joinpath(icon)))
 
-class CommonIcons:
-    """Contains references to all the icons available for plugins to use."""
-
-    def __init__(self):
-        super().__init__()
-
-    def icon(self, icon:str):
-        return QIcon(str(Path(__file__).parent.joinpath("icons").joinpath(icon)))
-
-    def checkIcon(self):
-        return self.icon("ui-check.ico")
-
-    def menuIcon(self):
-        return self.icon("ui-menu.ico")
-
-    def minusIcon(self):
-        return self.icon("ui-minus.ico")
-
-    def plusIcon(self):
-        return self.icon("ui-plus.ico")
-
-    def syncIcon(self):
-        return self.icon("ui-sync.ico")
-
-    def linkIcon(self):
-        return self.icon("ui-link.ico")
-
-    def pluginIcon(self):
-        return self.icon("ui-plugin.ico")
-
-    def nexusIcon(self):
-        return self.icon("ui-nexus.ico")
-
-    def patreonIcon(self):
-        return self.icon("ui-patreon.ico")
-    
-    def githubIcon(self):
-        return self.icon("ui-github.ico")
-
-    def installIcon(self):
-        return self.icon("ui-install.ico")
-
-    def docsIcon(self):
-        return self.icon("ui-docs.ico")
-
-    def prevIcon(self):
-        return self.icon("ui-prev.ico")
-
-    def nextIcon(self):
-        return self.icon("ui-next.ico")
-
-    def infoIcon(self):
-        return self.icon("ui-info.ico")
-
-    def warningIcon(self):
-        return self.icon("ui-warning.ico")
-
-    def stopIcon(self):
-        return self.icon("ui-stop.ico")
-
-    def updateIcon(self):
-        return self.icon("ui-update.ico")
-
-    def updateAltIcon(self):
-        return self.icon("ui-update-alt.ico")
-
-    def noUpdateIcon(self):
-        return self.icon("ui-no-update.ico")
-
-    def refreshIcon(self):
-        return self.icon("ui-refresh.ico")
-
-    def trashIcon(self):
-        return self.icon("ui-trash.ico")
-
-    def alphaIcon(self):
-        return self.icon("ui-alpha.ico")
-
-    def betaIcon(self):
-        return self.icon("ui-beta.ico")
-
-    def gammaIcon(self):
-        return self.icon("ui-gamma.ico")
-
-    def deltaIcon(self):
-        return self.icon("ui-delta.ico")
-
-    def downloadIcon(self):
-        return self.icon("ui-download.ico")
-
-    def linkAltIcon(self):
-        return self.icon("ui-link-alt.ico")
-
-    def filterIcon(self):
-        return self.icon("ui-filter.ico")
-
-    def recycleIcon(self):
-        return self.icon("ui-recycle.ico")
-
-    def openMwIcon(self):
-        return self.icon("ui-openmw.ico")
-
-    def clipIcon(self):
-        return self.icon("ui-clip.ico")
-    
-    def discordIcon(self):
-        return self.icon("ui-discord.ico")
+CHECK_ICON = icon("ui-check.ico")
+MENU_ICON = icon("ui-menu.ico")
+MINUS_ICON = icon("ui-minus.ico")
+PLUS_ICON = icon("ui-plus.ico")
+SYNC_ICON = icon("ui-sync.ico")
+LINK_ICON = icon("ui-link.ico")
+PLUGIN_ICON = icon("ui-plugin.ico")
+NEXUS_ICON = icon("ui-nexus.ico")
+PATREON_ICON = icon("ui-patreon.ico")
+GITHUB_ICON = icon("ui-github.ico")
+INSTALL_ICON = icon("ui-install.ico")
+DOCS_ICON = icon("ui-docs.ico")
+PREV_ICON = icon("ui-prev.ico")
+NEXT_ICON = icon("ui-next.ico")
+INFO_ICON = icon("ui-info.ico")
+WARNING_ICON = icon("ui-warning.ico")
+STOP_ICON = icon("ui-stop.ico")
+UPDATE_ICON = icon("ui-update.ico")
+UPDATE_ALT_ICON = icon("ui-update-alt.ico")
+NO_UPDATE_ICON = icon("ui-no-update.ico")
+REFRESH_ICON = icon("ui-refresh.ico")
+TRASH_ICON = icon("ui-trash.ico")
+ALPHA_ICON = icon("ui-alpha.ico")
+BETA_ICON = icon("ui-beta.ico")
+GAMMA_ICON = icon("ui-gamma.ico")
+DELTA_ICON = icon("ui-delta.ico")
+DOWNLOAD_ICON = icon("ui-download.ico")
+LINK_ALT_ICON = icon("ui-link-alt.ico")
+FILTER_ICON = icon("ui-filter.ico")
+RECYCLE_ICON = icon("ui-recycle.ico")
+OPENMW_ICON = icon("ui-openmw.ico")
+CLIP_ICON = icon("ui-clip.ico")
+DISCORD_ICON = icon("ui-discord.ico")

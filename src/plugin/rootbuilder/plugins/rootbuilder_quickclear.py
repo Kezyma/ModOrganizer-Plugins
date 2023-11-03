@@ -1,12 +1,13 @@
 from ..core.rootbuilder_plugin import RootBuilderPlugin
 from ....common.common_qt import *
+from ....common.common_icons import MINUS_ICON
 import mobase
 
 class RootBuilderQuickClear(RootBuilderPlugin, mobase.IPluginTool):
     def __init__(self):
         super().__init__()
 
-    def init(self, organiser=mobase.IOrganizer):
+    def init(self, organiser: mobase.IOrganizer):
         return super().init(organiser)
 
     def __tr(self, trstr):
@@ -19,13 +20,13 @@ class RootBuilderQuickClear(RootBuilderPlugin, mobase.IPluginTool):
         return []
 
     def icon(self):
-        return self._icons.minusIcon()
+        return MINUS_ICON
 
     def name(self):
-        return self.baseName() + " Clear Tool"
+        return f"{self.baseName()} Clear Tool"
 
     def displayName(self):
-        return self.baseDisplayName() + "/Clear"
+        return f"{self.baseDisplayName()}/Clear"
 
     def description(self):
         return self.__tr("Runs a clear operation using current settings.")

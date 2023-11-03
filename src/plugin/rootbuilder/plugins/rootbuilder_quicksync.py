@@ -1,12 +1,13 @@
 from ..core.rootbuilder_plugin import RootBuilderPlugin
 from ....common.common_qt import *
+from ....common.common_icons import SYNC_ICON
 import mobase
 
 class RootBuilderQuickSync(RootBuilderPlugin, mobase.IPluginTool):
     def __init__(self):
         super().__init__()
 
-    def init(self, organiser=mobase.IOrganizer):
+    def init(self, organiser: mobase.IOrganizer):
         return super().init(organiser)
 
     def __tr(self, trstr):
@@ -19,13 +20,13 @@ class RootBuilderQuickSync(RootBuilderPlugin, mobase.IPluginTool):
         return []
 
     def icon(self):
-        return self._icons.syncIcon()
+        return SYNC_ICON
 
     def name(self):
-        return self.baseName() + " Sync Tool"
+        return f"{self.baseName()} Sync Tool"
 
     def displayName(self):
-        return self.baseDisplayName() + "/Sync"
+        return f"{self.baseDisplayName()}/Sync"
 
     def description(self):
         return self.__tr("Runs a sync operation using current settings.")

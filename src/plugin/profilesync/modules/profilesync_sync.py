@@ -40,7 +40,7 @@ class ProfileSyncSync():
     def syncFromProfile(self, profile:str):
         """Syncs a group to a selected profile."""
         group = self._groups.groupFromProfile(profile)
-        if group != None:
+        if group is not None:
             self._log.debug("Sync from " + profile + " to group " + group)
             profilePath = self._strings.moProfilePath()
             modListPath = Path(profilePath) / "modlist.txt"

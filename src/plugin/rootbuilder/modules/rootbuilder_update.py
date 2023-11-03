@@ -29,9 +29,9 @@ class RootBuilderUpdate():
                 testVersion = version[self._rbVersionKey]
                 testVersionInfo = mobase.VersionInfo(testVersion)
                 if testVersionInfo > thisVersionInfo:
-                    if newestVersionInfo == None or testVersionInfo > newestVersionInfo:
+                    if newestVersionInfo is None or testVersionInfo > newestVersionInfo:
                         newestVersionInfo = testVersionInfo
-            if newestVersionInfo != None:
+            if newestVersionInfo is not None:
                 return newestVersionInfo
             else:
                 return None

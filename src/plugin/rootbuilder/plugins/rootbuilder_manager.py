@@ -4,6 +4,7 @@ from ..modules.rootbuilder_menu import RootBuilderMenu
 from ..modules.rootbuilder_update import RootBuilderUpdate
 from ....base.base_dialog import BaseDialog
 from ....common.common_qt import *
+from ....common.common_icons import LINK_ALT_ICON
 
 class RootBuilderManager(RootBuilderPlugin, mobase.IPluginTool):
     def __init__(self):
@@ -19,7 +20,7 @@ class RootBuilderManager(RootBuilderPlugin, mobase.IPluginTool):
         return QCoreApplication.translate(self._pluginName, trstr)
 
     def icon(self):
-        return self._icons.linkAltIcon()
+        return LINK_ALT_ICON
 
     def name(self):
         return self.baseName()
@@ -35,7 +36,7 @@ class RootBuilderManager(RootBuilderPlugin, mobase.IPluginTool):
         self._rootBuilderMenu.rebind()
 
     def getDialog(self) -> QtWidgets.QDialog:
-        dialog = BaseDialog(self.displayName(), "v" + self.version().displayString(), self.icon())
+        dialog = BaseDialog(self.displayName(), f"v{self.version().displayString()}", self.icon())
         self._rootBuilderMenu = RootBuilderMenu(dialog, self._organiser, self._rootBuilder, self._update)
         dialog.addContent(self._rootBuilderMenu)
         return dialog

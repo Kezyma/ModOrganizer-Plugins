@@ -32,11 +32,11 @@ class RootBuilderData():
     _data = None
     def loadDataFile(self) -> dict:
         """Loads and returns the current data file, or an empty object if none exists."""
-        if self._data != None:
+        if self._data is not None:
             return self._data
         filePath = self._strings.rbBuildDataPath()
         self._data = self._util.loadJson(filePath)
-        if self._data != None:
+        if self._data is not None:
             return self._data
         return {
             self._copyKey: {},

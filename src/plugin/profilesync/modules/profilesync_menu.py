@@ -1,4 +1,4 @@
-from ....common.common_icons import CommonIcons
+from ....common import common_icons
 from ....common.common_qt import *
 from ..core.profilesync import ProfileSync
 from .profilesync_update import ProfileSyncUpdate
@@ -27,7 +27,6 @@ class ProfileSyncMenu(QtWidgets.QWidget):
         self._profileSync = profileSync
         self._update = update
         self._rebind = False
-        self._icons = CommonIcons()
         self.generateLayout()
 
     def generateLayout(self):
@@ -57,15 +56,15 @@ class ProfileSyncMenu(QtWidgets.QWidget):
         self.stateTabWidget.stateProfileList.itemChanged.connect(self.saveStateLists)
         self.stateTabWidget.stateCategoryList.itemChanged.connect(self.saveStateLists)
 
-        self.helpTabWidget.discordButton.setIcon(self._icons.discordIcon())
+        self.helpTabWidget.discordButton.setIcon(common_icons.DISCORD_ICON)
         self.helpTabWidget.discordButton.clicked.connect(self.discord_clicked)
-        self.helpTabWidget.docsButton.setIcon(self._icons.docsIcon())
+        self.helpTabWidget.docsButton.setIcon(common_icons.DOCS_ICON)
         self.helpTabWidget.docsButton.clicked.connect(self.docs_clicked)
-        self.helpTabWidget.githubButton.setIcon(self._icons.githubIcon())
+        self.helpTabWidget.githubButton.setIcon(common_icons.GITHUB_ICON)
         self.helpTabWidget.githubButton.clicked.connect(self.github_clicked)
-        self.helpTabWidget.nexusButton.setIcon(self._icons.nexusIcon())
+        self.helpTabWidget.nexusButton.setIcon(common_icons.NEXUS_ICON)
         self.helpTabWidget.nexusButton.clicked.connect(self.nexus_clicked)
-        self.helpTabWidget.patreonButton.setIcon(self._icons.patreonIcon())
+        self.helpTabWidget.patreonButton.setIcon(common_icons.PATREON_ICON)
         self.helpTabWidget.patreonButton.clicked.connect(self.patreon_clicked)
 
         helpPath = Path(__file__).parent.parent / "data" / "profilesync_help.html"
