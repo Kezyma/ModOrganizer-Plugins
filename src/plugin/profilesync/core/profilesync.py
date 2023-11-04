@@ -13,7 +13,7 @@ class ProfileSync():
     def __init__(self, organiser:mobase.IOrganizer):
         self._organiser = organiser
         self._settings = ProfileSyncSettings(self._organiser)
-        self._log = CommonLog("ProfileSync", self._organiser, self._settings)
+        self._log = CommonLog("ProfileSync", self._settings)
         self._util = CommonUtilities(self._organiser)
         self._strings = ProfileSyncStrings("ProfileSync", self._organiser)
         self._groups = ProfileSyncGroups(self._organiser, self._strings, self._util, self._log)

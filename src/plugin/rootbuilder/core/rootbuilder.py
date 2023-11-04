@@ -17,7 +17,7 @@ class RootBuilder():
     def __init__(self, organiser:mobase.IOrganizer):
         self._organiser = organiser
         self._settings = RootBuilderSettings(self._organiser)
-        self._log = CommonLog("RootBuilder", self._organiser, self._settings)
+        self._log = CommonLog("RootBuilder", self._settings)
         self._util = CommonUtilities(self._organiser)
         self._strings = RootBuilderStrings("RootBuilder", self._organiser)
         self._paths = RootBuilderPaths("RootBuilder", self._organiser, self._settings, self._strings)

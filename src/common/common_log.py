@@ -1,33 +1,28 @@
-import mobase
 from ..base.base_settings import BaseSettings
 try:
     from PyQt5.QtCore import qInfo, qDebug, qWarning, qCritical
 except:
     from PyQt6.QtCore import qInfo, qDebug, qWarning, qCritical
 
-class CommonLog():
+class CommonLog:
     """Class handling logging functions for Mod Organizer plugins."""
 
-    def __init__(self, plugin:str, organiser:mobase.IOrganizer, settings:BaseSettings):
-        self._organiser = organiser
-        self._plugin = plugin
+    def __init__(self, plugin: str, settings: BaseSettings) -> None:
+        self._prefix = f"[{plugin}] "
         self._settings = settings
 
-    def _prefix(self):
-        return f"[{self._plugin}] "
-
-    def debug(self, message:str):
+    def debug(self, message: str) -> None:
         if self._settings.loglevel() < 1:
-            qDebug(f"{self._prefix()}{message}")
+            qDebug(f"{self._prefix}{message}")
 
-    def info(self, message:str):
+    def info(self, message: str) -> None:
         if self._settings.loglevel() < 2:
-            qInfo(f"{self._prefix()}{message}")
+            qInfo(f"{self._prefix}{message}")
 
-    def warning(self, message:str):
+    def warning(self, message: str) -> None:
         if self._settings.loglevel() < 3:
-            qWarning(f"{self._prefix()}{message}")
+            qWarning(f"{self._prefix}{message}")
 
-    def critical(self, message:str):
+    def critical(self, message: str) -> None:
         if self._settings.loglevel() < 4:
-            qCritical(f"{self._prefix()}{message}") 
+            qCritical(f"{self._prefix}{message}") 

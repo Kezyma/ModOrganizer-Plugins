@@ -14,7 +14,7 @@ class PluginFinder():
     def __init__(self, organiser:mobase.IOrganizer):
         self._organiser = organiser
         self._settings = PluginFinderSettings(self._organiser)
-        self._log = CommonLog("PluginFinder", self._organiser, self._settings)
+        self._log = CommonLog("PluginFinder", self._settings)
         self._util = CommonUtilities(self._organiser)
         self._paths = CommonPaths("PluginFinder", self._organiser)
         self._strings = PluginFinderStrings("PluginFinder", self._organiser)
