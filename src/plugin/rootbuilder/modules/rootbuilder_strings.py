@@ -1,5 +1,6 @@
 import mobase
 from pathlib import Path
+from functools import cached_property
 from ....common.common_strings import CommonStrings
 
 class RootBuilderStrings(CommonStrings):
@@ -8,52 +9,36 @@ class RootBuilderStrings(CommonStrings):
     def __init__(self, plugin:str, organiser:mobase.IOrganizer):
         super().__init__(plugin, organiser)
 
-    _rbOverwritePath = ""
+    @cached_property
     def rbOverwritePath(self) -> str:
         """Gets the path to the Root folder in the current overwrite folder."""
-        if self._rbOverwritePath == "":
-            overwritePath = Path(self.moOverwritePath(), "Root")
-            self._rbOverwritePath = str(overwritePath.absolute())
-        return self._rbOverwritePath
-    
-    _rbDataPath = ""
+        return str(Path(self.moOverwritePath, "Root").absolute())
+
+    @cached_property
     def rbDataPath(self) -> str:
         """Gets the path to any current build data for the selected game and version."""
-        if self._rbDataPath == "":
-            gamePath = self.pathSafeString(self.gamePath())
-            gameVer = self.pathSafeString(self.gameVersion())
-            basePath = self.pluginDataPath()
-            safePath = Path(basePath, gamePath, gameVer)
-            self._rbDataPath = str(safePath.absolute())
-        return self._rbDataPath
+        gamePath = self.pathSafeString(self.gamePath)
+        gameVer = self.pathSafeString(self.gameVersion)
+        safePath = Path(self.pluginDataPath, gamePath, gameVer)
+        return str(safePath.absolute())
+
     
-    _rbCachePath = ""
+    @cached_property
     def rbCachePath(self) -> str:
         """Gets the path to the game cache for the current game and version."""
-        if self._rbCachePath == "":
-            cachePath = Path(self.rbDataPath(), "GameData.json")
-            self._rbCachePath = str(cachePath.absolute())
-        return self._rbCachePath
+        return str(Path(self.rbDataPath, "GameData.json").absolute())
     
-    _rbBackupPath = ""
+    @cached_property
     def rbBackupPath(self) -> str:
         """Gets the path to the backup folder for the current game and version."""
-        if self._rbBackupPath == "":
-            backupPath = Path(self.rbDataPath(), "Backup")
-            self._rbBackupPath = str(backupPath.absolute())
-        return self._rbBackupPath
+        return str(Path(self.rbDataPath, "Backup").absolute())
     
-    _rbBuildDataPath = ""
+    @cached_property
     def rbBuildDataPath(self) -> str:
         """Gets the path to the current build data."""
-        if self._rbBuildDataPath == "":
-            buildDataPath = Path(self.rbDataPath(), "BuildData.json")
-            self._rbBuildDataPath = str(buildDataPath.absolute())
-        return self._rbBuildDataPath
-    
-    _rbUpdateFilePath = ""
+        return str(Path(self.rbDataPath, "BuildData.json").absolute())
+
+    @cached_property
     def rbUpdateFilePath(self) -> str:
         """Gets the path to the file used for checking Root Builder updates."""
-        if self._rbUpdateFilePath == "":
-            self._rbUpdateFilePath = str(Path(self.pluginDataPath(), "VersionManifest.json"))
-        return self._rbUpdateFilePath
+        return str(Path(self.pluginDataPath, "VersionManifest.json"))

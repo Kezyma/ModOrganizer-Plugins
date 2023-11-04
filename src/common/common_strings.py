@@ -1,4 +1,5 @@
 import mobase, winreg, os
+from functools import cached_property
 from pathlib import Path
 
 
@@ -9,148 +10,111 @@ class CommonStrings:
         self._organiser = organiser
         self._plugin = plugin
 
-    _gameVersion = ""
+    @cached_property
     def gameVersion(self) -> str:
         """Gets the currently installed version of the game."""
-        if self._gameVersion == "":
-            self._gameVersion = self._organiser.managedGame().gameVersion()
-            if self._gameVersion == "":
-                self._gameVersion = "unknown"
-        return self._gameVersion
+        version = self._organiser.managedGame().gameVersion()
+        if version == "":
+            return "unknown"
+        return version
 
-    _gamePath = ""
+    @cached_property
     def gamePath(self) -> str:
         """Gets the path to the current game folder."""
-        if self._gamePath == "":
-            self._gamePath = self._organiser.managedGame().gameDirectory().path()
-        return self._gamePath
+        return self._organiser.managedGame().gameDirectory().path()
 
-    _gameDataFolder = ""
+    @cached_property
     def gameDataFolder(self) -> str:
         """Gets the name of the Data folder for the current game."""
-        if self._gameDataFolder == "":
-            gamePath = self.gamePath()
-            gameDataPath = self.gameDataPath()
-            self._gameDataFolder = gameDataPath.replace(gamePath, "")
-        return self._gameDataFolder
+        return self.gameDataPath.replace(self.gamePath, "")
 
-    _gameDataPath = ""
+    @cached_property
     def gameDataPath(self) -> str:
         """Gets the path to the Data folder for the current game."""
-        if self._gameDataPath == "":
-            self._gameDataPath = self._organiser.managedGame().dataDirectory().path()
-        return self._gameDataPath
+        return self._organiser.managedGame().dataDirectory().path()
 
-    _moPath = ""
+    @cached_property
     def moPath(self) -> str:
         """Gets the path for Mod Organizer's base folder."""
-        if self._moPath == "":
-            self._moPath = str(Path(__file__).parent.parent.parent.parent)
-        return self._moPath
+        return str(Path(__file__).parent.parent.parent.parent)
 
-    _moLocalePath = str()
+    @cached_property
     def moLocalePath(self) -> str:
         """Gets the path for Mod Organizer's translations folder."""
-        if self._moLocalePath == str():
-            moPath = Path(self.moPath()) / "translations"
-            self._moLocalePath = str(moPath)
-        return self._moLocalePath
-    
-    _moIniPath = ""
-    def moIniPath(self) -> str:
-        if self._moIniPath == "":
-            moIniPath = Path(self.moInstancePath() / "ModOrganizer.ini")
-            self._moIniPath = str(moIniPath.absolute())
-        return self._moIniPath
+        return str(Path(self.moPath) / "translations")
 
-    _moModsPath = ""
+    @cached_property
+    def moIniPath(self) -> str:
+        return str(Path(self.moInstancePath / "ModOrganizer.ini").absolute())
+
+    @cached_property
     def moModsPath(self) -> str:
         """Gets the path to Mod Organizer's current mods folder."""
-        if self._moModsPath == "":
-            self._moModsPath = self._organiser.modsPath()
-        return self._moModsPath
+        return self._organiser.modsPath()
 
-    _moDownloadsPath = ""
+    @cached_property
     def moDownloadsPath(self) -> str:
         """Gets the path to Mod Organizer's downloads folder."""
-        if self._moDownloadsPath == "":
-            self._moDownloadsPath = self._organiser.downloadsPath()
-        return self._moDownloadsPath
+        return self._organiser.downloadsPath()
 
-    _moExecutablePath = ""
+    @cached_property
     def moExecutablePath(self) -> str:
         """Gets the path to the current ModOrganizer.exe"""
-        if self._moExecutablePath == "":
-            self._moExecutablePath = str(Path(self.moPath()) / "ModOrganizer.exe")
-        return self._moExecutablePath
+        return str(Path(self.moPath) / "ModOrganizer.exe")
 
-    _moProfilesPath = ""
+    @cached_property
     def moProfilesPath(self) -> str:
         """Gets the path to the Mod Organizer profiles folder for the current instance."""
-        if self._moProfilesPath == "":
-            self._moProfilesPath = str(Path(self._organiser.profilePath()).parent)
-        return self._moProfilesPath
+        return str(Path(self._organiser.profilePath()).parent)
 
+    @cached_property
     def moProfilePath(self) -> str:
         """Gets the path to the current Mod Organizer profile folder."""
         return self._organiser.profilePath()
 
+    @cached_property
     def moProfileName(self) -> str:
         """Gets the name of the current Mod Organizer profile."""
         return self._organiser.profileName()
     
-    _moInstanceName = ""
-    def moInsatanceName(self) -> str:
+    @cached_property
+    def moInstanceName(self) -> str:
         """Gets the name of the current Mod Organizer instance. Empty if portable."""
-        if self._moInstanceName == "":
-            try:
-                with winreg.OpenKey(winreg.HKEY_CURRENT_USER,"Software\\Mod Organizer Team\\Mod Organizer",) as key:
-                    value = winreg.QueryValueEx(key, "CurrentInstance")
-                    self._moInstanceName = str(value[0]).replace("/", "\\")
-            except:
-                self._moInstanceName = ""
-        return self._moInstanceName
+        try:
+            with winreg.OpenKey(winreg.HKEY_CURRENT_USER,"Software\\Mod Organizer Team\\Mod Organizer",) as key:
+                value = winreg.QueryValueEx(key, "CurrentInstance")
+                return str(value[0]).replace("/", "\\")
+        except:
+            return ""
 
-    _moInstancesPath = ""
+    @cached_property
     def moInstancesPath(self) -> str:
         """Gets the path to local Mod Organizer instances."""
-        if self._moInstancesPath == "":
-            self._moInstancesPath = str(Path(os.getenv("LOCALAPPDATA")) / "ModOrganizer")
-        return self._moInstancesPath
+        return str(Path(os.getenv("LOCALAPPDATA")) / "ModOrganizer")
     
-    _moInstancePath = ""
+    @cached_property
     def moInstancePath(self) -> str:
         """Gets the path to the current Mod Organizer instance."""
-        if self._moInstancePath == "":
-            currentInstance = self.moInsatanceName()
-            if currentInstance == "":
-                _moInstancePath = self.moPath()
-            else:
-                _moInstancePath = str(Path(self.moInstancesPath()) / currentInstance)
-        return _moInstancePath
+        if self.moInstanceName == "":
+            return self.moPath
+        return str(Path(self.moInstancesPath) / self.moInstanceName)
 
-    _moPluginsPath = ""
+
+    @cached_property
     def moPluginsPath(self) -> str:
         """Gets the path to Mod Organizer's plugins folder."""
-        if self._moPluginsPath == "":
-            self._moPluginsPath = str(Path(self.moPath()) / "plugins")
-        return self._moPluginsPath
+        return str(Path(self.moPath) / "plugins")
 
-    _moOverwritePath = ""
+    @cached_property
     def moOverwritePath(self) -> str:
         """Gets the path to the current overwrite folder."""
-        if self._moOverwritePath == "":
-            self._moOverwritePath = self._organiser.overwritePath()
-        return self._moOverwritePath
+        return self._organiser.overwritePath()
 
-    _pluginDataPath = ""
+    @cached_property
     def pluginDataPath(self) -> str:
         """Gets the path to the data folder for the current plugin."""
-        if self._pluginDataPath == "":
-            pluginDataPath = Path(self._organiser.pluginDataPath(), self._plugin)
-            self._pluginDataPath = str(pluginDataPath.absolute())
-        return self._pluginDataPath
-    
+        return str(Path(self._organiser.pluginDataPath(), self._plugin).absolute())
+
     _unsafePathSpaces = [" ", "."]
     _unsafePathStrings = ["<", ">", ":", "|", "*", "\\", "/", "?", "\""]
     def pathSafeString(self, string:str) -> str:

@@ -26,7 +26,7 @@ class PluginFinderDirectory():
     DOCS = "DocsUrl"
 
     def initialDeploy(self):
-        filePath = self._strings.pfDirectoryPath()
+        filePath = self._strings.pfDirectoryPath
         if not Path(filePath).exists():
             initialPath = Path(__file__).parent.parent / "data" / "pluginfinder_directory.json"
             if Path(initialPath).exists():
@@ -35,7 +35,7 @@ class PluginFinderDirectory():
         nt.start()
 
     def updateDirectory(self):
-        filePath = self._strings.pfDirectoryPath()
+        filePath = self._strings.pfDirectoryPath
         if self._util.downloadFile(self._remoteDirectoryUrl, filePath):
             self._log.debug("Directory update downloaded.")
             self.loadDirectory(True)
@@ -45,7 +45,7 @@ class PluginFinderDirectory():
     _directory = None
     def loadDirectory(self, reload=False) -> list:
         if self._directory == None or reload:
-            filePath = self._strings.pfDirectoryPath()
+            filePath = self._strings.pfDirectoryPath
             self._directory = self._util.loadJson(filePath)
         return self._directory
     
@@ -66,7 +66,7 @@ class PluginFinderDirectory():
         return self._manifests
 
     def _loadManifest(self, name:str, id:str, url:str):
-        manifestPath = Path(self._strings.pfManifestFolderPath())
+        manifestPath = Path(self._strings.pfManifestFolderPath)
         fileName = id + ".json"
         filePath = manifestPath / fileName
         if self._util.downloadFile(url, filePath):

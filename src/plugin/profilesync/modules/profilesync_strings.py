@@ -1,4 +1,5 @@
 import mobase
+from functools import cached_property
 from pathlib import Path
 from ....common.common_strings import CommonStrings
 
@@ -8,29 +9,22 @@ class ProfileSyncStrings(CommonStrings):
     def __init__(self, plugin:str, organiser:mobase.IOrganizer):
         super().__init__(plugin, organiser)
 
-    _psDataPath = ""
+    @cached_property
     def psDataPath(self) -> str:
         """Gets the path to any current build data for the selected game."""
-        if self._psDataPath == "":
-            instanceName = self.pathSafeString(self.moInsatanceName())
-            if instanceName == "":
-                instanceName = "Portable"
-            basePath = self.pluginDataPath()
-            safePath = Path(basePath, instanceName)
-            self._psDataPath = str(safePath.absolute())
-        return self._psDataPath
+        instanceName = self.pathSafeString(self.moInstanceName)
+        if instanceName == "":
+            instanceName = "Portable"
+        safePath = Path(self.pluginDataPath, instanceName)
+        return str(safePath.absolute())
     
-    _psGroupDataPath = ""
+    @cached_property
     def psGroupDataPath(self) -> str:
         """Gets the path to the current group data."""
-        if self._psGroupDataPath == "":
-            buildDataPath = Path(self.psDataPath(), "SyncGroups.json")
-            self._psGroupDataPath = str(buildDataPath.absolute())
-        return self._psGroupDataPath
+        return str(Path(self.psDataPath, "SyncGroups.json").absolute())
+
     
-    _psUpdateFilePath = str()
+    @cached_property
     def psUpdateFilePath(self) -> str:
         """Gets the path to the file used for checking Profile Sync updates."""
-        if self._psUpdateFilePath == str():
-            self._psUpdateFilePath = str(Path(self.pluginDataPath(), "VersionManifest.json"))
-        return self._psUpdateFilePath
+        return str(Path(self.pluginDataPath, "VersionManifest.json"))

@@ -47,7 +47,7 @@ class RootBuilder():
             self._backup.updateBackup()
         else:
             # Calculate any possible overwrites for if we need to update our backup or cache.
-            gamePath = Path(self._strings.gamePath())
+            gamePath = Path(self._strings.gamePath)
             possibleOverwrites = []
             for fileKey in newBuildData[self._data._copyKey]:
                 relativePath = newBuildData[self._data._copyKey][fileKey][self._data._relativeKey]
@@ -121,7 +121,7 @@ class RootBuilder():
         mappings = []
         if hasExistingBuild:
             self._log.info("Build exists, generating usvfs mappings.")
-            gamePath = Path(self._strings.gamePath())
+            gamePath = Path(self._strings.gamePath)
             buildData = self._data.loadDataFile()
             usvfsFiles = buildData[self._data._usvfsKey]
             for file in usvfsFiles:
@@ -133,8 +133,8 @@ class RootBuilder():
                 mapping.createTarget = False
                 mappings.append(mapping)
             #overwrite = mobase.Mapping()
-            #overwrite.source = self._strings.rbOverwritePath()
-            #overwrite.destination = self._strings.gamePath()
+            #overwrite.source = self._strings.rbOverwritePath
+            #overwrite.destination = self._strings.gamePath
             #overwrite.createTarget = True
             #overwrite.isDirectory = True
             #mappings.append(overwrite)

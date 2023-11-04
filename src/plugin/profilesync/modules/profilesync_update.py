@@ -19,7 +19,7 @@ class ProfileSyncUpdate():
 
     def getLatestVersion(self) -> mobase.VersionInfo:
         """Checks if Profile Sync needs an update."""
-        updatePath = self._strings.psUpdateFilePath()
+        updatePath = self._strings.psUpdateFilePath
         if self._util.downloadFile(self._rbManifest, updatePath):
             rbData = self._util.loadJson(updatePath)
             rbVersions = rbData[self._rbVersionsKey]

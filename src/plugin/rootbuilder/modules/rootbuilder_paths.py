@@ -15,15 +15,15 @@ class RootBuilderPaths(CommonPaths):
 
     def gameFiles(self)-> List[str]:
         """Gets a complete list of files in the game folder."""
-        gameFolder = self._strings.gamePath()
+        gameFolder = self._strings.gamePath
         gameFiles = self.files(gameFolder)
         return gameFiles
     
     def gameRootFiles(self)-> List[str]:
         """Gets a complete list of files in the game folder, minus the game data folder."""
         allFiles = self.gameFiles()
-        #dataFolder = self._strings.gameDataPath()
-        #gameFolder = self._strings.gamePath()
+        #dataFolder = self._strings.gameDataPath
+        #gameFolder = self._strings.gamePath
         #res = []
         #if dataFolder != gameFolder:
         #    for path in allFiles:
@@ -35,7 +35,7 @@ class RootBuilderPaths(CommonPaths):
     
     def validGameRootFiles(self) -> List[str]:
         """Gets a complete list of files in the game folder that are valid for Root Builder."""
-        gamePath = self._strings.gamePath()
+        gamePath = self._strings.gamePath
         gameFiles = self.gameRootFiles()
         return self.removeExclusions(gamePath, gameFiles)
         
@@ -45,7 +45,7 @@ class RootBuilderPaths(CommonPaths):
         res = []
         for mod in modList:
             if self._organiser.modList().state(mod) & mobase.ModState.ACTIVE:
-                modRoot = Path(self._strings.moModsPath()) / mod / "Root"
+                modRoot = Path(self._strings.moModsPath) / mod / "Root"
                 if modRoot.exists():
                     res.append(str(modRoot))
         return res

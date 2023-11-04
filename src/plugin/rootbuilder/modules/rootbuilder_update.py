@@ -19,7 +19,7 @@ class RootBuilderUpdate():
 
     def getLatestVersion(self) -> mobase.VersionInfo:
         """Checks if Root Builder needs an update."""
-        updatePath = self._strings.rbUpdateFilePath()
+        updatePath = self._strings.rbUpdateFilePath
         if self._util.downloadFile(self._rbManifest, updatePath):
             rbData = self._util.loadJson(updatePath)
             rbVersions = rbData[self._rbVersionsKey]

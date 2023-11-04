@@ -25,7 +25,7 @@ class RootBuilderCache():
 
     def cacheFileExists(self) -> bool:
         """Returns true if there is a current build data file."""
-        filePath = self._strings.rbCachePath()
+        filePath = self._strings.rbCachePath
         return Path(filePath).exists()
 
     _cache = None
@@ -33,7 +33,7 @@ class RootBuilderCache():
         """Loads and returns the current cache file, or an empty object if none exists."""
         if self._cache is not None:
             return self._cache
-        filePath = self._strings.rbCachePath()
+        filePath = self._strings.rbCachePath
         self._cache = self._util.loadJson(filePath)
         if self._cache is not None:
             return self._cache
@@ -42,19 +42,19 @@ class RootBuilderCache():
     def saveCacheFile(self, data:dict) -> bool:
         """Saves new data to the current cache file."""
         self._cache = data
-        filePath = self._strings.rbCachePath()
+        filePath = self._strings.rbCachePath
         return self._util.saveJson(filePath, self._cache)
     
     def deleteCacheFile(self) -> bool:
         """Deletes the current cache file."""
         self._cache = None
-        filePath = self._strings.rbCachePath()
+        filePath = self._strings.rbCachePath
         return self._util.deleteFile(filePath)
     
     def cachedValidRootGameFiles(self) -> List[str]:
         """Gets the list of game files from cache, or from the raw files if none exists."""
         if self.cacheFileExists():
-            gamePath = self._strings.gamePath()
+            gamePath = self._strings.gamePath
             cacheFiles = self.loadCacheFile()
             gameFiles = []
             for cacheFile in cacheFiles:
@@ -70,7 +70,7 @@ class RootBuilderCache():
         """Loads the current cache file and then updates it with any changes."""
         self._currentCache = self.loadCacheFile()
         cacheFiles = self.cachedValidRootGameFiles()
-        gamePath = self._strings.gamePath()
+        gamePath = self._strings.gamePath
         useHash = self._settings.hash()
         tasks = []
         for file in cacheFiles:

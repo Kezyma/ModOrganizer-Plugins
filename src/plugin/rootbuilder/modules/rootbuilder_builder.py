@@ -24,7 +24,7 @@ class RootBuilderBuilder():
     _gamePath = Path()
     def deployFiles(self, data:dict, links=False):
         """Deploys a list of files via copy (or links) from build data."""
-        self._gamePath = Path(self._strings.gamePath())
+        self._gamePath = Path(self._strings.gamePath)
         threads = []
         for relativePath in data:
             pathData = data[relativePath]
@@ -85,10 +85,10 @@ class RootBuilderBuilder():
         self._cacheData = self._cache.loadCacheFile()
         self._log.debug("Loaded build and cache data.")
         gameFiles = self._paths.validGameRootFiles()
-        self._overwritePath = self._strings.rbOverwritePath()
-        self._gamePath = self._strings.gamePath()
+        self._overwritePath = self._strings.rbOverwritePath
+        self._gamePath = self._strings.gamePath
         hashCompare = self._settings.hash()
-        self._backupPath = Path(self._strings.rbBackupPath())
+        self._backupPath = Path(self._strings.rbBackupPath)
         tasks = []
         self._log.debug("Checking game folder for changes.")
         for file in gameFiles:
@@ -180,7 +180,7 @@ class RootBuilderBuilder():
     def clearFiles(self):
         """Clears any deployed files or links."""
         buildData = self._data.loadDataFile()
-        self._gamePath = Path(self._strings.gamePath())
+        self._gamePath = Path(self._strings.gamePath)
         copiedFiles = buildData[self._data._copyKey]
         linkedFiles = buildData[self._data._linkKey]
         threads = []
@@ -213,7 +213,7 @@ class RootBuilderBuilder():
                 self._log.warning(f"Could not delete file {fullPath}")
 
     def folderCleanup(self):
-        gamePath = self._strings.gamePath()
+        gamePath = self._strings.gamePath
         self._util.deleteEmptyFolders(gamePath)
 
     

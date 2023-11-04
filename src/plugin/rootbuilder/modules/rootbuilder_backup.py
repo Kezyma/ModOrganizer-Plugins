@@ -22,12 +22,12 @@ class RootBuilderBackup():
 
     def backupExists(self) -> bool:
         """Returns true if there are currently files backed up."""
-        backupPath = self._strings.rbBackupPath()
+        backupPath = self._strings.rbBackupPath
         return Path(backupPath).exists()
     
     def deleteBackup(self) -> bool:
         """Deletes the current backup if it exists."""
-        backupPath = self._strings.rbBackupPath()
+        backupPath = self._strings.rbBackupPath
         return self._util.deleteFolder(backupPath)
     
     def createBackup(self):
@@ -45,8 +45,8 @@ class RootBuilderBackup():
     _backupPath = Path()
     def createPartialBackup(self, paths:List[str], overwrite=False):
         """Creates a backup of a specific list of game paths."""
-        self._gamePath = Path(self._strings.gamePath())
-        self._backupPath = Path(self._strings.rbBackupPath())
+        self._gamePath = Path(self._strings.gamePath)
+        self._backupPath = Path(self._strings.rbBackupPath)
         self._overwrite = overwrite
         threads = []
         for path in paths:
@@ -73,8 +73,8 @@ class RootBuilderBackup():
     def restoreBackup(self):
         """Restores every possible file from the backup."""
         gameFiles = self._cache.cachedValidRootGameFiles()
-        self._gamePath = Path(self._strings.gamePath())
-        self._backupPath = Path(self._strings.rbBackupPath())
+        self._gamePath = Path(self._strings.gamePath)
+        self._backupPath = Path(self._strings.rbBackupPath)
         threads = []
         for path in gameFiles:
             nt = threading.Thread(target=self._restoreFile, args=[path])

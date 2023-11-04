@@ -22,7 +22,7 @@ class ProfileSyncGroups():
         """Loads and returns the current sync groups."""
         if self._groups is not None:
             return self._groups
-        groupPath = self._strings.psGroupDataPath()
+        groupPath = self._strings.psGroupDataPath
         if Path(groupPath).exists():
             self._groups = self._util.loadJson(groupPath)
         else:
@@ -32,7 +32,7 @@ class ProfileSyncGroups():
     def saveSyncGroups(self, groups:dict):
         """Saves the specified groups."""
         self._groups = groups
-        groupPath = self._strings.psGroupDataPath()
+        groupPath = self._strings.psGroupDataPath
         self._util.saveJson(groupPath, groups)
 
     def createSyncGroup(self, groupName:str):
@@ -80,7 +80,7 @@ class ProfileSyncGroups():
     def groupModlist(self, group:str):
         """Gets the path to the modlist for this group."""
         fileName = f"{group}.txt"
-        dataPath = Path(self._strings.psDataPath()) / group / fileName
+        dataPath = Path(self._strings.psDataPath) / group / fileName
         return str(dataPath)
 
     def createStateGroup(self, syncGroup:str, newName:str):
@@ -111,5 +111,5 @@ class ProfileSyncGroups():
     
     def stateGroupModlist(self, syncGroup:str, stateGroup:str):
         fileName = syncGroup + "_" + stateGroup + ".txt"
-        dataPath = Path(self._strings.psDataPath()) / syncGroup / fileName
+        dataPath = Path(self._strings.psDataPath) / syncGroup / fileName
         return str(dataPath)

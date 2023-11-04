@@ -1,4 +1,4 @@
-import mobase, threading, os, subprocess
+import mobase, os, subprocess
 from .pluginfinder_strings import PluginFinderStrings
 from .pluginfinder_directory import PluginFinderDirectory
 from ....common.common_utilities import CommonUtilities
@@ -26,7 +26,7 @@ class PluginFinderInstall():
     _installData = None
     def loadInstallData(self, reload=False) -> dict:
         if self._installData == None or reload:
-            filePath = self._strings.pfInstallDataPath()
+            filePath = self._strings.pfInstallDataPath
             if Path(filePath).exists():
                 self._installData = self._util.loadJson(filePath)
             else:
@@ -36,7 +36,7 @@ class PluginFinderInstall():
     def saveInstallData(self, data:dict) -> bool:
         """Saves new data to the current data file."""
         self._installData = data
-        filePath = self._strings.pfInstallDataPath()
+        filePath = self._strings.pfInstallDataPath
         return self._util.saveJson(filePath, self._installData)
 
     def installPlugin(self, pluginId:str):
@@ -49,12 +49,12 @@ class PluginFinderInstall():
             # Only install the latest version.
             if versionItm == latestVer:
                 url = ver[self.URL]
-                tempName = Path(self._strings.pfStagingFolderPath()) / os.path.basename(url)
+                tempName = Path(self._strings.pfStagingFolderPath) / os.path.basename(url)
                 # Download the plugin from its source.
                 if self._util.downloadFile(url, str(tempName)):
                     self._log.debug("Downloaded " + url)
-                    sZ = self._strings.pf7zPath()
-                    tempPath = Path(self._strings.pfStagingFolderPath()) / pluginId
+                    sZ = self._strings.pf7zPath
+                    tempPath = Path(self._strings.pfStagingFolderPath) / pluginId
                     unzipCommand = f'"{sZ}" x "{str(tempName)}" -o"{str(tempPath)}" -y'
                     self._log.debug("Unzipping " + str(tempName))
                     
@@ -62,7 +62,7 @@ class PluginFinderInstall():
                     subprocess.call(unzipCommand, shell=True, stdout=open(os.devnull, 'wb'))
 
                     # Copy over any plugin files.
-                    pluginDest = Path(self._strings.moPluginsPath())
+                    pluginDest = Path(self._strings.moPluginsPath)
                     pluginFiles = []
                     for pluginFile in ver[self.PLUGIN]:
                         relativePath = tempPath / pluginFile
@@ -85,7 +85,7 @@ class PluginFinderInstall():
                             self._log.warning("Could not find " + str(relativePath))
                     
                     # Copy over any locale files.
-                    localeDest = Path(self._strings.moLocalePath())
+                    localeDest = Path(self._strings.moLocalePath)
                     localeFiles = []
                     if self.LOCALE in ver:
                         for localeFile in ver[self.LOCALE]:
@@ -131,8 +131,8 @@ class PluginFinderInstall():
         """Uninstalls a currently installed plugin."""
         installData = self.loadInstallData()
         pluginData = installData[pluginId]
-        pluginPath = Path(self._strings.moPluginsPath())
-        localePath = Path(self._strings.moLocalePath())
+        pluginPath = Path(self._strings.moPluginsPath)
+        localePath = Path(self._strings.moLocalePath)
         success = True
         for locale in pluginData[self.LOCALE]:
             path = localePath / locale

@@ -26,7 +26,7 @@ class RootBuilderData():
 
     def dataFileExists(self) -> bool:
         """Returns true if there is a current build data file."""
-        filePath = self._strings.rbBuildDataPath()
+        filePath = self._strings.rbBuildDataPath
         return Path(filePath).exists()
 
     _data = None
@@ -34,7 +34,7 @@ class RootBuilderData():
         """Loads and returns the current data file, or an empty object if none exists."""
         if self._data is not None:
             return self._data
-        filePath = self._strings.rbBuildDataPath()
+        filePath = self._strings.rbBuildDataPath
         self._data = self._util.loadJson(filePath)
         if self._data is not None:
             return self._data
@@ -47,13 +47,13 @@ class RootBuilderData():
     def saveDataFile(self, data:dict) -> bool:
         """Saves new data to the current data file."""
         self._data = data
-        filePath = self._strings.rbBuildDataPath()
+        filePath = self._strings.rbBuildDataPath
         return self._util.saveJson(filePath, self._data)
     
     def deleteDataFile(self) -> bool:
         """Deletes the current data file."""
         self._data = None
-        filePath = self._strings.rbBuildDataPath()
+        filePath = self._strings.rbBuildDataPath
         return self._util.deleteFile(filePath)
     
     _buildData = {}
@@ -61,7 +61,7 @@ class RootBuilderData():
         """Generates complete build data for the existing setup."""
         self._log.debug("Finding root mod folders.")
         modFolders = self._paths.enabledRootModFolders()
-        overwriteFolder = self._strings.rbOverwritePath()
+        overwriteFolder = self._strings.rbOverwritePath
         copyPriority = self._settings.copypriority()
         linkPriority = self._settings.linkpriority()
         usvfsPriority = self._settings.usvfspriority()

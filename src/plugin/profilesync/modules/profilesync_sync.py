@@ -42,7 +42,7 @@ class ProfileSyncSync():
         group = self._groups.groupFromProfile(profile)
         if group is not None:
             self._log.debug("Sync from " + profile + " to group " + group)
-            profilePath = self._strings.moProfilePath()
+            profilePath = self._strings.moProfilePath
             modListPath = Path(profilePath) / "modlist.txt"
             self._log.debug("Loading modlist " + str(modListPath))
             modLines = self._util.loadLines(str(modListPath))
@@ -88,7 +88,7 @@ class ProfileSyncSync():
             t.join()
 
     def _syncToProfile(self, profile:str):
-        profilesPath = Path(self._strings.moProfilesPath())
+        profilesPath = Path(self._strings.moProfilesPath)
         modListPath = profilesPath / profile / "modlist.txt"
         modList = self._util.loadLines(str(modListPath))
         newList = []

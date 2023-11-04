@@ -43,7 +43,7 @@ class RootBuilderAutobuild(RootBuilderPlugin, mobase.IPluginFileMapper):
         # Handle if redirection is needed.
         if self._rootBuilder._settings.redirect():
             self._rootBuilder._log.debug("Redirect enabled, checking for redirection.")
-            gamePath = self._rootBuilder._strings.gamePath()
+            gamePath = self._rootBuilder._strings.gamePath
             targetsGame = self._rootBuilder._paths.pathShared(gamePath, appName)
             if not targetsGame:
                 self._rootBuilder._log.debug("Application is not a game path.")

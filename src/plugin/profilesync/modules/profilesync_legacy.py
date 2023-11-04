@@ -19,11 +19,11 @@ class ProfileSyncLegacy():
 
     def migrate(self):
         """Migrates an old v1 config to v2."""
-        pDataPath = Path(self._strings.pluginDataPath())
+        pDataPath = Path(self._strings.pluginDataPath)
         pFileName = "profile_sync_groups.json"
-        gamePath = self._strings.gamePath()
+        gamePath = self._strings.gamePath
         safeGamePath = self._strings.pathSafeString("_".join(os.path.normpath(gamePath).split(os.path.sep)))
-        instance = self._strings.moInsatanceName()
+        instance = self._strings.moInstanceName
         if instance == "":
             instance = "Portable"
         else:

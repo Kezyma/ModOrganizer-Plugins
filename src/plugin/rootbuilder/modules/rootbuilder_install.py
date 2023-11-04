@@ -99,10 +99,10 @@ class RootBuilderInstall(QtWidgets.QWidget):
         self._tree = tree
 
         # Figure out where any relevant data files are and record the path.
-        gameDataDir = self._strings.gameDataPath()
-        gameDir = self._strings.gamePath()
+        gameDataDir = self._strings.gameDataPath
+        gameDir = self._strings.gamePath
         dataIsSubdir = self._paths.pathShared(gameDir, gameDataDir)
-        dataFolder = self._strings.gameDataFolder()
+        dataFolder = self._strings.gameDataFolder
         if not dataIsSubdir:
             dataFolder = "Data"
         self._log.debug(f"Data folder name: {dataFolder}")

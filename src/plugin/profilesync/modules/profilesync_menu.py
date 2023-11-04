@@ -97,7 +97,7 @@ class ProfileSyncMenu(QtWidgets.QWidget):
 
     def bindGroupProfiles(self):
         groups = self._profileSync._groups.loadSyncGroups()
-        profilesPath = self._profileSync._strings.moProfilesPath()
+        profilesPath = self._profileSync._strings.moProfilesPath
         profileList = os.listdir(profilesPath)
         self.groupsTabWidget.profileList.clear()
         selectedGroup = self.selectWidget.groupSelect.currentText()
