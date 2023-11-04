@@ -1,16 +1,15 @@
 import mobase
 from pathlib import Path
 from .profilesync_strings import ProfileSyncStrings
-from ....common.common_utilities import CommonUtilities
+from ....common.common_utilities import loadJson, saveJson
 from ....common.common_log import CommonLog
 
-class ProfileSyncGroups():
+class ProfileSyncGroups:
     """Profile Sync Groups module, handles recording and updating sync groups."""
 
-    def __init__(self, organiser:mobase.IOrganizer,strings:ProfileSyncStrings,utilities:CommonUtilities,log:CommonLog):
+    def __init__(self, organiser: mobase.IOrganizer, strings: ProfileSyncStrings, log: CommonLog) -> None:
         self._organiser = organiser
         self._strings = strings
-        self._util = utilities
         self._log = log
 
     STATEGROUPS = "StateGroups"
@@ -24,7 +23,7 @@ class ProfileSyncGroups():
             return self._groups
         groupPath = self._strings.psGroupDataPath
         if Path(groupPath).exists():
-            self._groups = self._util.loadJson(groupPath)
+            self._groups = loadJson(groupPath)
         else:
             self._groups = {}
         return self._groups
@@ -33,7 +32,7 @@ class ProfileSyncGroups():
         """Saves the specified groups."""
         self._groups = groups
         groupPath = self._strings.psGroupDataPath
-        self._util.saveJson(groupPath, groups)
+        saveJson(groupPath, groups)
 
     def createSyncGroup(self, groupName:str):
         """Creates a new sync group."""

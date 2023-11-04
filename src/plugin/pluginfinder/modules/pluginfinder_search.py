@@ -1,17 +1,14 @@
-import mobase, threading, datetime
+import mobase, datetime
 from .pluginfinder_strings import PluginFinderStrings
 from .pluginfinder_directory import PluginFinderDirectory
 from .pluginfinder_install import PluginFinderInstall
-from ....common.common_utilities import CommonUtilities
 from ....common.common_log import CommonLog
-from pathlib import Path
 
-class PluginFinderSearch():
+class PluginFinderSearch:
     """Plugin Finder search module, handles search and filter of the directory."""
 
-    def __init__(self, organiser:mobase.IOrganizer, strings:PluginFinderStrings, directory:PluginFinderDirectory, install:PluginFinderInstall, util:CommonUtilities, log:CommonLog):
+    def __init__(self, organiser: mobase.IOrganizer, strings: PluginFinderStrings, directory: PluginFinderDirectory, install: PluginFinderInstall, log: CommonLog) -> None:
         self._strings = strings
-        self._util = util
         self._log = log
         self._organiser = organiser
         self._directory = directory

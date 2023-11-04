@@ -1,15 +1,13 @@
 import mobase
 from pathlib import Path
 from ..core.rootbuilder_settings import RootBuilderSettings
-from ....common.common_utilities import CommonUtilities
 from ....common.common_log import CommonLog
 
-class RootBuilderLegacy():
+class RootBuilderLegacy:
     """Root Builder legacy module, handles migration from old versions."""
 
-    def __init__(self, organiser:mobase.IOrganizer,settings:RootBuilderSettings,utilities:CommonUtilities,log:CommonLog):
+    def __init__(self, organiser: mobase.IOrganizer, settings: RootBuilderSettings, log: CommonLog) -> None:
         self._organiser = organiser
-        self._util = utilities
         self._log = log
         self._settings = settings
 

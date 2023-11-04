@@ -3,19 +3,18 @@ from pathlib import Path
 from .rootbuilder_strings import RootBuilderStrings
 from .rootbuilder_paths import RootBuilderPaths
 from ..core.rootbuilder_settings import RootBuilderSettings
-from ....common.common_utilities import CommonUtilities
+from ....common.common_utilities import loadJson, saveJson, deleteFile, hashFile
 from ....common.common_log import CommonLog
 from typing import List
 
-class RootBuilderCache():
+class RootBuilderCache:
     """Root Builder cache module, handles the hashing and recording of game files."""
 
-    def __init__(self, organiser:mobase.IOrganizer,strings:RootBuilderStrings,paths:RootBuilderPaths,settings:RootBuilderSettings,utilities:CommonUtilities,log:CommonLog):
+    def __init__(self, organiser: mobase.IOrganizer, strings: RootBuilderStrings, paths: RootBuilderPaths, settings: RootBuilderSettings, log: CommonLog) -> None:
         self._organiser = organiser
         self._strings = strings
         self._paths = paths
         self._settings = settings
-        self._util = utilities
         self._log = log
 
     _relativeKey = "Relative"
@@ -34,7 +33,7 @@ class RootBuilderCache():
         if self._cache is not None:
             return self._cache
         filePath = self._strings.rbCachePath
-        self._cache = self._util.loadJson(filePath)
+        self._cache = loadJson(filePath)
         if self._cache is not None:
             return self._cache
         return {}
@@ -43,13 +42,13 @@ class RootBuilderCache():
         """Saves new data to the current cache file."""
         self._cache = data
         filePath = self._strings.rbCachePath
-        return self._util.saveJson(filePath, self._cache)
+        return saveJson(filePath, self._cache)
     
     def deleteCacheFile(self) -> bool:
         """Deletes the current cache file."""
         self._cache = None
         filePath = self._strings.rbCachePath
-        return self._util.deleteFile(filePath)
+        return deleteFile(filePath)
     
     def cachedValidRootGameFiles(self) -> List[str]:
         """Gets the list of game files from cache, or from the raw files if none exists."""
@@ -87,7 +86,7 @@ class RootBuilderCache():
         if (useHash and (relativeLower not in self._currentCache or self._currentCache[relativeLower][self._hashKey] == "")) and Path(filePath).exists():
             self._currentCache[relativeLower] = {
                 self._relativeKey: relativePath,
-                self._hashKey: self._util.hashFile(filePath),
+                self._hashKey: hashFile(filePath),
                 self._modifiedKey: os.path.getmtime(filePath),
                 self._sizeKey: os.path.getsize(filePath)
             }

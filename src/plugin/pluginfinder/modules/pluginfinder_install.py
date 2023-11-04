@@ -1,17 +1,16 @@
 import mobase, os, subprocess
 from .pluginfinder_strings import PluginFinderStrings
 from .pluginfinder_directory import PluginFinderDirectory
-from ....common.common_utilities import CommonUtilities
+from ....common.common_utilities import loadJson, saveJson, downloadFile, copyFile, deleteFolder, deleteFile
 from ....common.common_log import CommonLog
 from ....common.common_paths import CommonPaths
 from pathlib import Path
 
-class PluginFinderInstall():
+class PluginFinderInstall:
     """Plugin Finder install module, handles install, update and uninstall of plugins."""
 
-    def __init__(self, organiser:mobase.IOrganizer, strings:PluginFinderStrings, directory:PluginFinderDirectory, paths:CommonPaths, util:CommonUtilities, log:CommonLog):
+    def __init__(self, organiser:mobase.IOrganizer, strings:PluginFinderStrings, directory:PluginFinderDirectory, paths:CommonPaths, log:CommonLog) -> None:
         self._strings = strings
-        self._util = util
         self._log = log
         self._directory = directory
         self._organiser = organiser
@@ -28,7 +27,7 @@ class PluginFinderInstall():
         if self._installData == None or reload:
             filePath = self._strings.pfInstallDataPath
             if Path(filePath).exists():
-                self._installData = self._util.loadJson(filePath)
+                self._installData = loadJson(filePath)
             else:
                 self._installData = {}
         return self._installData
@@ -37,7 +36,7 @@ class PluginFinderInstall():
         """Saves new data to the current data file."""
         self._installData = data
         filePath = self._strings.pfInstallDataPath
-        return self._util.saveJson(filePath, self._installData)
+        return saveJson(filePath, self._installData)
 
     def installPlugin(self, pluginId:str):
         """Installs a plugin from the directory."""
@@ -51,7 +50,7 @@ class PluginFinderInstall():
                 url = ver[self.URL]
                 tempName = Path(self._strings.pfStagingFolderPath) / os.path.basename(url)
                 # Download the plugin from its source.
-                if self._util.downloadFile(url, str(tempName)):
+                if downloadFile(url, str(tempName)):
                     self._log.debug("Downloaded " + url)
                     sZ = self._strings.pf7zPath
                     tempPath = Path(self._strings.pfStagingFolderPath) / pluginId
@@ -77,7 +76,7 @@ class PluginFinderInstall():
                             for file in toMove:
                                 rel = self._paths.relativePath(str(relativePath), str(file))
                                 new = pluginDest / rel
-                                if self._util.copyFile(str(file), str(new)):
+                                if copyFile(str(file), str(new)):
                                     self._log.debug("Moved from " + str(file) + " to " + str(new))
                                 else:
                                     self._log.warning("Could not move " + str(file) + " to " + str(new))
@@ -102,7 +101,7 @@ class PluginFinderInstall():
                                     rel = self._paths.relativePath(str(relativePath), str(file))
                                     new = localeDest / rel
                                     localeFiles.append(str(rel))
-                                    if self._util.copyFile(str(file), str(new)):
+                                    if copyFile(str(file), str(new)):
                                         self._log.debug("Moved from " + str(file) + " to " + str(new))
                                     else:
                                         self._log.warning("Could not move " + str(file) + " to " + str(new))
@@ -120,10 +119,10 @@ class PluginFinderInstall():
                     self.saveInstallData(installData)
 
                     # Remove the temp download
-                    self._util.deleteFolder(str(tempPath))
+                    deleteFolder(str(tempPath))
 
                     # Remove the download
-                    self._util.deleteFile(str(tempName))
+                    deleteFile(str(tempName))
                 else:
                     self._log.warning("Could not download " + url)
 
@@ -137,9 +136,9 @@ class PluginFinderInstall():
         for locale in pluginData[self.LOCALE]:
             path = localePath / locale
             if path.exists():
-                if path.is_dir() and self._util.deleteFolder(str(path)):
+                if path.is_dir() and deleteFolder(str(path)):
                     self._log.debug("Deleted " + str(path))
-                elif path.is_file() and self._util.deleteFile(str(path)):
+                elif path.is_file() and deleteFile(str(path)):
                     self._log.debug("Deleted " + str(path))
                 else:
                     success = False
@@ -147,9 +146,9 @@ class PluginFinderInstall():
         for plugin in pluginData[self.PLUGIN]:
             path = pluginPath / plugin
             if path.exists():
-                if path.is_dir() and self._util.deleteFolder(str(path)):
+                if path.is_dir() and deleteFolder(str(path)):
                     self._log.debug("Deleted " + str(path))
-                elif path.is_file() and self._util.deleteFile(str(path)):
+                elif path.is_file() and deleteFile(str(path)):
                     self._log.debug("Deleted " + str(path))
                 else:
                     success = False
@@ -157,9 +156,9 @@ class PluginFinderInstall():
         for data in pluginData[self.DATA]:
             path = pluginPath / data
             if path.exists():
-                if path.is_dir() and self._util.deleteFolder(str(path)):
+                if path.is_dir() and deleteFolder(str(path)):
                     self._log.debug("Deleted " + str(path))
-                elif path.is_file() and self._util.deleteFile(str(path)):
+                elif path.is_file() and deleteFile(str(path)):
                     self._log.debug("Deleted " + str(path))
                 else:
                     success = False

@@ -2,16 +2,15 @@ import mobase, threading
 from pathlib import Path
 from .profilesync_groups import ProfileSyncGroups
 from .profilesync_strings import ProfileSyncStrings
-from ....common.common_utilities import CommonUtilities
+from ....common.common_utilities import saveLines, loadLines
 from ....common.common_log import CommonLog
 
-class ProfileSyncSync():
+class ProfileSyncSync:
     """Profile Sync Sync module, handles updating profile modlists."""
 
-    def __init__(self, organiser:mobase.IOrganizer,strings:ProfileSyncStrings,groups:ProfileSyncGroups,utilities:CommonUtilities,log:CommonLog):
+    def __init__(self, organiser: mobase.IOrganizer, strings: ProfileSyncStrings, groups: ProfileSyncGroups, log: CommonLog) -> None:
         self._organiser = organiser
         self._strings = strings
-        self._util = utilities
         self._log = log
         self._groups = groups
 
@@ -30,12 +29,12 @@ class ProfileSyncSync():
                 else:
                     enabledStates.append("-" + m + "\n")
             groupListPath = self._groups.groupModlist(group)
-            self._util.saveLines(groupListPath, modList)
+            saveLines(groupListPath, modList)
 
             stateGroups = self._groups.stateGroupsForProfile(profile.name())
             for stateGroup in stateGroups:
                 listPath = self._groups.stateGroupModlist(group, stateGroup)
-                self._util.saveLines(listPath, enabledStates)
+                saveLines(listPath, enabledStates)
 
     def syncFromProfile(self, profile:str):
         """Syncs a group to a selected profile."""
@@ -45,7 +44,7 @@ class ProfileSyncSync():
             profilePath = self._strings.moProfilePath
             modListPath = Path(profilePath) / "modlist.txt"
             self._log.debug("Loading modlist " + str(modListPath))
-            modLines = self._util.loadLines(str(modListPath))
+            modLines = loadLines(str(modListPath))
             rawLines = []
             modOrder = []
             for line in modLines:
@@ -54,12 +53,12 @@ class ProfileSyncSync():
                 rawLines.append(line + "\n")
             groupListPath = self._groups.groupModlist(group)
             self._log.debug("Saving group list " + groupListPath)
-            self._util.saveLines(groupListPath, modOrder)
+            saveLines(groupListPath, modOrder)
 
             stateGroups = self._groups.stateGroupsForProfile(profile)
             for stateGroup in stateGroups:
                 listPath = self._groups.stateGroupModlist(group, stateGroup)
-                self._util.saveLines(listPath, rawLines)
+                saveLines(listPath, rawLines)
 
     _modList = []
     _stateGroups = {}
@@ -69,14 +68,14 @@ class ProfileSyncSync():
         groups = self._groups.loadSyncGroups()
         groupList = groups[group][self._groups.PROFILES]
         modListPath = self._groups.groupModlist(group)
-        self._modList = self._util.loadLines(modListPath)
+        self._modList = loadLines(modListPath)
 
         self._stateGroups = groups[group][self._groups.STATEGROUPS]
         self._stateModlists = {}
         for sg in self._stateGroups:
             statePath = self._groups.stateGroupModlist(group, sg)
             if Path(statePath).exists():
-                self._stateModlists[sg] = self.modlistToCategories(self._util.loadLines(statePath))
+                self._stateModlists[sg] = self.modlistToCategories(loadLines(statePath))
         
         tasks = []
         for profile in groupList:
@@ -90,7 +89,7 @@ class ProfileSyncSync():
     def _syncToProfile(self, profile:str):
         profilesPath = Path(self._strings.moProfilesPath)
         modListPath = profilesPath / profile / "modlist.txt"
-        modList = self._util.loadLines(str(modListPath))
+        modList = loadLines(str(modListPath))
         newList = []
 
         stateMods = []
@@ -117,7 +116,7 @@ class ProfileSyncSync():
                 else:
                     newList.append("-" + modName + "\n")
         self._log.debug("Saving modlist " +  str(modListPath))
-        self._util.saveLines(str(modListPath), newList)
+        saveLines(str(modListPath), newList)
 
     def modlistToCategories(self, modList:list) -> dict:
         modList.reverse()

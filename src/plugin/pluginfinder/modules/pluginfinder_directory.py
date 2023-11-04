@@ -1,15 +1,14 @@
 import mobase, threading
 from .pluginfinder_strings import PluginFinderStrings
-from ....common.common_utilities import CommonUtilities
+from ....common.common_utilities import copyFile, downloadFile, loadJson
 from ....common.common_log import CommonLog
 from pathlib import Path
 
-class PluginFinderDirectory():
+class PluginFinderDirectory:
     """Plugin Finder directory module, handles update and loading of the directory file."""
 
-    def __init__(self, organiser:mobase.IOrganizer, strings:PluginFinderStrings, util:CommonUtilities, log:CommonLog):
+    def __init__(self, organiser: mobase.IOrganizer, strings: PluginFinderStrings, log: CommonLog) -> None:
         self._strings = strings
-        self._util = util
         self._log = log
         self._organiser = organiser
 
@@ -30,13 +29,13 @@ class PluginFinderDirectory():
         if not Path(filePath).exists():
             initialPath = Path(__file__).parent.parent / "data" / "pluginfinder_directory.json"
             if Path(initialPath).exists():
-                self._util.copyFile(str(initialPath), str(filePath))
+                copyFile(str(initialPath), str(filePath))
         nt = threading.Thread(target=self.updateDirectory)
         nt.start()
 
     def updateDirectory(self):
         filePath = self._strings.pfDirectoryPath
-        if self._util.downloadFile(self._remoteDirectoryUrl, filePath):
+        if downloadFile(self._remoteDirectoryUrl, filePath):
             self._log.debug("Directory update downloaded.")
             self.loadDirectory(True)
         else:
@@ -46,7 +45,7 @@ class PluginFinderDirectory():
     def loadDirectory(self, reload=False) -> list:
         if self._directory == None or reload:
             filePath = self._strings.pfDirectoryPath
-            self._directory = self._util.loadJson(filePath)
+            self._directory = loadJson(filePath)
         return self._directory
     
     _manifests = None
@@ -69,9 +68,9 @@ class PluginFinderDirectory():
         manifestPath = Path(self._strings.pfManifestFolderPath)
         fileName = id + ".json"
         filePath = manifestPath / fileName
-        if self._util.downloadFile(url, filePath):
+        if downloadFile(url, filePath):
             self._log.debug("Downloaded manifest from " + url)
-            self._manifests[id] = self._util.loadJson(str(filePath))
+            self._manifests[id] = loadJson(str(filePath))
         else:
             self._log.warning("Could not download manifest from " + url)
 

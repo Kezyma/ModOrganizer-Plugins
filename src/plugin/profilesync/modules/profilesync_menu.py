@@ -1,5 +1,6 @@
 from ....common import common_icons
 from ....common.common_qt import *
+from ....common.common_utilities import deleteFile
 from ..core.profilesync import ProfileSync
 from .profilesync_update import ProfileSyncUpdate
 import mobase, webbrowser, os
@@ -250,11 +251,11 @@ class ProfileSyncMenu(QtWidgets.QWidget):
             stateGroups = groupList[group][self._profileSync._groups.STATEGROUPS]
             for sg in stateGroups:
                 stateListPath = self._profileSync._groups.stateGroupModlist(group, sg)
-                self._profileSync._util.deleteFile(stateListPath)
+                deleteFile(stateListPath)
             groupList.pop(group, None)
             self._profileSync._groups.saveSyncGroups(groupList)
             groupListPath = self._profileSync._groups.groupModlist(group)
-            self._profileSync._util.deleteFile(groupListPath)
+            deleteFile(groupListPath)
             self.bindSyncGroupList()
 
     def deleteStateGroup_clicked(self):
@@ -265,7 +266,7 @@ class ProfileSyncMenu(QtWidgets.QWidget):
             if groupName in groupList:
                 groupList[groupName][self._profileSync._groups.STATEGROUPS].pop(stateName, None)
                 stateListPath = self._profileSync._groups.stateGroupModlist(groupName, stateName)
-                self._profileSync._util.deleteFile(stateListPath)
+                deleteFile(stateListPath)
                 self._profileSync._groups.saveSyncGroups(groupList)
             self.bindStateGroups()
 
@@ -294,11 +295,11 @@ class ProfileSyncMenu(QtWidgets.QWidget):
                 self._profileSync._sync.syncFromGroup(group)
         else:
             groupListPath = self._profileSync._groups.groupModlist(group)
-            self._profileSync._util.deleteFile(groupListPath)
+            deleteFile(groupListPath)
             states = groups[group][self._profileSync._groups.STATEGROUPS]
             for s in states:
                 stateListPath = self._profileSync._groups.stateGroupModlist(group, s)
-                self._profileSync._util.deleteFile(stateListPath)
+                deleteFile(stateListPath)
 
         self.bindStateGroup()
 
@@ -327,7 +328,7 @@ class ProfileSyncMenu(QtWidgets.QWidget):
                 self._profileSync._sync.syncFromGroup(selectedGroup)
         else:
             stateListPath = self._profileSync._groups.stateGroupModlist(selectedGroup, selectedState)
-            self._profileSync._util.deleteFile(stateListPath)
+            deleteFile(stateListPath)
         
         self.bindStateGroup()
 

@@ -3,16 +3,15 @@ from pathlib import Path
 from .profilesync_strings import ProfileSyncStrings
 from ..core.profilesync_settings import ProfileSyncSettings
 from .profilesync_groups import ProfileSyncGroups
-from ....common.common_utilities import CommonUtilities
+from ....common.common_utilities import loadJson, deleteFile
 from ....common.common_log import CommonLog
 
-class ProfileSyncLegacy():
+class ProfileSyncLegacy:
     """Profile Sync legacy module, handles migration from old versions."""
 
-    def __init__(self, organiser:mobase.IOrganizer,strings:ProfileSyncStrings,settings:ProfileSyncSettings,groups:ProfileSyncGroups,utilities:CommonUtilities,log:CommonLog):
+    def __init__(self, organiser: mobase.IOrganizer, strings: ProfileSyncStrings, settings: ProfileSyncSettings, groups: ProfileSyncGroups, log: CommonLog) -> None:
         self._organiser = organiser
         self._strings = strings
-        self._util = utilities
         self._log = log
         self._settings = settings
         self._groups = groups
@@ -31,7 +30,7 @@ class ProfileSyncLegacy():
         
         groupFilePath = pDataPath / instance / pFileName
         if groupFilePath.exists():
-            oldData = self._util.loadJson(str(groupFilePath))
+            oldData = loadJson(str(groupFilePath))
             newData = self._groups.loadSyncGroups()
             for k in oldData:
                 if k not in newData:
@@ -40,8 +39,4 @@ class ProfileSyncLegacy():
                         self._groups.STATEGROUPS: {}
                     }
             self._groups.saveSyncGroups(newData)
-            self._util.deleteFile(str(groupFilePath))
-        
-
-            
-
+            deleteFile(str(groupFilePath))

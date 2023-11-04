@@ -2,7 +2,7 @@ import mobase
 from pathlib import Path
 from .rootbuilder_strings import RootBuilderStrings
 from .rootbuilder_paths import RootBuilderPaths
-from ....common.common_utilities import CommonUtilities
+from ....common.common_utilities import loadJson
 from ....common.common_log import CommonLog
 from ....common.common_qt import *
 try:
@@ -13,11 +13,10 @@ except:
 class RootBuilderInstall(QtWidgets.QWidget):
     """Root Builder install module, used to check and install Root mods automatically."""
 
-    def __init__(self, parent:QtWidgets.QWidget, organiser:mobase.IOrganizer, strings:RootBuilderStrings, paths:RootBuilderPaths, utilities:CommonUtilities, log:CommonLog):
+    def __init__(self, parent: QtWidgets.QWidget, organiser: mobase.IOrganizer, strings: RootBuilderStrings, paths: RootBuilderPaths, log: CommonLog) -> None:
         super().__init__(parent)
         self._organiser = organiser
         self._strings = strings
-        self._util = utilities
         self._log = log
         self._paths = paths
         self.generateLayout()
@@ -41,7 +40,7 @@ class RootBuilderInstall(QtWidgets.QWidget):
         """Gets the current maps."""
         if self._maps is None:
             mapPath = Path(__file__).parent.parent / "data" / "rootbuilder_maps.json"
-            self._maps = self._util.loadJson(str(mapPath.absolute()))
+            self._maps = loadJson(str(mapPath.absolute()))
         return self._maps
 
     def isRootMod(self, tree: mobase.IFileTree) -> bool:

@@ -3,18 +3,17 @@ from pathlib import Path
 from .rootbuilder_strings import RootBuilderStrings
 from .rootbuilder_paths import RootBuilderPaths
 from ..core.rootbuilder_settings import RootBuilderSettings
-from ....common.common_utilities import CommonUtilities
+from ....common.common_utilities import loadJson, saveJson, deleteFile, hashFile
 from ....common.common_log import CommonLog
 
-class RootBuilderData():
+class RootBuilderData:
     """Root Builder data module containing functions revolving around the saved data file."""
 
-    def __init__(self, organiser:mobase.IOrganizer,strings:RootBuilderStrings,paths:RootBuilderPaths,settings:RootBuilderSettings,utilities:CommonUtilities,log:CommonLog):
+    def __init__(self, organiser: mobase.IOrganizer, strings: RootBuilderStrings, paths: RootBuilderPaths, settings: RootBuilderSettings, log: CommonLog) -> None:
         self._organiser = organiser
         self._strings = strings
         self._paths = paths
         self._settings = settings
-        self._util = utilities
         self._log = log
 
     _copyKey = "COPY"
@@ -35,7 +34,7 @@ class RootBuilderData():
         if self._data is not None:
             return self._data
         filePath = self._strings.rbBuildDataPath
-        self._data = self._util.loadJson(filePath)
+        self._data = loadJson(filePath)
         if self._data is not None:
             return self._data
         return {
@@ -48,13 +47,13 @@ class RootBuilderData():
         """Saves new data to the current data file."""
         self._data = data
         filePath = self._strings.rbBuildDataPath
-        return self._util.saveJson(filePath, self._data)
+        return saveJson(filePath, self._data)
     
     def deleteDataFile(self) -> bool:
         """Deletes the current data file."""
         self._data = None
         filePath = self._strings.rbBuildDataPath
-        return self._util.deleteFile(filePath)
+        return deleteFile(filePath)
     
     _buildData = {}
     def generateBuildData(self) -> dict:
@@ -118,7 +117,7 @@ class RootBuilderData():
     def _hashModFile(self, fileKey:str):
         cData = self._buildData[self._copyKey][fileKey]
         srcPath = cData[self._sourceKey]
-        hash = self._util.hashFile(srcPath)
+        hash = hashFile(srcPath)
         self._buildData[self._copyKey][fileKey][self._hashKey] = hash
 
     def mergeBuildData(self, base:dict, overwrite:dict) -> dict:

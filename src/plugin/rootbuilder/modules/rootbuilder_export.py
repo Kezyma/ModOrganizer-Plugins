@@ -1,15 +1,14 @@
 import mobase
 from pathlib import Path
 from ..core.rootbuilder_settings import RootBuilderSettings
-from ....common.common_utilities import CommonUtilities
+from ....common.common_utilities import saveJson, loadJson
 from ....common.common_log import CommonLog
 
-class RootBuilderExport():
+class RootBuilderExport:
     """Root Builder export module, used to export and import settings from files."""
 
-    def __init__(self, organiser:mobase.IOrganizer,settings:RootBuilderSettings,utilities:CommonUtilities,log:CommonLog):
+    def __init__(self, organiser: mobase.IOrganizer, settings: RootBuilderSettings, log: CommonLog) -> None:
         self._organiser = organiser
-        self._util = utilities
         self._log = log
         self._settings = settings
 
@@ -31,11 +30,11 @@ class RootBuilderExport():
             "installer": self._settings.installer(),
             "loglevel": self._settings.loglevel()
         }
-        self._util.saveJson(path, rbSettings)
+        saveJson(path, rbSettings)
 
     def importSettings(self, path:str):
         """Imports settings from a path."""
-        rbSettings = self._util.loadJson(path)
+        rbSettings = loadJson(path)
         if rbSettings is not None:
             self._settings.updateSetting("copypriority", rbSettings["copypriority"])
             self._settings.updateSetting("copyfiles", ",".join(rbSettings["copyfiles"]))
