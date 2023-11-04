@@ -44,7 +44,7 @@ class ProfileSyncUpdater(ProfileSyncPlugin, mobase.IPlugin):
 
     def sync(self, profile:str):
         group = self._profileSync._groups.groupFromProfile(profile)
-        if group != None:
+        if group is not None:
             self._profileSync._sync.syncFromProfile(profile)
             self._profileSync._sync.syncFromGroup(group)
 
@@ -52,7 +52,7 @@ class ProfileSyncUpdater(ProfileSyncPlugin, mobase.IPlugin):
         self._profileSync._legacy.migrate()
         profile = self._organiser.profile().name()
         group = self._profileSync._groups.groupFromProfile(profile)
-        if group != None:
+        if group is not None:
             self._profileSync._sync.syncFromCurrentProfile()
             self._profileSync._sync.syncFromGroup(group)
 
@@ -61,7 +61,7 @@ class ProfileSyncUpdater(ProfileSyncPlugin, mobase.IPlugin):
 
     def removeProfile(self, profile:str):
         group = self._profileSync._groups.groupFromProfile(profile)
-        if group != None:
+        if group is not None:
             groupList = self._profileSync._groups.loadSyncGroups()
             groupProfiles = groupList[group]
             groupProfiles.pop(groupProfiles.index(profile))
@@ -69,7 +69,7 @@ class ProfileSyncUpdater(ProfileSyncPlugin, mobase.IPlugin):
             self._profileSync._groups.saveSyncGroups(groupList)
 
     def changeProfile(self, oldProfile:mobase.IProfile, newProfile:mobase.IProfile):
-        if oldProfile != None:
+        if oldProfile is not None:
             oldName = oldProfile.name()
             self.sync(oldName)
 

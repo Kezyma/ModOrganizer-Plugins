@@ -43,14 +43,14 @@ class PluginFinderDirectory:
 
     _directory = None
     def loadDirectory(self, reload=False) -> list:
-        if self._directory == None or reload:
+        if self._directory is None or reload:
             filePath = self._strings.pfDirectoryPath
             self._directory = loadJson(filePath)
         return self._directory
     
     _manifests = None
     def loadManifests(self, reload=False) -> dict:
-        if self._manifests == None or reload:
+        if self._manifests is None or reload:
             directory = self.loadDirectory()
             tasks = []
             self._manifests = {}
@@ -86,7 +86,7 @@ class PluginFinderDirectory:
         latestVersion = None
         for v in versions:
             pver = mobase.VersionInfo(v[self.VERSION])
-            if latestVersion == None:
+            if latestVersion is None:
                 latestVersion = pver
             elif pver > latestVersion:
                 latestVersion = pver

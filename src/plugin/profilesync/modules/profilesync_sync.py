@@ -17,7 +17,7 @@ class ProfileSyncSync:
     def syncFromCurrentProfile(self):
         profile = self._organiser.profile()
         group = self._groups.groupFromProfile(profile.name())
-        if group != None:
+        if group is not None:
             mods = self._organiser.modList().allModsByProfilePriority(profile)
             mods.reverse()
             modList = []
@@ -127,6 +127,6 @@ class ProfileSyncSync:
             if modStr.endswith("_separator"):
                 currentCat = modStr.replace("_separator","")
                 cats[currentCat] = []
-            elif currentCat != None:
+            elif currentCat is not None:
                 cats[currentCat].append(mod)
         return cats

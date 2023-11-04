@@ -335,7 +335,7 @@ class ProfileSyncMenu(QtWidgets.QWidget):
     def checkUpdate_clicked(self):
         """Checks for an update"""
         newVersion = self._update.getLatestVersion()
-        hasUpdate = newVersion != None
+        hasUpdate = newVersion is not None
         self.updateTabWidget.updateFoundWidget.setVisible(hasUpdate)
         self.updateTabWidget.noUpdateWidget.setVisible(not hasUpdate)
 

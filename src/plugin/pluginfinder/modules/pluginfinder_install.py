@@ -24,7 +24,7 @@ class PluginFinderInstall:
 
     _installData = None
     def loadInstallData(self, reload=False) -> dict:
-        if self._installData == None or reload:
+        if self._installData is None or reload:
             filePath = self._strings.pfInstallDataPath
             if Path(filePath).exists():
                 self._installData = loadJson(filePath)
