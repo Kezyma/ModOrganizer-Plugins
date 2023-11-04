@@ -23,7 +23,7 @@ class RootBuilderAutobuild(RootBuilderPlugin, mobase.IPluginFileMapper):
         return []
     
     def name(self):
-        return self.baseName() + " Autobuild"
+        return f"{self.baseName()} Autobuild"
     
     def description(self):
         return self.__tr("Handles the automated build and clear for Root Builder's autobuild mode.")

@@ -33,7 +33,7 @@ class RootBuilderLegacy:
                 self._organiser.setPluginSetting("RootBuilder", "usvfsfiles", "**")
                 linkExtStr = []
                 for ext in linkExt:
-                    linkExtStr.append("**\\*." + ext)
+                    linkExtStr.append(f"**\\*.{ext}")
                 self._organiser.setPluginSetting("RootBuilder", "linkfiles", ",".join(linkExtStr))
 
             # Update exclusions now that data isn't excluded by default.

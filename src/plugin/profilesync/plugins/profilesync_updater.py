@@ -31,7 +31,7 @@ class ProfileSyncUpdater(ProfileSyncPlugin, mobase.IPlugin):
         return []
     
     def name(self):
-        return self.baseName() + " Updater"
+        return f"{self.baseName()} Updater"
 
     def displayName(self):
         return self.baseDisplayName()

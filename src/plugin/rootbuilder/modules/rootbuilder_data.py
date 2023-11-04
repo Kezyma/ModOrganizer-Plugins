@@ -73,7 +73,7 @@ class RootBuilderData:
         }
         self._log.debug("Checking root mod folders for files.")
         for mod in modFolders:
-            self._log.debug("Checking mod: " + mod)
+            self._log.debug(f"Checking mod: {mod}")
             rootFiles = self._paths.validRootFiles(mod)
             copyFiles = self._paths.validCopyFiles(mod, rootFiles)
             linkFiles = self._paths.validLinkFiles(mod, rootFiles)

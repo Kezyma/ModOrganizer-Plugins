@@ -87,8 +87,8 @@ class PluginFinderMenu(QtWidgets.QWidget):
         pluginId = str(pluginId)
         listItem.pluginNameText.setText(manifest[self._pluginFinder._directory.NAME])
         listItem.installedVersionLabel.setText("")
-        listItem.currentVersionLabel.setText("Latest: " + latestVersion.displayString())
-        listItem.authorLabel.setText("by " + manifest[self._pluginFinder._directory.AUTHOR])
+        listItem.currentVersionLabel.setText(f"Latest: {latestVersion.displayString()}")
+        listItem.authorLabel.setText(f"by {manifest[self._pluginFinder._directory.AUTHOR]}")
         listItem.descriptionText.setText(manifest[self._pluginFinder._directory.DESCRIPTION])
 
         # Bind external links.

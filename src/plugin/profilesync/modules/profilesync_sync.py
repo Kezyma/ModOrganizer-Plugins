@@ -23,11 +23,11 @@ class ProfileSyncSync:
             modList = []
             enabledStates = []
             for m in mods:
-                modList.append(m + "\n")
+                modList.append(f"{m}\n")
                 if self._organiser.modList().state(m) & mobase.ModState.ACTIVE:
-                    enabledStates.append("+" + m + "\n")
+                    enabledStates.append(f"+{m}\n")
                 else:
-                    enabledStates.append("-" + m + "\n")
+                    enabledStates.append(f"-{m}\n")
             groupListPath = self._groups.groupModlist(group)
             saveLines(groupListPath, modList)
 
@@ -40,19 +40,19 @@ class ProfileSyncSync:
         """Syncs a group to a selected profile."""
         group = self._groups.groupFromProfile(profile)
         if group is not None:
-            self._log.debug("Sync from " + profile + " to group " + group)
+            self._log.debug(f"Sync from {profile} to group {group}")
             profilePath = self._strings.moProfilePath
             modListPath = Path(profilePath) / "modlist.txt"
-            self._log.debug("Loading modlist " + str(modListPath))
+            self._log.debug(f"Loading modlist {modListPath}")
             modLines = loadLines(str(modListPath))
             rawLines = []
             modOrder = []
             for line in modLines:
                 if line.startswith("+") or line.startswith("-"):
-                    modOrder.append(line[1:] + "\n")
-                rawLines.append(line + "\n")
+                    modOrder.append(f"{line[1:]}\n")
+                rawLines.append(f"{line}\n")
             groupListPath = self._groups.groupModlist(group)
-            self._log.debug("Saving group list " + groupListPath)
+            self._log.debug(f"Saving group list {groupListPath}")
             saveLines(groupListPath, modOrder)
 
             stateGroups = self._groups.stateGroupsForProfile(profile)
@@ -79,7 +79,7 @@ class ProfileSyncSync:
         
         tasks = []
         for profile in groupList:
-            self._log.debug("Sync from group " + group + " to " + profile)
+            self._log.debug(f"Sync from group {group} to {profile}")
             nt = threading.Thread(target=self._syncToProfile, args=[profile])
             nt.start()
             tasks.append(nt)
@@ -99,23 +99,23 @@ class ProfileSyncSync:
             groupList = self._stateModlists[g]
             syncCats = groupInfo[self._groups.CATEGORIES]
             for cat in syncCats:
-                catLabel = "-" + cat
+                catLabel = f"-{cat}"
                 if catLabel in groupList:
                     stateMods.extend(groupList[catLabel])
 
         for modName in self._modList:
-            enabledName = "+" + modName
-            disabledName = "-" + modName
+            enabledName = f"+{modName}"
+            disabledName = f"-{modName}"
             if enabledName in stateMods:
-                newList.append(enabledName + "\n")
+                newList.append(f"{enabledName}\n")
             elif disabledName in stateMods:
-                newList.append(disabledName + "\n")
+                newList.append(f"{disabledName}\n")
             else:
                 if enabledName in modList:
-                    newList.append(enabledName + "\n")
+                    newList.append(f"{enabledName}\n")
                 else:
-                    newList.append("-" + modName + "\n")
-        self._log.debug("Saving modlist " +  str(modListPath))
+                    newList.append(f"-{modName}\n")
+        self._log.debug(f"Saving modlist {modListPath}")
         saveLines(str(modListPath), newList)
 
     def modlistToCategories(self, modList:list) -> dict:

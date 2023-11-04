@@ -66,13 +66,13 @@ class PluginFinderDirectory:
 
     def _loadManifest(self, name:str, id:str, url:str):
         manifestPath = Path(self._strings.pfManifestFolderPath)
-        fileName = id + ".json"
+        fileName = f"{id}.json"
         filePath = manifestPath / fileName
         if downloadFile(url, filePath):
-            self._log.debug("Downloaded manifest from " + url)
+            self._log.debug(f"Downloaded manifest from {url}")
             self._manifests[id] = loadJson(str(filePath))
         else:
-            self._log.warning("Could not download manifest from " + url)
+            self._log.warning(f"Could not download manifest from {url}")
 
     def getPluginManifest(self, pluginId:str):
         manifests = self.loadManifests()

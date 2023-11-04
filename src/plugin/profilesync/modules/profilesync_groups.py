@@ -109,6 +109,6 @@ class ProfileSyncGroups:
         return res
     
     def stateGroupModlist(self, syncGroup:str, stateGroup:str):
-        fileName = syncGroup + "_" + stateGroup + ".txt"
+        fileName = f"{syncGroup}_{stateGroup}.txt"
         dataPath = Path(self._strings.psDataPath) / syncGroup / fileName
         return str(dataPath)
