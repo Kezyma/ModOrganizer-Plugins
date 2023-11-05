@@ -1,6 +1,7 @@
 import mobase
 from ..core.profilesync_plugin import ProfileSyncPlugin
 from ....common.common_qt import *
+from threading import Thread
 
 class ProfileSyncUpdater(ProfileSyncPlugin, mobase.IPlugin):
     def __init__(self):
@@ -11,10 +12,10 @@ class ProfileSyncUpdater(ProfileSyncPlugin, mobase.IPlugin):
         self._organiser.onProfileChanged(lambda old, new: self.changeProfile(old, new))
         self._organiser.onProfileRemoved(lambda name: self.removeProfile(name))
         self._organiser.onProfileRenamed(lambda profile, old, new: self.renameProfile(profile, old, new))
-        self._organiser.modList().onModInstalled(lambda mod: self.syncCurrent())
-        self._organiser.modList().onModMoved(lambda mod, old, new: self.syncCurrent())
-        self._organiser.modList().onModRemoved(lambda mod: self.syncCurrent())
-        self._organiser.modList().onModStateChanged(lambda map: self.syncCurrent())
+        self._organiser.modList().onModInstalled(lambda mod: self.syncFromCurrent())
+        self._organiser.modList().onModMoved(lambda mod, old, new: self.syncFromCurrent())
+        self._organiser.modList().onModRemoved(lambda mod: self.syncFromCurrent())
+        self._organiser.modList().onModStateChanged(lambda map: self.syncFromCurrent())
         self._organiser.onUserInterfaceInitialized(lambda window: self.migrate())
         return res
 
@@ -48,13 +49,14 @@ class ProfileSyncUpdater(ProfileSyncPlugin, mobase.IPlugin):
             self._profileSync._sync.syncFromProfile(profile)
             self._profileSync._sync.syncFromGroup(group)
 
-    def syncCurrent(self):
+    def syncFromCurrent(self):
         self._profileSync._legacy.migrate()
         profile = self._organiser.profile().name()
         group = self._profileSync._groups.groupFromProfile(profile)
         if group is not None:
             self._profileSync._sync.syncFromCurrentProfile()
-            self._profileSync._sync.syncFromGroup(group)
+            t = Thread(target=self._profileSync._sync.syncFromGroup, args=[group])
+            t.start()
 
     def renameProfile(self, profile:mobase.IProfile, oldName:str, newName:str):
         self._profileSync._groups.renameProfile(oldName, newName)
@@ -72,4 +74,5 @@ class ProfileSyncUpdater(ProfileSyncPlugin, mobase.IPlugin):
         if oldProfile is not None:
             oldName = oldProfile.name()
             self.sync(oldName)
+
 

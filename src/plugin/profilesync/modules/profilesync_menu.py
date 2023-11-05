@@ -3,6 +3,7 @@ from ....common.common_qt import *
 from ....common.common_utilities import deleteFile
 from ..core.profilesync import ProfileSync
 from .profilesync_update import ProfileSyncUpdate
+from ..models.profilesync_groupdata import *
 import mobase, webbrowser, os
 from pathlib import Path
 
@@ -109,9 +110,9 @@ class ProfileSyncMenu(QtWidgets.QWidget):
             checkedProfiles = []
             for g in groups:
                 if g != selectedGroup:
-                    disabledProfiles.extend(groups[g][self._profileSync._groups.PROFILES])
+                    disabledProfiles.extend(groups[g][PROFILES])
                 else:
-                    checkedProfiles.extend(groups[g][self._profileSync._groups.PROFILES])
+                    checkedProfiles.extend(groups[g][PROFILES])
             for p in profileList:
                 pItm = QtWidgets.QListWidgetItem()
                 pItm.setText(p)
@@ -132,7 +133,7 @@ class ProfileSyncMenu(QtWidgets.QWidget):
         self.widget.stateTab.setEnabled(hasSelectedGroup)
         if hasSelectedGroup:
             syncGroups = self._profileSync._groups.loadSyncGroups()
-            stateGroups = syncGroups[selectedGroup][self._profileSync._groups.STATEGROUPS]
+            stateGroups = syncGroups[selectedGroup][STATEGROUPS]
             self.stateTabWidget.stateGroupSelect.addItems(stateGroups.keys())
         self.bindStateGroup()
 
@@ -147,8 +148,8 @@ class ProfileSyncMenu(QtWidgets.QWidget):
         if hasSelectedState:
             groups = self._profileSync._groups.loadSyncGroups()
             selectedGroupItm = groups[selectedGroup]
-            stateGroups = selectedGroupItm[self._profileSync._groups.STATEGROUPS]
-            groupProfiles = selectedGroupItm[self._profileSync._groups.PROFILES]
+            stateGroups = selectedGroupItm[STATEGROUPS]
+            groupProfiles = selectedGroupItm[PROFILES]
 
             profile = self._organiser.profile()
             modList = self._organiser.modList().allModsByProfilePriority(profile)
@@ -156,18 +157,18 @@ class ProfileSyncMenu(QtWidgets.QWidget):
             categories = listCats.keys()
 
             selectedStateGroup = stateGroups[selectedState]
-            selectedProfiles = selectedStateGroup[self._profileSync._groups.PROFILES]
-            selectedCategories = selectedStateGroup[self._profileSync._groups.CATEGORIES]
+            selectedProfiles = selectedStateGroup[PROFILES]
+            selectedCategories = selectedStateGroup[CATEGORIES]
             invalidProfiles = []
             invalidCategories = []
             for stateGroup in stateGroups:
                 if stateGroup != selectedState:
                     for p in selectedProfiles:
-                        if p in stateGroups[stateGroup][self._profileSync._groups.PROFILES]:
-                            invalidCategories.extend(stateGroups[stateGroup][self._profileSync._groups.CATEGORIES])
+                        if p in stateGroups[stateGroup][PROFILES]:
+                            invalidCategories.extend(stateGroups[stateGroup][CATEGORIES])
                     for c in selectedCategories:
-                        if c in stateGroups[stateGroup][self._profileSync._groups.CATEGORIES]:
-                            invalidProfiles.extend(stateGroups[stateGroup][self._profileSync._groups.PROFILES])
+                        if c in stateGroups[stateGroup][CATEGORIES]:
+                            invalidProfiles.extend(stateGroups[stateGroup][PROFILES])
 
             self.bindStateProfiles(groupProfiles, selectedProfiles, invalidProfiles)
             self.bindStateCategories(categories, selectedCategories, invalidCategories)
@@ -248,7 +249,7 @@ class ProfileSyncMenu(QtWidgets.QWidget):
         group = self.selectWidget.groupSelect.currentText()
         if group != "":
             groupList = self._profileSync._groups.loadSyncGroups()
-            stateGroups = groupList[group][self._profileSync._groups.STATEGROUPS]
+            stateGroups = groupList[group][STATEGROUPS]
             for sg in stateGroups:
                 stateListPath = self._profileSync._groups.stateGroupModlist(group, sg)
                 deleteFile(stateListPath)
@@ -264,7 +265,7 @@ class ProfileSyncMenu(QtWidgets.QWidget):
         if stateName != "":
             groupList = self._profileSync._groups.loadSyncGroups()
             if groupName in groupList:
-                groupList[groupName][self._profileSync._groups.STATEGROUPS].pop(stateName, None)
+                groupList[groupName][STATEGROUPS].pop(stateName, None)
                 stateListPath = self._profileSync._groups.stateGroupModlist(groupName, stateName)
                 deleteFile(stateListPath)
                 self._profileSync._groups.saveSyncGroups(groupList)
@@ -284,7 +285,7 @@ class ProfileSyncMenu(QtWidgets.QWidget):
                 selected.append(p.text())
         group = self.selectWidget.groupSelect.currentText()
         groups = self._profileSync._groups.loadSyncGroups()
-        groups[group][self._profileSync._groups.PROFILES] = selected
+        groups[group][PROFILES] = selected
         self._profileSync._groups.saveSyncGroups(groups)
 
         if len(selected) > 0:
@@ -296,7 +297,7 @@ class ProfileSyncMenu(QtWidgets.QWidget):
         else:
             groupListPath = self._profileSync._groups.groupModlist(group)
             deleteFile(groupListPath)
-            states = groups[group][self._profileSync._groups.STATEGROUPS]
+            states = groups[group][STATEGROUPS]
             for s in states:
                 stateListPath = self._profileSync._groups.stateGroupModlist(group, s)
                 deleteFile(stateListPath)

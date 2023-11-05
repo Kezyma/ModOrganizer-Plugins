@@ -1,9 +1,11 @@
 import mobase, threading
 from pathlib import Path
+from typing import Dict, List
 from .profilesync_groups import ProfileSyncGroups
 from .profilesync_strings import ProfileSyncStrings
 from ....common.common_utilities import saveLines, loadLines
 from ....common.common_log import CommonLog
+from ..models.profilesync_groupdata import *
 
 class ProfileSyncSync:
     """Profile Sync Sync module, handles updating profile modlists."""
@@ -66,11 +68,11 @@ class ProfileSyncSync:
     def syncFromGroup(self, group:str):
         """Syncs all profiles in a selected group."""
         groups = self._groups.loadSyncGroups()
-        groupList = groups[group][self._groups.PROFILES]
+        groupList = groups[group][PROFILES]
         modListPath = self._groups.groupModlist(group)
         self._modList = loadLines(modListPath)
 
-        self._stateGroups = groups[group][self._groups.STATEGROUPS]
+        self._stateGroups = groups[group][STATEGROUPS]
         self._stateModlists = {}
         for sg in self._stateGroups:
             statePath = self._groups.stateGroupModlist(group, sg)
@@ -97,7 +99,7 @@ class ProfileSyncSync:
         for g in stateGroups:
             groupInfo = self._stateGroups[g]
             groupList = self._stateModlists[g]
-            syncCats = groupInfo[self._groups.CATEGORIES]
+            syncCats = groupInfo[CATEGORIES]
             for cat in syncCats:
                 catLabel = f"-{cat}"
                 if catLabel in groupList:
@@ -118,12 +120,12 @@ class ProfileSyncSync:
         self._log.debug(f"Saving modlist {modListPath}")
         saveLines(str(modListPath), newList)
 
-    def modlistToCategories(self, modList:list) -> dict:
+    def modlistToCategories(self, modList:List[str]) -> Dict[str, List[str]]:
         modList.reverse()
         cats = {}
         currentCat = None
         for mod in modList:
-            modStr = str(mod)
+            modStr = mod
             if modStr.endswith("_separator"):
                 currentCat = modStr.replace("_separator","")
                 cats[currentCat] = []

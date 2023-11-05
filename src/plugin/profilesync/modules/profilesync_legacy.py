@@ -5,6 +5,7 @@ from ..core.profilesync_settings import ProfileSyncSettings
 from .profilesync_groups import ProfileSyncGroups
 from ....common.common_utilities import loadJson, deleteFile
 from ....common.common_log import CommonLog
+from ..models.profilesync_groupdata import *
 
 class ProfileSyncLegacy:
     """Profile Sync legacy module, handles migration from old versions."""
@@ -34,9 +35,9 @@ class ProfileSyncLegacy:
             newData = self._groups.loadSyncGroups()
             for k in oldData:
                 if k not in newData:
-                    newData[k] = {
-                        self._groups.PROFILES: oldData[k][self._groups.PROFILES],
-                        self._groups.STATEGROUPS: {}
-                    }
+                    newData[k] = GroupData({
+                        PROFILES: oldData[k][PROFILES],
+                        STATEGROUPS: {}
+                    })
             self._groups.saveSyncGroups(newData)
             deleteFile(str(groupFilePath))
