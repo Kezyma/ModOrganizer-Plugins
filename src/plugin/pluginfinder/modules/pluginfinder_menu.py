@@ -2,6 +2,10 @@ from ....common.common_icons import *
 from ....common.common_qt import *
 from ..core.pluginfinder import PluginFinder
 import mobase, webbrowser, os
+from ..models.pluginfinder_versiondata import *
+from ..models.pluginfinder_manifestdata import *
+from ..models.pluginfinder_directorydata import *
+from ..models.pluginfinder_installdata import *
 from pathlib import Path
 
 try:
@@ -83,30 +87,30 @@ class PluginFinderMenu(QtWidgets.QWidget):
         listItem = Ui_pluginItemWidget()
         listItem.setupUi(listWidget)
         pluginId = str(pluginId)
-        listItem.pluginNameText.setText(manifest[self._pluginFinder._directory.NAME])
+        listItem.pluginNameText.setText(manifest[NAME])
         listItem.installedVersionLabel.setText("")
         listItem.currentVersionLabel.setText(f"Latest: {latestVersion.displayString()}")
-        listItem.authorLabel.setText(f"by {manifest[self._pluginFinder._directory.AUTHOR]}")
-        listItem.descriptionText.setText(manifest[self._pluginFinder._directory.DESCRIPTION])
+        listItem.authorLabel.setText(f"by {manifest[AUTHOR]}")
+        listItem.descriptionText.setText(manifest[DESCRIPTION])
 
         # Bind external links.
         listItem.githubButton.setIcon(GITHUB_ICON)
-        if self._pluginFinder._directory.GITHUB in manifest and manifest[self._pluginFinder._directory.GITHUB] != "":
-            githubUrl = str(manifest[self._pluginFinder._directory.GITHUB])
+        if GITHUBURL in manifest and manifest[GITHUBURL] != "":
+            githubUrl = str(manifest[GITHUBURL])
             listItem.githubButton.clicked.connect(lambda: webbrowser.open(githubUrl))
         else:
             listItem.githubButton.setEnabled(False)
 
         listItem.nexusButton.setIcon(NEXUS_ICON)
-        if self._pluginFinder._directory.NEXUS in manifest and manifest[self._pluginFinder._directory.NEXUS] != "":
-            nexusUrl = str(manifest[self._pluginFinder._directory.NEXUS])
+        if NEXUSURL in manifest and manifest[NEXUSURL] != "":
+            nexusUrl = str(manifest[NEXUSURL])
             listItem.nexusButton.clicked.connect(lambda: webbrowser.open(nexusUrl))
         else:
             listItem.nexusButton.setEnabled(False)
 
         listItem.docsButton.setIcon(DOCS_ICON)
-        if self._pluginFinder._directory.DOCS in manifest and manifest[self._pluginFinder._directory.DOCS] != "":
-            docsUrl = str(manifest[self._pluginFinder._directory.DOCS])
+        if DOCSURL in manifest and manifest[DOCSURL] != "":
+            docsUrl = str(manifest[DOCSURL])
             listItem.docsButton.clicked.connect(lambda: webbrowser.open(docsUrl))
         else:
             listItem.docsButton.setEnabled(False)

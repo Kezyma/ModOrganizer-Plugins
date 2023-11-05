@@ -3,6 +3,9 @@ from .pluginfinder_strings import PluginFinderStrings
 from ....common.common_utilities import *
 from ....common.common_log import CommonLog
 from pathlib import Path
+from ..models.pluginfinder_directorydata import *
+from ..models.pluginfinder_manifestdata import *
+from ..models.pluginfinder_versiondata import *
 
 class PluginFinderDirectory:
     """Plugin Finder directory module, handles update and loading of the directory file."""
@@ -13,16 +16,6 @@ class PluginFinderDirectory:
         self._organiser = organiser
 
     _remoteDirectoryUrl = "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugin_directory.json"
-    NAME = "Name"
-    ID = "Identifier"
-    MANIFEST = "Manifest"
-    VERSIONS = "Versions"
-    VERSION = "Version"
-    DESCRIPTION = "Description"
-    AUTHOR = "Author"
-    GITHUB = "GithubUrl"
-    NEXUS = "NexusUrl"
-    DOCS = "DocsUrl"
 
     def initialDeploy(self):
         filePath = self._strings.pfDirectoryPath
@@ -41,22 +34,22 @@ class PluginFinderDirectory:
         else:
             self._log.warning("Could not download directory update.")
 
-    _directory = None
-    def loadDirectory(self, reload=False) -> list:
+    _directory:List[DirectoryData] = None
+    def loadDirectory(self, reload=False) -> List[DirectoryData]:
         if self._directory is None or reload:
             filePath = self._strings.pfDirectoryPath
             self._directory = loadJson(filePath)
         return self._directory
     
-    _manifests = None
-    def loadManifests(self, reload=False) -> dict:
+    _manifests:Dict[str, ManifestData] = None
+    def loadManifests(self, reload=False) -> Dict[str, ManifestData]:
         if self._manifests is None or reload:
             directory = self.loadDirectory()
             tasks = []
             self._manifests = {}
             for ix in range(len(directory)):
                 manifestInfo = directory[ix]
-                manifestData = [manifestInfo[self.NAME], manifestInfo[self.ID], manifestInfo[self.MANIFEST]]
+                manifestData = [manifestInfo[NAME], manifestInfo[IDENTIFIER], manifestInfo[MANIFEST]]
                 nt = threading.Thread(target=self._loadManifest, args=manifestData)
                 nt.start()
                 tasks.append(nt)
@@ -70,11 +63,11 @@ class PluginFinderDirectory:
         filePath = manifestPath / fileName
         if downloadFile(url, filePath):
             self._log.debug(f"Downloaded manifest from {url}")
-            self._manifests[id] = loadJson(str(filePath))
+            self._manifests[id] = ManifestData(loadJson(str(filePath)))
         else:
             self._log.warning(f"Could not download manifest from {url}")
 
-    def getPluginManifest(self, pluginId:str):
+    def getPluginManifest(self, pluginId:str) -> ManifestData:
         manifests = self.loadManifests()
         if pluginId in manifests:
             return manifests[pluginId]
@@ -82,10 +75,10 @@ class PluginFinderDirectory:
     
     def getLatestVersion(self, pluginId) -> mobase.VersionInfo:
         manifest = self.getPluginManifest(pluginId)
-        versions = manifest[self.VERSIONS]
+        versions = manifest[VERSIONS]
         latestVersion = None
         for v in versions:
-            pver = mobase.VersionInfo(v[self.VERSION])
+            pver = mobase.VersionInfo(v[VERSION])
             if latestVersion is None:
                 latestVersion = pver
             elif pver > latestVersion:
