@@ -1,7 +1,6 @@
-from ....common.common_icons import CommonIcons
+from ....common.common_icons import *
 from ....common.common_qt import *
 from ..core.pluginfinder import PluginFinder
-#from .profilesync_update import ProfileSyncUpdate
 import mobase, webbrowser, os
 from pathlib import Path
 
@@ -23,7 +22,6 @@ class PluginFinderMenu(QtWidgets.QWidget):
         self._pluginFinder = pluginFinder
         #self._update = update
         self._rebind = False
-        self._icons = CommonIcons()
         self.generateLayout()
 
     def generateLayout(self):
@@ -33,21 +31,21 @@ class PluginFinderMenu(QtWidgets.QWidget):
 
         self.finderTabWidget = Ui_listTabWidget()
         self.finderTabWidget.setupUi(self.widget.finderTab)
-        self.finderTabWidget.refreshButton.setIcon(self._icons.refreshIcon())
+        self.finderTabWidget.refreshButton.setIcon(REFRESH_ICON)
         self.finderTabWidget.refreshButton.clicked.connect(self.refresh_clicked)
 
         self.helpTabWidget = Ui_helpTabWidget()
         self.helpTabWidget.setupUi(self.widget.helpTab)
 
-        self.helpTabWidget.discordButton.setIcon(self._icons.discordIcon())
+        self.helpTabWidget.discordButton.setIcon(DISCORD_ICON)
         self.helpTabWidget.discordButton.clicked.connect(self.discord_clicked)
-        self.helpTabWidget.docsButton.setIcon(self._icons.docsIcon())
+        self.helpTabWidget.docsButton.setIcon(DOCS_ICON)
         self.helpTabWidget.docsButton.clicked.connect(self.docs_clicked)
-        self.helpTabWidget.githubButton.setIcon(self._icons.githubIcon())
+        self.helpTabWidget.githubButton.setIcon(GITHUB_ICON)
         self.helpTabWidget.githubButton.clicked.connect(self.github_clicked)
-        self.helpTabWidget.nexusButton.setIcon(self._icons.nexusIcon())
+        self.helpTabWidget.nexusButton.setIcon(NEXUS_ICON)
         self.helpTabWidget.nexusButton.clicked.connect(self.nexus_clicked)
-        self.helpTabWidget.patreonButton.setIcon(self._icons.patreonIcon())
+        self.helpTabWidget.patreonButton.setIcon(PATREON_ICON)
         self.helpTabWidget.patreonButton.clicked.connect(self.patreon_clicked)
 
         self.finderTabWidget.searchText.textChanged.connect(self.rebind)
@@ -92,21 +90,21 @@ class PluginFinderMenu(QtWidgets.QWidget):
         listItem.descriptionText.setText(manifest[self._pluginFinder._directory.DESCRIPTION])
 
         # Bind external links.
-        listItem.githubButton.setIcon(self._icons.githubIcon())
+        listItem.githubButton.setIcon(GITHUB_ICON)
         if self._pluginFinder._directory.GITHUB in manifest and manifest[self._pluginFinder._directory.GITHUB] != "":
             githubUrl = str(manifest[self._pluginFinder._directory.GITHUB])
             listItem.githubButton.clicked.connect(lambda: webbrowser.open(githubUrl))
         else:
             listItem.githubButton.setEnabled(False)
 
-        listItem.nexusButton.setIcon(self._icons.nexusIcon())
+        listItem.nexusButton.setIcon(NEXUS_ICON)
         if self._pluginFinder._directory.NEXUS in manifest and manifest[self._pluginFinder._directory.NEXUS] != "":
             nexusUrl = str(manifest[self._pluginFinder._directory.NEXUS])
             listItem.nexusButton.clicked.connect(lambda: webbrowser.open(nexusUrl))
         else:
             listItem.nexusButton.setEnabled(False)
 
-        listItem.docsButton.setIcon(self._icons.docsIcon())
+        listItem.docsButton.setIcon(DOCS_ICON)
         if self._pluginFinder._directory.DOCS in manifest and manifest[self._pluginFinder._directory.DOCS] != "":
             docsUrl = str(manifest[self._pluginFinder._directory.DOCS])
             listItem.docsButton.clicked.connect(lambda: webbrowser.open(docsUrl))
@@ -123,33 +121,33 @@ class PluginFinderMenu(QtWidgets.QWidget):
             listItem.installButton.setEnabled(False)
             listItem.installButton.setToolTip("Unsupported")
             if needsUpdate:
-                listItem.installButton.setIcon(self._icons.noUpdateIcon())
+                listItem.installButton.setIcon(NO_UPDATE_ICON)
             else:
-                listItem.installButton.setIcon(self._icons.stopIcon())
+                listItem.installButton.setIcon(STOP_ICON)
         elif needsUpdate:
             if supported:
                 listItem.installButton.setToolTip("Update Available")
-                listItem.installButton.setIcon(self._icons.updateIcon())
+                listItem.installButton.setIcon(UPDATE_ICON)
             else:
                 listItem.installButton.setToolTip("Update; this update may not work on this version of Mod Organizer.")
-                listItem.installButton.setIcon(self._icons.updateAltIcon())
+                listItem.installButton.setIcon(UPDATE_ALT_ICON)
         elif installed:
             listItem.installButton.setToolTip("Installed")
-            listItem.installButton.setIcon(self._icons.checkIcon())
+            listItem.installButton.setIcon(CHECK_ICON)
             listItem.installButton.setEnabled(False)
         else:
             if supported:
                 listItem.installButton.setToolTip("Install")
-                listItem.installButton.setIcon(self._icons.installIcon())
+                listItem.installButton.setIcon(INSTALL_ICON)
             else:
                 listItem.installButton.setToolTip("Install; this plugin may not work on this version of Mod Organizer.")
-                listItem.installButton.setIcon(self._icons.warningIcon())
+                listItem.installButton.setIcon(WARNING_ICON)
         listItem.installButton.clicked.connect(lambda: self.install_clicked(pluginId))
         listItem.uninstallButton.clicked.connect(lambda: self.uninstall_clicked(pluginId))
 
         listItem.uninstallButton.setToolTip("Uninstall")
         listItem.uninstallButton.setEnabled(installed and not isPluginFinder)
-        listItem.uninstallButton.setIcon(self._icons.trashIcon())
+        listItem.uninstallButton.setIcon(TRASH_ICON)
 
         self.finderTabWidget.pluginListLayout.addWidget(listWidget)
         return listItem
