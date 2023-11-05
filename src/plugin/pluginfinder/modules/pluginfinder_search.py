@@ -1,17 +1,14 @@
-import mobase, threading, datetime
+import mobase, datetime
 from .pluginfinder_strings import PluginFinderStrings
 from .pluginfinder_directory import PluginFinderDirectory
 from .pluginfinder_install import PluginFinderInstall
-from ....common.common_utilities import CommonUtilities
 from ....common.common_log import CommonLog
-from pathlib import Path
 
-class PluginFinderSearch():
+class PluginFinderSearch:
     """Plugin Finder search module, handles search and filter of the directory."""
 
-    def __init__(self, organiser:mobase.IOrganizer, strings:PluginFinderStrings, directory:PluginFinderDirectory, install:PluginFinderInstall, util:CommonUtilities, log:CommonLog):
+    def __init__(self, organiser: mobase.IOrganizer, strings: PluginFinderStrings, directory: PluginFinderDirectory, install: PluginFinderInstall, log: CommonLog) -> None:
         self._strings = strings
-        self._util = util
         self._log = log
         self._organiser = organiser
         self._directory = directory
@@ -25,28 +22,28 @@ class PluginFinderSearch():
             manifest = manifests[id]
             isValid = True
             # Text Search
-            if searchTerms != None and searchTerms != "":
+            if searchTerms is not None and searchTerms != "":
                 if (searchTerms.lower() not in manifest[self._directory.NAME].lower() and
                     searchTerms.lower() not in manifest[self._directory.DESCRIPTION].lower() and
                     searchTerms.lower() not in manifest[self._directory.AUTHOR].lower()):
                     isValid = False
 
             # Is Installed
-            if installed != None:
+            if installed is not None:
                 if installed:
                     isValid = isValid and self.pluginInstalled(id)
 
             # Needs Update
-            if update != None:
+            if update is not None:
                 if update:
                     isValid = isValid and self.pluginNeedsUpdate(id)
 
             # Supported
-            if supported != None:
+            if supported is not None:
                 if supported:
                     isValid = isValid and self.pluginIsSupported(id)
 
-            if working != None:
+            if working is not None:
                 if working:
                     isValid = isValid and self.pluginIsWorking(id)
 

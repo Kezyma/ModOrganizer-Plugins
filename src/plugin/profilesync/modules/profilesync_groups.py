@@ -1,16 +1,15 @@
 import mobase
 from pathlib import Path
 from .profilesync_strings import ProfileSyncStrings
-from ....common.common_utilities import CommonUtilities
+from ....common.common_utilities import loadJson, saveJson
 from ....common.common_log import CommonLog
 
-class ProfileSyncGroups():
+class ProfileSyncGroups:
     """Profile Sync Groups module, handles recording and updating sync groups."""
 
-    def __init__(self, organiser:mobase.IOrganizer,strings:ProfileSyncStrings,utilities:CommonUtilities,log:CommonLog):
+    def __init__(self, organiser: mobase.IOrganizer, strings: ProfileSyncStrings, log: CommonLog) -> None:
         self._organiser = organiser
         self._strings = strings
-        self._util = utilities
         self._log = log
 
     STATEGROUPS = "StateGroups"
@@ -22,9 +21,9 @@ class ProfileSyncGroups():
         """Loads and returns the current sync groups."""
         if self._groups is not None:
             return self._groups
-        groupPath = self._strings.psGroupDataPath()
+        groupPath = self._strings.psGroupDataPath
         if Path(groupPath).exists():
-            self._groups = self._util.loadJson(groupPath)
+            self._groups = loadJson(groupPath)
         else:
             self._groups = {}
         return self._groups
@@ -32,8 +31,8 @@ class ProfileSyncGroups():
     def saveSyncGroups(self, groups:dict):
         """Saves the specified groups."""
         self._groups = groups
-        groupPath = self._strings.psGroupDataPath()
-        self._util.saveJson(groupPath, groups)
+        groupPath = self._strings.psGroupDataPath
+        saveJson(groupPath, groups)
 
     def createSyncGroup(self, groupName:str):
         """Creates a new sync group."""
@@ -80,7 +79,7 @@ class ProfileSyncGroups():
     def groupModlist(self, group:str):
         """Gets the path to the modlist for this group."""
         fileName = f"{group}.txt"
-        dataPath = Path(self._strings.psDataPath()) / group / fileName
+        dataPath = Path(self._strings.psDataPath) / group / fileName
         return str(dataPath)
 
     def createStateGroup(self, syncGroup:str, newName:str):
@@ -110,6 +109,6 @@ class ProfileSyncGroups():
         return res
     
     def stateGroupModlist(self, syncGroup:str, stateGroup:str):
-        fileName = syncGroup + "_" + stateGroup + ".txt"
-        dataPath = Path(self._strings.psDataPath()) / syncGroup / fileName
+        fileName = f"{syncGroup}_{stateGroup}.txt"
+        dataPath = Path(self._strings.psDataPath) / syncGroup / fileName
         return str(dataPath)

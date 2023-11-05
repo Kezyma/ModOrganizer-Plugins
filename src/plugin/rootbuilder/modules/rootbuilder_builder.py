@@ -5,18 +5,17 @@ from .rootbuilder_paths import RootBuilderPaths
 from .rootbuilder_data import RootBuilderData
 from .rootbuilder_cache import RootBuilderCache
 from ..core.rootbuilder_settings import RootBuilderSettings
-from ....common.common_utilities import CommonUtilities
+from ....common.common_utilities import copyFile, linkFile, unlinkFile, hashFile, deleteFile, deleteEmptyFolders
 from ....common.common_log import CommonLog
 
-class RootBuilderBuilder():
+class RootBuilderBuilder:
     """Root Builder builder module, handles the deployment of game files."""
 
-    def __init__(self, organiser:mobase.IOrganizer,strings:RootBuilderStrings,paths:RootBuilderPaths,settings:RootBuilderSettings,data:RootBuilderData,cache:RootBuilderCache,utilities:CommonUtilities,log:CommonLog):
+    def __init__(self, organiser: mobase.IOrganizer, strings: RootBuilderStrings, paths: RootBuilderPaths, settings: RootBuilderSettings, data: RootBuilderData, cache: RootBuilderCache, log: CommonLog) -> None:
         self._organiser = organiser
         self._strings = strings
         self._paths = paths
         self._settings = settings
-        self._util = utilities
         self._log = log
         self._data = data
         self._cache = cache
@@ -24,7 +23,7 @@ class RootBuilderBuilder():
     _gamePath = Path()
     def deployFiles(self, data:dict, links=False):
         """Deploys a list of files via copy (or links) from build data."""
-        self._gamePath = Path(self._strings.gamePath())
+        self._gamePath = Path(self._strings.gamePath)
         threads = []
         for relativePath in data:
             pathData = data[relativePath]
@@ -45,11 +44,11 @@ class RootBuilderBuilder():
     def _deployLink(self, srcPath:str, destPath:str):
         dPath = Path(destPath)
         if dPath.exists():
-            if self._util.deleteFile(destPath):
+            if deleteFile(destPath):
                 self._log.debug(f"Deleted {destPath}")
             else:
                 self._log.warning(f"Failed to delete {destPath}")
-        if self._util.linkFile(srcPath, destPath):
+        if linkFile(srcPath, destPath):
             self._log.debug(f"Linked file from {srcPath} to {destPath}")
         else:
             self._log.warning(f"Failed to link file from {srcPath} to {destPath}")
@@ -57,11 +56,11 @@ class RootBuilderBuilder():
     def _deployCopy(self, srcPath:str, destPath:str):
         dPath = Path(destPath)
         if dPath.exists():
-            if self._util.deleteFile(destPath):
+            if deleteFile(destPath):
                 self._log.debug(f"Deleted {destPath}")
             else:
                 self._log.warning(f"Failed to delete {destPath}")
-        if self._util.copyFile(srcPath, destPath):
+        if copyFile(srcPath, destPath):
             self._log.debug(f"Copied file from {srcPath} to {destPath}")
         else:
             self._log.warning(f"Failed to copy file from {srcPath} to {destPath}")
@@ -85,10 +84,10 @@ class RootBuilderBuilder():
         self._cacheData = self._cache.loadCacheFile()
         self._log.debug("Loaded build and cache data.")
         gameFiles = self._paths.validGameRootFiles()
-        self._overwritePath = self._strings.rbOverwritePath()
-        self._gamePath = self._strings.gamePath()
+        self._overwritePath = self._strings.rbOverwritePath
+        self._gamePath = self._strings.gamePath
         hashCompare = self._settings.hash()
-        self._backupPath = Path(self._strings.rbBackupPath())
+        self._backupPath = Path(self._strings.rbBackupPath)
         tasks = []
         self._log.debug("Checking game folder for changes.")
         for file in gameFiles:
@@ -109,7 +108,7 @@ class RootBuilderBuilder():
             copyHash = copyData[self._data._hashKey]
             hasChanged = False
             if hashCompare and copyHash != "":
-                hasChanged = copyHash != self._util.hashFile(filePath)
+                hasChanged = copyHash != hashFile(filePath)
             else:
                 sourceTime = os.path.getmtime(sourcePath)
                 sourceSize = os.path.getsize(sourcePath)
@@ -117,7 +116,7 @@ class RootBuilderBuilder():
                 fileSize = os.path.getsize(filePath)
                 hasChanged = sourceTime != fileTime or sourceSize != fileSize
             if hasChanged:
-                if self._util.copyFile(filePath, sourcePath):
+                if copyFile(filePath, sourcePath):
                     self._log.debug(f"Copied file from {filePath} to {sourcePath}")
                 else:
                     self._log.warning(f"Failed to copy file from {filePath} to {sourcePath}")
@@ -127,7 +126,7 @@ class RootBuilderBuilder():
             linkData = self._buildData[self._data._linkKey][relativeLower]
             sourcePath = linkData[self._data._sourceKey]
             if not Path(filePath).samefile(Path(sourcePath)):
-                if self._util.copyFile(filePath, sourcePath):
+                if copyFile(filePath, sourcePath):
                     self._log.debug(f"Copied file from {filePath} to {sourcePath}")
                 else:
                     self._log.warning(f"Failed to copy file from {filePath} to {sourcePath}")
@@ -140,7 +139,7 @@ class RootBuilderBuilder():
             cacheHash = cacheItem[self._cache._hashKey]
             if hashCompare and cacheHash != "":
                 gameHash = cacheHash
-                newHash = self._util.hashFile(filePath)
+                newHash = hashFile(filePath)
                 hasChanged = gameHash != newHash
             else:
                 bakPath = self._backupPath / relativePath
@@ -152,7 +151,7 @@ class RootBuilderBuilder():
                     hasChanged = backupSize != fileSize or backupTime != fileTime
             if hasChanged:
                 destPath = Path(self._overwritePath) / relativePath
-                if self._util.copyFile(filePath, str(destPath)):
+                if copyFile(filePath, str(destPath)):
                     self._log.debug(f"Copied file from {filePath} to {destPath}")
                     self._buildData[self._data._copyKey][relativeLower] = {
                         self._data._sourceKey: str(destPath),
@@ -166,8 +165,8 @@ class RootBuilderBuilder():
             destPath = Path(self._overwritePath) / relativePath
             newHash = ""
             if hashCompare:
-                newHash = self._util.hashFile(str(filePath))
-            if self._util.copyFile(filePath, str(destPath)):
+                newHash = hashFile(str(filePath))
+            if copyFile(filePath, str(destPath)):
                 self._log.debug(f"Copied file from {filePath} to {destPath}")
                 self._buildData[self._data._copyKey][relativeLower] = {
                     self._data._sourceKey: str(destPath),
@@ -180,7 +179,7 @@ class RootBuilderBuilder():
     def clearFiles(self):
         """Clears any deployed files or links."""
         buildData = self._data.loadDataFile()
-        self._gamePath = Path(self._strings.gamePath())
+        self._gamePath = Path(self._strings.gamePath)
         copiedFiles = buildData[self._data._copyKey]
         linkedFiles = buildData[self._data._linkKey]
         threads = []
@@ -199,7 +198,7 @@ class RootBuilderBuilder():
     def _clearLink(self, linkPath:str):
         fullPath = self._gamePath / str(linkPath)
         if fullPath.exists():
-            if self._util.unlinkFile(str(fullPath)):
+            if unlinkFile(str(fullPath)):
                 self._log.debug(f"Unlinked file {fullPath}")
             else:
                 self._log.warning(f"Could not unlink file {fullPath}")
@@ -207,13 +206,13 @@ class RootBuilderBuilder():
     def _clearCopy(self, copyPath:str):
         fullPath = self._gamePath / str(copyPath)
         if fullPath.exists():
-            if self._util.deleteFile(str(fullPath)):
+            if deleteFile(str(fullPath)):
                 self._log.debug(f"Deleted file {fullPath}")
             else:
                 self._log.warning(f"Could not delete file {fullPath}")
 
     def folderCleanup(self):
-        gamePath = self._strings.gamePath()
-        self._util.deleteEmptyFolders(gamePath)
+        gamePath = self._strings.gamePath
+        deleteEmptyFolders(gamePath)
 
     

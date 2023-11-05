@@ -12,7 +12,7 @@ class ProfileSyncManager(ProfileSyncPlugin, mobase.IPluginTool):
 
     def init(self, organiser:mobase.IOrganizer):
         res = super().init(organiser)
-        self._update = ProfileSyncUpdate(self._organiser, self, self._profileSync._strings, self._profileSync._util, self._profileSync._log)
+        self._update = ProfileSyncUpdate(self._organiser, self, self._profileSync._strings, self._profileSync._log)
         self._dialog = self.getDialog()
         return res
 

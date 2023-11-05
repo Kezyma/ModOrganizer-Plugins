@@ -1,7 +1,6 @@
 import mobase
 from pathlib import Path
 from ....common.common_log import CommonLog
-from ....common.common_utilities import CommonUtilities
 from .rootbuilder_settings import RootBuilderSettings
 from ..modules.rootbuilder_strings import RootBuilderStrings
 from ..modules.rootbuilder_paths import RootBuilderPaths
@@ -11,23 +10,22 @@ from ..modules.rootbuilder_backup import RootBuilderBackup
 from ..modules.rootbuilder_builder import RootBuilderBuilder
 from ..modules.rootbuilder_export import RootBuilderExport
 from ..modules.rootbuilder_legacy import RootBuilderLegacy
-class RootBuilder():
+
+class RootBuilder:
     """Core Root Builder class that handles all plugin functionality."""
 
-    def __init__(self, organiser:mobase.IOrganizer):
+    def __init__(self, organiser: mobase.IOrganizer) -> None:
         self._organiser = organiser
         self._settings = RootBuilderSettings(self._organiser)
-        self._log = CommonLog("RootBuilder", self._organiser, self._settings)
-        self._util = CommonUtilities(self._organiser)
+        self._log = CommonLog("RootBuilder", self._settings)
         self._strings = RootBuilderStrings("RootBuilder", self._organiser)
         self._paths = RootBuilderPaths("RootBuilder", self._organiser, self._settings, self._strings)
-        self._data = RootBuilderData(self._organiser, self._strings, self._paths, self._settings, self._util, self._log)
-        self._cache = RootBuilderCache(self._organiser, self._strings, self._paths, self._settings, self._util, self._log)
-        self._backup = RootBuilderBackup(self._organiser, self._strings, self._paths, self._settings, self._cache, self._util, self._log)
-        self._builder = RootBuilderBuilder(self._organiser, self._strings, self._paths, self._settings, self._data, self._cache, self._util, self._log)
-        self._export = RootBuilderExport(self._organiser, self._settings, self._util, self._log)
-        self._legacy = RootBuilderLegacy(self._organiser, self._settings, self._util, self._log)
-        super().__init__()
+        self._data = RootBuilderData(self._organiser, self._strings, self._paths, self._settings, self._log)
+        self._cache = RootBuilderCache(self._organiser, self._strings, self._paths, self._settings, self._log)
+        self._backup = RootBuilderBackup(self._organiser, self._strings, self._paths, self._settings, self._cache, self._log)
+        self._builder = RootBuilderBuilder(self._organiser, self._strings, self._paths, self._settings, self._data, self._cache, self._log)
+        self._export = RootBuilderExport(self._organiser, self._settings, self._log)
+        self._legacy = RootBuilderLegacy(self._organiser, self._settings, self._log)
 
     def build(self):
         """Runs a full build using the current settings."""
@@ -47,7 +45,7 @@ class RootBuilder():
             self._backup.updateBackup()
         else:
             # Calculate any possible overwrites for if we need to update our backup or cache.
-            gamePath = Path(self._strings.gamePath())
+            gamePath = Path(self._strings.gamePath)
             possibleOverwrites = []
             for fileKey in newBuildData[self._data._copyKey]:
                 relativePath = newBuildData[self._data._copyKey][fileKey][self._data._relativeKey]
@@ -121,7 +119,7 @@ class RootBuilder():
         mappings = []
         if hasExistingBuild:
             self._log.info("Build exists, generating usvfs mappings.")
-            gamePath = Path(self._strings.gamePath())
+            gamePath = Path(self._strings.gamePath)
             buildData = self._data.loadDataFile()
             usvfsFiles = buildData[self._data._usvfsKey]
             for file in usvfsFiles:
@@ -133,8 +131,8 @@ class RootBuilder():
                 mapping.createTarget = False
                 mappings.append(mapping)
             #overwrite = mobase.Mapping()
-            #overwrite.source = self._strings.rbOverwritePath()
-            #overwrite.destination = self._strings.gamePath()
+            #overwrite.source = self._strings.rbOverwritePath
+            #overwrite.destination = self._strings.gamePath
             #overwrite.createTarget = True
             #overwrite.isDirectory = True
             #mappings.append(overwrite)

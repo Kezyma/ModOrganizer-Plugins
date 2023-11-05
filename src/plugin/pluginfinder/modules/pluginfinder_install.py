@@ -1,17 +1,16 @@
-import mobase, threading, os, subprocess
+import mobase, os, subprocess
 from .pluginfinder_strings import PluginFinderStrings
 from .pluginfinder_directory import PluginFinderDirectory
-from ....common.common_utilities import CommonUtilities
+from ....common.common_utilities import loadJson, saveJson, downloadFile, copyFile, deleteFolder, deleteFile
 from ....common.common_log import CommonLog
 from ....common.common_paths import CommonPaths
 from pathlib import Path
 
-class PluginFinderInstall():
+class PluginFinderInstall:
     """Plugin Finder install module, handles install, update and uninstall of plugins."""
 
-    def __init__(self, organiser:mobase.IOrganizer, strings:PluginFinderStrings, directory:PluginFinderDirectory, paths:CommonPaths, util:CommonUtilities, log:CommonLog):
+    def __init__(self, organiser:mobase.IOrganizer, strings:PluginFinderStrings, directory:PluginFinderDirectory, paths:CommonPaths, log:CommonLog) -> None:
         self._strings = strings
-        self._util = util
         self._log = log
         self._directory = directory
         self._organiser = organiser
@@ -25,10 +24,10 @@ class PluginFinderInstall():
 
     _installData = None
     def loadInstallData(self, reload=False) -> dict:
-        if self._installData == None or reload:
-            filePath = self._strings.pfInstallDataPath()
+        if self._installData is None or reload:
+            filePath = self._strings.pfInstallDataPath
             if Path(filePath).exists():
-                self._installData = self._util.loadJson(filePath)
+                self._installData = loadJson(filePath)
             else:
                 self._installData = {}
         return self._installData
@@ -36,8 +35,8 @@ class PluginFinderInstall():
     def saveInstallData(self, data:dict) -> bool:
         """Saves new data to the current data file."""
         self._installData = data
-        filePath = self._strings.pfInstallDataPath()
-        return self._util.saveJson(filePath, self._installData)
+        filePath = self._strings.pfInstallDataPath
+        return saveJson(filePath, self._installData)
 
     def installPlugin(self, pluginId:str):
         """Installs a plugin from the directory."""
@@ -49,20 +48,20 @@ class PluginFinderInstall():
             # Only install the latest version.
             if versionItm == latestVer:
                 url = ver[self.URL]
-                tempName = Path(self._strings.pfStagingFolderPath()) / os.path.basename(url)
+                tempName = Path(self._strings.pfStagingFolderPath) / os.path.basename(url)
                 # Download the plugin from its source.
-                if self._util.downloadFile(url, str(tempName)):
-                    self._log.debug("Downloaded " + url)
-                    sZ = self._strings.pf7zPath()
-                    tempPath = Path(self._strings.pfStagingFolderPath()) / pluginId
+                if downloadFile(url, str(tempName)):
+                    self._log.debug(f"Downloaded {url}")
+                    sZ = self._strings.pf7zPath
+                    tempPath = Path(self._strings.pfStagingFolderPath) / pluginId
                     unzipCommand = f'"{sZ}" x "{str(tempName)}" -o"{str(tempPath)}" -y'
-                    self._log.debug("Unzipping " + str(tempName))
+                    self._log.debug(f"Unzipping {tempName}")
                     
                     # Unzip the plugin download.
                     subprocess.call(unzipCommand, shell=True, stdout=open(os.devnull, 'wb'))
 
                     # Copy over any plugin files.
-                    pluginDest = Path(self._strings.moPluginsPath())
+                    pluginDest = Path(self._strings.moPluginsPath)
                     pluginFiles = []
                     for pluginFile in ver[self.PLUGIN]:
                         relativePath = tempPath / pluginFile
@@ -77,15 +76,15 @@ class PluginFinderInstall():
                             for file in toMove:
                                 rel = self._paths.relativePath(str(relativePath), str(file))
                                 new = pluginDest / rel
-                                if self._util.copyFile(str(file), str(new)):
-                                    self._log.debug("Moved from " + str(file) + " to " + str(new))
+                                if copyFile(str(file), str(new)):
+                                    self._log.debug(f"Moved from {file} to {new}")
                                 else:
-                                    self._log.warning("Could not move " + str(file) + " to " + str(new))
+                                    self._log.warning(f"Could not move {file} to {new}")
                         else:
-                            self._log.warning("Could not find " + str(relativePath))
+                            self._log.warning(f"Could not find {relativePath}")
                     
                     # Copy over any locale files.
-                    localeDest = Path(self._strings.moLocalePath())
+                    localeDest = Path(self._strings.moLocalePath)
                     localeFiles = []
                     if self.LOCALE in ver:
                         for localeFile in ver[self.LOCALE]:
@@ -102,12 +101,12 @@ class PluginFinderInstall():
                                     rel = self._paths.relativePath(str(relativePath), str(file))
                                     new = localeDest / rel
                                     localeFiles.append(str(rel))
-                                    if self._util.copyFile(str(file), str(new)):
-                                        self._log.debug("Moved from " + str(file) + " to " + str(new))
+                                    if copyFile(str(file), str(new)):
+                                        self._log.debug(f"Moved from {file} to {new}")
                                     else:
-                                        self._log.warning("Could not move " + str(file) + " to " + str(new))
+                                        self._log.warning(f"Could not move {file} to {new}")
                             else:
-                                self._log.warning("Could not find " + str(relativePath))
+                                self._log.warning(f"Could not find {relativePath}")
 
                     installItem = {
                         self.VERSION: ver[self._directory.VERSION],
@@ -120,50 +119,50 @@ class PluginFinderInstall():
                     self.saveInstallData(installData)
 
                     # Remove the temp download
-                    self._util.deleteFolder(str(tempPath))
+                    deleteFolder(str(tempPath))
 
                     # Remove the download
-                    self._util.deleteFile(str(tempName))
+                    deleteFile(str(tempName))
                 else:
-                    self._log.warning("Could not download " + url)
+                    self._log.warning(f"Could not download {url}")
 
     def uninstallPlugin(self, pluginId:str):
         """Uninstalls a currently installed plugin."""
         installData = self.loadInstallData()
         pluginData = installData[pluginId]
-        pluginPath = Path(self._strings.moPluginsPath())
-        localePath = Path(self._strings.moLocalePath())
+        pluginPath = Path(self._strings.moPluginsPath)
+        localePath = Path(self._strings.moLocalePath)
         success = True
         for locale in pluginData[self.LOCALE]:
             path = localePath / locale
             if path.exists():
-                if path.is_dir() and self._util.deleteFolder(str(path)):
-                    self._log.debug("Deleted " + str(path))
-                elif path.is_file() and self._util.deleteFile(str(path)):
-                    self._log.debug("Deleted " + str(path))
+                if path.is_dir() and deleteFolder(str(path)):
+                    self._log.debug(f"Deleted {path}")
+                elif path.is_file() and deleteFile(str(path)):
+                    self._log.debug(f"Deleted {path}")
                 else:
                     success = False
-                    self._log.warning("Could not delete " + str(path))
+                    self._log.warning(f"Could not delete {path}")
         for plugin in pluginData[self.PLUGIN]:
             path = pluginPath / plugin
             if path.exists():
-                if path.is_dir() and self._util.deleteFolder(str(path)):
-                    self._log.debug("Deleted " + str(path))
-                elif path.is_file() and self._util.deleteFile(str(path)):
-                    self._log.debug("Deleted " + str(path))
+                if path.is_dir() and deleteFolder(str(path)):
+                    self._log.debug(f"Deleted {path}")
+                elif path.is_file() and deleteFile(str(path)):
+                    self._log.debug(f"Deleted {path}")
                 else:
                     success = False
-                    self._log.warning("Could not delete " + str(path))
+                    self._log.warning(f"Could not delete {path}")
         for data in pluginData[self.DATA]:
             path = pluginPath / data
             if path.exists():
-                if path.is_dir() and self._util.deleteFolder(str(path)):
-                    self._log.debug("Deleted " + str(path))
-                elif path.is_file() and self._util.deleteFile(str(path)):
-                    self._log.debug("Deleted " + str(path))
+                if path.is_dir() and deleteFolder(str(path)):
+                    self._log.debug(f"Deleted {path}")
+                elif path.is_file() and deleteFile(str(path)):
+                    self._log.debug(f"Deleted {path}")
                 else:
                     success = False
-                    self._log.warning("Could not delete " + str(path))
+                    self._log.warning(f"Could not delete {path}")
         if success:
             installData.pop(pluginId, None)
             self.saveInstallData(installData)

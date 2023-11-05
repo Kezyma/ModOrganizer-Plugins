@@ -21,7 +21,7 @@ class BasePlugin():
     def init(self, organiser = mobase.IOrganizer):
         self._organiser = organiser
         self._baseSettings = BaseSettings(self._pluginName, self._organiser)
-        self._log = CommonLog(self._pluginName, self._organiser, self._baseSettings)
+        self._log = CommonLog(self._pluginName, self._baseSettings)
         return True
 
     def version(self):

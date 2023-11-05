@@ -1,5 +1,6 @@
 import mobase
 from pathlib import Path
+from functools import cached_property
 from ....common.common_strings import CommonStrings
 
 class PluginFinderStrings(CommonStrings):
@@ -8,48 +9,35 @@ class PluginFinderStrings(CommonStrings):
     def __init__(self, plugin:str, organiser:mobase.IOrganizer):
         super().__init__(plugin, organiser)
 
-    _pfInstallDataPath = str()
+    @cached_property
     def pfInstallDataPath(self):
         """gets the current path to install data."""
-        if self._pfInstallDataPath == str():
-            basePath = Path(self.pluginDataPath())
-            filePath = basePath / "InstallData.json"
-            self._pfInstallDataPath = str(filePath)
-        return self._pfInstallDataPath
-    
-    _pfDirectoryPath = str()
+        basePath = Path(self.pluginDataPath)
+        filePath = basePath / "InstallData.json"
+        return str(filePath)
+
+    @cached_property
     def pfDirectoryPath(self):
         """gets the current path to directory data."""
-        if self._pfDirectoryPath == str():
-            basePath = Path(self.pluginDataPath())
-            filePath = basePath / "Directory.json"
-            self._pfDirectoryPath = str(filePath)
-        return self._pfDirectoryPath
-    
-    _pfManifestDirectory = str()
+        basePath = Path(self.pluginDataPath)
+        filePath = basePath / "Directory.json"
+        return str(filePath)
+
+    @cached_property
     def pfManifestFolderPath(self):
         """gets the current path to directory data."""
-        if self._pfManifestDirectory == str():
-            basePath = Path(self.pluginDataPath())
-            filePath = basePath / "Manifest"
-            self._pfManifestDirectory = str(filePath)
-        return self._pfManifestDirectory
-    
-    _pfStagingDirectory = str()
+        basePath = Path(self.pluginDataPath)
+        filePath = basePath / "Manifest"
+        return str(filePath)
+
+    @cached_property
     def pfStagingFolderPath(self):
         """gets the current path to directory data."""
-        if self._pfStagingDirectory == str():
-            basePath = Path(self.pluginDataPath())
-            filePath = basePath / "Staging"
-            self._pfStagingDirectory = str(filePath)
-        return self._pfStagingDirectory
+        basePath = Path(self.pluginDataPath)
+        filePath = basePath / "Staging"
+        return str(filePath)
+
     
-    _7zPath = str()
+    @cached_property
     def pf7zPath(self):
-        if self._7zPath == str():
-            sZ = Path(__file__).parent.parent / "util" / "7za.exe"
-            self._7zPath =  str(sZ)
-        return self._7zPath
-
-
-
+        return str(Path(__file__).parent.parent / "util" / "7za.exe")

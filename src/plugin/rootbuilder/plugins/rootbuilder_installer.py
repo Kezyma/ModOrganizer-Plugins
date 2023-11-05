@@ -71,7 +71,7 @@ class RootBuilderInstaller(RootBuilderPlugin, mobase.IPluginInstallerSimple):
 
     def getDialog(self) -> QtWidgets.QDialog:
         dialog = BaseDialog(self.displayName(), f"v{self.version().displayString()}", self.icon())
-        self._install = RootBuilderInstall(dialog, self._organiser, self._rootBuilder._strings, self._rootBuilder._paths,  self._rootBuilder._util, self._log)
+        self._install = RootBuilderInstall(dialog, self._organiser, self._rootBuilder._strings, self._rootBuilder._paths, self._log)
         dialog.addContent(self._install)
         return dialog
 

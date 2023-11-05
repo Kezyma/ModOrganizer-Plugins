@@ -1,15 +1,13 @@
 import mobase
 from pathlib import Path
 from ..core.rootbuilder_settings import RootBuilderSettings
-from ....common.common_utilities import CommonUtilities
 from ....common.common_log import CommonLog
 
-class RootBuilderLegacy():
+class RootBuilderLegacy:
     """Root Builder legacy module, handles migration from old versions."""
 
-    def __init__(self, organiser:mobase.IOrganizer,settings:RootBuilderSettings,utilities:CommonUtilities,log:CommonLog):
+    def __init__(self, organiser: mobase.IOrganizer, settings: RootBuilderSettings, log: CommonLog) -> None:
         self._organiser = organiser
-        self._util = utilities
         self._log = log
         self._settings = settings
 
@@ -35,7 +33,7 @@ class RootBuilderLegacy():
                 self._organiser.setPluginSetting("RootBuilder", "usvfsfiles", "**")
                 linkExtStr = []
                 for ext in linkExt:
-                    linkExtStr.append("**\\*." + ext)
+                    linkExtStr.append(f"**\\*.{ext}")
                 self._organiser.setPluginSetting("RootBuilder", "linkfiles", ",".join(linkExtStr))
 
             # Update exclusions now that data isn't excluded by default.

@@ -34,7 +34,7 @@ class PluginFinderManager(PluginFinderPlugin, mobase.IPluginTool):
         self._pluginFinderMenu.rebind()
 
     def getDialog(self) -> QtWidgets.QDialog:
-        dialog = BaseDialog(self.displayName(), "v" + self.version().displayString(), self.icon())
+        dialog = BaseDialog(self.displayName(), f"v{self.version().displayString()}", self.icon())
         self._pluginFinderMenu = PluginFinderMenu(dialog, self._organiser, self._pluginFinder)
         dialog.addContent(self._pluginFinderMenu)
         return dialog
