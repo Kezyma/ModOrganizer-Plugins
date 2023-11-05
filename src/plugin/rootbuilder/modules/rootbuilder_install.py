@@ -5,6 +5,7 @@ from .rootbuilder_paths import RootBuilderPaths
 from ....common.common_utilities import loadJson
 from ....common.common_log import CommonLog
 from ....common.common_qt import *
+from ..models.rootbuilder_mapdata import *
 try:
     from ..ui.qt6.rootbuilder_install import Ui_installDialogMenu
 except:
@@ -21,12 +22,6 @@ class RootBuilderInstall(QtWidgets.QWidget):
         self._paths = paths
         self.generateLayout()
 
-    _rootKey = "RootMaps"
-    _dataKey = "DataMaps"
-    _rootExtKey = "RootExt"
-    _dataExtKey = "DataExt"
-    _inalidKey = "InvalidMaps"
-    _ignoreKey = "IgnoreMaps"
     _maps = None
     _tree = None
     _root = None
@@ -36,11 +31,11 @@ class RootBuilderInstall(QtWidgets.QWidget):
         self.widget = Ui_installDialogMenu()
         self.widget.setupUi(self)
 
-    def maps(self) -> dict:
+    def maps(self) -> MapData:
         """Gets the current maps."""
         if self._maps is None:
             mapPath = Path(__file__).parent.parent / "data" / "rootbuilder_maps.json"
-            self._maps = loadJson(str(mapPath.absolute()))
+            self._maps = MapData(loadJson(str(mapPath.absolute())))
         return self._maps
 
     def isRootMod(self, tree: mobase.IFileTree) -> bool:
@@ -53,7 +48,7 @@ class RootBuilderInstall(QtWidgets.QWidget):
             return True
 
         # Has this mod got any of the custom Root mod maps in here? If so, it's a Root mod.
-        customMaps = maps[self._rootKey]
+        customMaps = maps[ROOTMAP]
         for cm in customMaps:
             self._log.debug(f"Searching for {cm}")
             dataItm = tree.find(cm)
@@ -62,7 +57,7 @@ class RootBuilderInstall(QtWidgets.QWidget):
                 return True
             
         # Has this mod been explicitly ignored (eg. FOMOD mods), if so, it's not a Root mod.
-        ignoreMaps = maps[self._ignoreKey]
+        ignoreMaps = maps[INVALID]
         for im in ignoreMaps:
             self._log.debug(f"Searching for {im}")
             dataItm = tree.find(im)
@@ -71,7 +66,7 @@ class RootBuilderInstall(QtWidgets.QWidget):
                 return False
 
         # Does the top level of this mod contain a Data folder item? if so, it's not a Root mod.
-        dataMaps = maps[self._dataKey]
+        dataMaps = maps[DATAMAP]
         for dm in dataMaps:
             self._log.debug(f"Searching for {dm}")
             dataItm = tree.find(dm)
@@ -128,7 +123,7 @@ class RootBuilderInstall(QtWidgets.QWidget):
             self._dataPath = tree.addDirectory(dataFolder)
 
         # If there's a custom map, the data level is there.
-        customMaps = maps[self._rootKey]
+        customMaps = maps[ROOTMAP]
         for cm in customMaps:
             dataItm = tree.find(cm)
             if dataItm:
@@ -150,7 +145,7 @@ class RootBuilderInstall(QtWidgets.QWidget):
     _foundDataExt = False
     def hasDataExt(self, path:str, entry:mobase.FileTreeEntry) -> mobase.IFileTree.WalkReturn:
         """Checks if an entry is data folder item and skips it if so."""
-        for ft in self.maps()[self._dataExtKey]:
+        for ft in self.maps()[DATAEXT]:
             self._log.debug(f"Checking for extension {ft}")
             if entry.name().lower().endswith(f".{ft}"):
                 self._log.debug(f"Found {entry.name()}")
@@ -161,7 +156,7 @@ class RootBuilderInstall(QtWidgets.QWidget):
     _foundRootExt = False
     def hasRootExt(self, path:str, entry:mobase.FileTreeEntry) -> mobase.IFileTree.WalkReturn:
         """Checks if an entry is Root folder item and skips it if so."""
-        for ft in self.maps()[self._rootExtKey]:
+        for ft in self.maps()[ROOTEXT]:
             self._log.debug(f"Checking for extension {ft}")
             if entry.name().lower().endswith(f".{ft}"):
                 self._log.debug(f"Found {entry.name()}")
@@ -172,7 +167,7 @@ class RootBuilderInstall(QtWidgets.QWidget):
     _rootPath = None
     def findRootPath(self, path:str, entry:mobase.FileTreeEntry) -> mobase.IFileTree.WalkReturn:
         """Finds the path to the Root directory in a mod."""
-        for ft in self.maps()[self._rootExtKey]:
+        for ft in self.maps()[ROOTEXT]:
             if entry.name().lower().endswith(f".{ft}"):
                 parentItem = entry.parent()
                 if parentItem is None:
@@ -189,7 +184,7 @@ class RootBuilderInstall(QtWidgets.QWidget):
     _dataPath = None
     def findDataPath(self, path:str, entry:mobase.FileTreeEntry) -> mobase.IFileTree.WalkReturn:
         """Finds the path to the Data directory in a mod."""
-        for ft in self.maps()[self._dataExtKey]:
+        for ft in self.maps()[DATAEXT]:
             if entry.name().lower().endswith(f".{ft}"):
                 parentItem = entry.parent()
                 if parentItem is None:
@@ -201,7 +196,7 @@ class RootBuilderInstall(QtWidgets.QWidget):
     
     def detachInvalid(self, path:str, entry:mobase.FileTreeEntry) -> mobase.IFileTree.WalkReturn:
         """Detaches an entry invalid for root."""
-        for ft in self.maps()[self._ignoreKey]:
+        for ft in self.maps()[IGNORE]:
             if entry.name().lower() == ft.lower():
                 entry.detach()
         return mobase.IFileTree.CONTINUE

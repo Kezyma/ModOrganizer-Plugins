@@ -67,6 +67,7 @@ def deleteFolder(file: str) -> bool:
 def linkFile(source: str, dest: str) -> bool:
     """Links a file to a specific location."""
     try:
+        os.makedirs(os.path.dirname(dest), exist_ok=True)
         Path(source).link_to(dest)
         return True
     except:

@@ -3,6 +3,7 @@ from ..core.pluginfinder_plugin import PluginFinderPlugin
 from ..modules.pluginfinder_menu import PluginFinderMenu
 from ....base.base_dialog import BaseDialog
 from ....common.common_qt import *
+from ....common.common_icons import *
 
 class PluginFinderManager(PluginFinderPlugin, mobase.IPluginTool):
     def __init__(self):
@@ -18,7 +19,7 @@ class PluginFinderManager(PluginFinderPlugin, mobase.IPluginTool):
         return QCoreApplication.translate(self._pluginName, trstr)
 
     def icon(self):
-        return self._icons.linkAltIcon()
+        return LINK_ALT_ICON
 
     def name(self):
         return self.baseName()

@@ -3,9 +3,10 @@ from pathlib import Path
 from .rootbuilder_strings import RootBuilderStrings
 from .rootbuilder_paths import RootBuilderPaths
 from ..core.rootbuilder_settings import RootBuilderSettings
-from ....common.common_utilities import loadJson, saveJson, deleteFile, hashFile
+from ....common.common_utilities import *
+from ..models.rootbuilder_cacheitem import *
 from ....common.common_log import CommonLog
-from typing import List
+from typing import List, Dict
 
 class RootBuilderCache:
     """Root Builder cache module, handles the hashing and recording of game files."""
@@ -17,18 +18,13 @@ class RootBuilderCache:
         self._settings = settings
         self._log = log
 
-    _relativeKey = "Relative"
-    _hashKey = "Hash"
-    _modifiedKey = "Modified"
-    _sizeKey = "Size"
-
     def cacheFileExists(self) -> bool:
         """Returns true if there is a current build data file."""
         filePath = self._strings.rbCachePath
         return Path(filePath).exists()
 
     _cache = None
-    def loadCacheFile(self):
+    def loadCacheFile(self) -> Dict[str, CacheItem]:
         """Loads and returns the current cache file, or an empty object if none exists."""
         if self._cache is not None:
             return self._cache
@@ -57,7 +53,7 @@ class RootBuilderCache:
             cacheFiles = self.loadCacheFile()
             gameFiles = []
             for cacheFile in cacheFiles:
-                relativePath = cacheFiles[cacheFile][self._relativeKey]
+                relativePath = cacheFiles[cacheFile][RELATIVE]
                 finalPath = Path(gamePath, relativePath)
                 gameFiles.append(str(finalPath.absolute()))
             return gameFiles
@@ -65,7 +61,7 @@ class RootBuilderCache:
             return self._paths.validGameRootFiles()
     
     _currentCache = {}
-    def updateCache(self) -> dict:
+    def updateCache(self) -> Dict[str, CacheItem]:
         """Loads the current cache file and then updates it with any changes."""
         self._currentCache = self.loadCacheFile()
         cacheFiles = self.cachedValidRootGameFiles()
@@ -83,17 +79,17 @@ class RootBuilderCache:
     def _updateCache(self, filePath:str, useHash:bool, gamePath:str):
         relativePath = self._paths.relativePath(gamePath, filePath)
         relativeLower = relativePath.lower()
-        if (useHash and (relativeLower not in self._currentCache or self._currentCache[relativeLower][self._hashKey] == "")) and Path(filePath).exists():
-            self._currentCache[relativeLower] = {
-                self._relativeKey: relativePath,
-                self._hashKey: hashFile(filePath),
-                self._modifiedKey: os.path.getmtime(filePath),
-                self._sizeKey: os.path.getsize(filePath)
-            }
+        if (useHash and (relativeLower not in self._currentCache or self._currentCache[relativeLower][HASH] == "")) and Path(filePath).exists():
+            self._currentCache[relativeLower] = CacheItem({
+                RELATIVE: relativePath,
+                HASH: hashFile(filePath),
+                MODIFIED: os.path.getmtime(filePath),
+                SIZE: os.path.getsize(filePath)
+            })
         elif (not useHash and relativeLower not in self._currentCache):
-            self._currentCache[relativeLower] = {
-                self._relativeKey: relativePath,
-                self._hashKey: "",
-                self._modifiedKey: os.path.getmtime(filePath),
-                self._sizeKey: os.path.getsize(filePath)
-            }
+            self._currentCache[relativeLower] = CacheItem({
+                RELATIVE: relativePath,
+                HASH: "",
+                MODIFIED: os.path.getmtime(filePath),
+                SIZE: os.path.getsize(filePath)
+            })

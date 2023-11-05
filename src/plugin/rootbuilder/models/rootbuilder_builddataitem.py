@@ -1,18 +1,10 @@
-from ....base.base_object import BaseObject
+from typing import TypedDict
 
-class BuildDataItem(BaseObject):
-        
-    def __init__(self, dict:dict):
-        super().__init__(dict)
+SOURCE = "Source"
+RELATIVE = "Relative"
+HASH = "Hash"
 
-    _SOURCE = "Source"
-    def source(self, set=None) -> str:
-        return self.prop(self._SOURCE, set)
-    
-    _RELATIVE = "Relative"
-    def relative(self, set=None) -> str:
-        return self.prop(self._RELATIVE, set)
-    
-    _HASH = "Hash"
-    def hash(self, set=None) -> str:
-        return self.prop(self._HASH, set)
+class BuilDataItem(TypedDict):
+    Source: str
+    Relative: str
+    Hash: str

@@ -10,6 +10,8 @@ from ..modules.rootbuilder_backup import RootBuilderBackup
 from ..modules.rootbuilder_builder import RootBuilderBuilder
 from ..modules.rootbuilder_export import RootBuilderExport
 from ..modules.rootbuilder_legacy import RootBuilderLegacy
+from ..models.rootbuilder_builddata import *
+from ..models.rootbuilder_builddataitem import *
 
 class RootBuilder:
     """Core Root Builder class that handles all plugin functionality."""
@@ -47,12 +49,12 @@ class RootBuilder:
             # Calculate any possible overwrites for if we need to update our backup or cache.
             gamePath = Path(self._strings.gamePath)
             possibleOverwrites = []
-            for fileKey in newBuildData[self._data._copyKey]:
-                relativePath = newBuildData[self._data._copyKey][fileKey][self._data._relativeKey]
+            for fileKey in newBuildData[COPY]:
+                relativePath = newBuildData[COPY][fileKey][RELATIVE]
                 destPath = gamePath / relativePath
                 possibleOverwrites.append(str(destPath))
-            for fileKey in newBuildData[self._data._linkKey]:
-                relativePath = newBuildData[self._data._linkKey][fileKey][self._data._relativeKey]
+            for fileKey in newBuildData[LINK]:
+                relativePath = newBuildData[LINK][fileKey][RELATIVE]
                 destPath = gamePath / relativePath
                 possibleOverwrites.append(str(destPath))
             self._log.info("Backup disabled, only storing potential overwrites.")
@@ -60,9 +62,9 @@ class RootBuilder:
 
         # Deploy any files that can go via copy or links.
         self._log.info("Deploying files for Copy mode.")
-        self._builder.deployCopy(newBuildData[self._data._copyKey])
+        self._builder.deployCopy(newBuildData[COPY])
         self._log.info("Deploying files for Link mode.")
-        self._builder.deployLinks(newBuildData[self._data._linkKey])
+        self._builder.deployLinks(newBuildData[LINK])
 
         # Update any existing build data or save the new one.
         if hasExistingBuild:
@@ -121,12 +123,12 @@ class RootBuilder:
             self._log.info("Build exists, generating usvfs mappings.")
             gamePath = Path(self._strings.gamePath)
             buildData = self._data.loadDataFile()
-            usvfsFiles = buildData[self._data._usvfsKey]
+            usvfsFiles = buildData[USVFS]
             for file in usvfsFiles:
                 fileData = usvfsFiles[file]
                 mapping = mobase.Mapping()
-                mapping.source = fileData[self._data._sourceKey]
-                mapping.destination = str(gamePath / fileData[self._data._relativeKey])
+                mapping.source = fileData[SOURCE]
+                mapping.destination = str(gamePath / fileData[RELATIVE])
                 mapping.isDirectory = False
                 mapping.createTarget = False
                 mappings.append(mapping)

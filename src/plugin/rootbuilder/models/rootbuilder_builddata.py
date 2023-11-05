@@ -1,18 +1,11 @@
-from ....base.base_object import BaseObject
+from typing import TypedDict, Dict
+from .rootbuilder_builddataitem import BuilDataItem
 
-class BuildData(BaseObject):
-        
-    def __init__(self, dict:dict):
-        super().__init__(dict)
+COPY = "Copy"
+LINK = "Link"
+USVFS = "USVFS"
 
-    _COPY = "COPY"
-    def copy(self, set=None) -> dict:
-        return self.prop(self._COPY, set)
-    
-    _LINK = "LINK"
-    def link(self, set=None) -> dict:
-        return self.prop(self._LINK, set)
-    
-    _USVFS = "USVFS"
-    def usvfs(self, set=None) -> dict:
-        return self.prop(self._USVFS, set)
+class BuilData(TypedDict):
+    Copy: Dict[str, BuilDataItem]
+    Link: Dict[str, BuilDataItem]
+    USVFS: Dict[str, BuilDataItem]

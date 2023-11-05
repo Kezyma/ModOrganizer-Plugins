@@ -1,4 +1,4 @@
-from ....common import common_icons
+from ....common.common_icons import *
 from ....common.common_qt import *
 from ....common.common_utilities import deleteFile
 from ..core.profilesync import ProfileSync
@@ -57,15 +57,15 @@ class ProfileSyncMenu(QtWidgets.QWidget):
         self.stateTabWidget.stateProfileList.itemChanged.connect(self.saveStateLists)
         self.stateTabWidget.stateCategoryList.itemChanged.connect(self.saveStateLists)
 
-        self.helpTabWidget.discordButton.setIcon(common_icons.DISCORD_ICON)
+        self.helpTabWidget.discordButton.setIcon(DISCORD_ICON)
         self.helpTabWidget.discordButton.clicked.connect(self.discord_clicked)
-        self.helpTabWidget.docsButton.setIcon(common_icons.DOCS_ICON)
+        self.helpTabWidget.docsButton.setIcon(DOCS_ICON)
         self.helpTabWidget.docsButton.clicked.connect(self.docs_clicked)
-        self.helpTabWidget.githubButton.setIcon(common_icons.GITHUB_ICON)
+        self.helpTabWidget.githubButton.setIcon(GITHUB_ICON)
         self.helpTabWidget.githubButton.clicked.connect(self.github_clicked)
-        self.helpTabWidget.nexusButton.setIcon(common_icons.NEXUS_ICON)
+        self.helpTabWidget.nexusButton.setIcon(NEXUS_ICON)
         self.helpTabWidget.nexusButton.clicked.connect(self.nexus_clicked)
-        self.helpTabWidget.patreonButton.setIcon(common_icons.PATREON_ICON)
+        self.helpTabWidget.patreonButton.setIcon(PATREON_ICON)
         self.helpTabWidget.patreonButton.clicked.connect(self.patreon_clicked)
 
         helpPath = Path(__file__).parent.parent / "data" / "profilesync_help.html"
@@ -74,8 +74,8 @@ class ProfileSyncMenu(QtWidgets.QWidget):
 
         self.updateTabWidget.updateFoundWidget.setVisible(False)
         self.updateTabWidget.noUpdateWidget.setVisible(False)
-        self.updateTabWidget.checkUpdateButton.setIcon(self._icons.refreshIcon())
-        self.updateTabWidget.updateFoundButton.setIcon(self._icons.downloadIcon())
+        self.updateTabWidget.checkUpdateButton.setIcon(REFRESH_ICON)
+        self.updateTabWidget.updateFoundButton.setIcon(DOWNLOAD_ICON)
         self.updateTabWidget.updateFoundButton.clicked.connect(self.updateFound_clicked)
         self.updateTabWidget.checkUpdateButton.clicked.connect(self.checkUpdate_clicked)
 
