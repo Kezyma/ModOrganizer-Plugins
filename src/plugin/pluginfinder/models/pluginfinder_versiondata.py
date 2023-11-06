@@ -1,5 +1,4 @@
-from typing import TypedDict, Dict, List
-from typing_extensions import TypedDict, NotRequired
+from typing import TypedDict, Dict, List, Optional
 from typing import *
 
 VERSION = "Version"
@@ -17,13 +16,13 @@ DATAPATH = "DataPath"
 class VersionData(TypedDict):
     Version: str
     Released: str
-    MinSupport: NotRequired[str]
-    MaxSupport: NotRequired[str]
-    MinWorking: NotRequired[str]
-    MaxWorking: NotRequired[str]
-    ReleaseNotes: NotRequired[List[str]]
+    MinSupport: Optional[str]
+    MaxSupport: Optional[str]
+    MinWorking: Optional[str]
+    MaxWorking: Optional[str]
+    ReleaseNotes: Optional[List[str]]
     DownloadUrl: str
     PluginPath: List[str]
-    LocalePath: NotRequired[List[str]]
-    DataPath: NotRequired[List[str]]
+    LocalePath: Optional[List[str]]
+    DataPath: Optional[List[str]]
     

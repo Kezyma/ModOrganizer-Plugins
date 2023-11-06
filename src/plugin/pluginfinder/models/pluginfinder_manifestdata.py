@@ -1,5 +1,4 @@
-from typing import TypedDict, Dict, List
-from typing_extensions import TypedDict, NotRequired
+from typing import TypedDict, Dict, List, Optional
 from .pluginfinder_versiondata import VersionData
 
 NAME = "Name"
@@ -14,9 +13,9 @@ class ManifestData(TypedDict):
     Name: str
     Author: str
     Description: str
-    NexusUrl: NotRequired[str]
-    GithubUrl: NotRequired[str]
-    DocsUrl: NotRequired[str]
+    NexusUrl: Optional[str]
+    GithubUrl: Optional[str]
+    DocsUrl: Optional[str]
     Versions: List[VersionData]
 
 

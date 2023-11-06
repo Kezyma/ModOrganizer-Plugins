@@ -76,7 +76,9 @@ class RootBuilderInstall(QtWidgets.QWidget):
             
         # Has this mod got any sepcifically Root files in here? If so, it's a Root mod.
         self._foundRootExt = False
-        tree.walk(self.hasRootExt)
+        self._foundDataExt = False
+        tree.walk(self.findDataPath)
+        tree.walk(self.findRootPath)
         if self._foundRootExt:
             return True
         
@@ -142,55 +144,49 @@ class RootBuilderInstall(QtWidgets.QWidget):
 
         return self._dataPath
 
-    _foundDataExt = False
-    def hasDataExt(self, path:str, entry:mobase.FileTreeEntry) -> mobase.IFileTree.WalkReturn:
-        """Checks if an entry is data folder item and skips it if so."""
-        for ft in self.maps()[DATAEXT]:
-            self._log.debug(f"Checking for extension {ft}")
-            if entry.name().lower().endswith(f".{ft}"):
-                self._log.debug(f"Found {entry.name()}")
-                self._foundDataExt = True
-                return mobase.IFileTree.STOP
-        return mobase.IFileTree.CONTINUE
-    
-    _foundRootExt = False
-    def hasRootExt(self, path:str, entry:mobase.FileTreeEntry) -> mobase.IFileTree.WalkReturn:
-        """Checks if an entry is Root folder item and skips it if so."""
-        for ft in self.maps()[ROOTEXT]:
-            self._log.debug(f"Checking for extension {ft}")
-            if entry.name().lower().endswith(f".{ft}"):
-                self._log.debug(f"Found {entry.name()}")
-                self._foundRootExt = True
-                return mobase.IFileTree.STOP
-        return mobase.IFileTree.CONTINUE
-
+    ## TODO: This stuff needs to make sure it isn't looking for a root extension in an ignored sort of folder.
     _rootPath = None
+    _foundRootExt = False
     def findRootPath(self, path:str, entry:mobase.FileTreeEntry) -> mobase.IFileTree.WalkReturn:
         """Finds the path to the Root directory in a mod."""
         for ft in self.maps()[ROOTEXT]:
             if entry.name().lower().endswith(f".{ft}"):
-                parentItem = entry.parent()
-                if parentItem is None:
-                    self._rootPath = self._tree
-                elif self._rootPath is None:
-                    self._rootPath = parentItem
-                else:
-                    isHigher = self._rootPath.pathTo(parentItem) == ""
-                    if isHigher:
+                if self._foundDataExt == False or entry.pathFrom(self._dataPath) == "":
+                    self._foundRootExt = True
+                    parentItem = entry.parent()
+                    if parentItem is None:
+                        self._rootPath = self._tree
+                    elif self._rootPath is None:
                         self._rootPath = parentItem
-                
+                    else:
+                        isHigher = self._rootPath.pathTo(parentItem) == ""
+                        if isHigher:
+                            self._rootPath = parentItem        
         return mobase.IFileTree.CONTINUE
 
+    _foundDataExt = False
     _dataPath = None
     def findDataPath(self, path:str, entry:mobase.FileTreeEntry) -> mobase.IFileTree.WalkReturn:
         """Finds the path to the Data directory in a mod."""
         for ft in self.maps()[DATAEXT]:
             if entry.name().lower().endswith(f".{ft}"):
+                self._foundDataExt = True
                 parentItem = entry.parent()
                 if parentItem is None:
                     self._dataPath = self._tree
                 else:
                     self._dataPath = parentItem
+                self._log.debug(f"Found data path {self._dataPath.pathFrom(self._tree)}")
+                return mobase.IFileTree.STOP
+        for dn in self.maps()[DATAMAP]:
+            if entry.name().lower() == dn.lower():
+                self._foundDataExt = True
+                parentItem = entry.parent()
+                if parentItem is None:
+                    self._dataPath = self._tree
+                else:
+                    self._dataPath = parentItem
+                self._log.debug(f"Found data path {self._dataPath.pathFrom(self._tree)}")
                 return mobase.IFileTree.STOP
         return mobase.IFileTree.CONTINUE
     

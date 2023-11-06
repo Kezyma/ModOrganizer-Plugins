@@ -37,7 +37,13 @@ class PluginFinderStrings(CommonStrings):
         filePath = basePath / "Staging"
         return str(filePath)
 
-    
+    @cached_property
+    def pfCommandQueuePath(self):
+        """Gets the current path to the command queue."""
+        basePath = Path(self.pluginDataPath)
+        filePath = basePath / "CommandQueue.bat"
+        return str(filePath)
+
     @cached_property
     def pf7zPath(self):
         return str(Path(__file__).parent.parent / "util" / "7za.exe")

@@ -32,12 +32,13 @@ class ProfileSyncLegacy:
         groupFilePath = pDataPath / instance / pFileName
         if groupFilePath.exists():
             oldData = loadJson(str(groupFilePath))
-            newData = self._groups.loadSyncGroups()
-            for k in oldData:
-                if k not in newData:
-                    newData[k] = GroupData({
-                        PROFILES: oldData[k][PROFILES],
-                        STATEGROUPS: {}
-                    })
-            self._groups.saveSyncGroups(newData)
+            if oldData is not None:
+                newData = self._groups.loadSyncGroups()
+                for k in oldData:
+                    if k not in newData:
+                        newData[k] = GroupData({
+                            PROFILES: oldData[k][PROFILES],
+                            STATEGROUPS: {}
+                        })
+                self._groups.saveSyncGroups(newData)
             deleteFile(str(groupFilePath))

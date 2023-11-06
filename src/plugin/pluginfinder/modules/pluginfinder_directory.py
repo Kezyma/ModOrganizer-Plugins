@@ -63,9 +63,11 @@ class PluginFinderDirectory:
         filePath = manifestPath / fileName
         if downloadFile(url, filePath):
             self._log.debug(f"Downloaded manifest from {url}")
-            self._manifests[id] = ManifestData(loadJson(str(filePath)))
         else:
             self._log.warning(f"Could not download manifest from {url}")
+        if filePath.exists():
+            self._manifests[id] = ManifestData(loadJson(str(filePath)))
+
 
     def getPluginManifest(self, pluginId:str) -> ManifestData:
         manifests = self.loadManifests()
