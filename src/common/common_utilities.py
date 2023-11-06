@@ -1,6 +1,7 @@
 import json, shutil, os, stat, hashlib, urllib.request
 from pathlib import Path
 from typing import Any
+import encodings.idna
 
 def copyFileOrFolder(source: str, dest: str) -> bool:
     """Copies a file or folder from source to destination."""

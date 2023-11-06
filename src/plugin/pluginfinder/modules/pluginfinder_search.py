@@ -18,7 +18,7 @@ class PluginFinderSearch:
         self._directory = directory
         self._install = install
 
-    def searchDirectory(self, searchTerms:str, installed:bool=None, update:bool=None, supported:bool=None, working:bool=None, sort:str=None, direction:str=None):
+    def searchDirectory(self, searchTerms:str, installed:bool=None, update:bool=None, supported:bool=None, working:bool=None, sort:str=None, direction:str=None) -> Dict[str, ManifestData]:
         manifests = self._directory.loadManifests()
         reverseOrder = direction.lower() == "desc"
         if sort.lower() == "updated":

@@ -6,6 +6,7 @@ from pathlib import Path
 from ..models.pluginfinder_directorydata import *
 from ..models.pluginfinder_manifestdata import *
 from ..models.pluginfinder_versiondata import *
+import encodings.idna
 
 class PluginFinderDirectory:
     """Plugin Finder directory module, handles update and loading of the directory file."""
@@ -86,4 +87,13 @@ class PluginFinderDirectory:
             elif pver > latestVersion:
                 latestVersion = pver
         return latestVersion
+    
+    def getLatestVersionData(self, pluginId) -> VersionData:
+        latestVer = self.getLatestVersion(pluginId)
+        manifest = self.getPluginManifest(pluginId)
+        versions = manifest[VERSIONS]
+        for ver in versions:
+            verInfo = mobase.VersionInfo(ver[VERSION])
+            if verInfo == latestVer:
+                return ver
 

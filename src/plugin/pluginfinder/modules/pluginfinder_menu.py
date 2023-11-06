@@ -60,6 +60,10 @@ class PluginFinderMenu(QtWidgets.QWidget):
         self.finderTabWidget.directionCombo.currentTextChanged.connect(self.rebind)
         self.finderTabWidget.sortCombo.currentTextChanged.connect(self.rebind)
 
+        helpPath = Path(__file__).parent.parent / "data" / "pluginfinder_help.html"
+        helpUrl = QtCore.QUrl.fromLocalFile(str(helpPath.absolute()))
+        self.helpTabWidget.helpText.setSource(helpUrl)
+
     def rebind(self):
         self.bindPluginList()
 

@@ -132,11 +132,15 @@ class PluginFinderInstall:
                             else:
                                 self._log.warning(f"Could not find {relativePath}")
 
+                    dataFiles = []
+                    if DATAPATH in ver:
+                        dataFiles = ver[DATAPATH]
+
                     installItem = InstallData({
                         VERSION: ver[VERSION],
                         LOCALEPATH: localeFiles,
                         PLUGINPATH: pluginFiles,
-                        DATAPATH: ver[DATAPATH]
+                        DATAPATH: dataFiles
                     })
                     installData = self.loadInstallData()
                     installData[pluginId] = installItem
@@ -250,13 +254,18 @@ class PluginFinderInstall:
                                     pluginVersion = mobase.VersionInfo(0,0,0,1, mobase.ReleaseType.PRE_ALPHA)
                                 pluginPaths = []
                                 localePaths = []
+                                dataPaths = []
                                 for path in version[PLUGINPATH]:
                                     pluginPaths.append(os.path.basename(path))
-                                for path in version[LOCALEPATH]:
-                                    localePaths.append(os.path.basename(path))
+                                if LOCALEPATH in version:
+                                    for path in version[LOCALEPATH]:
+                                        localePaths.append(os.path.basename(path))
+                                if DATAPATH in version:
+                                    for path in version[DATAPATH]:
+                                        dataPaths.append(path)
                                 newData = InstallData({
                                     VERSION: pluginVersion.canonicalString(),
-                                    DATAPATH: version[DATAPATH],
+                                    DATAPATH: dataPaths,
                                     LOCALEPATH: localePaths,
                                     PLUGINPATH: pluginPaths
                                 })
@@ -273,18 +282,18 @@ class PluginFinderInstall:
         removed = []
         for key in installed.keys():
             confirmed = False
-            manifest = manifests[key]
-            latest = self._directory.getLatestVersion(key)
-            pluginPath = Path(self._strings.moPluginsPath)
-            for version in manifest[VERSIONS]:
-                if mobase.VersionInfo(version[VERSION]) == latest:
-                    pluginPaths = version[PLUGINPATH]
-                    for path in pluginPaths:
-                        fullPath = pluginPath / path
-                        if fullPath.exists():
-                            confirmed = True
-            if not confirmed:
-                removed.append(key)
+            if key in manifests:
+                manifest = manifests[key]
+                pluginPath = Path(self._strings.moPluginsPath)
+                for version in manifest[VERSIONS]:
+                    if not confirmed:
+                        pluginPaths = version[PLUGINPATH]
+                        for path in pluginPaths:
+                            fullPath = pluginPath / path
+                            if fullPath.exists():
+                                confirmed = True
+                if not confirmed:
+                    removed.append(key)
         for r in removed:
             installed.pop(r, None)
         self.saveInstallData(installed)
