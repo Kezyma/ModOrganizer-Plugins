@@ -57,6 +57,8 @@ class PluginFinderMenu(QtWidgets.QWidget):
         self.finderTabWidget.installedCheck.stateChanged.connect(self.rebind)
         self.finderTabWidget.supportedCheck.stateChanged.connect(self.rebind)
         self.finderTabWidget.workingCheck.stateChanged.connect(self.rebind)
+        self.finderTabWidget.directionCombo.currentTextChanged.connect(self.rebind)
+        self.finderTabWidget.sortCombo.currentTextChanged.connect(self.rebind)
 
     def rebind(self):
         self.bindPluginList()
@@ -69,7 +71,9 @@ class PluginFinderMenu(QtWidgets.QWidget):
                                                                      self.finderTabWidget.installedCheck.isChecked(), 
                                                                      self.finderTabWidget.updateCheck.isChecked(), 
                                                                      self.finderTabWidget.supportedCheck.isChecked(),
-                                                                     self.finderTabWidget.workingCheck.isChecked()) #self._pluginFinder._directory.loadManifests()
+                                                                     self.finderTabWidget.workingCheck.isChecked(),
+                                                                     self.finderTabWidget.sortCombo.currentText(),
+                                                                     self.finderTabWidget.directionCombo.currentText()) #self._pluginFinder._directory.loadManifests()
         self._installData = self._pluginFinder._install.loadInstallData()
         self._pluginListItems = {}
 
@@ -82,6 +86,7 @@ class PluginFinderMenu(QtWidgets.QWidget):
     def getPluginWidget(self, pluginId:str) -> QtWidgets.QWidget:
         manifest = self._manifests[pluginId]
         latestVersion = self._pluginFinder._directory.getLatestVersion(pluginId)
+        installed = self._pluginFinder._search.pluginInstalled(pluginId)
         
         listWidget = QtWidgets.QWidget()
         listItem = Ui_pluginItemWidget()
@@ -89,6 +94,9 @@ class PluginFinderMenu(QtWidgets.QWidget):
         pluginId = str(pluginId)
         listItem.pluginNameText.setText(manifest[NAME])
         listItem.installedVersionLabel.setText("")
+        if installed:
+            instVer = mobase.VersionInfo(self._installData[pluginId][VERSION])
+            listItem.installedVersionLabel.setText(f"Installed: {instVer.displayString()}")
         listItem.currentVersionLabel.setText(f"Latest: {latestVersion.displayString()}")
         listItem.authorLabel.setText(f"by {manifest[AUTHOR]}")
         listItem.descriptionText.setText(manifest[DESCRIPTION])
@@ -116,7 +124,6 @@ class PluginFinderMenu(QtWidgets.QWidget):
             listItem.docsButton.setEnabled(False)
 
         # Install and Uninstall buttons.
-        installed = self._pluginFinder._search.pluginInstalled(pluginId)
         needsUpdate = self._pluginFinder._search.pluginNeedsUpdate(pluginId)
         supported = self._pluginFinder._search.pluginIsSupported(pluginId)
         working = self._pluginFinder._search.pluginIsWorking(pluginId)

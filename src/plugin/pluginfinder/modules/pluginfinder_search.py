@@ -18,9 +18,15 @@ class PluginFinderSearch:
         self._directory = directory
         self._install = install
 
-    def searchDirectory(self, searchTerms:str, installed=None, update=None, supported=None, working=None):
+    def searchDirectory(self, searchTerms:str, installed:bool=None, update:bool=None, supported:bool=None, working:bool=None, sort:str=None, direction:str=None):
         manifests = self._directory.loadManifests()
-        order = sorted(list(manifests.keys()), key=self.pluginDate, reverse=True)
+        reverseOrder = direction.lower() == "desc"
+        if sort.lower() == "updated":
+            order = sorted(list(manifests.keys()), key=self.pluginDate, reverse=reverseOrder)
+        elif sort.lower() == "name":
+            order = sorted(list(manifests.keys()), key=self.pluginName, reverse=reverseOrder)
+        elif sort.lower() == "author":
+            order = sorted(list(manifests.keys()), key=self.pluginAuthor, reverse=reverseOrder)
         res = {}
         for id in order:
             manifest = manifests[id]
@@ -105,6 +111,14 @@ class PluginFinderSearch:
             if latestVersion == mobase.VersionInfo(ver[VERSION]):
                 dateParts = ver[RELEASED].split("-")
                 return datetime.date(int(dateParts[0]), int(dateParts[1]), int(dateParts[2]))
+            
+    def pluginName(self, pluginId:str):
+        pluginData = self._directory.getPluginManifest(pluginId)
+        return pluginData[NAME]
+    
+    def pluginAuthor(self, pluginId:str):
+        pluginData = self._directory.getPluginManifest(pluginId)
+        return pluginData[AUTHOR]
 
         
 

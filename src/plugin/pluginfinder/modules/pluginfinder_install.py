@@ -316,7 +316,7 @@ class PluginFinderInstall:
                 if glen > 3:
                     verStr = f"{verStr}.{groups[3]}"
                 if glen > 4:
-                    verStr = f"{verStr}{groups[2]}"
+                    verStr = f"{verStr}{groups[4]}"
                 version = mobase.VersionInfo(verStr)
         #except:
         #    self._log.debug(f"Could not read file {filePath}")
