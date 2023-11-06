@@ -60,104 +60,15 @@ class PluginFinderInstall:
     def installPlugin(self, pluginId:str):
         """Installs a plugin from the directory."""
         manifest = self._directory.getPluginManifest(pluginId)
-        latestVer = self._directory.getLatestVersion(pluginId)
-        allVer = manifest[VERSIONS]
-        success = True
-        for ver in allVer:
-            versionItm = mobase.VersionInfo(ver[VERSION])
-            # Only install the latest version.
-            if versionItm == latestVer:
-                url = ver[DOWNLOADURL]
-                tempName = Path(self._strings.pfStagingFolderPath) / os.path.basename(url)
-                # Download the plugin from its source.
-                if downloadFile(url, str(tempName)):
-                    self._log.debug(f"Downloaded {url}")
-                    sZ = self._strings.pf7zPath
-                    tempPath = Path(self._strings.pfStagingFolderPath) / pluginId
-                    unzipCommand = f'"{sZ}" x "{str(tempName)}" -o"{str(tempPath)}" -y'
-                    self._log.debug(f"Unzipping {tempName}")
-                    
-                    # Unzip the plugin download.
-                    subprocess.call(unzipCommand, shell=True, stdout=open(os.devnull, 'wb'))
-
-                    # Copy over any plugin files.
-                    pluginDest = Path(self._strings.moPluginsPath)
-                    pluginFiles = []
-                    for pluginFile in ver[PLUGINPATH]:
-                        relativePath = tempPath / pluginFile
-                        if relativePath.exists():
-                            toMove = []
-                            if relativePath.is_dir():
-                                toMove.extend(self._paths.files(str(relativePath)))
-                            else:
-                                toMove.append(str(relativePath))
-                            pluginFiles.append(os.path.basename(str(relativePath)))
-                            relativePath = Path(relativePath).parent
-                            for file in toMove:
-                                rel = self._paths.relativePath(str(relativePath), str(file))
-                                new = pluginDest / rel
-                                if copyFile(str(file), str(new)):
-                                    self._log.debug(f"Moved from {file} to {new}")
-                                else:
-                                    success = False
-                                    self._commandQueue.append(self.installBat(str(file), str(new)))
-                                    self._log.warning(f"Could not move {file} to {new}")
-                        else:
-                            self._log.warning(f"Could not find {relativePath}")
-                    
-                    # Copy over any locale files.
-                    localeDest = Path(self._strings.moLocalePath)
-                    localeFiles = []
-                    if LOCALEPATH in ver:
-                        for localeFile in ver[LOCALEPATH]:
-                            relativePath = tempPath / localeFile
-                            if relativePath.exists():
-                                toMove = []
-                                if relativePath.is_dir():
-                                    toMove.extend(self._paths.files(str(relativePath)))
-                                else:
-                                    toMove.append(str(relativePath))
-                                localeFiles.append(os.path.basename(str(relativePath)))
-                                relativePath = Path(relativePath).parent
-                                for file in toMove:
-                                    rel = self._paths.relativePath(str(relativePath), str(file))
-                                    new = localeDest / rel
-                                    localeFiles.append(str(rel))
-                                    if copyFile(str(file), str(new)):
-                                        self._log.debug(f"Moved from {file} to {new}")
-                                    else:
-                                        success = False
-                                        self._commandQueue.append(self.installBat(str(file), str(new)))
-                                        self._log.warning(f"Could not move {file} to {new}")
-                            else:
-                                self._log.warning(f"Could not find {relativePath}")
-
-                    dataFiles = []
-                    if DATAPATH in ver:
-                        dataFiles = ver[DATAPATH]
-
-                    installItem = InstallData({
-                        VERSION: ver[VERSION],
-                        LOCALEPATH: localeFiles,
-                        PLUGINPATH: pluginFiles,
-                        DATAPATH: dataFiles
-                    })
-                    installData = self.loadInstallData()
-                    installData[pluginId] = installItem
-                    self.saveInstallData(installData)
-
-                    # Remove the temp download
-                    if success:
-                        deleteFolder(str(tempPath))
-                    else:
-                        self._commandQueue.append(self.uninstallBat(str(tempPath)))
-
-                    # Remove the download
-                    deleteFile(str(tempName))
-
-                    self._needRestart = True
-                else:
-                    self._log.warning(f"Could not download {url}")
+        latestVer = self._directory.getLatestVersionData(pluginId)
+        url = latestVer[DOWNLOADURL]
+        tempName = Path(self._strings.pfStagingFolderPath) / os.path.basename(url)
+        # Download the plugin from its source.
+        if downloadFile(url, str(tempName)):
+            self._log.debug(f"Downloaded {url}")
+            self._installFromFile(str(tempName), pluginId)
+        else:
+            self._log.warning(f"Could not download {url}")
 
     def uninstallPlugin(self, pluginId:str):
         """Uninstalls a currently installed plugin."""
@@ -331,13 +242,134 @@ class PluginFinderInstall:
         #    self._log.debug(f"Could not read file {filePath}")
         return version
 
-    def installFromFile(self, filePath:str):
-        """Installs a plugin from a file."""
+    def installFromFile(self, filePath:str, pluginId:str=None):
+        success = True
+        if pluginId is None:
+            pluginId = "UnknownPlugin"
+        self._log.info(f"Installing {pluginId}")
+        # Unzip the plugin download.
+        sZ = self._strings.pf7zPath
+        tempPath = Path(self._strings.pfStagingFolderPath) / pluginId
+        unzipCommand = f'"{sZ}" x "{str(filePath)}" -o"{str(tempPath)}" -y'
+        self._log.debug(f"Unzipping {filePath}")
+        subprocess.call(unzipCommand, shell=True, stdout=open(os.devnull, 'wb'))
 
+        if pluginId == "UnknownPlugin":
+            if self.dirIsPlugin(str(tempPath)):
+                pluginId = self._manualPluginId
+
+        # Copy over any plugin files.
+        ver = self._directory.getLatestVersionData(pluginId)
+        pluginDest = Path(self._strings.moPluginsPath)
+        pluginFiles = []
+        for pluginFile in ver[PLUGINPATH]:
+            relativePath = tempPath / pluginFile
+            if relativePath.exists():
+                toMove = []
+                if relativePath.is_dir():
+                    toMove.extend(self._paths.files(str(relativePath)))
+                else:
+                    toMove.append(str(relativePath))
+                pluginFiles.append(os.path.basename(str(relativePath)))
+                relativePath = Path(relativePath).parent
+                for file in toMove:
+                    rel = self._paths.relativePath(str(relativePath), str(file))
+                    new = pluginDest / rel
+                    if copyFile(str(file), str(new)):
+                        self._log.debug(f"Moved from {file} to {new}")
+                    else:
+                        success = False
+                        self._commandQueue.append(self.installBat(str(file), str(new)))
+                        self._log.warning(f"Could not move {file} to {new}")
+            else:
+                self._log.warning(f"Could not find {relativePath}")
+        
+        # Copy over any locale files.
+        localeDest = Path(self._strings.moLocalePath)
+        localeFiles = []
+        if LOCALEPATH in ver:
+            for localeFile in ver[LOCALEPATH]:
+                relativePath = tempPath / localeFile
+                if relativePath.exists():
+                    toMove = []
+                    if relativePath.is_dir():
+                        toMove.extend(self._paths.files(str(relativePath)))
+                    else:
+                        toMove.append(str(relativePath))
+                    localeFiles.append(os.path.basename(str(relativePath)))
+                    relativePath = Path(relativePath).parent
+                    for file in toMove:
+                        rel = self._paths.relativePath(str(relativePath), str(file))
+                        new = localeDest / rel
+                        localeFiles.append(str(rel))
+                        if copyFile(str(file), str(new)):
+                            self._log.debug(f"Moved from {file} to {new}")
+                        else:
+                            success = False
+                            self._commandQueue.append(self.installBat(str(file), str(new)))
+                            self._log.warning(f"Could not move {file} to {new}")
+                else:
+                    self._log.warning(f"Could not find {relativePath}")
+
+        dataFiles = []
+        if DATAPATH in ver:
+            dataFiles = ver[DATAPATH]
+
+        installItem = InstallData({
+            VERSION: ver[VERSION],
+            LOCALEPATH: localeFiles,
+            PLUGINPATH: pluginFiles,
+            DATAPATH: dataFiles
+        })
+        installData = self.loadInstallData()
+        installData[pluginId] = installItem
+        self.saveInstallData(installData)
+
+        # Remove the temp download
+        if success:
+            deleteFolder(str(tempPath))
+        else:
+            self._commandQueue.append(self.uninstallBat(str(tempPath)))
+
+        # Remove the download
+        deleteFile(str(filePath))
+        # Mark for a restart of MO.
+        self._needRestart = True
+
+    def manualPluginName(self) -> str:
+        manifests = self._directory.loadManifests()
+        if self._manualPluginId in manifests:
+            return manifests[self._manualPluginId][NAME]
+        return None
+
+    _manualPluginId = ""
     def treeIsPlugin(self, tree:mobase.IFileTree):
         """Determines if a tree is an MO2 plugin installer."""
-        # Load manifests
-        # For each manifest
-            # Get the plugin path
-            # If the path is a folder, look for the final folder in the path and check it contains __init__.py
-            # If the path is a file, look for that specific .py file in the tree
+        manifests = self._directory.loadManifests()
+        for pluginId in manifests:
+            latest = self._directory.getLatestVersionData(pluginId)
+            for path in latest[PLUGINPATH]:
+                if not str(path).endswith(".py"):
+                    path = f"{path}\\__init__.py"
+                if path.endswith(".py"):
+                    found = tree.find(path)
+                    if found is not None:
+                        self._log.info(f"Found plugin: {pluginId}")
+                        self._manualPluginId = pluginId
+                        return True
+                    
+    def dirIsPlugin(self, dirPath:str):
+        """Determines if a folder is an MO2 plugin installer."""
+        manifests = self._directory.loadManifests()
+        dirPathObj = Path(dirPath)
+        for pluginId in manifests:
+            latest = self._directory.getLatestVersionData(pluginId)
+            for path in latest[PLUGINPATH]:
+                vp = dirPathObj / path
+                if vp.is_dir():
+                    vp = vp / "__init__.py"
+                if str(vp).endswith(".py"):
+                    if vp.exists():
+                        self._log.info(f"Found plugin: {pluginId}")
+                        self._manualPluginId = pluginId
+                        return True

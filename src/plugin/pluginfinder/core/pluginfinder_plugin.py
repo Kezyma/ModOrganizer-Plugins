@@ -21,7 +21,8 @@ class PluginFinderPlugin(BasePlugin):
         baseSettings = super().settings()
         customSettings = [
             mobase.PluginSetting("enabled", self.__tr(f"Enables {self._pluginName}"), True),
-            mobase.PluginSetting("loglevel", self.__tr(f"Controls the logging for {self._pluginName}"), 1)
+            mobase.PluginSetting("loglevel", self.__tr(f"Controls the logging for {self._pluginName}"), 1),
+            mobase.PluginSetting("priority", self.__tr("The priority of the installer module for installing plugins."), 120)
             ]
         for setting in customSettings:
             baseSettings.append(setting)
