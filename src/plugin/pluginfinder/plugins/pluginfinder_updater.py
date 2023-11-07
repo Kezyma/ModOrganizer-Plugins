@@ -21,7 +21,7 @@ class PluginFinderUpdater(PluginFinderPlugin, mobase.IPluginDiagnose):
         return QCoreApplication.translate(self._pluginName, trstr)
 
     def icon(self):
-        return LINK_ALT_ICON
+        return PLUGIN_ICON
 
     def name(self):
         return f"{self.baseName()} Updater"

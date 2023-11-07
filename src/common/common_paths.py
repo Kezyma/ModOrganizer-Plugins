@@ -51,14 +51,6 @@ class CommonPaths:
     
     def files(self, path:str, recursive=True) -> List[str]:
         """Retrieves a complete collection of files in the specified path."""
-        #fileList = []
-        #if recursive:
-        #    for (dirP, dirN, fileNames) in os.walk(path):
-        #        fileList.extend(fileNames)
-        #else:
-        #    fileList = os.listdir(path)
-        #return fileList
-            
         basePath = Path(path)
         if recursive:
             basePath = basePath / "**" 

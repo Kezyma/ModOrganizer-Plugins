@@ -144,7 +144,6 @@ class RootBuilderInstall(QtWidgets.QWidget):
 
         return self._dataPath
 
-    ## TODO: This stuff needs to make sure it isn't looking for a root extension in an ignored sort of folder.
     _rootPath = None
     _foundRootExt = False
     def findRootPath(self, path:str, entry:mobase.FileTreeEntry) -> mobase.IFileTree.WalkReturn:

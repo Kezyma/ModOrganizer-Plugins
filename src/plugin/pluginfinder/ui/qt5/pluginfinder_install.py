@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_installDialogMenu(object):
     def setupUi(self, installDialogMenu):
         installDialogMenu.setObjectName("installDialogMenu")
-        installDialogMenu.resize(375, 71)
+        installDialogMenu.resize(375, 67)
         installDialogMenu.setMinimumSize(QtCore.QSize(375, 0))
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(installDialogMenu)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -22,7 +22,7 @@ class Ui_installDialogMenu(object):
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.modNameLabel = QtWidgets.QLabel(installDialogMenu)
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setPointSize(8)
         font.setBold(False)
         font.setWeight(50)
         self.modNameLabel.setFont(font)
