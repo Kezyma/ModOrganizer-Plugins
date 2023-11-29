@@ -44,7 +44,7 @@ class RootBuilderPaths(CommonPaths):
         modList = self._organiser.modList().allModsByProfilePriority()
         res = []
         for mod in modList:
-            if self._organiser.modList().state(mod) & mobase.ModState.ACTIVE:
+            if self._organiser.modList().state(mod.encode('utf-16','surrogatepass').decode('utf-16')) & mobase.ModState.ACTIVE:
                 modRoot = Path(self._strings.moModsPath) / mod / "Root"
                 if modRoot.exists():
                     res.append(str(modRoot))
