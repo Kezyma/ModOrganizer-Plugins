@@ -66,7 +66,7 @@ class PluginFinderInstall:
         # Download the plugin from its source.
         if downloadFile(url, str(tempName)):
             self._log.debug(f"Downloaded {url}")
-            self._installFromFile(str(tempName), pluginId)
+            self.installFromFile(str(tempName), pluginId)
         else:
             self._log.warning(f"Could not download {url}")
 
