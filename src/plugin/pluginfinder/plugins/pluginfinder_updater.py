@@ -14,6 +14,7 @@ class PluginFinderUpdater(PluginFinderPlugin, mobase.IPluginDiagnose):
 
     def init(self, organiser:mobase.IOrganizer):
         res = super().init(organiser)
+        self._organiser.onUserInterfaceInitialized(lambda window: self.initialSetup())
         self.notifications()
         return res
 
@@ -78,5 +79,10 @@ class PluginFinderUpdater(PluginFinderPlugin, mobase.IPluginDiagnose):
             self._shortDesc[ix] = shortDesc
             self._description[ix] = longDesc
             ix += 1
+
+    def initialSetup(self):
+        self._pluginFinder._directory.initialDeploy()
+        nt = threading.Thread(target=self._pluginFinder._install.detectCurrentPlugins)
+        nt.start()
 
     

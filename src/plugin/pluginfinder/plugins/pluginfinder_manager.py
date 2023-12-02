@@ -11,7 +11,7 @@ class PluginFinderManager(PluginFinderPlugin, mobase.IPluginTool):
 
     def init(self, organiser:mobase.IOrganizer):
         res = super().init(organiser)
-        self._organiser.onUserInterfaceInitialized(lambda window: self.initialSetup())
+        #self._organiser.onUserInterfaceInitialized(lambda window: self.initialSetup())
         self._dialog = self.getDialog()
         return res
 
@@ -41,7 +41,7 @@ class PluginFinderManager(PluginFinderPlugin, mobase.IPluginTool):
         dialog.addContent(self._pluginFinderMenu)
         return dialog
 
-    def initialSetup(self):
-        self._pluginFinder._directory.initialDeploy()
-        nt = threading.Thread(target=self._pluginFinder._install.detectCurrentPlugins)
-        nt.start()
+    #def initialSetup(self):
+    #    self._pluginFinder._directory.initialDeploy()
+    #    nt = threading.Thread(target=self._pluginFinder._install.detectCurrentPlugins)
+    #    nt.start()

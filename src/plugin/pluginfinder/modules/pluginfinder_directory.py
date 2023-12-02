@@ -40,6 +40,9 @@ class PluginFinderDirectory:
         if self._directory is None or reload:
             filePath = self._strings.pfDirectoryPath
             self._directory = loadJson(filePath)
+            if self._directory is None:
+                self.initialDeploy()
+                return self.loadDirectory()
         return self._directory
     
     _manifests:Dict[str, ManifestData] = None
