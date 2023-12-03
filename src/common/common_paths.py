@@ -1,4 +1,4 @@
-import mobase, glob, os
+import mobase, glob, os, re
 from pathlib import Path
 from typing import List
 
@@ -34,7 +34,7 @@ class CommonPaths:
     
     def relativePath(self, parentPath:str, childPath:str) -> str:
         """Gets the relative path for the child, relative to the parent."""
-        return str(os.path.abspath(Path(childPath))).replace(str(os.path.abspath(str(parentPath))), "")[1:]
+        return os.path.relpath(str(os.path.abspath(Path(childPath))), start=str(os.path.abspath(Path(parentPath))))
     
     def subfolders(self, path:str, recursive=True) -> List[str]:
         """Retrieves a complete collection of subfolders for the specified path."""

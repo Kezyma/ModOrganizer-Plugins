@@ -1,4 +1,4 @@
-import mobase
+import mobase, os
 from pathlib import Path
 from ..core.rootbuilder_plugin import RootBuilderPlugin
 from ....common.common_qt import *
@@ -49,9 +49,10 @@ class RootBuilderAutobuild(RootBuilderPlugin, mobase.IPluginFileMapper):
                 self._rootBuilder._log.debug("Application is not a game path.")
                 modFolders = self._rootBuilder._paths.enabledRootModFolders()
                 for mod in modFolders:
+                    self._rootBuilder._log.debug(f"Checking for {appName} in {mod}")
                     if self._rootBuilder._paths.pathShared(mod, appName):
-                        self._rootBuilder._log.debug("Application is a root mod path path.")
                         relativePath = self._rootBuilder._paths.relativePath(mod, appName)
+                        self._rootBuilder._log.debug(f"Application found, relative path at {relativePath}")
                         redirectPath = str(Path(gamePath) / relativePath)
                         self._organiser.waitForApplication(self._organiser.startApplication(redirectPath))
                         return False
