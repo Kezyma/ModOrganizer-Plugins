@@ -41,17 +41,18 @@
       "DataPath": [ "data/rootbuilder" ]
     },
     {
-      "Version": "5.0.0",
-      "Released": "2023-12-02",
+      "Version": "5.0.1",
+      "Released": "2023-12-03",
       "MinSupport": "2.4.0",
       "MaxSupport": "2.5.0",
       "MinWorking": "2.4.0",
       "ReleaseNotes": [
         "(5.0.0) Import and export settings from Root Builder to create backups and share with others.",
         "(5.0.0) New custom mode settings allow for precise control of exactly how different files are deployed to your game.",
-        "(5.0.0) New settings allow users to disable hashing if it's not needed and use faster (but less reliable) methods to detect changes."
+        "(5.0.0) New settings allow users to disable hashing if it's not needed and use faster (but less reliable) methods to detect changes.",
+        "(5.0.1) Fixed an issue with case senstivity and different path separators if using redirect."
       ],
-      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.5.0.0.zip",
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.5.0.1.zip",
       "PluginPath": [
         "rootbuilder"
       ],
