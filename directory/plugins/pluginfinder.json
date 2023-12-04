@@ -51,15 +51,16 @@
     },
     {
       "Version": "2.0.0",
-      "Released": "2023-12-02",
+      "Released": "2023-12-04",
       "MinSupport": "2.4.0",
       "MaxSupport": "2.5.0",
       "MinWorking": "2.4.0",
       "ReleaseNotes": [
         "(2.0.0) Performance improvements across the entire plugin.",
-        "(2.0.0) Rudimentary support for detecting plugins that were manually installed."
+        "(2.0.0) Rudimentary support for detecting plugins that were manually installed.",
+        "(2.0.1) Fixed an issue with an underscore breaking installation."
       ],
-      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/pluginfinder/pluginfinder.2.0.0.zip",
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/pluginfinder/pluginfinder.2.0.1.zip",
       "PluginPath": [
         "pluginfinder"
       ],
