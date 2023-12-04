@@ -54,8 +54,8 @@
       "DataPath": [ "data/openmwplayer" ]
     },
     {
-      "Version": "1.0.0b",
-      "Released": "2023-10-21",
+      "Version": "1.0.2b",
+      "Released": "2023-12-04",
       "MinSupport": "2.4.0",
       "MaxSupport": "2.5.0",
       "MinWorking": "2.4.0",
@@ -66,9 +66,10 @@
         "(1.0.0) Each profile has their own openmw.cfg and settings.cfg which can be edited directly from the profile folder.",
         "(1.0.0) Changes made while running OpenMW.exe or OpenMW-launcher.exe are now copied back to the profile in Mod Organizer without an import.",
         "(1.0.1) OpenMW Player will no longer constantly prompt the user to select an OpenMW.cfg if they don't have one in the default location.",
-        "(1.0.1) If no default openmw.cfg is found in the default location, OpenMW Player will simply do nothing until the menu is opened to select a config."
+        "(1.0.1) If no default openmw.cfg is found in the default location, OpenMW Player will simply do nothing until the menu is opened to select a config.",
+        "(1.0.2) Fixed an issue with Qt6 and searching for the documents path."
       ],
-      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/openmwplayer/openmwplayer.1.0.1.zip",
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/openmwplayer/openmwplayer.1.0.2.zip",
       "PluginPath": [ "openmwplayer" ],
       "LocalePath": [],
       "DataPath": [ "data/openmwplayer" ]
