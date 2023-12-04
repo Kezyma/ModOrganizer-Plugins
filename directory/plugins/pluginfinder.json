@@ -13,30 +13,6 @@
       "MaxSupport": "2.5.0",
       "MinWorking": "2.4.0",
       "ReleaseNotes": [
-        "(1.2.0) Rebuilt the UI to be resizable and more responsive overall.",
-        "(1.2.1) Removed 'always on top' flag.",
-        "(1.2.1) Fixed issues with MO 2.5.0 support.",
-        "(1.2.1) Improved error handling.",
-        "(1.2.3) Added update notifier (courtesy of JonathanFeenstra)",
-        "(1.2.4) Fixed a critical bug causing Plugin Finder to fail to load.",
-        "(1.2.5) Removed download counters that were causing freezing on plugin launch.",
-        "(1.2.6) Directory downloads are now multi-thread, improving performance.",
-        "(1.2.6) MO restarts are now more graceful and wont cause loss of changes.",
-        "(1.2.6) Fixed the issue where it was not possible to update Plugin Finder using Plugin Finder"
-      ],
-      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/pluginfinder/pluginfinder.1.2.6.zip",
-      "PluginPath": [ "pluginfinder" ],
-      "LocalePath": [],
-      "DataPath": [ "data/pluginfinder" ]
-    },
-    {
-      "Version": "1.1.10a",
-      "Released": "2021-12-15",
-      "MinSupport": "2.4.0",
-      "MaxSupport": "2.5.0.0-qt6dev4",
-      "MinWorking": "2.4.0",
-      "MaxWorking": "",
-      "ReleaseNotes": [
         "(1.1.0) Initial alpha. Demo version.",
         "(1.1.1) Added basic support for Mod Organizer 2 v2.5.0",
         "(1.1.2) Added support for plugin definitions without any versions specified.",
@@ -56,12 +32,42 @@
         "(1.1.8) Stopped Plugin Finder opening until it has loaded data, prevents it from seeming broken.",
         "(1.1.8) Fixed bottom row of buttons getting cut off (for some themes).",
         "(1.1.9) Fix for uninstall crashing if a file cannot be deleted.",
-        "(1.1.10) Added release notes as tooltips on version numbers."
+        "(1.1.10) Added release notes as tooltips on version numbers.",
+        "(1.2.0) Rebuilt the UI to be resizable and more responsive overall.",
+        "(1.2.1) Removed 'always on top' flag.",
+        "(1.2.1) Fixed issues with MO 2.5.0 support.",
+        "(1.2.1) Improved error handling.",
+        "(1.2.3) Added update notifier (courtesy of JonathanFeenstra)",
+        "(1.2.4) Fixed a critical bug causing Plugin Finder to fail to load.",
+        "(1.2.5) Removed download counters that were causing freezing on plugin launch.",
+        "(1.2.6) Directory downloads are now multi-thread, improving performance.",
+        "(1.2.6) MO restarts are now more graceful and wont cause loss of changes.",
+        "(1.2.6) Fixed the issue where it was not possible to update Plugin Finder using Plugin Finder"
       ],
-      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/pluginfinder/pluginfinder.1.1.10.zip",
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/pluginfinder/pluginfinder.1.2.6.zip",
       "PluginPath": [ "pluginfinder" ],
       "LocalePath": [],
       "DataPath": [ "data/pluginfinder" ]
+    },
+    {
+      "Version": "2.0.0",
+      "Released": "2023-12-04",
+      "MinSupport": "2.4.0",
+      "MaxSupport": "2.5.0",
+      "MinWorking": "2.4.0",
+      "ReleaseNotes": [
+        "(2.0.0) Performance improvements across the entire plugin.",
+        "(2.0.0) Rudimentary support for detecting plugins that were manually installed.",
+        "(2.0.1) Fixed an issue with an underscore breaking installation."
+      ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/pluginfinder/pluginfinder.2.0.1.zip",
+      "PluginPath": [
+        "pluginfinder"
+      ],
+      "LocalePath": [],
+      "DataPath": [
+        "data/pluginfinder"
+      ]
     }
   ]
 }

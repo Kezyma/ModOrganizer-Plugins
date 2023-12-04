@@ -7,26 +7,13 @@
   "DocsUrl": "https://kezyma.github.io/?p=rootbuilder",
   "Versions": [
     {
-      "Version": "4.2.7b",
-      "Released": "2021-12-13",
+      "Version": "4.5.2",
+      "Released": "2023-10-06",
       "MinSupport": "2.4.0",
-      "MaxSupport": "2.5.0.0-qt6dev4",
+      "MaxSupport": "2.5.0",
       "MinWorking": "2.4.0",
-      "MaxWorking": "",
-      "ReleaseNotes": [ "(4.2.7) Added basic support for Mod Organizer 2 v2.5.0" ],
-      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.4.2.7.zip",
-      "PluginPath": [ "rootbuilder" ],
-      "LocalePath": [],
-      "DataPath": [ "data/rootbuilder" ]
-    },
-    {
-      "Version": "4.3.3b",
-      "Released": "2022-01-02",
-      "MinSupport": "2.4.0",
-      "MaxSupport": "2.5.0.0-qt6dev4",
-      "MinWorking": "2.4.0",
-      "MaxWorking": "",
-      "ReleaseNotes": [
+      "ReleaseNotes":[
+        "(4.2.7) Added basic support for Mod Organizer 2 v2.5.0",
         "(4.3.0) Made UI resiazable.",
         "(4.3.0) Added new icons to buttons.",
         "(4.3.0) Moved buttons to the bottom the of the UI.",
@@ -35,20 +22,7 @@
         "(4.3.1) Fixed issues with MO 2.5.0 support.",
         "(4.3.1) Improved error handling.",
         "(4.3.2) Fixed a bug where autobuild would sometimes stop working after launching certain apps with redirect.",
-        "(4.3.3) Added experimental root mod installer plugin. Disabled by default."
-      ],
-      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.4.3.3.zip",
-      "PluginPath": [ "rootbuilder" ],
-      "LocalePath": [],
-      "DataPath": [ "data/rootbuilder" ]
-    },
-    {
-      "Version": "4.4.4",
-      "Released": "2023-09-27",
-      "MinSupport": "2.4.0",
-      "MaxSupport": "2.5.0",
-      "MinWorking": "2.4.0",
-      "ReleaseNotes":[
+        "(4.3.3) Added experimental root mod installer plugin. Disabled by default.",
         "(4.4.0) Removed logging causing crashes with unicode characters.",
         "(4.4.1) Updated experimental installer plugin to fix an issue with FOMOD packaged mods.",
         "(4.4.1) Moving the base game folder no longer causes Root Builder to crash. Requires the cache be cleared and recreated.",
@@ -56,20 +30,7 @@
         "(4.4.2) Fix for mod names starting with 'Root'.",
         "(4.4.3) Removed the flag that sometimes caused 'missing exe' errors.",
         "(4.4.4) Fixed an issue with the installer plugin and MO 2.5",
-        "(4.4.4) Added more error handling to prevent RB crashes during file operations."
-      ],
-      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.4.4.4.zip",
-      "PluginPath": [ "rootbuilder" ],
-      "LocalePath": [],
-      "DataPath": [ "data/rootbuilder" ]
-    },
-    {
-      "Version": "4.5.1",
-      "Released": "2023-10-06",
-      "MinSupport": "2.4.0",
-      "MaxSupport": "2.5.0",
-      "MinWorking": "2.4.0",
-      "ReleaseNotes":[
+        "(4.4.4) Added more error handling to prevent RB crashes during file operations.",
         "(4.5.0) Added a link only mode.",
         "(4.5.1) Fixed an issue resulting in all root mods being copied to overwrite if link only mode is enabled.",
         "(4.5.2) Fixed an issue where multiple builds in link mode would duplicate links and break on clearing."
@@ -78,6 +39,27 @@
       "PluginPath": [ "rootbuilder" ],
       "LocalePath": [],
       "DataPath": [ "data/rootbuilder" ]
+    },
+    {
+      "Version": "5.0.1",
+      "Released": "2023-12-03",
+      "MinSupport": "2.4.0",
+      "MaxSupport": "2.5.0",
+      "MinWorking": "2.4.0",
+      "ReleaseNotes": [
+        "(5.0.0) Import and export settings from Root Builder to create backups and share with others.",
+        "(5.0.0) New custom mode settings allow for precise control of exactly how different files are deployed to your game.",
+        "(5.0.0) New settings allow users to disable hashing if it's not needed and use faster (but less reliable) methods to detect changes.",
+        "(5.0.1) Fixed an issue with case senstivity and different path separators if using redirect."
+      ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.5.0.1.zip",
+      "PluginPath": [
+        "rootbuilder"
+      ],
+      "LocalePath": [],
+      "DataPath": [
+        "data/rootbuilder"
+      ]
     }
   ]
 }
