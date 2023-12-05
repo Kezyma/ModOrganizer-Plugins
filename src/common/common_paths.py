@@ -51,7 +51,7 @@ class CommonPaths:
     
     def files(self, path:str, recursive=True) -> List[str]:
         """Retrieves a complete collection of files in the specified path."""
-        basePath = Path(path)
+        basePath = Path(glob.escape(path))
         if recursive:
             basePath = basePath / "**" 
         basePath = basePath / "*"

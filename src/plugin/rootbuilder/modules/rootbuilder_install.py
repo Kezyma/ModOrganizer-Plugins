@@ -1,4 +1,4 @@
-import mobase
+import mobase, glob
 from pathlib import Path
 from .rootbuilder_strings import RootBuilderStrings
 from .rootbuilder_paths import RootBuilderPaths
@@ -97,7 +97,7 @@ class RootBuilderInstall(QtWidgets.QWidget):
         # Figure out where any relevant data files are and record the path.
         gameDataDir = self._strings.gameDataPath
         gameDir = self._strings.gamePath
-        dataIsSubdir = self._paths.pathShared(gameDir, gameDataDir)
+        dataIsSubdir = self._paths.pathShared(glob.escape(gameDir), gameDataDir)
         dataFolder = self._strings.gameDataFolder
         if not dataIsSubdir:
             dataFolder = "Data"

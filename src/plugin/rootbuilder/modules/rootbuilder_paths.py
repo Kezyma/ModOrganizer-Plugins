@@ -62,7 +62,7 @@ class RootBuilderPaths(CommonPaths):
         #invalidFiles = []
         for exc in exclusions:
             if exc != "":
-                excludePath = str(Path(rootPath) / exc)
+                excludePath = str(Path(glob.escape(rootPath)) / exc)
                 for match in glob.glob(excludePath, recursive=True):
                     matchPath = Path(match)
                     if matchPath.is_file() and match in validFiles:
@@ -85,7 +85,7 @@ class RootBuilderPaths(CommonPaths):
         returnFiles = []
         for inc in inclusions:
             if inc != "":
-                excludePath = str(Path(rootPath) / inc)
+                excludePath = str(Path(glob.escape(rootPath)) / inc)
                 for match in glob.glob(excludePath, recursive=True):
                     matchPath = Path(match)
                     if matchPath.is_file():
