@@ -118,7 +118,7 @@ class RootBuilderInstall(QtWidgets.QWidget):
             self._dataPath = None
             tree.walk(self.findDataPath)
             if self._dataPath is not None:
-                self._log.debug(f"Found Data through item match: {dataItm.path()}")
+                self._log.debug(f"Found Data through item match: {self._dataPath.path()}")
         # If there is no data, create a data path.
         if self._dataPath is None:
             self._log.debug("Could not find Data, creating default folder.")

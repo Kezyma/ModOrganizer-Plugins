@@ -10,7 +10,7 @@ try:
     qSizePolicy = QtWidgets.QSizePolicy
     qAlignmentFlag = QtCore.Qt
     qCheckState = QtCore.Qt
-    qDialogCode = QtWidgets.QDialog.DialogCode
+    qDialogCode = QtWidgets.QDialog
     qStandardPaths = QStandardPaths
 except:
     from ..base.ui.qt6.plugin_dialog import Ui_pluginDialog
@@ -22,7 +22,7 @@ except:
     from PyQt6.QtGui import QIcon, QFont
     qSizePolicy = QtWidgets.QSizePolicy.Policy
     qAlignmentFlag = QtCore.Qt.AlignmentFlag
-    qDialogCode = QtWidgets.QDialog
+    qDialogCode = QtWidgets.QDialog.DialogCode
     qItemFlag = QtCore.Qt.ItemFlag
     qCheckState = QtCore.Qt.CheckState
     qStandardPaths = QStandardPaths.StandardLocation
