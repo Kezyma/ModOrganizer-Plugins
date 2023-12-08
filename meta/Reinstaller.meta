@@ -1,0 +1,13 @@
+[General]
+gameName=SkyrimSE
+modID=59292
+fileID=250521
+name=Reinstaller 1.1.1
+description="Reinstaller is a Mod Organizer 2 plugin that allows you to backup downloaded mods and run their installers on demand. Useful for large fomod patch installers with loads of options that you have to re-run frequently. Don't let those files keep your downloads tab cluttered anymore!"
+modName=Kezyma's Reinstaller for Mod Organizer
+version=1.1.1.0
+repository=Nexus
+installed=false
+uninstalled=false
+paused=false
+removed=false
