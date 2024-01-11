@@ -41,8 +41,8 @@
       "DataPath": [ "data/rootbuilder" ]
     },
     {
-      "Version": "5.0.3",
-      "Released": "2023-12-08",
+      "Version": "5.0.4",
+      "Released": "2024-01-11",
       "MinSupport": "2.4.0",
       "MaxSupport": "2.5.0",
       "MinWorking": "2.4.0",
@@ -52,9 +52,10 @@
         "(5.0.0) New settings allow users to disable hashing if it's not needed and use faster (but less reliable) methods to detect changes.",
         "(5.0.1) Fixed an issue with case senstivity and different path separators if using redirect.",
         "(5.0.2) Fixed an issue with [ and ] being treated as a wildcard when part of a path name.",
-        "(5.0.3) Fixed an issue with running the installer module on MO v2.5."
+        "(5.0.3) Fixed an issue with running the installer module on MO v2.5.",
+        "(5.0.4) Exclusions & custom mode settings now support regex expressions with the prefix r:"
       ],
-      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.5.0.3.zip",
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.5.0.4.zip",
       "PluginPath": [
         "rootbuilder"
       ],
