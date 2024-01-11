@@ -1,8 +1,9 @@
-import mobase, glob
+import mobase, glob, re
 from pathlib import Path
 from .rootbuilder_strings import RootBuilderStrings
 from ..core.rootbuilder_settings import RootBuilderSettings
 from ....common.common_paths import CommonPaths
+from ....common.common_log import CommonLog
 from typing import List
 
 class RootBuilderPaths(CommonPaths):
@@ -58,25 +59,33 @@ class RootBuilderPaths(CommonPaths):
     def removeExclusions(self, rootPath:str, fileList:List[str]) -> List[str]:
         """Removes any exclusions from a list of files."""
         exclusions = self._settings.exclusions()
-        validFiles = fileList
-        #invalidFiles = []
+        
+        excludeFiles = []
+        
         for exc in exclusions:
             if exc != "":
-                excludePath = str(Path(glob.escape(rootPath)) / exc)
-                for match in glob.glob(excludePath, recursive=True):
-                    matchPath = Path(match)
-                    if matchPath.is_file() and match in validFiles:
-                        validFiles.pop(validFiles.index(match))
-                        #invalidFiles.append(match)
-                    elif matchPath.is_dir():
-                        for file in self.files(match):
-                            if file in validFiles:
-                                validFiles.pop(validFiles.index(file))
-                        #invalidFiles.extend(self.files(match))
-        #for file in fileList:
-        #    if file not in invalidFiles:
-        #        validFiles.index()
-        #        validFiles.append(file)
+                if not exc.startswith("r:"):
+                    excludePath = str(Path(glob.escape(rootPath)) / exc)
+                    for match in glob.glob(excludePath, recursive=True):
+                        matchPath = Path(match)
+                        if matchPath.is_file() and match in fileList:
+                            excludeFiles.append(match)
+                        elif matchPath.is_dir():
+                            for file in self.files(match):
+                                if file in fileList:
+                                    excludeFiles.append(file)
+                elif exc.startswith("r:"):
+                    pattern = exc.replace("r:", "")
+                    for file in fileList:
+                        rel = self.relativePath(rootPath, file)
+                        if re.match(pattern, rel):
+                            if file in fileList:
+                                excludeFiles.append(file)
+        validFiles = []
+        for f in fileList:
+            if f not in excludeFiles:
+                validFiles.append(f)
+
         return validFiles
     
     def filterFiles(self, rootPath:str, fileList:List[str], inclusions:List[str]) -> List[str]:
@@ -85,13 +94,21 @@ class RootBuilderPaths(CommonPaths):
         returnFiles = []
         for inc in inclusions:
             if inc != "":
-                excludePath = str(Path(glob.escape(rootPath)) / inc)
-                for match in glob.glob(excludePath, recursive=True):
-                    matchPath = Path(match)
-                    if matchPath.is_file():
-                        validFiles.append(match)
-                    elif matchPath.is_dir():
-                        validFiles.extend(self.files(match))
+                if not inc.startswith("r:"):
+                    excludePath = str(Path(glob.escape(rootPath)) / inc)
+                    for match in glob.glob(excludePath, recursive=True):
+                        matchPath = Path(match)
+                        if matchPath.is_file():
+                            validFiles.append(match)
+                        elif matchPath.is_dir():
+                            validFiles.extend(self.files(match))
+                elif inc.startswith("r:"):
+                    pattern = inc.replace("r:", "")
+                    for file in fileList:
+                        rel = self.relativePath(rootPath, file)
+                        if re.match(pattern, rel):
+                            validFiles.append(file)
+
         for file in fileList:
             if file in validFiles:
                 returnFiles.append(file)

@@ -10,7 +10,7 @@ class RootBuilderPlugin(BasePlugin):
     """Base Root Builder plugin, to be inherited by all other plugins."""
 
     def __init__(self):
-        super().__init__("RootBuilder", "Root Builder", mobase.VersionInfo(5, 0, 3, mobase.ReleaseType.FINAL))
+        super().__init__("RootBuilder", "Root Builder", mobase.VersionInfo(5, 0, 4, mobase.ReleaseType.FINAL))
 
     def init(self, organiser:mobase.IOrganizer):
         self._rootBuilder = RootBuilder(organiser)
