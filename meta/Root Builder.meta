@@ -1,0 +1,13 @@
+[General]
+gameName=SkyrimSE
+modID=31720
+fileID=449792
+name=Root Builder 5.0.3
+description="Root Builder is a Mod Organizer 2 plugin that allows you to manage files in the base game folder through Mod Organizer, leaving your game folder in pristine, vanilla condition!"
+modName=Kezyma's Root Builder for Mod Organizer
+version=5.0.3.0
+repository=Nexus
+installed=false
+uninstalled=false
+paused=false
+removed=false

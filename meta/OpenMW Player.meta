@@ -1,0 +1,13 @@
+[General]
+gameName=Morrowind
+modID=52345
+fileID=1000041309
+name=OpenMW Player 1.0.2
+description="A plugin for Mod Organizer 2 that automatically exports your mod list, enabled plugins, and grass mods to OpenMW whenever you run the game through Mod Organizer."
+modName=Kezyma's OpenMW Player for Mod Organizer 2
+version=1.0.2.0
+repository=Nexus
+installed=false
+uninstalled=false
+paused=false
+removed=false

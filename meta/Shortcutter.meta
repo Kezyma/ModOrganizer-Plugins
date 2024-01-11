@@ -1,0 +1,13 @@
+[General]
+gameName=SkyrimSE
+modID=59827
+fileID=250522
+name=Shortcutter 1.1.0
+description="Shortcutter gives you the option of quickly creating instance and profile specific desktop shortcuts, allowing you to quickly launch your game using different profiles without having to manually switch inside Mod Organizer."
+modName=Kezyma's Shortcutter for Mod Organizer
+version=1.1.0.0
+repository=Nexus
+installed=false
+uninstalled=false
+paused=false
+removed=false
