@@ -1,9 +1,13 @@
 import json, shutil, os, stat, hashlib, urllib.request
 from pathlib import Path
 from typing import Any
+import time
 import encodings.idna
 
-def copyFileOrFolder(source: str, dest: str) -> bool:
+def maxRetries():
+    return 10
+
+def copyFileOrFolder(source: str, dest: str, retries = 0) -> bool:
     """Copies a file or folder from source to destination."""
     try:
         path = Path(dest)
@@ -14,9 +18,12 @@ def copyFileOrFolder(source: str, dest: str) -> bool:
                 return copyFile(source,dest)
         return False
     except:
+        if retries <= maxRetries():
+            time.sleep(0.1)
+            return copyFileOrFolder(source, dest, retries + 1)
         return False
 
-def copyFile(source: str, dest: str) -> bool:
+def copyFile(source: str, dest: str, retries = 0) -> bool:
     """Copies a file from source to destination."""
     try:
         if (Path(dest).exists()):
@@ -25,17 +32,23 @@ def copyFile(source: str, dest: str) -> bool:
         shutil.copy2(source, dest)
         return True
     except:
+        if retries <= maxRetries():
+            time.sleep(0.1)
+            return copyFile(source, dest, retries + 1)
         return False
 
-def copyFolder(source: str, dest: str) -> bool:
+def copyFolder(source: str, dest: str, retries = 0) -> bool:
     """Copies a folder from source to destination."""
     try:
         shutil.copytree(source, dest, dirs_exist_ok=True)
         return True
     except:
+        if retries <= maxRetries():
+            time.sleep(0.1)
+            return copyFolder(source, dest, retries + 1)
         return False
 
-def moveFile(source: str, dest: str) -> bool:
+def moveFile(source: str, dest: str, retries = 0) -> bool:
     """Moves a file from source to destination."""
     try:
         if (Path(dest).exists()):
@@ -44,9 +57,12 @@ def moveFile(source: str, dest: str) -> bool:
         shutil.move(str(source), str(dest))
         return True
     except:
+        if retries <= maxRetries():
+            time.sleep(0.1)
+            return moveFile(source, dest, retries + 1)
         return False
 
-def deleteFile(file: str) -> bool:
+def deleteFile(file: str, retries = 0) -> bool:
     """Deletes a file."""
     try:
         if (Path(file).exists()):
@@ -54,35 +70,47 @@ def deleteFile(file: str) -> bool:
         os.remove(file)
         return True
     except:
+        if retries <= maxRetries():
+            time.sleep(0.1)
+            return deleteFile(file, retries + 1)
         return False
     
-def deleteFolder(file: str) -> bool:
+def deleteFolder(file: str, retries = 0) -> bool:
     """Deletes a folder."""
     try:
         if Path(file).exists():
             shutil.rmtree(file)
         return True
     except:
+        if retries <= maxRetries():
+            time.sleep(0.1)
+            return deleteFolder(file, retries + 1)
         return False
 
-def linkFile(source: str, dest: str) -> bool:
+def linkFile(source: str, dest: str, retries = 0) -> bool:
     """Links a file to a specific location."""
     try:
         os.makedirs(os.path.dirname(dest), exist_ok=True)
         Path(source).link_to(dest)
         return True
     except:
+        if retries <= maxRetries():
+            time.sleep(0.1)
+            return linkFile(source, dest, retries + 1)
         return False
 
-def unlinkFile(link: str) -> bool:
+def unlinkFile(link: str, retries = 0) -> bool:
     """Unlinks a file."""
     try:
         Path(link).unlink()
         return True
     except:
+        if retries <= maxRetries():
+            time.sleep(0.1)
+            return unlinkFile(link, retries + 1)
         return False
 
-def saveJson(path: str, data: Any) -> bool:
+def saveJson(path: str, data: Any, retries = 0) -> bool:
     """Saves an object to a json file."""
     try:
         os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -90,25 +118,34 @@ def saveJson(path: str, data: Any) -> bool:
             json.dump(data, jsonFile)
             return True
     except:
+        if retries <= maxRetries():
+            time.sleep(0.1)
+            return saveJson(path, data, retries + 1)
         return False
     
-def loadJson(path: str):
+def loadJson(path: str, retries = 0):
     """Loads an object from a json file."""
     try:
         return json.load(open(Path(path), "r", encoding="utf-8"))
     except:
+        if retries <= maxRetries():
+            time.sleep(0.1)
+            return loadJson(path, retries + 1)
         return None
     
-def loadLines(path: str):
+def loadLines(path: str, retries = 0):
     """Loads a list of lines from a file."""
     try:
         with open(path, "r") as file:
             lines = [line.rstrip() for line in file]
             return lines
     except:
+        if retries <= maxRetries():
+            time.sleep(0.1)
+            return loadLines(path, retries + 1)
         return None
     
-def saveLines(path: str, data: list) -> bool:
+def saveLines(path: str, data: list, retries = 0) -> bool:
     """Saves a list of lines to a file."""
     try:
         os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -116,6 +153,9 @@ def saveLines(path: str, data: list) -> bool:
             jsonFile.writelines(data)
             return True
     except:
+        if retries <= maxRetries():
+            time.sleep(0.1)
+            return saveLines(path, data, retries + 1)
         return False
     
 def hashFile(path: str) -> str:
@@ -129,13 +169,16 @@ def hashFile(path: str) -> str:
     os.close(f)
     return func.hexdigest()
 
-def downloadFile(url: str, path: str) -> bool:
+def downloadFile(url: str, path: str, retries = 0) -> bool:
     """Downloads a file to a specific location."""
     try:
         os.makedirs(os.path.dirname(path), exist_ok=True)
         urllib.request.urlretrieve(url, path)
         return True
     except:
+        if retries <= maxRetries():
+            time.sleep(0.1)
+            return downloadFile(url, path, retries + 1)
         return False
     
 def folderIsEmpty(path: str) -> bool:

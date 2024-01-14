@@ -31,12 +31,18 @@ class ProfileSyncSync:
                 else:
                     enabledStates.append(f"-{m}\n")
             groupListPath = self._groups.groupModlist(group)
-            saveLines(groupListPath, modList)
+            if saveLines(groupListPath, modList):
+                self._log.debug(f"Saved {groupListPath}")
+            else:
+                self._log.info(f"Could not save {groupListPath}")
 
             stateGroups = self._groups.stateGroupsForProfile(profile.name())
             for stateGroup in stateGroups:
                 listPath = self._groups.stateGroupModlist(group, stateGroup)
-                saveLines(listPath, enabledStates)
+                if saveLines(listPath, enabledStates):
+                    self._log.debug(f"Saved {listPath}")
+                else:
+                    self._log.info(f"Could not save {listPath}")
 
     def syncFromProfile(self, profile:str):
         """Syncs a group to a selected profile."""
@@ -55,12 +61,18 @@ class ProfileSyncSync:
                 rawLines.append(f"{line}\n")
             groupListPath = self._groups.groupModlist(group)
             self._log.debug(f"Saving group list {groupListPath}")
-            saveLines(groupListPath, modOrder)
+            if saveLines(groupListPath, modOrder):
+                self._log.debug(f"Saved {groupListPath}")
+            else:
+                self._log.info(f"Could not save {groupListPath}")
 
             stateGroups = self._groups.stateGroupsForProfile(profile)
             for stateGroup in stateGroups:
                 listPath = self._groups.stateGroupModlist(group, stateGroup)
-                saveLines(listPath, rawLines)
+                if saveLines(listPath, rawLines):
+                    self._log.debug(f"Saved {listPath}")
+                else:
+                    self._log.info(f"Could not save {listPath}")
 
     _modList = []
     _stateGroups = {}
@@ -119,6 +131,10 @@ class ProfileSyncSync:
                     newList.append(f"-{modName}\n")
         self._log.debug(f"Saving modlist {modListPath}")
         saveLines(str(modListPath), newList)
+        if saveLines(str(modListPath), newList):
+            self._log.debug(f"Saved {str(modListPath)}")
+        else:
+            self._log.info(f"Could not save {str(modListPath)}")
 
     def modlistToCategories(self, modList:List[str]) -> Dict[str, List[str]]:
         modList.reverse()
