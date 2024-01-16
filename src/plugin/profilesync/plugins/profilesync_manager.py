@@ -1,7 +1,6 @@
 import mobase
 from ..core.profilesync_plugin import ProfileSyncPlugin
 from ..modules.profilesync_menu import ProfileSyncMenu
-from ..modules.profilesync_update import ProfileSyncUpdate
 from ....base.base_dialog import BaseDialog
 from ....common.common_qt import *
 from ....common.common_icons import SYNC_ICON
@@ -12,7 +11,6 @@ class ProfileSyncManager(ProfileSyncPlugin, mobase.IPluginTool):
 
     def init(self, organiser:mobase.IOrganizer):
         res = super().init(organiser)
-        self._update = ProfileSyncUpdate(self._organiser, self, self._profileSync._strings, self._profileSync._log)
         self._dialog = self.getDialog()
         return res
 

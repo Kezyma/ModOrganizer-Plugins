@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>316</width>
+    <width>336</width>
     <height>128</height>
    </rect>
   </property>
@@ -70,7 +70,7 @@
          </font>
         </property>
         <property name="text">
-         <string>Check for a new version of Reinstaller</string>
+         <string>Check for a new version of this plugin.</string>
         </property>
        </widget>
       </item>
@@ -88,19 +88,13 @@
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="QLabel" name="noUpdateLabel">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="font">
          <font>
           <pointsize>10</pointsize>
          </font>
         </property>
         <property name="text">
-         <string>Reinstaller is up to date.</string>
+         <string>This plugin is up to date.</string>
         </property>
        </widget>
       </item>
@@ -148,7 +142,7 @@
          </font>
         </property>
         <property name="text">
-         <string>New version of Reinstaller available!</string>
+         <string>New version of this plugin is available.</string>
         </property>
        </widget>
       </item>

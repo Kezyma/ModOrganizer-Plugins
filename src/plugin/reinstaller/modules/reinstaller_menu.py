@@ -3,21 +3,21 @@ from pathlib import Path
 try:
     from ..ui.qt6.reinstaller_menu import Ui_reinstallerMenu
     from ..ui.qt6.reinstaller_installers import Ui_reinstallerInstallers
-    from ..ui.qt6.reinstaller_update import Ui_updateTabWidget
+    from ....base.ui.qt6.update_widget import Ui_updateTabWidget
 except:
     from ..ui.qt5.reinstaller_menu import Ui_reinstallerMenu
     from ..ui.qt5.reinstaller_installers import Ui_reinstallerInstallers
-    from ..ui.qt5.reinstaller_update import Ui_updateTabWidget
+    from ....base.ui.qt5.update_widget import Ui_updateTabWidget
 
 from ..core.reinstaller import Reinstaller
-from .reinstaller_update import ReinstallerUpdate
+from ....base.base_update import BaseUpdate
 from ....common.common_icons import *
 from ....common.common_qt import *
 
 class ReinstallerMenu(QtWidgets.QWidget):
     """Reinstaller create widget."""
 
-    def __init__(self, parent:QtWidgets.QWidget, organiser:mobase.IOrganizer, reinstaller:Reinstaller, update:ReinstallerUpdate):
+    def __init__(self, parent:QtWidgets.QWidget, organiser:mobase.IOrganizer, reinstaller:Reinstaller, update:BaseUpdate):
         super().__init__(parent)
         self._organiser = organiser
         self._reinstaller = reinstaller
@@ -38,12 +38,7 @@ class ReinstallerMenu(QtWidgets.QWidget):
         self.helpTabWidget = Ui_helpTabWidget()
         self.helpTabWidget.setupUi(self.widget.helpTab)
 
-        self.updateTabWidget.updateFoundWidget.setVisible(False)
-        self.updateTabWidget.noUpdateWidget.setVisible(False)
-        self.updateTabWidget.checkUpdateButton.setIcon(REFRESH_ICON)
-        self.updateTabWidget.updateFoundButton.setIcon(DOWNLOAD_ICON)
-        self.updateTabWidget.updateFoundButton.clicked.connect(self.updateFound_clicked)
-        self.updateTabWidget.checkUpdateButton.clicked.connect(self.checkUpdate_clicked)
+        self._update.configure(self.updateTabWidget)
 
         self.helpTabWidget.discordButton.setIcon(DISCORD_ICON)
         self.helpTabWidget.discordButton.clicked.connect(self.discord_clicked)
@@ -132,13 +127,3 @@ class ReinstallerMenu(QtWidgets.QWidget):
 
     def patreon_clicked(self):
         webbrowser.open("https://www.patreon.com/KezymaOnline")
-
-    def updateFound_clicked(self):
-        webbrowser.open("https://www.nexusmods.com/skyrimspecialedition/mods/59292?tab=files")
-       
-    def checkUpdate_clicked(self):
-        """Checks for an update"""
-        newVersion = self._update.getLatestVersion()
-        hasUpdate = newVersion is not None
-        self.updateTabWidget.updateFoundWidget.setVisible(hasUpdate)
-        self.updateTabWidget.noUpdateWidget.setVisible(not hasUpdate)

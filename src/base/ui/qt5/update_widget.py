@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'D:\Repos\ModOrganizer-Plugins\src\plugin\profilesync\ui\profilesync_update.ui'
+# Form implementation generated from reading ui file 'D:\Repos\ModOrganizer-Plugins\src\base\ui\update_widget.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_updateTabWidget(object):
     def setupUi(self, updateTabWidget):
         updateTabWidget.setObjectName("updateTabWidget")
-        updateTabWidget.resize(323, 128)
+        updateTabWidget.resize(336, 128)
         self.verticalLayout = QtWidgets.QVBoxLayout(updateTabWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setSpacing(0)
@@ -110,7 +110,7 @@ class Ui_updateTabWidget(object):
         _translate = QtCore.QCoreApplication.translate
         updateTabWidget.setWindowTitle(_translate("updateTabWidget", "Form"))
         self.checkUpdateButton.setText(_translate("updateTabWidget", "Check"))
-        self.checkUpdateLabel.setText(_translate("updateTabWidget", "Check for a new version of Profile Sync"))
-        self.noUpdateLabel.setText(_translate("updateTabWidget", "Profile Sync is up to date."))
+        self.checkUpdateLabel.setText(_translate("updateTabWidget", "Check for a new version of this plugin."))
+        self.noUpdateLabel.setText(_translate("updateTabWidget", "This plugin is up to date."))
         self.updateFoundButton.setText(_translate("updateTabWidget", "Download"))
-        self.updateFoundLabel.setText(_translate("updateTabWidget", "New version of Profile Sync available!"))
+        self.updateFoundLabel.setText(_translate("updateTabWidget", "New version of this plugin is available."))

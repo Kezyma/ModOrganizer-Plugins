@@ -7,8 +7,8 @@ try:
     from ..ui.qt6.rootbuilder_settings import Ui_settingsTabWidget
     from ..ui.qt6.rootbuilder_exclusions import Ui_exclusionsTabWidget
     from ..ui.qt6.rootbuilder_actions import Ui_actionsTabWidget
-    from ..ui.qt6.rootbuilder_update import Ui_updateTabWidget
     from ..ui.qt6.rootbuilder_export import Ui_exportTabWidget
+    from ....base.ui.qt6.update_widget import Ui_updateTabWidget
 except:
     from ..ui.qt5.rootbuilder_menu import Ui_RootBuilderMenu
     from ..ui.qt5.rootbuilder_mode import Ui_modeTabWidget
@@ -16,18 +16,18 @@ except:
     from ..ui.qt5.rootbuilder_settings import Ui_settingsTabWidget
     from ..ui.qt5.rootbuilder_exclusions import Ui_exclusionsTabWidget
     from ..ui.qt5.rootbuilder_actions import Ui_actionsTabWidget
-    from ..ui.qt5.rootbuilder_update import Ui_updateTabWidget
     from ..ui.qt5.rootbuilder_export import Ui_exportTabWidget
+    from ....base.ui.qt5.update_widget import Ui_updateTabWidget
 
 from ..core.rootbuilder import RootBuilder
-from .rootbuilder_update import RootBuilderUpdate
+from ....base.base_update import BaseUpdate
 from ....common.common_icons import *
 from ....common.common_qt import *
 
 class RootBuilderMenu(QtWidgets.QWidget):
     """Root Builder menu widget."""
 
-    def __init__(self, parent:QtWidgets.QWidget, organiser:mobase.IOrganizer, rootBuilder:RootBuilder, update:RootBuilderUpdate):
+    def __init__(self, parent:QtWidgets.QWidget, organiser:mobase.IOrganizer, rootBuilder:RootBuilder, update:BaseUpdate):
         super().__init__(parent)
         self._organiser = organiser
         self._rootBuilder = rootBuilder
@@ -57,12 +57,7 @@ class RootBuilderMenu(QtWidgets.QWidget):
         self.exportTabWidget = Ui_exportTabWidget()
         self.exportTabWidget.setupUi(self.widget.exportTab)
 
-        self.updateTabWidget.updateFoundWidget.setVisible(False)
-        self.updateTabWidget.noUpdateWidget.setVisible(False)
-        self.updateTabWidget.checkUpdateButton.setIcon(REFRESH_ICON)
-        self.updateTabWidget.updateFoundButton.setIcon(DOWNLOAD_ICON)
-        self.updateTabWidget.updateFoundButton.clicked.connect(self.updateFound_clicked)
-        self.updateTabWidget.checkUpdateButton.clicked.connect(self.checkUpdate_clicked)
+        self._update.configure(self.updateTabWidget)
 
         self.modeTabWidget.copyModeRadio.clicked.connect(self.copyModeButton_clicked)
         self.modeTabWidget.usvfsModeRadio.clicked.connect(self.usvfsModeButton_clicked)
@@ -562,16 +557,6 @@ class RootBuilderMenu(QtWidgets.QWidget):
 
     def patreon_clicked(self):
         webbrowser.open("https://www.patreon.com/KezymaOnline")
-
-    def updateFound_clicked(self):
-        webbrowser.open("https://www.nexusmods.com/skyrimspecialedition/mods/31720?tab=files")
-       
-    def checkUpdate_clicked(self):
-        """Checks for an update"""
-        newVersion = self._update.getLatestVersion()
-        hasUpdate = newVersion is not None
-        self.updateTabWidget.updateFoundWidget.setVisible(hasUpdate)
-        self.updateTabWidget.noUpdateWidget.setVisible(not hasUpdate)
 
     def exportButton_clicked(self):
         """Exports the current settings file."""

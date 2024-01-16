@@ -2,8 +2,9 @@ from ....common.common_icons import *
 from ....common.common_qt import *
 from ....common.common_utilities import deleteFile
 from ..core.profilesync import ProfileSync
-from .profilesync_update import ProfileSyncUpdate
+
 from ..models.profilesync_groupdata import *
+from ....base.base_update import BaseUpdate
 import mobase, webbrowser, os
 from pathlib import Path
 
@@ -12,18 +13,18 @@ try:
     from ..ui.qt6.profilesync_groups import Ui_profileSyncGroupsTabWidget
     from ..ui.qt6.profilesync_states import Ui_groupSyncWidget
     from ..ui.qt6.profilesync_select import Ui_profileSelectWidget
-    from ..ui.qt6.profilesync_update import Ui_updateTabWidget
+    from ....base.ui.qt6.update_widget import Ui_updateTabWidget
 except:
     from ..ui.qt5.profilesync_menu import Ui_profileSyncMenuWidget
     from ..ui.qt5.profilesync_groups import Ui_profileSyncGroupsTabWidget
     from ..ui.qt5.profilesync_states import Ui_groupSyncWidget
     from ..ui.qt5.profilesync_select import Ui_profileSelectWidget
-    from ..ui.qt5.profilesync_update import Ui_updateTabWidget
+    from ....base.ui.qt5.update_widget import Ui_updateTabWidget
 
 class ProfileSyncMenu(QtWidgets.QWidget):
     """Profile Sync menu widget."""
 
-    def __init__(self, parent:QtWidgets.QWidget, organiser:mobase.IOrganizer, profileSync:ProfileSync, update:ProfileSyncUpdate):
+    def __init__(self, parent:QtWidgets.QWidget, organiser:mobase.IOrganizer, profileSync:ProfileSync, update:BaseUpdate):
         super().__init__(parent)
         self._organiser = organiser
         self._profileSync = profileSync
@@ -46,6 +47,8 @@ class ProfileSyncMenu(QtWidgets.QWidget):
         self.selectWidget.setupUi(self.widget.groupSelectWidget)
         self.updateTabWidget = Ui_updateTabWidget()
         self.updateTabWidget.setupUi(self.widget.updateTab)
+
+        self._update.configure(self.updateTabWidget)
 
         self.groupsTabWidget.profileList.itemChanged.connect(self.saveProfileList)
         self.selectWidget.groupSelect.currentTextChanged.connect(self.groupSelect_changed)
@@ -72,13 +75,6 @@ class ProfileSyncMenu(QtWidgets.QWidget):
         helpPath = Path(__file__).parent.parent / "data" / "profilesync_help.html"
         helpUrl = QtCore.QUrl.fromLocalFile(str(helpPath.absolute()))
         self.helpTabWidget.helpText.setSource(helpUrl)
-
-        self.updateTabWidget.updateFoundWidget.setVisible(False)
-        self.updateTabWidget.noUpdateWidget.setVisible(False)
-        self.updateTabWidget.checkUpdateButton.setIcon(REFRESH_ICON)
-        self.updateTabWidget.updateFoundButton.setIcon(DOWNLOAD_ICON)
-        self.updateTabWidget.updateFoundButton.clicked.connect(self.updateFound_clicked)
-        self.updateTabWidget.checkUpdateButton.clicked.connect(self.checkUpdate_clicked)
 
     def rebind(self):
         """Rebinds the UI with current settings."""

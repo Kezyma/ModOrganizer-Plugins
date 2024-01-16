@@ -1,7 +1,6 @@
 import mobase
 from ..core.rootbuilder_plugin import RootBuilderPlugin
 from ..modules.rootbuilder_menu import RootBuilderMenu
-from ..modules.rootbuilder_update import RootBuilderUpdate
 from ....base.base_dialog import BaseDialog
 from ....common.common_qt import *
 from ....common.common_icons import LINK_ALT_ICON
@@ -12,7 +11,6 @@ class RootBuilderManager(RootBuilderPlugin, mobase.IPluginTool):
 
     def init(self, organiser:mobase.IOrganizer):
         res = super().init(organiser)
-        self._update = RootBuilderUpdate(self._organiser, self, self._rootBuilder._strings, self._rootBuilder._log)
         self._dialog = self.getDialog()
         return res
 

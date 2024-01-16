@@ -1,7 +1,6 @@
 import mobase
 from ..core.shortcutter_plugin import ShortcutterPlugin
 from ..modules.shortcutter_menu import ShortcutterMenu
-from ..modules.shortcutter_update import ShortcutterUpdate
 from ....base.base_dialog import BaseDialog
 from ....common.common_qt import *
 from ....common.common_icons import LINK_ICON
@@ -12,7 +11,6 @@ class ShortcutterManager(ShortcutterPlugin, mobase.IPluginTool):
 
     def init(self, organiser:mobase.IOrganizer):
         res = super().init(organiser)
-        self._update = ShortcutterUpdate(self._organiser, self, self._shortcutter._strings, self._shortcutter._log)
         self._dialog = self.getDialog()
         return res
 
