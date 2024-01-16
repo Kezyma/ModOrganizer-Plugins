@@ -40,6 +40,25 @@
       "PluginPath": [ "shortcutter" ],
       "LocalePath": [],
       "DataPath": [ "data/shortcutter" ]
+    },
+    {
+      "Version": "2.0.0",
+      "Released": "2024-01-16",
+      "MinSupport": "2.4.0",
+      "MaxSupport": "2.5.0",
+      "MinWorking": "2.4.0",
+      "MaxWorking": "",
+      "ReleaseNotes": [
+        "(2.0.0) Total rewrite."
+      ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/shortcutter/shortcutter.2.0.0.zip",
+      "PluginPath": [
+        "shortcutter"
+      ],
+      "LocalePath": [],
+      "DataPath": [
+        "data/shortcutter"
+      ]
     }
   ]
 }
