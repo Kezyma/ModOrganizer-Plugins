@@ -22,9 +22,3 @@ class ProfileSyncStrings(CommonStrings):
     def psGroupDataPath(self) -> str:
         """Gets the path to the current group data."""
         return str(Path(self.psDataPath, "SyncGroups.json").absolute())
-
-    
-    @cached_property
-    def psUpdateFilePath(self) -> str:
-        """Gets the path to the file used for checking Profile Sync updates."""
-        return str(Path(self.pluginDataPath, "VersionManifest.json"))

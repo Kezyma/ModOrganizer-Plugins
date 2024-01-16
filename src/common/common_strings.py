@@ -124,3 +124,8 @@ class CommonStrings:
         for unsafe in self._unsafePathStrings:
             string = string.replace(unsafe, "")
         return string
+    
+    @cached_property
+    def updateFilePath(self) -> str:
+        """Gets the path to the file used for checking updates."""
+        return str(Path(self.pluginDataPath, "VersionManifest.json"))

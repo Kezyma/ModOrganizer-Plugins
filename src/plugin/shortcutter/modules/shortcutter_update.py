@@ -18,7 +18,7 @@ class ShortcutterUpdate:
 
     def getLatestVersion(self) -> mobase.VersionInfo:
         """Checks if Root Builder needs an update."""
-        updatePath = self._strings.scUpdateFilePath
+        updatePath = self._strings.updateFilePath
         if downloadFile(self._scManifest, updatePath):
             rbData = loadJson(updatePath)
             rbVersions = rbData[self._scVersionsKey]

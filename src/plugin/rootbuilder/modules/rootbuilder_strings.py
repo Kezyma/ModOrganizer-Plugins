@@ -38,7 +38,3 @@ class RootBuilderStrings(CommonStrings):
         """Gets the path to the current build data."""
         return str(Path(self.rbDataPath, "BuildData.json").absolute())
 
-    @cached_property
-    def rbUpdateFilePath(self) -> str:
-        """Gets the path to the file used for checking Root Builder updates."""
-        return str(Path(self.pluginDataPath, "VersionManifest.json"))
