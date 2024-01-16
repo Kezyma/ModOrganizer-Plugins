@@ -7,7 +7,7 @@ class ListExporterPlugin(BasePlugin):
     """Base List Exporter plugin, to be inherited by all other plugins."""
 
     def __init__(self):
-        super().__init__("ListExporter", "List Exporter", mobase.VersionInfo(0, 0, 1, mobase.ReleaseType.ALPHA))
+        super().__init__("ListExporter", "List Exporter", mobase.VersionInfo(0, 0, 1))
 
     def init(self, organiser:mobase.IOrganizer):
         self._listExporter = ListExporter(organiser)

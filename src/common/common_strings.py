@@ -45,7 +45,7 @@ class CommonStrings:
 
     @cached_property
     def moIniPath(self) -> str:
-        return str(Path(self.moInstancePath / "ModOrganizer.ini").absolute())
+        return str((Path(self.moInstancePath) / "ModOrganizer.ini").absolute())
 
     @cached_property
     def moModsPath(self) -> str:

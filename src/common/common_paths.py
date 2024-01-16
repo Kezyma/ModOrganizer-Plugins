@@ -61,3 +61,9 @@ class CommonPaths:
             if Path(itm).is_file():
                 files.append(itm)
         return files
+    
+    def fileNames(self, paths:List[str]) -> List[str]:
+        files = []
+        for item in paths:
+            files.append(os.path.basename(str(item)))
+        return files

@@ -15,6 +15,10 @@ try:
     from .openmwplayer_init import createPlugins as ompPlugins
 except:
     def ompPlugins(): return []
+try:
+    from .shortcutter_init import createPlugins as scPlugins
+except:
+    def scPlugins(): return []
 
 def createPlugins():
     plugins = []
@@ -22,4 +26,5 @@ def createPlugins():
     plugins.extend(psPlugins())
     plugins.extend(pfPlugins())
     plugins.extend(ompPlugins())
+    plugins.extend(scPlugins())
     return plugins

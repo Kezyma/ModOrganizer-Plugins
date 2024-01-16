@@ -7,7 +7,7 @@ class ProfileSyncPlugin(BasePlugin):
     """Base Profile Sync plugin, to be inherited by all other plugins."""
 
     def __init__(self):
-        super().__init__("ProfileSync", "Profile Sync", mobase.VersionInfo(2, 0, 1, mobase.ReleaseType.FINAL))
+        super().__init__("ProfileSync", "Profile Sync", mobase.VersionInfo(2, 0, 1))
 
     def init(self, organiser:mobase.IOrganizer):
         self._profileSync = ProfileSync(organiser)
@@ -19,11 +19,8 @@ class ProfileSyncPlugin(BasePlugin):
     def settings(self):
         """ Current list of game settings for Mod Organizer. """
         baseSettings = super().settings()
-        customSettings = [
-            mobase.PluginSetting("enabled", self.__tr(f"Enables {self._pluginName}"), True),
-            mobase.PluginSetting("loglevel", self.__tr(f"Controls the logging for {self._pluginName}"), 1)
-            ]
+        customSettings = []
         for setting in customSettings:
             baseSettings.append(setting)
-        return customSettings
+        return baseSettings
         
