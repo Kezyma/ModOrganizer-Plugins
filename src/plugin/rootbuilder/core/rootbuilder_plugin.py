@@ -1,6 +1,8 @@
 import mobase
+from pathlib import Path
 from ....base.base_plugin import BasePlugin
-from ....base.base_update import BaseUpdate
+from ....common.common_update import CommonUpdate
+from ....common.common_help import CommonHelp
 from .rootbuilder import RootBuilder
 try:
     from PyQt5.QtCore import QCoreApplication
@@ -15,10 +17,13 @@ class RootBuilderPlugin(BasePlugin):
 
     def init(self, organiser:mobase.IOrganizer):
         self._rootBuilder = RootBuilder(organiser)
-        self._update = BaseUpdate(
+        self._update = CommonUpdate(
             "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugins/rootbuilder.json", 
             "https://www.nexusmods.com/skyrimspecialedition/mods/31720?tab=files", 
             self, self._rootBuilder._strings, self._rootBuilder._log)
+        self._help = CommonHelp(Path(__file__).parent.parent / "data" / "rootbuilder_help.html", 
+                                "rootbuilder", "skyrimspecialedition", "31720", 
+                                self._rootBuilder._strings, self._rootBuilder._log)
         return super().init(organiser)
 
     def __tr(self, trstr):

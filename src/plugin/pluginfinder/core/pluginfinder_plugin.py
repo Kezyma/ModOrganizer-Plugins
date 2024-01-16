@@ -1,5 +1,7 @@
 import mobase
+from pathlib import Path
 from ....base.base_plugin import BasePlugin
+from ....common.common_help import CommonHelp
 from .pluginfinder import PluginFinder
 from ....common.common_qt import *
 
@@ -11,6 +13,9 @@ class PluginFinderPlugin(BasePlugin):
 
     def init(self, organiser:mobase.IOrganizer):
         self._pluginFinder = PluginFinder(organiser)
+        self._help = CommonHelp(Path(__file__).parent.parent / "data" / "pluginfinder_help.html",
+                                "pluginfinder", "skyrimspecialedition", "59869",
+                                self._pluginFinder._strings, self._pluginFinder._log)
         return super().init(organiser)
 
     def __tr(self, trstr):

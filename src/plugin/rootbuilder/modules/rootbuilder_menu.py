@@ -20,18 +20,20 @@ except:
     from ....base.ui.qt5.update_widget import Ui_updateTabWidget
 
 from ..core.rootbuilder import RootBuilder
-from ....base.base_update import BaseUpdate
+from ....common.common_update import CommonUpdate
+from ....common.common_help import CommonHelp
 from ....common.common_icons import *
 from ....common.common_qt import *
 
 class RootBuilderMenu(QtWidgets.QWidget):
     """Root Builder menu widget."""
 
-    def __init__(self, parent:QtWidgets.QWidget, organiser:mobase.IOrganizer, rootBuilder:RootBuilder, update:BaseUpdate):
+    def __init__(self, parent:QtWidgets.QWidget, organiser:mobase.IOrganizer, rootBuilder:RootBuilder, update:CommonUpdate, help:CommonHelp):
         super().__init__(parent)
         self._organiser = organiser
         self._rootBuilder = rootBuilder
         self._update = update
+        self._help = help
         self._rebind = False
         self.generateLayout()
 
@@ -58,6 +60,7 @@ class RootBuilderMenu(QtWidgets.QWidget):
         self.exportTabWidget.setupUi(self.widget.exportTab)
 
         self._update.configure(self.updateTabWidget)
+        self._help.configure(self.helpTabWidget)
 
         self.modeTabWidget.copyModeRadio.clicked.connect(self.copyModeButton_clicked)
         self.modeTabWidget.usvfsModeRadio.clicked.connect(self.usvfsModeButton_clicked)
@@ -97,21 +100,6 @@ class RootBuilderMenu(QtWidgets.QWidget):
         self.actionsTabWidget.backupDeleteButton.clicked.connect(self.deleteBackup_clicked)
         self.actionsTabWidget.backupCreateButton.setIcon(REFRESH_ICON)
         self.actionsTabWidget.backupCreateButton.clicked.connect(self.createBackup_clicked)
-
-        self.helpTabWidget.discordButton.setIcon(DISCORD_ICON)
-        self.helpTabWidget.discordButton.clicked.connect(self.discord_clicked)
-        self.helpTabWidget.docsButton.setIcon(DOCS_ICON)
-        self.helpTabWidget.docsButton.clicked.connect(self.docs_clicked)
-        self.helpTabWidget.githubButton.setIcon(GITHUB_ICON)
-        self.helpTabWidget.githubButton.clicked.connect(self.github_clicked)
-        self.helpTabWidget.nexusButton.setIcon(NEXUS_ICON)
-        self.helpTabWidget.nexusButton.clicked.connect(self.nexus_clicked)
-        self.helpTabWidget.patreonButton.setIcon(PATREON_ICON)
-        self.helpTabWidget.patreonButton.clicked.connect(self.patreon_clicked)
-
-        helpPath = Path(__file__).parent.parent / "data" / "rootbuilder_help.html"
-        helpUrl = QtCore.QUrl.fromLocalFile(str(helpPath.absolute()))
-        self.helpTabWidget.helpText.setSource(helpUrl)
 
         self.exportTabWidget.exportButton.clicked.connect(self.exportButton_clicked)
         self.exportTabWidget.exportButton.setIcon(LINK_ICON)
@@ -542,21 +530,6 @@ class RootBuilderMenu(QtWidgets.QWidget):
     def clear_clicked(self):
         self._rootBuilder.clear()
         self.rebind()
-
-    def discord_clicked(self):
-        webbrowser.open("https://discord.com/invite/kPA3RrxAYz")
-
-    def docs_clicked(self):
-        webbrowser.open("https://kezyma.github.io/?p=rootbuilder")
-
-    def nexus_clicked(self):
-        webbrowser.open("https://www.nexusmods.com/skyrimspecialedition/mods/31720")
-
-    def github_clicked(self):
-        webbrowser.open("https://github.com/Kezyma/ModOrganizer-Plugins")
-
-    def patreon_clicked(self):
-        webbrowser.open("https://www.patreon.com/KezymaOnline")
 
     def exportButton_clicked(self):
         """Exports the current settings file."""

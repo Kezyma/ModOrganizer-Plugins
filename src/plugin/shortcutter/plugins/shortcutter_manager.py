@@ -35,6 +35,6 @@ class ShortcutterManager(ShortcutterPlugin, mobase.IPluginTool):
 
     def getDialog(self) -> QtWidgets.QDialog:
         dialog = BaseDialog(self.displayName(), f"v{self.version().displayString()}", self.icon())
-        self._shortcutterMenu = ShortcutterMenu(dialog, self._organiser, self._shortcutter, self._update)
+        self._shortcutterMenu = ShortcutterMenu(dialog, self._organiser, self._shortcutter, self._update, self._help)
         dialog.addContent(self._shortcutterMenu)
         return dialog

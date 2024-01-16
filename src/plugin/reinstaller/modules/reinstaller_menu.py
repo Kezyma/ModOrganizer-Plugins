@@ -10,14 +10,14 @@ except:
     from ....base.ui.qt5.update_widget import Ui_updateTabWidget
 
 from ..core.reinstaller import Reinstaller
-from ....base.base_update import BaseUpdate
+from ....common.common_update import CommonUpdate
 from ....common.common_icons import *
 from ....common.common_qt import *
 
 class ReinstallerMenu(QtWidgets.QWidget):
     """Reinstaller create widget."""
 
-    def __init__(self, parent:QtWidgets.QWidget, organiser:mobase.IOrganizer, reinstaller:Reinstaller, update:BaseUpdate):
+    def __init__(self, parent:QtWidgets.QWidget, organiser:mobase.IOrganizer, reinstaller:Reinstaller, update:CommonUpdate):
         super().__init__(parent)
         self._organiser = organiser
         self._reinstaller = reinstaller

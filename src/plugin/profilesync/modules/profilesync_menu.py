@@ -4,7 +4,8 @@ from ....common.common_utilities import deleteFile
 from ..core.profilesync import ProfileSync
 
 from ..models.profilesync_groupdata import *
-from ....base.base_update import BaseUpdate
+from ....common.common_update import CommonUpdate
+from ....common.common_help import CommonHelp
 import mobase, webbrowser, os
 from pathlib import Path
 
@@ -24,11 +25,12 @@ except:
 class ProfileSyncMenu(QtWidgets.QWidget):
     """Profile Sync menu widget."""
 
-    def __init__(self, parent:QtWidgets.QWidget, organiser:mobase.IOrganizer, profileSync:ProfileSync, update:BaseUpdate):
+    def __init__(self, parent:QtWidgets.QWidget, organiser:mobase.IOrganizer, profileSync:ProfileSync, update:CommonUpdate, help:CommonHelp):
         super().__init__(parent)
         self._organiser = organiser
         self._profileSync = profileSync
         self._update = update
+        self._help = help
         self._rebind = False
         self.generateLayout()
 
@@ -49,6 +51,7 @@ class ProfileSyncMenu(QtWidgets.QWidget):
         self.updateTabWidget.setupUi(self.widget.updateTab)
 
         self._update.configure(self.updateTabWidget)
+        self._help.configure(self.helpTabWidget)
 
         self.groupsTabWidget.profileList.itemChanged.connect(self.saveProfileList)
         self.selectWidget.groupSelect.currentTextChanged.connect(self.groupSelect_changed)
@@ -60,21 +63,6 @@ class ProfileSyncMenu(QtWidgets.QWidget):
         self.stateTabWidget.deleteStateGroupBtn.clicked.connect(self.deleteStateGroup_clicked)
         self.stateTabWidget.stateProfileList.itemChanged.connect(self.saveStateLists)
         self.stateTabWidget.stateCategoryList.itemChanged.connect(self.saveStateLists)
-
-        self.helpTabWidget.discordButton.setIcon(DISCORD_ICON)
-        self.helpTabWidget.discordButton.clicked.connect(self.discord_clicked)
-        self.helpTabWidget.docsButton.setIcon(DOCS_ICON)
-        self.helpTabWidget.docsButton.clicked.connect(self.docs_clicked)
-        self.helpTabWidget.githubButton.setIcon(GITHUB_ICON)
-        self.helpTabWidget.githubButton.clicked.connect(self.github_clicked)
-        self.helpTabWidget.nexusButton.setIcon(NEXUS_ICON)
-        self.helpTabWidget.nexusButton.clicked.connect(self.nexus_clicked)
-        self.helpTabWidget.patreonButton.setIcon(PATREON_ICON)
-        self.helpTabWidget.patreonButton.clicked.connect(self.patreon_clicked)
-
-        helpPath = Path(__file__).parent.parent / "data" / "profilesync_help.html"
-        helpUrl = QtCore.QUrl.fromLocalFile(str(helpPath.absolute()))
-        self.helpTabWidget.helpText.setSource(helpUrl)
 
     def rebind(self):
         """Rebinds the UI with current settings."""
@@ -217,24 +205,6 @@ class ProfileSyncMenu(QtWidgets.QWidget):
             self.stateTabWidget.stateGroupSelect.setCurrentText(newName)
             self.bindStateGroup()
 
-    def discord_clicked(self):
-        webbrowser.open("https://discord.com/invite/kPA3RrxAYz")
-
-    def docs_clicked(self):
-        webbrowser.open("https://kezyma.github.io/?p=profilesync")
-
-    def nexus_clicked(self):
-        webbrowser.open("https://www.nexusmods.com/skyrimspecialedition/mods/60690")
-
-    def github_clicked(self):
-        webbrowser.open("https://github.com/Kezyma/ModOrganizer-Plugins")
-
-    def patreon_clicked(self):
-        webbrowser.open("https://www.patreon.com/KezymaOnline")
-
-    def updateFound_clicked(self):
-        webbrowser.open("https://www.nexusmods.com/skyrimspecialedition/mods/60690?tab=files")
-
     def createGroup_clicked(self):
         self.createSyncGroup()
 
@@ -328,12 +298,4 @@ class ProfileSyncMenu(QtWidgets.QWidget):
             deleteFile(stateListPath)
         
         self.bindStateGroup()
-
-    def checkUpdate_clicked(self):
-        """Checks for an update"""
-        newVersion = self._update.getLatestVersion()
-        hasUpdate = newVersion is not None
-        self.updateTabWidget.updateFoundWidget.setVisible(hasUpdate)
-        self.updateTabWidget.noUpdateWidget.setVisible(not hasUpdate)
-
     

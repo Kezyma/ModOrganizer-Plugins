@@ -1,14 +1,14 @@
 import mobase, webbrowser
-from ..common.common_strings import CommonStrings
-from ..common.common_utilities import downloadFile, loadJson
-from ..common.common_icons import * 
-from ..common.common_log import CommonLog
+from .common_strings import CommonStrings
+from .common_utilities import downloadFile, loadJson
+from .common_icons import * 
+from .common_log import CommonLog
 try:
-    from .ui.qt6.update_widget import Ui_updateTabWidget
+    from ..base.ui.qt6.update_widget import Ui_updateTabWidget
 except:
-    from .ui.qt5.update_widget import Ui_updateTabWidget
+    from ..base.ui.qt5.update_widget import Ui_updateTabWidget
 
-class BaseUpdate:
+class CommonUpdate:
     """Plugin update module, used to check if the plugin is on the current version."""
 
     def __init__(self, manifestUrl:str, downloadUrl:str, plugin: mobase.IPlugin, strings: CommonStrings, log: CommonLog) -> None:

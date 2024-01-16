@@ -129,3 +129,25 @@ class CommonStrings:
     def updateFilePath(self) -> str:
         """Gets the path to the file used for checking updates."""
         return str(Path(self.pluginDataPath, "VersionManifest.json"))
+    
+    def pluginManifestUrl(self, pluginName:str) -> str:
+        return f"https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugins/{pluginName.lower()}.json"
+    
+    def pluginNexusUrl(self, nexusGame:str, nexusId:str) -> str:
+        return f"https://www.nexusmods.com/{nexusGame}/mods/{nexusId}"
+    
+    def pluginDocsUrl(self, pluginName:str) -> str:
+        return f"https://kezyma.github.io/?p={pluginName.lower()}"
+    
+    @cached_property
+    def discordUrl(self) -> str:
+        return "https://discord.com/invite/kPA3RrxAYz"
+    
+    @cached_property
+    def githubUrl(self) -> str:
+        return "https://github.com/Kezyma/ModOrganizer-Plugins"
+    
+    @cached_property
+    def patreonUrl(self) -> str:
+        return "https://www.patreon.com/KezymaOnline"
+    

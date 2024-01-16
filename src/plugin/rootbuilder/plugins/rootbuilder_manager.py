@@ -35,6 +35,6 @@ class RootBuilderManager(RootBuilderPlugin, mobase.IPluginTool):
 
     def getDialog(self) -> QtWidgets.QDialog:
         dialog = BaseDialog(self.displayName(), f"v{self.version().displayString()}", self.icon())
-        self._rootBuilderMenu = RootBuilderMenu(dialog, self._organiser, self._rootBuilder, self._update)
+        self._rootBuilderMenu = RootBuilderMenu(dialog, self._organiser, self._rootBuilder, self._update, self._help)
         dialog.addContent(self._rootBuilderMenu)
         return dialog

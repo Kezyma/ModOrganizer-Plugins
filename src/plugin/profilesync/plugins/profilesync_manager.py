@@ -35,7 +35,7 @@ class ProfileSyncManager(ProfileSyncPlugin, mobase.IPluginTool):
 
     def getDialog(self) -> QtWidgets.QDialog:
         dialog = BaseDialog(self.displayName(), f"v{self.version().displayString()}", self.icon())
-        self._profileSyncMenu = ProfileSyncMenu(dialog, self._organiser, self._profileSync, self._update)
+        self._profileSyncMenu = ProfileSyncMenu(dialog, self._organiser, self._profileSync, self._update, self._help)
         dialog.addContent(self._profileSyncMenu)
         return dialog
 

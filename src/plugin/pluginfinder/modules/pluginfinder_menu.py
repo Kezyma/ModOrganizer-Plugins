@@ -1,5 +1,6 @@
 from ....common.common_icons import *
 from ....common.common_qt import *
+from ....common.common_help import CommonHelp
 from ..core.pluginfinder import PluginFinder
 import mobase, webbrowser, os
 from ..models.pluginfinder_versiondata import *
@@ -20,11 +21,11 @@ except:
 class PluginFinderMenu(QtWidgets.QWidget):
     """Plugin Finder menu widget."""
 
-    def __init__(self, parent:QtWidgets.QWidget, organiser:mobase.IOrganizer, pluginFinder:PluginFinder):
+    def __init__(self, parent:QtWidgets.QWidget, organiser:mobase.IOrganizer, pluginFinder:PluginFinder, help:CommonHelp):
         super().__init__(parent)
         self._organiser = organiser
         self._pluginFinder = pluginFinder
-        #self._update = update
+        self._help = help
         self._rebind = False
         self.generateLayout()
 
@@ -40,17 +41,7 @@ class PluginFinderMenu(QtWidgets.QWidget):
 
         self.helpTabWidget = Ui_helpTabWidget()
         self.helpTabWidget.setupUi(self.widget.helpTab)
-
-        self.helpTabWidget.discordButton.setIcon(DISCORD_ICON)
-        self.helpTabWidget.discordButton.clicked.connect(self.discord_clicked)
-        self.helpTabWidget.docsButton.setIcon(DOCS_ICON)
-        self.helpTabWidget.docsButton.clicked.connect(self.docs_clicked)
-        self.helpTabWidget.githubButton.setIcon(GITHUB_ICON)
-        self.helpTabWidget.githubButton.clicked.connect(self.github_clicked)
-        self.helpTabWidget.nexusButton.setIcon(NEXUS_ICON)
-        self.helpTabWidget.nexusButton.clicked.connect(self.nexus_clicked)
-        self.helpTabWidget.patreonButton.setIcon(PATREON_ICON)
-        self.helpTabWidget.patreonButton.clicked.connect(self.patreon_clicked)
+        self._help.configure(self.helpTabWidget)
 
         self.finderTabWidget.searchText.textChanged.connect(self.rebind)
         self.finderTabWidget.updateCheck.stateChanged.connect(self.rebind)
@@ -59,10 +50,6 @@ class PluginFinderMenu(QtWidgets.QWidget):
         self.finderTabWidget.workingCheck.stateChanged.connect(self.rebind)
         self.finderTabWidget.directionCombo.currentTextChanged.connect(self.rebind)
         self.finderTabWidget.sortCombo.currentTextChanged.connect(self.rebind)
-
-        helpPath = Path(__file__).parent.parent / "data" / "pluginfinder_help.html"
-        helpUrl = QtCore.QUrl.fromLocalFile(str(helpPath.absolute()))
-        self.helpTabWidget.helpText.setSource(helpUrl)
 
     def rebind(self):
         self.bindPluginList()

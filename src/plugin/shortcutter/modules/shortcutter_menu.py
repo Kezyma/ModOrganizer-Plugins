@@ -10,18 +10,20 @@ except:
     from ....base.ui.qt5.update_widget import Ui_updateTabWidget
 
 from ..core.shortcutter import Shortcutter
-from ....base.base_update import BaseUpdate
+from ....common.common_update import CommonUpdate
+from ....common.common_help import CommonHelp
 from ....common.common_icons import *
 from ....common.common_qt import *
 
 class ShortcutterMenu(QtWidgets.QWidget):
     """Shortcutter create widget."""
 
-    def __init__(self, parent:QtWidgets.QWidget, organiser:mobase.IOrganizer, shortcutter:Shortcutter, update:BaseUpdate):
+    def __init__(self, parent:QtWidgets.QWidget, organiser:mobase.IOrganizer, shortcutter:Shortcutter, update:CommonUpdate, help:CommonHelp):
         super().__init__(parent)
         self._organiser = organiser
         self._shortcutter = shortcutter
         self._update = update
+        self._help = help
         self.generateLayout()
 
     def generateLayout(self):
@@ -39,21 +41,7 @@ class ShortcutterMenu(QtWidgets.QWidget):
         self.helpTabWidget.setupUi(self.widget.helpTab)
 
         self._update.configure(self.updateTabWidget)
-
-        self.helpTabWidget.discordButton.setIcon(DISCORD_ICON)
-        self.helpTabWidget.discordButton.clicked.connect(self.discord_clicked)
-        self.helpTabWidget.docsButton.setIcon(DOCS_ICON)
-        self.helpTabWidget.docsButton.clicked.connect(self.docs_clicked)
-        self.helpTabWidget.githubButton.setIcon(GITHUB_ICON)
-        self.helpTabWidget.githubButton.clicked.connect(self.github_clicked)
-        self.helpTabWidget.nexusButton.setIcon(NEXUS_ICON)
-        self.helpTabWidget.nexusButton.clicked.connect(self.nexus_clicked)
-        self.helpTabWidget.patreonButton.setIcon(PATREON_ICON)
-        self.helpTabWidget.patreonButton.clicked.connect(self.patreon_clicked)
-
-        helpPath = Path(__file__).parent.parent / "data" / "shortcutter_help.html"
-        helpUrl = QtCore.QUrl.fromLocalFile(str(helpPath.absolute()))
-        self.helpTabWidget.helpText.setSource(helpUrl)
+        self._help.configure(self.helpTabWidget)
 
         self.createTabWidget.btnIconPath.clicked.connect(self.selectIcon)
         self.createTabWidget.btnCreate.clicked.connect(self.createShortcut)
@@ -106,16 +94,16 @@ class ShortcutterMenu(QtWidgets.QWidget):
 
 
     def discord_clicked(self):
-        webbrowser.open("https://discord.com/invite/kPA3RrxAYz")
+        webbrowser.open(self._shortcutter._strings.discordUrl)
 
     def docs_clicked(self):
-        webbrowser.open("https://kezyma.github.io/?p=shortcutter")
+        webbrowser.open(self._shortcutter._strings.pluginDocsUrl("shortcutter"))
 
     def nexus_clicked(self):
-        webbrowser.open("https://www.nexusmods.com/skyrimspecialedition/mods/59827")
+        webbrowser.open(self._shortcutter._strings.pluginNexusUrl("skyrimspecialedition", "59827"))
 
     def github_clicked(self):
-        webbrowser.open("https://github.com/Kezyma/ModOrganizer-Plugins")
+        webbrowser.open(self._shortcutter._strings.githubUrl)
 
     def patreon_clicked(self):
-        webbrowser.open("https://www.patreon.com/KezymaOnline")
+        webbrowser.open(self._shortcutter._strings.patreonUrl)
