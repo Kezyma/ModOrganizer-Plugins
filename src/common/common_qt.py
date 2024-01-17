@@ -14,6 +14,7 @@ try:
     qStandardPaths = QStandardPaths
     qFileMode = QFileDialog
     qEchoMode = QtWidgets.QLineEdit
+    qDocLocation = QStandardPaths.DocumentsLocation
 except:
     from ..base.ui.qt6.plugin_dialog import Ui_pluginDialog
     from ..base.ui.qt6.progress_dialog import Ui_progressDialog
@@ -30,3 +31,4 @@ except:
     qStandardPaths = QStandardPaths.StandardLocation
     qFileMode = QFileDialog.FileMode
     qEchoMode = QtWidgets.QLineEdit.EchoMode
+    qDocLocation = QStandardPaths.StandardLocation.DocumentsLocation

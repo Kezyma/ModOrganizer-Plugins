@@ -11,17 +11,19 @@ except:
 
 from ..core.reinstaller import Reinstaller
 from ....common.common_update import CommonUpdate
+from ....common.common_help import CommonHelp
 from ....common.common_icons import *
 from ....common.common_qt import *
 
 class ReinstallerMenu(QtWidgets.QWidget):
     """Reinstaller create widget."""
 
-    def __init__(self, parent:QtWidgets.QWidget, organiser:mobase.IOrganizer, reinstaller:Reinstaller, update:CommonUpdate):
+    def __init__(self, parent:QtWidgets.QWidget, organiser:mobase.IOrganizer, reinstaller:Reinstaller, update:CommonUpdate, help:CommonHelp):
         super().__init__(parent)
         self._organiser = organiser
         self._reinstaller = reinstaller
         self._update = update
+        self._help = help
         self.generateLayout()
 
     def generateLayout(self):
@@ -39,22 +41,8 @@ class ReinstallerMenu(QtWidgets.QWidget):
         self.helpTabWidget.setupUi(self.widget.helpTab)
 
         self._update.configure(self.updateTabWidget)
-
-        self.helpTabWidget.discordButton.setIcon(DISCORD_ICON)
-        self.helpTabWidget.discordButton.clicked.connect(self.discord_clicked)
-        self.helpTabWidget.docsButton.setIcon(DOCS_ICON)
-        self.helpTabWidget.docsButton.clicked.connect(self.docs_clicked)
-        self.helpTabWidget.githubButton.setIcon(GITHUB_ICON)
-        self.helpTabWidget.githubButton.clicked.connect(self.github_clicked)
-        self.helpTabWidget.nexusButton.setIcon(NEXUS_ICON)
-        self.helpTabWidget.nexusButton.clicked.connect(self.nexus_clicked)
-        self.helpTabWidget.patreonButton.setIcon(PATREON_ICON)
-        self.helpTabWidget.patreonButton.clicked.connect(self.patreon_clicked)
-
-        helpPath = Path(__file__).parent.parent / "data" / "reinstaller_help.html"
-        helpUrl = QtCore.QUrl.fromLocalFile(str(helpPath.absolute()))
-        self.helpTabWidget.helpText.setSource(helpUrl)
-
+        self._help.configure(self.helpTabWidget)
+        
         self.installersTabWidget.txtName.textChanged.connect(self.txtNameChange)
         self.installersTabWidget.ddlDownloads.currentTextChanged.connect(self.ddlDownloadChange)
         self.installersTabWidget.btnAdd.clicked.connect(self.btnAddClick)

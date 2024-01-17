@@ -40,13 +40,14 @@ class CommonPaths:
         """Retrieves a complete collection of subfolders for the specified path."""
         res = []
         basePath = Path(path)
-        for sub in os.listdir(path):
-            fullPath = basePath / sub
-            if Path.is_dir(fullPath):
-                strPath = str(fullPath)
-                res.append(strPath)
-                if recursive:
-                    res.extend(self.subfolders(strPath, recursive))
+        if basePath.exists():
+            for sub in os.listdir(path):
+                fullPath = basePath / sub
+                if Path.is_dir(fullPath):
+                    strPath = str(fullPath)
+                    res.append(strPath)
+                    if recursive:
+                        res.extend(self.subfolders(strPath, recursive))
         return res
     
     def files(self, path:str, recursive=True) -> List[str]:

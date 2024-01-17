@@ -3,4 +3,6 @@
 env
 release
 tools/*_log.txt
+tools/temp
 web
+debug

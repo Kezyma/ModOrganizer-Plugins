@@ -1,32 +1,33 @@
 @echo off
-cd /D "%~dp0\..\"
+CD /D %~dp0
 
-echo Removing existing release folder.
-rmdir /S /Q "release"
+ECHO Deleting existing release.
+RMDIR /S /Q "..\release"
 
-echo Creating release folder.
-mkdir "release"
+ECHO Creating new release directory.
+MKDIR "..\release"
 
-echo Looping through mods.
+ECHO Searching for plugins.
+ECHO %~dp0
 FOR /d %%I IN (%~dp0..\src\plugin\*) DO (
-    cd /D "%~dp0\..\"
+	ECHO Creating release for %%~nI.
+	MKDIR "..\release\%%~nI"
 
-	echo Creating %%~nI mod folder.
-	mkdir "release\%%~nI"
+	ECHO Copying plugin files into release.
+	CD "%~dp0..\"
+	ROBOCOPY "src\plugin\%%~nI" "release\%%~nI\plugin\%%~nI" /E 
+	ROBOCOPY "src\base" "release\%%~nI\base" /E 
+	ROBOCOPY "src\common" "release\%%~nI\common" /E 
+	ROBOCOPY "src" "release\%%~nI" "%%~nI_init.py" 
 
-	echo Copying %%~nI mod files to release folder.
-	robocopy "src\plugin\%%~nI" "release\%%~nI\plugin\%%~nI" /E 
-	robocopy "src\base" "release\%%~nI\base" /E 
-	robocopy "src\common" "release\%%~nI\common" /E 
-	robocopy "src" "release\%%~nI" "%%~nI_init.py" 
+	ECHO Renaming plugin init file.
+	CD "%~dp0..\"
+	REN "release\%%~nI\%%~nI_init.py" "__init__.py" 
 
-	echo Renaming %%~nI init file.
-	ren "release\%%~nI\%%~nI_init.py" "__init__.py" 
+	ECHO Zipping released mods.
+	IF NOT EXIST "release\zip" MKDIR "release\zip"
 
-	echo Creating zip folder.
-	if not exist "release\zip" mkdir "release\zip" 
-
-	echo Zipping %%~nI.
-	cd /D "%~dp0\..\release" 
+	ECHO Zipping %%~nI.
+	CD "%~dp0..\release"
 	tar.exe -a -cf "zip\%%~nI.zip" "%%~nI" 
 )

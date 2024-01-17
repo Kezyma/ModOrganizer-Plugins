@@ -1,6 +1,8 @@
 import mobase
+from pathlib import Path
 from ....base.base_plugin import BasePlugin
 from ....common.common_update import CommonUpdate
+from ....common.common_help import CommonHelp
 from .reinstaller import Reinstaller
 try:
     from PyQt5.QtCore import QCoreApplication
@@ -19,6 +21,9 @@ class ReinstallerPlugin(BasePlugin):
             "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugins/reinstaller.json", 
             "https://www.nexusmods.com/skyrimspecialedition/mods/59292?tab=files", 
             self, self._reinstaller._strings, self._reinstaller._log)
+        self._help = CommonHelp(Path(__file__).parent.parent / "data" / "reinstaller_help.html", 
+                                "reinstaller", "skyrimspecialedition", "59292", 
+                                self._reinstaller._strings, self._reinstaller._log)
         return super().init(organiser)
 
     def __tr(self, trstr):

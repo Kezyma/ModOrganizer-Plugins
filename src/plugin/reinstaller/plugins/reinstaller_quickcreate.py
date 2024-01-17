@@ -2,7 +2,6 @@ import mobase, os
 from pathlib import Path
 from ..core.reinstaller_plugin import ReinstallerPlugin
 from ..modules.reinstaller_menu import ReinstallerMenu
-from ..modules.reinstaller_update import ReinstallerUpdate
 from ....base.base_dialog import BaseDialog
 from ....common.common_qt import *
 from ....common.common_icons import PLUS_ICON
@@ -13,7 +12,6 @@ class ReinstallerQuickCreate(ReinstallerPlugin, mobase.IPluginTool):
 
     def init(self, organiser:mobase.IOrganizer):
         res = super().init(organiser)
-        self._update = ReinstallerUpdate(self._organiser, self, self._reinstaller._strings, self._reinstaller._log)
         self.dialog = QtWidgets.QWidget()
         return res
 

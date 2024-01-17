@@ -1,6 +1,9 @@
 import mobase
+from pathlib import Path
 from ....base.base_plugin import BasePlugin
 from .openmwplayer import OpenMWPlayer
+from ....common.common_update import CommonUpdate
+from ....common.common_help import CommonHelp
 from ....common.common_qt import *
 
 class OpenMWPlayerPlugin(BasePlugin):
@@ -10,7 +13,14 @@ class OpenMWPlayerPlugin(BasePlugin):
         super().__init__("OpenMWPlayer", "OpenMW Player", mobase.VersionInfo(2, 0, 0))
 
     def init(self, organiser:mobase.IOrganizer):
-        self._pluginFinder = OpenMWPlayer(organiser)
+        self._openmwPlayer = OpenMWPlayer(organiser)
+        self._update = CommonUpdate(
+            "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugins/openmwplayer.json", 
+            "https://www.nexusmods.com/morrowind/mods/52345?tab=files", 
+            self, self._openmwPlayer._strings, self._openmwPlayer._log)
+        self._help = CommonHelp(Path(__file__).parent.parent / "data" / "openmwplayer_help.html", 
+                                "openmwplayer", "morrowind", "52345", 
+                                self._openmwPlayer._strings, self._openmwPlayer._log)
         return super().init(organiser)
 
     def __tr(self, trstr):

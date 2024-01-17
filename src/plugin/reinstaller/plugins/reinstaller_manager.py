@@ -30,11 +30,11 @@ class ReinstallerManager(ReinstallerPlugin, mobase.IPluginTool):
         return self.__tr("Opens the Reinstaller menu.")
     
     def display(self):
-        self._shortcutterMenu.rebind()
+        self._reinstallerMenu.rebind()
         self._dialog.show()
 
     def getDialog(self) -> QtWidgets.QDialog:
         dialog = BaseDialog(self.displayName(), f"v{self.version().displayString()}", self.icon())
-        self._shortcutterMenu = ReinstallerMenu(dialog, self._organiser, self._reinstaller, self._update)
-        dialog.addContent(self._shortcutterMenu)
+        self._reinstallerMenu = ReinstallerMenu(dialog, self._organiser, self._reinstaller, self._update, self._help)
+        dialog.addContent(self._reinstallerMenu)
         return dialog

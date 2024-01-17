@@ -1,5 +1,6 @@
 import mobase, threading
 from ..core.openmwplayer_plugin import OpenMWPlayerPlugin
+from ..modules.openmwplayer_menu import OpenMWPlayerMenu
 from ....base.base_dialog import BaseDialog
 from ....common.common_qt import *
 from ....common.common_icons import *
@@ -34,6 +35,6 @@ class OpenMWPlayerManager(OpenMWPlayerPlugin, mobase.IPluginTool):
 
     def getDialog(self) -> QtWidgets.QDialog:
         dialog = BaseDialog(self.displayName(), f"v{self.version().displayString()}", self.icon())
-        #self._pluginFinderMenu = PluginFinderMenu(dialog, self._organiser, self._pluginFinder)
-        #dialog.addContent(self._pluginFinderMenu)
+        self._openmwPlayerMenu = OpenMWPlayerMenu(dialog, self._organiser, self._openmwPlayer, self._update, self._help)
+        dialog.addContent(self._openmwPlayerMenu)
         return dialog

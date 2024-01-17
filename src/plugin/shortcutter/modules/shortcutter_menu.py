@@ -91,19 +91,3 @@ class ShortcutterMenu(QtWidgets.QWidget):
             label = str(label).replace(character, "")
         icon = self.createTabWidget.lblIconPath.text()
         self._shortcutter.create(label, profile, app, self._shortcutter._strings.moInstanceName, icon)
-
-
-    def discord_clicked(self):
-        webbrowser.open(self._shortcutter._strings.discordUrl)
-
-    def docs_clicked(self):
-        webbrowser.open(self._shortcutter._strings.pluginDocsUrl("shortcutter"))
-
-    def nexus_clicked(self):
-        webbrowser.open(self._shortcutter._strings.pluginNexusUrl("skyrimspecialedition", "59827"))
-
-    def github_clicked(self):
-        webbrowser.open(self._shortcutter._strings.githubUrl)
-
-    def patreon_clicked(self):
-        webbrowser.open(self._shortcutter._strings.patreonUrl)
