@@ -31,11 +31,21 @@ class OpenMWPlayerStrings(CommonStrings):
             "openmw.exe"
         ]
     
-    def customSettingsCfgPath(self, profile:str):
-        return str(Path(self.moProfilesPath) / profile / "settings.cfg")
+    def customSettingsCfgPath(self):
+        profile = self._organiser.profile()
+        if profile.localSettingsEnabled():
+            return str(Path(self.moProfilesPath) / profile.name() / "settings.cfg")
+        return str(Path(self.pluginDataPath) / "settings.cfg")
         
-    def customOpenmwCfgPath(self, profile:str):
-        return str(Path(self.moProfilesPath) / profile / "openmw.cfg")
+    def customOpenmwCfgPath(self):
+        profile = self._organiser.profile()
+        if profile.localSettingsEnabled():
+            return str(Path(self.moProfilesPath) / profile.name() / "openmw.cfg")
+        return str(Path(self.pluginDataPath) / "openmw.cfg")
+
+    def localSavesPath(self):
+        profile = self._organiser.profile()
+        return str(Path(self.moProfilesPath) / profile.name() / "openmw")
     
     @cached_property
     def defaultSettingsCfgPath(self):

@@ -78,8 +78,7 @@ class OpenMWPlayerMenu(QtWidgets.QWidget):
         self.rebindOpenmwCfg()
 
     def rebindOptions(self):
-        profile = self._organiser.profile().name()
-        cfgPath = self._openmwPlayer._strings.customOpenmwCfgPath(profile)
+        cfgPath = self._openmwPlayer._strings.openmwCfgPath()
         self.optionsWidget.lblConfig.setText(cfgPath)
         self.optionsWidget.btnConfig.clicked.connect(self.selectOpenmwCfgPath)
 
@@ -245,8 +244,7 @@ class OpenMWPlayerMenu(QtWidgets.QWidget):
         loadOrder = self._openmwPlayer._files.getEnabledPlugins()
         self._openmwCfg["Data"] = dataFiles
         self._openmwCfg["Content"] = loadOrder
-        profile = self._organiser.profile().name()
-        cfgPath = self._openmwPlayer._strings.customOpenmwCfgPath(profile)
+        cfgPath = self._openmwPlayer._strings.customOpenmwCfgPath()
         self._openmwPlayer._files.saveOpenmwCfg(cfgPath, self._openmwCfg)
 
     def updateTextSettingsCfg(self, category:str, setting:str, value:str):
@@ -263,8 +261,7 @@ class OpenMWPlayerMenu(QtWidgets.QWidget):
         self.saveSettingsCfg()
 
     def saveSettingsCfg(self):
-        profile = self._organiser.profile().name()
-        cfgPath = self._openmwPlayer._strings.customSettingsCfgPath(profile)
+        cfgPath = self._openmwPlayer._strings.customSettingsCfgPath()
         self._openmwPlayer._files.saveSettingsCfg(cfgPath, self._settingsCfg)
         self.rebindSettingsCfg()
 

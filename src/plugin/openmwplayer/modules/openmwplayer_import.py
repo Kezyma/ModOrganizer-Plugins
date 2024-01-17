@@ -15,7 +15,6 @@ class OpenMWPlayerImport():
 
     def importOpenmwCfg(self):
         # Get or request the openmw.cfg path.
-        profile = self._organiser.profile().name()
         cfgPath = self._strings.openmwCfgPath()
         if cfgPath == None:
             manualPath = Path(QFileDialog.getOpenFileName(None, "Locate OpenMW Config File", ".", "OpenMW Config File (openmw.cfg)")[0])
@@ -23,7 +22,7 @@ class OpenMWPlayerImport():
             cfgPath = self._strings.openmwCfgPath()
         # If the config actually exists, import it.
         if Path(cfgPath).exists():
-            currentPath = self._strings.customOpenmwCfgPath(profile)
+            currentPath = self._strings.customOpenmwCfgPath()
             # Delete any existing openmw.cfg
             if Path(currentPath).exists():
                 deleteFile(currentPath)
@@ -32,13 +31,12 @@ class OpenMWPlayerImport():
 
     def importSettingsCfg(self):
         # Get or request the settings.cfg path.
-        profile = self._organiser.profile().name()
         cfgPath = self._strings.settingsCfgPath()
         if cfgPath == None:
             cfgPath = self._strings.defaultSettingsCfgPath
         # If the config actually exists, import it.
         if Path(cfgPath).exists():
-            currentPath = self._strings.customSettingsCfgPath(profile)
+            currentPath = self._strings.customSettingsCfgPath()
             # Delete any existing openmw.cfg
             if Path(currentPath).exists():
                 deleteFile(currentPath)
@@ -47,24 +45,22 @@ class OpenMWPlayerImport():
 
     def exportOpenmwCfg(self):
         # Get or request the openmw.cfg path.
-        profile = self._organiser.profile().name()
         cfgPath = self._strings.openmwCfgPath()
         if cfgPath == None:
             manualPath = Path(QFileDialog.getOpenFileName(None, "Locate OpenMW Config File", ".", "OpenMW Config File (openmw.cfg)")[0])
             self._settings.updateSetting("openmwcfgpath", str(manualPath))
             cfgPath = self._strings.openmwCfgPath()
 
-        currentPath = self._strings.customOpenmwCfgPath(profile)
+        currentPath = self._strings.customOpenmwCfgPath()
         # Export the current settings to that path.
         if Path(currentPath).exists():
             copyFile(currentPath, cfgPath)
 
     def exportSettingsCfg(self):
         # Get or request the settings.cfg path.
-        profile = self._organiser.profile().name()
         cfgPath = self._strings.settingsCfgPath()
         if cfgPath != None:
-            currentPath = self._strings.customSettingsCfgPath(profile)
+            currentPath = self._strings.customSettingsCfgPath()
             # Export the current settings to that path.
             if Path(currentPath).exists():
                 copyFile(currentPath, cfgPath)

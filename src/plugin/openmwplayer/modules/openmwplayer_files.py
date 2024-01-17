@@ -1,4 +1,4 @@
-import mobase, os, urllib.request, re, glob
+import mobase, os, urllib.request, re, glob, codecs, threading
 from pathlib import Path
 from ..core.openmwplayer_settings import OpenMWPlayerSettings
 from .openmwplayer_strings import OpenMWPlayerStrings
@@ -46,6 +46,7 @@ class OpenMWPlayerFiles():
                 cfgText.append(f"{cfgKey} = {cfgValue}\n")
         if saveLines(cfgPath, cfgText):
             self._log.debug(f"Saved {cfgPath}")
+            self.clearBOMFlag(cfgPath)
         else:
             self._log.info(f"Could not save {cfgPath}")
 
@@ -62,8 +63,7 @@ class OpenMWPlayerFiles():
 
     def getCustomSettingsCfg(self):
         """Gets the custom settings.cfg for a specific profile."""
-        profile = self._organiser.profile().name()
-        settingsCfgPath = self._strings.customSettingsCfgPath(profile)
+        settingsCfgPath = self._strings.customSettingsCfgPath()
         if Path(settingsCfgPath).exists():
             return self.readSettingsCfg(settingsCfgPath)
         return None
@@ -160,8 +160,7 @@ class OpenMWPlayerFiles():
         return None
     
     def getCustomOpenmwCfg(self):
-        profile = self._organiser.profile().name()
-        openmwCfgPath = self._strings.customOpenmwCfgPath(profile)
+        openmwCfgPath = self._strings.customOpenmwCfgPath()
         if Path(openmwCfgPath).exists():
             return self.readOpenmwCfg(openmwCfgPath)
         return None
@@ -212,9 +211,38 @@ class OpenMWPlayerFiles():
                 content.append(os.path.basename(match))
         return content
     
+    _refreshInProgress = False
     def refreshOpenmwCfg(self):
-        profile = self._organiser.profile().name()
-        currentCfg = self.getCustomOpenmwCfg()
-        currentCfg["Data"] = self.getDataFolders()
-        currentCfg["Content"] = self.getEnabledPlugins()
-        self.saveOpenmwCfg(self._strings.customOpenmwCfgPath(profile), currentCfg)
+        if not self._refreshInProgress:
+            self._refreshInProgress = True
+            currentCfg = self.getCustomOpenmwCfg()
+            if currentCfg != None:
+                currentCfg["Data"] = self.getDataFolders()
+                currentCfg["Content"] = self.getEnabledPlugins()
+                validArchives = self.getArchiveOptions()
+                validGroundcover = self.getGroundcoverOptions()
+                currentCfg["Archives"] = list(filter(lambda archive: archive in validArchives, currentCfg["Archives"]))
+                currentCfg["Groundcover"] = list(filter(lambda groundcover: groundcover in validGroundcover, currentCfg["Groundcover"]))
+                self.saveOpenmwCfg(self._strings.customOpenmwCfgPath(), currentCfg)
+            self._refreshInProgress = False
+        
+    def refreshOpenmwCfgAsync(self):
+        t = threading.Thread(target=self.refreshOpenmwCfgAsync, daemon=True)
+        t.start()
+
+    def clearBOMFlag(self, path):
+        BUFSIZE = 4096
+        BOMLEN = len(codecs.BOM_UTF8)
+        with open(path, "r+b") as fp:
+            chunk = fp.read(BUFSIZE)
+            if chunk.startswith(codecs.BOM_UTF8):
+                i = 0
+                chunk = chunk[BOMLEN:]
+                while chunk:
+                    fp.seek(i)
+                    fp.write(chunk)
+                    i += len(chunk)
+                    fp.seek(BOMLEN, os.SEEK_CUR)
+                    chunk = fp.read(BUFSIZE)
+                fp.seek(-BOMLEN, os.SEEK_CUR)
+                fp.truncate()

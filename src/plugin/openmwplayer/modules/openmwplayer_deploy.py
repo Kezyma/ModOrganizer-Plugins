@@ -13,4 +13,37 @@ class OpenMWPlayerDeploy():
         self._settings = settings
         self._strings = strings
 
+    def deployCfg(self):
+        openmwCfg = self._strings.openmwCfgPath()
+        openmwBackupCfg = f"{openmwCfg}.omwpbackup"
+        customOpenmwCfg = self._strings.customOpenmwCfgPath()
+
+        settingsCfg = self._strings.settingsCfgPath()
+        settingsBackupCfg = f"{settingsCfg}.omwpbackup"
+        customSettingsCfg = self._strings.customSettingsCfgPath()
+
+        if Path(openmwCfg).exists() and not Path(openmwBackupCfg).exists():
+            moveFile(openmwCfg, openmwBackupCfg)
+        if Path(settingsCfg).exists() and not Path(settingsBackupCfg).exists():
+            moveFile(settingsCfg, settingsBackupCfg)
+
+        if Path(customOpenmwCfg).exists():
+            copyFile(customOpenmwCfg, openmwCfg)
+        if Path(customSettingsCfg).exists():
+            copyFile(customSettingsCfg, settingsCfg)
+
+    def restoreCfg(self):
+        openmwCfg = self._strings.openmwCfgPath()
+        openmwBackupCfg = f"{openmwCfg}.omwpbackup"
+        customOpenmwCfg = self._strings.customOpenmwCfgPath()
+        if Path(openmwCfg).exists() and Path(openmwBackupCfg).exists():
+            copyFile(openmwCfg, customOpenmwCfg)
+            moveFile(openmwBackupCfg, openmwCfg)
+
+        settingsCfg = self._strings.settingsCfgPath()
+        settingsBackupCfg = f"{settingsCfg}.omwpbackup"
+        customSettingsCfg = self._strings.customSettingsCfgPath()
+        if Path(settingsCfg).exists() and Path(settingsBackupCfg).exists():
+            copyFile(settingsCfg, customSettingsCfg)
+            moveFile(settingsBackupCfg, settingsCfg)
 
