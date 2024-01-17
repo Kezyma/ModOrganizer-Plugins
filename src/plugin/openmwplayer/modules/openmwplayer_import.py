@@ -8,10 +8,9 @@ from ....common.common_utilities import *
 class OpenMWPlayerImport():
     """ OpenMW Player import module, handles importing openmw.cfg and settings.cfg. """
 
-    def __init__(self, plugin:str, organiser:mobase.IOrganizer, settings:OpenMWPlayerSettings, strings:OpenMWPlayerStrings):
+    def __init__(self, organiser:mobase.IOrganizer, settings:OpenMWPlayerSettings, strings:OpenMWPlayerStrings):
         self._settings = settings
         self._strings = strings
-        super().__init__(plugin, organiser) 
 
     def importOpenmwCfg(self, profile:str):
         # Get or request the openmw.cfg path.

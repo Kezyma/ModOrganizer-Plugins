@@ -30,8 +30,9 @@ class OpenMWPlayerManager(OpenMWPlayerPlugin, mobase.IPluginTool):
         return self.__tr("Opens the OpenMW Player window.")
     
     def display(self):
+        self._openmwPlayer.initialSetup()
+        self._openmwPlayerMenu.rebind()
         self._dialog.show()
-        #self._pluginFinderMenu.rebind()
 
     def getDialog(self) -> QtWidgets.QDialog:
         dialog = BaseDialog(self.displayName(), f"v{self.version().displayString()}", self.icon())

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>omwp_settingsrow</class>
- <widget class="QWidget" name="omwp_settingsrow">
+ <class>omwp_settingsrow_check</class>
+ <widget class="QWidget" name="omwp_settingsrow_check">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>422</width>
+    <width>428</width>
     <height>28</height>
    </rect>
   </property>
@@ -37,19 +37,17 @@
    </property>
    <item>
     <widget class="QLabel" name="lblSetting">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
      <property name="text">
       <string>Setting Name</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLineEdit" name="txtSetting"/>
+    <widget class="QCheckBox" name="chkSetting">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

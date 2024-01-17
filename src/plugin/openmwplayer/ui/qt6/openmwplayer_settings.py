@@ -46,6 +46,7 @@ class Ui_omwp_settingswidget(object):
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_4.setSpacing(0)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
         self.widget_2 = QtWidgets.QWidget(parent=self.scrollAreaWidgetContents)
         self.widget_2.setObjectName("widget_2")

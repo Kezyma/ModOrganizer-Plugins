@@ -14,9 +14,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_omwp_settingsrow(object):
     def setupUi(self, omwp_settingsrow):
         omwp_settingsrow.setObjectName("omwp_settingsrow")
-        omwp_settingsrow.resize(482, 38)
-        omwp_settingsrow.setMinimumSize(QtCore.QSize(0, 38))
+        omwp_settingsrow.resize(422, 28)
+        omwp_settingsrow.setMinimumSize(QtCore.QSize(0, 28))
         self.horizontalLayout = QtWidgets.QHBoxLayout(omwp_settingsrow)
+        self.horizontalLayout.setContentsMargins(9, 0, 9, 0)
+        self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.lblSetting = QtWidgets.QLabel(omwp_settingsrow)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Preferred)

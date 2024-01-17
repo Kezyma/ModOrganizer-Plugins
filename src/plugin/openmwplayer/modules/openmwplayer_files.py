@@ -9,12 +9,11 @@ from ....common.common_log import CommonLog
 class OpenMWPlayerFiles():
     """ OpenMW Player files module, handles reading and writing openmw.cfg and settings.cfg. """
 
-    def __init__(self, plugin:str, organiser:mobase.IOrganizer, settings:OpenMWPlayerSettings, strings:OpenMWPlayerStrings, log:CommonLog):
+    def __init__(self, organiser:mobase.IOrganizer, settings:OpenMWPlayerSettings, strings:OpenMWPlayerStrings, log:CommonLog):
         self._organiser = organiser
         self._settings = settings
         self._strings = strings
         self._log = log
-        super().__init__(plugin, organiser) 
 
     _settingsCfgHeadingRegex = r"\[(?P<title>[^\]]*)\]"
     _settingsCfgSettingRegex = r"^(?P<setting>[^=\n#]*)\s=\s(?P<value>[^\n]*)"
@@ -40,6 +39,7 @@ class OpenMWPlayerFiles():
         """Saves a settings.cfg dictionary to a specific path."""
         cfgText = []
         for cfgGroup in settingsCfg:
+            cfgText.append("")
             cfgText.append(f"[{cfgGroup}]")
             for cfgKey in settingsCfg[cfgGroup]:
                 cfgValue = settingsCfg[cfgGroup][cfgKey]
