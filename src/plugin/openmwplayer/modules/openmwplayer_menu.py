@@ -98,7 +98,7 @@ class OpenMWPlayerMenu(QtWidgets.QWidget):
 
     def toggleDummyEsp(self):
         enabled = self.optionsWidget.chkDummy.isChecked()
-        self._openmwPlayer._settings.updateSetting("dummyesp", enabled)
+        self._openmwPlayer.toggleDummyEsps(enabled)
 
     def importOpenmwCfg(self):
         self._openmwPlayer.importSettings()
@@ -166,6 +166,7 @@ class OpenMWPlayerMenu(QtWidgets.QWidget):
         self.groundcoverWidget.lstGroundcover.clear()
         groundcoverOptions = self._openmwPlayer._files.getGroundcoverOptions()
         for esp in groundcoverOptions:
+            esp = str(esp).replace(".omwaddon.esp", ".omwaddon").replace(".omwscripts.esp", ".omwscripts")
             item = QtWidgets.QListWidgetItem()
             item.setText(esp)
             item.setFlags(item.flags() | qItemFlag.ItemIsUserCheckable | qItemFlag.ItemIsEnabled)
