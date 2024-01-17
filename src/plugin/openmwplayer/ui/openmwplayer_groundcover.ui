@@ -46,50 +46,19 @@
         <property name="text">
          <string>Select all plugins that contain grass or other groundcover. These plugins should not be enabled in Mod Organizer.</string>
         </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
      </layout>
     </widget>
    </item>
    <item>
-    <widget class="QListWidget" name="lstGroundcover"/>
-   </item>
-   <item>
-    <widget class="QWidget" name="widget_2" native="true">
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
-      <item>
-       <widget class="QPushButton" name="btnGroundcover">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Enable Groundcover</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="lblMissingGroundcover">
-        <property name="text">
-         <string>Groundcover is currently disabled or missing from your settings.cfg.</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+    <widget class="QListWidget" name="lstGroundcover">
+     <property name="dragEnabled">
+      <bool>false</bool>
+     </property>
     </widget>
    </item>
   </layout>

@@ -51,14 +51,19 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QTabWidget" name="configTabs">
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <widget class="QWidget" name="tab">
+         <attribute name="title">
+          <string>Tab 1</string>
+         </attribute>
+        </widget>
+       </widget>
+      </item>
      </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QPlainTextEdit" name="plainTextEdit">
-     <property name="plainText">
-      <string/>
-     </property>
     </widget>
    </item>
   </layout>

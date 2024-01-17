@@ -32,13 +32,16 @@ class Ui_omwp_cfgwidget(object):
         self.label.setWordWrap(True)
         self.label.setObjectName("label")
         self.verticalLayout_2.addWidget(self.label)
+        self.configTabs = QtWidgets.QTabWidget(self.widget)
+        self.configTabs.setObjectName("configTabs")
+        self.tab = QtWidgets.QWidget()
+        self.tab.setObjectName("tab")
+        self.configTabs.addTab(self.tab, "")
+        self.verticalLayout_2.addWidget(self.configTabs)
         self.verticalLayout.addWidget(self.widget)
-        self.plainTextEdit = QtWidgets.QPlainTextEdit(omwp_cfgwidget)
-        self.plainTextEdit.setPlainText("")
-        self.plainTextEdit.setObjectName("plainTextEdit")
-        self.verticalLayout.addWidget(self.plainTextEdit)
 
         self.retranslateUi(omwp_cfgwidget)
+        self.configTabs.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(omwp_cfgwidget)
 
     def retranslateUi(self, omwp_cfgwidget):
@@ -46,3 +49,4 @@ class Ui_omwp_cfgwidget(object):
         omwp_cfgwidget.setWindowTitle(_translate("omwp_cfgwidget", "Form"))
         self.label_2.setText(_translate("omwp_cfgwidget", "OpenMW.cfg"))
         self.label.setText(_translate("omwp_cfgwidget", "These are the remaining settings in openmw.cfg that aren\'t managed by OpenMW Player. They should be edited here and not in openmw.cfg directly."))
+        self.configTabs.setTabText(self.configTabs.indexOf(self.tab), _translate("omwp_cfgwidget", "Tab 1"))

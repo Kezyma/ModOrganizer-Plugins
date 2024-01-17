@@ -33,6 +33,9 @@ class Ui_omwp_archiveswidget(object):
         self.verticalLayout_2.addWidget(self.label)
         self.verticalLayout.addWidget(self.widget)
         self.lstArchives = QtWidgets.QListWidget(omwp_archiveswidget)
+        self.lstArchives.setDragEnabled(True)
+        self.lstArchives.setDragDropMode(QtWidgets.QAbstractItemView.InternalMove)
+        self.lstArchives.setDefaultDropAction(QtCore.Qt.MoveAction)
         self.lstArchives.setObjectName("lstArchives")
         self.verticalLayout.addWidget(self.lstArchives)
 

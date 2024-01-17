@@ -26,9 +26,13 @@ class OpenMWPlayer:
             self._import.importOpenmwCfg(profile)
         if not Path(self._strings.customSettingsCfgPath(profile)).exists():
             self._import.importSettingsCfg(profile)
+        self._files.refreshOpenmwCfg()
 
     def importSettings(self):
         """Imports and overwrites the current openmw.cfg and settings.cfg."""
-        profile = self._organiser.profile().name()
-        self._import.importOpenmwCfg(profile)
-        self._import.importSettingsCfg(profile)
+        self._import.importOpenmwCfg()
+        self._import.importSettingsCfg()
+        self._files.refreshOpenmwCfg()
+
+    def toggleDummyEsp(self, enabled:bool):
+        pass
