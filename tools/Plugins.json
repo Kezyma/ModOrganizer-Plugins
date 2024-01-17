@@ -1,0 +1,44 @@
+[
+  {
+    "PluginId": "rootbuilder",
+    "GameId": "skyrimspecialedition",
+    "NexusId": 31720,
+    "MO2Game": "skyrimse"
+  },
+  {
+    "PluginId": "reinstaller",
+    "GameId": "skyrimspecialedition",
+    "NexusId": 59292,
+    "MO2Game": "skyrimse"
+  },
+  {
+    "PluginId": "shortcutter",
+    "GameId": "skyrimspecialedition",
+    "NexusId": 59827,
+    "MO2Game": "skyrimse"
+  },
+  {
+    "PluginId": "pluginfinder",
+    "GameId": "skyrimspecialedition",
+    "NexusId": 59869,
+    "MO2Game": "skyrimse"
+  },
+  {
+    "PluginId": "curationclub",
+    "GameId": "skyrimspecialedition",
+    "NexusId": 60552,
+    "MO2Game": "skyrimse"
+  },
+  {
+    "PluginId": "profilesync",
+    "GameId": "skyrimspecialedition",
+    "NexusId": 60690,
+    "MO2Game": "skyrimse"
+  },
+  {
+    "PluginId": "openmwplayer",
+    "GameId": "morrowind",
+    "NexusId": 52345,
+    "MO2Game": "morrowind"
+  }
+]
