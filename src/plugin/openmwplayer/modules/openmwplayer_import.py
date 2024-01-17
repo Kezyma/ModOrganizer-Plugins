@@ -20,15 +20,26 @@ class OpenMWPlayerImport():
             manualPath = Path(QFileDialog.getOpenFileName(None, "Locate OpenMW Config File", ".", "OpenMW Config File (openmw.cfg)")[0])
             self._settings.updateSetting("openmwcfgpath", str(manualPath))
             cfgPath = self._strings.openmwCfgPath()
-
         # If the config actually exists, import it.
         if Path(cfgPath).exists():
             currentPath = self._strings.customOpenmwCfgPath(profile)
-
             # Delete any existing openmw.cfg
             if Path(currentPath).exists():
                 deleteFile(currentPath)
+            # Copy in the new one
+            copyFile(cfgPath, currentPath)
 
+    def importSettingsCfg(self, profile:str):
+        # Get or request the openmw.cfg path.
+        cfgPath = self._strings.settingsCfgPath()
+        if cfgPath == None:
+            cfgPath = self._strings.defaultSettingsCfgPath
+        # If the config actually exists, import it.
+        if Path(cfgPath).exists():
+            currentPath = self._strings.customSettingsCfgPath(profile)
+            # Delete any existing openmw.cfg
+            if Path(currentPath).exists():
+                deleteFile(currentPath)
             # Copy in the new one
             copyFile(cfgPath, currentPath)
 

@@ -126,7 +126,7 @@ def saveJson(path: str, data: Any, retries = 0) -> bool:
 def loadJson(path: str, retries = 0):
     """Loads an object from a json file."""
     try:
-        return json.load(open(Path(path), "r", encoding="utf-8"))
+        return json.load(open(Path(path), "r", encoding="utf-8-sig"))
     except:
         if retries <= maxRetries():
             time.sleep(0.1)
@@ -136,7 +136,7 @@ def loadJson(path: str, retries = 0):
 def loadLines(path: str, retries = 0):
     """Loads a list of lines from a file."""
     try:
-        with open(path, "r") as file:
+        with open(path, "r", encoding="utf-8-sig") as file:
             lines = [line.rstrip() for line in file]
             return lines
     except:

@@ -22,17 +22,16 @@ class OpenMWPlayerFiles():
         """Reads a settings.cfg into a dictionary."""
         if Path(cfgPath).exists():
             settingsCfg = {}
-            with Path(cfgPath).open("r", encoding="utf-8-sig") as cfg:
-                cfgLines = cfg.readlines()
-                cfgGroup = ""
-                for cfgLine in cfgLines:
-                    headingMatch = re.match(self._settingsCfgHeadingRegex, cfgLine)
-                    settingMatch = re.match(self._settingsCfgSettingRegex, cfgLine)
-                    if headingMatch:
-                        cfgGroup = headingMatch.groups()[0]
-                        settingsCfg[cfgGroup] = {}
-                    elif settingMatch:
-                        settingsCfg[cfgGroup][settingMatch.groups()[0]] = settingMatch.groups()[1]
+            cfgLines = loadLines(cfgPath)
+            cfgGroup = ""
+            for cfgLine in cfgLines:
+                headingMatch = re.match(self._settingsCfgHeadingRegex, cfgLine)
+                settingMatch = re.match(self._settingsCfgSettingRegex, cfgLine)
+                if headingMatch:
+                    cfgGroup = headingMatch.groups()[0]
+                    settingsCfg[cfgGroup] = {}
+                elif settingMatch:
+                    settingsCfg[cfgGroup][settingMatch.groups()[0]] = settingMatch.groups()[1]
             return settingsCfg
         else:
             return None
@@ -88,3 +87,22 @@ class OpenMWPlayerFiles():
                             defaultCfg[key][setting] = profileCfg[key][setting]
         return defaultCfg
 
+    _openmwCfgRegex = r"fallback=(?P<setting>[^,]*),(?P<value>[^\n]*)"
+    _openmwCfgBsaRegex = r"fallback-archive=(?P<value>[^\n]*)"
+    _openmwCfgGroundRegex = r"groundcover=(?P<value>[^\n]*)"
+    _openmwCfgContentRegex = r"content=(?P<value>[^\n]*)"
+    _openmwCfgDataRegex = r"data=(?P<value>[^\n]*)"
+    def readOpenmwCfg(self, cfgPath:str):
+        """Reads an openmw.cfg into a dictionary."""
+        if Path(cfgPath).exists():
+            openmwCfg = {}
+            lines = loadLines(cfgPath)
+            for line in lines:
+                fallbackMatch = re.match(self._openmwCfgRegex, line)
+                archiveMatch =  re.match(self._openmwCfgBsaRegex, line)
+                groundcoverMatch =  re.match(self._openmwCfgGroundRegex, line)
+                contentMatch =  re.match(self._openmwCfgContentRegex, line)
+                dataMatch =  re.match(self._openmwCfgDataRegex, line)
+            return openmwCfg
+        else:
+            return None
