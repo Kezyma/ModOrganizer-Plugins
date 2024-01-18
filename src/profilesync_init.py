@@ -1,7 +1,8 @@
-import mobase
-from .profilesync.plugins.profilesync_tool_manage import ProfileSyncManageTool
+from .plugin.profilesync.plugins.profilesync_manager import ProfileSyncManager
+from .plugin.profilesync.plugins.profilesync_updater import ProfileSyncUpdater
 
 def createPlugins():
     return [
-        ProfileSyncManageTool()
-        ]
+        ProfileSyncManager(),
+        ProfileSyncUpdater()
+    ]

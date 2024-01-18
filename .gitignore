@@ -3,4 +3,8 @@
 env
 release
 tools/*_log.txt
+tools/temp
 web
+debug
+tools/meta-generator/obj
+tools/meta-generator/bin

@@ -1,0 +1,3093 @@
+Looping through mods.
+Deploying rootbuilder
+Deploying to D:\Portable\Morrowind\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:55
+   Source : D:\Repos\ModOrganizer-Plugins\release\rootbuilder\
+     Dest : D:\Portable\Morrowind\plugins\rootbuilder\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\
+	    New File  		    1447	readme.md100%  
+	    New File  		     129	readme.url100%  
+	    New File  		     748	__init__.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\rootbuilder\
+	    New File  		    3399	rootbuilder.py100%  
+	    New File  		    2243	rootbuilder_plugin.py100%  
+	  New Dir          8	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\rootbuilder\modules\
+	    New File  		   10722	rootbuilder_backup.py100%  
+	    New File  		    6952	rootbuilder_copy.py100%  
+	    New File  		    5635	rootbuilder_files.py100%  
+	    New File  		    2973	rootbuilder_linker.py100%  
+	    New File  		    2242	rootbuilder_mapper.py100%  
+	    New File  		    5035	rootbuilder_paths.py100%  
+	    New File  		    1658	rootbuilder_settings.py100%  
+	    New File  		    5086	rootbuilder_update.py100%  
+	  New Dir          6	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\rootbuilder\plugins\
+	    New File  		   13596	rootbuilder_plugin_install.py100%  
+	    New File  		    5185	rootbuilder_plugin_mapper.py100%  
+	    New File  		     987	rootbuilder_tool_build.py100%  
+	    New File  		     984	rootbuilder_tool_clear.py100%  
+	    New File  		   40386	rootbuilder_tool_manage.py100%  
+	    New File  		     978	rootbuilder_tool_sync.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        59        59         0         0         0         0
+   Bytes :    3.68 m    3.68 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           10,317,588 Bytes/sec.
+   Speed :              590.377 MegaBytes/min.
+   Ended : 22 February 2023 20:29:56
+
+Deploying to D:\Portable\Oblivion\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:56
+   Source : D:\Repos\ModOrganizer-Plugins\release\rootbuilder\
+     Dest : D:\Portable\Oblivion\plugins\rootbuilder\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\
+	    New File  		    1447	readme.md100%  
+	    New File  		     129	readme.url100%  
+	    New File  		     748	__init__.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\rootbuilder\
+	    New File  		    3399	rootbuilder.py100%  
+	    New File  		    2243	rootbuilder_plugin.py100%  
+	  New Dir          8	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\rootbuilder\modules\
+	    New File  		   10722	rootbuilder_backup.py100%  
+	    New File  		    6952	rootbuilder_copy.py100%  
+	    New File  		    5635	rootbuilder_files.py100%  
+	    New File  		    2973	rootbuilder_linker.py100%  
+	    New File  		    2242	rootbuilder_mapper.py100%  
+	    New File  		    5035	rootbuilder_paths.py100%  
+	    New File  		    1658	rootbuilder_settings.py100%  
+	    New File  		    5086	rootbuilder_update.py100%  
+	  New Dir          6	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\rootbuilder\plugins\
+	    New File  		   13596	rootbuilder_plugin_install.py100%  
+	    New File  		    5185	rootbuilder_plugin_mapper.py100%  
+	    New File  		     987	rootbuilder_tool_build.py100%  
+	    New File  		     984	rootbuilder_tool_clear.py100%  
+	    New File  		   40386	rootbuilder_tool_manage.py100%  
+	    New File  		     978	rootbuilder_tool_sync.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        59        59         0         0         0         0
+   Bytes :    3.68 m    3.68 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           14,672,159 Bytes/sec.
+   Speed :              839.548 MegaBytes/min.
+   Ended : 22 February 2023 20:29:56
+
+Deploying to D:\Portable\Skyrim SE\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:56
+   Source : D:\Repos\ModOrganizer-Plugins\release\rootbuilder\
+     Dest : D:\Portable\Skyrim SE\plugins\rootbuilder\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\
+	    New File  		    1447	readme.md100%  
+	    New File  		     129	readme.url100%  
+	    New File  		     748	__init__.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\rootbuilder\
+	    New File  		    3399	rootbuilder.py100%  
+	    New File  		    2243	rootbuilder_plugin.py100%  
+	  New Dir          8	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\rootbuilder\modules\
+	    New File  		   10722	rootbuilder_backup.py100%  
+	    New File  		    6952	rootbuilder_copy.py100%  
+	    New File  		    5635	rootbuilder_files.py100%  
+	    New File  		    2973	rootbuilder_linker.py100%  
+	    New File  		    2242	rootbuilder_mapper.py100%  
+	    New File  		    5035	rootbuilder_paths.py100%  
+	    New File  		    1658	rootbuilder_settings.py100%  
+	    New File  		    5086	rootbuilder_update.py100%  
+	  New Dir          6	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\rootbuilder\plugins\
+	    New File  		   13596	rootbuilder_plugin_install.py100%  
+	    New File  		    5185	rootbuilder_plugin_mapper.py100%  
+	    New File  		     987	rootbuilder_tool_build.py100%  
+	    New File  		     984	rootbuilder_tool_clear.py100%  
+	    New File  		   40386	rootbuilder_tool_manage.py100%  
+	    New File  		     978	rootbuilder_tool_sync.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        59        59         0         0         0         0
+   Bytes :    3.68 m    3.68 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           15,945,363 Bytes/sec.
+   Speed :              912.401 MegaBytes/min.
+   Ended : 22 February 2023 20:29:56
+
+Deploying to D:\Portable\Fallout 3\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:56
+   Source : D:\Repos\ModOrganizer-Plugins\release\rootbuilder\
+     Dest : D:\Portable\Fallout 3\plugins\rootbuilder\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\
+	    New File  		    1447	readme.md100%  
+	    New File  		     129	readme.url100%  
+	    New File  		     748	__init__.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\rootbuilder\
+	    New File  		    3399	rootbuilder.py100%  
+	    New File  		    2243	rootbuilder_plugin.py100%  
+	  New Dir          8	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\rootbuilder\modules\
+	    New File  		   10722	rootbuilder_backup.py100%  
+	    New File  		    6952	rootbuilder_copy.py100%  
+	    New File  		    5635	rootbuilder_files.py100%  
+	    New File  		    2973	rootbuilder_linker.py100%  
+	    New File  		    2242	rootbuilder_mapper.py100%  
+	    New File  		    5035	rootbuilder_paths.py100%  
+	    New File  		    1658	rootbuilder_settings.py100%  
+	    New File  		    5086	rootbuilder_update.py100%  
+	  New Dir          6	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\rootbuilder\plugins\
+	    New File  		   13596	rootbuilder_plugin_install.py100%  
+	    New File  		    5185	rootbuilder_plugin_mapper.py100%  
+	    New File  		     987	rootbuilder_tool_build.py100%  
+	    New File  		     984	rootbuilder_tool_clear.py100%  
+	    New File  		   40386	rootbuilder_tool_manage.py100%  
+	    New File  		     978	rootbuilder_tool_sync.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        59        59         0         0         0         0
+   Bytes :    3.68 m    3.68 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           17,226,687 Bytes/sec.
+   Speed :              985.719 MegaBytes/min.
+   Ended : 22 February 2023 20:29:57
+
+Deploying to D:\Portable\Fallout NV\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:57
+   Source : D:\Repos\ModOrganizer-Plugins\release\rootbuilder\
+     Dest : D:\Portable\Fallout NV\plugins\rootbuilder\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\
+	    New File  		    1447	readme.md100%  
+	    New File  		     129	readme.url100%  
+	    New File  		     748	__init__.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\rootbuilder\
+	    New File  		    3399	rootbuilder.py100%  
+	    New File  		    2243	rootbuilder_plugin.py100%  
+	  New Dir          8	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\rootbuilder\modules\
+	    New File  		   10722	rootbuilder_backup.py100%  
+	    New File  		    6952	rootbuilder_copy.py100%  
+	    New File  		    5635	rootbuilder_files.py100%  
+	    New File  		    2973	rootbuilder_linker.py100%  
+	    New File  		    2242	rootbuilder_mapper.py100%  
+	    New File  		    5035	rootbuilder_paths.py100%  
+	    New File  		    1658	rootbuilder_settings.py100%  
+	    New File  		    5086	rootbuilder_update.py100%  
+	  New Dir          6	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\rootbuilder\plugins\
+	    New File  		   13596	rootbuilder_plugin_install.py100%  
+	    New File  		    5185	rootbuilder_plugin_mapper.py100%  
+	    New File  		     987	rootbuilder_tool_build.py100%  
+	    New File  		     984	rootbuilder_tool_clear.py100%  
+	    New File  		   40386	rootbuilder_tool_manage.py100%  
+	    New File  		     978	rootbuilder_tool_sync.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        59        59         0         0         0         0
+   Bytes :    3.68 m    3.68 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           83,886,478 Bytes/sec.
+   Speed :            4,800.023 MegaBytes/min.
+   Ended : 22 February 2023 20:29:57
+
+Deploying reinstaller
+Deploying to D:\Portable\Morrowind\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:57
+   Source : D:\Repos\ModOrganizer-Plugins\release\reinstaller\
+     Dest : D:\Portable\Morrowind\plugins\reinstaller\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\reinstaller\
+	    New File  		    1302	readme.md100%  
+	    New File  		     129	readme.url100%  
+	    New File  		     520	__init__.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\reinstaller\reinstaller\
+	    New File  		    1619	reinstaller.py100%  
+	    New File  		     437	reinstaller_plugin.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\reinstaller\reinstaller\modules\
+	    New File  		    2313	reinstaller_files.py100%  
+	    New File  		     303	reinstaller_paths.py100%  
+	    New File  		     317	reinstaller_settings.py100%  
+	  New Dir          4	D:\Repos\ModOrganizer-Plugins\release\reinstaller\reinstaller\plugins\
+	    New File  		    1627	reinstaller_tool_create.py100%  
+	    New File  		    2267	reinstaller_tool_delete.py100%  
+	    New File  		    1828	reinstaller_tool_install.py100%  
+	    New File  		    9035	reinstaller_tool_manage.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\reinstaller\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\reinstaller\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        52        52         0         0         0         0
+   Bytes :    3.59 m    3.59 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           188,504,500 Bytes/sec.
+   Speed :            10,786.314 MegaBytes/min.
+   Ended : 22 February 2023 20:29:57
+
+Deploying to D:\Portable\Oblivion\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:57
+   Source : D:\Repos\ModOrganizer-Plugins\release\reinstaller\
+     Dest : D:\Portable\Oblivion\plugins\reinstaller\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\reinstaller\
+	    New File  		    1302	readme.md100%  
+	    New File  		     129	readme.url100%  
+	    New File  		     520	__init__.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\reinstaller\reinstaller\
+	    New File  		    1619	reinstaller.py100%  
+	    New File  		     437	reinstaller_plugin.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\reinstaller\reinstaller\modules\
+	    New File  		    2313	reinstaller_files.py100%  
+	    New File  		     303	reinstaller_paths.py100%  
+	    New File  		     317	reinstaller_settings.py100%  
+	  New Dir          4	D:\Repos\ModOrganizer-Plugins\release\reinstaller\reinstaller\plugins\
+	    New File  		    1627	reinstaller_tool_create.py100%  
+	    New File  		    2267	reinstaller_tool_delete.py100%  
+	    New File  		    1828	reinstaller_tool_install.py100%  
+	    New File  		    9035	reinstaller_tool_manage.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\reinstaller\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\reinstaller\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        52        52         0         0         0         0
+   Bytes :    3.59 m    3.59 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           171,367,727 Bytes/sec.
+   Speed :             9,805.740 MegaBytes/min.
+   Ended : 22 February 2023 20:29:57
+
+Deploying to D:\Portable\Skyrim SE\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:57
+   Source : D:\Repos\ModOrganizer-Plugins\release\reinstaller\
+     Dest : D:\Portable\Skyrim SE\plugins\reinstaller\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\reinstaller\
+	    New File  		    1302	readme.md100%  
+	    New File  		     129	readme.url100%  
+	    New File  		     520	__init__.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\reinstaller\reinstaller\
+	    New File  		    1619	reinstaller.py100%  
+	    New File  		     437	reinstaller_plugin.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\reinstaller\reinstaller\modules\
+	    New File  		    2313	reinstaller_files.py100%  
+	    New File  		     303	reinstaller_paths.py100%  
+	    New File  		     317	reinstaller_settings.py100%  
+	  New Dir          4	D:\Repos\ModOrganizer-Plugins\release\reinstaller\reinstaller\plugins\
+	    New File  		    1627	reinstaller_tool_create.py100%  
+	    New File  		    2267	reinstaller_tool_delete.py100%  
+	    New File  		    1828	reinstaller_tool_install.py100%  
+	    New File  		    9035	reinstaller_tool_manage.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\reinstaller\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\reinstaller\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        52        52         0         0         0         0
+   Bytes :    3.59 m    3.59 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           221,769,999 Bytes/sec.
+   Speed :            12,689.781 MegaBytes/min.
+   Ended : 22 February 2023 20:29:57
+
+Deploying to D:\Portable\Fallout 3\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:57
+   Source : D:\Repos\ModOrganizer-Plugins\release\reinstaller\
+     Dest : D:\Portable\Fallout 3\plugins\reinstaller\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\reinstaller\
+	    New File  		    1302	readme.md100%  
+	    New File  		     129	readme.url100%  
+	    New File  		     520	__init__.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\reinstaller\reinstaller\
+	    New File  		    1619	reinstaller.py100%  
+	    New File  		     437	reinstaller_plugin.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\reinstaller\reinstaller\modules\
+	    New File  		    2313	reinstaller_files.py100%  
+	    New File  		     303	reinstaller_paths.py100%  
+	    New File  		     317	reinstaller_settings.py100%  
+	  New Dir          4	D:\Repos\ModOrganizer-Plugins\release\reinstaller\reinstaller\plugins\
+	    New File  		    1627	reinstaller_tool_create.py100%  
+	    New File  		    2267	reinstaller_tool_delete.py100%  
+	    New File  		    1828	reinstaller_tool_install.py100%  
+	    New File  		    9035	reinstaller_tool_manage.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\reinstaller\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\reinstaller\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        52        52         0         0         0         0
+   Bytes :    3.59 m    3.59 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           198,425,789 Bytes/sec.
+   Speed :            11,354.015 MegaBytes/min.
+   Ended : 22 February 2023 20:29:57
+
+Deploying to D:\Portable\Fallout NV\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:57
+   Source : D:\Repos\ModOrganizer-Plugins\release\reinstaller\
+     Dest : D:\Portable\Fallout NV\plugins\reinstaller\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\reinstaller\
+	    New File  		    1302	readme.md100%  
+	    New File  		     129	readme.url100%  
+	    New File  		     520	__init__.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\reinstaller\reinstaller\
+	    New File  		    1619	reinstaller.py100%  
+	    New File  		     437	reinstaller_plugin.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\reinstaller\reinstaller\modules\
+	    New File  		    2313	reinstaller_files.py100%  
+	    New File  		     303	reinstaller_paths.py100%  
+	    New File  		     317	reinstaller_settings.py100%  
+	  New Dir          4	D:\Repos\ModOrganizer-Plugins\release\reinstaller\reinstaller\plugins\
+	    New File  		    1627	reinstaller_tool_create.py100%  
+	    New File  		    2267	reinstaller_tool_delete.py100%  
+	    New File  		    1828	reinstaller_tool_install.py100%  
+	    New File  		    9035	reinstaller_tool_manage.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\reinstaller\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\reinstaller\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        52        52         0         0         0         0
+   Bytes :    3.59 m    3.59 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           235,630,625 Bytes/sec.
+   Speed :            13,482.893 MegaBytes/min.
+   Ended : 22 February 2023 20:29:57
+
+Deploying shortcutter
+Deploying to D:\Portable\Morrowind\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:57
+   Source : D:\Repos\ModOrganizer-Plugins\release\shortcutter\
+     Dest : D:\Portable\Morrowind\plugins\shortcutter\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\shortcutter\
+	    New File  		    1467	readme.md100%  
+	    New File  		     129	readme.url100%  
+	    New File  		     175	__init__.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shortcutter\
+	    New File  		    1631	shortcutter.bat100%  
+	    New File  		    1419	shortcutter.py100%  
+	    New File  		     437	shortcutter_plugin.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shortcutter\modules\
+	    New File  		     308	shortcutter_files.py100%  
+	    New File  		     291	shortcutter_paths.py100%  
+	  New Dir          1	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shortcutter\plugins\
+	    New File  		   12827	shortcutter_tool_create.py100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        49        49         0         0         0         0
+   Bytes :    3.59 m    3.59 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           26,716,858 Bytes/sec.
+   Speed :            1,528.751 MegaBytes/min.
+   Ended : 22 February 2023 20:29:57
+
+Deploying to D:\Portable\Oblivion\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:57
+   Source : D:\Repos\ModOrganizer-Plugins\release\shortcutter\
+     Dest : D:\Portable\Oblivion\plugins\shortcutter\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\shortcutter\
+	    New File  		    1467	readme.md100%  
+	    New File  		     129	readme.url100%  
+	    New File  		     175	__init__.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shortcutter\
+	    New File  		    1631	shortcutter.bat100%  
+	    New File  		    1419	shortcutter.py100%  
+	    New File  		     437	shortcutter_plugin.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shortcutter\modules\
+	    New File  		     308	shortcutter_files.py100%  
+	    New File  		     291	shortcutter_paths.py100%  
+	  New Dir          1	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shortcutter\plugins\
+	    New File  		   12827	shortcutter_tool_create.py100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        49        49         0         0         0         0
+   Bytes :    3.59 m    3.59 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           110,796,382 Bytes/sec.
+   Speed :             6,339.820 MegaBytes/min.
+   Ended : 22 February 2023 20:29:57
+
+Deploying to D:\Portable\Skyrim SE\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:57
+   Source : D:\Repos\ModOrganizer-Plugins\release\shortcutter\
+     Dest : D:\Portable\Skyrim SE\plugins\shortcutter\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\shortcutter\
+	    New File  		    1467	readme.md100%  
+	    New File  		     129	readme.url100%  
+	    New File  		     175	__init__.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shortcutter\
+	    New File  		    1631	shortcutter.bat100%  
+	    New File  		    1419	shortcutter.py100%  
+	    New File  		     437	shortcutter_plugin.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shortcutter\modules\
+	    New File  		     308	shortcutter_files.py100%  
+	    New File  		     291	shortcutter_paths.py100%  
+	  New Dir          1	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shortcutter\plugins\
+	    New File  		   12827	shortcutter_tool_create.py100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        49        49         0         0         0         0
+   Bytes :    3.59 m    3.59 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           110,796,382 Bytes/sec.
+   Speed :             6,339.820 MegaBytes/min.
+   Ended : 22 February 2023 20:29:57
+
+Deploying to D:\Portable\Fallout 3\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:57
+   Source : D:\Repos\ModOrganizer-Plugins\release\shortcutter\
+     Dest : D:\Portable\Fallout 3\plugins\shortcutter\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\shortcutter\
+	    New File  		    1467	readme.md100%  
+	    New File  		     129	readme.url100%  
+	    New File  		     175	__init__.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shortcutter\
+	    New File  		    1631	shortcutter.bat100%  
+	    New File  		    1419	shortcutter.py100%  
+	    New File  		     437	shortcutter_plugin.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shortcutter\modules\
+	    New File  		     308	shortcutter_files.py100%  
+	    New File  		     291	shortcutter_paths.py100%  
+	  New Dir          1	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shortcutter\plugins\
+	    New File  		   12827	shortcutter_tool_create.py100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        49        49         0         0         0         0
+   Bytes :    3.59 m    3.59 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           139,521,370 Bytes/sec.
+   Speed :             7,983.477 MegaBytes/min.
+   Ended : 22 February 2023 20:29:57
+
+Deploying to D:\Portable\Fallout NV\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:57
+   Source : D:\Repos\ModOrganizer-Plugins\release\shortcutter\
+     Dest : D:\Portable\Fallout NV\plugins\shortcutter\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\shortcutter\
+	    New File  		    1467	readme.md100%  
+	    New File  		     129	readme.url100%  
+	    New File  		     175	__init__.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shortcutter\
+	    New File  		    1631	shortcutter.bat100%  
+	    New File  		    1419	shortcutter.py100%  
+	    New File  		     437	shortcutter_plugin.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shortcutter\modules\
+	    New File  		     308	shortcutter_files.py100%  
+	    New File  		     291	shortcutter_paths.py100%  
+	  New Dir          1	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shortcutter\plugins\
+	    New File  		   12827	shortcutter_tool_create.py100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        49        49         0         0         0         0
+   Bytes :    3.59 m    3.59 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           91,879,926 Bytes/sec.
+   Speed :            5,257.412 MegaBytes/min.
+   Ended : 22 February 2023 20:29:57
+
+Deploying pluginfinder
+Deploying to D:\Portable\Morrowind\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:57
+   Source : D:\Repos\ModOrganizer-Plugins\release\pluginfinder\
+     Dest : D:\Portable\Morrowind\plugins\pluginfinder\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   4	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\
+	    New File  		    1142	7za_license.txt100%  
+	    New File  		    1673	readme.md100%  
+	    New File  		     130	readme.url100%  
+	    New File  		     334	__init__.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\pluginfinder\
+	    New File  		    2643	pluginfinder.py100%  
+	    New File  		     446	pluginfinder_plugin.py100%  
+	    New File  		    4342	plugin_directory.json100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\pluginfinder\models\
+	    New File  		    3441	plugin_data.py100%  
+	    New File  		    1117	plugin_version.py100%  
+	  New Dir          5	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\pluginfinder\modules\
+	    New File  		  791040	7za.exe 33%   66%   99%  100%  
+	    New File  		     312	pluginfinder_files.py100%  
+	    New File  		    9284	pluginfinder_installer.py100%  
+	    New File  		    4280	pluginfinder_paths.py100%  
+	    New File  		   13075	pluginfinder_search.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\pluginfinder\plugins\
+	    New File  		   40440	pluginfinder_browser.py100%  
+	    New File  		    4886	pluginfinder_notifier.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         7         6         1         0         0         0
+   Files :        56        56         0         0         0         0
+   Bytes :    4.41 m    4.41 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           84,126,872 Bytes/sec.
+   Speed :            4,813.778 MegaBytes/min.
+   Ended : 22 February 2023 20:29:57
+
+Deploying to D:\Portable\Oblivion\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:57
+   Source : D:\Repos\ModOrganizer-Plugins\release\pluginfinder\
+     Dest : D:\Portable\Oblivion\plugins\pluginfinder\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   4	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\
+	    New File  		    1142	7za_license.txt100%  
+	    New File  		    1673	readme.md100%  
+	    New File  		     130	readme.url100%  
+	    New File  		     334	__init__.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\pluginfinder\
+	    New File  		    2643	pluginfinder.py100%  
+	    New File  		     446	pluginfinder_plugin.py100%  
+	    New File  		    4342	plugin_directory.json100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\pluginfinder\models\
+	    New File  		    3441	plugin_data.py100%  
+	    New File  		    1117	plugin_version.py100%  
+	  New Dir          5	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\pluginfinder\modules\
+	    New File  		  791040	7za.exe 33%   66%   99%  100%  
+	    New File  		     312	pluginfinder_files.py100%  
+	    New File  		    9284	pluginfinder_installer.py100%  
+	    New File  		    4280	pluginfinder_paths.py100%  
+	    New File  		   13075	pluginfinder_search.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\pluginfinder\plugins\
+	    New File  		   40440	pluginfinder_browser.py100%  
+	    New File  		    4886	pluginfinder_notifier.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         7         6         1         0         0         0
+   Files :        56        56         0         0         0         0
+   Bytes :    4.41 m    4.41 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           165,249,214 Bytes/sec.
+   Speed :             9,455.636 MegaBytes/min.
+   Ended : 22 February 2023 20:29:58
+
+Deploying to D:\Portable\Skyrim SE\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:58
+   Source : D:\Repos\ModOrganizer-Plugins\release\pluginfinder\
+     Dest : D:\Portable\Skyrim SE\plugins\pluginfinder\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   4	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\
+	    New File  		    1142	7za_license.txt100%  
+	    New File  		    1673	readme.md100%  
+	    New File  		     130	readme.url100%  
+	    New File  		     334	__init__.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\pluginfinder\
+	    New File  		    2643	pluginfinder.py100%  
+	    New File  		     446	pluginfinder_plugin.py100%  
+	    New File  		    4342	plugin_directory.json100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\pluginfinder\models\
+	    New File  		    3441	plugin_data.py100%  
+	    New File  		    1117	plugin_version.py100%  
+	  New Dir          5	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\pluginfinder\modules\
+	    New File  		  791040	7za.exe 33%   66%   99%  100%  
+	    New File  		     312	pluginfinder_files.py100%  
+	    New File  		    9284	pluginfinder_installer.py100%  
+	    New File  		    4280	pluginfinder_paths.py100%  
+	    New File  		   13075	pluginfinder_search.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\pluginfinder\plugins\
+	    New File  		   40440	pluginfinder_browser.py100%  
+	    New File  		    4886	pluginfinder_notifier.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         7         6         1         0         0         0
+   Files :        56        56         0         0         0         0
+   Bytes :    4.41 m    4.41 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           144,593,062 Bytes/sec.
+   Speed :             8,273.682 MegaBytes/min.
+   Ended : 22 February 2023 20:29:58
+
+Deploying to D:\Portable\Fallout 3\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:58
+   Source : D:\Repos\ModOrganizer-Plugins\release\pluginfinder\
+     Dest : D:\Portable\Fallout 3\plugins\pluginfinder\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   4	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\
+	    New File  		    1142	7za_license.txt100%  
+	    New File  		    1673	readme.md100%  
+	    New File  		     130	readme.url100%  
+	    New File  		     334	__init__.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\pluginfinder\
+	    New File  		    2643	pluginfinder.py100%  
+	    New File  		     446	pluginfinder_plugin.py100%  
+	    New File  		    4342	plugin_directory.json100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\pluginfinder\models\
+	    New File  		    3441	plugin_data.py100%  
+	    New File  		    1117	plugin_version.py100%  
+	  New Dir          5	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\pluginfinder\modules\
+	    New File  		  791040	7za.exe 33%   66%   99%  100%  
+	    New File  		     312	pluginfinder_files.py100%  
+	    New File  		    9284	pluginfinder_installer.py100%  
+	    New File  		    4280	pluginfinder_paths.py100%  
+	    New File  		   13075	pluginfinder_search.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\pluginfinder\plugins\
+	    New File  		   40440	pluginfinder_browser.py100%  
+	    New File  		    4886	pluginfinder_notifier.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         7         6         1         0         0         0
+   Files :        56        56         0         0         0         0
+   Bytes :    4.41 m    4.41 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           74,628,677 Bytes/sec.
+   Speed :            4,270.287 MegaBytes/min.
+   Ended : 22 February 2023 20:29:58
+
+Deploying to D:\Portable\Fallout NV\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:58
+   Source : D:\Repos\ModOrganizer-Plugins\release\pluginfinder\
+     Dest : D:\Portable\Fallout NV\plugins\pluginfinder\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   4	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\
+	    New File  		    1142	7za_license.txt100%  
+	    New File  		    1673	readme.md100%  
+	    New File  		     130	readme.url100%  
+	    New File  		     334	__init__.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\pluginfinder\
+	    New File  		    2643	pluginfinder.py100%  
+	    New File  		     446	pluginfinder_plugin.py100%  
+	    New File  		    4342	plugin_directory.json100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\pluginfinder\models\
+	    New File  		    3441	plugin_data.py100%  
+	    New File  		    1117	plugin_version.py100%  
+	  New Dir          5	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\pluginfinder\modules\
+	    New File  		  791040	7za.exe 33%   66%   99%  100%  
+	    New File  		     312	pluginfinder_files.py100%  
+	    New File  		    9284	pluginfinder_installer.py100%  
+	    New File  		    4280	pluginfinder_paths.py100%  
+	    New File  		   13075	pluginfinder_search.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\pluginfinder\plugins\
+	    New File  		   40440	pluginfinder_browser.py100%  
+	    New File  		    4886	pluginfinder_notifier.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         7         6         1         0         0         0
+   Files :        56        56         0         0         0         0
+   Bytes :    4.41 m    4.41 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           220,332,285 Bytes/sec.
+   Speed :            12,607.515 MegaBytes/min.
+   Ended : 22 February 2023 20:29:58
+
+Deploying curationclub
+Deploying to D:\Portable\Morrowind\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:58
+   Source : D:\Repos\ModOrganizer-Plugins\release\curationclub\
+     Dest : D:\Portable\Morrowind\plugins\curationclub\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\curationclub\
+	    New File  		    1657	readme.md100%  
+	    New File  		     130	readme.url100%  
+	    New File  		     179	__init__.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\curationclub\curationclub\
+	    New File  		   69006	creation_cache.json100%  
+	    New File  		    6232	curationclub.py100%  
+	    New File  		    1079	curationclub_plugin.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\curationclub\curationclub\modules\
+	    New File  		    3104	curationclub_files.py100%  
+	    New File  		    1809	curationclub_paths.py100%  
+	    New File  		     584	curationclub_settings.py100%  
+	  New Dir          1	D:\Repos\ModOrganizer-Plugins\release\curationclub\curationclub\plugins\
+	    New File  		   10724	curationclub_tool_manage.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\curationclub\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\curationclub\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        50        50         0         0         0         0
+   Bytes :    3.66 m    3.66 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           59,121,492 Bytes/sec.
+   Speed :            3,382.959 MegaBytes/min.
+   Ended : 22 February 2023 20:29:58
+
+Deploying to D:\Portable\Oblivion\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:58
+   Source : D:\Repos\ModOrganizer-Plugins\release\curationclub\
+     Dest : D:\Portable\Oblivion\plugins\curationclub\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\curationclub\
+	    New File  		    1657	readme.md100%  
+	    New File  		     130	readme.url100%  
+	    New File  		     179	__init__.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\curationclub\curationclub\
+	    New File  		   69006	creation_cache.json100%  
+	    New File  		    6232	curationclub.py100%  
+	    New File  		    1079	curationclub_plugin.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\curationclub\curationclub\modules\
+	    New File  		    3104	curationclub_files.py100%  
+	    New File  		    1809	curationclub_paths.py100%  
+	    New File  		     584	curationclub_settings.py100%  
+	  New Dir          1	D:\Repos\ModOrganizer-Plugins\release\curationclub\curationclub\plugins\
+	    New File  		   10724	curationclub_tool_manage.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\curationclub\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\curationclub\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        50        50         0         0         0         0
+   Bytes :    3.66 m    3.66 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           64,048,283 Bytes/sec.
+   Speed :            3,664.872 MegaBytes/min.
+   Ended : 22 February 2023 20:29:58
+
+Deploying to D:\Portable\Skyrim SE\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:58
+   Source : D:\Repos\ModOrganizer-Plugins\release\curationclub\
+     Dest : D:\Portable\Skyrim SE\plugins\curationclub\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\curationclub\
+	    New File  		    1657	readme.md100%  
+	    New File  		     130	readme.url100%  
+	    New File  		     179	__init__.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\curationclub\curationclub\
+	    New File  		   69006	creation_cache.json100%  
+	    New File  		    6232	curationclub.py100%  
+	    New File  		    1079	curationclub_plugin.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\curationclub\curationclub\modules\
+	    New File  		    3104	curationclub_files.py100%  
+	    New File  		    1809	curationclub_paths.py100%  
+	    New File  		     584	curationclub_settings.py100%  
+	  New Dir          1	D:\Repos\ModOrganizer-Plugins\release\curationclub\curationclub\plugins\
+	    New File  		   10724	curationclub_tool_manage.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\curationclub\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\curationclub\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        50        50         0         0         0         0
+   Bytes :    3.66 m    3.66 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           60,045,265 Bytes/sec.
+   Speed :            3,435.818 MegaBytes/min.
+   Ended : 22 February 2023 20:29:58
+
+Deploying to D:\Portable\Fallout 3\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:58
+   Source : D:\Repos\ModOrganizer-Plugins\release\curationclub\
+     Dest : D:\Portable\Fallout 3\plugins\curationclub\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\curationclub\
+	    New File  		    1657	readme.md100%  
+	    New File  		     130	readme.url100%  
+	    New File  		     179	__init__.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\curationclub\curationclub\
+	    New File  		   69006	creation_cache.json100%  
+	    New File  		    6232	curationclub.py100%  
+	    New File  		    1079	curationclub_plugin.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\curationclub\curationclub\modules\
+	    New File  		    3104	curationclub_files.py100%  
+	    New File  		    1809	curationclub_paths.py100%  
+	    New File  		     584	curationclub_settings.py100%  
+	  New Dir          1	D:\Repos\ModOrganizer-Plugins\release\curationclub\curationclub\plugins\
+	    New File  		   10724	curationclub_tool_manage.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\curationclub\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\curationclub\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        50        50         0         0         0         0
+   Bytes :    3.66 m    3.66 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           66,256,844 Bytes/sec.
+   Speed :            3,791.247 MegaBytes/min.
+   Ended : 22 February 2023 20:29:58
+
+Deploying to D:\Portable\Fallout NV\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:58
+   Source : D:\Repos\ModOrganizer-Plugins\release\curationclub\
+     Dest : D:\Portable\Fallout NV\plugins\curationclub\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\curationclub\
+	    New File  		    1657	readme.md100%  
+	    New File  		     130	readme.url100%  
+	    New File  		     179	__init__.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\curationclub\curationclub\
+	    New File  		   69006	creation_cache.json100%  
+	    New File  		    6232	curationclub.py100%  
+	    New File  		    1079	curationclub_plugin.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\curationclub\curationclub\modules\
+	    New File  		    3104	curationclub_files.py100%  
+	    New File  		    1809	curationclub_paths.py100%  
+	    New File  		     584	curationclub_settings.py100%  
+	  New Dir          1	D:\Repos\ModOrganizer-Plugins\release\curationclub\curationclub\plugins\
+	    New File  		   10724	curationclub_tool_manage.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\curationclub\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\curationclub\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        50        50         0         0         0         0
+   Bytes :    3.66 m    3.66 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           62,998,311 Bytes/sec.
+   Speed :            3,604.792 MegaBytes/min.
+   Ended : 22 February 2023 20:29:58
+
+Deploying profilesync
+Deploying to D:\Portable\Morrowind\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:58
+   Source : D:\Repos\ModOrganizer-Plugins\release\profilesync\
+     Dest : D:\Portable\Morrowind\plugins\profilesync\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\profilesync\
+	    New File  		    1394	readme.md100%  
+	    New File  		     129	readme.url100%  
+	    New File  		     175	__init__.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\profilesync\profilesync\
+	    New File  		    6834	profilesync.py100%  
+	    New File  		     439	profilesync_plugin.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\profilesync\profilesync\modules\
+	    New File  		     309	profilesync_files.py100%  
+	    New File  		    1864	profilesync_paths.py100%  
+	  New Dir          1	D:\Repos\ModOrganizer-Plugins\release\profilesync\profilesync\plugins\
+	    New File  		   11103	profilesync_tool_manage.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\profilesync\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\profilesync\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        48        48         0         0         0         0
+   Bytes :    3.59 m    3.59 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           94,266,000 Bytes/sec.
+   Speed :            5,393.944 MegaBytes/min.
+   Ended : 22 February 2023 20:29:58
+
+Deploying to D:\Portable\Oblivion\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:58
+   Source : D:\Repos\ModOrganizer-Plugins\release\profilesync\
+     Dest : D:\Portable\Oblivion\plugins\profilesync\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\profilesync\
+	    New File  		    1394	readme.md100%  
+	    New File  		     129	readme.url100%  
+	    New File  		     175	__init__.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\profilesync\profilesync\
+	    New File  		    6834	profilesync.py100%  
+	    New File  		     439	profilesync_plugin.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\profilesync\profilesync\modules\
+	    New File  		     309	profilesync_files.py100%  
+	    New File  		    1864	profilesync_paths.py100%  
+	  New Dir          1	D:\Repos\ModOrganizer-Plugins\release\profilesync\profilesync\plugins\
+	    New File  		   11103	profilesync_tool_manage.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\profilesync\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\profilesync\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        48        48         0         0         0         0
+   Bytes :    3.59 m    3.59 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           19,140,304 Bytes/sec.
+   Speed :            1,095.217 MegaBytes/min.
+   Ended : 22 February 2023 20:29:59
+
+Deploying to D:\Portable\Skyrim SE\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:59
+   Source : D:\Repos\ModOrganizer-Plugins\release\profilesync\
+     Dest : D:\Portable\Skyrim SE\plugins\profilesync\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\profilesync\
+	    New File  		    1394	readme.md100%  
+	    New File  		     129	readme.url100%  
+	    New File  		     175	__init__.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\profilesync\profilesync\
+	    New File  		    6834	profilesync.py100%  
+	    New File  		     439	profilesync_plugin.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\profilesync\profilesync\modules\
+	    New File  		     309	profilesync_files.py100%  
+	    New File  		    1864	profilesync_paths.py100%  
+	  New Dir          1	D:\Repos\ModOrganizer-Plugins\release\profilesync\profilesync\plugins\
+	    New File  		   11103	profilesync_tool_manage.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\profilesync\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\profilesync\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        48        48         0         0         0         0
+   Bytes :    3.59 m    3.59 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           42,366,741 Bytes/sec.
+   Speed :            2,424.244 MegaBytes/min.
+   Ended : 22 February 2023 20:29:59
+
+Deploying to D:\Portable\Fallout 3\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:59
+   Source : D:\Repos\ModOrganizer-Plugins\release\profilesync\
+     Dest : D:\Portable\Fallout 3\plugins\profilesync\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\profilesync\
+	    New File  		    1394	readme.md100%  
+	    New File  		     129	readme.url100%  
+	    New File  		     175	__init__.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\profilesync\profilesync\
+	    New File  		    6834	profilesync.py100%  
+	    New File  		     439	profilesync_plugin.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\profilesync\profilesync\modules\
+	    New File  		     309	profilesync_files.py100%  
+	    New File  		    1864	profilesync_paths.py100%  
+	  New Dir          1	D:\Repos\ModOrganizer-Plugins\release\profilesync\profilesync\plugins\
+	    New File  		   11103	profilesync_tool_manage.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\profilesync\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\profilesync\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        48        48         0         0         0         0
+   Bytes :    3.59 m    3.59 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           44,888,571 Bytes/sec.
+   Speed :            2,568.545 MegaBytes/min.
+   Ended : 22 February 2023 20:29:59
+
+Deploying to D:\Portable\Fallout NV\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:59
+   Source : D:\Repos\ModOrganizer-Plugins\release\profilesync\
+     Dest : D:\Portable\Fallout NV\plugins\profilesync\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\profilesync\
+	    New File  		    1394	readme.md100%  
+	    New File  		     129	readme.url100%  
+	    New File  		     175	__init__.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\profilesync\profilesync\
+	    New File  		    6834	profilesync.py100%  
+	    New File  		     439	profilesync_plugin.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\profilesync\profilesync\modules\
+	    New File  		     309	profilesync_files.py100%  
+	    New File  		    1864	profilesync_paths.py100%  
+	  New Dir          1	D:\Repos\ModOrganizer-Plugins\release\profilesync\profilesync\plugins\
+	    New File  		   11103	profilesync_tool_manage.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\profilesync\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\profilesync\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        48        48         0         0         0         0
+   Bytes :    3.59 m    3.59 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           47,133,000 Bytes/sec.
+   Speed :            2,696.972 MegaBytes/min.
+   Ended : 22 February 2023 20:29:59
+
+Deploying openmwplayer
+Deploying to D:\Portable\Morrowind\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:59
+   Source : D:\Repos\ModOrganizer-Plugins\release\openmwplayer\
+     Dest : D:\Portable\Morrowind\plugins\openmwplayer\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\
+	    New File  		    1421	readme.md100%  
+	    New File  		     130	readme.url100%  
+	    New File  		     309	__init__.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\openmwplayer\
+	    New File  		     324	openmwplayer.esp100%  
+	    New File  		   10989	openmwplayer.py100%  
+	    New File  		    1166	openmwplayer_plugin.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\openmwplayer\modules\
+	    New File  		    3673	openmwplayer_paths.py100%  
+	    New File  		     652	openmwplayer_settings.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\openmwplayer\plugins\
+	    New File  		    1521	openmwplayer_plugin_launcher.py100%  
+	    New File  		   16477	openmwplayer_tool_manage.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        50        50         0         0         0         0
+   Bytes :    3.60 m    3.60 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           20,026,746 Bytes/sec.
+   Speed :            1,145.940 MegaBytes/min.
+   Ended : 22 February 2023 20:29:59
+
+Deploying to D:\Portable\Oblivion\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:59
+   Source : D:\Repos\ModOrganizer-Plugins\release\openmwplayer\
+     Dest : D:\Portable\Oblivion\plugins\openmwplayer\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\
+	    New File  		    1421	readme.md100%  
+	    New File  		     130	readme.url100%  
+	    New File  		     309	__init__.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\openmwplayer\
+	    New File  		     324	openmwplayer.esp100%  
+	    New File  		   10989	openmwplayer.py100%  
+	    New File  		    1166	openmwplayer_plugin.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\openmwplayer\modules\
+	    New File  		    3673	openmwplayer_paths.py100%  
+	    New File  		     652	openmwplayer_settings.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\openmwplayer\plugins\
+	    New File  		    1521	openmwplayer_plugin_launcher.py100%  
+	    New File  		   16477	openmwplayer_tool_manage.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        50        50         0         0         0         0
+   Bytes :    3.60 m    3.60 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           27,230,611 Bytes/sec.
+   Speed :            1,558.148 MegaBytes/min.
+   Ended : 22 February 2023 20:29:59
+
+Deploying to D:\Portable\Skyrim SE\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:59
+   Source : D:\Repos\ModOrganizer-Plugins\release\openmwplayer\
+     Dest : D:\Portable\Skyrim SE\plugins\openmwplayer\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\
+	    New File  		    1421	readme.md100%  
+	    New File  		     130	readme.url100%  
+	    New File  		     309	__init__.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\openmwplayer\
+	    New File  		     324	openmwplayer.esp100%  
+	    New File  		   10989	openmwplayer.py100%  
+	    New File  		    1166	openmwplayer_plugin.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\openmwplayer\modules\
+	    New File  		    3673	openmwplayer_paths.py100%  
+	    New File  		     652	openmwplayer_settings.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\openmwplayer\plugins\
+	    New File  		    1521	openmwplayer_plugin_launcher.py100%  
+	    New File  		   16477	openmwplayer_tool_manage.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        50        50         0         0         0         0
+   Bytes :    3.60 m    3.60 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           20,683,360 Bytes/sec.
+   Speed :            1,183.511 MegaBytes/min.
+   Ended : 22 February 2023 20:29:59
+
+Deploying to D:\Portable\Fallout 3\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:29:59
+   Source : D:\Repos\ModOrganizer-Plugins\release\openmwplayer\
+     Dest : D:\Portable\Fallout 3\plugins\openmwplayer\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\
+	    New File  		    1421	readme.md100%  
+	    New File  		     130	readme.url100%  
+	    New File  		     309	__init__.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\openmwplayer\
+	    New File  		     324	openmwplayer.esp100%  
+	    New File  		   10989	openmwplayer.py100%  
+	    New File  		    1166	openmwplayer_plugin.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\openmwplayer\modules\
+	    New File  		    3673	openmwplayer_paths.py100%  
+	    New File  		     652	openmwplayer_settings.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\openmwplayer\plugins\
+	    New File  		    1521	openmwplayer_plugin_launcher.py100%  
+	    New File  		   16477	openmwplayer_tool_manage.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        50        50         0         0         0         0
+   Bytes :    3.60 m    3.60 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           25,574,695 Bytes/sec.
+   Speed :            1,463.396 MegaBytes/min.
+   Ended : 22 February 2023 20:30:00
+
+Deploying to D:\Portable\Fallout NV\plugins
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 22 February 2023 20:30:00
+   Source : D:\Repos\ModOrganizer-Plugins\release\openmwplayer\
+     Dest : D:\Portable\Fallout NV\plugins\openmwplayer\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\
+	    New File  		    1421	readme.md100%  
+	    New File  		     130	readme.url100%  
+	    New File  		     309	__init__.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\openmwplayer\
+	    New File  		     324	openmwplayer.esp100%  
+	    New File  		   10989	openmwplayer.py100%  
+	    New File  		    1166	openmwplayer_plugin.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\openmwplayer\modules\
+	    New File  		    3673	openmwplayer_paths.py100%  
+	    New File  		     652	openmwplayer_settings.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\openmwplayer\plugins\
+	    New File  		    1521	openmwplayer_plugin_launcher.py100%  
+	    New File  		   16477	openmwplayer_tool_manage.py100%  
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2437	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3011	shared_utilities.py100%  
+	  New Dir         33	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         5         1         0         0         0
+   Files :        50        50         0         0         0         0
+   Bytes :    3.60 m    3.60 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           18,285,289 Bytes/sec.
+   Speed :            1,046.293 MegaBytes/min.
+   Ended : 22 February 2023 20:30:00
+

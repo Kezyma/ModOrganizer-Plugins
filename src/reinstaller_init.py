@@ -1,13 +1,12 @@
-import mobase
-from .reinstaller.plugins.reinstaller_tool_create import ReinstallerCreateTool
-from .reinstaller.plugins.reinstaller_tool_install import ReinstallerInstallTool
-from .reinstaller.plugins.reinstaller_tool_delete import ReinstallerDeleteTool
-from .reinstaller.plugins.reinstaller_tool_manage import ReinstallerManageTool
+from .plugin.reinstaller.plugins.reinstaller_manager import ReinstallerManager
+from .plugin.reinstaller.plugins.reinstaller_quickcreate import ReinstallerQuickCreate
+from .plugin.reinstaller.plugins.reinstaller_quickinstall import ReinstallerQuickInstall
+from .plugin.reinstaller.plugins.reinstaller_quickdelete import ReinstallerQuickDelete
 
 def createPlugins():
     return [
-        ReinstallerCreateTool(),
-        ReinstallerInstallTool(),
-        ReinstallerDeleteTool(),
-        ReinstallerManageTool()
-        ]
+        ReinstallerManager(),
+        ReinstallerQuickCreate(),
+        ReinstallerQuickInstall(),
+        ReinstallerQuickDelete()
+    ]

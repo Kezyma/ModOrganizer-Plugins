@@ -1,0 +1,47 @@
+{
+    "RootMaps": {
+        "WrapperVersion": "WrapperVersion",
+        "Mopy": "",
+        "xLODGen": "",
+        "DynDOLOD": "",
+        "BethINI Standalone": ""
+    },
+    "RootExt": [
+        "exe",
+        "dll"
+    ],
+    "DataMaps": [
+        "Meshes",
+        "Textures",
+        "SKSE",
+        "F4SE",
+        "NVSE",
+        "FOSE",
+        "OBSE",
+        "MWSE",
+        "SFSE",
+        "Icons",
+        "Materials",
+        "Scripts",
+        "Music",
+        "Sound",
+        "Shaders",
+        "Video",
+        "Fonts",
+        "Menus",
+        "Splash"
+    ],
+    "DataExt": [
+        "esp",
+        "esm",
+        "esl",
+        "bsa",
+        "ba2"
+    ],
+    "InvalidMaps": [
+        "fomod"
+    ],
+    "IgnoreMaps": [
+        "src"
+    ]
+}

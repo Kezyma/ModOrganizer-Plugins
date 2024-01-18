@@ -1,17 +1,16 @@
-import mobase
-from .rootbuilder.plugins.rootbuilder_plugin_mapper import RootBuilderMapperPlugin
-from .rootbuilder.plugins.rootbuilder_tool_build import RootBuilderBuildTool
-from .rootbuilder.plugins.rootbuilder_tool_clear import RootBuilderClearTool
-from .rootbuilder.plugins.rootbuilder_tool_sync import RootBuilderSyncTool
-from .rootbuilder.plugins.rootbuilder_tool_manage import RootBuilderManageTool
-from .rootbuilder.plugins.rootbuilder_plugin_install import RootBuilderInstallPlugin
+from .plugin.rootbuilder.plugins.rootbuilder_autobuild import RootBuilderAutobuild
+from .plugin.rootbuilder.plugins.rootbuilder_manager import RootBuilderManager
+from .plugin.rootbuilder.plugins.rootbuilder_installer import RootBuilderInstaller
+from .plugin.rootbuilder.plugins.rootbuilder_quickbuild import RootBuilderQuickBuild
+from .plugin.rootbuilder.plugins.rootbuilder_quicksync import RootBuilderQuickSync
+from .plugin.rootbuilder.plugins.rootbuilder_quickclear import RootBuilderQuickClear
 
 def createPlugins():
     return [
-        RootBuilderMapperPlugin(),
-        RootBuilderBuildTool(),
-        RootBuilderClearTool(),
-        RootBuilderSyncTool(),
-        RootBuilderManageTool(),
-        RootBuilderInstallPlugin()
-        ]
+        RootBuilderAutobuild(),
+        RootBuilderManager(),
+        RootBuilderInstaller(),
+        RootBuilderQuickBuild(),
+        RootBuilderQuickSync(),
+        RootBuilderQuickClear()
+    ]

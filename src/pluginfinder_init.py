@@ -1,13 +1,10 @@
-from typing import List
+from .plugin.pluginfinder.plugins.pluginfinder_manager import PluginFinderManager
+from .plugin.pluginfinder.plugins.pluginfinder_updater import PluginFinderUpdater
+from .plugin.pluginfinder.plugins.pluginfinder_installer import PluginFinderInstaller
 
-import mobase
-
-from .pluginfinder.plugins.pluginfinder_browser import PluginFinderBrowser
-from .pluginfinder.plugins.pluginfinder_notifier import PluginFinderNotifier
-
-
-def createPlugins() -> List[mobase.IPlugin]:
+def createPlugins():
     return [
-        PluginFinderBrowser(),
-        PluginFinderNotifier(),
+        PluginFinderManager(),
+        PluginFinderUpdater(),
+        PluginFinderInstaller()
     ]

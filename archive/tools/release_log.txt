@@ -1,0 +1,1483 @@
+Removing existing release folder.
+Creating release folder.
+Looping through mods.
+Creating rootbuilder mod folder.
+Copying rootbuilder mod files to release folder.
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:11
+   Source : D:\Repos\ModOrganizer-Plugins\src\rootbuilder\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\rootbuilder\rootbuilder\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\src\rootbuilder\
+	    New File  		    3641	rootbuilder.py100%  
+	    New File  		    2504	rootbuilder_plugin.py100%  
+	  New Dir          8	D:\Repos\ModOrganizer-Plugins\src\rootbuilder\modules\
+	    New File  		   16190	rootbuilder_backup.py100%  
+	    New File  		    8583	rootbuilder_copy.py100%  
+	    New File  		    6329	rootbuilder_files.py100%  
+	    New File  		    3966	rootbuilder_linker.py100%  
+	    New File  		    2242	rootbuilder_mapper.py100%  
+	    New File  		    5035	rootbuilder_paths.py100%  
+	    New File  		    1931	rootbuilder_settings.py100%  
+	    New File  		    5086	rootbuilder_update.py100%  
+	  New Dir          6	D:\Repos\ModOrganizer-Plugins\src\rootbuilder\plugins\
+	    New File  		   13681	rootbuilder_plugin_install.py100%  
+	    New File  		    5180	rootbuilder_plugin_mapper.py100%  
+	    New File  		     987	rootbuilder_tool_build.py100%  
+	    New File  		     984	rootbuilder_tool_clear.py100%  
+	    New File  		   43261	rootbuilder_tool_manage.py100%  
+	    New File  		     978	rootbuilder_tool_sync.py100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         3         3         0         0         0         0
+   Files :        16        16         0         0         0         0
+   Bytes :   117.7 k   117.7 k         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           1,913,936 Bytes/sec.
+   Speed :             109.516 MegaBytes/min.
+   Ended : 21 October 2023 15:47:11
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:11
+   Source : D:\Repos\ModOrganizer-Plugins\src\shared\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\rootbuilder\shared\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\src\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2509	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3174	shared_utilities.py100%  
+	  New Dir         34	D:\Repos\ModOrganizer-Plugins\src\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  118923	ui-clip.ico 99%  100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         2         2         0         0         0         0
+   Files :        41        41         0         0         0         0
+   Bytes :    3.68 m    3.68 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           72,972,660 Bytes/sec.
+   Speed :            4,175.529 MegaBytes/min.
+   Ended : 21 October 2023 15:47:11
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:11
+   Source : D:\Repos\ModOrganizer-Plugins\src\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\rootbuilder\
+
+    Files : rootbuilder_init.py
+	    
+  Options : /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   1	D:\Repos\ModOrganizer-Plugins\src\
+	    New File  		     748	rootbuilder_init.py100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         0         1         0         0         0
+   Files :         1         1         0         0         0         0
+   Bytes :       748       748         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :             748,000 Bytes/sec.
+   Speed :              42.801 MegaBytes/min.
+   Ended : 21 October 2023 15:47:11
+
+Renaming rootbuilder init file.
+Moving the readme files.
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:11
+   Source : D:\Repos\ModOrganizer-Plugins\readme\rootbuilder\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\rootbuilder\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   2	D:\Repos\ModOrganizer-Plugins\readme\rootbuilder\
+	*EXTRA Dir        -1	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\rootbuilder\
+	*EXTRA Dir        -1	D:\Repos\ModOrganizer-Plugins\release\rootbuilder\shared\
+	  *EXTRA File 		     748	__init__.py
+	    New File  		    1447	readme.md100%  
+	    New File  		     129	readme.url100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         0         1         0         0         2
+   Files :         2         2         0         0         0         1
+   Bytes :     1.5 k     1.5 k         0         0         0       748
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           1,576,000 Bytes/sec.
+   Speed :              90.179 MegaBytes/min.
+   Ended : 21 October 2023 15:47:11
+
+Creating zip folder.
+Zipping rootbuilder.
+Creating reinstaller mod folder.
+Copying reinstaller mod files to release folder.
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:12
+   Source : D:\Repos\ModOrganizer-Plugins\src\reinstaller\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\reinstaller\reinstaller\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\src\reinstaller\
+	    New File  		    1619	reinstaller.py100%  
+	    New File  		     437	reinstaller_plugin.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\src\reinstaller\modules\
+	    New File  		    2313	reinstaller_files.py100%  
+	    New File  		     303	reinstaller_paths.py100%  
+	    New File  		     317	reinstaller_settings.py100%  
+	  New Dir          4	D:\Repos\ModOrganizer-Plugins\src\reinstaller\plugins\
+	    New File  		    1627	reinstaller_tool_create.py100%  
+	    New File  		    2267	reinstaller_tool_delete.py100%  
+	    New File  		    1828	reinstaller_tool_install.py100%  
+	    New File  		    9035	reinstaller_tool_manage.py100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         3         3         0         0         0         0
+   Files :         9         9         0         0         0         0
+   Bytes :    19.2 k    19.2 k         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           4,936,500 Bytes/sec.
+   Speed :             282.469 MegaBytes/min.
+   Ended : 21 October 2023 15:47:12
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:12
+   Source : D:\Repos\ModOrganizer-Plugins\src\shared\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\reinstaller\shared\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\src\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2509	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3174	shared_utilities.py100%  
+	  New Dir         34	D:\Repos\ModOrganizer-Plugins\src\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  118923	ui-clip.ico 99%  100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         2         2         0         0         0         0
+   Files :        41        41         0         0         0         0
+   Bytes :    3.68 m    3.68 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           77,351,020 Bytes/sec.
+   Speed :            4,426.061 MegaBytes/min.
+   Ended : 21 October 2023 15:47:12
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:12
+   Source : D:\Repos\ModOrganizer-Plugins\src\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\reinstaller\
+
+    Files : reinstaller_init.py
+	    
+  Options : /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   1	D:\Repos\ModOrganizer-Plugins\src\
+	    New File  		     520	reinstaller_init.py100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         0         1         0         0         0
+   Files :         1         1         0         0         0         0
+   Bytes :       520       520         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+   Ended : 21 October 2023 15:47:12
+
+Renaming reinstaller init file.
+Moving the readme files.
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:12
+   Source : D:\Repos\ModOrganizer-Plugins\readme\reinstaller\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\reinstaller\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   2	D:\Repos\ModOrganizer-Plugins\readme\reinstaller\
+	*EXTRA Dir        -1	D:\Repos\ModOrganizer-Plugins\release\reinstaller\reinstaller\
+	*EXTRA Dir        -1	D:\Repos\ModOrganizer-Plugins\release\reinstaller\shared\
+	  *EXTRA File 		     520	__init__.py
+	    New File  		    1302	readme.md100%  
+	    New File  		     129	readme.url100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         0         1         0         0         2
+   Files :         2         2         0         0         0         1
+   Bytes :     1.3 k     1.3 k         0         0         0       520
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           1,431,000 Bytes/sec.
+   Speed :              81.882 MegaBytes/min.
+   Ended : 21 October 2023 15:47:12
+
+Creating zip folder.
+Zipping reinstaller.
+Creating shortcutter mod folder.
+Copying shortcutter mod files to release folder.
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:12
+   Source : D:\Repos\ModOrganizer-Plugins\src\shortcutter\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\shortcutter\shortcutter\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\src\shortcutter\
+	    New File  		    1631	shortcutter.bat100%  
+	    New File  		    1419	shortcutter.py100%  
+	    New File  		     437	shortcutter_plugin.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\src\shortcutter\modules\
+	    New File  		     308	shortcutter_files.py100%  
+	    New File  		     291	shortcutter_paths.py100%  
+	  New Dir          1	D:\Repos\ModOrganizer-Plugins\src\shortcutter\plugins\
+	    New File  		   12827	shortcutter_tool_create.py100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         3         3         0         0         0         0
+   Files :         6         6         0         0         0         0
+   Bytes :    16.5 k    16.5 k         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           8,456,500 Bytes/sec.
+   Speed :             483.885 MegaBytes/min.
+   Ended : 21 October 2023 15:47:12
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:12
+   Source : D:\Repos\ModOrganizer-Plugins\src\shared\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\shortcutter\shared\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\src\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2509	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3174	shared_utilities.py100%  
+	  New Dir         34	D:\Repos\ModOrganizer-Plugins\src\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  118923	ui-clip.ico 99%  100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         2         2         0         0         0         0
+   Files :        41        41         0         0         0         0
+   Bytes :    3.68 m    3.68 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           70,319,109 Bytes/sec.
+   Speed :            4,023.692 MegaBytes/min.
+   Ended : 21 October 2023 15:47:12
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:12
+   Source : D:\Repos\ModOrganizer-Plugins\src\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\shortcutter\
+
+    Files : shortcutter_init.py
+	    
+  Options : /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   1	D:\Repos\ModOrganizer-Plugins\src\
+	    New File  		     175	shortcutter_init.py100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         0         1         0         0         0
+   Files :         1         1         0         0         0         0
+   Bytes :       175       175         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :             175,000 Bytes/sec.
+   Speed :              10.014 MegaBytes/min.
+   Ended : 21 October 2023 15:47:12
+
+Renaming shortcutter init file.
+Moving the readme files.
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:12
+   Source : D:\Repos\ModOrganizer-Plugins\readme\shortcutter\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\shortcutter\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   2	D:\Repos\ModOrganizer-Plugins\readme\shortcutter\
+	*EXTRA Dir        -1	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shared\
+	*EXTRA Dir        -1	D:\Repos\ModOrganizer-Plugins\release\shortcutter\shortcutter\
+	  *EXTRA File 		     175	__init__.py
+	    New File  		    1467	readme.md100%  
+	    New File  		     129	readme.url100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         0         1         0         0         2
+   Files :         2         2         0         0         0         1
+   Bytes :     1.5 k     1.5 k         0         0         0       175
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+   Ended : 21 October 2023 15:47:12
+
+Creating zip folder.
+Zipping shortcutter.
+Creating pluginfinder mod folder.
+Copying pluginfinder mod files to release folder.
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:13
+   Source : D:\Repos\ModOrganizer-Plugins\src\pluginfinder\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\pluginfinder\pluginfinder\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\src\pluginfinder\
+	    New File  		    2643	pluginfinder.py100%  
+	    New File  		     446	pluginfinder_plugin.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\src\pluginfinder\models\
+	    New File  		    3441	plugin_data.py100%  
+	    New File  		    1117	plugin_version.py100%  
+	  New Dir          5	D:\Repos\ModOrganizer-Plugins\src\pluginfinder\modules\
+	    New File  		  791040	7za.exe 33%   66%   99%  100%  
+	    New File  		     312	pluginfinder_files.py100%  
+	    New File  		   11330	pluginfinder_installer.py100%  
+	    New File  		    4280	pluginfinder_paths.py100%  
+	    New File  		   14336	pluginfinder_search.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\src\pluginfinder\plugins\
+	    New File  		   13414	pluginfinder_autoinstall.py100%  
+	    New File  		   40459	pluginfinder_browser.py100%  
+	    New File  		    4883	pluginfinder_notifier.py100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         4         4         0         0         0         0
+   Files :        12        12         0         0         0         0
+   Bytes :   866.8 k   866.8 k         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           147,950,166 Bytes/sec.
+   Speed :             8,465.776 MegaBytes/min.
+   Ended : 21 October 2023 15:47:13
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:13
+   Source : D:\Repos\ModOrganizer-Plugins\src\shared\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\pluginfinder\shared\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\src\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2509	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3174	shared_utilities.py100%  
+	  New Dir         34	D:\Repos\ModOrganizer-Plugins\src\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  118923	ui-clip.ico 99%  100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         2         2         0         0         0         0
+   Files :        41        41         0         0         0         0
+   Bytes :    3.68 m    3.68 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           78,929,612 Bytes/sec.
+   Speed :            4,516.389 MegaBytes/min.
+   Ended : 21 October 2023 15:47:13
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:13
+   Source : D:\Repos\ModOrganizer-Plugins\src\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\pluginfinder\
+
+    Files : pluginfinder_init.py
+	    
+  Options : /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   1	D:\Repos\ModOrganizer-Plugins\src\
+	    New File  		     334	pluginfinder_init.py100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         0         1         0         0         0
+   Files :         1         1         0         0         0         0
+   Bytes :       334       334         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :             334,000 Bytes/sec.
+   Speed :              19.112 MegaBytes/min.
+   Ended : 21 October 2023 15:47:13
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:13
+   Source : D:\Repos\ModOrganizer-Plugins\directory\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\pluginfinder\pluginfinder\
+
+    Files : plugin_directory.json
+	    
+  Options : /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   1	D:\Repos\ModOrganizer-Plugins\directory\
+	    New File  		    4732	plugin_directory.json100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         0         1         0         0         0
+   Files :         1         1         0         0         0         0
+   Bytes :     4.6 k     4.6 k         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+   Ended : 21 October 2023 15:47:13
+
+Renaming pluginfinder init file.
+Moving the readme files.
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:13
+   Source : D:\Repos\ModOrganizer-Plugins\readme\pluginfinder\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\pluginfinder\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   3	D:\Repos\ModOrganizer-Plugins\readme\pluginfinder\
+	*EXTRA Dir        -1	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\pluginfinder\
+	*EXTRA Dir        -1	D:\Repos\ModOrganizer-Plugins\release\pluginfinder\shared\
+	  *EXTRA File 		     334	__init__.py
+	    New File  		    1142	7za_license.txt100%  
+	    New File  		    1673	readme.md100%  
+	    New File  		     130	readme.url100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         0         1         0         0         2
+   Files :         3         3         0         0         0         1
+   Bytes :     2.8 k     2.8 k         0         0         0       334
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+   Ended : 21 October 2023 15:47:13
+
+Creating zip folder.
+Zipping pluginfinder.
+Creating curationclub mod folder.
+Copying curationclub mod files to release folder.
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:13
+   Source : D:\Repos\ModOrganizer-Plugins\src\curationclub\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\curationclub\curationclub\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\src\curationclub\
+	    New File  		   69006	creation_cache.json100%  
+	    New File  		    6232	curationclub.py100%  
+	    New File  		    1079	curationclub_plugin.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\src\curationclub\modules\
+	    New File  		    3104	curationclub_files.py100%  
+	    New File  		    1809	curationclub_paths.py100%  
+	    New File  		     584	curationclub_settings.py100%  
+	  New Dir          1	D:\Repos\ModOrganizer-Plugins\src\curationclub\plugins\
+	    New File  		   10724	curationclub_tool_manage.py100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         3         3         0         0         0         0
+   Files :         7         7         0         0         0         0
+   Bytes :    90.3 k    90.3 k         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           92,538,000 Bytes/sec.
+   Speed :            5,295.067 MegaBytes/min.
+   Ended : 21 October 2023 15:47:13
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:13
+   Source : D:\Repos\ModOrganizer-Plugins\src\shared\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\curationclub\shared\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\src\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2509	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3174	shared_utilities.py100%  
+	  New Dir         34	D:\Repos\ModOrganizer-Plugins\src\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  118923	ui-clip.ico 99%  100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         2         2         0         0         0         0
+   Files :        41        41         0         0         0         0
+   Bytes :    3.68 m    3.68 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           133,363,827 Bytes/sec.
+   Speed :             7,631.140 MegaBytes/min.
+   Ended : 21 October 2023 15:47:13
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:13
+   Source : D:\Repos\ModOrganizer-Plugins\src\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\curationclub\
+
+    Files : curationclub_init.py
+	    
+  Options : /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   1	D:\Repos\ModOrganizer-Plugins\src\
+	    New File  		     179	curationclub_init.py100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         0         1         0         0         0
+   Files :         1         1         0         0         0         0
+   Bytes :       179       179         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :             179,000 Bytes/sec.
+   Speed :              10.242 MegaBytes/min.
+   Ended : 21 October 2023 15:47:13
+
+Renaming curationclub init file.
+Moving the readme files.
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:13
+   Source : D:\Repos\ModOrganizer-Plugins\readme\curationclub\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\curationclub\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   2	D:\Repos\ModOrganizer-Plugins\readme\curationclub\
+	*EXTRA Dir        -1	D:\Repos\ModOrganizer-Plugins\release\curationclub\curationclub\
+	*EXTRA Dir        -1	D:\Repos\ModOrganizer-Plugins\release\curationclub\shared\
+	  *EXTRA File 		     179	__init__.py
+	    New File  		    1657	readme.md100%  
+	    New File  		     130	readme.url100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         0         1         0         0         2
+   Files :         2         2         0         0         0         1
+   Bytes :     1.7 k     1.7 k         0         0         0       179
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           1,787,000 Bytes/sec.
+   Speed :             102.253 MegaBytes/min.
+   Ended : 21 October 2023 15:47:13
+
+Creating zip folder.
+Zipping curationclub.
+Creating profilesync mod folder.
+Copying profilesync mod files to release folder.
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:14
+   Source : D:\Repos\ModOrganizer-Plugins\src\profilesync\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\profilesync\profilesync\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\src\profilesync\
+	    New File  		    6834	profilesync.py100%  
+	    New File  		     439	profilesync_plugin.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\src\profilesync\modules\
+	    New File  		     309	profilesync_files.py100%  
+	    New File  		    1864	profilesync_paths.py100%  
+	  New Dir          1	D:\Repos\ModOrganizer-Plugins\src\profilesync\plugins\
+	    New File  		   11103	profilesync_tool_manage.py100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         3         3         0         0         0         0
+   Files :         5         5         0         0         0         0
+   Bytes :    20.0 k    20.0 k         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           6,849,666 Bytes/sec.
+   Speed :             391.941 MegaBytes/min.
+   Ended : 21 October 2023 15:47:14
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:14
+   Source : D:\Repos\ModOrganizer-Plugins\src\shared\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\profilesync\shared\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\src\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2509	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3174	shared_utilities.py100%  
+	  New Dir         34	D:\Repos\ModOrganizer-Plugins\src\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  118923	ui-clip.ico 99%  100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         2         2         0         0         0         0
+   Files :        41        41         0         0         0         0
+   Bytes :    3.68 m    3.68 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           69,063,410 Bytes/sec.
+   Speed :            3,951.840 MegaBytes/min.
+   Ended : 21 October 2023 15:47:14
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:14
+   Source : D:\Repos\ModOrganizer-Plugins\src\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\profilesync\
+
+    Files : profilesync_init.py
+	    
+  Options : /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   1	D:\Repos\ModOrganizer-Plugins\src\
+	    New File  		     175	profilesync_init.py100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         0         1         0         0         0
+   Files :         1         1         0         0         0         0
+   Bytes :       175       175         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+   Ended : 21 October 2023 15:47:14
+
+Renaming profilesync init file.
+Moving the readme files.
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:14
+   Source : D:\Repos\ModOrganizer-Plugins\readme\profilesync\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\profilesync\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   2	D:\Repos\ModOrganizer-Plugins\readme\profilesync\
+	*EXTRA Dir        -1	D:\Repos\ModOrganizer-Plugins\release\profilesync\profilesync\
+	*EXTRA Dir        -1	D:\Repos\ModOrganizer-Plugins\release\profilesync\shared\
+	  *EXTRA File 		     175	__init__.py
+	    New File  		    1394	readme.md100%  
+	    New File  		     129	readme.url100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         0         1         0         0         2
+   Files :         2         2         0         0         0         1
+   Bytes :     1.4 k     1.4 k         0         0         0       175
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           1,523,000 Bytes/sec.
+   Speed :              87.147 MegaBytes/min.
+   Ended : 21 October 2023 15:47:14
+
+Creating zip folder.
+Zipping profilesync.
+Creating openmwplayer mod folder.
+Copying openmwplayer mod files to release folder.
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:14
+   Source : D:\Repos\ModOrganizer-Plugins\src\openmwplayer\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\openmwplayer\openmwplayer\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\src\openmwplayer\
+	    New File  		     324	openmwplayer.esp100%  
+	    New File  		   28991	openmwplayer.py100%  
+	    New File  		    1041	openmwplayer_plugin.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\src\openmwplayer\modules\
+	    New File  		    4483	openmwplayer_paths.py100%  
+	    New File  		     572	openmwplayer_settings.py100%  
+	  New Dir          4	D:\Repos\ModOrganizer-Plugins\src\openmwplayer\plugins\
+	    New File  		    3869	openmwplayer_plugin_launcher.py100%  
+	    New File  		    1107	openmwplayer_tool_export.py100%  
+	    New File  		    1109	openmwplayer_tool_import.py100%  
+	    New File  		   20318	openmwplayer_tool_manage.py100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         3         3         0         0         0         0
+   Files :         9         9         0         0         0         0
+   Bytes :    60.3 k    60.3 k         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           15,453,500 Bytes/sec.
+   Speed :              884.256 MegaBytes/min.
+   Ended : 21 October 2023 15:47:14
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:14
+   Source : D:\Repos\ModOrganizer-Plugins\src\shared\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\openmwplayer\shared\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\src\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2509	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3174	shared_utilities.py100%  
+	  New Dir         34	D:\Repos\ModOrganizer-Plugins\src\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  118923	ui-clip.ico 99%  100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         2         2         0         0         0         0
+   Files :        41        41         0         0         0         0
+   Bytes :    3.68 m    3.68 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           27,625,364 Bytes/sec.
+   Speed :            1,580.736 MegaBytes/min.
+   Ended : 21 October 2023 15:47:14
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:14
+   Source : D:\Repos\ModOrganizer-Plugins\src\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\openmwplayer\
+
+    Files : openmwplayer_init.py
+	    
+  Options : /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   1	D:\Repos\ModOrganizer-Plugins\src\
+	    New File  		     545	openmwplayer_init.py100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         0         1         0         0         0
+   Files :         1         1         0         0         0         0
+   Bytes :       545       545         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+   Ended : 21 October 2023 15:47:14
+
+Renaming openmwplayer init file.
+Moving the readme files.
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:14
+   Source : D:\Repos\ModOrganizer-Plugins\readme\openmwplayer\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\openmwplayer\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   2	D:\Repos\ModOrganizer-Plugins\readme\openmwplayer\
+	*EXTRA Dir        -1	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\openmwplayer\
+	*EXTRA Dir        -1	D:\Repos\ModOrganizer-Plugins\release\openmwplayer\shared\
+	  *EXTRA File 		     545	__init__.py
+	    New File  		    1421	readme.md100%  
+	    New File  		     130	readme.url100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         0         1         0         0         2
+   Files :         2         2         0         0         0         1
+   Bytes :     1.5 k     1.5 k         0         0         0       545
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :             775,500 Bytes/sec.
+   Speed :              44.374 MegaBytes/min.
+   Ended : 21 October 2023 15:47:14
+
+Creating zip folder.
+Zipping openmwplayer.
+Creating moddy mod folder.
+Copying moddy mod files to release folder.
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:15
+   Source : D:\Repos\ModOrganizer-Plugins\src\moddy\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\moddy\moddy\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          4	D:\Repos\ModOrganizer-Plugins\src\moddy\
+	    New File  		    8702	moddy.py100%  
+	    New File  		    3210	moddy_check.py100%  
+	    New File  		    5612	moddy_dialog.py100%  
+	    New File  		    1306	moddy_plugin.py100%  
+	  New Dir          3	D:\Repos\ModOrganizer-Plugins\src\moddy\checks\
+	    New File  		    1432	example_check.py100%  
+	    New File  		    3085	mo_in_game_check.py100%  
+	    New File  		    4530	overwrite_files_check.py100%  
+	  New Dir          4	D:\Repos\ModOrganizer-Plugins\src\moddy\images\
+	    New File  		    4780	close.png100%  
+	    New File  		   45882	moddy.png100%  
+	    New File  		    7480	speech.png100%  
+	    New File  		    6594	stop.png100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\src\moddy\modules\
+	    New File  		     728	moddy_paths.py100%  
+	    New File  		    1100	moddy_settings.py100%  
+	  New Dir          2	D:\Repos\ModOrganizer-Plugins\src\moddy\plugins\
+	    New File  		    1702	moddy_plugin_checker.py100%  
+	    New File  		     983	moddy_tool_manage.py100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         5         5         0         0         0         0
+   Files :        15        15         0         0         0         0
+   Bytes :    94.8 k    94.8 k         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           24,281,500 Bytes/sec.
+   Speed :            1,389.399 MegaBytes/min.
+   Ended : 21 October 2023 15:47:15
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:15
+   Source : D:\Repos\ModOrganizer-Plugins\src\shared\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\moddy\shared\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          7	D:\Repos\ModOrganizer-Plugins\src\shared\
+	    New File  		    1807	shared_files.py100%  
+	    New File  		    2509	shared_icons.py100%  
+	    New File  		     986	shared_json.py100%  
+	    New File  		    7645	shared_paths.py100%  
+	    New File  		    1728	shared_plugin.py100%  
+	    New File  		     719	shared_settings.py100%  
+	    New File  		    3174	shared_utilities.py100%  
+	  New Dir         34	D:\Repos\ModOrganizer-Plugins\src\shared\icons\
+	    New File  		  111199	ui-alpha.ico100%  
+	    New File  		  109998	ui-beta.ico100%  
+	    New File  		  112514	ui-check.ico100%  
+	    New File  		  118923	ui-clip.ico 99%  100%  
+	    New File  		  114921	ui-delta.ico100%  
+	    New File  		  122201	ui-docs.ico100%  
+	    New File  		  106739	ui-download.ico100%  
+	    New File  		  104955	ui-filter.ico100%  
+	    New File  		  109940	ui-gamma.ico100%  
+	    New File  		  114369	ui-github.ico100%  
+	    New File  		  118961	ui-info.ico100%  
+	    New File  		  106448	ui-install.ico100%  
+	    New File  		  107060	ui-kappa.ico100%  
+	    New File  		  120781	ui-link-alt.ico100%  
+	    New File  		  104956	ui-link.ico100%  
+	    New File  		  102253	ui-menu.ico100%  
+	    New File  		  101020	ui-minus.ico100%  
+	    New File  		  106350	ui-mo.ico100%  
+	    New File  		  110588	ui-next.ico100%  
+	    New File  		  136142	ui-nexus.ico 96%  100%  
+	    New File  		  119187	ui-no-update.ico100%  
+	    New File  		  124003	ui-openmw.ico 99%  100%  
+	    New File  		  106759	ui-patreon.ico100%  
+	    New File  		  114715	ui-plugin.ico100%  
+	    New File  		  102494	ui-plus.ico100%  
+	    New File  		  110773	ui-prev.ico100%  
+	    New File  		  119792	ui-recycle.ico100%  
+	    New File  		  115044	ui-refresh.ico100%  
+	    New File  		  117756	ui-stop.ico100%  
+	    New File  		  112335	ui-sync.ico100%  
+	    New File  		  106085	ui-trash.ico100%  
+	    New File  		  120334	ui-update-alt.ico100%  
+	    New File  		  120408	ui-update.ico100%  
+	    New File  		  118980	ui-warning.ico100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         2         2         0         0         0         0
+   Files :        41        41         0         0         0         0
+   Bytes :    3.68 m    3.68 m         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :           117,198,515 Bytes/sec.
+   Speed :             6,706.153 MegaBytes/min.
+   Ended : 21 October 2023 15:47:15
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:15
+   Source : D:\Repos\ModOrganizer-Plugins\src\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\moddy\
+
+    Files : moddy_init.py
+	    
+  Options : /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   1	D:\Repos\ModOrganizer-Plugins\src\
+	    New File  		     250	moddy_init.py100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         0         1         0         0         0
+   Files :         1         1         0         0         0         0
+   Bytes :       250       250         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :             250,000 Bytes/sec.
+   Speed :              14.305 MegaBytes/min.
+   Ended : 21 October 2023 15:47:15
+
+Renaming moddy init file.
+Moving the readme files.
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 21 October 2023 15:47:15
+   Source : D:\Repos\ModOrganizer-Plugins\readme\moddy\
+     Dest : D:\Repos\ModOrganizer-Plugins\release\moddy\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+2023/10/21 15:47:15 ERROR 2 (0x00000002) Accessing Source Directory D:\Repos\ModOrganizer-Plugins\readme\moddy\
+The system cannot find the file specified.
+Creating zip folder.
+Zipping moddy.
