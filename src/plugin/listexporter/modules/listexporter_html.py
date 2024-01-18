@@ -34,7 +34,7 @@ class ListExporterHtml:
                     table += "<td>" + modItem.comments() + "</td>"
                     table += "</tr>"
 
-        table += "</div></div></div></tbody></table>"
+        table += "</tbody></table></div></div></div>"
         table += "</body></html>"
         os.makedirs(os.path.dirname(path), exist_ok=True)
         with open(Path(path), "w", encoding="utf-8") as htmlFile:
