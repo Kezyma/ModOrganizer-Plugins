@@ -1,5 +1,6 @@
 import mobase
 from ..core.profilesync_plugin import ProfileSyncPlugin
+from ..models.profilesync_groupdata import *
 from ....common.common_qt import *
 from threading import Thread
 
@@ -78,7 +79,7 @@ class ProfileSyncUpdater(ProfileSyncPlugin, mobase.IPlugin):
         if group is not None:
             groupList = self._profileSync._groups.loadSyncGroups()
             groupProfiles = groupList[group]
-            groupProfiles.pop(groupProfiles.index(profile))
+            groupProfiles[PROFILES].pop(groupProfiles[PROFILES].index(profile))
             groupList[group] = groupProfiles
             self._profileSync._groups.saveSyncGroups(groupList)
 

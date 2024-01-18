@@ -172,7 +172,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>Create</string>
+         <string>Create Shortcut</string>
         </property>
        </widget>
       </item>

@@ -67,6 +67,9 @@ class OpenMWPlayerMenu(QtWidgets.QWidget):
         self._update.configure(self.updateTabWidget)
         self._help.configure(self.helpTabWidget)
 
+        self.optionsWidget.btnImport.setIcon(SYNC_ICON)
+        self.optionsWidget.btnExport.setIcon(LINK_ICON)
+
     _settingsCfg = {}
     _openmwCfg = {}
 

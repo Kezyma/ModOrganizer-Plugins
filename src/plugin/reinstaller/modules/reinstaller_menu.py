@@ -50,6 +50,10 @@ class ReinstallerMenu(QtWidgets.QWidget):
         self.installersTabWidget.btnInstall.clicked.connect(self.btnInstallClick)
         self.installersTabWidget.btnDelete.clicked.connect(self.btnDeleteClick)
 
+        self.installersTabWidget.btnAdd.setIcon(PLUS_ICON)
+        self.installersTabWidget.btnInstall.setIcon(INSTALL_ICON)
+        self.installersTabWidget.btnDelete.setIcon(TRASH_ICON)
+
     def rebind(self):
         self.installersTabWidget.ddlDownloads.clear()
         self.installersTabWidget.ddlDownloads.addItems(self._reinstaller._paths.getDownloadFileOptions())

@@ -64,6 +64,11 @@ class ProfileSyncMenu(QtWidgets.QWidget):
         self.stateTabWidget.stateProfileList.itemChanged.connect(self.saveStateLists)
         self.stateTabWidget.stateCategoryList.itemChanged.connect(self.saveStateLists)
 
+        self.selectWidget.newGroupButton.setIcon(PLUS_ICON)
+        self.selectWidget.groupDeleteButton.setIcon(TRASH_ICON)
+        self.stateTabWidget.createStateGroupBtn.setIcon(PLUS_ICON)
+        self.stateTabWidget.deleteStateGroupBtn.setIcon(TRASH_ICON)
+
     def rebind(self):
         """Rebinds the UI with current settings."""
         self.bindSyncGroupList()

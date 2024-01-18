@@ -30,30 +30,24 @@ A plugin for Mod Organizer 2 that automatically exports your mod list, enabled p
 To install a plugin from this repository, download a plugin from above and extract the folder inside into your `Mod Organizer\plugins` folder.
 
 ### This Repo
-- `src` contains the plugin code and a shared code folder. Each plugin has its own folder and a `plugin_init.py` file.
+- `src` contains the plugin code and shared code folders. Each plugin has its own folder and a `plugin_init.py` file.
 - `release` contains the plugins packaged for individual release. each folder is an individual plugin.
-- `readme` contains the readme files (and any other documentation) in individual plugin folders.
+- `directory` contains the plugin directory used by Plugin Finder to search and install plugins.
+- `meta` contains meta files for the NexusMods downloads, to be used when creating Wabbajack lists.
 - `tools` contains various batch files.
 
 ### Tools
 the `tools` folder contains a few batch files.
 
-#### cleanup.bat
-When called, the `release` folder will be deleted, as will any log files in the `tools` folder.
 
-#### release.bat
-Calling release.bat with parameters of different plugin names will; (eg. `release.bat rootbuilder reinstaller` would build rootbuilder and reinstaller)
-- Copy the plugin and shared folders from `src` to `release\plugin`
-- Copy the `plugin_init.py` file to `release\plugin` and rename it to `__init__.py`
-- Copy the readme content from `readme\plugin` to `release\plugin`
-- Zip the plugin for release and place it in `release\zip`
+#### Generate Release.bat
+When run, will deploy all plugins from the `src` folder to the `release` folder as well as zip them up and store them in `release\zip`.
 
-#### release_all.bat
-Calls release.bat with parameters for every plugin.
+#### Generate UI.bat
+When run, will search the `src` folder for `ui` files alongside `qt5` and `qt6` folders, then convert those files to python for each version of PyQt. Requires PyQt5 and PyQt6 to be installed.
 
-#### deploy.bat
-Calling deploy.bat with parameters of different plugin names will copy the relevant plugin folder from `release` to all the folders listed in `deploy_targets.txt`
-(eg. `deploy.bat rootbuilder reinstaller` would deploy rootbuilder and reinstaller)
+#### Launch Debug.bat
+When run, will generate UI and a release with `Generate UI.bat` and `Generate Release.bat`, then download Mod Organizer 2 (if not already downloaded), install it in a folder called `debug`, deploy all plugins to it and launch `ModOrganizer.exe` for testing.
 
-#### deploy_all.bat
-Calls deploy.bat with parameters for every plugin.
+#### MetaGenerator.exe
+When run, will check NexusMods for each plugin listed in `Plugins.json` and generate a file in the `meta` folder for Wabbajck list authors to use.

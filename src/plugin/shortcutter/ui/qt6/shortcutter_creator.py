@@ -118,4 +118,4 @@ class Ui_shortcutterCreator(object):
         self.label_4.setText(_translate("shortcutterCreator", "Icon"))
         self.lblIconPath.setText(_translate("shortcutterCreator", "..."))
         self.btnIconPath.setText(_translate("shortcutterCreator", "Select"))
-        self.btnCreate.setText(_translate("shortcutterCreator", "Create"))
+        self.btnCreate.setText(_translate("shortcutterCreator", "Create Shortcut"))

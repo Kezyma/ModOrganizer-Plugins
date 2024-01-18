@@ -47,6 +47,7 @@ class ShortcutterMenu(QtWidgets.QWidget):
         self.createTabWidget.btnCreate.clicked.connect(self.createShortcut)
         self.createTabWidget.ddlApplication.currentTextChanged.connect(self.selectChange)
         self.createTabWidget.ddlProfile.currentTextChanged.connect(self.selectChange)
+        self.createTabWidget.btnCreate.setIcon(LINK_ICON)
 
     def rebind(self):
         self.createTabWidget.ddlApplication.clear()
