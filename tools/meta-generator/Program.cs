@@ -17,7 +17,7 @@ namespace MetaGenerator
         static void Main(string[] args)
         {
             var json = Path.GetFullPath("Plugins.json");
-            var dest = Path.GetFullPath("Meta");
+            var dest = Path.GetFullPath("..\\meta");
             if (!Directory.Exists(dest)) Directory.CreateDirectory(dest);
             if (File.Exists(json))
             {
@@ -26,14 +26,19 @@ namespace MetaGenerator
                 var plugins = JsonConvert.DeserializeObject<List<Plugin>>(text);
                 foreach (var plugin in plugins)
                 {
-                    Console.WriteLine($"Generating meta file for {plugin.PluginId}");
-                    using var client = new HttpClient();
-                    var res = client.GetAsync($"https://www.nexusmods.com/{plugin.GameId}/mods/{plugin.NexusId}?tab=files").Result;
-                    var html = res.Content.ReadAsStringAsync().Result;
-                    var match = Regex.Match(html, FileIdRegex);
-                    var fileId = match.Groups["fileId"].Value;
-                    var metaString = $"[General]\ninstalled=true\ngameName={plugin.MO2Game}\nmodID={plugin.NexusId}\nfileID={fileId}";
-                    File.WriteAllText(Path.Combine(dest, $"{plugin.PluginId}.meta"), metaString);
+                    var metaFilePath = Path.Combine(dest, $"{plugin.PluginId}.meta");
+                    if (!File.Exists(metaFilePath))
+                    {
+                        Console.WriteLine($"Generating meta file for {plugin.PluginId}");
+                        using var client = new HttpClient();
+                        var res = client.GetAsync($"https://www.nexusmods.com/{plugin.GameId}/mods/{plugin.NexusId}?tab=files").Result;
+                        var html = res.Content.ReadAsStringAsync().Result;
+                        var match = Regex.Match(html, FileIdRegex);
+                        var fileId = match.Groups["fileId"].Value;
+                        var metaString = $"[General]\ninstalled=true\ngameName={plugin.MO2Game}\nmodID={plugin.NexusId}\nfileID={fileId}";
+                        File.WriteAllText(metaFilePath, metaString);
+                        Thread.Sleep(1000);
+                    }
                 }
             }
         }
