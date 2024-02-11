@@ -113,5 +113,10 @@
     "Name": "Auto-Activator",
     "Identifier": "autoactivator",
     "Manifest": "https://raw.githubusercontent.com/JonathanFeenstra/modorganizer-auto-activator/main/manifest.json"
+  },
+  {
+    "Name": "Bethesda Plugin Manager",
+    "Identifier": "bsplugins",
+    "Manifest": "https://raw.githubusercontent.com/Exit-9B/modorganizer-bsplugins/main/plugindefinition.json"
   }
 ]
