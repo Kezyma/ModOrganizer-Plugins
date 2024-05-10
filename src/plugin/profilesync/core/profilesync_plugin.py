@@ -10,7 +10,7 @@ class ProfileSyncPlugin(BasePlugin):
     """Base Profile Sync plugin, to be inherited by all other plugins."""
 
     def __init__(self):
-        super().__init__("ProfileSync", "Profile Sync", mobase.VersionInfo(2, 0, 1))
+        super().__init__("ProfileSync", "Profile Sync", mobase.VersionInfo(2, 0, 2))
 
     def init(self, organiser:mobase.IOrganizer):
         self._profileSync = ProfileSync(organiser)
