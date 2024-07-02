@@ -6,11 +6,12 @@ from ....base.base_dialog import BaseDialog
 from ....common.common_qt import *
 from ....common.common_icons import MINUS_ICON
 
+
 class ReinstallerQuickDelete(ReinstallerPlugin, mobase.IPluginTool):
     def __init__(self):
         super().__init__()
 
-    def init(self, organiser:mobase.IOrganizer):
+    def init(self, organiser: mobase.IOrganizer):
         res = super().init(organiser)
         self.dialog = QtWidgets.QWidget()
         return res
@@ -23,7 +24,7 @@ class ReinstallerQuickDelete(ReinstallerPlugin, mobase.IPluginTool):
 
     def icon(self):
         return MINUS_ICON
-    
+
     def settings(self):
         return []
 
@@ -35,8 +36,14 @@ class ReinstallerQuickDelete(ReinstallerPlugin, mobase.IPluginTool):
 
     def description(self):
         return self.__tr("Deletes a downloaded file.")
-    
+
     def display(self):
+        if self._organiser.pluginSetting("Reinstaller", "copy_installers"):
+            self._display()
+        else:
+            self._display_no_copy()
+
+    def _display(self):
         installers = self._reinstaller._paths.subfolders(self._reinstaller._strings.pluginDataPath)
         names = []
         for folder in installers:
@@ -47,7 +54,7 @@ class ReinstallerQuickDelete(ReinstallerPlugin, mobase.IPluginTool):
             installerOpts = self._reinstaller._paths.files(str(Path(self._reinstaller._strings.pluginDataPath) / item))
             files = []
             for file in installerOpts:
-                if not str(file).endswith('.meta'):
+                if not str(file).endswith(".meta"):
                     files.append(file)
             if len(files) == 1:
                 self._reinstaller.delete(item, os.path.basename(files[0]))
@@ -59,3 +66,12 @@ class ReinstallerQuickDelete(ReinstallerPlugin, mobase.IPluginTool):
                 if ok and item2:
                     self._reinstaller.delete(item, item2)
 
+    def _display_no_copy(self):
+        entries = self._reinstaller._paths.getInstallerEntries()
+        names = self._reinstaller._paths.getInstallerOptions()
+        item, ok = QInputDialog.getItem(self.dialog, "Delete Installer", "Installer:", names, 0, False)
+
+        if ok and item:
+            item2, ok = QInputDialog.getItem(self.dialog, "Delete File", "File:", entries[item], 0, False)
+            if ok and item2:
+                self._reinstaller.delete(item, item2)
