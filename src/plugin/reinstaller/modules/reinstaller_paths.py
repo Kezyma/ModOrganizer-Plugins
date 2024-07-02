@@ -87,7 +87,7 @@ class ReinstallerPathsNoCopy(ReinstallerPaths):
         return installerEntries
 
     def getInstallerOptions(self):
-        return list(self.getInstallerEntries().keys())
+        return sorted(list(self.getInstallerEntries().keys()))
 
     def getInstallerFileOptions(self, name):
         return self.getInstallerEntries().get(name, [])
