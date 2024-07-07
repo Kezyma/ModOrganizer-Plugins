@@ -3,7 +3,6 @@ from pathlib import Path
 from typing import Any, Union
 import sys
 import time
-import encodings.idna
 
 
 # Backwards compatibility: Path.link_to was deprecated in 3.10, removed in 3.12
