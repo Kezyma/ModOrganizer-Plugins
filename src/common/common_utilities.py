@@ -1,10 +1,14 @@
-import urllib.error
-import json, shutil, os, stat, hashlib, urllib.request
-from pathlib import Path
-from typing import Any, Iterable, Union
+import hashlib
+import json
+import os
+import shutil
+import stat
 import sys
 import time
-
+import urllib.error
+import urllib.request
+from pathlib import Path
+from typing import Any, Iterable, Union
 
 # Backwards compatibility: Path.link_to was deprecated in 3.10, removed in 3.12
 if sys.version_info[0] >= 3 and sys.version_info[1] < 10:
@@ -27,9 +31,9 @@ def copyFileOrFolder(source: str, dest: str, retries: int = 0) -> bool:
         path = Path(dest)
         if path.exists():
             if path.is_dir():
-                return copyFolder(source,dest)
+                return copyFolder(source, dest)
             elif path.is_file():
-                return copyFile(source,dest)
+                return copyFile(source, dest)
         return False
     except OSError:
         if retries <= maxRetries():
@@ -40,7 +44,7 @@ def copyFileOrFolder(source: str, dest: str, retries: int = 0) -> bool:
 def copyFile(source: str, dest: str, retries: int = 0) -> bool:
     """Copies a file from source to destination."""
     try:
-        if (Path(dest).exists()):
+        if Path(dest).exists():
             os.chmod(dest, stat.S_IWRITE)
         os.makedirs(os.path.dirname(dest), exist_ok=True)
         shutil.copy2(source, dest)
@@ -65,7 +69,7 @@ def copyFolder(source: str, dest: str, retries: int = 0) -> bool:
 def moveFile(source: str, dest: str, retries: int = 0) -> bool:
     """Moves a file from source to destination."""
     try:
-        if (Path(dest).exists()):
+        if Path(dest).exists():
             os.chmod(dest, stat.S_IWRITE)
         os.makedirs(os.path.dirname(dest), exist_ok=True)
         shutil.move(str(source), str(dest))
@@ -79,7 +83,7 @@ def moveFile(source: str, dest: str, retries: int = 0) -> bool:
 def deleteFile(file: str, retries: int = 0) -> bool:
     """Deletes a file."""
     try:
-        if (Path(file).exists()):
+        if Path(file).exists():
             os.chmod(file, stat.S_IWRITE)
         os.remove(file)
         return True
@@ -173,12 +177,12 @@ def saveLines(path: str, data: Iterable[str], retries: int = 0) -> bool:
         return False
 
 def hashFile(path: str) -> str:
-    """ Hashes a file and returns the hash """
+    """Hashes a file and returns the hash"""
     func = hashlib.md5()
-    if (Path(path).exists()):
+    if Path(path).exists():
         os.chmod(path, stat.S_IWRITE)
     f = os.open(path, (os.O_RDONLY | os.O_BINARY))
-    for block in iter(lambda: os.read(f, 2048*func.block_size), b''):
+    for block in iter(lambda: os.read(f, 2048 * func.block_size), b""):
         func.update(block)
     os.close(f)
     return func.hexdigest()
