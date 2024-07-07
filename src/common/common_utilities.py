@@ -1,8 +1,22 @@
 import json, shutil, os, stat, hashlib, urllib.request
 from pathlib import Path
-from typing import Any
+from typing import Any, Union
+import sys
 import time
 import encodings.idna
+
+
+# Backwards compatibility: Path.link_to was deprecated in 3.10, removed in 3.12
+if sys.version_info[0] >= 3 and sys.version_info[1] < 10:
+
+    def hardlink(source: Union[str, Path], target: Union[str, Path]):
+        Path(source).link_to(target)
+
+else:
+
+    def hardlink(source: Union[str, Path], target: Union[str, Path]):
+        Path(target).hardlink_to(source)
+
 
 def maxRetries():
     return 10
@@ -91,7 +105,7 @@ def linkFile(source: str, dest: str, retries = 0) -> bool:
     """Links a file to a specific location."""
     try:
         os.makedirs(os.path.dirname(dest), exist_ok=True)
-        Path(source).link_to(dest)
+        hardlink(source, dest)
         return True
     except:
         if retries <= maxRetries():
