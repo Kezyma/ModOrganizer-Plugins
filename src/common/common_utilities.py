@@ -1,3 +1,4 @@
+import urllib.error
 import json, shutil, os, stat, hashlib, urllib.request
 from pathlib import Path
 from typing import Any, Union
@@ -30,7 +31,7 @@ def copyFileOrFolder(source: str, dest: str, retries = 0) -> bool:
             elif path.is_file():
                 return copyFile(source,dest)
         return False
-    except:
+    except OSError:
         if retries <= maxRetries():
             time.sleep(0.1)
             return copyFileOrFolder(source, dest, retries + 1)
@@ -44,7 +45,7 @@ def copyFile(source: str, dest: str, retries = 0) -> bool:
         os.makedirs(os.path.dirname(dest), exist_ok=True)
         shutil.copy2(source, dest)
         return True
-    except:
+    except OSError:
         if retries <= maxRetries():
             time.sleep(0.1)
             return copyFile(source, dest, retries + 1)
@@ -55,7 +56,7 @@ def copyFolder(source: str, dest: str, retries = 0) -> bool:
     try:
         shutil.copytree(source, dest, dirs_exist_ok=True)
         return True
-    except:
+    except OSError:
         if retries <= maxRetries():
             time.sleep(0.1)
             return copyFolder(source, dest, retries + 1)
@@ -69,7 +70,7 @@ def moveFile(source: str, dest: str, retries = 0) -> bool:
         os.makedirs(os.path.dirname(dest), exist_ok=True)
         shutil.move(str(source), str(dest))
         return True
-    except:
+    except OSError:
         if retries <= maxRetries():
             time.sleep(0.1)
             return moveFile(source, dest, retries + 1)
@@ -82,7 +83,7 @@ def deleteFile(file: str, retries = 0) -> bool:
             os.chmod(file, stat.S_IWRITE)
         os.remove(file)
         return True
-    except:
+    except OSError:
         if retries <= maxRetries():
             time.sleep(0.1)
             return deleteFile(file, retries + 1)
@@ -94,7 +95,7 @@ def deleteFolder(file: str, retries = 0) -> bool:
         if Path(file).exists():
             shutil.rmtree(file)
         return True
-    except:
+    except OSError:
         if retries <= maxRetries():
             time.sleep(0.1)
             return deleteFolder(file, retries + 1)
@@ -106,7 +107,7 @@ def linkFile(source: str, dest: str, retries = 0) -> bool:
         os.makedirs(os.path.dirname(dest), exist_ok=True)
         hardlink(source, dest)
         return True
-    except:
+    except OSError:
         if retries <= maxRetries():
             time.sleep(0.1)
             return linkFile(source, dest, retries + 1)
@@ -117,7 +118,7 @@ def unlinkFile(link: str, retries = 0) -> bool:
     try:
         Path(link).unlink()
         return True
-    except:
+    except OSError:
         if retries <= maxRetries():
             time.sleep(0.1)
             return unlinkFile(link, retries + 1)
@@ -130,7 +131,7 @@ def saveJson(path: str, data: Any, retries = 0) -> bool:
         with open(Path(path), "w", encoding="utf-8") as jsonFile:
             json.dump(data, jsonFile)
             return True
-    except:
+    except OSError:
         if retries <= maxRetries():
             time.sleep(0.1)
             return saveJson(path, data, retries + 1)
@@ -140,7 +141,7 @@ def loadJson(path: str, retries = 0):
     """Loads an object from a json file."""
     try:
         return json.load(open(Path(path), "r", encoding="utf-8-sig"))
-    except:
+    except OSError:
         if retries <= maxRetries():
             time.sleep(0.1)
             return loadJson(path, retries + 1)
@@ -152,7 +153,7 @@ def loadLines(path: str, retries = 0):
         with open(path, "r", encoding="utf-8-sig") as file:
             lines = [line.rstrip() for line in file]
             return lines
-    except:
+    except OSError:
         if retries <= maxRetries():
             time.sleep(0.1)
             return loadLines(path, retries + 1)
@@ -165,7 +166,7 @@ def saveLines(path: str, data: list, retries = 0) -> bool:
         with open(Path(path), "w", encoding="utf-8") as jsonFile:
             jsonFile.writelines(data)
             return True
-    except:
+    except OSError:
         if retries <= maxRetries():
             time.sleep(0.1)
             return saveLines(path, data, retries + 1)
@@ -188,7 +189,12 @@ def downloadFile(url: str, path: str, retries = 0) -> bool:
         os.makedirs(os.path.dirname(path), exist_ok=True)
         urllib.request.urlretrieve(url, path)
         return True
-    except:
+    except (
+        OSError,
+        urllib.error.URLError,
+        urllib.error.HTTPError,
+        urllib.error.ContentTooShortError,
+    ):
         if retries <= maxRetries():
             time.sleep(0.1)
             return downloadFile(url, path, retries + 1)
