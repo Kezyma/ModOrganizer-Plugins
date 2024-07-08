@@ -6,7 +6,6 @@ from pathlib import Path
 from ..models.pluginfinder_directorydata import *
 from ..models.pluginfinder_manifestdata import *
 from ..models.pluginfinder_versiondata import *
-import encodings.idna
 
 class PluginFinderDirectory:
     """Plugin Finder directory module, handles update and loading of the directory file."""
