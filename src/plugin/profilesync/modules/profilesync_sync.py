@@ -3,6 +3,7 @@ from pathlib import Path
 from typing import Dict, List
 from .profilesync_groups import ProfileSyncGroups
 from .profilesync_strings import ProfileSyncStrings
+from ..core.profilesync_settings import ProfileSyncSettings
 from ....common.common_utilities import saveLines, loadLines
 from ....common.common_log import CommonLog
 from ..models.profilesync_groupdata import *
@@ -10,11 +11,12 @@ from ..models.profilesync_groupdata import *
 class ProfileSyncSync:
     """Profile Sync Sync module, handles updating profile modlists."""
 
-    def __init__(self, organiser: mobase.IOrganizer, strings: ProfileSyncStrings, groups: ProfileSyncGroups, log: CommonLog) -> None:
+    def __init__(self, organiser: mobase.IOrganizer, strings: ProfileSyncStrings, groups: ProfileSyncGroups, log: CommonLog, settings: ProfileSyncSettings) -> None:
         self._organiser = organiser
         self._strings = strings
         self._log = log
         self._groups = groups
+        self._settings = settings
 
     def syncFromCurrentProfile(self):
         profile = self._organiser.profile()
@@ -94,11 +96,15 @@ class ProfileSyncSync:
         tasks = []
         for profile in groupList:
             self._log.debug(f"Sync from group {group} to {profile}")
-            nt = threading.Thread(target=self._syncToProfile, args=[profile])
-            nt.start()
-            tasks.append(nt)
-        for t in tasks:
-            t.join()
+            if self._settings.useasync:
+                nt = threading.Thread(target=self._syncToProfile, args=[profile])
+                nt.start()
+                tasks.append(nt)
+            else:
+                self._syncToProfile(profile)
+        if self._settings.useasync:
+            for t in tasks:
+                t.join()
 
     def _syncToProfile(self, profile:str):
         profilesPath = Path(self._strings.moProfilesPath)

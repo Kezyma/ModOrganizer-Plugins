@@ -15,7 +15,7 @@ class ProfileSync:
         self._log = CommonLog("ProfileSync", self._settings)
         self._strings = ProfileSyncStrings("ProfileSync", self._organiser)
         self._groups = ProfileSyncGroups(self._organiser, self._strings, self._log)
-        self._sync = ProfileSyncSync(self._organiser, self._strings, self._groups, self._log)
+        self._sync = ProfileSyncSync(self._organiser, self._strings, self._groups, self._log, self._settings)
         self._legacy = ProfileSyncLegacy(self._organiser, self._strings, self._settings, self._groups, self._log)
 
     
