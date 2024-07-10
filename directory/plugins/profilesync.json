@@ -25,17 +25,18 @@
       "DataPath": [ "data/profilesync" ]
     },
     {
-      "Version": "2.0.2",
-      "Released": "2024-05-10",
+      "Version": "2.1.0",
+      "Released": "2024-07-10",
       "MinSupport": "2.4.0",
       "MaxSupport": "2.5.0",
       "MinWorking": "2.4.0",
       "ReleaseNotes": [
         "(2.0.0) New state groups allow synchronising the enabled state of specific separators.",
         "(2.0.1) Added retries for updating modlists to prevent issues where lists wouldn't synchronise.",
-        "(2.0.2) Added try/except blocks to try and stop MO2 from unloading the plugin whenever it errors."
+        "(2.0.2) Added try/except blocks to try and stop MO2 from unloading the plugin whenever it errors.",
+        "(2.1.0) Added setting that disabled async to try and prevent errors at a cost in performance."
       ],
-      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/profilesync/profilesync.2.0.2.zip",
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/profilesync/profilesync.2.1.0.zip",
       "PluginPath": [
         "profilesync"
       ],

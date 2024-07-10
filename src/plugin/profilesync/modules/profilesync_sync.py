@@ -96,13 +96,13 @@ class ProfileSyncSync:
         tasks = []
         for profile in groupList:
             self._log.debug(f"Sync from group {group} to {profile}")
-            if self._settings.useasync:
+            if self._settings.useasync():
                 nt = threading.Thread(target=self._syncToProfile, args=[profile])
                 nt.start()
                 tasks.append(nt)
             else:
                 self._syncToProfile(profile)
-        if self._settings.useasync:
+        if self._settings.useasync():
             for t in tasks:
                 t.join()
 

@@ -64,8 +64,11 @@ class ProfileSyncUpdater(ProfileSyncPlugin, mobase.IPlugin):
             self._log.debug(f"Found group {group}, updating group modlist.")
             self._profileSync._sync.syncFromCurrentProfile()
             self._log.debug(f"Updated group modlist, synchronising other profiles.")
-            t = Thread(target=self._profileSync._sync.syncFromGroup, args=[group])
-            t.start()
+            if self._profileSync._settings.useasync():
+                t = Thread(target=self._profileSync._sync.syncFromGroup, args=[group])
+                t.start()
+            else:
+                self._profileSync._sync.syncFromGroup(group)
         else:
             self._log.debug(f"No group found for {profile}.")
 
