@@ -49,4 +49,4 @@ class Ui_exclusionsTabWidget(object):
         _translate = QtCore.QCoreApplication.translate
         exclusionsTabWidget.setWindowTitle(_translate("exclusionsTabWidget", "Form"))
         self.exclusionsTitle.setText(_translate("exclusionsTabWidget", "Exclusions"))
-        self.exclusionsDesc.setText(_translate("exclusionsTabWidget", "Files matching the specified fules will be completely ignored by Root Builder. They will not be included in the backup or cache and they will be ignored from any mods they are present in. Supports glob wildcards, and regex expressions when using the prefix r:"))
+        self.exclusionsDesc.setText(_translate("exclusionsTabWidget", "Files matching the specified rules will be completely ignored by Root Builder. They will not be included in the backup or cache and they will be ignored from any mods they are present in. Supports glob wildcards, and regex expressions when using the prefix r:"))
