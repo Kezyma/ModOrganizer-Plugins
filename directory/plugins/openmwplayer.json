@@ -73,6 +73,25 @@
       "PluginPath": [ "openmwplayer" ],
       "LocalePath": [],
       "DataPath": [ "data/openmwplayer" ]
+    },
+    {
+      "Version": "2.0.1B",
+      "Released": "2024-08-06",
+      "MinSupport": "2.4.0",
+      "MaxSupport": "2.5.2",
+      "MinWorking": "2.4.0",
+      "MaxWorking": "",
+      "ReleaseNotes": [
+        "(2.0.1) Updated to work with MO2 2.5.2."
+      ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/openmwplayer/openmwplayer.2.0.1.zip",
+      "PluginPath": [
+        "openmwplayer"
+      ],
+      "LocalePath": [],
+      "DataPath": [
+        "data/openmwplayer"
+      ]
     }
   ]
 }

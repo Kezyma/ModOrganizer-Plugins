@@ -13,7 +13,7 @@ class ReinstallerPlugin(BasePlugin):
     """Base Reinstaller plugin, to be inherited by all other plugins."""
 
     def __init__(self):
-        super().__init__("Reinstaller", "Reinstaller", mobase.VersionInfo(2, 0, 0))
+        super().__init__("Reinstaller", "Reinstaller", mobase.VersionInfo(2, 0, 1))
 
     def init(self, organiser:mobase.IOrganizer):
         self._reinstaller = Reinstaller(organiser)

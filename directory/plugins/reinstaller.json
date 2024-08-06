@@ -47,9 +47,10 @@
       "MinWorking": "2.4.0",
       "MaxWorking": "",
       "ReleaseNotes": [
-        "(2.0.0) Total rewrite."
+        "(2.0.0) Total rewrite.",
+        "(2.0.1) Update for MO2 2.5.2 with some minor fixes."
       ],
-      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/reinstaller/reinstaller.2.0.0.zip",
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/reinstaller/reinstaller.2.0.1.zip",
       "PluginPath": [
         "reinstaller"
       ],

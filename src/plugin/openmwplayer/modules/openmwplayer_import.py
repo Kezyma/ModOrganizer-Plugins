@@ -21,7 +21,7 @@ class OpenMWPlayerImport():
             self._settings.updateSetting("openmwcfgpath", str(manualPath))
             cfgPath = self._strings.openmwCfgPath()
         # If the config actually exists, import it.
-        if Path(cfgPath).exists():
+        if cfgPath is not None and Path(cfgPath).exists():
             currentPath = self._strings.customOpenmwCfgPath()
             # Delete any existing openmw.cfg
             if Path(currentPath).exists():
