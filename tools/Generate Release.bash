@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 run_dir=$(cd "$(dirname "$0")" && pwd)
 cd "$run_dir" || exit
