@@ -214,20 +214,14 @@ def folderIsEmpty(path: str) -> bool:
                 subIsEmpty = folderIsEmpty(fullPath)
                 empty = empty and subIsEmpty
             else:
-                empty = False
+                return False
     return empty
 
-def deleteEmptyFolders(path: str) -> bool:
-    items = os.listdir(path)
-    empty = True
-    if len(items) > 0:
-        for itm in items:
-            fullPath = os.path.join(path, itm)
-            if os.path.isdir(fullPath):
-                subIsEmpty = deleteEmptyFolders(fullPath)
-                empty = empty and subIsEmpty
-            else:
-                empty = False
-    if empty:
-        os.rmdir(path)
-    return empty
+def deleteEmptyFolders(path: str):
+    path = Path(path)
+    for dirpath, dirnames, filenames in os.walk(path, topdown=False):
+        for dirname in dirnames:
+            subdir = path / dirpath / dirname
+            with os.scandir(path) as it:
+                if not any(it):
+                    os.rmdir(subdir)
