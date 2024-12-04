@@ -76,5 +76,11 @@
         "SteamAppId": 892970,
         "GameExe": ["valheim.exe"],
         "GameData": "BepInEx\\plugins"
+    },
+    {
+      "Name": "Cyberpunk 2077",
+      "SteamAppId": 1091500,
+      "GameExe": ["Cyberpunk2077.exe"],
+      "GameData": "bin\\x64"
     }
 ]
