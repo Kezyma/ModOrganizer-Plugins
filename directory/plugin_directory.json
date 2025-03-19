@@ -113,5 +113,10 @@
     "Name": "Auto-Activator",
     "Identifier": "autoactivator",
     "Manifest": "https://raw.githubusercontent.com/JonathanFeenstra/modorganizer-auto-activator/main/manifest.json"
+  },
+  {
+    "Name": "BodySlide Batch Builder",
+    "Identifier": "BatchBodySlideBuilder",
+    "Manifest": "https://raw.githubusercontent.com/tkoopman/MO2-BodySlide-Batch-Builder/refs/heads/master/plugindefinition.json"
   }
 ]
