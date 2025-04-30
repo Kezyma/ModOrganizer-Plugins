@@ -118,5 +118,10 @@
     "Name": "BodySlide Batch Builder",
     "Identifier": "BatchBodySlideBuilder",
     "Manifest": "https://raw.githubusercontent.com/tkoopman/MO2-BodySlide-Batch-Builder/refs/heads/master/plugindefinition.json"
+  },
+  {
+    "Name": "Oracle",
+    "Identifier": "plugin_oracle",
+    "Manifest": "https://raw.githubusercontent.com/Levalicious/MO2-Oracle/refs/heads/master/plugin_definition.json"
   }
 ]
