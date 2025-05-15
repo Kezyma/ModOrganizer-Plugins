@@ -22,7 +22,8 @@ class OpenMWPlayerStrings(CommonStrings):
             "openmw.exe",
             "openmw-cs.exe",
             "openmw-launcher.exe",
-            "openmw-wizard.exe"
+            "openmw-wizard.exe",
+            "delta_plugin.exe"
         ]
     
     @cached_property
