@@ -123,5 +123,10 @@
     "Name": "Oracle",
     "Identifier": "plugin_oracle",
     "Manifest": "https://raw.githubusercontent.com/Levalicious/MO2-Oracle/refs/heads/master/plugin_definition.json"
+  },
+  {
+    "Name": "FOMOD Plus",
+    "Identifier": "fomod-plus",
+    "Manifest": "https://raw.githubusercontent.com/aglowinthefield/mo2-fomod-plus/refs/heads/main/plugindefinition.json"
   }
 ]
