@@ -82,5 +82,11 @@
       "SteamAppId": 1091500,
       "GameExe": ["Cyberpunk2077.exe"],
       "GameData": "bin\\x64"
+    },
+	{
+      "Name": "Mount & Blade II: Bannerlord",
+      "SteamAppId": 33772,
+      "GameExe": ["TaleWorlds.MountAndBlade.Launcher.exe","Bannerlord.exe","Bannerlord.Native.exe"],
+      "GameData": "Modules"
     }
 ]
