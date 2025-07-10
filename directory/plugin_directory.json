@@ -128,5 +128,10 @@
     "Name": "FOMOD Plus",
     "Identifier": "fomod-plus",
     "Manifest": "https://raw.githubusercontent.com/aglowinthefield/mo2-fomod-plus/refs/heads/main/plugindefinition.json"
+  },
+  {
+    "Name": "Vintage Story Mod Updater",
+    "Identifier": "vs_mod_updater",
+    "Manifest": "https://raw.githubusercontent.com/mosharky/MO2-VS-Mod-Updater/refs/heads/main/plugin_definitions.json"
   }
 ]
