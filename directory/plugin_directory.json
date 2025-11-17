@@ -128,5 +128,10 @@
     "Name": "FOMOD Plus",
     "Identifier": "fomod-plus",
     "Manifest": "https://raw.githubusercontent.com/aglowinthefield/mo2-fomod-plus/refs/heads/main/plugindefinition.json"
+  },
+  {
+    "Name": "Nexus Collection Downloader",
+    "Identifier": "nxm-collection-dl",
+    "Manifest": "https://raw.githubusercontent.com/Furglitch/modorganizer2-nxm-collection-dl/main/plugindefinition.json"
   }
 ]
