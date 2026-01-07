@@ -57,6 +57,12 @@ class ListExporterMenu(QtWidgets.QWidget):
         self.widget.lstProfiles.itemChanged.connect(self.updateColumnList)
         self.widget.chkSeparateCategories.stateChanged.connect(self.updateColumnList)
 
+        # Connect format radio buttons to update column list (for CSV-specific columns)
+        self.widget.rbHtml.toggled.connect(self.updateColumnList)
+        self.widget.rbMarkdown.toggled.connect(self.updateColumnList)
+        self.widget.rbCsv.toggled.connect(self.updateColumnList)
+        self.widget.rbJson.toggled.connect(self.updateColumnList)
+
         # Set icons
         self.widget.btnExport.setIcon(DOWNLOAD_ICON)
 
@@ -88,6 +94,7 @@ class ListExporterMenu(QtWidgets.QWidget):
         self.widget.lstColumns.blockSignals(True)
         self.widget.lstColumns.clear()
         separateCategories = self.widget.chkSeparateCategories.isChecked()
+        isCsv = self.widget.rbCsv.isChecked()
 
         # Static columns
         columns = [
@@ -99,6 +106,11 @@ class ListExporterMenu(QtWidgets.QWidget):
         # Category column only if not separating
         if not separateCategories:
             columns.insert(1, ("category", "Category", True))
+
+        # Nexus ID and URL columns only for CSV format
+        if isCsv:
+            columns.append(("nexusid", "Nexus ID", False))
+            columns.append(("nexusurl", "Nexus URL", False))
 
         # Add profile columns for selected profiles
         selectedProfiles = self.getSelectedProfiles()

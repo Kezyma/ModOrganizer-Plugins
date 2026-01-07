@@ -35,6 +35,11 @@
     "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugins/openmwplayer.json"
   },
   {
+    "Name": "List Exporter",
+    "Identifier": "listexporter",
+    "Manifest": "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugins/listexporter.json"
+  },
+  {
     "Name": "LOOT Warning Checker",
     "Identifier": "lootwarningchecker",
     "Manifest": "https://raw.githubusercontent.com/JonathanFeenstra/modorganizer-loot-warning-checker/main/manifest.json"

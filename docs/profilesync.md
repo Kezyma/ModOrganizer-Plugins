@@ -2,8 +2,6 @@
 
 Profile Sync is a plugin for Mod Organizer 2 that allows you to synchronize mod configurations across multiple profiles.
 
-## Table of Contents
-
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)

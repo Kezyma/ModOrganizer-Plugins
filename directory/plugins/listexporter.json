@@ -1,0 +1,34 @@
+{
+  "Name": "List Exporter",
+  "Author": "Kezyma",
+  "Description": "List Exporter is a Mod Organizer 2 plugin that exports your mod list to various formats including HTML, Markdown, CSV, and JSON. Features include multi-profile export, category separation, column selection with reordering, Nexus links, and mod exclusion via tags.",
+  "NexusUrl": "https://www.nexusmods.com/site/mods/1613",
+  "GithubUrl": "https://github.com/Kezyma/ModOrganizer-Plugins",
+  "DocsUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/docs/listexporter.md",
+  "Versions": [
+    {
+      "Version": "2.0.0",
+      "Released": "2026-01-07",
+      "MinSupport": "2.4.0",
+      "MaxSupport": "2.5.0",
+      "MinWorking": "2.4.0",
+      "ReleaseNotes": [
+        "(2.0.0) Complete rewrite of List Exporter plugin.",
+        "(2.0.0) Export to HTML, Markdown, CSV, or JSON formats.",
+        "(2.0.0) Multi-profile support - export mods from multiple profiles at once.",
+        "(2.0.0) Category separation - optionally create separate tables for each category.",
+        "(2.0.0) Column selection with drag-and-drop reordering.",
+        "(2.0.0) Automatic Nexus links when mod ID is available.",
+        "(2.0.0) Exclusion tag support - add <LE_Exclude> to mod notes/comments to exclude from export."
+      ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/listexporter/listexporter.2.0.0.zip",
+      "PluginPath": [
+        "listexporter"
+      ],
+      "LocalePath": [],
+      "DataPath": [
+        "data/listexporter"
+      ]
+    }
+  ]
+}

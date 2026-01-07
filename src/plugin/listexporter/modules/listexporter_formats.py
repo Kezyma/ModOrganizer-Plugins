@@ -12,6 +12,8 @@ class ExportColumn:
     CATEGORY = "category"
     NOTES = "notes"
     COMMENTS = "comments"
+    NEXUS_ID = "nexusid"
+    NEXUS_URL = "nexusurl"
     # Profile columns are dynamic: "profile:{name}"
 
 
@@ -60,6 +62,10 @@ class ListExporterFormats:
                 headers.append("Notes")
             elif col == ExportColumn.COMMENTS:
                 headers.append("Comments")
+            elif col == ExportColumn.NEXUS_ID:
+                headers.append("Nexus ID")
+            elif col == ExportColumn.NEXUS_URL:
+                headers.append("Nexus URL")
             elif col.startswith("profile:"):
                 profileName = col.replace("profile:", "")
                 headers.append(profileName)
@@ -88,6 +94,11 @@ class ListExporterFormats:
                 row.append(self._escapeForFormat(mod.notes, format))
             elif col == ExportColumn.COMMENTS:
                 row.append(self._escapeForFormat(mod.comments, format))
+            elif col == ExportColumn.NEXUS_ID:
+                row.append(str(mod.nexus_id) if mod.nexus_id and mod.nexus_id > 0 else "")
+            elif col == ExportColumn.NEXUS_URL:
+                nexusUrl = mod.nexus_url(nexusGame)
+                row.append(nexusUrl if nexusUrl else "")
             elif col.startswith("profile:"):
                 profileName = col.replace("profile:", "")
                 enabled = mod.enabled_profiles.get(profileName, False)

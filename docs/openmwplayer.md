@@ -2,8 +2,6 @@
 
 OpenMW Player is a plugin for Mod Organizer 2 that automatically exports your mod list, enabled plugins, and grass mods to OpenMW whenever you run the game through Mod Organizer.
 
-## Table of Contents
-
 - [Features](#features)
 - [Installation](#installation)
   - [Setting Up OpenMW](#setting-up-openmw)

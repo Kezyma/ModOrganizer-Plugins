@@ -2,8 +2,6 @@
 
 Root Builder is a plugin for Mod Organizer 2 that allows users to manage files in the base game directory through Mod Organizer.
 
-## Table of Contents
-
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)

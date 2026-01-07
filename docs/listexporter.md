@@ -1,8 +1,6 @@
-# List Exporter
+![List Exporter](img/listexporter.webp)
 
 List Exporter is a plugin for Mod Organizer 2 that exports your mod list to various formats for sharing or documentation purposes.
-
-## Table of Contents
 
 - [Features](#features)
 - [Installation](#installation)
@@ -29,7 +27,7 @@ List Exporter is a plugin for Mod Organizer 2 that exports your mod list to vari
 
 ## Installation
 
-Download List Exporter from [GitHub](https://github.com/Kezyma/ModOrganizer-Plugins/releases/tag/listexporter).
+Download List Exporter from [Nexus Mods](https://www.nexusmods.com/site/mods/1613) or [GitHub](https://github.com/Kezyma/ModOrganizer-Plugins/releases/tag/listexporter).
 
 Extract the `listexporter` folder from the zip file and place it in Mod Organizer's plugins folder:
 - Example: `C:\Mod Organizer\plugins\listexporter\`
@@ -72,10 +70,12 @@ Use **Select All** and **Select None** buttons for quick selection.
 Choose which columns to include by checking/unchecking them in the list. **Drag columns to reorder them** - the export uses the order shown.
 
 Available columns:
-- **Mod Name**: Mod name, hyperlinked to NexusMods if a mod ID is available
+- **Mod Name**: Mod name, hyperlinked to NexusMods if a mod ID is available (in HTML/Markdown)
 - **Category**: The separator/category the mod belongs to (only when not using separate tables)
 - **Notes**: Notes from the mod's meta.ini file
 - **Comments**: Comments from the mod's meta.ini file
+- **Nexus ID**: Numeric mod ID from NexusMods (CSV only)
+- **Nexus URL**: Full NexusMods URL (CSV only)
 - **Profile columns**: When multiple profiles are selected, shows enabled status per profile
 
 ### Excluding Mods
@@ -94,17 +94,31 @@ Click **Export** to generate your mod list. Choose a save location and filename;
 
 Creates a complete HTML page with Bootstrap styling, responsive tables, styled category headers (if using separate tables), and clickable NexusMods links.
 
+![HTML Export Example](img/listexporter_htmlexport.png)
+
 ### Markdown
 
 Generates Markdown-formatted tables that render on GitHub, GitLab, Discord, Reddit, and many forums. Category headers use Markdown heading syntax.
+
+![Markdown Export Example](img/listexporter_mdexport.png)
 
 ### CSV
 
 Produces comma-separated values compatible with Excel, Google Sheets, LibreOffice Calc, or any spreadsheet application. Categories appear as header rows when separated.
 
+When CSV format is selected, additional columns become available:
+- **Nexus ID**: The numeric mod ID from NexusMods
+- **Nexus URL**: The full URL to the mod on NexusMods
+
+These columns are useful for preserving Nexus information in spreadsheets, since CSV cannot include hyperlinks like HTML and Markdown.
+
+![CSV Export Example](img/listexporter_csvexport.png)
+
 ### JSON
 
-Outputs structured JSON data. When using separate categories, the JSON is organized by category. Ideal for developers processing mod lists programmatically.
+Outputs structured JSON data. When using separate categories, the JSON is organized by category. Includes Nexus ID and URL data when available. Ideal for developers processing mod lists programmatically.
+
+![JSON Export Example](img/listexporter_jsonexport.png)
 
 ## Settings
 

@@ -2,8 +2,6 @@
 
 Reinstaller is a plugin for Mod Organizer 2 that allows users to back up downloaded mod installers and run them on demand.
 
-## Table of Contents
-
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)

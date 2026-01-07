@@ -19,7 +19,7 @@ class ListExporterManager(ListExporterPlugin, mobase.IPluginTool):
         res = super().init(organiser)
         self._update = CommonUpdate(
             "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugins/listexporter.json",
-            "https://github.com/Kezyma/ModOrganizer-Plugins/releases",
+            "https://www.nexusmods.com/site/mods/1613?tab=files",
             self,
             self._listExporter._strings,
             self._listExporter._log
@@ -27,8 +27,8 @@ class ListExporterManager(ListExporterPlugin, mobase.IPluginTool):
         self._help = CommonHelp(
             Path(__file__).parent.parent / "data" / "listexporter_help.html",
             "listexporter",
-            "",
-            "",
+            "site",
+            "1613",
             self._listExporter._strings,
             self._listExporter._log
         )
