@@ -40,5 +40,11 @@
     "GameId": "morrowind",
     "NexusId": 52345,
     "MO2Game": "morrowind"
+  },
+  {
+    "PluginId": "listexporter",
+    "GameId": "site",
+    "NexusId": 1613,
+    "MO2Game": "site"
   }
 ]

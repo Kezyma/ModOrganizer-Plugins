@@ -4,7 +4,7 @@
   "Description": "Plugin Finder allows you to browse a list of Mod Organizer plugins as well as both installing and uninstalling them. Keep your plugins organised and up to date all in one place!",
   "NexusUrl": "https://www.nexusmods.com/skyrimspecialedition/mods/59869",
   "GithubUrl": "https://github.com/Kezyma/ModOrganizer-Plugins",
-  "DocsUrl": "https://kezyma.github.io/?p=pluginfinder",
+  "DocsUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/docs/pluginfinder.md",
   "Versions": [
     {
       "Version": "1.2.6a",

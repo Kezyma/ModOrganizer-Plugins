@@ -4,7 +4,7 @@
   "Description": "Shortcutter gives you the option of quickly creating instance and profile specific desktop shortcuts. Quickly launch your favourite games with your favourite mods in one click without switching in Mod Organizer!",
   "NexusUrl": "https://www.nexusmods.com/skyrimspecialedition/mods/59827",
   "GithubUrl": "https://github.com/Kezyma/ModOrganizer-Plugins",
-  "DocsUrl": "https://kezyma.github.io/?p=shortcutter",
+  "DocsUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/docs/shortcutter.md",
   "Versions": [
     {
       "Version": "1.0.6a",
