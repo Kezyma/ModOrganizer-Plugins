@@ -10,7 +10,7 @@ class OpenMWPlayerPlugin(BasePlugin):
     """Base OpenMW Player plugin, to be inherited by all other plugins."""
 
     def __init__(self):
-        super().__init__("OpenMWPlayer", "OpenMW Player", mobase.VersionInfo(2, 0, 2))
+        super().__init__("OpenMWPlayer", "OpenMW Player", mobase.VersionInfo(2, 1, 0))
 
     def init(self, organiser:mobase.IOrganizer):
         self._openmwPlayer = OpenMWPlayer(organiser)

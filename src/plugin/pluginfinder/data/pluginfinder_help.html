@@ -1,43 +1,65 @@
-<div id="ContentsSection">
-    <h1>Troubleshooting</h1>
-    <ul>
-        <li><a href="#PluginIssue">A plugin installed through Plugin Finder does not work.</a></li>
-        <li><a href="#ManualUpdate">A plugin I installed manually isn't listed as the correct version.</a></li>
-        <li><a href="#PluginUpdate">A plugin listed in Plugin Finder is out of date.</a></li>
-        <li><a href="#UpdateFail">Updating or uninstalling a specific plugin always fails.</a></li>
-        <li><a href="#PluginMissing">My plugin isn't listed in Plugin Finder.</a></li>
-    </ul>
-</div>
+<h2>Plugin Finder</h2>
+<p>Plugin Finder allows you to discover, install, update, and manage Mod Organizer 2 plugins from a curated directory of community plugins.</p>
 
-<div id="TroubleSection">
-    <div id="PluginIssue">
-        <h2>A plugin installed through Plugin Finder does not work.</h2>
-        <p>Plugins listed on Plugin Finder are manintained by their separate authors. If you have issues with a plugin,
-            please check the documentation, Github and/or Nexus pages for the plugin.</p>
-    </div>
-    <div id="PluginUpdate">
-        <h2>A plugin listed in Plugin Finder is out of date.</h2>
-        <p>Plugins listed on Plugin Finder are manintained by their separate authors. Please contact the author of the
-            plugin and request they update their data for Plugin Finder.</p>
-    </div>
-    <div id="ManualUpdate">
-        <h2>A plugin I installed manually isn't listed as the correct version.</h2>
-        <p>Plugin Finder attempts to detect the version based on the contents of the plugin, but this may not always be
-            successful. When this fails, a default version number is given to the plugin. To remedy this, install or
-            update the plugin through Plugin Finder.</p>
-    </div>
-    <div id="UpdateFail">
-        <h2>Updating or uninstalling a specific plugin always fails.</h2>
-        <p>Even if a message is logged in Mod Organizer that a file could not be moved/deleted, Plugin Finder will still attempt to move/delete those files when Mod Organizer restarts.</p>
-        <p>Sometimes current plugin files are locked or marked as read-only, to resolve this issue you will need to manually delete the current plugin from Mod Organizer's plugins folder.</p>
-    </div>
-    <div id="PluginMissing">
-        <h2>My plugin isn't listed in Plugin Finder.</h2>
-        <p>If you have a plugin that you would like to add to Plugin Finder, you will need to create a manifest file and host it on the Github for your plugin.</p>
-        <p>A generator to help generate a manifest can be accessed here: <br/>
-            <code>https://kezyma.github.io/?p=pluginfinder-generator</code></p>
-        <p>Once your manifest is on Github, you will need to open a pull request to add your plugin to the directory here: <br/>
-            <code>https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/directory/plugin_directory.json</code></p>
-        <p>When your pull request is approved, your plugin will appear in Plugin Finder.</p>
-    </div>
-</div>
+<h3>Features</h3>
+<ul>
+    <li><b>Plugin Directory:</b> Browse a curated list of MO2 plugins</li>
+    <li><b>Search & Filter:</b> Find plugins by name, filter by status</li>
+    <li><b>One-Click Install:</b> Install plugins directly without manual downloads</li>
+    <li><b>Update Detection:</b> See which installed plugins have updates available</li>
+    <li><b>Version Tracking:</b> View installed and latest versions for each plugin</li>
+</ul>
+
+<h3>Usage</h3>
+
+<h4>Browsing Plugins</h4>
+<p>The main list shows all available plugins with their status, version information, author, and description. Each plugin entry includes links to GitHub, NexusMods (if available), and documentation.</p>
+
+<h4>Filtering</h4>
+<p>Use the filter options to narrow down the plugin list:</p>
+<ul>
+    <li><b>Search:</b> Type to filter plugins by name</li>
+    <li><b>Installed:</b> Show only installed plugins</li>
+    <li><b>Updates:</b> Show only plugins with available updates</li>
+    <li><b>Supported:</b> Show only plugins that support your MO2 version</li>
+    <li><b>Working:</b> Show only plugins confirmed working with your MO2 version</li>
+</ul>
+
+<h4>Sorting</h4>
+<p>Sort the plugin list by name (ascending or descending) using the sort dropdown.</p>
+
+<h4>Installing Plugins</h4>
+<ol>
+    <li>Find the plugin you want to install</li>
+    <li>Click the Install button on the plugin entry</li>
+    <li>Restart Mod Organizer when prompted</li>
+</ol>
+
+<h4>Updating Plugins</h4>
+<p>Plugins with available updates show an update indicator. Click the Update button to download and install the latest version. Restart Mod Organizer to apply the update.</p>
+
+<h4>Uninstalling Plugins</h4>
+<p>Click the Uninstall button on an installed plugin to remove it. Note: Plugin Finder cannot uninstall itself.</p>
+
+<h3>Troubleshooting</h3>
+
+<h4>A plugin installed through Plugin Finder does not work.</h4>
+<p>Plugins listed on Plugin Finder are maintained by their separate authors. If you have issues with a plugin, please check the documentation, GitHub and/or Nexus pages for the plugin.</p>
+
+<h4>A plugin listed in Plugin Finder is out of date.</h4>
+<p>Plugins listed on Plugin Finder are maintained by their separate authors. Please contact the author of the plugin and request they update their data for Plugin Finder.</p>
+
+<h4>A plugin I installed manually isn't listed as the correct version.</h4>
+<p>Plugin Finder attempts to detect the version based on the contents of the plugin, but this may not always be successful. When this fails, a default version number is given to the plugin. To remedy this, install or update the plugin through Plugin Finder.</p>
+
+<h4>Updating or uninstalling a specific plugin always fails.</h4>
+<p>Even if a message is logged in Mod Organizer that a file could not be moved/deleted, Plugin Finder will still attempt to move/delete those files when Mod Organizer restarts.</p>
+<p>Sometimes current plugin files are locked or marked as read-only. To resolve this issue, manually delete the current plugin from Mod Organizer's plugins folder.</p>
+
+<h4>My plugin isn't listed in Plugin Finder.</h4>
+<p>If you have a plugin that you would like to add to Plugin Finder, you will need to create a manifest file and host it on the GitHub for your plugin.</p>
+<p>A generator to help generate a manifest can be accessed here:<br/>
+<code>https://kezyma.github.io/?p=pluginfinder-generator</code></p>
+<p>Once your manifest is on GitHub, open a pull request to add your plugin to the directory here:<br/>
+<code>https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/directory/plugin_directory.json</code></p>
+<p>When your pull request is approved, your plugin will appear in Plugin Finder.</p>

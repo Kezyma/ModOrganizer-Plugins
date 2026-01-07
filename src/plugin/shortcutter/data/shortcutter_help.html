@@ -1,18 +1,56 @@
-<div id="ContentsSection">
-    <h1>Troubleshooting</h1>
-    <ul>
-        <li><a href="#MissingShortcut">Where is my shortcut?</a></li>
-        <li><a href="#InstanceSwitch">Openinig Mod Organizer defaults to the last instance that Shortcutter opened.</a></li>
-    </ul>
-</div>
+<h2>Shortcutter</h2>
+<p>Shortcutter creates desktop shortcuts that launch Mod Organizer 2 with a specific profile and application. Launch your modded games directly from the desktop without opening Mod Organizer first.</p>
 
-<div id="TroubleSection">
-    <div id="InstanceSwitch">
-        <h2>Where is my shortcut?</h2>
-        <p>All generated shortcuts are placed on the desktop, or where Windows believes your desktop is located.</p>
-    </div>
-    <div id="InstanceSwitch">
-        <h2>Openinig Mod Organizer defaults to the last instance that Shortcutter opened.</h2>
-        <p>The current Mod Organizer instance is set in the Windows registry, when Shortcutter launches from a shortcut, the instance in the registry is changed. Unfortunately there is no way to change it back afterwards, so this has to be done manually.</p>
-    </div>
-</div>
+<h3>Features</h3>
+<ul>
+    <li><b>Desktop Shortcuts:</b> Create shortcuts on your desktop</li>
+    <li><b>Profile Selection:</b> Launch with a specific MO2 profile</li>
+    <li><b>Application Selection:</b> Choose which application to run</li>
+    <li><b>Custom Icons:</b> Use custom icons for your shortcuts</li>
+    <li><b>Auto-naming:</b> Shortcuts are automatically named based on profile and application</li>
+</ul>
+
+<h3>Usage</h3>
+
+<h4>Creating a Shortcut</h4>
+<ol>
+    <li>Open the Shortcutter dialog from the Tools menu</li>
+    <li>Select the application you want to launch from the dropdown</li>
+    <li>Select the profile you want to use</li>
+    <li>Optionally customize the shortcut name</li>
+    <li>Optionally browse for a custom icon (.ico or .exe file)</li>
+    <li>Click Create to generate the shortcut</li>
+</ol>
+
+<h4>Shortcut Name</h4>
+<p>By default, shortcuts are named "Profile - Application". You can edit this to any name you prefer.</p>
+
+<h4>Custom Icons</h4>
+<p>Click the browse button to select a custom icon. You can use:</p>
+<ul>
+    <li>.ico files for direct icon use</li>
+    <li>.exe files to extract their embedded icon</li>
+</ul>
+<p>A preview of the selected icon is shown before creating the shortcut.</p>
+
+<h3>How It Works</h3>
+<p>Shortcuts created by Shortcutter launch Mod Organizer with command-line parameters that specify the profile and application to run. When you use the shortcut, MO2 opens with the selected profile active and immediately launches the chosen application.</p>
+
+<h3>Troubleshooting</h3>
+
+<h4>Where is my shortcut?</h4>
+<p>All generated shortcuts are placed on the desktop, or wherever Windows believes your desktop is located.</p>
+
+<h4>Opening Mod Organizer defaults to the last instance that Shortcutter opened.</h4>
+<p>The current Mod Organizer instance is set in the Windows registry. When Shortcutter launches from a shortcut, the instance in the registry is changed. Unfortunately, there is no way to change it back automatically, so this must be done manually if you want to switch instances.</p>
+
+<h4>Shortcut doesn't work.</h4>
+<p>Ensure that:</p>
+<ul>
+    <li>The profile still exists in Mod Organizer</li>
+    <li>The application still exists in the profile's executable list</li>
+    <li>Mod Organizer hasn't been moved to a different location</li>
+</ul>
+
+<h4>Icon not showing correctly.</h4>
+<p>Windows caches shortcut icons. Try refreshing your desktop or restarting Explorer if a new icon doesn't appear immediately.</p>

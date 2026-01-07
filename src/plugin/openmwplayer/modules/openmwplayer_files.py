@@ -18,35 +18,60 @@ class OpenMWPlayerFiles():
     _settingsCfgHeadingRegex = r"\[(?P<title>[^\]]*)\]"
     # Updated regex to handle optional spaces around '=' and empty values
     _settingsCfgSettingRegex = r"^(?P<setting>[^=\n#]+?)\s*=\s*(?P<value>[^\n]*)"
+    _settingsCfgCommentRegex = r"^[#;]\s*(?P<comment>.*)"
+
     def readSettingsCfg(self, cfgPath:str):
-        """Reads a settings.cfg into a dictionary."""
+        """Reads a settings.cfg into a dictionary with comments."""
         if Path(cfgPath).exists():
             settingsCfg = {}
             cfgLines = loadLines(cfgPath)
             cfgGroup = ""
+            pendingComment = []
+
             for cfgLine in cfgLines:
                 headingMatch = re.match(self._settingsCfgHeadingRegex, cfgLine)
+                commentMatch = re.match(self._settingsCfgCommentRegex, cfgLine)
                 settingMatch = re.match(self._settingsCfgSettingRegex, cfgLine)
+
                 if headingMatch:
                     cfgGroup = headingMatch.groups()[0]
                     settingsCfg[cfgGroup] = {}
+                    pendingComment = []
+                elif commentMatch:
+                    pendingComment.append(commentMatch.group("comment"))
                 elif settingMatch and cfgGroup:
                     # Strip whitespace from setting name, preserve value as-is (including empty)
                     settingName = settingMatch.groups()[0].strip()
                     settingValue = settingMatch.groups()[1]
-                    settingsCfg[cfgGroup][settingName] = settingValue
+                    settingsCfg[cfgGroup][settingName] = {
+                        "value": settingValue,
+                        "comment": "\n".join(pendingComment) if pendingComment else ""
+                    }
+                    pendingComment = []
+                elif not cfgLine.strip():
+                    # Blank line resets pending comments
+                    pendingComment = []
             return settingsCfg
         else:
             return None
         
     def saveSettingsCfg(self, cfgPath:str, settingsCfg:dict):
-        """Saves a settings.cfg dictionary to a specific path."""
+        """Saves a settings.cfg dictionary to a specific path, preserving comments."""
         cfgText = []
         for cfgGroup in settingsCfg:
             cfgText.append("\n")
             cfgText.append(f"[{cfgGroup}]\n")
             for cfgKey in settingsCfg[cfgGroup]:
-                cfgValue = settingsCfg[cfgGroup][cfgKey]
+                settingData = settingsCfg[cfgGroup][cfgKey]
+                # Handle both old format (string) and new format (dict)
+                if isinstance(settingData, dict):
+                    comment = settingData.get("comment", "")
+                    cfgValue = settingData.get("value", "")
+                    if comment:
+                        for line in comment.split("\n"):
+                            cfgText.append(f"# {line}\n")
+                else:
+                    cfgValue = settingData
                 cfgText.append(f"{cfgKey} = {cfgValue}\n")
         if saveLines(cfgPath, cfgText):
             self._log.debug(f"Saved {cfgPath}")
@@ -79,6 +104,18 @@ class OpenMWPlayerFiles():
             return self.readSettingsCfg(settingsCfgPath)
         return None
     
+    def _getSettingValue(self, settingData) -> str:
+        """Extract value from setting data (handles both string and dict formats)."""
+        if isinstance(settingData, dict):
+            return settingData.get("value", "")
+        return settingData
+
+    def _getSettingComment(self, settingData) -> str:
+        """Extract comment from setting data (handles both string and dict formats)."""
+        if isinstance(settingData, dict):
+            return settingData.get("comment", "")
+        return ""
+
     def getCompleteSettingsCfg(self):
         """Gets the full settings.cfg from a profile, merged with missing entries from default settings."""
         profileCfg = self.getCustomSettingsCfg()
@@ -99,7 +136,18 @@ class OpenMWPlayerFiles():
                 for setting in defaultCfg[category]:
                     if setting in profileCfg[category]:
                         # Use profile value (even if empty - user may have intentionally cleared it)
-                        defaultCfg[category][setting] = profileCfg[category][setting]
+                        # Preserve comment from default if profile doesn't have one
+                        profileData = profileCfg[category][setting]
+                        defaultData = defaultCfg[category][setting]
+                        profileValue = self._getSettingValue(profileData)
+                        defaultComment = self._getSettingComment(defaultData)
+                        profileComment = self._getSettingComment(profileData)
+                        # Use profile comment if it has one, otherwise keep default comment
+                        finalComment = profileComment if profileComment else defaultComment
+                        defaultCfg[category][setting] = {
+                            "value": profileValue,
+                            "comment": finalComment
+                        }
 
         # Also add any categories/settings from profile that aren't in defaults
         for category in profileCfg:
@@ -229,10 +277,11 @@ class OpenMWPlayerFiles():
         dataFolders = self.getDataFolders()
         content = []
         for folder in dataFolders:
-            globPattern = f"{folder}\\*.esp"
-            matches = glob.glob(globPattern)
-            for match in matches:
-                content.append(os.path.basename(match))
+            for ext in ["*.esp", "*.esm"]:
+                globPattern = f"{folder}\\{ext}"
+                matches = glob.glob(globPattern)
+                for match in matches:
+                    content.append(os.path.basename(match))
         return content
     
     _refreshInProgress = False
@@ -251,7 +300,7 @@ class OpenMWPlayerFiles():
             self._refreshInProgress = False
         
     def refreshOpenmwCfgAsync(self):
-        t = threading.Thread(target=self.refreshOpenmwCfgAsync, daemon=True)
+        t = threading.Thread(target=self.refreshOpenmwCfg, daemon=True)
         t.start()
 
     def clearBOMFlag(self, path):

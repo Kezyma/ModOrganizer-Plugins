@@ -1,0 +1,64 @@
+<h2>List Exporter</h2>
+<p>Export your mod list to various formats for sharing or documentation.</p>
+
+<h3>Features</h3>
+<ul>
+    <li><b>Multiple Formats:</b> Export to HTML, Markdown, CSV, or JSON</li>
+    <li><b>Multi-Profile:</b> Export mods from multiple profiles at once</li>
+    <li><b>Category Separation:</b> Optionally create separate tables for each category</li>
+    <li><b>Column Selection:</b> Choose which information to include and reorder columns</li>
+    <li><b>Nexus Links:</b> Mod names link to NexusMods when mod ID is available</li>
+    <li><b>Exclusion Tag:</b> Exclude specific mods from export using a tag</li>
+</ul>
+
+<h3>Usage</h3>
+<ol>
+    <li>Select the export format (HTML, Markdown, CSV, or JSON)</li>
+    <li>Choose whether to separate tables by category</li>
+    <li>Select one or more profiles to include</li>
+    <li>Choose which columns to include in the export</li>
+    <li>Click Export and choose a save location</li>
+</ol>
+
+<h3>Columns</h3>
+<ul>
+    <li><b>Mod Name:</b> The name of the mod, hyperlinked to NexusMods if a mod ID is available</li>
+    <li><b>Category:</b> The separator/category the mod belongs to (when not using separate tables)</li>
+    <li><b>Notes:</b> Notes from the mod's meta.ini file</li>
+    <li><b>Comments:</b> Comments from the mod's meta.ini file</li>
+    <li><b>Profile columns:</b> When multiple profiles are selected, shows enabled status per profile</li>
+</ul>
+
+<h3>Excluding Mods</h3>
+<p>To exclude a mod from exports, add <code>&lt;LE_Exclude&gt;</code> anywhere in the mod's
+Notes or Comments field in Mod Organizer. The tag is not case-sensitive.</p>
+<p>This is useful for hiding utility mods, merged patches, or other mods you don't
+want to appear in shared mod lists.</p>
+
+<h3>Export Formats</h3>
+<ul>
+    <li><b>HTML:</b> Styled web page with Bootstrap, ideal for sharing online</li>
+    <li><b>Markdown:</b> Plain text tables, ideal for GitHub, Discord, or forums</li>
+    <li><b>CSV:</b> Spreadsheet-compatible format for Excel or Google Sheets</li>
+    <li><b>JSON:</b> Structured data format for programmatic use</li>
+</ul>
+
+<h3>Notes</h3>
+<ul>
+    <li>Mods are included if they are enabled in <i>any</i> selected profile</li>
+    <li>When multiple profiles are selected, profile columns show checkmarks or crosses</li>
+    <li>Categories are determined by separator mods in your mod list</li>
+    <li>Mod information is read from each mod's meta.ini file</li>
+    <li>Columns can be reordered by dragging them in the column list</li>
+</ul>
+
+<h3>Troubleshooting</h3>
+
+<h4>Mod names don't have Nexus links.</h4>
+<p>Nexus links are only added when a mod has a valid mod ID in its meta.ini file. Mods installed manually or from non-Nexus sources won't have this information.</p>
+
+<h4>Categories are wrong or missing.</h4>
+<p>Categories are determined by separator mods (mods ending in "_separator"). Ensure your separators are properly named and positioned in your mod list.</p>
+
+<h4>Some mods are missing from export.</h4>
+<p>Check if the missing mods have <code>&lt;LE_Exclude&gt;</code> in their Notes or Comments. Also verify that the mods are enabled in at least one of the selected profiles.</p>

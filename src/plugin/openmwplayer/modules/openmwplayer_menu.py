@@ -7,6 +7,8 @@ try:
     from ..ui.qt6.openmwplayer_settings import Ui_omwp_settingswidget
     from ..ui.qt6.openmwplayer_settingsrow import Ui_omwp_settingsrow
     from ..ui.qt6.openmwplayer_settingsrowcheck import Ui_omwp_settingsrow_check
+    from ..ui.qt6.openmwplayer_settingsrow_comment import Ui_omwp_settingsrow_comment
+    from ..ui.qt6.openmwplayer_settingsrowcheck_comment import Ui_omwp_settingsrow_check_comment
     from ..ui.qt6.openmwplayer_archives import Ui_omwp_archiveswidget
     from ..ui.qt6.openmwplayer_openmwcfg import Ui_omwp_cfgwidget
     from ....base.ui.qt6.update_widget import Ui_updateTabWidget
@@ -17,15 +19,19 @@ except:
     from ..ui.qt5.openmwplayer_settings import Ui_omwp_settingswidget
     from ..ui.qt5.openmwplayer_settingsrow import Ui_omwp_settingsrow
     from ..ui.qt5.openmwplayer_settingsrowcheck import Ui_omwp_settingsrow_check
+    from ..ui.qt5.openmwplayer_settingsrow_comment import Ui_omwp_settingsrow_comment
+    from ..ui.qt5.openmwplayer_settingsrowcheck_comment import Ui_omwp_settingsrow_check_comment
     from ..ui.qt5.openmwplayer_archives import Ui_omwp_archiveswidget
     from ..ui.qt5.openmwplayer_openmwcfg import Ui_omwp_cfgwidget
     from ....base.ui.qt5.update_widget import Ui_updateTabWidget
 
 from ..core.openmwplayer import OpenMWPlayer
+from .openmwplayer_texteditor import OpenMWPlayerTextEditor
 from ....common.common_update import CommonUpdate
 from ....common.common_help import CommonHelp
 from ....common.common_icons import *
 from ....common.common_qt import *
+from ....common.common_utilities import loadLines, saveLines
 
 class OpenMWPlayerMenu(QtWidgets.QWidget):
     """OpenMW main widget."""
@@ -70,8 +76,13 @@ class OpenMWPlayerMenu(QtWidgets.QWidget):
         self.optionsWidget.btnImport.setIcon(SYNC_ICON)
         self.optionsWidget.btnExport.setIcon(LINK_ICON)
 
+        # Connect text editor buttons
+        self.settingsWidget.btnEditText.clicked.connect(self._editSettingsCfgRaw)
+        self.openmwcfgWidget.btnEditText.clicked.connect(self._editOpenmwCfgRaw)
+
     _settingsCfg = {}
     _openmwCfg = {}
+    _groundcoverData = []  # List of {"name": str, "enabled": bool, "loadOrder": int}
 
     def rebind(self):
         self._settingsCfg = self._openmwPlayer._files.getCompleteSettingsCfg()
@@ -158,36 +169,100 @@ class OpenMWPlayerMenu(QtWidgets.QWidget):
         self.saveOpenmwCfg()
 
     def rebindGroundcoverOpenmwCfg(self):
+        # Disconnect existing signals
         try:
             self.groundcoverWidget.lstGroundcover.indexesMoved.disconnect()
             self.groundcoverWidget.lstGroundcover.itemChanged.disconnect()
             self.groundcoverWidget.lstGroundcover.currentRowChanged.disconnect()
             self.groundcoverWidget.lstGroundcover.currentItemChanged.disconnect()
+            self.groundcoverWidget.txtFilter.textChanged.disconnect()
+            self.groundcoverWidget.cmbSort.currentIndexChanged.disconnect()
         except:
             pass
-        self.groundcoverWidget.lstGroundcover.clear()
+
+        # Build data list with position from profile's loadorder.txt
         groundcoverOptions = self._openmwPlayer._files.getGroundcoverOptions()
+
+        # Read load order from profile's loadorder.txt (contains all plugins in order)
+        profilePath = self._organiser.profile().absolutePath()
+        loadOrderPath = Path(profilePath) / "loadorder.txt"
+        pluginPositions = {}
+        if loadOrderPath.exists():
+            loadOrderLines = loadLines(str(loadOrderPath))
+            if loadOrderLines:
+                pluginPositions = {line.strip().lower(): idx for idx, line in enumerate(loadOrderLines) if line.strip()}
+
+        self._groundcoverData = []
         for esp in groundcoverOptions:
-            esp = str(esp).replace(".omwaddon.esp", ".omwaddon").replace(".omwscripts.esp", ".omwscripts")
-            item = QtWidgets.QListWidgetItem()
-            item.setText(esp)
-            item.setFlags(item.flags() | qItemFlag.ItemIsUserCheckable | qItemFlag.ItemIsEnabled)
-            if esp in self._openmwCfg["Groundcover"]:
-                item.setCheckState(qCheckState.Checked)
-            else:
-                item.setCheckState(qCheckState.Unchecked)
-            self.groundcoverWidget.lstGroundcover.addItem(item)
-        self.groundcoverWidget.lstGroundcover.indexesMoved.connect(self.saveGroundcoverOpenmwCfg)
+            # Transform name for OpenMW compatibility
+            espName = str(esp).replace(".omwaddon.esp", ".omwaddon").replace(".omwscripts.esp", ".omwscripts")
+            # Get position from loadorder.txt (works for both active and inactive plugins)
+            pluginPosition = pluginPositions.get(esp.lower(), 999999)
+            self._groundcoverData.append({
+                "name": espName,
+                "enabled": espName in self._openmwCfg["Groundcover"],
+                "loadOrder": pluginPosition
+            })
+
+        # Connect filter/sort controls
+        self.groundcoverWidget.txtFilter.textChanged.connect(self._updateGroundcoverList)
+        self.groundcoverWidget.cmbSort.currentIndexChanged.connect(self._updateGroundcoverList)
+
+        # Initial display
+        self._updateGroundcoverList()
+
+        # Connect save signals
         self.groundcoverWidget.lstGroundcover.itemChanged.connect(self.saveGroundcoverOpenmwCfg)
-        self.groundcoverWidget.lstGroundcover.currentRowChanged.connect(self.saveGroundcoverOpenmwCfg)
-        self.groundcoverWidget.lstGroundcover.currentItemChanged.connect(self.saveGroundcoverOpenmwCfg)
+
+    def _updateGroundcoverList(self):
+        """Update list widget based on current filter and sort settings."""
+        try:
+            self.groundcoverWidget.lstGroundcover.itemChanged.disconnect()
+        except:
+            pass
+
+        self.groundcoverWidget.lstGroundcover.clear()
+        filterText = self.groundcoverWidget.txtFilter.text().lower()
+        sortIndex = self.groundcoverWidget.cmbSort.currentIndex()
+
+        # Sort data
+        sortedData = self._groundcoverData.copy()
+        if sortIndex == 0:  # Load Order
+            sortedData.sort(key=lambda x: x["loadOrder"])
+        elif sortIndex == 1:  # A-Z
+            sortedData.sort(key=lambda x: x["name"].lower())
+        elif sortIndex == 2:  # Z-A
+            sortedData.sort(key=lambda x: x["name"].lower(), reverse=True)
+
+        # Filter and display
+        for item in sortedData:
+            if filterText and filterText not in item["name"].lower():
+                continue
+            listItem = QtWidgets.QListWidgetItem()
+            listItem.setText(item["name"])
+            listItem.setFlags(listItem.flags() | qItemFlag.ItemIsUserCheckable | qItemFlag.ItemIsEnabled)
+            listItem.setCheckState(qCheckState.Checked if item["enabled"] else qCheckState.Unchecked)
+            self.groundcoverWidget.lstGroundcover.addItem(listItem)
+
+        self.groundcoverWidget.lstGroundcover.itemChanged.connect(self.saveGroundcoverOpenmwCfg)
 
     def saveGroundcoverOpenmwCfg(self):
+        """Save groundcover selection, updating internal data."""
         selected = []
         for ix in range(self.groundcoverWidget.lstGroundcover.count()):
             row = self.groundcoverWidget.lstGroundcover.item(ix)
-            if row.checkState() == qCheckState.Checked:
-                selected.append(row.text())
+            itemName = row.text()
+            isChecked = row.checkState() == qCheckState.Checked
+
+            # Update internal data structure
+            for item in self._groundcoverData:
+                if item["name"] == itemName:
+                    item["enabled"] = isChecked
+                    break
+
+            if isChecked:
+                selected.append(itemName)
+
         self._openmwCfg["Groundcover"] = selected
         self.saveOpenmwCfg()
 
@@ -250,17 +325,36 @@ class OpenMWPlayerMenu(QtWidgets.QWidget):
         cfgPath = self._openmwPlayer._strings.customOpenmwCfgPath()
         self._openmwPlayer._files.saveOpenmwCfg(cfgPath, self._openmwCfg)
 
+    def _getSettingValue(self, category: str, setting: str) -> str:
+        """Get setting value, handling both string and dict formats."""
+        data = self._settingsCfg[category][setting]
+        if isinstance(data, dict):
+            return data.get("value", "")
+        return data
+
+    def _getSettingComment(self, category: str, setting: str) -> str:
+        """Get setting comment, or empty string if none."""
+        data = self._settingsCfg[category][setting]
+        if isinstance(data, dict):
+            return data.get("comment", "")
+        return ""
+
+    def _setSettingValue(self, category: str, setting: str, value: str):
+        """Set setting value, preserving comment if present."""
+        data = self._settingsCfg[category][setting]
+        if isinstance(data, dict):
+            data["value"] = value
+        else:
+            self._settingsCfg[category][setting] = {"value": value, "comment": ""}
+
     def updateTextSettingsCfg(self, category:str, setting:str, value:str):
         self._openmwPlayer._log.info(f"Updating [{category}] {setting} = {value}")
-        self._settingsCfg[category][setting] = value
+        self._setSettingValue(category, setting, value)
         self.saveSettingsCfg()
 
     def updateBoolSettingsCfg(self, category:str, setting:str, value:bool):
         self._openmwPlayer._log.info(f"Updating [{category}] {setting} = {str(value).lower()}")
-        if value == True:
-            self._settingsCfg[category][setting] = "true"
-        else:
-            self._settingsCfg[category][setting] = "false"
+        self._setSettingValue(category, setting, "true" if value else "false")
         self.saveSettingsCfg()
 
     def saveSettingsCfg(self):
@@ -290,22 +384,81 @@ class OpenMWPlayerMenu(QtWidgets.QWidget):
             newSettingLayout.addWidget(scrollArea)
 
             for setting in self._settingsCfg[category]:
-                newSettingWidget = QWidget(parent=scrollAreaWidget)
-                settingValue = self._settingsCfg[category][setting]
+                settingValue = self._getSettingValue(category, setting)
+                settingComment = self._getSettingComment(category, setting)
                 self._openmwPlayer._log.debug(f"Binding [{category}] {setting} = {settingValue}")
+
+                newSettingWidget = QWidget(parent=scrollAreaWidget)
+
                 if settingValue == "true" or settingValue == "false":
-                    newSettingRow = Ui_omwp_settingsrow_check()
+                    # Boolean: use checkbox (with or without comment)
+                    if settingComment:
+                        newSettingRow = Ui_omwp_settingsrow_check_comment()
+                        newSettingRow.setupUi(newSettingWidget)
+                        newSettingRow.chkSetting.setChecked(settingValue == "true")
+                        newSettingRow.lblSetting.setText(setting)
+                        newSettingRow.lblComment.setText(settingComment)
+                        newSettingRow.chkSetting.stateChanged.connect(lambda _, c=category, s=setting, x=newSettingRow.chkSetting: self.updateBoolSettingsCfg(c, s, x.isChecked()))
+                    else:
+                        newSettingRow = Ui_omwp_settingsrow_check()
+                        newSettingRow.setupUi(newSettingWidget)
+                        newSettingRow.chkSetting.setChecked(settingValue == "true")
+                        newSettingRow.lblSetting.setText(setting)
+                        newSettingRow.chkSetting.stateChanged.connect(lambda _, c=category, s=setting, x=newSettingRow.chkSetting: self.updateBoolSettingsCfg(c, s, x.isChecked()))
+                elif settingComment:
+                    # Text with comment
+                    newSettingRow = Ui_omwp_settingsrow_comment()
                     newSettingRow.setupUi(newSettingWidget)
-                    newSettingRow.chkSetting.setChecked(settingValue == "true")
+                    newSettingRow.txtSetting.setText(settingValue)
                     newSettingRow.lblSetting.setText(setting)
-                    newSettingRow.chkSetting.stateChanged.connect(lambda _, c=category, s=setting, x=newSettingRow.chkSetting: self.updateBoolSettingsCfg(c, s, x.isChecked()))
+                    newSettingRow.lblComment.setText(settingComment)
+                    newSettingRow.txtSetting.editingFinished.connect(lambda c=category, s=setting, x=newSettingRow.txtSetting: self.updateTextSettingsCfg(c, s, x.text()))
                 else:
+                    # Text without comment
                     newSettingRow = Ui_omwp_settingsrow()
                     newSettingRow.setupUi(newSettingWidget)
-                    newSettingRow.txtSetting.setText(self._settingsCfg[category][setting])
+                    newSettingRow.txtSetting.setText(settingValue)
                     newSettingRow.lblSetting.setText(setting)
                     newSettingRow.txtSetting.editingFinished.connect(lambda c=category, s=setting, x=newSettingRow.txtSetting: self.updateTextSettingsCfg(c, s, x.text()))
+
                 scrollAreaLayout.addWidget(newSettingWidget)
 
             spacerItem = QtWidgets.QSpacerItem(40, 0, qSizePolicy.Minimum, qSizePolicy.Expanding)
             scrollAreaLayout.addItem(spacerItem)
+
+    def _editSettingsCfgRaw(self):
+        """Open text editor for settings.cfg."""
+        cfgPath = self._openmwPlayer._strings.customSettingsCfgPath()
+        if Path(cfgPath).exists():
+            lines = loadLines(cfgPath)
+            content = "\n".join(lines) if lines else ""
+        else:
+            content = ""
+
+        result = OpenMWPlayerTextEditor.edit(self, "Edit settings.cfg", content)
+
+        if result is not None:
+            # Save with proper line endings
+            lines = [line + "\n" for line in result.rstrip("\n").split("\n")]
+            if saveLines(cfgPath, lines):
+                self._openmwPlayer._log.debug("Saved raw settings.cfg")
+                self._settingsCfg = self._openmwPlayer._files.getCompleteSettingsCfg()
+                self.rebindSettingsCfg()
+
+    def _editOpenmwCfgRaw(self):
+        """Open text editor for openmw.cfg."""
+        cfgPath = self._openmwPlayer._strings.customOpenmwCfgPath()
+        if Path(cfgPath).exists():
+            lines = loadLines(cfgPath)
+            content = "\n".join(lines) if lines else ""
+        else:
+            content = ""
+
+        result = OpenMWPlayerTextEditor.edit(self, "Edit openmw.cfg", content)
+
+        if result is not None:
+            lines = [line + "\n" for line in result.rstrip("\n").split("\n")]
+            if saveLines(cfgPath, lines):
+                self._openmwPlayer._log.debug("Saved raw openmw.cfg")
+                self._openmwCfg = self._openmwPlayer._files.getCustomOpenmwCfg()
+                self.rebindOpenmwCfg()

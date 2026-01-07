@@ -1,8 +1,7 @@
-from .plugin.listexporter.plugins.listexplorer_htmlexport import ListExplorerHtmlExport
-from .plugin.listexporter.plugins.listexplorer_jsonexport import ListExplorerJsonExport
+from .plugin.listexporter.plugins.listexporter_manager import ListExporterManager
+
 
 def createPlugins():
     return [
-        ListExplorerHtmlExport(),
-        ListExplorerJsonExport()
+        ListExporterManager()
     ]

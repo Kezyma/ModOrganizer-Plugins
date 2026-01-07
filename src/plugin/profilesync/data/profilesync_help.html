@@ -1,15 +1,51 @@
-<div id="ContentsSection">
-    <h1>Troubleshooting</h1>
-    <ul>
-        <li><a href="#LastChange">The last change made is not synchronising to other profiles.</a></li>
-    </ul>
-</div>
+<h2>Profile Sync</h2>
+<p>Profile Sync allows you to synchronize mod configurations across multiple Mod Organizer 2 profiles, keeping them in sync automatically or creating profile groups with different mod loadouts.</p>
 
-<div id="TroubleSection">
-    <div id="LastChange">
-        <h2>The last change made is not synchronising to other profiles.</h2>
-        <p>Profile Sync runs on a few specific events, when a mod is installed, removed, enabled/disabled or reordered
-            through drag and drop. If another action causes a change, it may not trigger a sync. To ensure one is
-            triggered, siwtching the enabled state of a mod back and forth once should solve the issue.</p>
-    </div>
-</div>
+<h3>Features</h3>
+<ul>
+    <li><b>Sync Groups:</b> Create groups of profiles that stay synchronized</li>
+    <li><b>State Groups:</b> Define different states within a group for varied configurations</li>
+    <li><b>Automatic Sync:</b> Changes propagate automatically when mods are installed, removed, enabled, disabled, or reordered</li>
+    <li><b>Category Control:</b> Choose which mod categories to sync for each state</li>
+</ul>
+
+<h3>Concepts</h3>
+
+<h4>Sync Groups</h4>
+<p>A sync group is a collection of profiles that share the same mod configuration. When you make changes to one profile in a sync group, those changes are automatically applied to all other profiles in the group.</p>
+
+<h4>State Groups</h4>
+<p>State groups allow you to create different configurations within a sync group. Each state can include different profiles and mod categories, giving you fine-grained control over what gets synchronized.</p>
+
+<h3>Usage</h3>
+
+<h4>Creating a Sync Group</h4>
+<ol>
+    <li>Open the Profile Sync dialog from the Tools menu</li>
+    <li>In the Sync Groups tab, click to add a new group</li>
+    <li>Select which profiles should be part of this group</li>
+    <li>Changes made in any profile will now sync to others in the group</li>
+</ol>
+
+<h4>Creating State Groups</h4>
+<ol>
+    <li>Switch to the State Groups tab</li>
+    <li>Add a new state group</li>
+    <li>Select which profiles belong to this state</li>
+    <li>Choose which mod categories should be synchronized for this state</li>
+</ol>
+
+<h4>Managing Groups</h4>
+<p>Use the interface to add, remove, and modify sync groups and state groups. You can have multiple groups with different configurations to suit various modding scenarios.</p>
+
+<h3>Troubleshooting</h3>
+
+<h4>The last change made is not synchronizing to other profiles.</h4>
+<p>Profile Sync runs on specific events: when a mod is installed, removed, enabled/disabled, or reordered through drag and drop. If another action causes a change, it may not trigger a sync.</p>
+<p>To force a sync, toggle the enabled state of any mod back and forth once.</p>
+
+<h4>Sync is slow or causes lag.</h4>
+<p>Profile Sync can use threaded operations for better performance. Check the plugin settings for async options.</p>
+
+<h4>Some mods are not syncing.</h4>
+<p>Verify that the mod's category is included in your state group configuration. Only categories selected for a state will be synchronized.</p>

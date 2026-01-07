@@ -19,6 +19,10 @@ try:
     from .shortcutter_init import createPlugins as scPlugins
 except:
     def scPlugins(): return []
+try:
+    from .listexporter_init import createPlugins as lePlugins
+except:
+    def lePlugins(): return []
 
 def createPlugins():
     plugins = []
@@ -27,4 +31,5 @@ def createPlugins():
     plugins.extend(pfPlugins())
     plugins.extend(ompPlugins())
     plugins.extend(scPlugins())
+    plugins.extend(lePlugins())
     return plugins

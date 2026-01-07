@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ListExporterMenu</class>
+ <widget class="QWidget" name="ListExporterMenu">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>700</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>List Exporter</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QTabWidget" name="mainTabs">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="exportTab">
+      <attribute name="title">
+       <string>Export</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="exportLayout">
+       <item>
+        <layout class="QHBoxLayout" name="topRowLayout">
+         <item>
+          <widget class="QGroupBox" name="formatGroup">
+           <property name="title">
+            <string>Export Format</string>
+           </property>
+           <layout class="QHBoxLayout" name="formatLayout">
+            <item>
+             <widget class="QRadioButton" name="rbMarkdown">
+              <property name="text">
+               <string>Markdown</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="rbHtml">
+              <property name="text">
+               <string>HTML</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="rbCsv">
+              <property name="text">
+               <string>CSV</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="rbJson">
+              <property name="text">
+               <string>JSON</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="optionsGroup">
+           <property name="title">
+            <string>Options</string>
+           </property>
+           <layout class="QVBoxLayout" name="optionsLayout">
+            <item>
+             <widget class="QCheckBox" name="chkSeparateCategories">
+              <property name="text">
+               <string>Separate table for each category</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="pickersLayout">
+         <item>
+          <widget class="QGroupBox" name="profileGroup">
+           <property name="title">
+            <string>Profiles</string>
+           </property>
+           <layout class="QVBoxLayout" name="profileLayout">
+            <item>
+             <widget class="QLabel" name="lblProfiles">
+              <property name="text">
+               <string>Select profiles to include:</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QListWidget" name="lstProfiles"/>
+            </item>
+            <item>
+             <widget class="QWidget" name="profileButtons" native="true">
+              <layout class="QHBoxLayout" name="profileButtonsLayout">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QPushButton" name="btnSelectAll">
+                 <property name="text">
+                  <string>Select All</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnSelectNone">
+                 <property name="text">
+                  <string>Select None</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="profileSpacer">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="columnGroup">
+           <property name="title">
+            <string>Columns</string>
+           </property>
+           <layout class="QVBoxLayout" name="columnLayout">
+            <item>
+             <widget class="QLabel" name="lblColumns">
+              <property name="text">
+               <string>Select columns (drag to reorder):</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QListWidget" name="lstColumns"/>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="bottomLayout">
+         <item>
+          <widget class="QLabel" name="lblExcludeHint">
+           <property name="text">
+            <string>Add &lt;LE_Exclude&gt; to a mod's Notes or Comments to exclude it from export.</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="exportSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnExport">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Export...</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="helpTab">
+      <attribute name="title">
+       <string>Help</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="updateTab">
+      <attribute name="title">
+       <string>Update</string>
+      </attribute>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

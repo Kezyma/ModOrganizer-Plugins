@@ -1,51 +1,91 @@
-<div id="ContentsSection">
-    <h1>Troubleshooting</h1>
-    <ul>
-        <li><a href="#InstallWarn">Mod Organizer warns me that mods with Root folders appear invalid or empty.</a></li>
-        <li><a href="#GameUpdate">Game files are being copied to the overwrite folder.</a></li>
-        <li><a href="#SlowBuild">Running a Build, Sync or Clear is slow or freezes Mod Organizer.</a></li>
-        <li><a href="#Linux">Root Builder is not functioning correctly on Linux.</a></li>
-    </ul>
-</div>
+<h2>Root Builder</h2>
+<p>Root Builder allows you to manage files in the base game folder (not just the Data folder) through Mod Organizer 2. Keep the game folder clean, switch between mod configurations, and safely remove all root files when needed.</p>
 
-<div id="TroubleSection">
-    <div id="InstallWarn">
-        <h2>Mod Organizer warns me that mods with Root folders appear invalid or empty.</h2>
-        <p>The Root folder isn't recognised by Mod Organizer as a valid folder and shows a warning as a result. This can
-            be safely ignored however and will not stop the mod working with Root Builder.</p>
-    </div>
-    <div id="GameUpdate">
-        <h2>Game files are being copied to the overwrite folder.</h2>
-        <p>Root Builder uses Mod Organizer to detect when a game has updated and to rebuild the backup and cache when
-            this happens. This does not work with all games and therefore Root Builder can sometimes believe game
-            updates are actually mod files.</p>
-        <p>To resolve this and manually update your backup and cache, do the following;</p>
-        <ul>
-            <li>In the Actions tab, click the Delete button next to both Backup and Cache.</li>
-            <li>Re-run your game update, since Root Builder will have restored it to the previous version.</li>
-            <li>In the Actions tab, click the Create button next to both Backup and Cache.</li>
-        </ul>
-    </div>
-    <div id="SlowBuild">
-        <h2>Running a Build, Sync or Clear is slow or freezes Mod Organizer.</h2>
-        <p>Root Builder can become slow to run if it has to process a large number of files or large individual files.
-            There are a few ways to improve performance for builds;</p>
-        <ul>
-            <li>Check mods with Root folders for files that aren't required, such as source code or documentation and
-                either remove it or add it to Exclusions (The Data panel on the right side of Mod Organizer can help
-                with seeing exactly which files are in Root folders currently).</li>
-            <li>Add large game files to Exclusions. If a game file or folder is never going to be modified, it's safe to
-                add it to Root Builder's exclusions, which will skip it and save time.</li>
-            <li>Disasble Hash in the Settings tab. Hashing is more accurate than comparing file size and modified time,
-                but it is also slower.</li>
-            <li>Disable Backup, assuming no game files are likely to change as a result of mods, disabling Backup can
-                improve performance on the first Build. Using Exclusions to improve backup speed is preferred though.
-            </li>
-        </ul>
-    </div>
-    <div id="Linux">
-        <h2>Root Builder is not functioning correctly on Linux.</h2>
-        <p>The autobuild functionality of Root Builder doesn't work on Linux. Run a manual build before launching
-            applications and a manual clear after they close.</p>
-    </div>
-</div>
+<h3>Features</h3>
+<ul>
+    <li><b>Root Folder Management:</b> Deploy files to the game's root directory</li>
+    <li><b>Multiple Modes:</b> Copy, Link, USVFS, or Custom deployment methods</li>
+    <li><b>Auto Build:</b> Automatically deploy and clean when launching games</li>
+    <li><b>Backup &amp; Cache:</b> Protect original game files</li>
+    <li><b>Exclusions:</b> Skip specific files or folders</li>
+    <li><b>Import/Export:</b> Share settings between instances</li>
+</ul>
+
+<h3>How It Works</h3>
+<p>Mods with a "Root" folder in their structure will have those files deployed to the game's root directory. Create a folder called "Root" in your mod and place files inside it matching the game folder structure.</p>
+
+<h3>Deployment Modes</h3>
+
+<h4>Copy Mode</h4>
+<p>Copies all root files to the game folder. Simple and compatible but requires disk space for duplicates.</p>
+
+<h4>Link Mode</h4>
+<p>Creates file links instead of copying. Saves disk space but requires NTFS and may not work with all games.</p>
+
+<h4>USVFS Mode</h4>
+<p>Uses Mod Organizer's virtual file system. No actual file changes but may have compatibility issues with some games.</p>
+
+<h4>USVFS + Link Mode</h4>
+<p>Hybrid approach using USVFS for most files but links for executables (.exe) and libraries (.dll).</p>
+
+<h4>Custom Mode</h4>
+<p>Define your own rules for which files use which method. Set glob patterns and priorities for Copy, Link, and USVFS.</p>
+
+<h3>Tabs</h3>
+
+<h4>Mode</h4>
+<p>Select the deployment method for your root files.</p>
+
+<h4>Custom Mode</h4>
+<p>Configure custom deployment rules with file patterns and priority settings for each method.</p>
+
+<h4>Settings</h4>
+<ul>
+    <li><b>Cache:</b> Cache base game files on first run for faster change detection</li>
+    <li><b>Backup:</b> Create full backup of game files that may be modified</li>
+    <li><b>Autobuild:</b> Automatically build and clear when launching applications</li>
+    <li><b>Redirect:</b> Redirect exe files launched from mod folders to game folder</li>
+    <li><b>Installer:</b> Enable automatic detection and installation of root mods</li>
+    <li><b>Hash:</b> Use file hashing for accurate change detection (slower but more reliable)</li>
+    <li><b>Debug Level:</b> Control logging verbosity</li>
+</ul>
+
+<h4>Exclusions</h4>
+<p>Define files and folders to exclude from Root Builder processing. Common exclusions include Saves, .ini files, and the Data folder.</p>
+
+<h4>Actions</h4>
+<ul>
+    <li><b>Build:</b> Deploy root files to the game folder</li>
+    <li><b>Sync:</b> Update deployed files with current mod changes</li>
+    <li><b>Clear:</b> Remove all deployed root files</li>
+    <li><b>Create/Delete Backup:</b> Manage game file backups</li>
+    <li><b>Create/Delete Cache:</b> Manage file cache</li>
+</ul>
+
+<h4>Export</h4>
+<p>Export settings to a file for backup or sharing. Import settings from a file or reset to defaults.</p>
+
+<h3>Troubleshooting</h3>
+
+<h4>Mod Organizer warns me that mods with Root folders appear invalid or empty.</h4>
+<p>The Root folder isn't recognized by Mod Organizer as a valid folder and shows a warning. This can be safely ignored and will not stop the mod working with Root Builder.</p>
+
+<h4>Game files are being copied to the overwrite folder.</h4>
+<p>Root Builder may not detect game updates correctly for all games. To fix this:</p>
+<ol>
+    <li>In the Actions tab, click Delete for both Backup and Cache</li>
+    <li>Re-run your game update (Root Builder may have reverted it)</li>
+    <li>In the Actions tab, click Create for both Backup and Cache</li>
+</ol>
+
+<h4>Running Build, Sync or Clear is slow or freezes Mod Organizer.</h4>
+<p>Root Builder can be slow with many files. To improve performance:</p>
+<ul>
+    <li>Remove unnecessary files from Root folders (documentation, source code)</li>
+    <li>Add large, unchanging game files to Exclusions</li>
+    <li>Disable Hash in Settings (less accurate but faster)</li>
+    <li>Disable Backup if game files won't be modified</li>
+</ul>
+
+<h4>Root Builder is not functioning correctly on Linux.</h4>
+<p>The autobuild functionality doesn't work on Linux. Run manual Build before launching applications and manual Clear after they close.</p>

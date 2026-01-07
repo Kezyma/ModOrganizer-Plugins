@@ -82,6 +82,7 @@ class ProfileSyncSync:
 
     def syncFromGroup(self, group:str):
         """Syncs all profiles in a selected group."""
+        tasks = []
         with self._syncLock:
             groups = self._groups.loadSyncGroups()
             groupList = groups[group][PROFILES]
@@ -103,7 +104,6 @@ class ProfileSyncSync:
                     else:
                         self._log.warning(f"Could not read state group modlist {statePath}")
 
-            tasks = []
             for profile in groupList:
                 self._log.debug(f"Sync from group {group} to {profile}")
                 if self._settings.useasync():
@@ -112,9 +112,10 @@ class ProfileSyncSync:
                     tasks.append(nt)
                 else:
                     self._syncToProfile(profile, modList, stateGroups, stateModlists)
-            if self._settings.useasync():
-                for t in tasks:
-                    t.join()
+        # Lock released - now safe to wait for threads without risk of deadlock
+        if self._settings.useasync():
+            for t in tasks:
+                t.join()
 
     def _syncToProfileSafe(self, profile:str, groupModList:List[str], stateGroups:Dict, stateModlists:Dict):
         """Wrapper for _syncToProfile that catches exceptions in async mode."""
