@@ -1,4 +1,5 @@
-# Plugin Finder
+![Plugin Finder](img/pluginfinder.webp)
+
 
 Plugin Finder is a plugin for Mod Organizer 2 that allows users to browse and install other Mod Organizer plugins.
 
