@@ -4,7 +4,7 @@
   "Description": "Root Builder is a Mod Organizer 2 plugin that allows you to manage files in the base game folder, not just the Data folder. Keep the game folder untouched, switch game versions, switch enb files, and safely remove all of them with Root Builder!",
   "NexusUrl": "https://www.nexusmods.com/skyrimspecialedition/mods/31720",
   "GithubUrl": "https://github.com/Kezyma/ModOrganizer-Plugins",
-  "DocsUrl": "https://kezyma.github.io/?p=rootbuilder",
+  "DocsUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/docs/rootbuilder.md",
   "Versions": [
     {
       "Version": "4.5.2",
@@ -57,6 +57,24 @@
         "(5.0.5) Updates for MO2 2.5.2, primarily courtesy of Zash"
       ],
       "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.5.0.5.zip",
+      "PluginPath": [
+        "rootbuilder"
+      ],
+      "LocalePath": [],
+      "DataPath": [
+        "data/rootbuilder"
+      ]
+    },
+    {
+      "Version": "5.1.0",
+      "Released": "2026-01-07",
+      "MinSupport": "2.4.0",
+      "MaxSupport": "2.5.0",
+      "MinWorking": "2.4.0",
+      "ReleaseNotes": [
+        "(5.1.0) Installing a mod with only a Root folder will no longer warn the user that the mod looks incorrect."
+      ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.5.1.0.zip",
       "PluginPath": [
         "rootbuilder"
       ],
