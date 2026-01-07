@@ -2,6 +2,22 @@
 
 List Exporter is a plugin for Mod Organizer 2 that exports your mod list to various formats for sharing or documentation purposes.
 
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Export Format](#export-format)
+  - [Options](#options)
+  - [Profile Selection](#profile-selection)
+  - [Column Selection](#column-selection)
+  - [Excluding Mods](#excluding-mods)
+  - [Exporting](#exporting)
+- [Export Format Details](#export-format-details)
+- [Settings](#settings)
+- [Troubleshooting](#troubleshooting)
+- [Uninstallation](#uninstallation)
+
 ## Features
 
 - Export mod lists to HTML, Markdown, CSV, or JSON formats
@@ -72,14 +88,6 @@ This is useful for hiding utility mods, merged patches, or other mods you don't 
 
 Click **Export** to generate your mod list. Choose a save location and filename; the appropriate file extension is added automatically.
 
-## Settings
-
-| Setting | Default | Description |
-|---------|---------|-------------|
-| `enabled` | `true` | Enables or disables List Exporter |
-| `defaultformat` | `html` | Default export format. Valid values: html, markdown, csv, json |
-| `separatecategories` | `false` | Whether to separate tables by category by default |
-
 ## Export Format Details
 
 ### HTML
@@ -98,15 +106,26 @@ Produces comma-separated values compatible with Excel, Google Sheets, LibreOffic
 
 Outputs structured JSON data. When using separate categories, the JSON is organized by category. Ideal for developers processing mod lists programmatically.
 
+## Settings
+
+| Setting | Default | Description |
+|---------|---------|-------------|
+| `enabled` | `true` | Enables or disables List Exporter |
+| `defaultformat` | `html` | Default export format. Valid values: html, markdown, csv, json |
+| `separatecategories` | `false` | Whether to separate tables by category by default |
+
 ## Troubleshooting
 
-**Mod names don't have Nexus links**
+### Mod names don't have Nexus links
+
 Nexus links require a valid mod ID in meta.ini. Mods installed manually or from non-Nexus sources won't have this information.
 
-**Categories are wrong or missing**
+### Categories are wrong or missing
+
 Categories are determined by separator mods (mods ending in `_separator`). Ensure separators are properly named and positioned.
 
-**Some mods are missing from export**
+### Some mods are missing from export
+
 Check if missing mods have `<LE_Exclude>` in their Notes or Comments. Also verify mods are enabled in at least one selected profile.
 
 ## Uninstallation

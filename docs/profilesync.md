@@ -1,13 +1,27 @@
-# Profile Sync
+![Profile Sync](img/profilesync.webp)
 
-Profile Sync is a plugin for Mod Organizer 2 that allows you to maintain the same mod order across multiple profiles while keeping individual enabled/disabled states.
+Profile Sync is a plugin for Mod Organizer 2 that allows you to synchronize mod configurations across multiple profiles.
+
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Sync Groups](#sync-groups)
+  - [Adding Profiles](#adding-profiles)
+  - [State Groups](#state-groups)
+  - [How Synchronization Works](#how-synchronization-works)
+- [Settings](#settings)
+- [Troubleshooting](#troubleshooting)
+- [Uninstallation](#uninstallation)
 
 ## Features
 
 - Keep mod order synchronized across multiple profiles
 - Create multiple sync groups with different mod orders
+- Define state groups with category-based synchronization
+- Automatic sync when mods are installed, removed, enabled, disabled, or reordered
 - Exclude individual profiles for testing and customization
-- Save time arranging mods when installing new ones
 
 ## Installation
 
@@ -33,7 +47,7 @@ Open Profile Sync from the Tools menu in Mod Organizer.
 
 ### Sync Groups
 
-A sync group is a collection of profiles that share the same mod order.
+A sync group is a collection of profiles that share the same mod configuration. When you make changes to one profile in a sync group, those changes are automatically applied to all other profiles in the group.
 
 **Creating a sync group:**
 1. Enter a name in the text field
@@ -60,7 +74,7 @@ State groups allow you to create different configurations within a sync group. E
 
 ![Profile Sync - State Groups Tab](img/profilesync_stategroups.png)
 
-To create a state group:
+**Creating a state group:**
 1. Switch to the State Groups tab
 2. Add a new state group
 3. Select which profiles belong to this state
@@ -70,9 +84,10 @@ To create a state group:
 
 - When you change the mod order in any profile within a sync group, the group's shared order is updated
 - When you load or switch to a profile, that profile's mod order is updated to match the group
+- Changes propagate automatically when mods are installed, removed, enabled, disabled, or reordered
 
 Profile Sync only synchronizes the order of mods and separators. It does **not** change:
-- Which mods are enabled or disabled
+- Which mods are enabled or disabled (unless using state groups with category sync)
 - Plugin load order
 
 ## Settings
@@ -81,6 +96,22 @@ Profile Sync only synchronizes the order of mods and separators. It does **not**
 |---------|---------|-------------|
 | `enabled` | `true` | Enables or disables Profile Sync |
 | `useasync` | `false` | Uses background threads for saving operations. May improve performance but can cause issues in some configurations |
+
+## Troubleshooting
+
+### The last change made is not synchronizing to other profiles
+
+Profile Sync runs on specific events: when a mod is installed, removed, enabled/disabled, or reordered through drag and drop. If another action causes a change, it may not trigger a sync.
+
+To force a sync, toggle the enabled state of any mod back and forth once.
+
+### Sync is slow or causes lag
+
+Profile Sync can use threaded operations for better performance. Enable the `useasync` setting in plugin settings.
+
+### Some mods are not syncing
+
+Verify that the mod's category is included in your state group configuration. Only categories selected for a state will be synchronized.
 
 ## Uninstallation
 

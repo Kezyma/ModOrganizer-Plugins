@@ -166,7 +166,7 @@ class PluginFinderMenu(QtWidgets.QWidget):
         webbrowser.open("https://discord.com/invite/kPA3RrxAYz")
 
     def docs_clicked(self):
-        webbrowser.open("https://kezyma.github.io/?p=pluginfinder")
+        webbrowser.open("https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/docs/pluginfinder.md")
 
     def nexus_clicked(self):
         webbrowser.open("https://www.nexusmods.com/skyrimspecialedition/mods/59869")

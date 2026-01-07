@@ -1,6 +1,24 @@
-# OpenMW Player
+![OpenMW Player](img/openmwplayer.webp)
 
 OpenMW Player is a plugin for Mod Organizer 2 that automatically exports your mod list, enabled plugins, and grass mods to OpenMW whenever you run the game through Mod Organizer.
+
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+  - [Setting Up OpenMW](#setting-up-openmw)
+- [Usage](#usage)
+  - [How Configuration Works](#how-configuration-works)
+  - [Options Tab](#options-tab)
+  - [Groundcover Tab](#groundcover-tab)
+  - [Archives Tab](#archives-tab)
+  - [OpenMW.cfg Tab](#openmwcfg-tab)
+  - [Settings.cfg Tab](#settingscfg-tab)
+  - [Raw Text Editing](#raw-text-editing)
+  - [Import and Export](#import-and-export)
+- [Settings](#settings)
+- [Troubleshooting](#troubleshooting)
+- [Uninstallation](#uninstallation)
 
 ## Features
 
@@ -9,6 +27,8 @@ OpenMW Player is a plugin for Mod Organizer 2 that automatically exports your mo
 - Select the OpenMW.cfg location to update with your mod list
 - Manage omwaddon and omwscripts files using dummy esp files
 - Per-profile configuration for openmw.cfg and settings.cfg
+- Edit raw configuration files directly
+- Filter and sort groundcover plugins
 
 ## Installation
 
@@ -33,6 +53,10 @@ Add `OpenMW.exe` and/or `OpenMW-Launcher.exe` to Mod Organizer's executables lis
 ## Usage
 
 OpenMW Player stores copies of `openmw.cfg` and `settings.cfg` for each profile in Mod Organizer 2. Each profile has separate configuration.
+
+Open OpenMW Player from the Tools menu in Mod Organizer.
+
+![OpenMW Player Tools Menu](img/openmwplayer_tools.png)
 
 ### How Configuration Works
 
@@ -72,7 +96,7 @@ Select which esp files should be used for groundcover. These should **not** be e
 
 ![Archives Tab](img/openmwplayer_archives.png)
 
-Select which BSA archives to use and their load order. Check archives to enable them and drag to reorder.
+Select which BSA archives to use and their load order. Check archives to enable them and drag to reorder. The order determines which archive takes priority when files conflict.
 
 ### OpenMW.cfg Tab
 
@@ -110,6 +134,20 @@ After saving, the UI refreshes to reflect changes.
 | `enabled` | `true` | Enables or disables OpenMW Player |
 | `openmwcfgpath` | Default path | Path to `openmw.cfg` |
 | `dummyesp` | `false` | Enables omwaddon and omwscripts support via dummy esp files |
+
+## Troubleshooting
+
+### Settings not saving
+
+Ensure the openmw.cfg path is correctly configured in the Options tab.
+
+### Archives not loading
+
+Verify the archive order and ensure archives are enabled in both OpenMW Player and your mod list.
+
+### Groundcover not appearing
+
+Check that groundcover plugins are enabled in the Groundcover tab and properly sorted. Ensure groundcover is enabled in settings.cfg.
 
 ## Uninstallation
 

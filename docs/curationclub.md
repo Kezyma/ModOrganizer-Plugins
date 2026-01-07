@@ -1,6 +1,16 @@
-# Curation Club
+![Curation Club](img/curationclub.webp)
 
 Curation Club is a plugin for Mod Organizer 2 that allows users to import Creation Club content into Mod Organizer as separate mods.
+
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [How It Works](#how-it-works)
+  - [Configuration Options](#configuration-options)
+- [Settings](#settings)
+- [Uninstallation](#uninstallation)
 
 ## Features
 

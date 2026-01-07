@@ -137,7 +137,7 @@ class CommonStrings:
         return f"https://www.nexusmods.com/{nexusGame}/mods/{nexusId}"
     
     def pluginDocsUrl(self, pluginName:str) -> str:
-        return f"https://kezyma.github.io/?p={pluginName.lower()}"
+        return f"https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/docs/{pluginName.lower()}.md"
     
     @cached_property
     def discordUrl(self) -> str:

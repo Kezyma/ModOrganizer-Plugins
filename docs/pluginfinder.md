@@ -2,12 +2,32 @@
 
 Plugin Finder is a plugin for Mod Organizer 2 that allows users to browse and install other Mod Organizer plugins.
 
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Browsing Plugins](#browsing-plugins)
+  - [Filtering and Sorting](#filtering-and-sorting)
+  - [Installing Plugins](#installing-plugins)
+  - [Updating Plugins](#updating-plugins)
+  - [Uninstalling Plugins](#uninstalling-plugins)
+- [Adding Your Plugin](#adding-your-plugin)
+  - [Using the Generator](#using-the-generator)
+  - [Manual Creation](#manual-creation)
+  - [Submitting Your Plugin](#submitting-your-plugin)
+- [Settings](#settings)
+- [Troubleshooting](#troubleshooting)
+- [Uninstallation](#uninstallation)
+
 ## Features
 
-- Browse a list of plugins and search by name
+- Browse a curated list of plugins and search by name
+- Filter plugins by installation status, updates, or compatibility
 - Install plugins directly within Mod Organizer
 - Check for updates to installed plugins
 - Remove plugins from within Plugin Finder
+- View version information and compatibility status
 
 > **Note:** Plugins found within Plugin Finder are produced and maintained by independent mod authors and may vary in quality. Issues with plugins should be directed to the respective plugin author.
 
@@ -33,33 +53,42 @@ Open Plugin Finder from the Tools menu in Mod Organizer.
 
 ![Plugin Finder](img/pluginfinder_finder.png)
 
-The browser displays available plugins with the following information:
+### Browsing Plugins
 
-### Status Icons
+The main list shows all available plugins with:
+- Status indicators (installed, update available, compatibility)
+- Version information (installed and latest)
+- Author name
+- Description
+- Links to GitHub, NexusMods, and documentation
 
-- **Download count**: Total installs through Plugin Finder (minus uninstalls)
-- **Release type**:
-  - Alpha: Plugin is in early development
-  - Beta: Plugin is in testing phase
-  - RC (Release Candidate): Plugin is nearly ready for release
-- **Install status**:
-  - Checkmark: Installed and up to date
-  - Warning: May not work on this Mod Organizer version
-  - Stop: Does not work on this Mod Organizer version
-  - Info: Cannot be installed through Plugin Finder
-  - Update available: New version ready to install
-  - Update warning: Update available but may not work on this version
-  - Update blocked: Update available but incompatible with this version
+### Filtering and Sorting
 
-### Actions
+**Search:** Type in the search box to filter plugins by name.
 
-- **Install**: Install the selected plugin
-- **Uninstall**: Remove the selected plugin
-- **Documentation**: Visit the plugin's documentation
-- **Nexus**: Visit the plugin's Nexus page
-- **GitHub**: Visit the plugin's GitHub page
+**Filter options:**
+- **Installed**: Show only installed plugins
+- **Updates**: Show only plugins with available updates
+- **Supported**: Show only plugins tested with your MO2 version
+- **Working**: Show only plugins confirmed working with your MO2 version
 
-Use the search box to filter plugins by name. Navigation buttons allow paging through results and refreshing the plugin list.
+**Sorting:** Use the sort dropdown to arrange plugins by name (ascending or descending).
+
+### Installing Plugins
+
+1. Find the plugin you want to install
+2. Click the **Install** button on the plugin entry
+3. Restart Mod Organizer when prompted
+
+### Updating Plugins
+
+Plugins with available updates show an update indicator. Click the **Update** button to download and install the latest version. Restart Mod Organizer to apply the update.
+
+### Uninstalling Plugins
+
+Click the **Uninstall** button on an installed plugin to remove it.
+
+> **Note:** Plugin Finder cannot uninstall itself.
 
 ## Adding Your Plugin
 
@@ -99,7 +128,7 @@ Create a JSON file with the following structure:
 }
 ```
 
-### Plugin Fields
+#### Plugin Fields
 
 | Field | Required | Description |
 |-------|----------|-------------|
@@ -111,7 +140,7 @@ Create a JSON file with the following structure:
 | `GithubUrl` | No | URL to GitHub page |
 | `Versions` | No | Array of installable versions |
 
-### Version Fields
+#### Version Fields
 
 | Field | Required | Description |
 |-------|----------|-------------|
@@ -141,6 +170,26 @@ Host your JSON file on GitHub with your plugin, then submit it to Plugin Finder:
 |---------|---------|-------------|
 | `enabled` | `true` | Enables or disables Plugin Finder |
 | `priority` | `120` | Priority of the installer module for installing plugins |
+
+## Troubleshooting
+
+### A plugin installed through Plugin Finder does not work
+
+Plugins listed on Plugin Finder are maintained by their separate authors. If you have issues with a plugin, please check the documentation, GitHub and/or Nexus pages for the plugin.
+
+### A plugin listed in Plugin Finder is out of date
+
+Plugins listed on Plugin Finder are maintained by their separate authors. Please contact the author of the plugin and request they update their data for Plugin Finder.
+
+### A plugin I installed manually isn't listed as the correct version
+
+Plugin Finder attempts to detect the version based on the contents of the plugin, but this may not always be successful. When detection fails, a default version number is assigned. To remedy this, install or update the plugin through Plugin Finder.
+
+### Updating or uninstalling a specific plugin always fails
+
+Even if a message is logged that a file could not be moved/deleted, Plugin Finder will still attempt to move/delete those files when Mod Organizer restarts.
+
+Sometimes plugin files are locked or marked as read-only. To resolve this issue, manually delete the plugin from Mod Organizer's plugins folder.
 
 ## Uninstallation
 

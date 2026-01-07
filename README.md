@@ -3,25 +3,25 @@ Shared repository for [Mod Organizer](https://github.com/ModOrganizer2/modorgani
 
 ## Plugins
 
-### [Root Builder](https://kezyma.github.io/?p=rootbuilder)
+### [Root Builder](https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/docs/rootbuilder.md)
 Root Builder is a Mod Organizer 2 plugin that allows you to manage files in the base game folder through Mod Organizer, leaving your game folder in pristine, vanilla condition!
 
-### [Reinstaller](https://kezyma.github.io/?p=reinstaller)
+### [Reinstaller](https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/docs/reinstaller.md)
 Reinstaller is a Mod Organizer 2 plugin that allows you to backup downloaded mods and run their installers on demand. Useful for large fomod patch installers with loads of options that you have to re-run frequently. Don't let those files keep your downloads tab cluttered anymore!
 
-### [Shortcutter](https://kezyma.github.io/?p=shortcutter)
+### [Shortcutter](https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/docs/shortcutter.md)
 Shortcutter is a Mod Organizer 2 plugin that gives you the option of quickly creating instance and profile specific desktop shortcuts, allowing you to quickly launch your game using different profiles without having to manually switch inside Mod Organizer.
 
-### [Plugin Finder](https://kezyma.github.io/?p=pluginfinder)
+### [Plugin Finder](https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/docs/pluginfinder.md)
 Plugin Finder is a Mod Organizer 2 plugin that allows you to browse and install other plugins for Mod Organizer, as well as uninstall them.
 
-### [Curation Club](https://kezyma.github.io/?p=curationclub)
+### [Curation Club](https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/docs/curationclub.md)
 Curation Club is a plugin for Mod Organizer 2, allowing users to import Creation Club content into Mod Organizer as separate mods.
 
-### [Profile Sync](https://kezyma.github.io/?p=profilesync)
+### [Profile Sync](https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/docs/profilesync.md)
 Profile Sync is a plugin for Mod Organizer 2, it allows you to maintain the same mod order (while keeping the enabled/disabled state) across multiple profiles.
 
-### [OpenMW Player](https://kezyma.github.io/?p=openmwplayer)
+### [OpenMW Player](https://github.com/Kezyma/ModOrganizer-Plugins/blob/main/docs/openmwplayer.md)
 A plugin for Mod Organizer 2 that automatically exports your mod list, enabled plugins, and grass mods to OpenMW whenever you run the game through Mod Organizer. 
 
 ## Usage
