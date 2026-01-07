@@ -1,6 +1,7 @@
 import mobase, os, glob
 from pathlib import Path
 from ..core.rootbuilder_plugin import RootBuilderPlugin
+from ..modules.rootbuilder_checker import RootBuilderDataChecker
 from ....common.common_qt import *
 
 class RootBuilderAutobuild(RootBuilderPlugin, mobase.IPluginFileMapper):
@@ -8,12 +9,19 @@ class RootBuilderAutobuild(RootBuilderPlugin, mobase.IPluginFileMapper):
 
     def __init__(self):
         super().__init__()
+        self._dataChecker = None
 
     def init(self, organiser:mobase.IOrganizer):
         res = super().init(organiser)
         self._organiser.onAboutToRun(lambda appName: self.onAboutToRun(appName))
         self._organiser.onFinishedRun(lambda appName, resultCode: self.onFinishedRun(appName, resultCode))
         self._organiser.onUserInterfaceInitialized(lambda window: self.migrate())
+
+        # Register ModDataChecker to validate Root folders as valid mod content
+        self._dataChecker = RootBuilderDataChecker(self._rootBuilder._log)
+        organiser.gameFeatures().registerFeature(self._dataChecker, priority=100)
+        self._rootBuilder._log.debug("Registered Root folder content validator")
+
         return res
     
     def master(self):

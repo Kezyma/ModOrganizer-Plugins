@@ -98,7 +98,7 @@ class ProfileSyncGroups:
         group = self.groupFromProfile(profileName)
         groups = self.loadSyncGroups()
         res = []
-        if group != "":
+        if group is not None:
             groupItm = groups[group]
             for sg in groupItm[STATEGROUPS]:
                 stateItm = groupItm[STATEGROUPS][sg]

@@ -8,3 +8,4 @@ web
 debug
 tools/meta-generator/obj
 tools/meta-generator/bin
+demo/

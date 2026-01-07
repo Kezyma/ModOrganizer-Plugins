@@ -56,7 +56,6 @@ class ProfileSyncUpdater(ProfileSyncPlugin, mobase.IPlugin):
             self._log.debug(f"No group found for {profile}.")
 
     def syncFromCurrent(self):
-        self._profileSync._legacy.migrate()
         profile = self._organiser.profile().name()
         self._log.debug(f"Finding the sync group for {profile}.")
         group = self._profileSync._groups.groupFromProfile(profile)

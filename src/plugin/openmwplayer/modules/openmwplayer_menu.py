@@ -266,7 +266,8 @@ class OpenMWPlayerMenu(QtWidgets.QWidget):
     def saveSettingsCfg(self):
         cfgPath = self._openmwPlayer._strings.customSettingsCfgPath()
         self._openmwPlayer._files.saveSettingsCfg(cfgPath, self._settingsCfg)
-        self.rebindSettingsCfg()
+        # Don't rebuild UI - the data dict is already updated and widgets show correct values
+        # This matches how saveOpenmwCfg() works and preserves scroll position
 
     def rebindSettingsCfg(self):
         self.settingsWidget.settingsTabs.clear()

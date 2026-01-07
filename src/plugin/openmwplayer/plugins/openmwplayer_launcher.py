@@ -1,6 +1,7 @@
 import mobase, threading
 from ..core.openmwplayer_plugin import OpenMWPlayerPlugin
 from ..modules.openmwplayer_menu import OpenMWPlayerMenu
+from ..modules.openmwplayer_checker import OpenMWPlayerDataChecker
 from ....base.base_dialog import BaseDialog
 from ....common.common_qt import *
 from ....common.common_icons import *
@@ -8,12 +9,13 @@ from ....common.common_icons import *
 class OpenMWPlayerLauncher(OpenMWPlayerPlugin, mobase.IPlugin):
     def __init__(self):
         super().__init__()
+        self._dataChecker = None
 
     def init(self, organiser:mobase.IOrganizer):
         res = super().init(organiser)
         self._organiser.onAboutToRun(lambda appName: self.onApplicationLaunch(appName))
         self._organiser.onFinishedRun(lambda appName, exitCode: self.onApplicationClose(appName))
-        self._organiser.onUserInterfaceInitialized(lambda window: self.onModListChange())
+        self._organiser.onUserInterfaceInitialized(lambda window: self._onUiInit())
         self._organiser.onProfileChanged(lambda old, new: self.onModListChange())
 
         modList:mobase.IModList = self._organiser.modList()
@@ -25,7 +27,28 @@ class OpenMWPlayerLauncher(OpenMWPlayerPlugin, mobase.IPlugin):
         pluginList:mobase.IPluginList = self._organiser.pluginList()
         pluginList.onPluginMoved(lambda name, old, new: self.onModListChange())
         pluginList.onPluginStateChanged(lambda map: self.onModListChange())
+
         return res
+
+    def _onUiInit(self):
+        """Called when UI is initialized - game is now loaded."""
+        self._registerDataChecker()
+        self.onModListChange()
+
+    def _registerDataChecker(self):
+        """Register ModDataChecker after game is loaded (called from onUserInterfaceInitialized)."""
+        if self._dataChecker is not None:
+            return  # Already registered
+
+        managedGame = self._organiser.managedGame()
+        if managedGame is None:
+            return
+
+        gameName = managedGame.gameName().lower()
+        if "morrowind" in gameName or "openmw" in gameName:
+            self._dataChecker = OpenMWPlayerDataChecker(self._openmwPlayer._log)
+            self._organiser.gameFeatures().registerFeature(self._dataChecker, priority=100)
+            self._openmwPlayer._log.debug("Registered OpenMW content validator")
 
     def __tr(self, trstr):
         return QCoreApplication.translate(self._pluginName, trstr)

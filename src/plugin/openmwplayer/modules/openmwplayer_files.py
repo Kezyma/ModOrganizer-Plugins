@@ -16,7 +16,8 @@ class OpenMWPlayerFiles():
         self._log = log
 
     _settingsCfgHeadingRegex = r"\[(?P<title>[^\]]*)\]"
-    _settingsCfgSettingRegex = r"^(?P<setting>[^=\n#]*)\s=\s(?P<value>[^\n]*)"
+    # Updated regex to handle optional spaces around '=' and empty values
+    _settingsCfgSettingRegex = r"^(?P<setting>[^=\n#]+?)\s*=\s*(?P<value>[^\n]*)"
     def readSettingsCfg(self, cfgPath:str):
         """Reads a settings.cfg into a dictionary."""
         if Path(cfgPath).exists():
@@ -29,8 +30,11 @@ class OpenMWPlayerFiles():
                 if headingMatch:
                     cfgGroup = headingMatch.groups()[0]
                     settingsCfg[cfgGroup] = {}
-                elif settingMatch:
-                    settingsCfg[cfgGroup][settingMatch.groups()[0]] = settingMatch.groups()[1]
+                elif settingMatch and cfgGroup:
+                    # Strip whitespace from setting name, preserve value as-is (including empty)
+                    settingName = settingMatch.groups()[0].strip()
+                    settingValue = settingMatch.groups()[1]
+                    settingsCfg[cfgGroup][settingName] = settingValue
             return settingsCfg
         else:
             return None
@@ -79,13 +83,33 @@ class OpenMWPlayerFiles():
         """Gets the full settings.cfg from a profile, merged with missing entries from default settings."""
         profileCfg = self.getCustomSettingsCfg()
         defaultCfg = self.getDefaultSettingsCfg()
-        # Overwrite all default config values with ones from the profile.
-        if profileCfg != None and defaultCfg != None:
-            for key in defaultCfg:
-                if key in profileCfg:
-                    for setting in defaultCfg[key]:
-                        if setting in profileCfg[key]:
-                            defaultCfg[key][setting] = profileCfg[key][setting]
+
+        # If we have no default config, use profile config or empty dict
+        if defaultCfg is None:
+            return profileCfg if profileCfg is not None else {}
+
+        # If we have no profile config, just return defaults
+        if profileCfg is None:
+            return defaultCfg
+
+        # Merge profile config into default config
+        # This preserves all default settings and overwrites with profile values where they exist
+        for category in defaultCfg:
+            if category in profileCfg:
+                for setting in defaultCfg[category]:
+                    if setting in profileCfg[category]:
+                        # Use profile value (even if empty - user may have intentionally cleared it)
+                        defaultCfg[category][setting] = profileCfg[category][setting]
+
+        # Also add any categories/settings from profile that aren't in defaults
+        for category in profileCfg:
+            if category not in defaultCfg:
+                defaultCfg[category] = profileCfg[category]
+            else:
+                for setting in profileCfg[category]:
+                    if setting not in defaultCfg[category]:
+                        defaultCfg[category][setting] = profileCfg[category][setting]
+
         return defaultCfg
 
     _openmwCfgRegex = r"fallback=(?P<setting>[^,]*),(?P<value>[^\n]*)"
