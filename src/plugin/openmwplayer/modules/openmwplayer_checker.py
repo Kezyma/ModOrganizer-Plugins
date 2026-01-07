@@ -22,7 +22,7 @@ class OpenMWPlayerDataChecker(mobase.ModDataChecker):
 
     def _hasValidContent(self, filetree: mobase.IFileTree) -> bool:
         """
-        Recursively check if tree contains valid OpenMW files.
+        Check if tree contains valid OpenMW files.
 
         Args:
             filetree: The file tree to check.
