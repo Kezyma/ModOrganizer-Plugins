@@ -144,7 +144,8 @@ def saveJson(path: str, data: Any, retries: int = 0) -> bool:
 def loadJson(path: str, retries: int = 0) -> Union[Any, None]:
     """Loads an object from a json file."""
     try:
-        return json.load(open(Path(path), "r", encoding="utf-8-sig"))
+        with open(Path(path), "r", encoding="utf-8-sig") as f:
+            return json.load(f)
     except OSError:
         if retries <= maxRetries():
             time.sleep(0.1)

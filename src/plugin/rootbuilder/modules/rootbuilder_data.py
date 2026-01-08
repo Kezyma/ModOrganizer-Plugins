@@ -17,13 +17,15 @@ class RootBuilderData:
         self._paths = paths
         self._settings = settings
         self._log = log
+        self._data = None
+        self._buildData = {}
+        self._buildDataLock = threading.Lock()
 
     def dataFileExists(self) -> bool:
         """Returns true if there is a current build data file."""
         filePath = self._strings.rbBuildDataPath
         return Path(filePath).exists()
 
-    _data = None
     def loadDataFile(self) -> BuilData:
         """Loads and returns the current data file, or an empty object if none exists."""
         if self._data is not None:
@@ -45,8 +47,7 @@ class RootBuilderData:
         self._data = None
         filePath = self._strings.rbBuildDataPath
         return deleteFile(filePath)
-    
-    _buildData = {}
+
     def generateBuildData(self) -> BuilData:
         """Generates complete build data for the existing setup."""
         self._log.debug("Finding root mod folders.")
@@ -102,10 +103,12 @@ class RootBuilderData:
         return self._buildData
             
     def _hashModFile(self, fileKey:str):
-        cData = self._buildData[COPY][fileKey]
-        srcPath = cData[SOURCE]
-        hash = hashFile(srcPath)
-        self._buildData[COPY][fileKey][HASH] = hash
+        with self._buildDataLock:
+            cData = self._buildData[COPY][fileKey]
+            srcPath = cData[SOURCE]
+        fileHash = hashFile(srcPath)
+        with self._buildDataLock:
+            self._buildData[COPY][fileKey][HASH] = fileHash
 
     def mergeBuildData(self, base:BuilData, overwrite:BuilData) -> BuilData:
         """Overwrites older build data with new build data."""

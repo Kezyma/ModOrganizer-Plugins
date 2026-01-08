@@ -1,0 +1,541 @@
+{
+  "ccbgssse001": {
+    "id": "ccbgssse001",
+    "name": "Survival Mode",
+    "files": ["ccBGSSSE001-Fish.esl", "ccBGSSSE001-Fish.bsa"],
+    "description": "Adds survival mechanics to Skyrim",
+    "manual": false
+  },
+  "ccbgssse002": {
+    "id": "ccbgssse002",
+    "name": "Camping",
+    "files": ["ccBGSSSE002-ExoticArrows.esl", "ccBGSSSE002-ExoticArrows.bsa"],
+    "description": "Adds camping equipment",
+    "manual": false
+  },
+  "ccbgssse003": {
+    "id": "ccbgssse003",
+    "name": "Chrysamere",
+    "files": ["ccBGSSSE003-Zombies.esl", "ccBGSSSE003-Zombies.bsa"],
+    "description": "Adds the legendary sword Chrysamere",
+    "manual": false
+  },
+  "ccbgssse004": {
+    "id": "ccbgssse004",
+    "name": "Plague of the Dead",
+    "files": ["ccBGSSSE004-RuinsEdge.esl", "ccBGSSSE004-RuinsEdge.bsa"],
+    "description": "Zombie apocalypse content",
+    "manual": false
+  },
+  "ccbgssse005": {
+    "id": "ccbgssse005",
+    "name": "Ruin's Edge",
+    "files": ["ccBGSSSE005-Goldbrand.esl", "ccBGSSSE005-Goldbrand.bsa"],
+    "description": "Adds the bow Ruin's Edge",
+    "manual": false
+  },
+  "ccbgssse006": {
+    "id": "ccbgssse006",
+    "name": "Rare Curios",
+    "files": ["ccBGSSSE006-Stendarr.esl", "ccBGSSSE006-Stendarr.bsa"],
+    "description": "Adds rare alchemy ingredients",
+    "manual": false
+  },
+  "ccbgssse007": {
+    "id": "ccbgssse007",
+    "name": "Saints & Seducers",
+    "files": ["ccBGSSSE007-Chrysamere.esl", "ccBGSSSE007-Chrysamere.bsa"],
+    "description": "Saints and Seducers quest content",
+    "manual": false
+  },
+  "ccbgssse008": {
+    "id": "ccbgssse008",
+    "name": "Shadowfoot Sanctum",
+    "files": ["ccBGSSSE008-Wraithguard.esl", "ccBGSSSE008-Wraithguard.bsa"],
+    "description": "Player home for thieves",
+    "manual": false
+  },
+  "ccbgssse010": {
+    "id": "ccbgssse010",
+    "name": "Shadowrend",
+    "files": ["ccBGSSSE010-PetDwarvenArmoredMudcrab.esl", "ccBGSSSE010-PetDwarvenArmoredMudcrab.bsa"],
+    "description": "Adds the Shadowrend weapon",
+    "manual": false
+  },
+  "ccbgssse011": {
+    "id": "ccbgssse011",
+    "name": "Nix-Hound",
+    "files": ["ccBGSSSE011-HrssArmr.esl", "ccBGSSSE011-HrsArmr.bsa"],
+    "description": "Pet Nix-Hound",
+    "manual": false
+  },
+  "ccbgssse012": {
+    "id": "ccbgssse012",
+    "name": "Necromantic Grimoire",
+    "files": ["ccBGSSSE012-HearthfireDeco.esl", "ccBGSSSE012-HearthfireDeco.bsa"],
+    "description": "New necromancy spells",
+    "manual": false
+  },
+  "ccbgssse013": {
+    "id": "ccbgssse013",
+    "name": "Arcane Accessories",
+    "files": ["ccBGSSSE013-Chilling.esl", "ccBGSSSE013-Chilling.bsa"],
+    "description": "Magical clothing and accessories",
+    "manual": false
+  },
+  "ccbgssse014": {
+    "id": "ccbgssse014",
+    "name": "Spell Knight Armor",
+    "files": ["ccBGSSSE014-SpellPack01.esl", "ccBGSSSE014-SpellPack01.bsa"],
+    "description": "Spell Knight Armor set",
+    "manual": false
+  },
+  "ccbgssse016": {
+    "id": "ccbgssse016",
+    "name": "Umbra",
+    "files": ["ccBGSSSE016-Umbra.esm", "ccBGSSSE016-Umbra.bsa"],
+    "description": "Adds the sword Umbra and quest",
+    "manual": false
+  },
+  "ccbgssse018": {
+    "id": "ccbgssse018",
+    "name": "Shadowfoot Sanctum",
+    "files": ["ccBGSSSE018-Shadowrend.esl", "ccBGSSSE018-Shadowrend.bsa"],
+    "description": "Thief player home",
+    "manual": false
+  },
+  "ccbgssse019": {
+    "id": "ccbgssse019",
+    "name": "Staff of Sheogorath",
+    "files": ["ccBGSSSE019-StaffofSheogorath.esl", "ccBGSSSE019-StaffofSheogorath.bsa"],
+    "description": "Adds the Staff of Sheogorath",
+    "manual": false
+  },
+  "ccbgssse020": {
+    "id": "ccbgssse020",
+    "name": "Sunder & Wraithguard",
+    "files": ["ccBGSSSE020-GrayCowl.esl", "ccBGSSSE020-GrayCowl.bsa"],
+    "description": "Adds Sunder and Wraithguard artifacts",
+    "manual": false
+  },
+  "ccbgssse021": {
+    "id": "ccbgssse021",
+    "name": "Lord's Mail",
+    "files": ["ccBGSSSE021-LordsEmail.esl", "ccBGSSSE021-LordsEmail.bsa"],
+    "description": "Adds the Lord's Mail armor",
+    "manual": false
+  },
+  "ccbgssse025": {
+    "id": "ccbgssse025",
+    "name": "Goldbrand",
+    "files": ["ccBGSSSE025-AdvDSGS.esm", "ccBGSSSE025-AdvDSGS.bsa"],
+    "description": "Adds the legendary sword Goldbrand",
+    "manual": false
+  },
+  "ccbgssse031": {
+    "id": "ccbgssse031",
+    "name": "Adventurer's Backpack",
+    "files": ["ccBGSSSE031-AdvCyrus.esm", "ccBGSSSE031-AdvCyrus.bsa"],
+    "description": "Adds wearable backpacks",
+    "manual": false
+  },
+  "ccbgssse034": {
+    "id": "ccbgssse034",
+    "name": "Dwarven Armored Mudcrab",
+    "files": ["ccBGSSSE034-MntUni.esl", "ccBGSSSE034-MntUni.bsa"],
+    "description": "Pet Dwarven Armored Mudcrab",
+    "manual": false
+  },
+  "ccbgssse035": {
+    "id": "ccbgssse035",
+    "name": "Dwarven Plate Armor",
+    "files": ["ccBGSSSE035-PetNHound.esl", "ccBGSSSE035-PetNHound.bsa"],
+    "description": "Dwarven Plate Armor set",
+    "manual": false
+  },
+  "ccbgssse036": {
+    "id": "ccbgssse036",
+    "name": "Civil War Champions",
+    "files": ["ccBGSSSE036-PetBWolf.esl", "ccBGSSSE036-PetBWolf.bsa"],
+    "description": "Civil War faction equipment",
+    "manual": false
+  },
+  "ccbgssse037": {
+    "id": "ccbgssse037",
+    "name": "Alternative Armors - Daedric Plate",
+    "files": ["ccBGSSSE037-Curios.esl", "ccBGSSSE037-Curios.bsa"],
+    "description": "Daedric Plate armor variant",
+    "manual": false
+  },
+  "ccbgssse038": {
+    "id": "ccbgssse038",
+    "name": "Bone Wolf",
+    "files": ["ccBGSSSE038-BowofShadows.esl", "ccBGSSSE038-BowofShadows.bsa"],
+    "description": "Pet Bone Wolf",
+    "manual": false
+  },
+  "ccbgssse040": {
+    "id": "ccbgssse040",
+    "name": "Wild Horses",
+    "files": ["ccBGSSSE040-AdvObGobs.esl", "ccBGSSSE040-AdvObGobs.bsa"],
+    "description": "Wild horses to tame",
+    "manual": false
+  },
+  "ccbgssse041": {
+    "id": "ccbgssse041",
+    "name": "Netch Leather Armor",
+    "files": ["ccBGSSSE041-NetchLeather.esl", "ccBGSSSE041-NetchLeather.bsa"],
+    "description": "Netch Leather armor set",
+    "manual": false
+  },
+  "ccbgssse043": {
+    "id": "ccbgssse043",
+    "name": "Ghosts of the Tribunal",
+    "files": ["ccBGSSSE043-CrossElv.esl", "ccBGSSSE043-CrossElv.bsa"],
+    "description": "Tribunal themed content",
+    "manual": false
+  },
+  "ccbgssse045": {
+    "id": "ccbgssse045",
+    "name": "Dead Man's Dread",
+    "files": ["ccBGSSSE045-Hasedoki.esl", "ccBGSSSE045-Hasedoki.bsa"],
+    "description": "Pirate ship player home",
+    "manual": false
+  },
+  "ccbgssse050": {
+    "id": "ccbgssse050",
+    "name": "Shadowfoot Sanctum",
+    "files": ["ccBGSSSE050-BA_Daedric.esl", "ccBGSSSE050-BA_Daedric.bsa"],
+    "description": "Thief hideout",
+    "manual": false
+  },
+  "ccbgssse051": {
+    "id": "ccbgssse051",
+    "name": "Alternative Armors - Daedric Mail",
+    "files": ["ccBGSSSE051-BA_DaedricMail.esl", "ccBGSSSE051-BA_DaedricMail.bsa"],
+    "description": "Daedric Mail armor",
+    "manual": false
+  },
+  "ccbgssse052": {
+    "id": "ccbgssse052",
+    "name": "Alternative Armors - Dragon Plate",
+    "files": ["ccBGSSSE052-BA_Iron.esl", "ccBGSSSE052-BA_Iron.bsa"],
+    "description": "Dragon Plate armor variant",
+    "manual": false
+  },
+  "ccbgssse053": {
+    "id": "ccbgssse053",
+    "name": "Alternative Armors - Dragonscale",
+    "files": ["ccBGSSSE053-BA_Leather.esl", "ccBGSSSE053-BA_Leather.bsa"],
+    "description": "Dragonscale armor variant",
+    "manual": false
+  },
+  "ccbgssse054": {
+    "id": "ccbgssse054",
+    "name": "Alternative Armors - Dwarven Mail",
+    "files": ["ccBGSSSE054-BA_Orcish.esl", "ccBGSSSE054-BA_Orcish.bsa"],
+    "description": "Dwarven Mail armor",
+    "manual": false
+  },
+  "ccbgssse055": {
+    "id": "ccbgssse055",
+    "name": "Alternative Armors - Ebony Plate",
+    "files": ["ccBGSSSE055-BA_OrcishScaled.esl", "ccBGSSSE055-BA_OrcishScaled.bsa"],
+    "description": "Ebony Plate armor variant",
+    "manual": false
+  },
+  "ccbgssse057": {
+    "id": "ccbgssse057",
+    "name": "Alternative Armors - Elven Hunter",
+    "files": ["ccBGSSSE057-BA_Stalhrim.esl", "ccBGSSSE057-BA_Stalhrim.bsa"],
+    "description": "Elven Hunter armor",
+    "manual": false
+  },
+  "ccbgssse058": {
+    "id": "ccbgssse058",
+    "name": "Alternative Armors - Glass",
+    "files": ["ccBGSSSE058-BA_Steel.esl", "ccBGSSSE058-BA_Steel.bsa"],
+    "description": "Glass armor variant",
+    "manual": false
+  },
+  "ccbgssse059": {
+    "id": "ccbgssse059",
+    "name": "Alternative Armors - Iron",
+    "files": ["ccBGSSSE059-BA_Dragonscale.esl", "ccBGSSSE059-BA_Dragonscale.bsa"],
+    "description": "Iron armor variant",
+    "manual": false
+  },
+  "ccbgssse060": {
+    "id": "ccbgssse060",
+    "name": "Alternative Armors - Leather",
+    "files": ["ccBGSSSE060-BA_Dragonplate.esl", "ccBGSSSE060-BA_Dragonplate.bsa"],
+    "description": "Leather armor variant",
+    "manual": false
+  },
+  "ccbgssse061": {
+    "id": "ccbgssse061",
+    "name": "Alternative Armors - Orcish Plate",
+    "files": ["ccBGSSSE061-BA_Dwarven.esl", "ccBGSSSE061-BA_Dwarven.bsa"],
+    "description": "Orcish Plate armor",
+    "manual": false
+  },
+  "ccbgssse062": {
+    "id": "ccbgssse062",
+    "name": "Alternative Armors - Orcish Scaled",
+    "files": ["ccBGSSSE062-BA_DwarvenMail.esl", "ccBGSSSE062-BA_DwarvenMail.bsa"],
+    "description": "Orcish Scaled armor",
+    "manual": false
+  },
+  "ccbgssse063": {
+    "id": "ccbgssse063",
+    "name": "Alternative Armors - Silver",
+    "files": ["ccBGSSSE063-BA_Ebony.esl", "ccBGSSSE063-BA_Ebony.bsa"],
+    "description": "Silver armor",
+    "manual": false
+  },
+  "ccbgssse064": {
+    "id": "ccbgssse064",
+    "name": "Alternative Armors - Stalhrim Fur",
+    "files": ["ccBGSSSE064-BA_Elven.esl", "ccBGSSSE064-BA_Elven.bsa"],
+    "description": "Stalhrim Fur armor",
+    "manual": false
+  },
+  "ccbgssse066": {
+    "id": "ccbgssse066",
+    "name": "Alternative Armors - Steel Soldier",
+    "files": ["ccBGSSSE066-Staves.esl", "ccBGSSSE066-Staves.bsa"],
+    "description": "Steel Soldier armor",
+    "manual": false
+  },
+  "ccbgssse067": {
+    "id": "ccbgssse067",
+    "name": "Arcane Archer Pack",
+    "files": ["ccBGSSSE067-DaedInv.esm", "ccBGSSSE067-DaedInv.bsa"],
+    "description": "Arcane arrows and quivers",
+    "manual": false
+  },
+  "ccbgssse068": {
+    "id": "ccbgssse068",
+    "name": "Hendraheim",
+    "files": ["ccBGSSSE068-Hendraheim.esm", "ccBGSSSE068-Hendraheim.bsa"],
+    "description": "Nordic warrior player home",
+    "manual": false
+  },
+  "ccbgssse069": {
+    "id": "ccbgssse069",
+    "name": "The Contest",
+    "files": ["ccBGSSSE069-Contest.esl", "ccBGSSSE069-Contest.bsa"],
+    "description": "Arena combat content",
+    "manual": false
+  },
+  "cceejsse001": {
+    "id": "cceejsse001",
+    "name": "Myrwatch",
+    "files": ["ccEEJSSE001-Hstead.esm", "ccEEJSSE001-Hstead.bsa"],
+    "description": "Mage tower player home",
+    "manual": false
+  },
+  "cceejsse002": {
+    "id": "cceejsse002",
+    "name": "Civil War Champions",
+    "files": ["ccEEJSSE002-Tower.esl", "ccEEJSSE002-Tower.bsa"],
+    "description": "Civil War faction content",
+    "manual": false
+  },
+  "cceejsse003": {
+    "id": "cceejsse003",
+    "name": "Shadowfoot Sanctum",
+    "files": ["ccEEJSSE003-Hollow.esl", "ccEEJSSE003-Hollow.bsa"],
+    "description": "Thief player home",
+    "manual": false
+  },
+  "cceejsse004": {
+    "id": "cceejsse004",
+    "name": "Nchuanthumz: Dwarven Home",
+    "files": ["ccEEJSSE004-Hall.esl", "ccEEJSSE004-Hall.bsa"],
+    "description": "Dwarven ruin player home",
+    "manual": false
+  },
+  "cceejsse005": {
+    "id": "cceejsse005",
+    "name": "Fearsome Fists",
+    "files": ["ccEEJSSE005-Cave.esm", "ccEEJSSE005-Cave.bsa"],
+    "description": "Unarmed combat content",
+    "manual": false
+  },
+  "ccffbsse001": {
+    "id": "ccffbsse001",
+    "name": "Forgotten Seasons",
+    "files": ["ccFFBSSE001-ImperialDragon.esl", "ccFFBSSE001-ImperialDragon.bsa"],
+    "description": "Four seasons dungeon",
+    "manual": false
+  },
+  "ccffbsse002": {
+    "id": "ccffbsse002",
+    "name": "Crossbow Collection",
+    "files": ["ccFFBSSE002-CrossbowPack.esl", "ccFFBSSE002-CrossbowPack.bsa"],
+    "description": "New crossbow variants",
+    "manual": false
+  },
+  "ccfsvsse001": {
+    "id": "ccfsvsse001",
+    "name": "Fishing",
+    "files": ["ccFSVSSE001-Backpacks.esl", "ccFSVSSE001-Backpacks.bsa"],
+    "description": "Fishing mechanics",
+    "manual": false
+  },
+  "cckrtsse001": {
+    "id": "cckrtsse001",
+    "name": "Nordic Jewelry",
+    "files": ["ccKRTSSE001_Craftable.esl", "ccKRTSSE001_Craftable.bsa"],
+    "description": "Craftable Nordic jewelry",
+    "manual": false
+  },
+  "ccmtysse001": {
+    "id": "ccmtysse001",
+    "name": "Bone Wolf",
+    "files": ["ccMTYSSE001-KnightsPack.esl", "ccMTYSSE001-KnightsPack.bsa"],
+    "description": "Knights of the Nine content",
+    "manual": false
+  },
+  "ccmtysse002": {
+    "id": "ccmtysse002",
+    "name": "Civil War Champions",
+    "files": ["ccMTYSSE002-VE.esl", "ccMTYSSE002-VE.bsa"],
+    "description": "Civil War equipment",
+    "manual": false
+  },
+  "ccpewsse002": {
+    "id": "ccpewsse002",
+    "name": "Arms of Chaos",
+    "files": ["ccPEWSSE002-ArmsofChaos.esl", "ccPEWSSE002-ArmsofChaos.bsa"],
+    "description": "Chaotic weapons",
+    "manual": false
+  },
+  "ccqdrsse001": {
+    "id": "ccqdrsse001",
+    "name": "Saturalia Holiday Pack",
+    "files": ["ccQDRSSE001-SurvivalMode.esl", "ccQDRSSE001-SurvivalMode.bsa"],
+    "description": "Holiday decorations",
+    "manual": false
+  },
+  "ccqdrsse002": {
+    "id": "ccqdrsse002",
+    "name": "Nix-Hound",
+    "files": ["ccQDRSSE002-Firewood.esl", "ccQDRSSE002-Firewood.bsa"],
+    "description": "Pet Nix-Hound",
+    "manual": false
+  },
+  "ccrmssse001": {
+    "id": "ccrmssse001",
+    "name": "Shadowrend",
+    "files": ["ccRMSSSE001-NecroHouse.esl", "ccRMSSSE001-NecroHouse.bsa"],
+    "description": "Necromancer house",
+    "manual": false
+  },
+  "cctwbsse001": {
+    "id": "cctwbsse001",
+    "name": "Survival Mode",
+    "files": ["ccTWBSSE001-PuzzleDungeon.esm", "ccTWBSSE001-PuzzleDungeon.bsa"],
+    "description": "Puzzle dungeon",
+    "manual": false
+  },
+  "ccvsvsse001": {
+    "id": "ccvsvsse001",
+    "name": "Tundra Homestead",
+    "files": ["ccVSVSSE001-Winter.esl", "ccVSVSSE001-Winter.bsa"],
+    "description": "Tundra homestead",
+    "manual": false
+  },
+  "ccvsvsse002": {
+    "id": "ccvsvsse002",
+    "name": "Shadowfoot Sanctum",
+    "files": ["ccVSVSSE002-Pets.esl", "ccVSVSSE002-Pets.bsa"],
+    "description": "Pet content",
+    "manual": false
+  },
+  "ccvsvsse003": {
+    "id": "ccvsvsse003",
+    "name": "Necromantic Grimoire",
+    "files": ["ccVSVSSE003-NecroArts.esl", "ccVSVSSE003-NecroArts.bsa"],
+    "description": "Necromancy spells",
+    "manual": false
+  },
+  "ccvsvsse004": {
+    "id": "ccvsvsse004",
+    "name": "Bloodchill Manor",
+    "files": ["ccVSVSSE004-BeARain.esl", "ccVSVSSE004-BeARain.bsa"],
+    "description": "Vampire player home",
+    "manual": false
+  },
+  "ccbgsfo4001": {
+    "id": "ccbgsfo4001",
+    "name": "Hellfire Power Armor",
+    "files": ["ccBGSFO4001-PipBoy(Black).esl", "ccBGSFO4001-PipBoy(Black).ba2"],
+    "description": "Hellfire Power Armor for Fallout 4",
+    "manual": false
+  },
+  "ccbgsfo4003": {
+    "id": "ccbgsfo4003",
+    "name": "Chinese Stealth Armor",
+    "files": ["ccBGSFO4003-PipBoy(Camo01).esl", "ccBGSFO4003-PipBoy(Camo01).ba2"],
+    "description": "Chinese Stealth Armor for Fallout 4",
+    "manual": false
+  },
+  "ccbgsfo4004": {
+    "id": "ccbgsfo4004",
+    "name": "Tunnel Snakes Rule!",
+    "files": ["ccBGSFO4004-PipBoy(Camo02).esl", "ccBGSFO4004-PipBoy(Camo02).ba2"],
+    "description": "Tunnel Snakes content for Fallout 4",
+    "manual": false
+  },
+  "ccbgsfo4006": {
+    "id": "ccbgsfo4006",
+    "name": "Nuka Girl Rocketsuit",
+    "files": ["ccBGSFO4006-PipBoy(Chrome).esl", "ccBGSFO4006-PipBoy(Chrome).ba2"],
+    "description": "Nuka Girl outfit for Fallout 4",
+    "manual": false
+  },
+  "ccbgsfo4016": {
+    "id": "ccbgsfo4016",
+    "name": "X-02 Power Armor",
+    "files": ["ccBGSFO4016-Prey.esl", "ccBGSFO4016-Prey.ba2"],
+    "description": "X-02 Power Armor for Fallout 4",
+    "manual": false
+  },
+  "ccbgsfo4018": {
+    "id": "ccbgsfo4018",
+    "name": "Horse Power Armor",
+    "files": ["ccBGSFO4018-GaussRiflePrototype.esl", "ccBGSFO4018-GaussRiflePrototype.ba2"],
+    "description": "Horse Power Armor for Fallout 4",
+    "manual": false
+  },
+  "ccbgsfo4019": {
+    "id": "ccbgsfo4019",
+    "name": "Power Armor Skins",
+    "files": ["ccBGSFO4019-ChineseStealthArmor.esl", "ccBGSFO4019-ChineseStealthArmor.ba2"],
+    "description": "Power Armor skins for Fallout 4",
+    "manual": false
+  },
+  "ccbgsfo4020": {
+    "id": "ccbgsfo4020",
+    "name": "Power Armor Skins - Gunners",
+    "files": ["ccBGSFO4020-PowerArmorSkin(Black).esl", "ccBGSFO4020-PowerArmorSkin(Black).ba2"],
+    "description": "Gunner Power Armor skin",
+    "manual": false
+  },
+  "ccbgsfo4038": {
+    "id": "ccbgsfo4038",
+    "name": "Modular Military Backpack",
+    "files": ["ccBGSFO4038-HorseArmor.esl", "ccBGSFO4038-HorseArmor.ba2"],
+    "description": "Military backpack for Fallout 4",
+    "manual": false
+  },
+  "ccbgsfo4044": {
+    "id": "ccbgsfo4044",
+    "name": "Hellcat Power Armor",
+    "files": ["ccBGSFO4044-HellfirePowerArmor.esl", "ccBGSFO4044-HellfirePowerArmor.ba2"],
+    "description": "Hellcat Power Armor for Fallout 4",
+    "manual": false
+  }
+}

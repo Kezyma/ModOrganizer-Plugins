@@ -18,8 +18,11 @@ class PluginFinderInstall:
         self._directory = directory
         self._organiser = organiser
         self._paths = paths
-    
-    _installData:Dict[str, InstallData] = None
+        self._installData = None
+        self._needRestart = False
+        self._commandQueue = []
+        self._manualPluginId = None
+
     def loadInstallData(self, reload=False) -> Dict[str, InstallData]:
         if self._installData is None or reload:
             filePath = self._strings.pfInstallDataPath
@@ -35,8 +38,6 @@ class PluginFinderInstall:
         filePath = self._strings.pfInstallDataPath
         return saveJson(filePath, self._installData)
 
-    _needRestart = False
-    _commandQueue = []
     def installBat(self, source:str, dest:str) -> str:
         return f'move /Y "{source}" "{dest}"\n'
     
@@ -44,7 +45,7 @@ class PluginFinderInstall:
         return f'del /F /Q "{source}"\n'
     
     def moKillBat(self) -> str:
-        return f'C:/Windows/system32/taskkill.exe /IM ModOrganizer.exe\n'
+        return f'taskkill.exe /IM ModOrganizer.exe\n'
     
     def moStartBat(self) -> str:
         return f'explorer "{self._strings.moExecutablePath}"\n'
@@ -217,7 +218,7 @@ class PluginFinderInstall:
             strMatch = re.match(self._strVerRegex, line)
             if strMatch:
                 self._log.debug("Found string version match.")
-                groups = match.groups()
+                groups = strMatch.groups()
                 glen = len(groups)
                 verStr = groups[0]
                 if glen > 1:
@@ -342,7 +343,6 @@ class PluginFinderInstall:
             return manifests[self._manualPluginId][NAME]
         return None
 
-    _manualPluginId = ""
     def treeIsPlugin(self, tree:mobase.IFileTree):
         """Determines if a tree is an MO2 plugin installer."""
         manifests = self._directory.loadManifests()

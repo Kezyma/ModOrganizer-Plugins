@@ -18,6 +18,9 @@ class RootBuilderBackup:
         self._settings = settings
         self._log = log
         self._cache = cache
+        self._overwrite = False
+        self._gamePath = Path()
+        self._backupPath = Path()
 
     def backupExists(self) -> bool:
         """Returns true if there are currently files backed up."""
@@ -39,9 +42,6 @@ class RootBuilderBackup:
         gameFiles = self._cache.cachedValidRootGameFiles()
         self.createPartialBackup(gameFiles, overwrite)
 
-    _overwrite = False
-    _gamePath = Path()
-    _backupPath = Path()
     def createPartialBackup(self, paths:List[str], overwrite=False):
         """Creates a backup of a specific list of game paths."""
         self._gamePath = Path(self._strings.gamePath)

@@ -7,6 +7,10 @@ from pathlib import Path
 def icon(icon: str) -> QIcon:
     return QIcon(str(Path(__file__).parent.joinpath("icons").joinpath(icon)))
 
+def iconPath(icon_name: str) -> str:
+    """Returns the absolute path to an icon file for use with ModDataContent."""
+    return str(Path(__file__).parent.joinpath("icons").joinpath(icon_name))
+
 CHECK_ICON = icon("ui-check.ico")
 MENU_ICON = icon("ui-menu.ico")
 MINUS_ICON = icon("ui-minus.ico")
@@ -40,3 +44,7 @@ RECYCLE_ICON = icon("ui-recycle.ico")
 OPENMW_ICON = icon("ui-openmw.ico")
 CLIP_ICON = icon("ui-clip.ico")
 DISCORD_ICON = icon("ui-discord.ico")
+
+# Icon paths for ModDataContent (absolute paths required)
+OPENMW_CONTENT_ICON_PATH = iconPath("icon_openmw.ico")
+ROOTBUILDER_CONTENT_ICON_PATH = iconPath("icon_rootbuilder.ico")

@@ -13,8 +13,8 @@ class ProfileSyncGroups:
         self._organiser = organiser
         self._strings = strings
         self._log = log
+        self._groups = None
 
-    _groups = None
     def loadSyncGroups(self) -> Dict[str, GroupData]:
         """Loads and returns the current sync groups."""
         if self._groups is not None:

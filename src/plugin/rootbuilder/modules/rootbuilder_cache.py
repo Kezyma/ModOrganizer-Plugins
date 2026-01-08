@@ -17,13 +17,15 @@ class RootBuilderCache:
         self._paths = paths
         self._settings = settings
         self._log = log
+        self._cache = None
+        self._currentCache = {}
+        self._cacheLock = threading.Lock()
 
     def cacheFileExists(self) -> bool:
         """Returns true if there is a current build data file."""
         filePath = self._strings.rbCachePath
         return Path(filePath).exists()
 
-    _cache = None
     def loadCacheFile(self) -> Dict[str, CacheItem]:
         """Loads and returns the current cache file, or an empty object if none exists."""
         if self._cache is not None:
@@ -59,8 +61,7 @@ class RootBuilderCache:
             return gameFiles
         else:
             return self._paths.validGameRootFiles()
-    
-    _currentCache = {}
+
     def updateCache(self) -> Dict[str, CacheItem]:
         """Loads the current cache file and then updates it with any changes."""
         self._currentCache = self.loadCacheFile()
@@ -79,17 +80,26 @@ class RootBuilderCache:
     def _updateCache(self, filePath:str, useHash:bool, gamePath:str):
         relativePath = self._paths.relativePath(gamePath, filePath)
         relativeLower = relativePath.lower()
-        if (useHash and (relativeLower not in self._currentCache or self._currentCache[relativeLower][HASH] == "")) and Path(filePath).exists():
-            self._currentCache[relativeLower] = CacheItem({
+        # Check if we need to update (read under lock)
+        with self._cacheLock:
+            needsUpdate = relativeLower not in self._currentCache
+            needsHash = useHash and (needsUpdate or self._currentCache.get(relativeLower, {}).get(HASH, "") == "")
+
+        if needsHash and Path(filePath).exists():
+            cacheItem = CacheItem({
                 RELATIVE: relativePath,
                 HASH: hashFile(filePath),
                 MODIFIED: os.path.getmtime(filePath),
                 SIZE: os.path.getsize(filePath)
             })
-        elif (not useHash and relativeLower not in self._currentCache):
-            self._currentCache[relativeLower] = CacheItem({
+            with self._cacheLock:
+                self._currentCache[relativeLower] = cacheItem
+        elif not useHash and needsUpdate and Path(filePath).exists():
+            cacheItem = CacheItem({
                 RELATIVE: relativePath,
                 HASH: "",
                 MODIFIED: os.path.getmtime(filePath),
                 SIZE: os.path.getsize(filePath)
             })
+            with self._cacheLock:
+                self._currentCache[relativeLower] = cacheItem

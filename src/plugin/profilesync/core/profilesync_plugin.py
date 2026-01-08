@@ -30,7 +30,7 @@ class ProfileSyncPlugin(BasePlugin):
         """ Current list of game settings for Mod Organizer. """
         baseSettings = super().settings()
         customSettings = [
-            mobase.PluginSetting("useasync",self.__tr("Determines whether to use threads for saving functions."), False),
+            mobase.PluginSetting("useasync",self.__tr("Determines whether to use threads for saving functions."), True),
         ]
         for setting in customSettings:
             baseSettings.append(setting)

@@ -53,6 +53,7 @@ class CommonUpdate:
         self._widget.noUpdateLabel.setText(f"{self._plugin.localizedName()} is up to date.")
         self._widget.updateFoundLabel.setText(f"New version of {self._plugin.localizedName()} is available.")
         self._widget.checkUpdateButton.clicked.connect(self.checkUpdate_clicked)
+        self._widget.updateFoundButton.clicked.connect(self.updateFound_clicked)
 
     def checkUpdate_clicked(self):
         """Checks for an update"""

@@ -23,6 +23,14 @@ try:
     from .listexporter_init import createPlugins as lePlugins
 except:
     def lePlugins(): return []
+try:
+    from .reinstaller_init import createPlugins as riPlugins
+except:
+    def riPlugins(): return []
+try:
+    from .curationclub_init import createPlugins as ccPlugins
+except:
+    def ccPlugins(): return []
 
 def createPlugins():
     plugins = []
@@ -32,4 +40,6 @@ def createPlugins():
     plugins.extend(ompPlugins())
     plugins.extend(scPlugins())
     plugins.extend(lePlugins())
+    plugins.extend(riPlugins())
+    plugins.extend(ccPlugins())
     return plugins

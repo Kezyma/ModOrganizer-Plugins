@@ -23,8 +23,13 @@ class RootBuilderBuilder:
         self._log = log
         self._data = data
         self._cache = cache
+        self._gamePath = Path()
+        self._buildData = {}
+        self._cacheData = {}
+        self._overwritePath = ""
+        self._backupPath = ""
+        self._syncLock = threading.Lock()
 
-    _gamePath = Path()
     def deployFiles(self, data:Dict[str, BuilDataItem], links=False):
         """Deploys a list of files via copy (or links) from build data."""
         self._gamePath = Path(self._strings.gamePath)
@@ -77,10 +82,6 @@ class RootBuilderBuilder:
         """Deploys a list of liles via copy from build data."""
         self.deployFiles(data, False)
 
-    _buildData = {}
-    _cacheData = {}
-    _overwritePath = ""
-    _backupPath = ""
     def syncFiles(self) -> dict:
         """Synchronises any deployed files with Mod Organizer and returns updated build data."""
         self._log.debug("Loading build and cache data.")
@@ -157,11 +158,12 @@ class RootBuilderBuilder:
                 destPath = Path(self._overwritePath) / relativePath
                 if copyFile(filePath, str(destPath)):
                     self._log.debug(f"Copied file from {filePath} to {destPath}")
-                    self._buildData[COPY][relativeLower] = BuilDataItem({
-                        SOURCE: str(destPath),
-                        RELATIVE: relativePath,
-                        HASH: newHash
-                    })
+                    with self._syncLock:
+                        self._buildData[COPY][relativeLower] = BuilDataItem({
+                            SOURCE: str(destPath),
+                            RELATIVE: relativePath,
+                            HASH: newHash
+                        })
                 else:
                     self._log.warning(f"Failed to copy file from {filePath} to {destPath}")
         else:
@@ -172,11 +174,12 @@ class RootBuilderBuilder:
                 newHash = hashFile(str(filePath))
             if copyFile(filePath, str(destPath)):
                 self._log.debug(f"Copied file from {filePath} to {destPath}")
-                self._buildData[COPY][relativeLower] = BuilDataItem({
-                    SOURCE: str(destPath),
-                    RELATIVE: relativePath,
-                    HASH: newHash
-                })
+                with self._syncLock:
+                    self._buildData[COPY][relativeLower] = BuilDataItem({
+                        SOURCE: str(destPath),
+                        RELATIVE: relativePath,
+                        HASH: newHash
+                    })
             else:
                 self._log.warning(f"Failed to copy file from {filePath} to {destPath}")
 

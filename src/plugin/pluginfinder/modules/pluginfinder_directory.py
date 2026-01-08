@@ -14,6 +14,9 @@ class PluginFinderDirectory:
         self._strings = strings
         self._log = log
         self._organiser = organiser
+        self._directory = None
+        self._manifests = None
+        self._manifestsLock = threading.Lock()
 
     _remoteDirectoryUrl = "https://raw.githubusercontent.com/Kezyma/ModOrganizer-Plugins/main/directory/plugin_directory.json"
 
@@ -34,17 +37,19 @@ class PluginFinderDirectory:
         else:
             self._log.warning("Could not download directory update.")
 
-    _directory:List[DirectoryData] = None
     def loadDirectory(self, reload=False) -> List[DirectoryData]:
         if self._directory is None or reload:
             filePath = self._strings.pfDirectoryPath
             self._directory = loadJson(filePath)
             if self._directory is None:
                 self.initialDeploy()
-                return self.loadDirectory()
+                # Try loading once more after initial deploy, but don't recurse infinitely
+                self._directory = loadJson(filePath)
+                if self._directory is None:
+                    self._log.warning("Could not load plugin directory")
+                    return []
         return self._directory
-    
-    _manifests:Dict[str, ManifestData] = None
+
     def loadManifests(self, reload=False) -> Dict[str, ManifestData]:
         if self._manifests is None or reload:
             directory = self.loadDirectory()
@@ -69,7 +74,9 @@ class PluginFinderDirectory:
         else:
             self._log.warning(f"Could not download manifest from {url}")
         if filePath.exists():
-            self._manifests[id] = ManifestData(loadJson(str(filePath)))
+            manifestData = ManifestData(loadJson(str(filePath)))
+            with self._manifestsLock:
+                self._manifests[id] = manifestData
 
 
     def getPluginManifest(self, pluginId:str) -> ManifestData:
