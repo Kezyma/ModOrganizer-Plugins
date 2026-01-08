@@ -16,6 +16,8 @@ class OpenMWPlayerDataChecker(mobase.ModDataChecker):
     # Valid OpenMW-specific file extensions
     VALID_EXTENSIONS = (".omwaddon", ".omwscripts", ".omwgame")
 
+    VALID_FOLDERS = ("animations", "fonts", "l10n", "mygui", "scripts", "shaders")
+
     def __init__(self, log: CommonLog):
         super().__init__()
         self._log = log
@@ -33,6 +35,10 @@ class OpenMWPlayerDataChecker(mobase.ModDataChecker):
         for entry in filetree:
             name = entry.name().lower()
             if name.endswith(self.VALID_EXTENSIONS):
+                return True
+            
+        for entry in filetree:
+            if entry.isDir() and entry.name().lower() in self.VALID_FOLDERS:
                 return True
         return False
 
