@@ -37,17 +37,72 @@ To install a plugin from this repository, download a plugin from above and extra
 - `tools` contains various batch files.
 
 ### Tools
-the `tools` folder contains a few batch files.
 
+The `tools` folder contains build scripts and utilities. All scripts can be run from any directory.
 
-#### Generate Release.bat
-When run, will deploy all plugins from the `src` folder to the `release` folder as well as zip them up and store them in `release\zip`.
+Version format is `x.y.z` (major.minor.build).
 
-#### Generate UI.bat
-When run, will search the `src` folder for `ui` files alongside `qt5` and `qt6` folders, then convert those files to python for each version of PyQt. Requires PyQt5 and PyQt6 to be installed.
+#### Build Scripts
 
-#### Launch Debug.bat
-When run, will generate UI and a release with `Generate UI.bat` and `Generate Release.bat`, then download Mod Organizer 2 (if not already downloaded), install it in a folder called `debug`, deploy all plugins to it and launch `ModOrganizer.exe` for testing.
+| Script | Description |
+|--------|-------------|
+| `build.bat` | Interactive mode: select plugins to build |
+| `build.bat <plugin> [plugin2] ...` | Build specified plugin(s) using current version |
+| `build.bat all` | Build all plugins |
+| `build_all.bat` | Build all plugins (same as `build.bat all`) |
 
-#### MetaGenerator.exe
-When run, will check NexusMods for each plugin listed in `Plugins.json` and generate a file in the `meta` folder for Wabbajck list authors to use.
+Build scripts:
+- Generate UI files for PyQt5 and PyQt6
+- Copy plugin files to `release\plugins\<pluginname>`
+- Create versioned zip in `release\<pluginname>\<pluginname>.<version>.zip`
+
+#### Debug Scripts
+
+| Script | Description |
+|--------|-------------|
+| `debug.bat` | Interactive mode: select plugins to build and launch MO2 |
+| `debug.bat <plugin> [plugin2] ...` | Build specified plugin(s) and launch MO2 |
+| `debug.bat all` | Build all plugins and launch MO2 |
+| `debug_all.bat` | Build all plugins and launch MO2 (same as `debug.bat all`) |
+
+Debug scripts:
+- Stop any running MO2 instance
+- Download and install MO2 v2.5.2 to `debug\` if not present
+- Build specified plugins
+- Deploy built plugins to `debug\plugins\`
+- Launch MO2
+
+#### Version Scripts
+
+| Script | Description | Example |
+|--------|-------------|---------|
+| `inc_version.bat` | Interactive mode: select plugins | 1.2.5 -> 1.3.0 |
+| `inc_version.bat <plugin> [plugin2] ...` | Increment minor (Y), reset build (Z) | 1.2.5 -> 1.3.0 |
+| `inc_build.bat` | Interactive mode: select plugins | 1.2.5 -> 1.2.6 |
+| `inc_build.bat <plugin> [plugin2] ...` | Increment build (Z) | 1.2.5 -> 1.2.6 |
+
+All scripts support `all` as an argument to process all plugins.
+
+#### Typical Workflow
+
+```batch
+REM During development - just rebuild and test
+tools\debug.bat rootbuilder
+
+REM Before a release - increment version, build, and test
+tools\inc_version.bat rootbuilder
+tools\debug.bat rootbuilder
+
+REM Quick fix - increment build number
+tools\inc_build.bat rootbuilder
+tools\build.bat rootbuilder
+```
+
+#### Other Utilities
+
+| File | Description |
+|------|-------------|
+| `Generate UI.bat` | Converts `.ui` files to Python for PyQt5 and PyQt6. |
+| `Generate Release.bat` | Legacy: deploys all plugins from `src` to `release`. |
+| `Launch Debug.bat` | Legacy: generates UI, release, downloads MO2, launches for testing. |
+| `MetaGenerator.exe` | Generates NexusMods meta files for Wabbajack list authors. |

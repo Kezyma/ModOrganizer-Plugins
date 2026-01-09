@@ -171,7 +171,7 @@ class RootBuilderMenu(QtWidgets.QWidget):
         copyModeOff = len(copyFiles) == 1 and copyFiles[0] == ""
         usvfsModeOn = len(usvfsFiles) == 1 and usvfsFiles[0] == "**"
         usvfsModeOff = len(usvfsFiles) == 1 and usvfsFiles[0] == ""
-        usvfsLinkModeOn = len(linkFiles) == 2 and linkFiles[0] == "**\\*.exe" and linkFiles[1] == "**\*.dll"
+        usvfsLinkModeOn = len(linkFiles) == 2 and linkFiles[0] == "**\\*.exe" and linkFiles[1] == "**\\*.dll"
 
         linkMode = linkModeOn and copyModeOff and usvfsModeOff
         copyMode = copyModeOn and linkModeOff and usvfsModeOff

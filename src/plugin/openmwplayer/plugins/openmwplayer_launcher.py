@@ -7,6 +7,11 @@ from ....base.base_dialog import BaseDialog
 from ....common.common_qt import *
 from ....common.common_icons import *
 
+try:
+    from PyQt5.QtCore import QTimer
+except ImportError:
+    from PyQt6.QtCore import QTimer
+
 class OpenMWPlayerLauncher(OpenMWPlayerPlugin, mobase.IPlugin):
     def __init__(self):
         super().__init__()
@@ -15,16 +20,19 @@ class OpenMWPlayerLauncher(OpenMWPlayerPlugin, mobase.IPlugin):
 
     def init(self, organiser:mobase.IOrganizer):
         res = super().init(organiser)
+        self._organiser.onUserInterfaceInitialized(lambda window: self._onUiInit())
+        return res
 
+    def _onUiInit(self):
+        """Called when UI is initialized - game is now loaded."""
         managedGame = self._organiser.managedGame()
         if managedGame is None:
             return
-
+        
         gameName = managedGame.gameName().lower()
         if "morrowind" in gameName or "openmw" in gameName:
             self._organiser.onAboutToRun(lambda appName: self.onApplicationLaunch(appName))
             self._organiser.onFinishedRun(lambda appName, exitCode: self.onApplicationClose(appName))
-            self._organiser.onUserInterfaceInitialized(lambda window: self._onUiInit())
             self._organiser.onProfileChanged(lambda old, new: self.onModListChange())
 
             modList:mobase.IModList = self._organiser.modList()
@@ -37,12 +45,8 @@ class OpenMWPlayerLauncher(OpenMWPlayerPlugin, mobase.IPlugin):
             pluginList.onPluginMoved(lambda name, old, new: self.onModListChange())
             pluginList.onPluginStateChanged(lambda map: self.onModListChange())
 
-        return res
-
-    def _onUiInit(self):
-        """Called when UI is initialized - game is now loaded."""
-        self._registerGameFeatures()
-        self.onModListChange()
+            self._registerGameFeatures()
+            self.onModListChange()
 
     def _registerGameFeatures(self):
         """Register ModDataChecker and ModDataContent after game is loaded."""
@@ -90,12 +94,32 @@ class OpenMWPlayerLauncher(OpenMWPlayerPlugin, mobase.IPlugin):
         return []
 
     def onModListChange(self):
-        t = [
-            threading.Thread(target=self._openmwPlayer._files.refreshOpenmwCfg),
-            threading.Thread(target=self._openmwPlayer.setupDummyEsps)
-        ]
-        for nt in t:
-            nt.start()
+        """Handle mod list changes - pre-fetch MO2 data on main thread, then spawn background threads."""
+        # CRITICAL: Pre-fetch all MO2 API data on main thread BEFORE spawning any threads
+        # MO2's API is NOT thread-safe and calling it from background threads causes deadlocks
+        dataFolders = self._openmwPlayer._files.getDataFolders()
+        enabledPlugins = self._openmwPlayer._files.getEnabledPlugins()
+
+        # Spawn background threads with pre-fetched data (thread-safe operations only)
+        t1 = threading.Thread(
+            target=self._openmwPlayer._files._refreshOpenmwCfgWithData,
+            args=(dataFolders, enabledPlugins),
+            daemon=True
+        )
+        t2 = threading.Thread(
+            target=self._openmwPlayer._setupDummyEspsBackground,
+            daemon=True
+        )
+        t1.start()
+        t2.start()
+
+        # Schedule a check for pending refresh on main thread after background work likely completes
+        # Using QTimer.singleShot ensures the callback runs on the main thread
+        QTimer.singleShot(500, self._checkPendingRefresh)
+
+    def _checkPendingRefresh(self):
+        """Check if background operations flagged a need for MO2 refresh. Runs on main thread."""
+        self._openmwPlayer.checkPendingRefresh()
 
     def onApplicationLaunch(self, appName):
         return self._openmwPlayer.runApplication(appName)

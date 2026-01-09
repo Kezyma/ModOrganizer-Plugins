@@ -21,6 +21,9 @@ class OpenMWPlayer:
         self._files = OpenMWPlayerFiles(self._organiser, self._settings, self._strings, self._log)
         self._import = OpenMWPlayerImport(self._organiser, self._settings, self._strings)
         self._deploy = OpenMWPlayerDeploy(self._organiser, self._settings, self._strings)
+        # Thread-safety: flag and lock for deferred MO2 refresh
+        self._pendingRefresh = False
+        self._refreshLock = threading.Lock()
 
     def initialSetup(self):
         """Imports any missing openmw.cfg or settings.cfg for OpenMW Player to use."""
@@ -44,17 +47,36 @@ class OpenMWPlayer:
         self.setupDummyEsps()
 
     def setupDummyEspsAsync(self):
-        nt = threading.Thread(target=self.setupDummyEsps)
+        """Run setupDummyEsps in background thread. Use checkPendingRefresh() afterwards on main thread."""
+        nt = threading.Thread(target=self._setupDummyEspsBackground, daemon=True)
         nt.start()
 
+    def _setupDummyEspsBackground(self):
+        """Background-safe version that sets flag instead of calling refresh directly."""
+        needsRefresh = self._setupDummyEspsInternal()
+        if needsRefresh:
+            with self._refreshLock:
+                self._pendingRefresh = True
+
     def setupDummyEsps(self):
-        refresh = False
-        if self._settings.dummyesp():
-            refresh = self.createDummyEsps()
-        else:
-            refresh = self.deleteDummyEsps()
-        if refresh:
+        """Sets up dummy ESPs and refreshes MO2 if needed. MUST be called from main thread."""
+        needsRefresh = self._setupDummyEspsInternal()
+        if needsRefresh:
             self._organiser.refresh()
+
+    def _setupDummyEspsInternal(self):
+        """Internal method that creates/deletes dummy ESPs. Thread-safe, does not call refresh."""
+        if self._settings.dummyesp():
+            return self.createDummyEsps()
+        else:
+            return self.deleteDummyEsps()
+
+    def checkPendingRefresh(self):
+        """Check if refresh is pending and perform it. MUST be called from main thread."""
+        with self._refreshLock:
+            if self._pendingRefresh:
+                self._pendingRefresh = False
+                self._organiser.refresh()
         
     def createDummyEsps(self):
         refresh = False

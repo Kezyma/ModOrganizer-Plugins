@@ -14,6 +14,8 @@ class OpenMWPlayerFiles():
         self._settings = settings
         self._strings = strings
         self._log = log
+        # Thread-safety: lock for cfg refresh operations
+        self._refreshLock = threading.Lock()
 
     _settingsCfgHeadingRegex = r"\[(?P<title>[^\]]*)\]"
     # Updated regex to handle optional spaces around '=' and empty values
@@ -283,24 +285,57 @@ class OpenMWPlayerFiles():
                 for match in matches:
                     content.append(os.path.basename(match))
         return content
-    
-    _refreshInProgress = False
+
     def refreshOpenmwCfg(self):
-        if not self._refreshInProgress:
-            self._refreshInProgress = True
+        """Refreshes openmw.cfg - MUST be called from main thread as it accesses MO2 API."""
+        # Gather data from MO2 API on main thread
+        dataFolders = self.getDataFolders()
+        enabledPlugins = self.getEnabledPlugins()
+        # Now do the file I/O (thread-safe)
+        self._refreshOpenmwCfgWithData(dataFolders, enabledPlugins)
+
+    def _refreshOpenmwCfgWithData(self, dataFolders: list, enabledPlugins: list):
+        """Internal method that refreshes openmw.cfg using pre-fetched data. Thread-safe."""
+        with self._refreshLock:
             currentCfg = self.getCustomOpenmwCfg()
-            if currentCfg != None:
-                currentCfg["Data"] = self.getDataFolders()
-                currentCfg["Content"] = self.getEnabledPlugins()
-                validArchives = self.getArchiveOptions()
-                validGroundcover = self.getGroundcoverOptions()
+            if currentCfg is not None:
+                currentCfg["Data"] = dataFolders
+                currentCfg["Content"] = enabledPlugins
+                validArchives = self._getArchiveOptionsFromFolders(dataFolders)
+                validGroundcover = self._getGroundcoverOptionsFromFolders(dataFolders)
                 currentCfg["Archives"] = list(filter(lambda archive: archive in validArchives, currentCfg["Archives"]))
                 currentCfg["Groundcover"] = list(filter(lambda groundcover: groundcover in validGroundcover, currentCfg["Groundcover"]))
                 self.saveOpenmwCfg(self._strings.customOpenmwCfgPath(), currentCfg)
-            self._refreshInProgress = False
-        
-    def refreshOpenmwCfgAsync(self):
-        t = threading.Thread(target=self.refreshOpenmwCfg, daemon=True)
+
+    def _getArchiveOptionsFromFolders(self, dataFolders: list):
+        """Gets archive options from pre-fetched data folders. Thread-safe."""
+        archives = []
+        for folder in dataFolders:
+            globPattern = f"{folder}\\*.bsa"
+            matches = glob.glob(globPattern)
+            for match in matches:
+                archives.append(os.path.basename(match))
+        return archives
+
+    def _getGroundcoverOptionsFromFolders(self, dataFolders: list):
+        """Gets groundcover options from pre-fetched data folders. Thread-safe."""
+        content = []
+        for folder in dataFolders:
+            for ext in ["*.esp", "*.esm"]:
+                globPattern = f"{folder}\\{ext}"
+                matches = glob.glob(globPattern)
+                for match in matches:
+                    content.append(os.path.basename(match))
+        return content
+
+    def refreshOpenmwCfgAsync(self, dataFolders: list = None, enabledPlugins: list = None):
+        """Async refresh - if data not provided, MUST be called from main thread to fetch it."""
+        if dataFolders is None or enabledPlugins is None:
+            # Fetch on current thread (must be main thread!)
+            dataFolders = self.getDataFolders()
+            enabledPlugins = self.getEnabledPlugins()
+        # Now spawn thread with pre-fetched data
+        t = threading.Thread(target=self._refreshOpenmwCfgWithData, args=(dataFolders, enabledPlugins), daemon=True)
         t.start()
 
     def clearBOMFlag(self, path):

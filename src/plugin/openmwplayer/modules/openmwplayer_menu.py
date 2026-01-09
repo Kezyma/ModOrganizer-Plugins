@@ -139,6 +139,8 @@ class OpenMWPlayerMenu(QtWidgets.QWidget):
         except:
             pass
         self.archivesWidget.lstArchives.clear()
+        if self._openmwCfg is None:
+            return
         archiveOptions = self._openmwPlayer._files.getArchiveOptions()
         for archive in self._openmwCfg["Archives"]:
             item = QtWidgets.QListWidgetItem()
@@ -179,6 +181,10 @@ class OpenMWPlayerMenu(QtWidgets.QWidget):
             self.groundcoverWidget.cmbSort.currentIndexChanged.disconnect()
         except:
             pass
+
+        self.groundcoverWidget.lstGroundcover.clear()
+        if self._openmwCfg is None:
+            return
 
         # Build data list with position from profile's loadorder.txt
         groundcoverOptions = self._openmwPlayer._files.getGroundcoverOptions()
@@ -268,6 +274,8 @@ class OpenMWPlayerMenu(QtWidgets.QWidget):
 
     def rebindCustomOpenmwCfg(self):
         self.openmwcfgWidget.configTabs.clear()
+        if self._openmwCfg is None:
+            return
         customCfg = self._openmwCfg["Settings"]
         # Get all the categories to use as tabs
         tabNames = []
