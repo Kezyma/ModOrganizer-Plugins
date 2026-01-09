@@ -94,8 +94,8 @@
       ]
     },
     {
-      "Version": "2.1.0",
-      "Released": "2026-01-07",
+      "Version": "2.1.1",
+      "Released": "2026-01-09",
       "MinSupport": "2.4.0",
       "MaxSupport": "2.5.2",
       "MinWorking": "2.4.0",
@@ -107,9 +107,10 @@
         "(2.1.0) Help text describing each setting in settings.cfg is now displayed in the OpenMW Player tool, to make it more obvious what each setting does (taken from the OpenMW default settings.cfg comments).",
         "(2.1.0) The settings.cfg editor panel resetting to the first tab on every edit has been fixed.",
         "(2.1.0) The groundcover tab not allowing esm files to be selected has been fixed.",
-        "(2.1.0) Fixed a bug where settings with a blank default would not save when updated in OpenMW Player."
+        "(2.1.0) Fixed a bug where settings with a blank default would not save when updated in OpenMW Player.",
+        "(2.1.1) Fixed a bug where MO2 can freeze/crash when switching profiles."
       ],
-      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/openmwplayer/openmwplayer.2.1.0.zip",
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/openmwplayer/openmwplayer.2.1.1.zip",
       "PluginPath": [
         "openmwplayer"
       ],

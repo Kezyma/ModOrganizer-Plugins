@@ -66,15 +66,16 @@
       ]
     },
     {
-      "Version": "5.1.0",
-      "Released": "2026-01-07",
+      "Version": "5.1.1",
+      "Released": "2026-01-09",
       "MinSupport": "2.4.0",
       "MaxSupport": "2.5.0",
       "MinWorking": "2.4.0",
       "ReleaseNotes": [
-        "(5.1.0) Installing a mod with only a Root folder will no longer warn the user that the mod looks incorrect."
+        "(5.1.0) Installing a mod with only a Root folder will no longer warn the user that the mod looks incorrect.",
+        "(5.1.1) Fixed an error where Root Builder was checking a path with an invalid escape string."
       ],
-      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.5.1.0.zip",
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.5.1.1.zip",
       "PluginPath": [
         "rootbuilder"
       ],
