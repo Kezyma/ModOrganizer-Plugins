@@ -4,7 +4,7 @@ from .rootbuilder_strings import RootBuilderStrings
 from ..core.rootbuilder_settings import RootBuilderSettings
 from ....common.common_paths import CommonPaths
 from ....common.common_log import CommonLog
-from typing import List
+from typing import List, Set
 
 class RootBuilderPaths(CommonPaths):
     """Root Builder paths module, contains path related functions for Root Builder."""
@@ -14,32 +14,47 @@ class RootBuilderPaths(CommonPaths):
         self._strings = strings
         self._settings = settings
 
-    def gameFiles(self)-> List[str]:
-        """Gets a complete list of files in the game folder."""
-        gameFolder = self._strings.gamePath
-        gameFiles = self.files(gameFolder)
-        return gameFiles
-    
-    def gameRootFiles(self)-> List[str]:
-        """Gets a complete list of files in the game folder, minus the game data folder."""
-        allFiles = self.gameFiles()
-        #dataFolder = self._strings.gameDataPath
-        #gameFolder = self._strings.gamePath
-        #res = []
-        #if dataFolder != gameFolder:
-        #    for path in allFiles:
-        #        if not self.pathShared(dataFolder, path):
-        #            res.append(path)
-        #else:
-        #    res = allFiles
-        return allFiles
-    
     def validGameRootFiles(self) -> List[str]:
         """Gets a complete list of files in the game folder that are valid for Root Builder."""
         gamePath = self._strings.gamePath
-        gameFiles = self.gameRootFiles()
-        return self.removeExclusions(gamePath, gameFiles)
-        
+        excludedPaths = set()
+        regexExclusions = []
+        for exc in self._settings.exclusions():
+            if exc != "":
+                if not exc.startswith("r:"):
+                    excludePath = str(Path(glob.escape(gamePath)) / exc)
+                    for match in glob.glob(excludePath, recursive=True):
+                        excludedPaths.add(match)
+                elif exc.startswith("r:"):
+                    pattern = exc.replace("r:", "")
+                    regexExclusions.append(pattern)
+
+        return self._filesWithExclusions(gamePath, gamePath, excludedPaths, regexExclusions)
+
+    def _filesWithExclusions(self, path:str, exclusionRoot:str, excludedPaths:Set[str], regexExclusions:List[str], recursive=True) -> List[str]:
+        """Retrieves a collection of files in the specified path, ignoring matches from exclusions"""
+        basePath = Path(glob.escape(path))
+        basePath = basePath / "*"
+        files = []
+        allItems = glob.glob(str(basePath), recursive=True)
+        for itm in allItems:
+            itmPath = Path(itm)
+            if self._includeFile(itm, exclusionRoot, excludedPaths, regexExclusions):
+                if itmPath.is_file():
+                    files.append(itm)
+                elif recursive and itmPath.is_dir():
+                    files.extend(self._filesWithExclusions(itm, exclusionRoot, excludedPaths, regexExclusions, recursive))
+        return files
+
+    def _includeFile(self, path:str, exclusionRoot:str, excludedPaths:Set[str], regexExclusions:List[str]) -> bool:
+        if path in excludedPaths:
+            return False
+        for pattern in regexExclusions:
+            rel = self.relativePath(exclusionRoot, path)
+            if re.match(pattern, rel):
+                return False
+        return True
+
     def enabledRootModFolders(self) -> List[str]:
         """Gets a complete list of enabled Root mod folders."""
         modList = self._organiser.modList().allModsByProfilePriority()
