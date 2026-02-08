@@ -38,11 +38,6 @@ Download Root Builder from [Nexus Mods](https://www.nexusmods.com/skyrimspeciale
 Extract the `rootbuilder` folder from the zip file and place it in Mod Organizer's plugins folder:
 - Example: `C:\Mod Organizer\plugins\rootbuilder\`
 
-Inside the folder you should find:
-- A `shared` folder
-- A `rootbuilder` folder
-- A file called `__init__.py`
-
 Root Builder will start the next time you run Mod Organizer.
 
 Alternatively, you can install it through [Plugin Finder](pluginfinder.md) or use the [Mod Organizer Setup Tool](https://www.nexusmods.com/site/mods/599).
