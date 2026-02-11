@@ -106,6 +106,19 @@
           </widget>
          </item>
          <item>
+          <widget class="QPushButton" name="btnClearConfig">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Clear</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QLabel" name="lblConfig">
            <property name="text">
             <string>...</string>
@@ -130,7 +143,7 @@
          </size>
         </property>
         <property name="text">
-         <string>Select the location of the openmw.cfg file, this is usually located in your documents folders. Do NOT select the openmw.cfg file inside the OpenMW game folder.</string>
+         <string>The location of your openmw.cfg file (usually Documents/My Games/OpenMW/). If cleared or not set, uses the default location automatically. Select a custom path only if OpenMW is installed in a non-standard location.</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -190,6 +203,62 @@
         </property>
         <property name="text">
          <string>Creates dummy esp files for every omwaddon and omwscript, allowing them to be enabled and sorted in Mod Organizer. These should NOT be enabled in the OpenMW Launcher.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widget_legacy" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>80</height>
+      </size>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_legacy">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="label_legacy_title">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Deployment Mode</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="chkLegacyMode">
+        <property name="text">
+         <string>Enable Legacy Mode (for older OpenMW versions)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_legacy_help">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Legacy mode deploys config files to your OpenMW folder before launch and restores them after. Enable this if you experience issues with older OpenMW versions or third-party tools. When disabled, virtual file mappings are used instead.</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>

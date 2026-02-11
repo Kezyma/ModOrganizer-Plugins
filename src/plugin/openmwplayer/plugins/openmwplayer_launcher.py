@@ -125,4 +125,7 @@ class OpenMWPlayerLauncher(OpenMWPlayerPlugin, mobase.IPlugin):
         return self._openmwPlayer.runApplication(appName)
 
     def onApplicationClose(self, appName):
-        self._openmwPlayer._deploy.restoreCfg()
+        """Handle application close - restore configs only in legacy mode."""
+        if self._openmwPlayer._settings.legacymode():
+            self._openmwPlayer._deploy.restoreCfg()
+        # In USVFS mode, nothing to restore - files were never deployed

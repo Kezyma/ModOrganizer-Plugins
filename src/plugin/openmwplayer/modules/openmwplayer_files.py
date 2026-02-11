@@ -298,14 +298,30 @@ class OpenMWPlayerFiles():
         """Internal method that refreshes openmw.cfg using pre-fetched data. Thread-safe."""
         with self._refreshLock:
             currentCfg = self.getCustomOpenmwCfg()
-            if currentCfg is not None:
-                currentCfg["Data"] = dataFolders
-                currentCfg["Content"] = enabledPlugins
-                validArchives = self._getArchiveOptionsFromFolders(dataFolders)
-                validGroundcover = self._getGroundcoverOptionsFromFolders(dataFolders)
-                currentCfg["Archives"] = list(filter(lambda archive: archive in validArchives, currentCfg["Archives"]))
-                currentCfg["Groundcover"] = list(filter(lambda groundcover: groundcover in validGroundcover, currentCfg["Groundcover"]))
-                self.saveOpenmwCfg(self._strings.customOpenmwCfgPath(), currentCfg)
+
+            # If no custom config exists, initialize from bundled default
+            if currentCfg is None:
+                defaultPath = self._strings.defaultOpenmwCfgPath
+                if Path(defaultPath).exists():
+                    currentCfg = self.readOpenmwCfg(defaultPath)
+                else:
+                    # Emergency fallback: create minimal structure
+                    currentCfg = {
+                        "Archives": [],
+                        "Groundcover": [],
+                        "Content": [],
+                        "Data": [],
+                        "Settings": {},
+                        "Extra": []
+                    }
+
+            currentCfg["Data"] = dataFolders
+            currentCfg["Content"] = enabledPlugins
+            validArchives = self._getArchiveOptionsFromFolders(dataFolders)
+            validGroundcover = self._getGroundcoverOptionsFromFolders(dataFolders)
+            currentCfg["Archives"] = list(filter(lambda archive: archive in validArchives, currentCfg["Archives"]))
+            currentCfg["Groundcover"] = list(filter(lambda groundcover: groundcover in validGroundcover, currentCfg["Groundcover"]))
+            self.saveOpenmwCfg(self._strings.customOpenmwCfgPath(), currentCfg)
 
     def _getArchiveOptionsFromFolders(self, dataFolders: list):
         """Gets archive options from pre-fetched data folders. Thread-safe."""

@@ -14,3 +14,11 @@ class OpenMWPlayerSettings(BaseSettings):
     def dummyesp(self):
         """ Whether to use dummy esp files to enable omwaddons. """
         return self.setting("dummyesp")
+
+    def legacymode(self) -> bool:
+        """ Whether to use legacy deployment mode (disabled by default). """
+        return self.setting("legacymode")
+
+    def openmwexepath(self) -> str:
+        """ Path to openmw.exe for OpenMW folder mappings (auto-detected). """
+        return self.setting("openmwexepath")

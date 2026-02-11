@@ -10,7 +10,7 @@ class OpenMWPlayerPlugin(BasePlugin):
     """Base OpenMW Player plugin, to be inherited by all other plugins."""
 
     def __init__(self):
-        super().__init__("OpenMWPlayer", "OpenMW Player", mobase.VersionInfo(2, 1, 1))
+        super().__init__("OpenMWPlayer", "OpenMW Player", mobase.VersionInfo(2, 1, 3))
 
     def init(self, organiser:mobase.IOrganizer):
         self._openmwPlayer = OpenMWPlayer(organiser)
@@ -31,7 +31,9 @@ class OpenMWPlayerPlugin(BasePlugin):
         baseSettings = super().settings()
         customSettings = [
             mobase.PluginSetting("openmwcfgpath",self.__tr("Path to openmw.cfg"),"/Path/To/OpenMW/openmw.cfg"),
-            mobase.PluginSetting("dummyesp",self.__tr("Enables omwaddon and omwscripts support via esp files."), False)
+            mobase.PluginSetting("dummyesp",self.__tr("Enables omwaddon and omwscripts support via esp files."), False),
+            mobase.PluginSetting("legacymode",self.__tr("Enable legacy deployment mode for older OpenMW versions."), False),
+            mobase.PluginSetting("openmwexepath",self.__tr("Path to OpenMW executable (auto-detected)."), "")
             ]
         for setting in customSettings:
             baseSettings.append(setting)

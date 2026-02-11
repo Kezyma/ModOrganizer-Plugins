@@ -83,6 +83,7 @@ class OpenMWPlayerMenu(QtWidgets.QWidget):
     _settingsCfg = {}
     _openmwCfg = {}
     _groundcoverData = []  # List of {"name": str, "enabled": bool, "loadOrder": int}
+    _optionsConnected = False  # Flag to prevent signal reconnection
 
     def rebind(self):
         self._settingsCfg = self._openmwPlayer._files.getCompleteSettingsCfg()
@@ -92,16 +93,29 @@ class OpenMWPlayerMenu(QtWidgets.QWidget):
         self.rebindOpenmwCfg()
 
     def rebindOptions(self):
+        """Binds the options tab UI elements."""
+        # Display path with "(Default)" indicator if using default
         cfgPath = self._openmwPlayer._strings.openmwCfgPath()
-        self.optionsWidget.lblConfig.setText(cfgPath)
-        self.optionsWidget.btnConfig.clicked.connect(self.selectOpenmwCfgPath)
+        isDefault = self._openmwPlayer._strings.isUsingDefaultPath()
+        displayPath = f"{cfgPath} (Default)" if isDefault else cfgPath
+        self.optionsWidget.lblConfig.setText(displayPath)
+
+        # Connect signals only once to prevent multiple handlers
+        if not self._optionsConnected:
+            self.optionsWidget.btnConfig.clicked.connect(self.selectOpenmwCfgPath)
+            self.optionsWidget.btnClearConfig.clicked.connect(self.clearOpenmwCfgPath)
+            self.optionsWidget.chkDummy.stateChanged.connect(self.toggleDummyEsp)
+            self.optionsWidget.chkLegacyMode.stateChanged.connect(self.toggleLegacyMode)
+            self.optionsWidget.btnImport.clicked.connect(self.importOpenmwCfg)
+            self.optionsWidget.btnExport.clicked.connect(self.exportOpenmwCfg)
+            self._optionsConnected = True
 
         dummyEsp = self._openmwPlayer._settings.dummyesp()
         self.optionsWidget.chkDummy.setChecked(dummyEsp)
-        self.optionsWidget.chkDummy.stateChanged.connect(self.toggleDummyEsp)
 
-        self.optionsWidget.btnImport.clicked.connect(self.importOpenmwCfg)
-        self.optionsWidget.btnExport.clicked.connect(self.exportOpenmwCfg)
+        # Legacy mode toggle
+        legacyMode = self._openmwPlayer._settings.legacymode()
+        self.optionsWidget.chkLegacyMode.setChecked(legacyMode)
 
     def selectOpenmwCfgPath(self):
         manualPath = Path(QFileDialog.getOpenFileName(None, "Locate OpenMW Config File", ".", "OpenMW Config File (openmw.cfg)")[0])
@@ -109,9 +123,21 @@ class OpenMWPlayerMenu(QtWidgets.QWidget):
             self._openmwPlayer._settings.updateSetting("openmwcfgpath", str(manualPath))
             self.optionsWidget.lblConfig.setText(str(manualPath))
 
+    def clearOpenmwCfgPath(self):
+        """Clears the saved openmw.cfg path, reverting to default behavior."""
+        self._openmwPlayer._settings.updateSetting("openmwcfgpath", "")
+        # Update display to show the default path with indicator
+        cfgPath = self._openmwPlayer._strings.openmwCfgPath()
+        self.optionsWidget.lblConfig.setText(f"{cfgPath} (Default)")
+
     def toggleDummyEsp(self):
         enabled = self.optionsWidget.chkDummy.isChecked()
         self._openmwPlayer.toggleDummyEsps(enabled)
+
+    def toggleLegacyMode(self):
+        """Toggle legacy deployment mode."""
+        enabled = self.optionsWidget.chkLegacyMode.isChecked()
+        self._openmwPlayer._settings.updateSetting("legacymode", enabled)
 
     def importOpenmwCfg(self):
         self._openmwPlayer.importSettings()
@@ -123,6 +149,7 @@ class OpenMWPlayerMenu(QtWidgets.QWidget):
     def exportOpenmwCfg(self):
         self._openmwPlayer._import.exportOpenmwCfg()
         self._openmwPlayer._import.exportSettingsCfg()
+        self._openmwPlayer._import.exportLauncherCfg()
 
     def rebindOpenmwCfg(self):
         self.rebindCustomOpenmwCfg()
