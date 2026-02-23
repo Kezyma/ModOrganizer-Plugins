@@ -35,11 +35,6 @@ Download OpenMW Player from [Nexus Mods](https://www.nexusmods.com/morrowind/mod
 Extract the `openmwplayer` folder from the zip file and place it in Mod Organizer's plugins folder:
 - Example: `C:\Mod Organizer\plugins\openmwplayer\`
 
-Inside the folder you should find:
-- A `shared` folder
-- An `openmwplayer` folder
-- A file called `__init__.py`
-
 OpenMW Player will start the next time you run Mod Organizer.
 
 Alternatively, install through [Plugin Finder](pluginfinder.md) or use the [Mod Organizer Setup Tool](https://www.nexusmods.com/site/mods/599).
