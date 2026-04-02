@@ -79,11 +79,13 @@ Root Builder adds quick access items to the Tools menu:
 
 ![Tools Menu](img/rootbuilder_tools.png)
 
-- **Build**: Deploy root files to the game folder
-- **Sync**: Update deployed files with current mod changes
-- **Clear**: Remove all deployed root files and restore backups
+- **Build**: Deploy root files to the game folder.
+- **Sync**: Update files in Mod Organizer with any changes made to the game folder.
+- **Clear**: Remove all deployed root files and restore backups.
 
-> **Important:** Always run Clear after finishing any manual Build. Root Builder can encounter issues if the game receives an update before Clear is run.
+These quick actions do not generally need to be used, unless you have disabled autobuild in Root Builder's settings, as all three will run automatically as you launch and close applications through Mod Organizer.
+
+> **Important:** Always run Clear after finishing with any manual Build. Root Builder can encounter issues if the game receives an update before Clear is run.
 
 ## Main Menu
 
