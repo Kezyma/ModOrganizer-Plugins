@@ -183,33 +183,26 @@ class OpenMWPlayer:
         # For openmw.exe with profile saves, we need --user-data argument
         # This requires using startApplication to pass arguments
         if fileName in [x.lower() for x in self._strings.openMWSupportedExecutables]:
-            if profile.localSavesEnabled():
-                # Need to pass --user-data argument
-                localSavePath = self._strings.localSavesPath()
+            customCfgPath = str(Path(self._strings.customOpenmwCfgPath()).parent)
+            args = [appPath, "--replace", "config", "--config", f"\"{customCfgPath}\""]
 
-                # Ensure saves directory exists
+            if profile.localSavesEnabled():
+                localSavePath = self._strings.localSavesPath()
                 savesPath = Path(localSavePath) / "saves"
                 if not savesPath.exists():
                     os.makedirs(savesPath, exist_ok=True)
+                args.extend(["--replace", "user-data", "--user-data", f'"{localSavePath}"'])
 
-                args = [f'--replace', 'user-data', '--user-data', f'"{localSavePath}"']
+            self._log.debug(f"Launching {appPath} with args: {args}")
 
-                self._log.debug(f"Launching {appPath} with args: {args}")
+            self._inRedirect = True
+            self._redirectPath = appPath
+            basePath = Path(appPath).parent
 
-                # Set redirect detection flags BEFORE calling startApplication
-                self._inRedirect = True
-                self._redirectPath = appPath
-                basePath = Path(appPath).parent
+            handle = self._organiser.startApplication(appPath, args, basePath)
+            self._organiser.waitForApplication(handle)
 
-                # Launch through MO2 with arguments
-                handle = self._organiser.startApplication(appPath, args, basePath)
-                self._organiser.waitForApplication(handle)
-
-                return False  # We handled the launch
-            else:
-                # No profile saves - config mappings via USVFS are sufficient
-                self._log.debug("Launching openmw.exe through MO2 (USVFS mode, no profile saves)")
-                return True  # Let MO2 handle with USVFS mappings
+            return False  # We handled the launch
 
         # For other executables, just let MO2 run with USVFS mappings
         self._log.debug(f"Launching {fileName} through MO2 (USVFS mode)")

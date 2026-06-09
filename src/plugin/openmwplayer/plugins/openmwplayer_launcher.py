@@ -17,36 +17,46 @@ class OpenMWPlayerLauncher(OpenMWPlayerPlugin, mobase.IPlugin):
         super().__init__()
         self._dataChecker = None
         self._dataContent = None
+        self._isOpenMwGame = None  # Lazy-checked flag: None=unchecked, True/False=result
 
     def init(self, organiser:mobase.IOrganizer):
         res = super().init(organiser)
+        # Register launch hooks early so desktop shortcuts work before UI initialization
+        self._organiser.onAboutToRun(lambda appName: self.onApplicationLaunch(appName))
+        self._organiser.onFinishedRun(lambda appName, exitCode: self.onApplicationClose(appName))
         self._organiser.onUserInterfaceInitialized(lambda window: self._onUiInit())
         return res
 
+    def _checkIsOpenMwGame(self) -> bool:
+        """Check and cache whether the managed game is OpenMW/Morrowind."""
+        if self._isOpenMwGame is None:
+            managedGame = self._organiser.managedGame()
+            if managedGame is None:
+                return False
+            gameName = managedGame.gameName().lower()
+            self._isOpenMwGame = "morrowind" in gameName or "openmw" in gameName
+        return self._isOpenMwGame
+
     def _onUiInit(self):
-        """Called when UI is initialized - game is now loaded."""
-        managedGame = self._organiser.managedGame()
-        if managedGame is None:
+        """Called when UI is initialized - register mod/plugin list listeners and game features."""
+        if not self._checkIsOpenMwGame():
             return
-        
-        gameName = managedGame.gameName().lower()
-        if "morrowind" in gameName or "openmw" in gameName:
-            self._organiser.onAboutToRun(lambda appName: self.onApplicationLaunch(appName))
-            self._organiser.onFinishedRun(lambda appName, exitCode: self.onApplicationClose(appName))
-            self._organiser.onProfileChanged(lambda old, new: self.onModListChange())
 
-            modList:mobase.IModList = self._organiser.modList()
-            modList.onModInstalled(lambda mod: self.onModListChange())
-            modList.onModStateChanged(lambda mods: self.onModListChange())
-            modList.onModMoved(lambda mod, old, new: self.onModListChange())
-            modList.onModRemoved(lambda name: self.onModListChange())
+        self._organiser.onProfileChanged(lambda old, new: self.onModListChange())
 
-            pluginList:mobase.IPluginList = self._organiser.pluginList()
-            pluginList.onPluginMoved(lambda name, old, new: self.onModListChange())
-            pluginList.onPluginStateChanged(lambda map: self.onModListChange())
+        modList:mobase.IModList = self._organiser.modList()
+        modList.onModInstalled(lambda mod: self.onModListChange())
+        modList.onModStateChanged(lambda mods: self.onModListChange())
+        modList.onModMoved(lambda mod, old, new: self.onModListChange())
+        modList.onModRemoved(lambda name: self.onModListChange())
 
-            self._registerGameFeatures()
-            self.onModListChange()
+        pluginList:mobase.IPluginList = self._organiser.pluginList()
+        pluginList.onPluginMoved(lambda name, old, new: self.onModListChange())
+        pluginList.onPluginStateChanged(lambda map: self.onModListChange())
+
+        self._registerGameFeatures()
+        self._openmwPlayer.initialSetup()
+        self.onModListChange()
 
     def _registerGameFeatures(self):
         """Register ModDataChecker and ModDataContent after game is loaded."""
@@ -122,10 +132,14 @@ class OpenMWPlayerLauncher(OpenMWPlayerPlugin, mobase.IPlugin):
         self._openmwPlayer.checkPendingRefresh()
 
     def onApplicationLaunch(self, appName):
+        if not self._checkIsOpenMwGame():
+            return True  # Not an OpenMW game, let MO2 proceed normally
         return self._openmwPlayer.runApplication(appName)
 
     def onApplicationClose(self, appName):
         """Handle application close - restore configs only in legacy mode."""
+        if not self._checkIsOpenMwGame():
+            return
         if self._openmwPlayer._settings.legacymode():
             self._openmwPlayer._deploy.restoreCfg()
         # In USVFS mode, nothing to restore - files were never deployed

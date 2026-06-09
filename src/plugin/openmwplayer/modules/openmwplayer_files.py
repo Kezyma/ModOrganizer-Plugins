@@ -321,7 +321,9 @@ class OpenMWPlayerFiles():
             validGroundcover = self._getGroundcoverOptionsFromFolders(dataFolders)
             currentCfg["Archives"] = list(filter(lambda archive: archive in validArchives, currentCfg["Archives"]))
             currentCfg["Groundcover"] = list(filter(lambda groundcover: groundcover in validGroundcover, currentCfg["Groundcover"]))
-            self.saveOpenmwCfg(self._strings.customOpenmwCfgPath(), currentCfg)
+            cfgPath = self._strings.customOpenmwCfgPath()
+            os.makedirs(Path(cfgPath).parent, exist_ok=True)
+            self.saveOpenmwCfg(cfgPath, currentCfg)
 
     def _getArchiveOptionsFromFolders(self, dataFolders: list):
         """Gets archive options from pre-fetched data folders. Thread-safe."""
