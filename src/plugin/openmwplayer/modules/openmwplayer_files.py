@@ -272,18 +272,28 @@ class OpenMWPlayerFiles():
             globPattern = f"{folder}\\*.bsa"
             matches = glob.glob(globPattern)
             for match in matches:
-                archives.append(os.path.basename(match))
+                baseName = os.path.basename(match)
+                if baseName not in archives:
+                    archives.append(baseName)
         return archives
     
     def getGroundcoverOptions(self):
         dataFolders = self.getDataFolders()
         content = []
         for folder in dataFolders:
-            for ext in ["*.esp", "*.esm"]:
+            for ext in ["*.esp", "*.esm", "*.omwaddon", "*.omwscripts"]:
                 globPattern = f"{folder}\\{ext}"
                 matches = glob.glob(globPattern)
                 for match in matches:
-                    content.append(os.path.basename(match))
+                    baseName = os.path.basename(match)
+                    # Strip .esp suffix from dummy esps so openmw.cfg receives the real extension
+                    if baseName.endswith(".omwaddon.esp"):
+                        baseName = baseName.replace(".omwaddon.esp", ".omwaddon")
+                    elif baseName.endswith(".omwscripts.esp"):
+                        baseName = baseName.replace(".omwscripts.esp", ".omwscripts")
+                    
+                    if baseName not in content:
+                        content.append(baseName)
         return content
 
     def refreshOpenmwCfg(self):
@@ -332,18 +342,28 @@ class OpenMWPlayerFiles():
             globPattern = f"{folder}\\*.bsa"
             matches = glob.glob(globPattern)
             for match in matches:
-                archives.append(os.path.basename(match))
+                baseName = os.path.basename(match)
+                if baseName not in archives:
+                    archives.append(baseName)
         return archives
 
     def _getGroundcoverOptionsFromFolders(self, dataFolders: list):
         """Gets groundcover options from pre-fetched data folders. Thread-safe."""
         content = []
         for folder in dataFolders:
-            for ext in ["*.esp", "*.esm"]:
+            for ext in ["*.esp", "*.esm", "*.omwaddon", "*.omwscripts"]:
                 globPattern = f"{folder}\\{ext}"
                 matches = glob.glob(globPattern)
                 for match in matches:
-                    content.append(os.path.basename(match))
+                    baseName = os.path.basename(match)
+                    # Strip .esp suffix from dummy esps so openmw.cfg receives the real extension
+                    if baseName.endswith(".omwaddon.esp"):
+                        baseName = baseName.replace(".omwaddon.esp", ".omwaddon")
+                    elif baseName.endswith(".omwscripts.esp"):
+                        baseName = baseName.replace(".omwscripts.esp", ".omwscripts")
+                    
+                    if baseName not in content:
+                        content.append(baseName)
         return content
 
     def refreshOpenmwCfgAsync(self, dataFolders: list = None, enabledPlugins: list = None):

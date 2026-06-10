@@ -42,7 +42,7 @@ class OpenMWPlayerMappings:
             mapping.source = customCfgPath
             mapping.destination = str(externalCfgFolder / "openmw.cfg")
             mapping.isDirectory = False
-            mapping.createTarget = False
+            mapping.createTarget = True
             mappings.append(mapping)
             self._log.debug(f"Config mapping: {customCfgPath} -> {mapping.destination}")
 
@@ -53,7 +53,7 @@ class OpenMWPlayerMappings:
             mapping.source = customSettingsPath
             mapping.destination = str(externalCfgFolder / "settings.cfg")
             mapping.isDirectory = False
-            mapping.createTarget = False
+            mapping.createTarget = True
             mappings.append(mapping)
             self._log.debug(f"Settings mapping: {customSettingsPath} -> {mapping.destination}")
 
@@ -64,7 +64,7 @@ class OpenMWPlayerMappings:
             mapping.source = customLauncherPath
             mapping.destination = str(externalCfgFolder / "launcher.cfg")
             mapping.isDirectory = False
-            mapping.createTarget = False
+            mapping.createTarget = True
             mappings.append(mapping)
             self._log.debug(f"Launcher mapping: {customLauncherPath} -> {mapping.destination}")
 
@@ -158,7 +158,7 @@ class OpenMWPlayerMappings:
             mapping.source = sourcePath
             mapping.destination = str(openmwInstallFolder / relativePath)
             mapping.isDirectory = False
-            mapping.createTarget = False
+            mapping.createTarget = True
             mappings.append(mapping)
 
         self._log.debug(f"Generated {len(mappings)} OpenMW folder mappings")
