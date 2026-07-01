@@ -31,7 +31,7 @@ Plugin Finder is a plugin for Mod Organizer 2 that allows users to browse and in
 
 ## Installation
 
-Download Plugin Finder from ~~[Nexus Mods](https://www.nexusmods.com/skyrimspecialedition/mods/59869) or~~ [GitHub](https://github.com/Kezyma/ModOrganizer-Plugins/releases/tag/pluginfinder).
+Download Plugin Finder from [GitHub](https://github.com/Kezyma/ModOrganizer-Plugins/releases/tag/pluginfinder).
 
 Extract the `pluginfinder` folder from the zip file and place it in Mod Organizer's plugins folder:
 - Example: `C:\Mod Organizer\plugins\pluginfinder\`
