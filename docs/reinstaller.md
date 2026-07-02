@@ -23,7 +23,7 @@ Reinstaller is a plugin for Mod Organizer 2 that allows users to back up downloa
 
 ## Installation
 
-Download Reinstaller from [Nexus Mods](https://www.nexusmods.com/skyrimspecialedition/mods/59292) or [GitHub](https://github.com/Kezyma/ModOrganizer-Plugins/releases/tag/reinstaller).
+Download Reinstaller from [GitHub](https://github.com/Kezyma/ModOrganizer-Plugins/releases/tag/reinstaller).
 
 Extract the `reinstaller` folder from the zip file and place it in Mod Organizer's plugins folder:
 - Example: `C:\Mod Organizer\plugins\reinstaller\`
