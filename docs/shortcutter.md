@@ -22,7 +22,7 @@ Shortcutter is a plugin for Mod Organizer 2 that allows users to create profile-
 
 ## Installation
 
-Download Shortcutter from [Nexus Mods](https://www.nexusmods.com/skyrimspecialedition/mods/59827) or [GitHub](https://github.com/Kezyma/ModOrganizer-Plugins/releases/tag/shortcutter).
+Download Shortcutter from [GitHub](https://github.com/Kezyma/ModOrganizer-Plugins/releases/tag/shortcutter).
 
 Extract the `shortcutter` folder from the zip file and place it in Mod Organizer's plugins folder:
 - Example: `C:\Mod Organizer\plugins\shortcutter\`
