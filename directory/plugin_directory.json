@@ -138,5 +138,10 @@
     "Name": "Nexus Collection Downloader",
     "Identifier": "nxm-collection-dl",
     "Manifest": "https://raw.githubusercontent.com/Furglitch/modorganizer2-nxm-collection-dl/main/plugindefinition.json"
+  },
+  {
+    "Name": "Batch Plugin Cleaner",
+    "Identifier": "BatchPluginCleaner",
+    "Manifest": "https://raw.githubusercontent.com/tkoopman/MO2-Batch-Plugin-Cleaner/refs/heads/master/plugindefinition.json"
   }
 ]
