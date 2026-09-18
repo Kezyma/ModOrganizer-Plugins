@@ -86,18 +86,25 @@ class OpenMWPlayer:
                 self._pendingRefresh = False
                 self._organiser.refresh()
         
+    def _dummyEspSearchPaths(self):
+        """Glob ready base patterns: game data folder, every mod folder, overwrite folder.
+
+        Each literal path is escaped, and the one intentional wildcard is appended
+        afterwards so that escaping cannot swallow it.
+        """
+        return [
+            glob.escape(self._strings.gameDataPath),
+            str(Path(glob.escape(self._strings.moModsPath)) / "*"),
+            glob.escape(self._strings.moOverwritePath)
+        ]
+
     def createDummyEsps(self):
         refresh = False
-        dataPaths = [
-            self._strings.gameDataFolder,
-            f"{self._strings.moModsPath}\\*",
-            self._strings.moOverwritePath
-        ]
         dummyEspSource = str(Path(__file__).parent.parent / "data" / "openmwplayer_dummy.esp")
         self._log.debug("Creating dummy esp files.")
-        for path in dataPaths:
-            globAddon = f"{path}\\*.omwaddon"
-            globScript = f"{path}\\*.omwscripts"
+        for path in self._dummyEspSearchPaths():
+            globAddon = str(Path(path) / "*.omwaddon")
+            globScript = str(Path(path) / "*.omwscripts")
             self._log.debug(f"Searching {globAddon}")
             for match in glob.glob(globAddon):
                 self._log.debug(f"Found {match}")
@@ -116,14 +123,9 @@ class OpenMWPlayer:
     
     def deleteDummyEsps(self):
         refresh = False
-        dataPaths = [
-            self._strings.gameDataFolder,
-            f"{self._strings.moModsPath}\\*",
-            self._strings.moOverwritePath
-        ]
-        for path in dataPaths:
-            globAddon = f"{path}\\*.omwaddon.esp"
-            globScript = f"{path}\\*.omwscripts.esp"
+        for path in self._dummyEspSearchPaths():
+            globAddon = str(Path(path) / "*.omwaddon.esp")
+            globScript = str(Path(path) / "*.omwscripts.esp")
             for match in glob.glob(globAddon):
                 deleteFile(match)
                 refresh = True

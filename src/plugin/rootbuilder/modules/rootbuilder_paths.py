@@ -65,7 +65,7 @@ class RootBuilderPaths(CommonPaths):
         for exc in exclusions:
             if exc != "":
                 if not exc.startswith("r:"):
-                    excludePath = str(Path(glob.escape(rootPath)) / exc)
+                    excludePath = str(Path(glob.escape(rootPath)) / exc.replace("\\", "/"))
                     for match in glob.glob(excludePath, recursive=True):
                         matchPath = Path(match)
                         if matchPath.is_file() and match in fileList:
@@ -95,7 +95,7 @@ class RootBuilderPaths(CommonPaths):
         for inc in inclusions:
             if inc != "":
                 if not inc.startswith("r:"):
-                    excludePath = str(Path(glob.escape(rootPath)) / inc)
+                    excludePath = str(Path(glob.escape(rootPath)) / inc.replace("\\", "/"))
                     for match in glob.glob(excludePath, recursive=True):
                         matchPath = Path(match)
                         if matchPath.is_file():

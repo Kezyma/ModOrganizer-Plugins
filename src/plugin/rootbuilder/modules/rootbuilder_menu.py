@@ -171,7 +171,8 @@ class RootBuilderMenu(QtWidgets.QWidget):
         copyModeOff = len(copyFiles) == 1 and copyFiles[0] == ""
         usvfsModeOn = len(usvfsFiles) == 1 and usvfsFiles[0] == "**"
         usvfsModeOff = len(usvfsFiles) == 1 and usvfsFiles[0] == ""
-        usvfsLinkModeOn = len(linkFiles) == 2 and linkFiles[0] == "**\\*.exe" and linkFiles[1] == "**\\*.dll"
+        normalisedLink = [f.replace("\\", "/") for f in linkFiles]
+        usvfsLinkModeOn = len(linkFiles) == 2 and normalisedLink[0] == "**/*.exe" and normalisedLink[1] == "**/*.dll"
 
         linkMode = linkModeOn and copyModeOff and usvfsModeOff
         copyMode = copyModeOn and linkModeOff and usvfsModeOff
@@ -322,7 +323,7 @@ class RootBuilderMenu(QtWidgets.QWidget):
     def usvfslinkModeButton_clicked(self):
         """Runs when the user switches to usvfs + link mode."""
         self._rootBuilder._settings.updateSetting("usvfsfiles", "**")
-        self._rootBuilder._settings.updateSetting("linkfiles", "**\\*.exe,**\\*.dll")
+        self._rootBuilder._settings.updateSetting("linkfiles", "**/*.exe,**/*.dll")
         self._rootBuilder._settings.updateSetting("copyfiles", "")
         self._rootBuilder._settings.updateSetting("usvfspriority", 3)
         self._rootBuilder._settings.updateSetting("linkpriority", 2)

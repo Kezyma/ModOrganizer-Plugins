@@ -266,35 +266,18 @@ class OpenMWPlayerFiles():
         return contentList
     
     def getArchiveOptions(self):
-        dataFolders = self.getDataFolders()
-        archives = []
-        for folder in dataFolders:
-            globPattern = f"{folder}\\*.bsa"
-            matches = glob.glob(globPattern)
-            for match in matches:
-                baseName = os.path.basename(match)
-                if baseName not in archives:
-                    archives.append(baseName)
-        return archives
+        """Gets archive options for the current mod list.
+
+        MUST be called from the main thread, as it reads the MO2 API.
+        """
+        return self._getArchiveOptionsFromFolders(self.getDataFolders())
     
     def getGroundcoverOptions(self):
-        dataFolders = self.getDataFolders()
-        content = []
-        for folder in dataFolders:
-            for ext in ["*.esp", "*.esm", "*.omwaddon", "*.omwscripts"]:
-                globPattern = f"{folder}\\{ext}"
-                matches = glob.glob(globPattern)
-                for match in matches:
-                    baseName = os.path.basename(match)
-                    # Strip .esp suffix from dummy esps so openmw.cfg receives the real extension
-                    if baseName.endswith(".omwaddon.esp"):
-                        baseName = baseName.replace(".omwaddon.esp", ".omwaddon")
-                    elif baseName.endswith(".omwscripts.esp"):
-                        baseName = baseName.replace(".omwscripts.esp", ".omwscripts")
-                    
-                    if baseName not in content:
-                        content.append(baseName)
-        return content
+        """Gets groundcover options for the current mod list.
+
+        MUST be called from the main thread, as it reads the MO2 API.
+        """
+        return self._getGroundcoverOptionsFromFolders(self.getDataFolders())
 
     def refreshOpenmwCfg(self):
         """Refreshes openmw.cfg - MUST be called from main thread as it accesses MO2 API."""
@@ -329,8 +312,17 @@ class OpenMWPlayerFiles():
             currentCfg["Content"] = enabledPlugins
             validArchives = self._getArchiveOptionsFromFolders(dataFolders)
             validGroundcover = self._getGroundcoverOptionsFromFolders(dataFolders)
-            currentCfg["Archives"] = list(filter(lambda archive: archive in validArchives, currentCfg["Archives"]))
-            currentCfg["Groundcover"] = list(filter(lambda groundcover: groundcover in validGroundcover, currentCfg["Groundcover"]))
+            # An empty scan result means the scan itself failed, not that the user
+            # removed everything - the game data folder alone always holds plugins
+            # and archives. Filtering against it would silently empty the config.
+            if validArchives:
+                currentCfg["Archives"] = list(filter(lambda archive: archive in validArchives, currentCfg["Archives"]))
+            elif currentCfg["Archives"]:
+                self._log.info("No .bsa files found in any data folder, keeping existing fallback-archive entries.")
+            if validGroundcover:
+                currentCfg["Groundcover"] = list(filter(lambda groundcover: groundcover in validGroundcover, currentCfg["Groundcover"]))
+            elif currentCfg["Groundcover"]:
+                self._log.info("No plugin files found in any data folder, keeping existing groundcover entries.")
             cfgPath = self._strings.customOpenmwCfgPath()
             os.makedirs(Path(cfgPath).parent, exist_ok=True)
             self.saveOpenmwCfg(cfgPath, currentCfg)
@@ -339,7 +331,7 @@ class OpenMWPlayerFiles():
         """Gets archive options from pre-fetched data folders. Thread-safe."""
         archives = []
         for folder in dataFolders:
-            globPattern = f"{folder}\\*.bsa"
+            globPattern = str(Path(glob.escape(folder)) / "*.bsa")
             matches = glob.glob(globPattern)
             for match in matches:
                 baseName = os.path.basename(match)
@@ -352,7 +344,7 @@ class OpenMWPlayerFiles():
         content = []
         for folder in dataFolders:
             for ext in ["*.esp", "*.esm", "*.omwaddon", "*.omwscripts"]:
-                globPattern = f"{folder}\\{ext}"
+                globPattern = str(Path(glob.escape(folder)) / ext)
                 matches = glob.glob(globPattern)
                 for match in matches:
                     baseName = os.path.basename(match)
