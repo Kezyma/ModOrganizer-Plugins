@@ -1,4 +1,5 @@
 import mobase, threading
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from .rootbuilder_strings import RootBuilderStrings
 from .rootbuilder_paths import RootBuilderPaths
@@ -21,6 +22,11 @@ class RootBuilderData:
         self._buildData = {}
         self._buildDataLock = threading.Lock()
 
+    # Hashing is disk bound rather than cpu bound, so a small fixed pool is
+    # plenty. The previous code started one thread per file, which on a large
+    # root folder ran the process out of memory and file handles.
+    _hashWorkers = 8
+
     def dataFileExists(self) -> bool:
         """Returns true if there is a current build data file."""
         filePath = self._strings.rbBuildDataPath
@@ -31,10 +37,12 @@ class RootBuilderData:
         if self._data is not None:
             return self._data
         filePath = self._strings.rbBuildDataPath
-        self._data = BuilData(loadJson(filePath))
-        if self._data is not None:
-            return self._data
-        return BuilData({ COPY:{}, LINK:{}, USVFS:{}})
+        data = loadJson(filePath)
+        if data is None:
+            self._log.warning("Build data file was missing or unreadable, treating this as an empty build.")
+            data = { COPY:{}, LINK:{}, USVFS:{} }
+        self._data = BuilData(data)
+        return self._data
     
     def saveDataFile(self, data:BuilData) -> bool:
         """Saves new data to the current data file."""
@@ -46,7 +54,7 @@ class RootBuilderData:
         """Deletes the current data file."""
         self._data = None
         filePath = self._strings.rbBuildDataPath
-        return deleteFile(filePath)
+        return deleteJson(filePath)
 
     def generateBuildData(self) -> BuilData:
         """Generates complete build data for the existing setup."""
@@ -93,13 +101,17 @@ class RootBuilderData:
                         })
         if useHash:
             self._log.debug("Hash enabled, hashing root mod files.")
-            threads = []
-            for copyFile in self._buildData[COPY]:
-                nt = threading.Thread(target=self._hashModFile, args=[copyFile])
-                nt.start()
-                threads.append(nt)
-            for t in threads:
-                t.join()
+            with ThreadPoolExecutor(max_workers=self._hashWorkers) as executor:
+                futures = {executor.submit(self._hashModFile, copyFile): copyFile
+                           for copyFile in self._buildData[COPY]}
+                for future in as_completed(futures):
+                    try:
+                        future.result()
+                    except Exception:
+                        # Deploying with incomplete hashes risks overwriting a game
+                        # file that was never backed up, so stop the build instead.
+                        self._log.critical(f"Failed to hash {futures[future]}, stopping the build.")
+                        raise
         return self._buildData
             
     def _hashModFile(self, fileKey:str):

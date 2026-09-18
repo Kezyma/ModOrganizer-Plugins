@@ -26,6 +26,9 @@ class CommonUpdate:
         updatePath = self._strings.updateFilePath
         if downloadFile(self._manifest, updatePath):
             rbData = loadJson(updatePath)
+            if rbData is None or self._versionsKey not in rbData:
+                self._log.warning("Could not read update data.")
+                return None
             rbVersions = rbData[self._versionsKey]
             thisVersionInfo = self._plugin.version()
             newestVersionInfo = None

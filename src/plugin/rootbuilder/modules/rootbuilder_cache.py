@@ -46,7 +46,7 @@ class RootBuilderCache:
         """Deletes the current cache file."""
         self._cache = None
         filePath = self._strings.rbCachePath
-        return deleteFile(filePath)
+        return deleteJson(filePath)
     
     def cachedValidRootGameFiles(self) -> List[str]:
         """Gets the list of game files from cache, or from the raw files if none exists."""
