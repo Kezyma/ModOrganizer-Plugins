@@ -20,7 +20,7 @@ class ShortcutterPaths(CommonPaths):
     def modOrganizerAppPaths(self):
         paths = {}
         names = {}
-        with open(self._strings.moIniPath) as ini:
+        with open(self._strings.moIniPath, encoding="utf-8-sig") as ini:
             for line in ini:
                 txt = line.rstrip()
                 parts = txt.split("\\")

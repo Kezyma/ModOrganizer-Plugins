@@ -16,18 +16,28 @@ class CommonLog:
         level = self._settings.loglevel()
         return level if level is not None else 0
 
+    def _format(self, message: str) -> str:
+        """Prefixes a message and makes it safe for Qt's logging functions.
+
+        Qt's logging takes a C string, which PyQt encodes as ascii, so a mod name,
+        profile name or file path containing accented, Cyrillic or CJK characters
+        would otherwise raise UnicodeEncodeError inside whatever operation happened
+        to be logging at the time. Escaping keeps those characters identifiable.
+        """
+        return f"{self._prefix}{message}".encode("ascii", errors="backslashreplace").decode("ascii")
+
     def debug(self, message: str) -> None:
         if self._get_loglevel() < 1:
-            qDebug(f"{self._prefix}{message}")
+            qDebug(self._format(message))
 
     def info(self, message: str) -> None:
         if self._get_loglevel() < 2:
-            qInfo(f"{self._prefix}{message}")
+            qInfo(self._format(message))
 
     def warning(self, message: str) -> None:
         if self._get_loglevel() < 3:
-            qWarning(f"{self._prefix}{message}")
+            qWarning(self._format(message))
 
     def critical(self, message: str) -> None:
         if self._get_loglevel() < 4:
-            qCritical(f"{self._prefix}{message}") 
+            qCritical(self._format(message))

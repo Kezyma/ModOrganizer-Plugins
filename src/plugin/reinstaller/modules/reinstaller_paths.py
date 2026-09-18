@@ -28,9 +28,8 @@ class ReinstallerPaths(CommonPaths):
         metaPath = str(Path(self._strings.moDownloadsPath) / (str(downloadName) + ".meta"))
         if Path(metaPath).exists():
             try:
-                metaFile = open(metaPath, "r")
-                metaText = metaFile.read()
-                metaFile.close()
+                with open(metaPath, "r", encoding="utf-8-sig") as metaFile:
+                    metaText = metaFile.read()
                 matches = re.search(self.metaRegex, metaText, re.MULTILINE)
                 if matches:
                     grp = str(matches.group(1))

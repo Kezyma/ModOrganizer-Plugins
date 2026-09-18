@@ -128,21 +128,54 @@ def unlinkFile(link: str, retries: int = 0) -> bool:
             return unlinkFile(link, retries + 1)
         return False
 
-def saveJson(path: str, data: Any, retries: int = 0) -> bool:
-    """Saves an object to a json file."""
+def _discardTemp(temp: Path):
+    """Removes a temporary file left behind by a failed atomic write."""
+    if temp.exists():
+        deleteFile(str(temp))
+
+def _replaceWithTemp(temp: Path, target: Path, backup: bool = True) -> bool:
+    """Replaces a target file with a completed temporary file.
+
+    The current contents are copied aside rather than renamed, so the target is
+    never momentarily absent if this is interrupted.
+    """
     try:
-        os.makedirs(os.path.dirname(path), exist_ok=True)
-        with open(Path(path), "w", encoding="utf-8") as jsonFile:
-            json.dump(data, jsonFile)
-            return True
+        if backup and target.exists():
+            shutil.copy2(target, target.with_name(target.name + ".bak"))
+        os.replace(temp, target)
+        return True
     except OSError:
+        _discardTemp(temp)
+        return False
+
+def saveJson(path: str, data: Any, retries: int = 0) -> bool:
+    """Saves an object to a json file.
+
+    Writes to a temporary file and replaces the original, so an interrupted or
+    failed write cannot leave the destination truncated.
+    """
+    target = Path(path)
+    temp = target.with_name(target.name + ".tmp")
+    try:
+        os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
+        with open(temp, "w", encoding="utf-8") as jsonFile:
+            json.dump(data, jsonFile)
+            jsonFile.flush()
+            os.fsync(jsonFile.fileno())
+    except (TypeError, ValueError):
+        # Unserialisable data, retrying will not help.
+        _discardTemp(temp)
+        return False
+    except OSError:
+        _discardTemp(temp)
         if retries <= maxRetries():
             time.sleep(0.1)
             return saveJson(path, data, retries + 1)
         return False
+    return _replaceWithTemp(temp, target)
 
 def loadJson(path: str, retries: int = 0) -> Union[Any, None]:
-    """Loads an object from a json file."""
+    """Loads an object from a json file, falling back to the backup if it is corrupt."""
     try:
         with open(Path(path), "r", encoding="utf-8-sig") as f:
             return json.load(f)
@@ -151,6 +184,27 @@ def loadJson(path: str, retries: int = 0) -> Union[Any, None]:
             time.sleep(0.1)
             return loadJson(path, retries + 1)
         return None
+    except ValueError:
+        # json.JSONDecodeError is a ValueError. A corrupt file can be recovered from
+        # the backup, but a missing one is left alone, as it may have been deleted
+        # deliberately to record that there is nothing to restore.
+        backup = Path(str(path) + ".bak")
+        if backup.exists():
+            try:
+                with open(backup, "r", encoding="utf-8-sig") as f:
+                    return json.load(f)
+            except (OSError, ValueError):
+                return None
+        return None
+
+def deleteJson(path: str) -> bool:
+    """Deletes a json file along with any backup left behind by saveJson."""
+    backup = Path(str(path) + ".bak")
+    if backup.exists():
+        deleteFile(str(backup))
+    if Path(path).exists():
+        return deleteFile(path)
+    return True
 
 def loadLines(path: str, retries: int = 0) -> Union["list[str]", None]:
     """Loads a list of lines from a file."""
@@ -165,17 +219,27 @@ def loadLines(path: str, retries: int = 0) -> Union["list[str]", None]:
         return None
 
 def saveLines(path: str, data: Iterable[str], retries: int = 0) -> bool:
-    """Saves a list of lines to a file."""
+    """Saves a list of lines to a file.
+
+    Writes to a temporary file and replaces the original, so an interrupted or
+    failed write cannot leave the destination truncated.
+    """
+    lines = list(data)  # materialised so a retry cannot write an exhausted iterator
+    target = Path(path)
+    temp = target.with_name(target.name + ".tmp")
     try:
-        os.makedirs(os.path.dirname(path), exist_ok=True)
-        with open(Path(path), "w", encoding="utf-8") as jsonFile:
-            jsonFile.writelines(data)
-            return True
+        os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
+        with open(temp, "w", encoding="utf-8") as linesFile:
+            linesFile.writelines(lines)
+            linesFile.flush()
+            os.fsync(linesFile.fileno())
     except OSError:
+        _discardTemp(temp)
         if retries <= maxRetries():
             time.sleep(0.1)
-            return saveLines(path, data, retries + 1)
+            return saveLines(path, lines, retries + 1)
         return False
+    return _replaceWithTemp(temp, target)
 
 def hashFile(path: str) -> str:
     """Hashes a file and returns the hash"""
@@ -183,27 +247,37 @@ def hashFile(path: str) -> str:
     if Path(path).exists():
         os.chmod(path, stat.S_IWRITE)
     f = os.open(path, (os.O_RDONLY | os.O_BINARY))
-    for block in iter(lambda: os.read(f, 2048 * func.block_size), b""):
-        func.update(block)
-    os.close(f)
+    try:
+        for block in iter(lambda: os.read(f, 2048 * func.block_size), b""):
+            func.update(block)
+    finally:
+        os.close(f)
     return func.hexdigest()
 
 def downloadFile(url: str, path: str, retries: int = 0) -> bool:
-    """Downloads a file to a specific location."""
+    """Downloads a file to a specific location.
+
+    Downloads to a temporary file and replaces the destination, so an interrupted
+    download cannot leave a truncated file in its place.
+    """
+    target = Path(path)
+    temp = target.with_name(target.name + ".tmp")
     try:
-        os.makedirs(os.path.dirname(path), exist_ok=True)
-        urllib.request.urlretrieve(url, path)
-        return True
+        os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
+        urllib.request.urlretrieve(url, str(temp))
     except (
         OSError,
         urllib.error.URLError,
         urllib.error.HTTPError,
         urllib.error.ContentTooShortError,
     ):
+        _discardTemp(temp)
         if retries <= maxRetries():
             time.sleep(0.1)
             return downloadFile(url, path, retries + 1)
         return False
+    # A downloaded file is always replaceable, so no backup is kept.
+    return _replaceWithTemp(temp, target, backup=False)
 
 def folderIsEmpty(path: str) -> bool:
     items = os.listdir(path)

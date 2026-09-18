@@ -28,8 +28,9 @@ class ProfileSyncSync:
             modList = []
             enabledStates = []
             for m in mods:
+                modName = m.encode('utf-16', 'surrogatepass').decode('utf-16')
                 modList.append(f"{m}\n")
-                if self._organiser.modList().state(m) & mobase.ModState.ACTIVE:
+                if self._organiser.modList().state(modName) & mobase.ModState.ACTIVE:
                     enabledStates.append(f"+{m}\n")
                 else:
                     enabledStates.append(f"-{m}\n")
