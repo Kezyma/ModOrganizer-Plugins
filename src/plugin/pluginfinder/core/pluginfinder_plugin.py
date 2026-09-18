@@ -9,7 +9,7 @@ class PluginFinderPlugin(BasePlugin):
     """Base Plugin Finder plugin, to be inherited by all other plugins."""
 
     def __init__(self):
-        super().__init__("PluginFinder", "Plugin Finder", mobase.VersionInfo(2, 0, 1))
+        super().__init__("PluginFinder", "Plugin Finder", mobase.VersionInfo(2, 0, 2))
 
     def init(self, organiser:mobase.IOrganizer):
         self._pluginFinder = PluginFinder(organiser)

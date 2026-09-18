@@ -83,6 +83,29 @@
       "DataPath": [
         "data/rootbuilder"
       ]
+    },
+    {
+      "Version": "5.1.2",
+      "Released": "2026-09-18",
+      "MinSupport": "2.4.0",
+      "MaxSupport": "2.5.0",
+      "MinWorking": "2.4.0",
+      "ReleaseNotes": [
+        "(5.1.2) Builds with a very large number of files no longer exhaust memory, and a file that cannot be hashed now stops the build instead of deploying incomplete data.",
+        "(5.1.2) A corrupted build data file can now be recovered from a backup, so a previous build can still be cleared.",
+        "(5.1.2) Fixed usvfs + link mode linking no files on Linux installations of Mod Organizer.",
+        "(5.1.2) Removed use of a deprecated Mod Organizer function that logged a warning on startup.",
+        "(5.1.2) Fixed a crash when a mod name, profile name or file path contained accented, Cyrillic or other non-English characters.",
+        "(5.1.2) Settings and data files are now saved more safely, so an interrupted save can no longer leave one empty."
+      ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/rootbuilder/rootbuilder.5.1.2.zip",
+      "PluginPath": [
+        "rootbuilder"
+      ],
+      "LocalePath": [],
+      "DataPath": [
+        "data/rootbuilder"
+      ]
     }
   ]
 }

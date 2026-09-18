@@ -6,6 +6,7 @@ from ..modules.openmwplayer_content import OpenMWPlayerDataContent
 from ....base.base_dialog import BaseDialog
 from ....common.common_qt import *
 from ....common.common_icons import *
+from ....common.common_version import moVersionAtLeast
 
 try:
     from PyQt5.QtCore import QTimer
@@ -73,9 +74,7 @@ class OpenMWPlayerLauncher(OpenMWPlayerPlugin, mobase.IPlugin):
             self._dataChecker = OpenMWPlayerDataChecker(self._openmwPlayer._log)
             self._organiser.gameFeatures().registerFeature(self._dataChecker, priority=100)
 
-            minContentVer = mobase.VersionInfo("2.5.3")
-            moVersion = self._organiser.appVersion()
-            if moVersion >= minContentVer:
+            if moVersionAtLeast(self._organiser, "2.5.3"):
                 # Register ModDataContent to show OpenMW content indicator in Content column
                 self._dataContent = OpenMWPlayerDataContent(self._openmwPlayer._log)
                 self._organiser.gameFeatures().registerFeature(self._dataContent, priority=100)

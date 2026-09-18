@@ -4,6 +4,7 @@ from ..core.rootbuilder_plugin import RootBuilderPlugin
 from ..modules.rootbuilder_checker import RootBuilderDataChecker
 from ..modules.rootbuilder_content import RootBuilderDataContent
 from ....common.common_qt import *
+from ....common.common_version import moVersionAtLeast
 
 class RootBuilderAutobuild(RootBuilderPlugin, mobase.IPluginFileMapper):
     """Autobuild plugin, handles all the automated background parts of Root Builder."""
@@ -35,9 +36,7 @@ class RootBuilderAutobuild(RootBuilderPlugin, mobase.IPluginFileMapper):
         self._organiser.gameFeatures().registerFeature(self._organiser.managedGame(), self._dataChecker, priority=100)
         self._rootBuilder._log.debug("Registered Root folder content validator")
 
-        minContentVer = mobase.VersionInfo("2.5.3")
-        moVersion = self._organiser.appVersion()
-        if moVersion >= minContentVer:
+        if moVersionAtLeast(self._organiser, "2.5.3"):
             # Register ModDataContent to show Root Builder content indicator in Content column
             self._dataContent = RootBuilderDataContent(self._rootBuilder._log)
             self._organiser.gameFeatures().registerFeature(self._organiser.managedGame(), self._dataContent, priority=100)

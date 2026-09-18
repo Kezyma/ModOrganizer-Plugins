@@ -118,6 +118,31 @@
       "DataPath": [
         "data/openmwplayer"
       ]
+    },
+    {
+      "Version": "2.1.7",
+      "Released": "2026-09-18",
+      "MinSupport": "2.4.0",
+      "MaxSupport": "2.5.2",
+      "MinWorking": "2.4.0",
+      "MaxWorking": "",
+      "ReleaseNotes": [
+        "(2.1.7) Fixed groundcover and archive selections being erased from openmw.cfg on Linux, where no installed plugin or archive files were being detected.",
+        "(2.1.7) Fixed ticked groundcover plugins being deselected when the groundcover list was filtered by a text search.",
+        "(2.1.7) Groundcover entries are now always written to openmw.cfg in profile load order, rather than whichever order the list was sorted in.",
+        "(2.1.7) Fixed mods whose folder name contains square brackets being skipped when scanning for archives and groundcover plugins.",
+        "(2.1.7) Fixed the game's own data folder being skipped when creating and removing dummy esp files.",
+        "(2.1.7) Fixed a crash when a mod name, profile name or file path contained accented, Cyrillic or other non-English characters.",
+        "(2.1.7) Settings and data files are now saved more safely, so an interrupted save can no longer leave one empty."
+      ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/openmwplayer/openmwplayer.2.1.7.zip",
+      "PluginPath": [
+        "openmwplayer"
+      ],
+      "LocalePath": [],
+      "DataPath": [
+        "data/openmwplayer"
+      ]
     }
   ]
 }

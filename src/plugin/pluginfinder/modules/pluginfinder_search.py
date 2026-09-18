@@ -3,6 +3,7 @@ from .pluginfinder_strings import PluginFinderStrings
 from .pluginfinder_directory import PluginFinderDirectory
 from .pluginfinder_install import PluginFinderInstall
 from ....common.common_log import CommonLog
+from ....common.common_version import moVersionAtLeast, moVersionAtMost
 from ..models.pluginfinder_versiondata import *
 from ..models.pluginfinder_manifestdata import *
 from ..models.pluginfinder_directorydata import *
@@ -78,30 +79,24 @@ class PluginFinderSearch:
         supported = True
         pluginData = self._directory.getPluginManifest(pluginId)
         latestVersion = self._directory.getLatestVersion(pluginId)
-        moVersion = self._organiser.appVersion()
         for ver in pluginData[VERSIONS]:
             if latestVersion == mobase.VersionInfo(ver[VERSION]):
                 if MINSUPPORT in ver and ver[MINSUPPORT] != "":
-                    minVer = mobase.VersionInfo(ver[MINSUPPORT])
-                    supported = supported and moVersion >= minVer
+                    supported = supported and moVersionAtLeast(self._organiser, ver[MINSUPPORT])
                 if MAXSUPPORT in ver and ver[MAXSUPPORT] != "":
-                    maxVer = mobase.VersionInfo(ver[MAXSUPPORT])
-                    supported = supported and moVersion <= maxVer
+                    supported = supported and moVersionAtMost(self._organiser, ver[MAXSUPPORT])
         return supported
 
     def pluginIsWorking(self, pluginId:str):
         supported = True
         pluginData = self._directory.getPluginManifest(pluginId)
         latestVersion = self._directory.getLatestVersion(pluginId)
-        moVersion = self._organiser.appVersion()
         for ver in pluginData[VERSIONS]:
             if latestVersion == mobase.VersionInfo(ver[VERSION]):
                 if MINWORKING in ver and ver[MINWORKING] != "":
-                    minVer = mobase.VersionInfo(ver[MINWORKING])
-                    supported = supported and moVersion >= minVer
+                    supported = supported and moVersionAtLeast(self._organiser, ver[MINWORKING])
                 if MAXWORKING in ver and ver[MAXWORKING] != "":
-                    maxVer = mobase.VersionInfo(ver[MAXWORKING])
-                    supported = supported and moVersion <= maxVer
+                    supported = supported and moVersionAtMost(self._organiser, ver[MAXWORKING])
         return supported
 
     def pluginDate(self, pluginId:str):

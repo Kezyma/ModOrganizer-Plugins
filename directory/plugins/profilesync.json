@@ -63,6 +63,26 @@
       "DataPath": [
         "data/profilesync"
       ]
+    },
+    {
+      "Version": "2.2.1",
+      "Released": "2026-09-18",
+      "MinSupport": "2.4.0",
+      "MaxSupport": "2.5.0",
+      "MinWorking": "2.4.0",
+      "ReleaseNotes": [
+        "(2.2.1) Fixed categories being removed from a state group when the active profile did not contain a matching separator.",
+        "(2.2.1) Fixed a crash when a mod name, profile name or file path contained accented, Cyrillic or other non-English characters.",
+        "(2.2.1) Settings and data files are now saved more safely, so an interrupted save can no longer leave one empty."
+      ],
+      "DownloadUrl": "https://github.com/Kezyma/ModOrganizer-Plugins/releases/download/profilesync/profilesync.2.2.1.zip",
+      "PluginPath": [
+        "profilesync"
+      ],
+      "LocalePath": [],
+      "DataPath": [
+        "data/profilesync"
+      ]
     }
   ]
 }

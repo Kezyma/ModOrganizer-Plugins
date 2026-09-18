@@ -9,7 +9,7 @@ class CurationClubPlugin(BasePlugin):
     """Base plugin class for Curation Club plugins."""
 
     def __init__(self):
-        super().__init__("CurationClub", "Curation Club", mobase.VersionInfo(1, 0, 0))
+        super().__init__("CurationClub", "Curation Club", mobase.VersionInfo(1, 0, 1))
 
     def init(self, organiser: mobase.IOrganizer) -> bool:
         res = super().init(organiser)
