@@ -280,8 +280,12 @@ class OpenMWPlayerMenu(QtWidgets.QWidget):
         self.groundcoverWidget.lstGroundcover.itemChanged.connect(self.saveGroundcoverOpenmwCfg)
 
     def saveGroundcoverOpenmwCfg(self):
-        """Save groundcover selection, updating internal data."""
-        selected = []
+        """Save groundcover selection, updating internal data.
+
+        The list widget may be filtered by the search box, so the visible rows are
+        only used to update the model. The saved list is always rebuilt from the
+        complete data set, otherwise filtered out plugins would be dropped.
+        """
         for ix in range(self.groundcoverWidget.lstGroundcover.count()):
             row = self.groundcoverWidget.lstGroundcover.item(ix)
             itemName = row.text()
@@ -293,10 +297,11 @@ class OpenMWPlayerMenu(QtWidgets.QWidget):
                     item["enabled"] = isChecked
                     break
 
-            if isChecked:
-                selected.append(itemName)
-
-        self._openmwCfg["Groundcover"] = selected
+        # Written in profile load order, so that the sort dropdown stays a view
+        # control and cannot change what ends up in openmw.cfg.
+        enabled = [item for item in self._groundcoverData if item["enabled"]]
+        enabled.sort(key=lambda item: item["loadOrder"])
+        self._openmwCfg["Groundcover"] = [item["name"] for item in enabled]
         self.saveOpenmwCfg()
 
     def rebindCustomOpenmwCfg(self):

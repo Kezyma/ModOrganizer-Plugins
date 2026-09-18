@@ -143,7 +143,7 @@ class ProfileSyncMenu(QtWidgets.QWidget):
             profile = self._organiser.profile()
             modList = self._organiser.modList().allModsByProfilePriority(profile)
             listCats = self._profileSync._sync.modlistToCategories(modList)
-            categories = listCats.keys()
+            categories = list(listCats.keys())
 
             selectedStateGroup = stateGroups[selectedState]
             selectedProfiles = selectedStateGroup[PROFILES]
@@ -159,8 +159,21 @@ class ProfileSyncMenu(QtWidgets.QWidget):
                         if c in stateGroups[stateGroup][CATEGORIES]:
                             invalidProfiles.extend(stateGroups[stateGroup][PROFILES])
 
-            self.bindStateProfiles(groupProfiles, selectedProfiles, invalidProfiles)
-            self.bindStateCategories(categories, selectedCategories, invalidCategories)
+            # A category saved against this state group but with no matching
+            # separator in the active profile still needs a row, otherwise saving
+            # from the visible rows would quietly drop it from the group.
+            for c in selectedCategories:
+                if c not in categories:
+                    categories.append(c)
+
+            # Repopulating emits itemChanged, which is wired to saveStateLists;
+            # without this guard a save can re-enter part way through a rebuild.
+            self._binding = True
+            try:
+                self.bindStateProfiles(groupProfiles, selectedProfiles, invalidProfiles)
+                self.bindStateCategories(categories, selectedCategories, invalidCategories)
+            finally:
+                self._binding = False
 
     def bindStateProfiles(self, groupProfiles:list, selectedProfiles:list, invalidProfiles:str):
         self.stateTabWidget.stateProfileList.clear()
@@ -275,7 +288,11 @@ class ProfileSyncMenu(QtWidgets.QWidget):
 
         self.bindStateGroup()
 
+    _binding = False
+
     def saveStateLists(self):
+        if self._binding:
+            return
         selectedProfiles = []
         for x in range(self.stateTabWidget.stateProfileList.count()):
             p = self.stateTabWidget.stateProfileList.item(x)
