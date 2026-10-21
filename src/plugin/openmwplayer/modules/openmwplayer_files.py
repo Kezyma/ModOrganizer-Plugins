@@ -254,7 +254,7 @@ class OpenMWPlayerFiles():
         contentList = []
         pluginList = self._organiser.pluginList()
         plugins = pluginList.pluginNames()
-        filtered = filter(lambda x: pluginList.loadOrder(x) >= 0, plugins)
+        filtered = filter(lambda x: pluginList.loadOrder(x) >= 0 and pluginList.state(x) == mobase.PluginState.ACTIVE, plugins)
         loadOrder = sorted(filtered, key=pluginList.loadOrder)
         for plugin in loadOrder:
             if plugin.endswith(".omwaddon.esp"):
